@@ -4,9 +4,9 @@ import react from '@vitejs/plugin-react-swc'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './',
+  base: './', // Basinställning för relativ routing
   build: {
-    outDir: '.',
-    emptyOutDir: false, // Behåll övriga filer i roten
+    outDir: 'dist', // Bygg till en separat 'dist' mapp
+    emptyOutDir: true, // Rensa innehållet i 'dist' innan bygg
   },
 })
