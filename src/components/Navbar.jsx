@@ -1,20 +1,27 @@
+// components/Navbar.jsx
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/pictures/LOGO.png'; // Importera logotypen
+import logo from '../assets/pictures/LOGO.png';
 
 export default function Navbar() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // Hantera menyns öppna/stängda status
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const navLinks = [
+        { to: '/', label: 'Hem' },
+        { to: '/services', label: 'Tjänster' },
+        { to: '/faq', label: 'FAQ' },
+        { to: '/contact', label: 'Kontakt' },
+    ];
+
+    const linkClasses = 'text-gray-700 hover:text-gray-900 font-medium transition-colors';
 
     return (
         <nav className="w-full bg-white shadow-md py-4 px-6">
             <div className="flex justify-between items-center">
                 {/* Logotyp och text */}
                 <div className="flex items-center space-x-4">
-                    <img
-                        src={logo}
-                        alt="Logo"
-                        className="w-10 h-10 object-cover rounded-full" // Justera storlek och form
-                    />
+                    <img src={logo} alt="Logo" className="w-10 h-10 object-cover rounded-full" />
                     <Link to="/" className="text-lg font-bold text-gray-900 hover:text-gray-700">
                         Svendsén Photography
                     </Link>
@@ -33,74 +40,33 @@ export default function Navbar() {
                         stroke="currentColor"
                         className="w-6 h-6"
                     >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M4 6h16M4 12h16M4 18h16"
-                        />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
 
                 {/* Navigeringslänkar (desktop) */}
                 <div className="hidden md:flex space-x-4">
-                    <Link
-                        to="/"
-                        className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-                    >
-                        Hem
-                    </Link>
-                    <Link
-                        to="/services"
-                        className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-                    >
-                        Tjänster
-                    </Link>
-                    <Link
-                        to="/faq"
-                        className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-                    >
-                        FAQ
-                    </Link>
-                    <Link
-                        to="/contact"
-                        className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-                    >
-                        Kontakt
-                    </Link>
+                    {navLinks.map(({ to, label }) => (
+                        <Link key={to} to={to} className={linkClasses}>
+                            {label}
+                        </Link>
+                    ))}
                 </div>
             </div>
 
             {/* Popdown-menyn för mobiler */}
             {isMenuOpen && (
                 <div className="mt-4 md:hidden flex flex-col space-y-2">
-                    <Link
-                        to="/"
-                        className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-                        onClick={() => setIsMenuOpen(false)}
-                    >
-                        Hem
-                    </Link>
-                    <Link
-                        to="/services"
-                        className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-                        onClick={() => setIsMenuOpen(false)}
-                    >
-                        Tjänster
-                    </Link>
-                    <Link
-                        to="/faq"
-                        className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-                        onClick={() => setIsMenuOpen(false)}
-                    >
-                        FAQ
-                    </Link>
-                    <Link
-                        to="/contact"
-                        className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
-                        onClick={() => setIsMenuOpen(false)}
-                    >
-                        Kontakt
-                    </Link>
+                    {navLinks.map(({ to, label }) => (
+                        <Link
+                            key={to}
+                            to={to}
+                            className={linkClasses}
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            {label}
+                        </Link>
+                    ))}
                 </div>
             )}
         </nav>

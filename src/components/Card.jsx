@@ -1,10 +1,11 @@
+// components/Card.jsx
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Card({ image, title, description, price, buttonText, buttonLink }) {
+export default function Card({ image, title, description, price, buttonText, buttonLink, onClick }) {
     return (
-        <div className="flex flex-col border rounded-lg shadow-md p-4 h-full">
-            {/* Bildcontainer med zoom-effekt */}
+        <div className="flex flex-col border rounded-lg shadow-md p-4 h-full" onClick={onClick}>
             {image && (
                 <div className="w-full h-48 sm:h-64 md:h-72 lg:h-80 overflow-hidden rounded-lg mb-4 group">
                     <img
@@ -14,16 +15,9 @@ export default function Card({ image, title, description, price, buttonText, but
                     />
                 </div>
             )}
-            {/* Titel */}
             <h3 className="text-lg font-bold">{title}</h3>
-
-            {/* Beskrivning */}
             <p className="text-sm text-gray-600 mt-2 whitespace-pre-line">{description}</p>
-
-            {/* Pris (valfritt) */}
             {price && <p className="text-lg font-bold mt-6">{price}</p>}
-
-            {/* Knapp (valfri) */}
             {buttonText && buttonLink && (
                 <Link
                     to={buttonLink}

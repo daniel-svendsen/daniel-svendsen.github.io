@@ -1,13 +1,25 @@
+// pages/Contact.jsx
+
 import React, { useState } from 'react';
 
 export default function Contact() {
-    const [selectedService, setSelectedService] = useState(''); // State för valt alternativ
+    const [selectedService, setSelectedService] = useState('');
+
+    const services = [
+        'Utefotografering',
+        'Studiofoto',
+        'Bröllop',
+        'Företagsporträtt',
+        'Produktfotografering',
+        'Presentkort',
+        'Annat',
+    ];
 
     return (
         <div className="p-6 max-w-4xl mx-auto">
             <h1 className="text-2xl font-bold mb-6">Kontakta mig gärna via email!</h1>
             <form
-                action="https://formspree.io/f/xvgowldv" // Din Formspree-länk
+                action="https://formspree.io/f/xvgowldv"
                 method="POST"
                 className="grid grid-cols-1 md:grid-cols-2 gap-6"
             >
@@ -47,46 +59,21 @@ export default function Contact() {
                         Vilken tjänst är du intresserad av? *
                     </label>
                     <div className="space-y-2">
-                        {[
-                            'Utefotografering',
-                            'Studiofoto',
-                            'Bröllop',
-                            'Företagsporträtt',
-                            'Produktfotografering',
-                            'Presentkort',
-                            'Annat',
-                        ].map((service) => (
-                            <div
-                                key={service}
-                                className="flex items-center cursor-pointer"
-                                onClick={() => setSelectedService(service)} // Uppdaterar valt alternativ
-                            >
-                                <div
-                                    className={`h-4 w-4 rounded-full border border-gray-300 flex items-center justify-center ${
-                                        selectedService === service ? 'bg-blue-600 border-blue-600' : ''
-                                    }`}
-                                >
-                                    {selectedService === service && (
-                                        <div className="h-2 w-2 bg-white rounded-full"></div>
-                                    )}
-                                </div>
-                                <label
-                                    htmlFor={service}
-                                    className="ml-2 text-sm text-gray-700 cursor-pointer"
-                                >
-                                    {service}
-                                </label>
-                            </div>
+                        {services.map((service) => (
+                            <label key={service} className="flex items-center cursor-pointer">
+                                <input
+                                    type="radio"
+                                    name="service"
+                                    value={service}
+                                    checked={selectedService === service}
+                                    onChange={() => setSelectedService(service)}
+                                    className="form-radio h-4 w-4 text-blue-600"
+                                />
+                                <span className="ml-2 text-sm text-gray-700">{service}</span>
+                            </label>
                         ))}
                     </div>
                 </div>
-
-                {/* Dold fält för tjänst */}
-                <input
-                    type="hidden"
-                    name="service"
-                    value={selectedService} // Lägg till valt alternativ i det dolda fältet
-                />
 
                 {/* Meddelande */}
                 <div className="md:col-span-2">

@@ -1,10 +1,12 @@
+// data/cards.js
+
 // Importera bilder
 import weddingImage from '../assets/pictures/wedding.jpg';
 import portraitImage from '../assets/pictures/portrait.jpg';
 import familyImage from '../assets/pictures/family.jpg';
 import companyImage from '../assets/pictures/company.jpg';
 
-const cards = [
+export const homeCards = [
     {
         image: weddingImage,
         title: 'Bröllop',
@@ -27,4 +29,29 @@ const cards = [
     },
 ];
 
-export default cards;
+export const serviceCards = [
+    {
+        title: 'Porträtt',
+        image: portraitImage,
+        description: `Ca 30 minuter fotografering\nInklusive 4st bilder som ni väljer ut.\n150kr/redigerad bild utöver.`,
+        price: 'FRÅN 1200KR',
+        buttonText: 'Boka nu',
+        buttonLink: '/contact',
+    },
+    {
+        title: 'Bröllop',
+        image: weddingImage,
+        description: `Grundpris för 3 timmar på plats samt 50st bilder som ni väljer.\nKontakta mig om ni vill ha fler/mindre timmar eller andra önskemål.`,
+        price: 'FRÅN 8000KR',
+        buttonText: 'Boka nu',
+        buttonLink: '/contact',
+    },
+    {
+        title: 'Företag',
+        image: companyImage,
+        description: `Jag kan erbjuda:\n- Porträtt på plats\n- Porträtt studiomiljö\n- Produktfoto m.m.`,
+        price: 'KONTAKTA MIG',
+        buttonText: 'Kontakta mig',
+        buttonLink: '/contact',
+    },
+];

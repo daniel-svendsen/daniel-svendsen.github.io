@@ -1,17 +1,14 @@
+// pages/Home.jsx
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
-import cards from '../data/cards';
+import { homeCards } from '../data/cards';
 import Carousel from '../components/Carousel';
 import carouselImages from '../data/carouselImages.json'; // Importera bildsökvägarna
 
 export default function Home() {
     const navigate = useNavigate();
-
-    // Funktion för att navigera till Services
-    const handleCardClick = () => {
-        navigate('/services'); // Navigera till /services
-    };
 
     return (
         <div className="p-6">
@@ -30,18 +27,12 @@ export default function Home() {
 
             {/* Kortlayout */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                {cards.map((card, index) => (
-                    <div
+                {homeCards.map((card, index) => (
+                    <Card
                         key={index}
-                        className="cursor-pointer"
-                        onClick={handleCardClick}
-                    >
-                        <Card
-                            image={card.image}
-                            title={card.title}
-                            description={card.description}
-                        />
-                    </div>
+                        {...card}
+                        onClick={() => navigate('/services')}
+                    />
                 ))}
             </div>
 

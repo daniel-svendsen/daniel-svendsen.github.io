@@ -1,3 +1,5 @@
+// components/Carousel.jsx
+
 import React, { useEffect, useState } from 'react';
 
 // Funktion för att blanda en array slumpmässigt
@@ -28,7 +30,6 @@ export default function Carousel({ images, interval = 3000, pauseDuration = 5000
             const timer = setInterval(() => {
                 setCurrentIndex((prevIndex) => (prevIndex + 1) % shuffledImages.length);
             }, interval);
-
             return () => clearInterval(timer); // Rensa timern vid unmount
         }
     }, [shuffledImages, interval, isPaused]);
@@ -36,25 +37,13 @@ export default function Carousel({ images, interval = 3000, pauseDuration = 5000
     const handleUserInteraction = (newIndex) => {
         setIsPaused(true);
         setCurrentIndex(newIndex);
-
-        setTimeout(() => {
-            setIsPaused(false);
-        }, pauseDuration);
-    };
-
-    const prevSlide = () => {
-        handleUserInteraction((currentIndex - 1 + shuffledImages.length) % shuffledImages.length);
-    };
-
-    const nextSlide = () => {
-        handleUserInteraction((currentIndex + 1) % shuffledImages.length);
+        setTimeout(() => setIsPaused(false), pauseDuration);
     };
 
     if (shuffledImages.length === 0) return null; // Visa inget om inga bilder finns
 
     return (
         <div className="relative mx-auto overflow-hidden rounded-lg shadow-md" style={{ width: '75vw', height: '75vh' }}>
-            {/* Bilder */}
             {shuffledImages.map((image, index) => (
                 <img
                     key={index}
@@ -68,16 +57,16 @@ export default function Carousel({ images, interval = 3000, pauseDuration = 5000
 
             {/* Navigeringsknappar */}
             <button
-                onClick={prevSlide}
+                onClick={() => handleUserInteraction((currentIndex - 1 + shuffledImages.length) % shuffledImages.length)}
                 className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full hover:bg-opacity-75 focus:outline-none"
             >
-                &#8249; {/* Vänster pil */}
+                &#8249;
             </button>
             <button
-                onClick={nextSlide}
+                onClick={() => handleUserInteraction((currentIndex + 1) % shuffledImages.length)}
                 className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full hover:bg-opacity-75 focus:outline-none"
             >
-                &#8250; {/* Höger pil */}
+                &#8250;
             </button>
         </div>
     );
