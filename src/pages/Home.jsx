@@ -1,22 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importera useNavigate
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import cards from '../data/cards';
 import Carousel from '../components/Carousel';
+import carouselImages from '../data/carouselImages.json'; // Importera bildsökvägarna
 
 export default function Home() {
-    const [carouselImages, setCarouselImages] = useState([]);
-    const navigate = useNavigate(); // Använd React Router för att navigera
-
-    // Dynamiskt hämta alla bilder från en mapp
-    useEffect(() => {
-        const images = import.meta.glob('../assets/*.{jpg,png}', { eager: true });
-
-        // Justera sökvägarna för GitHub Pages utan repo-prefix
-        const imagePaths = Object.keys(images).map((path) => `/assets/${path.split('/assets/')[1]}`);
-
-        setCarouselImages(imagePaths);
-    }, []);
+    const navigate = useNavigate();
 
     // Funktion för att navigera till Services
     const handleCardClick = () => {
@@ -37,8 +27,8 @@ export default function Home() {
                 {cards.map((card, index) => (
                     <div
                         key={index}
-                        className="cursor-pointer" // Gör korten klickbara
-                        onClick={handleCardClick} // Navigera när man klickar
+                        className="cursor-pointer"
+                        onClick={handleCardClick}
                     >
                         <Card
                             image={card.image}
@@ -50,7 +40,7 @@ export default function Home() {
             </div>
 
             {/* Karusell */}
-            {carouselImages.length > 0 && <Carousel images={carouselImages} />}
+            <Carousel images={carouselImages} />
         </div>
     );
 }

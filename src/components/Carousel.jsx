@@ -17,19 +17,20 @@ export default function Carousel({ images, interval = 3000, pauseDuration = 5000
 
     // Blanda bilderna när komponenten laddas
     useEffect(() => {
-        setShuffledImages(shuffleArray(images));
+        if (images.length > 0) {
+            setShuffledImages(shuffleArray(images));
+        }
     }, [images]);
 
+    // Automatisk bildväxling
     useEffect(() => {
-        let timer;
-
-        if (!isPaused) {
-            timer = setInterval(() => {
+        if (shuffledImages.length > 0 && !isPaused) {
+            const timer = setInterval(() => {
                 setCurrentIndex((prevIndex) => (prevIndex + 1) % shuffledImages.length);
             }, interval);
-        }
 
-        return () => clearInterval(timer);
+            return () => clearInterval(timer); // Rensa timern vid unmount
+        }
     }, [shuffledImages, interval, isPaused]);
 
     const handleUserInteraction = (newIndex) => {
@@ -48,6 +49,8 @@ export default function Carousel({ images, interval = 3000, pauseDuration = 5000
     const nextSlide = () => {
         handleUserInteraction((currentIndex + 1) % shuffledImages.length);
     };
+
+    if (shuffledImages.length === 0) return null; // Visa inget om inga bilder finns
 
     return (
         <div className="relative mx-auto overflow-hidden rounded-lg shadow-md" style={{ width: '75vw', height: '75vh' }}>
