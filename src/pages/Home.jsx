@@ -10,8 +10,11 @@ export default function Home() {
 
     // Dynamiskt hämta alla bilder från en mapp
     useEffect(() => {
-        const images = import.meta.glob('../assets/carousel/*.{jpg,png}');
-        const imagePaths = Object.keys(images).map((key) => key.replace('../', '/src/'));
+        const images = import.meta.glob('../assets/*.{jpg,png}', { eager: true });
+
+        // Justera sökvägarna för GitHub Pages utan repo-prefix
+        const imagePaths = Object.keys(images).map((path) => `/assets/${path.split('/assets/')[1]}`);
+
         setCarouselImages(imagePaths);
     }, []);
 
