@@ -16,8 +16,10 @@ export default function Contact() {
     ];
 
     return (
-        <div className="p-6 max-w-4xl mx-auto">
-            <h1 className="text-2xl font-bold mb-6">Kontakta mig gärna via email!</h1>
+        <main className="p-6 max-w-4xl mx-auto">
+            <header>
+                <h1 className="text-2xl font-bold mb-6">Kontakta mig gärna via e-post!</h1>
+            </header>
             <form
                 action="https://formspree.io/f/xvgowldv"
                 method="POST"
@@ -38,42 +40,45 @@ export default function Contact() {
                     />
                 </div>
 
-                {/* Email */}
+                {/* E-post */}
                 <div>
                     <label htmlFor="email" className="block text-sm font-medium mb-1">
-                        Email adress *
+                        E-postadress *
                     </label>
                     <input
                         id="email"
                         name="_replyto"
                         type="email"
                         required
-                        placeholder="Din emailadress"
+                        placeholder="Din e-postadress"
                         className="block w-full border rounded-md p-2 focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
 
                 {/* Tjänst */}
-                <div className="md:col-span-2">
-                    <label className="block text-sm font-medium mb-2">
+                <fieldset className="md:col-span-2">
+                    <legend className="block text-sm font-medium mb-2">
                         Vilken tjänst är du intresserad av? *
-                    </label>
+                    </legend>
                     <div className="space-y-2">
                         {services.map((service) => (
-                            <label key={service} className="flex items-center cursor-pointer">
+                            <div key={service} className="flex items-center">
                                 <input
                                     type="radio"
+                                    id={service}
                                     name="service"
                                     value={service}
                                     checked={selectedService === service}
                                     onChange={() => setSelectedService(service)}
                                     className="form-radio h-4 w-4 text-blue-600"
                                 />
-                                <span className="ml-2 text-sm text-gray-700">{service}</span>
-                            </label>
+                                <label htmlFor={service} className="ml-2 text-sm text-gray-700">
+                                    {service}
+                                </label>
+                            </div>
                         ))}
                     </div>
-                </div>
+                </fieldset>
 
                 {/* Meddelande */}
                 <div className="md:col-span-2">
@@ -100,6 +105,6 @@ export default function Contact() {
                     </button>
                 </div>
             </form>
-        </div>
+        </main>
     );
 }

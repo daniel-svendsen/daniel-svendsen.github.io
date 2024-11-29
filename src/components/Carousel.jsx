@@ -43,31 +43,45 @@ export default function Carousel({ images, interval = 3000, pauseDuration = 5000
     if (shuffledImages.length === 0) return null; // Visa inget om inga bilder finns
 
     return (
-        <div className="relative mx-auto overflow-hidden rounded-lg shadow-md" style={{ width: '75vw', height: '75vh' }}>
+        <section
+            className="relative mx-auto overflow-hidden rounded-lg shadow-md"
+            style={{ width: '75vw', height: '75vh' }}
+            aria-label="Bildkarusell"
+        >
             {shuffledImages.map((image, index) => (
-                <img
+                <figure
                     key={index}
-                    src={image}
-                    alt={`Slide ${index + 1}`}
-                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 ${
+                    className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ${
                         index === currentIndex ? 'opacity-100' : 'opacity-0'
                     }`}
-                />
+                >
+                    <img
+                        src={image}
+                        alt={`Bild ${index + 1} av ${shuffledImages.length}`}
+                        className="w-full h-full object-contain"
+                    />
+                    {/* Om du vill lägga till en bildtext kan du använda <figcaption> */}
+                    {/* <figcaption className="sr-only">Beskrivning av bilden</figcaption> */}
+                </figure>
             ))}
 
             {/* Navigeringsknappar */}
             <button
-                onClick={() => handleUserInteraction((currentIndex - 1 + shuffledImages.length) % shuffledImages.length)}
+                onClick={() =>
+                    handleUserInteraction((currentIndex - 1 + shuffledImages.length) % shuffledImages.length)
+                }
                 className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full hover:bg-opacity-75 focus:outline-none"
+                aria-label="Föregående bild"
             >
                 &#8249;
             </button>
             <button
                 onClick={() => handleUserInteraction((currentIndex + 1) % shuffledImages.length)}
                 className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full hover:bg-opacity-75 focus:outline-none"
+                aria-label="Nästa bild"
             >
                 &#8250;
             </button>
-        </div>
+        </section>
     );
 }

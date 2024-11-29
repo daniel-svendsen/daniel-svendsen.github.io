@@ -11,8 +11,8 @@ export default function Home() {
     const navigate = useNavigate();
 
     return (
-        <div className="p-6">
-            <section className="text-center mb-8">
+        <main className="p-6">
+            <header className="text-center mb-8">
                 <h1 className="text-3xl font-bold mb-4">Välkommen till Svendsén Photography!</h1>
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
                     Här får du hjälp att föreviga ögonblick som betyder något. Jag är en fotograf från Kungälv och Göteborg med fokus på bröllop, porträtt och företagsfotografering.
@@ -23,10 +23,13 @@ export default function Home() {
                 <p className="text-lg text-gray-700 leading-relaxed">
                     Hör gärna av dig för att prata om dina idéer eller behov. Tillsammans skapar vi något unikt.
                 </p>
-            </section>
+            </header>
 
             {/* Kortlayout */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <section
+                aria-label="Tjänster"
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
+            >
                 {homeCards.map((card, index) => (
                     <Card
                         key={index}
@@ -34,10 +37,12 @@ export default function Home() {
                         onClick={() => navigate('/services')}
                     />
                 ))}
-            </div>
+            </section>
 
             {/* Karusell */}
-            <Carousel images={carouselImages} />
-        </div>
+            <section aria-label="Bildkarusell">
+                <Carousel images={carouselImages} />
+            </section>
+        </main>
     );
 }

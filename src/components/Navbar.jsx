@@ -1,7 +1,7 @@
 // components/Navbar.jsx
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import logo from '../assets/pictures/LOGO.png';
 
 export default function Navbar() {
@@ -17,20 +17,24 @@ export default function Navbar() {
     const linkClasses = 'text-gray-700 hover:text-gray-900 font-medium transition-colors';
 
     return (
-        <nav className="w-full bg-white shadow-md py-4 px-6">
-            <div className="flex justify-between items-center">
+        <header className="w-full bg-white shadow-md py-4 px-6">
+            <nav className="flex justify-between items-center" aria-label="Huvudnavigation">
                 {/* Logotyp och text */}
                 <div className="flex items-center space-x-4">
-                    <img src={logo} alt="Logo" className="w-10 h-10 object-cover rounded-full" />
-                    <Link to="/" className="text-lg font-bold text-gray-900 hover:text-gray-700">
-                        Svendsén Photography
-                    </Link>
+                    <a href="/" className="flex items-center">
+                        <img src={logo} alt="Svendsén Photography logotyp" className="w-10 h-10 object-cover rounded-full" />
+                        <span className="text-lg font-bold text-gray-900 hover:text-gray-700 ml-2">
+                            Svendsén Photography
+                        </span>
+                    </a>
                 </div>
 
                 {/* Hamburger-meny för mobiler */}
                 <button
                     className="block md:hidden text-gray-700 focus:outline-none"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    aria-label="Öppna huvudmeny"
+                    aria-expanded={isMenuOpen}
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -39,36 +43,47 @@ export default function Navbar() {
                         strokeWidth="2"
                         stroke="currentColor"
                         className="w-6 h-6"
+                        aria-hidden="true"
                     >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
 
                 {/* Navigeringslänkar (desktop) */}
-                <div className="hidden md:flex space-x-4">
+                <ul className="hidden md:flex space-x-4">
                     {navLinks.map(({ to, label }) => (
-                        <Link key={to} to={to} className={linkClasses}>
-                            {label}
-                        </Link>
+                        <li key={to}>
+                            <NavLink
+                                to={to}
+                                className={({ isActive }) =>
+                                    `${linkClasses} ${isActive ? 'text-blue-600' : ''}`
+                                }
+                            >
+                                {label}
+                            </NavLink>
+                        </li>
                     ))}
-                </div>
-            </div>
+                </ul>
+            </nav>
 
             {/* Popdown-menyn för mobiler */}
             {isMenuOpen && (
-                <div className="mt-4 md:hidden flex flex-col space-y-2">
-                    {navLinks.map(({ to, label }) => (
-                        <Link
-                            key={to}
-                            to={to}
-                            className={linkClasses}
-                            onClick={() => setIsMenuOpen(false)}
-                        >
-                            {label}
-                        </Link>
-                    ))}
-                </div>
+                <nav className="mt-4 md:hidden" aria-label="Mobil huvudnavigation">
+                    <ul className="flex flex-col space-y-2">
+                        {navLinks.map(({ to, label }) => (
+                            <li key={to}>
+                                <NavLink
+                                    to={to}
+                                    className={linkClasses}
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
+                                    {label}
+                                </NavLink>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
             )}
-        </nav>
+        </header>
     );
 }

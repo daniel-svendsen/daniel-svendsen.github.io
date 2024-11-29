@@ -1,19 +1,18 @@
-// components/Card.jsx
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Card({ image, title, description, price, buttonText, buttonLink, onClick }) {
     return (
-        <div className="flex flex-col border rounded-lg shadow-md p-4 h-full" onClick={onClick}>
+        <article className="flex flex-col border rounded-lg shadow-md p-4 h-full" onClick={onClick}>
             {image && (
-                <div className="w-full h-48 sm:h-64 md:h-72 lg:h-80 overflow-hidden rounded-lg mb-4 group">
+                <figure className="w-full h-48 sm:h-64 md:h-72 lg:h-80 overflow-hidden rounded-lg mb-4 group">
                     <img
                         src={image}
                         alt={title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        loading="lazy"
                     />
-                </div>
+                </figure>
             )}
             <h3 className="text-lg font-bold">{title}</h3>
             <p className="text-sm text-gray-600 mt-2 whitespace-pre-line">{description}</p>
@@ -26,6 +25,6 @@ export default function Card({ image, title, description, price, buttonText, but
                     {buttonText}
                 </Link>
             )}
-        </div>
+        </article>
     );
 }
