@@ -44,5 +44,4 @@
     "build": "vite build",
     "postbuild": "xcopy src\\assets docs\\assets /E /I /Y"
   }
-
 }

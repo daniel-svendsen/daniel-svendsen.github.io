@@ -17,8 +17,14 @@ export default function Home() {
         <div className="p-6">
             <section className="text-center mb-8">
                 <h1 className="text-3xl font-bold mb-4">Välkommen till Svendsén Photography!</h1>
+                <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                    Här får du hjälp att föreviga ögonblick som betyder något. Jag är en fotograf från Kungälv och Göteborg med fokus på bröllop, porträtt och företagsfotografering.
+                </p>
+                <p className="text-lg text-gray-700 leading-relaxed mb-4">
+                    Oavsett om det gäller bröllopsbilder, professionella porträtt eller att fånga vardagens små stunder, arbetar jag för att skapa bilder som speglar känsla och autenticitet.
+                </p>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                    Här får du hjälp att föreviga ögonblick som betyder något.
+                    Hör gärna av dig för att prata om dina idéer eller behov. Tillsammans skapar vi något unikt.
                 </p>
             </section>
 
