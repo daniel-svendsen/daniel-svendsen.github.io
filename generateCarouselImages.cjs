@@ -10,7 +10,7 @@ const outputFile = path.join(__dirname, 'src/data/carouselImages.json');
 const imageFiles = fs.readdirSync(sourceDir).filter((file) => /\.(jpg|png)$/i.test(file));
 
 // Generera en lista med sökvägar för bilderna
-const imagePaths = imageFiles.map((file) => `/assets/${file}`);
+const imagePaths = imageFiles.map((file) => `/assets/carousel/${file}`);
 
 // Skriv ut till en JSON-fil
 fs.writeFileSync(outputFile, JSON.stringify(imagePaths, null, 2), 'utf-8');
