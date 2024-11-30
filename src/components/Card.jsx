@@ -1,7 +1,18 @@
+// components/Card.jsx
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Card({ image, title, description, price, buttonText, buttonLink, onClick }) {
+export default function Card({
+                                 image,
+                                 imageLink, // Lagt till imageLink som prop
+                                 title,
+                                 description,
+                                 price,
+                                 buttonText,
+                                 buttonLink,
+                                 onClick,
+                             }) {
     return (
         <article
             className="flex flex-col border rounded-lg shadow-md p-4 h-full"
@@ -9,17 +20,28 @@ export default function Card({ image, title, description, price, buttonText, but
         >
             {image && (
                 <figure className="w-full h-48 sm:h-64 md:h-72 lg:h-80 overflow-hidden rounded-lg mb-4">
-                    <img
-                        src={image}
-                        alt={title}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                        loading="lazy"
-                    />
+                    {imageLink ? (
+                        <Link to={imageLink} aria-label={`Visa galleri för ${title}`}>
+                            <img
+                                src={image}
+                                alt={title}
+                                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110 cursor-pointer"
+                                loading="lazy"
+                            />
+                        </Link>
+                    ) : (
+                        <img
+                            src={image}
+                            alt={title}
+                            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                            loading="lazy"
+                        />
+                    )}
                 </figure>
             )}
             {/* Omslut innehållet i en flex-container som kan växa */}
             <div className="flex-grow flex flex-col">
-                <h3 className="text-lg font-bold">{title}</h3>
+                <h2 className="text-lg font-bold">{title}</h2>
                 <p className="text-sm text-gray-600 mt-2 whitespace-pre-line flex-grow">
                     {description}
                 </p>

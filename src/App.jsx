@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
+import Portraits from './pages/Portraits';
+import Weddings from './pages/Weddings';
 
 function App() {
     return (
@@ -14,6 +16,8 @@ function App() {
                 <main className="flex-grow p-4">
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/portraits" element={<Portraits />} />
+                        <Route path="/weddings" element={<Weddings />} />
                         <Route path="/services" element={<Services />} />
                         <Route path="/faq" element={<FAQ />} />
                         <Route path="/contact" element={<Contact />} />

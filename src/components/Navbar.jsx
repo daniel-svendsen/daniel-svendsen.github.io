@@ -9,6 +9,8 @@ export default function Navbar() {
 
     const navLinks = [
         { to: '/', label: 'Hem' },
+        { to: '/portraits', label: 'Porträttgalleri' },
+        { to: '/weddings', label: 'Bröllopsgalleri' },
         { to: '/services', label: 'Tjänster' },
         { to: '/faq', label: 'FAQ' },
         { to: '/contact', label: 'Kontakt' },

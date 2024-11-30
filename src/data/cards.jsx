@@ -37,6 +37,7 @@ export const serviceCards = [
         price: 'FRÅN 1200KR',
         buttonText: 'Boka nu',
         buttonLink: '/contact',
+        imageLink: '/portraits',
     },
     {
         title: 'Bröllop',
@@ -45,6 +46,7 @@ export const serviceCards = [
         price: 'FRÅN 8000KR',
         buttonText: 'Boka nu',
         buttonLink: '/contact',
+        imageLink: '/weddings',
     },
     {
         title: 'Företag',
