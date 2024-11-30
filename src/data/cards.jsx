@@ -31,7 +31,7 @@ export const homeCards = [
 
 export const serviceCards = [
     {
-        title: 'Porträtt',
+        title: 'Porträtt/Familjefoto',
         image: portraitImage,
         description: `Ca 30 minuter fotografering\nInklusive 4st bilder som ni väljer ut.\n150kr/redigerad bild utöver.`,
         price: 'FRÅN 1200KR',

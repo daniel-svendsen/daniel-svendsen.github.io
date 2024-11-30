@@ -11,7 +11,6 @@ export default function Contact() {
         'Bröllop',
         'Företagsporträtt',
         'Produktfotografering',
-        'Presentkort',
         'Annat',
     ];
 
