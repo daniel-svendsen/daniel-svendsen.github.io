@@ -11,6 +11,11 @@ const categories = {
 // Utdatakatalog: var JSON-filerna ska sparas
 const outputDir = path.join(__dirname, 'src/data');
 
+// Skapa utdatakatalog om den inte finns
+if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+}
+
 // Skapa JSON-filer för varje kategori
 Object.entries(categories).forEach(([category, sourceDir]) => {
     if (!fs.existsSync(sourceDir)) {

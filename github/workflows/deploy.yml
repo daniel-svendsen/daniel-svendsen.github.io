@@ -1,0 +1,44 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Klona koden från ditt repo
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      # 2. Installera Node.js och npm
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # 3. Installera beroenden
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Generera JSON-filer från bildkatalogen
+      - name: Generate JSON files
+        run: node deploy.js
+
+      # 5. Bygg projektet med Vite
+      - name: Build project
+        run: npm run build
+
+      # 6. Lägg till CNAME-filen (om den inte redan finns)
+      - name: Add CNAME file
+        run: echo "www.svendsenphotography.com" > docs/CNAME
+
+      # 7. Publicera till GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs
