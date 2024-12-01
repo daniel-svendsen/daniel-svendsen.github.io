@@ -1,11 +1,10 @@
-// pages/Home.jsx
+// src/pages/Home.jsx
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import { homeCards } from '../data/cards';
-import Carousel from '../components/Carousel';
-import carouselImages from '../data/carouselImages.json'; // Importera bildsökvägarna
+import Carousel from '../components/Carousel'; // Ingen import av carouselImages behövs längre
 
 export default function Home() {
     const navigate = useNavigate();
@@ -41,7 +40,7 @@ export default function Home() {
 
             {/* Karusell */}
             <section aria-label="Bildkarusell">
-                <Carousel images={carouselImages} />
+                <Carousel />
             </section>
         </main>
     );
