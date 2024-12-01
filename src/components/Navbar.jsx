@@ -9,11 +9,11 @@ export default function Navbar() {
 
     const navLinks = [
         { to: '/', label: 'Hem' },
-        { to: '/portraits', label: 'Porträttgalleri' },
-        { to: '/weddings', label: 'Bröllopsgalleri' },
         { to: '/services', label: 'Tjänster' },
         { to: '/faq', label: 'FAQ' },
         { to: '/contact', label: 'Kontakt' },
+        { to: '/portraits', label: 'Porträtt' },
+        { to: '/weddings', label: 'Bröllop' },
     ];
 
     const linkClasses = 'text-gray-700 hover:text-gray-900 font-medium transition-colors';
