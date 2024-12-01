@@ -29,7 +29,7 @@ const FAQ = () => {
                                 Hur lång tid tar en vanlig fotosession?
                             </Accordion.Trigger>
                             <Accordion.Content className="text-gray-700 py-2">
-                                En session tar vanligtvis mellan 1-2 timmar beroende på era önskemål.
+                                En session tar vanligtvis mellan 0.5-2 timmar beroende på era önskemål.
                             </Accordion.Content>
                         </Accordion.Item>
                         <Accordion.Item value="item-4">

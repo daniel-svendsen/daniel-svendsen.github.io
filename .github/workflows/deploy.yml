@@ -1,0 +1,49 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    # Förhindra oändliga loopar genom att ignorera commits med [skip ci]
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+
+    steps:
+      # Steg 1: Check out repository med full historik
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # För att säkerställa att hela historiken hämtas
+
+      # Steg 2: Sätt upp Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # Steg 3: Installera beroenden
+      - name: Install dependencies
+        run: npm install
+
+      # Steg 4: Bygg projektet
+      - name: Build project
+        run: npm run build
+
+      # Steg 5: Lägg till CNAME-fil för anpassad domän
+      - name: Add CNAME file
+        run: echo "www.svendsenphotography.com" > docs/CNAME
+
+      # Steg 6: Commit och pusha ändringar till main-grenen
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs
+          git commit -m "Deploy to GitHub Pages [skip ci]"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
