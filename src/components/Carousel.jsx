@@ -1,6 +1,6 @@
-// components/Carousel.jsx
+// src/components/Carousel.jsx
 
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Funktion för att blanda en array slumpmässigt
 const shuffleArray = (array) => {
@@ -12,17 +12,26 @@ const shuffleArray = (array) => {
     return shuffled;
 };
 
-export default function Carousel({ images, interval = 3000, pauseDuration = 5000 }) {
+export default function Carousel({ interval = 3000, pauseDuration = 5000 }) {
+    const [images, setImages] = useState([]);
     const [shuffledImages, setShuffledImages] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
 
-    // Blanda bilderna när komponenten laddas
+    // Dynamiskt importera alla bilder i carousel-mappen
     useEffect(() => {
-        if (images.length > 0) {
-            setShuffledImages(shuffleArray(images));
-        }
-    }, [images]);
+        const importImages = async () => {
+            const images = import.meta.glob('../assets/carousel/*.{jpg,jpeg,png}');
+            const imagePromises = [];
+            for (const path in images) {
+                imagePromises.push(images[path]().then((mod) => mod.default));
+            }
+            const imageUrls = await Promise.all(imagePromises);
+            setImages(imageUrls);
+            setShuffledImages(shuffleArray(imageUrls));
+        };
+        importImages();
+    }, []);
 
     // Automatisk bildväxling
     useEffect(() => {
@@ -60,8 +69,6 @@ export default function Carousel({ images, interval = 3000, pauseDuration = 5000
                         alt={`Bild ${index + 1} av ${shuffledImages.length}`}
                         className="w-full h-full object-contain"
                     />
-                    {/* Om du vill lägga till en bildtext kan du använda <figcaption> */}
-                    {/* <figcaption className="sr-only">Beskrivning av bilden</figcaption> */}
                 </figure>
             ))}
 

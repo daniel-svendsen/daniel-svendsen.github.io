@@ -1,12 +1,28 @@
-// pages/Portraits.jsx
+// src/pages/Portraits.jsx
 
 import React, { useState, useEffect } from 'react';
-import portraitImages from '../data/portraitsImages.json'; // Importera bildvägarna
 
 export default function Portraits() {
+    const [images, setImages] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
 
-    // Uppdatera sidtiteln utan Helmet
+    // Dynamiskt importera alla bilder i portraits-mappen
+    useEffect(() => {
+        const importImages = async () => {
+            const images = import.meta.glob('../assets/portraits/*.{jpg,jpeg,png}');
+            const imagePromises = [];
+            for (const path in images) {
+                imagePromises.push(images[path]().then((mod) => mod.default));
+            }
+            const imageUrls = await Promise.all(imagePromises);
+            // Sortera bilderna efter filnamn om ordningen är viktig
+            imageUrls.sort();
+            setImages(imageUrls);
+        };
+        importImages();
+    }, []);
+
+    // Uppdatera sidtiteln
     useEffect(() => {
         document.title = 'Svendsén Photography - Porträttgalleri';
     }, []);
@@ -44,7 +60,7 @@ export default function Portraits() {
                 aria-label="Porträttgalleri"
                 className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
             >
-                {portraitImages.map((src, index) => (
+                {images.map((src, index) => (
                     <figure key={index} className="relative">
                         <img
                             src={src}

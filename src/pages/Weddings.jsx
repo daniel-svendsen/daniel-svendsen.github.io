@@ -1,12 +1,28 @@
-// pages/Weddings.jsx
+// src/pages/Weddings.jsx
 
 import React, { useState, useEffect } from 'react';
-import weddingImages from '../data/weddingsImages.json'; // Importera bildvägarna
 
 export default function Weddings() {
+    const [images, setImages] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
 
-    // Uppdatera sidtiteln utan Helmet
+    // Dynamiskt importera alla bilder i weddings-mappen
+    useEffect(() => {
+        const importImages = async () => {
+            const images = import.meta.glob('../assets/weddings/*.{jpg,jpeg,png}');
+            const imagePromises = [];
+            for (const path in images) {
+                imagePromises.push(images[path]().then((mod) => mod.default));
+            }
+            const imageUrls = await Promise.all(imagePromises);
+            // Sortera bilderna efter filnamn om ordningen är viktig
+            imageUrls.sort();
+            setImages(imageUrls);
+        };
+        importImages();
+    }, []);
+
+    // Uppdatera sidtiteln
     useEffect(() => {
         document.title = 'Svendsén Photography - Bröllopsgalleri';
     }, []);
@@ -44,7 +60,7 @@ export default function Weddings() {
                 aria-label="Bröllopsgalleri"
                 className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
             >
-                {weddingImages.map((src, index) => (
+                {images.map((src, index) => (
                     <figure key={index} className="relative">
                         <img
                             src={src}
