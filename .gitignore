@@ -78,3 +78,6 @@ coverage/
 
 # Ignore static files
 assets/  # Include this line only if assets shouldn't be versioned
+
+output.txt
+writetofile.js
