@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # För att säkerställa att hela historiken hämtas
 
       # Steg 2: Set up Node.js
       - name: Set up Node.js
@@ -36,11 +36,7 @@ jobs:
       - name: Add CNAME file
         run: echo "www.svendsenphotography.com" > docs/CNAME
 
-      # Steg 6: Add timestamp to force deploy
-      - name: Add timestamp file
-        run: echo "Rebuilt at $(date)" > docs/rebuild.txt
-
-      # Steg 7: Commit and push changes to main branch
+      # Steg 6: Commit and push changes to main branch
       - name: Commit and push changes
         env:
           GIT_AUTHOR_NAME: "daniel-svendsen"
@@ -52,13 +48,6 @@ jobs:
           git config user.name "$GIT_AUTHOR_NAME"
           git config user.email "$GIT_AUTHOR_EMAIL"
           git add docs
-          git commit -m "Deploy to GitHub Pages [skip ci]" || echo "No changes to commit"
+          git commit -m "Deploy to GitHub Pages [skip ci]"
           git push https://x-access-token:${PAT_TOKEN}@github.com/daniel-svendsen/daniel-svendsen.github.io.git HEAD:main
 
-      # Steg 8: Trigger GitHub Pages Publish
-      - name: Trigger GitHub Pages Publish
-        run: |
-          curl -X POST \
-          -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/daniel-svendsen/daniel-svendsen.github.io/pages/builds
