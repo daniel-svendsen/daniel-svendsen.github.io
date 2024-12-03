@@ -7,6 +7,14 @@ export default defineConfig({
   build: {
     outDir: 'docs',
     emptyOutDir: true,
+    rollupOptions: {
+      input: 'index.html',
+    },
   },
   assetsInclude: ['**/*.jpg', '**/*.png'], // Inkludera bildfiler
+  resolve: {
+    alias: {
+      '/@': '/src',
+    },
+  },
 });

@@ -3,6 +3,16 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from "react-helmet";
 
+// Funktion för att blanda en array slumpmässigt
+const shuffleArray = (array) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+};
+
 export default function Weddings() {
     const [images, setImages] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -16,9 +26,7 @@ export default function Weddings() {
                 imagePromises.push(images[path]().then((mod) => mod.default));
             }
             const imageUrls = await Promise.all(imagePromises);
-            // Sortera bilderna efter filnamn om ordningen är viktig
-            // imageUrls.sort();
-            setImages(imageUrls);
+            setImages(shuffleArray(imageUrls)); // Blanda bilderna
         };
         importImages();
     }, []);
