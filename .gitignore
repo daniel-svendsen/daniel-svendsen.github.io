@@ -13,13 +13,10 @@ node_modules/
 .pnp.js
 
 # Build directories
-#dist/
 dist-ssr/
 out/
 build/
-
-# Exclude these build directories unless deploying directly from main (comment if needed)
-!.vite/ # Include Vite-specific cache only if necessary
+!docs/
 
 # Local environment files
 *.env
@@ -49,7 +46,6 @@ package-lock.json
 pnpm-lock.yaml
 
 # GitHub-specific files
-.github/
 .gitlab/
 .hg/
 
@@ -73,11 +69,9 @@ coverage/
 .npmignore
 .nvmrc
 
-# Ignore IDE or project-specific settings
-.vscode/settings.json
-
-# Ignore static files
-assets/  # Include this line only if assets shouldn't be versioned
+# Ignore static files (just an example, adjust if necessary)
+assets/temp/  # Ignorera endast tillfälliga filer
+assets/**/*.psd
 
 output.txt
 writetofile.js
