@@ -7,7 +7,6 @@ export default function Portraits() {
     const [images, setImages] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
 
-    // Funktion för att blanda en array slumpmässigt
     const shuffleArray = (array) => {
         const shuffled = [...array];
         for (let i = shuffled.length - 1; i > 0; i--) {
@@ -17,7 +16,6 @@ export default function Portraits() {
         return shuffled;
     };
 
-    // Dynamiskt importera alla bilder i portraits-mappen
     useEffect(() => {
         const importImages = async () => {
             const images = import.meta.glob('../assets/portraits/*.{jpg,jpeg,png}');
@@ -26,14 +24,11 @@ export default function Portraits() {
                 imagePromises.push(images[path]().then((mod) => mod.default));
             }
             const imageUrls = await Promise.all(imagePromises);
-            // Sortera bilderna efter filnamn om ordningen är viktig
-            // imageUrls.sort();
-            setImages(shuffleArray(imageUrls)); // Blanda bilderna
+            setImages(shuffleArray(imageUrls));
         };
         importImages();
     }, []);
 
-    // Förhindra bakgrundsrullning när lightboxen är öppen
     useEffect(() => {
         if (selectedImage) {
             document.body.classList.add('overflow-hidden');
@@ -42,48 +37,22 @@ export default function Portraits() {
         }
     }, [selectedImage]);
 
-    // Hantera stängning av lightbox med Escape-tangenten
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            if (e.key === 'Escape') {
-                setSelectedImage(null);
-            }
-        };
-        if (selectedImage) {
-            window.addEventListener('keydown', handleKeyDown);
-        }
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [selectedImage]);
-
     return (
         <>
             <Helmet>
-                <title>Porträttgalleri - Svendsén Photography</title>
+                <title>Porträttfotograf i Kungälv & Göteborg - Svendsén Photography</title>
                 <meta
                     name="description"
-                    content="Utforska vårt porträttgalleri och se de vackra ögonblick vi fångar. Kontakta oss för att boka en porträttfotografering idag."
+                    content="Utforska våra porträttbilder och boka din porträttfotograf i Kungälv och Göteborg. Professionell fotografering för alla tillfällen."
                 />
                 <meta
                     name="keywords"
-                    content="porträtt, galleri, porträttfotografering, Svendsén Photography, fotografering, Göteborg, Kungälv"
+                    content="porträtt, fotograf kungälv, fotograf göteborg, porträttfotografering, Svendsén Photography"
                 />
-                <meta property="og:title" content="Porträttgalleri - Svendsén Photography" />
-                <meta
-                    property="og:description"
-                    content="Se våra fantastiska porträtt i vårt galleri och boka en porträttfotografering idag."
-                />
-                <meta
-                    property="og:image"
-                    content="https://www.svendsenphotography.com/assets/socialshare/socialshare.png"
-                />
-                <meta property="og:url" content="https://www.svendsenphotography.com/portraits" />
-                <meta name="twitter:card" content="summary_large_image" />
             </Helmet>
             <main className="p-6">
                 <header>
-                    <h1 className="text-3xl font-bold mb-6">Porträttgalleri</h1>
+                    <h1 className="text-3xl font-bold mb-6">Porträttfotograf i Kungälv & Göteborg</h1>
                 </header>
                 <section
                     aria-label="Porträttgalleri"
@@ -93,7 +62,7 @@ export default function Portraits() {
                         <figure key={index} className="relative">
                             <img
                                 src={src}
-                                alt={`Porträtt ${index + 1}`}
+                                alt={`Porträtt av fotograf i Kungälv och Göteborg ${index + 1}`}
                                 className="w-full h-full object-cover cursor-pointer"
                                 onClick={() => setSelectedImage({ src, alt: `Porträtt ${index + 1}` })}
                                 loading="lazy"
@@ -101,8 +70,6 @@ export default function Portraits() {
                         </figure>
                     ))}
                 </section>
-
-                {/* Lightbox */}
                 {selectedImage && (
                     <div
                         className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"

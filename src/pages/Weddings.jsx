@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from "react-helmet";
 
-// Funktion för att blanda en array slumpmässigt
 const shuffleArray = (array) => {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
@@ -17,7 +16,6 @@ export default function Weddings() {
     const [images, setImages] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
 
-    // Dynamiskt importera alla bilder i weddings-mappen
     useEffect(() => {
         const importImages = async () => {
             const images = import.meta.glob('../assets/weddings/*.{jpg,jpeg,png}');
@@ -26,12 +24,11 @@ export default function Weddings() {
                 imagePromises.push(images[path]().then((mod) => mod.default));
             }
             const imageUrls = await Promise.all(imagePromises);
-            setImages(shuffleArray(imageUrls)); // Blanda bilderna
+            setImages(shuffleArray(imageUrls));
         };
         importImages();
     }, []);
 
-    // Förhindra bakgrundsrullning när lightboxen är öppen
     useEffect(() => {
         if (selectedImage) {
             document.body.classList.add('overflow-hidden');
@@ -40,48 +37,22 @@ export default function Weddings() {
         }
     }, [selectedImage]);
 
-    // Hantera stängning av lightbox med Escape-tangenten
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            if (e.key === 'Escape') {
-                setSelectedImage(null);
-            }
-        };
-        if (selectedImage) {
-            window.addEventListener('keydown', handleKeyDown);
-        }
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown);
-        };
-    }, [selectedImage]);
-
     return (
         <>
             <Helmet>
-                <title>Bröllopsgalleri - Svendsén Photography</title>
+                <title>Bröllopsfotograf i Kungälv & Göteborg - Svendsén Photography</title>
                 <meta
                     name="description"
-                    content="Utforska vårt bröllopsgalleri och se magiska ögonblick från bröllopsfotograferingar. Kontakta oss för att boka din bröllopsfotograf."
+                    content="Utforska vårt bröllopsgalleri och boka din bröllopsfotograf i Kungälv och Göteborg. Vi fångar de magiska ögonblicken."
                 />
                 <meta
                     name="keywords"
-                    content="bröllop, bröllopsgalleri, bröllopsfotografering, Svendsén Photography, bröllopsfotograf, Göteborg, Kungälv"
+                    content="bröllop, bröllopsfotograf kungälv, bröllopsfotograf göteborg, bröllopsbilder, Svendsén Photography"
                 />
-                <meta property="og:title" content="Bröllopsgalleri - Svendsén Photography" />
-                <meta
-                    property="og:description"
-                    content="Se våra fantastiska bröllopsbilder i vårt galleri och boka din bröllopsfotografering idag."
-                />
-                <meta
-                    property="og:image"
-                    content="https://www.svendsenphotography.com/assets/socialshare/socialshare.png"
-                />
-                <meta property="og:url" content="https://www.svendsenphotography.com/weddings" />
-                <meta name="twitter:card" content="summary_large_image" />
             </Helmet>
             <main className="p-6">
                 <header>
-                    <h1 className="text-3xl font-bold mb-6">Bröllopsgalleri</h1>
+                    <h1 className="text-3xl font-bold mb-6">Bröllopsfotograf i Kungälv & Göteborg</h1>
                 </header>
                 <section
                     aria-label="Bröllopsgalleri"
@@ -91,7 +62,7 @@ export default function Weddings() {
                         <figure key={index} className="relative">
                             <img
                                 src={src}
-                                alt={`Bröllop ${index + 1}`}
+                                alt={`Bröllopsfotograf Kungälv & Göteborg - Bild ${index + 1}`}
                                 className="w-full h-full object-cover cursor-pointer"
                                 onClick={() => setSelectedImage({ src, alt: `Bröllop ${index + 1}` })}
                                 loading="lazy"
@@ -99,8 +70,6 @@ export default function Weddings() {
                         </figure>
                     ))}
                 </section>
-
-                {/* Lightbox */}
                 {selectedImage && (
                     <div
                         className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"

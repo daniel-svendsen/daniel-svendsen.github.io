@@ -6,7 +6,7 @@ import Card from '../components/Card';
 import { homeCards } from '../data/cards';
 import Carousel from '../components/Carousel';
 import { Helmet } from "react-helmet";
-import HeroSection from "../components/HeroSection.jsx"
+import HeroSection from "../components/HeroSection.jsx";
 
 export default function Home() {
     const navigate = useNavigate();
@@ -14,32 +14,27 @@ export default function Home() {
     return (
         <>
             <Helmet>
-                <title>Svendsén Photography - Bröllop, Porträtt & Företag</title>
+                <title>Fotograf Kungälv & Göteborg - Bröllop, Porträtt & Företag</title>
                 <meta
                     name="description"
-                    content="Svendsén Photography i Kungälv hjälper dig föreviga speciella ögonblick med bröllopsbilder, porträtt och företagsfotografering. Kontakta mig för en unik upplevelse."
+                    content="Letar du efter en professionell fotograf i Kungälv eller Göteborg? Svendsén Photography erbjuder bröllopsfotografering, porträtt och företagsbilder."
                 />
                 <meta
                     name="keywords"
-                    content="fotograf, bröllop, porträtt, familjefoto, företagsfotografering, Göteborg, Kungälv"
+                    content="fotograf kungälv, fotograf göteborg, bröllop, porträtt, företagsfotografering, professionell fotograf"
                 />
                 <meta name="author" content="Svendsén Photography" />
-                <meta property="og:title" content="Svendsén Photography - Bröllop, Porträtt & Företag i Kungälv och Göteborg" />
+                <meta property="og:title" content="Fotograf Kungälv & Göteborg - Bröllop, Porträtt & Företag" />
                 <meta
                     property="og:description"
-                    content="Skapa oförglömliga minnen med Svendsén Photography."
-                />
-                <meta
-                    property="og:image"
-                    content="https://www.svendsenphotography.com/assets/socialshare/socialshare.png"
+                    content="Skapa minnesvärda ögonblick med Svendsén Photography. Professionella fotografitjänster i Kungälv och Göteborg."
                 />
                 <meta property="og:url" content="https://www.svendsenphotography.com" />
+                <meta property="og:image" content="https://www.svendsenphotography.com/assets/socialshare/socialshare.png" />
                 <meta name="twitter:card" content="summary_large_image" />
             </Helmet>
             <main className="p-6">
-
-                <HeroSection/>
-
+                <HeroSection />
                 <header className="text-center mb-8">
                     <h1 className="text-3xl font-bold mb-4">Välkommen till Svendsén Photography!</h1>
                     <p className="text-lg text-gray-700 leading-relaxed mb-4">
@@ -49,11 +44,9 @@ export default function Home() {
                         Oavsett om det gäller bröllopsbilder, professionella porträtt eller att fånga vardagens små stunder, arbetar jag för att skapa bilder som speglar känsla och autenticitet.
                     </p>
                     <p className="text-lg text-gray-700 leading-relaxed">
-                        Hör gärna av dig för att prata om dina idéer eller behov. Tillsammans skapar vi något unikt.
+                        Hör gärna av dig för att prata om dina idéer eller behov. Tillsammans skapar vi något unikt!
                     </p>
                 </header>
-
-                {/* Kortlayout */}
                 <section
                     aria-label="Tjänster"
                     className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
@@ -66,8 +59,6 @@ export default function Home() {
                         />
                     ))}
                 </section>
-
-                {/* Karusell */}
                 <section aria-label="Bildkarusell">
                     <Carousel />
                 </section>
