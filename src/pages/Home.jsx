@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import { homeCards } from '../data/cards';
 import Carousel from '../components/Carousel';
 import { Helmet } from "react-helmet";
+import HeroSection from "../components/HeroSection.jsx"
 
 export default function Home() {
     const navigate = useNavigate();
@@ -16,14 +17,14 @@ export default function Home() {
                 <title>Svendsén Photography - Bröllop, Porträtt & Företag</title>
                 <meta
                     name="description"
-                    content="Svendsén Photography hjälper dig föreviga speciella ögonblick med bröllopsbilder, porträtt och företagsfotografering. Kontakta oss för en unik upplevelse."
+                    content="Svendsén Photography i Kungälv hjälper dig föreviga speciella ögonblick med bröllopsbilder, porträtt och företagsfotografering. Kontakta mig för en unik upplevelse."
                 />
                 <meta
                     name="keywords"
                     content="fotograf, bröllop, porträtt, familjefoto, företagsfotografering, Göteborg, Kungälv"
                 />
                 <meta name="author" content="Svendsén Photography" />
-                <meta property="og:title" content="Svendsén Photography - Bröllop, Porträtt & Företag" />
+                <meta property="og:title" content="Svendsén Photography - Bröllop, Porträtt & Företag i Kungälv och Göteborg" />
                 <meta
                     property="og:description"
                     content="Skapa oförglömliga minnen med Svendsén Photography."
@@ -36,10 +37,13 @@ export default function Home() {
                 <meta name="twitter:card" content="summary_large_image" />
             </Helmet>
             <main className="p-6">
+
+                <HeroSection/>
+
                 <header className="text-center mb-8">
                     <h1 className="text-3xl font-bold mb-4">Välkommen till Svendsén Photography!</h1>
                     <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                        Här får du hjälp att föreviga ögonblick som betyder något. Jag är en fotograf från Kungälv och Göteborg med fokus på bröllop, porträtt och företagsfotografering.
+                        Här får du hjälp att föreviga ögonblick som betyder något. Jag är en fotograf från Kungälv, Göteborg med fokus på bröllop, porträtt och företagsfotografering.
                     </p>
                     <p className="text-lg text-gray-700 leading-relaxed mb-4">
                         Oavsett om det gäller bröllopsbilder, professionella porträtt eller att fånga vardagens små stunder, arbetar jag för att skapa bilder som speglar känsla och autenticitet.
