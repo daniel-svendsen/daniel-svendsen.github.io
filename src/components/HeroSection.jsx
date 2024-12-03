@@ -9,6 +9,7 @@ export default function HeroSection() {
     const navigate = useNavigate();
     const [popImages, setPopImages] = useState([]);
     const [allImages, setAllImages] = useState([]);
+    let lastImage = null;
 
     // Dynamiskt importera bilder från mappar
     useEffect(() => {
@@ -32,18 +33,33 @@ export default function HeroSection() {
         importImages();
     }, []);
 
-    // Lägg till bilder slumpmässigt
+    // Funktion för att välja en slumpmässig bild utan att upprepa senaste
+    const getRandomImage = () => {
+        if (allImages.length === 0) return null;
+        let randomImage;
+        do {
+            randomImage = allImages[Math.floor(Math.random() * allImages.length)];
+        } while (randomImage === lastImage);
+        lastImage = randomImage;
+        return randomImage;
+    };
+
     useEffect(() => {
         if (allImages.length === 0) return;
 
         const interval = setInterval(() => {
             const randomImage = allImages[Math.floor(Math.random() * allImages.length)];
-            const randomX = Math.random() * 90; // Slumpmässig horisontell position
-            const randomY = Math.random() * 70; // Slumpmässig vertikal position
 
-            // Beräkna slumpmässig storlek mellan 5% och 15% av skärmens bredd
-            const randomSize = Math.random() * (15 - 5) + 5; // Slumpmässig storlek i procent
-            const sizeInPixels = `${randomSize}vw`; // Basera storleken på bredden av fönstret
+            // Slumpmässig storlek
+            const randomSize = Math.random() * (30 - 15) + 15; // Slumpmässig storlek i procent
+            const sizeInPixels = `${randomSize}vw`;
+
+            // Begränsa X och Y för att undvika att bilder går utanför
+            const marginX = randomSize / 2; // Marginal baserat på halva bildens bredd
+            const marginY = randomSize / (window.innerWidth / window.innerHeight) / 2; // Höjd baserat på skärmförhållande
+
+            const randomX = Math.random() * (100 - marginX * 2) + marginX; // Begränsa horisontellt
+            const randomY = Math.random() * (100 - marginY * 2) + marginY; // Begränsa vertikalt
 
             const newImage = {
                 src: randomImage,
@@ -55,14 +71,14 @@ export default function HeroSection() {
 
             setPopImages((prev) => [...prev, newImage]);
 
-            // Ta bort bilden efter 3 sekunder
             setTimeout(() => {
                 setPopImages((prev) => prev.filter((img) => img.id !== newImage.id));
-            }, 3000); // Ta bort efter 3 sekunder
-        }, 1500); // Ny bild var 1.5 sekund
+            }, 6000); // Ta bort efter 6 sekunder
+        }, 1000); // Ny bild varje sekund
 
         return () => clearInterval(interval);
     }, [allImages]);
+
 
     return (
         <>
