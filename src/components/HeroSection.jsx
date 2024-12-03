@@ -113,10 +113,10 @@ export default function HeroSection() {
             >
                 <div className="text-center text-gray-800 bg-white bg-opacity-75 p-8 rounded-md z-10">
                     {/* Typningseffekt för text */}
-                    <h1 id="hero-section" className="text-4xl sm:text-5xl font-bold mb-4">
+                    <h1 id="hero-section" className="text-4xl sm:text-5xl font-bold mb-4">Svendsén Photography
                         <Typewriter
                             options={{
-                                strings: ['Svendsén Photography', 'Bröllop', 'Porträtt', 'Företagsfoto'],
+                                strings: ['Bröllop', 'Porträtt', 'Företagsfoto'],
                                 autoStart: true,
                                 loop: true,
                                 deleteSpeed: 50,
