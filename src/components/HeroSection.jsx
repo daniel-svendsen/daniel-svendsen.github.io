@@ -123,10 +123,10 @@ export default function HeroSection() {
                             }}
                         />
                     </h1>
-                    <p className="text-lg sm:text-xl mb-6">
-                        Fånga dina oförglömliga ögonblick med professionella bilder.
-                        Specialiserad på bröllop, porträtt och företagsfotografering. gggggggg
-                    </p>
+                    {/*<p className="text-lg sm:text-xl mb-6">*/}
+                    {/*    Fånga dina oförglömliga ögonblick med professionella bilder.*/}
+                    {/*    Specialiserad på bröllop, porträtt och företagsfotografering.*/}
+                    {/*</p>*/}
                     <button
                         onClick={() => navigate('/contact')}
                         className="px-6 py-3 bg-gray-900 text-white rounded-md shadow-md hover:bg-gray-700 transition"

@@ -75,3 +75,5 @@ assets/**/*.psd
 
 output.txt
 writetofile.js
+outputproduction.txt
+writetoproduction.js
