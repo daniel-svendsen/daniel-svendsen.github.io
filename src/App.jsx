@@ -3,6 +3,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar.jsx";
+import Work from "./pages/Work.jsx";
 
 // Lazy load dina sidkomponenter
 const Home = React.lazy(() => import('./pages/Home'));
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/weddings" element={<Weddings />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/faq" element={<FAQ />} />
+                    <Route path="/work" element={<Work />} />
                     {/* Lägg till andra rutter */}
                 </Routes>
             </Suspense>
