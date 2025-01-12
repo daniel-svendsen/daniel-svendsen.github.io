@@ -1,109 +1,167 @@
 import React from 'react';
 import { Tab } from '@headlessui/react';
+import TabPanel from '../components/TabPanel';
+import { generatePDF } from '../utils/generatePDF';
 import portraitImage from '../assets/portraits/bild1.jpg';
 
-export default function CV() {
+const CV = () => {
+    const content = {
+        profile: {
+            name: "Daniel Svendsén",
+            description:
+                "En engagerad och mångsidig person med erfarenhet av både ledarskap och tekniskt arbete."
+        },
+        skills: {
+            title: "Profil & Kompetenser",
+            content: [
+                "Jag har erfarenhet av att arbeta i olika team och är en engagerad och mångsidig " +
+                "person som strävar efter att utvecklas och bidra på olika områden. Jag kan erbjuda en " +
+                "kombination av tekniska färdigheter, arbetslivserfarenhet och med många intressen. " +
+                "",
+                "Jag har också visat ledarskapsförmåga med min roll som arbetsledare på ICA. " +
+                "Anledningen för att jag valt att byta linje är att jag är intresserad av mycket inom " +
+                "datavärlden, mer varierat arbete, vara med att skapa något samt att inte vara en " +
+                "“siffra” på jobbet. Jag vill kunna utvecklas både som människa och inom jobbet.",
+                { name: "Operativsystem", details: "Windows, WSL" },
+                { name: "Programspråk", details: "Java, Javascript, Typescript, HTML/CSS" },
+                { name: "Verktyg", details: "JUnit, Intellij, Docker, Jenkins, Bash, Git, Maven, Gradle, Vue, Vite, React, VSCode" },
+                { name: "Databaser", details: "SQL, MySQL, MongoDB, SQL Server, SQLite" },
+                { name: "Arbetsmetoder", details: "Agila metoder, Scrum, Kanban" }
+            ]
+        },
+        experience: {
+            title: "Erfarenheter",
+            content: {
+                education: [
+                    { year: "2023 – pågående", details: "Java Enterprise Utvecklare, Yrgo, Göteborgs Stad, 400 YH-poäng" },
+                    { year: "2016", details: "Programmering 1, Betyg B" },
+                    { year: "2003 – 2006", details: "Gymnasium, Estetisk inriktning Tv-Produktion, 2500 poäng" }
+                ],
+                work: [
+                    { year: "2024 – pågående", details: "Hjulverkstan - Opensource projekt för Rädda barnen via Alten där jag praktiserade." },
+                    { year: "2008 – pågående", details: "ICA - Lagermedarbetare, olika roller inklusive arbetsledare" },
+                    { year: "2007", details: "Svensk Bevakningstjänst - Väktare och civilväktare" }
+                ]
+            }
+        },
+        languages: {
+            title: "Språk & Övrigt",
+            content: [
+                { name: "Svenska", level: "Flytande tal & skrift" },
+                { name: "Engelska", level: "Flytande tal & skrift" }
+            ]
+        },
+        hobbies: {
+            title: "Fritidsintressen",
+            content: "Fotografering med egen firma, laga mat, brygga öl, baka surdegsbröd, fiska, och utflykter i naturen med familjen."
+        },
+        contact: {
+            title: "Kontakt",
+            content: [
+                { type: "Adress", details: "Briljantvägen 55, 44260 Kode" },
+                { type: "E-post", details: "Daniel-Svendsen@hotmail.se" },
+                { type: "Telefon", details: "0707714306" }
+            ]
+        }
+    };
+
+    const tabs = ['Profil & Kompetenser', 'Erfarenheter', 'Språk & Övrigt', 'Fritidsintressen', 'Kontakt'];
+
     return (
         <main className="p-6">
-            <section className="flex flex-col items-center">
-                <img
-                    src={portraitImage}
-                    alt="Daniel Svendsén"
-                    className="rounded-full w-32 h-32 mb-4"
-                />
-                <div className="text-center">
-                    <h1 className="text-2xl font-bold">Daniel Svendsén</h1>
-                    <p className="text-gray-600">
-                        En engagerad och mångsidig person med erfarenhet av både ledarskap och tekniskt arbete.
-                    </p>
-                </div>
+            <section className="flex flex-col items-center space-x-4 sm:space-x-6">
+                <img src={portraitImage} alt="Daniel Svendsén" className="rounded-full w-32 h-32 mb-4" />
+                <h1 className="text-2xl font-bold">{content.profile.name}</h1>
+                <p className="text-gray-600 whitespace-pre-line">{content.profile.description}</p>
             </section>
             <section className="mt-8">
                 <Tab.Group>
-                    <Tab.List className="flex flex-wrap justify-center space-x-2">
-                        {['Profil & Kompetenser', 'Erfarenheter', 'Språk & Övrigt', 'Fritidsintressen', 'Kontakt'].map(tab => (
-                            <Tab key={tab} className={({ selected }) =>
-                                `px-4 py-2 rounded-lg ${selected ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`
-                            }>
+                    <Tab.List className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-4">
+                        {tabs.map((tab, index) => (
+                            <Tab
+                                key={tab}
+                                className={({ selected }) =>
+                                    `px-6 py-3 rounded-lg text-center flex items-center justify-center min-h-[50px] ${
+                                        selected ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'
+                                    } ${index === tabs.length - 1 ? 'col-span-2' : ''}`
+                                }
+                            >
                                 {tab}
                             </Tab>
                         ))}
                     </Tab.List>
-                    <Tab.Panels className="mt-4">
-                        {/* Profil & Kompetenser */}
+                    <Tab.Panels>
                         <Tab.Panel>
-                            <h2 className="text-xl font-semibold">Profil & Kompetenser</h2>
-                            <p>
-                                Jag har erfarenhet av att arbeta i olika team och är en engagerad och mångsidig person som strävar efter att utvecklas och bidra på olika områden.
-                                Jag kan erbjuda en kombination av tekniska färdigheter, arbetslivserfarenhet och många intressen.
-                                Jag har också visat ledarskapsförmåga i min roll som arbetsledare på ICA.
-                                Jag vill utvecklas både som människa och inom jobbet.
-                            </p>
-                            <ul className="mt-4">
-                                <li><strong>Operativsystem:</strong> Windows, WSL</li>
-                                <li><strong>Programspråk:</strong> Java, Javascript, Typescript, HTML/CSS</li>
-                                <li><strong>Verktyg:</strong> JUnit, Intellij, Docker, Jenkins, Bash, Git, Maven, Gradle, Vue, Vite, React, VSCode</li>
-                                <li><strong>Databaser:</strong> SQL, MySQL, MongoDB, SQL Server, SQLite</li>
-                                <li><strong>Arbetsmetoder:</strong> Agila metoder, Scrum, Kanban</li>
-                            </ul>
+                            <TabPanel title={content.skills.title}>
+                                {content.skills.content.map((item, index) => {
+                                    if (typeof item === 'string') {
+                                        return item === "" ? <br key={index} /> : <p key={index} className="mb-4">{item}</p>;
+                                    } else {
+                                        return (
+                                            <div key={index} className="mb-2">
+                                                <strong>{item.name}:</strong> {item.details}
+                                            </div>
+                                        );
+                                    }
+                                })}
+                            </TabPanel>
                         </Tab.Panel>
-
-                        {/* Erfarenheter */}
                         <Tab.Panel>
-                            <h2 className="text-xl font-semibold">Erfarenheter</h2>
-                            <h3 className="mt-2 font-semibold">Utbildning</h3>
-                            <ul>
-                                <li><strong>2023 – pågående:</strong> Java Enterprise Utvecklare, Yrgo, Göteborgs Stad, 400 YH-poäng</li>
-                                <li><strong>2016:</strong> Programmering 1, Betyg B</li>
-                                <li><strong>2003 – 2006:</strong> Gymnasium, Estetisk inriktning Tv-Produktion, 2500 poäng</li>
-                            </ul>
-                            <h3 className="mt-4 font-semibold">Arbetslivserfarenhet</h3>
-                            <ul>
-                                <li><strong>2024 – pågående:</strong> Hjulverkstan - Opensource projekt för Rädda barnen via Alten där jag praktiserade.</li>
-                                <li>Hjulverkstan är ett projekt för att hjälpa de anställda att genomföra/hålla koll på uthyrningar och lagningar etc för olika "shops".</li>
-                                <a href="https://github.com/Hjulverkstan/hjulverkstan" className="text-blue-500 hover:text-blue-700 underline font-medium mt-2 inline-block">Till projektet</a>
-                                <li><strong>2008 – pågående:</strong> ICA - Lagermedarbetare, olika roller inklusive arbetsledare</li>
-                                <li><strong>2007:</strong> Svensk Bevakningstjänst - Väktare och civilväktare</li>
-                            </ul>
+                            <TabPanel title={content.experience.title}>
+                                <h3 className="text-lg font-semibold mb-2">Utbildning</h3>
+                                <ul className="space-y-2">
+                                    {content.experience.content.education.map((item, index) => (
+                                        <li key={index}>
+                                            <strong>{item.year}:</strong> {item.details}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <h3 className="text-lg font-semibold mt-6 mb-2">Arbetslivserfarenhet</h3>
+                                <ul className="space-y-2">
+                                    {content.experience.content.work.map((item, index) => (
+                                        <li key={index}>
+                                            <strong>{item.year}:</strong> {item.details}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </TabPanel>
                         </Tab.Panel>
-
-                        {/* Språk & Övrigt */}
                         <Tab.Panel>
-                            <h2 className="text-xl font-semibold">Språk & Övrigt</h2>
-                            <h3 className="mt-2 font-semibold">Språkkunskaper</h3>
-                            <ul>
-                                <li>Svenska: Flytande</li>
-                                <li>Engelska: Flytande</li>
-                            </ul>
-                            <h3 className="mt-4 font-semibold">Övrigt</h3>
-                            <ul>
-                                <li>Truckupplärare i ca 2 år</li>
-                                <li>Vice ordförande i samfällighetsförening</li>
-                                <li>Körkort B</li>
-                                <li>Militär tjänstgöring: Insatssoldat (2006 – 2007)</li>
-                            </ul>
+                            <TabPanel title={content.languages.title}>
+                                <ul className="space-y-2">
+                                    {content.languages.content.map((item, index) => (
+                                        <li key={index}>
+                                            <strong>{item.name}:</strong> {item.level}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </TabPanel>
                         </Tab.Panel>
-
-                        {/* Fritidsintressen */}
                         <Tab.Panel>
-                            <h2 className="text-xl font-semibold">Fritidsintressen</h2>
-                            <p>
-                                Fotografering med egen firma, laga mat, brygga öl, baka surdegsbröd, fiska, och utflykter i naturen med familjen.
-                            </p>
+                            <TabPanel title={content.hobbies.title}>
+                                <p>{content.hobbies.content}</p>
+                            </TabPanel>
                         </Tab.Panel>
-
-                        {/* Kontakt */}
                         <Tab.Panel>
-                            <h2 className="text-xl font-semibold">Kontakt</h2>
-                            <ul>
-                                <li><strong>Adress:</strong> Briljantvägen 55, 44260 Kode</li>
-                                <li><strong>E-post:</strong> Daniel-Svendsen@hotmail.se</li>
-                                <li><strong>Telefon:</strong> 0707714306</li>
-                            </ul>
+                            <TabPanel title={content.contact.title}>
+                                <ul className="space-y-2">
+                                    {content.contact.content.map((item, index) => (
+                                        <li key={index}>
+                                            <strong>{item.type}:</strong> {item.details}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </TabPanel>
                         </Tab.Panel>
                     </Tab.Panels>
+
                 </Tab.Group>
             </section>
+            <button onClick={() => generatePDF(content)} className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-lg">
+                Ladda ner CV som PDF
+            </button>
         </main>
     );
-}
+};
+
+export default CV;
