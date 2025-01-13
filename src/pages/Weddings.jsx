@@ -47,7 +47,7 @@ export default function Weddings() {
                 />
                 <meta
                     name="keywords"
-                    content="bröllop, bröllopsfotograf kungälv, bröllopsfotograf göteborg, bröllopsbilder, Svendsén Photography"
+                    content="bröllop, bröllopsfotograf kungälv, bröllopsfotograf göteborg, bröllopsbilder, Svendsén Photography, bilfotograf kungälv, bilfotograf"
                 />
             </Helmet>
             <main className="p-6">

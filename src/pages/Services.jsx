@@ -16,7 +16,7 @@ export default function Services() {
                 />
                 <meta
                     name="keywords"
-                    content="prislista, bröllop, porträtt, företagsfotografering, Svendsén Photography, fotografering"
+                    content="prislista, bröllop, porträtt, företagsfotografering, Svendsén Photography, fotografering, bilfotograf kungälv, bilfotograf"
                 />
                 <meta property="og:title" content="Prislista - Svendsén Photography" />
                 <meta
@@ -32,7 +32,7 @@ export default function Services() {
             </Helmet>
             <main className="p-6">
                 <header>
-                    <h1 className="text-center text-3xl font-bold mb-12">Prislista</h1>
+                    <h1 className="text-center text-3xl font-bold mb-12">Tjänster som jag kan erbjuda</h1>
                 </header>
                 <section
                     aria-label="Våra tjänster"

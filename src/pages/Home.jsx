@@ -17,11 +17,11 @@ export default function Home() {
                 <title>Fotograf Kungälv & Göteborg - Bröllop, Porträtt & Företag</title>
                 <meta
                     name="description"
-                    content="Letar du efter en professionell fotograf i Kungälv eller Göteborg? Svendsén Photography erbjuder bröllopsfotografering, porträtt och företagsbilder."
+                    content="Letar du efter en professionell fotograf i Kungälv eller Göteborg? Svendsén Photography erbjuder bröllopsfotografering, porträtt och företags/hobbybilder."
                 />
                 <meta
                     name="keywords"
-                    content="fotograf kungälv, fotograf göteborg, bröllop, porträtt, företagsfotografering, professionell fotograf"
+                    content="fotograf kungälv, fotograf göteborg, bröllop, porträtt, företagsfotografering, professionell fotograf, bilfotograf kungälv, bilfotograf"
                 />
                 <meta name="author" content="Svendsén Photography" />
                 <meta property="og:title" content="Fotograf Kungälv & Göteborg - Bröllop, Porträtt & Företag" />

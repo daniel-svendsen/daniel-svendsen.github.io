@@ -16,7 +16,7 @@ export default function HeroSection() {
         const importImages = async () => {
             const portraitImages = import.meta.glob('../assets/portraits/*.{jpg,jpeg,png}');
             const weddingImages = import.meta.glob('../assets/weddings/*.{jpg,jpeg,png}');
-
+            const companyHobbyImages = import.meta.glob('../assets/companyhobby/*.{jpg,jpeg,png}');
             const loadImages = async (imageFiles) => {
                 const imagePromises = Object.values(imageFiles).map((importFn) =>
                     importFn().then((mod) => mod.default)
@@ -26,8 +26,9 @@ export default function HeroSection() {
 
             const portraits = await loadImages(portraitImages);
             const weddings = await loadImages(weddingImages);
+            const companyHobby = await loadImages(companyHobbyImages);
 
-            setAllImages([...portraits, ...weddings]); // Kombinera alla bilder
+            setAllImages([...portraits, ...weddings, ...companyHobby]); // Kombinera alla bilder
         };
 
         importImages();

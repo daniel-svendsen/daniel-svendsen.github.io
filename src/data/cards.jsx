@@ -49,10 +49,10 @@ export const serviceCards = [
         imageLink: '/weddings',
     },
     {
-        title: 'Företag',
+        title: 'Företag/Hobby',
         image: companyImage,
-        description: `Jag kan erbjuda:\n- Porträtt på plats\n- Porträtt studiomiljö\n- Produktfoto m.m.`,
-        price: 'KONTAKTA MIG',
+        description: `Jag kan erbjuda:\n- Porträtt på plats\n- Porträtt studiomiljö\n- Produktfoton\n- Hobbybilder (bilar, verksamhet m.m)`,
+        price: 'Kontakta mig för individuell prissättning',
         buttonText: 'Kontakta mig',
         buttonLink: '/contact',
     },

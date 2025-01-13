@@ -47,7 +47,7 @@ export default function Portraits() {
                 />
                 <meta
                     name="keywords"
-                    content="porträtt, fotograf kungälv, fotograf göteborg, porträttfotografering, Svendsén Photography"
+                    content="porträtt, fotograf kungälv, fotograf göteborg, porträttfotografering, Svendsén Photography, bilfotograf kungälv, bilfotograf"
                 />
             </Helmet>
             <main className="p-6">
