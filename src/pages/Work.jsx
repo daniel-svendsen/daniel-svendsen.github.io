@@ -9,19 +9,15 @@ const CV = () => {
         profile: {
             name: "Daniel Svendsén",
             description:
-                "En engagerad och mångsidig person med erfarenhet av både ledarskap och tekniskt arbete."
+                "En engagerad och mångsidig person med erfarenhet av både ledarskap och tekniskt arbete som gärna ser helheten."
         },
         skills: {
             title: "Profil & Kompetenser",
             content: [
-                "Jag har erfarenhet av att arbeta i olika team och är en engagerad och mångsidig " +
-                "person som strävar efter att utvecklas och bidra på olika områden. Jag kan erbjuda en " +
-                "kombination av tekniska färdigheter, arbetslivserfarenhet och med många intressen. " +
-                "",
-                "Jag har också visat ledarskapsförmåga med min roll som arbetsledare på ICA. " +
-                "Anledningen för att jag valt att byta linje är att jag är intresserad av mycket inom " +
-                "datavärlden, mer varierat arbete, vara med att skapa något samt att inte vara en " +
-                "“siffra” på jobbet. Jag vill kunna utvecklas både som människa och inom jobbet.",
+                "Jag är en engagerad och driven snart examinerad fullstackutvecklare med en kombination av teknisk kompetens och ledarskapserfarenhet. " +
+                "Efter 16 års arbete inom lager och arbetsledning valde jag att förverkliga min vilja att utbilda mig till system- och fullstackutvecklare. " +
+                "Jag brinner för att skapa nytt och lösningar från grunden och att bidra till starka och samarbetsvilliga team och ser gärna helheten i allt.",
+
                 { name: "Operativsystem", details: "Windows, WSL" },
                 { name: "Programspråk", details: "Java, Javascript, Typescript, HTML/CSS" },
                 { name: "Verktyg", details: "JUnit, Intellij, Docker, Jenkins, Bash, Git, Maven, Gradle, Vue, Vite, React, VSCode" },
