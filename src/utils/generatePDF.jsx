@@ -61,16 +61,20 @@ export const generatePDF = (content) => {
 
     // Lägg till textstycken
     const addParagraph = (text) => {
-        const lines = doc.splitTextToSize(text, maxLineWidth);
-        ensureSpaceForSection(lines.length * 10 + 10);
-        doc.setFontSize(12);
-        doc.setFont('helvetica', 'normal');
-        lines.forEach((line) => {
-            doc.text(line, margin, yOffset);
-            yOffset += 8;
+        const paragraphs = text.split('\n'); // Dela upp text vid '\n' till flera stycken
+        paragraphs.forEach((paragraph) => {
+            const lines = doc.splitTextToSize(paragraph, maxLineWidth);
+            ensureSpaceForSection(lines.length * 10 + 10);
+            doc.setFontSize(12);
+            doc.setFont('helvetica', 'normal');
+            lines.forEach((line) => {
+                doc.text(line, margin, yOffset);
+                yOffset += 8;
+            });
+            yOffset += 10; // Extra mellanrum efter varje stycke
         });
-        yOffset += 10; // Extra mellanrum efter stycke
     };
+
 
     // Lägg till tabell
     const addTable = (columns, data) => {

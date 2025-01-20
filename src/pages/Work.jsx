@@ -20,7 +20,7 @@ const CV = () => {
 
                 { name: "Operativsystem", details: "Windows, WSL" },
                 { name: "Programspråk", details: "Java, Javascript, Typescript, HTML/CSS" },
-                { name: "Verktyg", details: "JUnit, Intellij, Docker, Jenkins, Bash, Git, Maven, Gradle, Vue, Vite, React, VSCode" },
+                { name: "Verktyg", details: "Springboot, JUnit, Intellij, Docker, Jenkins, \nBash, Git, Maven, Gradle, Vue, Vite, React, VSCode" },
                 { name: "Databaser", details: "SQL, MySQL, MongoDB, SQL Server, SQLite" },
                 { name: "Arbetsmetoder", details: "Agila metoder, Scrum, Kanban" }
             ]
@@ -34,7 +34,7 @@ const CV = () => {
                     { year: "2003 – 2006", details: "Gymnasium, Estetisk inriktning Tv-Produktion, 2500 poäng" }
                 ],
                 work: [
-                    { year: "2024 – pågående", details: "Hjulverkstan - Opensource projekt för Rädda barnen via Alten där jag praktiserade." },
+                    { year: "2024 – pågående", details: "Hjulverkstan - Opensource projekt för Rädda barnen via Alten där jag praktiserade.\nAnvänder: Java, Javascript, Typescript, Springboot, React\nhttps://github.com/Hjulverkstan" },
                     { year: "2008 – pågående", details: "ICA - Lagermedarbetare, olika roller inklusive arbetsledare" },
                     { year: "2007", details: "Svensk Bevakningstjänst - Väktare och civilväktare" }
                 ]
