@@ -1,9 +1,8 @@
-// pages/Contact.jsx
-
 import React, { useState } from 'react';
 
 export default function Contact() {
     const [selectedService, setSelectedService] = useState('');
+    const [formStatus, setFormStatus] = useState(null); // För att visa status
 
     const services = [
         'Utefotografering',
@@ -14,14 +13,37 @@ export default function Contact() {
         'Annat',
     ];
 
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Förhindra standardformulärbeteende
+
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+            const response = await fetch('https://formspree.io/f/xvgowldv', {
+                method: 'POST',
+                headers: { 'Accept': 'application/json' },
+                body: JSON.stringify(data),
+            });
+
+            if (response.ok) {
+                setFormStatus('success'); // Skickat
+                e.target.reset(); // Återställ formuläret
+            } else {
+                setFormStatus('error'); // Fel vid skick
+            }
+        } catch (error) {
+            setFormStatus('error'); // Hantera fel
+        }
+    };
+
     return (
         <main className="p-6 max-w-4xl mx-auto">
             <header>
                 <h1 className="text-2xl font-bold mb-6">Kontakta mig gärna via e-post!</h1>
             </header>
             <form
-                action="https://formspree.io/f/xvgowldv"
-                method="POST"
+                onSubmit={handleSubmit}
                 className="grid grid-cols-1 md:grid-cols-2 gap-6"
             >
                 {/* Namn */}
@@ -46,7 +68,7 @@ export default function Contact() {
                     </label>
                     <input
                         id="email"
-                        name="_replyto"
+                        name="email"
                         type="email"
                         required
                         placeholder="Din e-postadress"
@@ -104,6 +126,14 @@ export default function Contact() {
                     </button>
                 </div>
             </form>
+
+            {/* Visar status */}
+            {formStatus === 'success' && (
+                <p className="mt-4 text-green-600">Tack! Ditt meddelande har skickats.</p>
+            )}
+            {formStatus === 'error' && (
+                <p className="mt-4 text-red-600">Ett fel uppstod. Försök igen senare.</p>
+            )}
         </main>
     );
 }

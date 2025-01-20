@@ -153,9 +153,36 @@ const CV = () => {
 
                 </Tab.Group>
             </section>
-            <button onClick={() => generatePDF(content)} className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-lg">
+
+            <button
+                onClick={() => {
+                    //Adds notifying when someone downloads through creating a hidden form
+                    const data = {
+                        pdf: 'CV_Daniel_Svendsen.pdf',
+                        timestamp: new Date().toISOString(),
+                    };
+
+                    fetch('https://formspree.io/f/xvgowldv', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data),
+                    })
+                        .then((response) => {
+                            if (response.ok) {
+                                console.log('E-post skickad!');
+                            } else {
+                                console.error('Misslyckades att skicka e-post:', response.statusText);
+                            }
+                        })
+                        .catch((error) => console.error('Ett fel uppstod:', error));
+
+                    generatePDF(content);
+                }}
+                className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-lg"
+            >
                 Ladda ner CV som PDF
             </button>
+
         </main>
     );
 };
