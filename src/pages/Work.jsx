@@ -9,7 +9,7 @@ const CV = () => {
         profile: {
             name: "Daniel Svendsén",
             description:
-                "En engagerad och mångsidig person med erfarenhet av både ledarskap och tekniskt arbete som gärna ser helheten."
+                "En engagerad och mångsidig person med erfarenhet av både ledarskap och tekniskt arbete som gärna ser helheten.",
         },
         skills: {
             title: "Profil & Kompetenser",
@@ -17,13 +17,12 @@ const CV = () => {
                 "Jag är en engagerad och driven snart examinerad fullstackutvecklare med en kombination av teknisk kompetens och ledarskapserfarenhet. " +
                 "Efter 16 års arbete inom lager och arbetsledning valde jag att förverkliga min vilja att utbilda mig till system- och fullstackutvecklare. " +
                 "Jag brinner för att skapa nytt och lösningar från grunden och att bidra till starka och samarbetsvilliga team och ser gärna helheten i allt.",
-
                 { name: "Operativsystem", details: "Windows, WSL" },
                 { name: "Programspråk", details: "Java, Javascript, Typescript, HTML/CSS" },
                 { name: "Verktyg", details: "Springboot, JUnit, Intellij, Docker, Jenkins, \nBash, Git, Maven, Gradle, Vue, Vite, React, VSCode" },
                 { name: "Databaser", details: "SQL, MySQL, MongoDB, SQL Server, SQLite" },
-                { name: "Arbetsmetoder", details: "Agila metoder, Scrum, Kanban" }
-            ]
+                { name: "Arbetsmetoder", details: "Agila metoder, Scrum, Kanban" },
+            ],
         },
         experience: {
             title: "Erfarenheter",
@@ -31,34 +30,41 @@ const CV = () => {
                 education: [
                     { year: "2023 – pågående", details: "Java Enterprise Utvecklare, Yrgo, Göteborgs Stad, 400 YH-poäng" },
                     { year: "2016", details: "Programmering 1, Betyg B" },
-                    { year: "2003 – 2006", details: "Gymnasium, Estetisk inriktning Tv-Produktion, 2500 poäng" }
+                    { year: "2003 – 2006", details: "Gymnasium, Estetisk inriktning Tv-Produktion, 2500 poäng" },
                 ],
                 work: [
-                    { year: "2024 – pågående", details: "Hjulverkstan - Opensource projekt för Rädda barnen via Alten där jag praktiserade.\nAnvänder: Java, Javascript, Typescript, Springboot, React\nhttps://github.com/Hjulverkstan" },
+                    {
+                        year: "2024 – pågående",
+                        details: "Hjulverkstan - Opensource projekt för Rädda barnen via Alten där jag praktiserade.\nAnvänder: Java, Javascript, Typescript, Springboot, React\n",
+                        link: {
+                            text: "GitHub: Hjulverkstan",
+                            href: "https://github.com/Hjulverkstan/hjulverkstan",
+                        },
+                    },
                     { year: "2008 – pågående", details: "ICA - Lagermedarbetare, olika roller inklusive arbetsledare" },
-                    { year: "2007", details: "Svensk Bevakningstjänst - Väktare och civilväktare" }
-                ]
-            }
+                    { year: "2007", details: "Svensk Bevakningstjänst - Väktare och civilväktare" },
+                ],
+            },
         },
         languages: {
             title: "Språk & Övrigt",
             content: [
                 { name: "Svenska", level: "Flytande tal & skrift" },
-                { name: "Engelska", level: "Flytande tal & skrift" }
-            ]
+                { name: "Engelska", level: "Flytande tal & skrift" },
+            ],
         },
         hobbies: {
             title: "Fritidsintressen",
-            content: "Fotografering med egen firma, laga mat, brygga öl, baka surdegsbröd, fiska, och utflykter i naturen med familjen."
+            content: "Fotografering med egen firma, laga mat, brygga öl, baka surdegsbröd, fiska, och utflykter i naturen med familjen.",
         },
         contact: {
             title: "Kontakt",
             content: [
                 { type: "Adress", details: "Briljantvägen 55, 44260 Kode" },
                 { type: "E-post", details: "Daniel-Svendsen@hotmail.se" },
-                { type: "Telefon", details: "0707714306" }
-            ]
-        }
+                { type: "Telefon", details: "0707714306" },
+            ],
+        },
     };
 
     const tabs = ['Profil & Kompetenser', 'Erfarenheter', 'Språk & Övrigt', 'Fritidsintressen', 'Kontakt'];
@@ -91,7 +97,7 @@ const CV = () => {
                             <TabPanel title={content.skills.title}>
                                 {content.skills.content.map((item, index) => {
                                     if (typeof item === 'string') {
-                                        return item === "" ? <br key={index} /> : <p key={index} className="mb-4">{item}</p>;
+                                        return item === '' ? <br key={index} /> : <p key={index} className="mb-4">{item}</p>;
                                     } else {
                                         return (
                                             <div key={index} className="mb-2">
@@ -117,6 +123,16 @@ const CV = () => {
                                     {content.experience.content.work.map((item, index) => (
                                         <li key={index}>
                                             <strong>{item.year}:</strong> {item.details}
+                                            {item.link && (
+                                                <a
+                                                    href={item.link.href}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="text-blue-500 underline ml-2"
+                                                >
+                                                    {item.link.text}
+                                                </a>
+                                            )}
                                         </li>
                                     ))}
                                 </ul>
@@ -150,13 +166,11 @@ const CV = () => {
                             </TabPanel>
                         </Tab.Panel>
                     </Tab.Panels>
-
                 </Tab.Group>
             </section>
-
             <button
                 onClick={() => {
-                    //Adds notifying when someone downloads through creating a hidden form
+                    // Notify via Formspree when PDF is downloaded
                     const data = {
                         pdf: 'CV_Daniel_Svendsen.pdf',
                         timestamp: new Date().toISOString(),
@@ -182,7 +196,6 @@ const CV = () => {
             >
                 Ladda ner CV som PDF
             </button>
-
         </main>
     );
 };
