@@ -73,7 +73,4 @@ coverage/
 assets/temp/  # Ignorera endast tillfälliga filer
 assets/**/*.psd
 
-output.txt
-writetofile.js
-outputproduction.txt
-writetoproduction.js
+printFilesJson.cjs
