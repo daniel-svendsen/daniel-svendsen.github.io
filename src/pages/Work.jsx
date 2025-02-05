@@ -1,6 +1,8 @@
+// src/pages/Work.jsx
 import React from 'react';
 import { Tab } from '@headlessui/react';
 import TabPanel from '../components/TabPanel';
+import Timeline from '../components/Timeline';
 import { generatePDF } from '../utils/generatePDF';
 import portraitImage from '../assets/portraits/bild1.jpg';
 
@@ -35,9 +37,10 @@ const CV = () => {
                 work: [
                     {
                         year: "2024 – pågående",
-                        details: "Hjulverkstan - Opensource projekt för Rädda barnen via Alten där jag praktiserade.\nAnvänder: Java, Javascript, Typescript, Springboot, React\n",
+                        details:
+                            "Hjulverkstan - Opensource projekt för Rädda barnen via Alten där jag praktiserade.\nAnvänder: Java, Javascript, Typescript, Springboot, React",
                         link: {
-                            text: "GitHub: Hjulverkstan",
+                            text: "GitHub",
                             href: "https://github.com/Hjulverkstan/hjulverkstan",
                         },
                     },
@@ -55,7 +58,8 @@ const CV = () => {
         },
         hobbies: {
             title: "Fritidsintressen",
-            content: "Fotografering med egen firma, laga mat, brygga öl, baka surdegsbröd, fiska, och utflykter i naturen med familjen.",
+            content:
+                "Fotografering med egen firma, laga mat, brygga öl, baka surdegsbröd, fiska, och utflykter i naturen med familjen.",
         },
         contact: {
             title: "Kontakt",
@@ -67,25 +71,57 @@ const CV = () => {
         },
     };
 
+    const extractYear = (dateString) => {
+        const match = dateString.match(/\d{4}/);
+        return match ? parseInt(match[0], 10) : 0;
+    };
+
+    const timelineEvents = [
+        ...content.experience.content.education.map(item => ({
+            title: "Utbildning",
+            date: item.year,
+            description: item.details,
+        })),
+        ...content.experience.content.work.map(item => ({
+            title: "Arbetslivserfarenhet",
+            date: item.year,
+            description: item.details,
+            link: item.link,
+        })),
+    ].sort((a, b) => extractYear(b.date) - extractYear(a.date));
+
     const tabs = ['Profil & Kompetenser', 'Erfarenheter', 'Språk & Övrigt', 'Fritidsintressen', 'Kontakt'];
 
     return (
-        <main className="p-6">
-            <section className="flex flex-col items-center space-x-4 sm:space-x-6">
-                <img src={portraitImage} alt="Daniel Svendsén" className="rounded-full w-32 h-32 mb-4" />
-                <h1 className="text-2xl font-bold">{content.profile.name}</h1>
-                <p className="text-gray-600 whitespace-pre-line">{content.profile.description}</p>
+        <main className="min-h-screen bg-gradient-to-r from-indigo-50 to-blue-50 p-4 sm:p-6">
+            {/* Profilsektion */}
+            <section className="flex flex-col items-center space-y-4 mb-8">
+                <img
+                    src={portraitImage}
+                    alt="Daniel Svendsén"
+                    className="rounded-full w-24 h-24 sm:w-32 sm:h-32 shadow-xl object-cover object-center"
+                />
+                <h1 className="text-2xl sm:text-4xl font-bold text-indigo-800 text-center">
+                    {content.profile.name}
+                </h1>
+                <p className="max-w-xs sm:max-w-2xl text-center text-indigo-700 text-sm sm:text-base">
+                    {content.profile.description}
+                </p>
             </section>
-            <section className="mt-8">
+
+            {/* Flikar */}
+            <section className="bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-8">
                 <Tab.Group>
-                    <Tab.List className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-4">
-                        {tabs.map((tab, index) => (
+                    <Tab.List className="flex flex-wrap justify-center space-x-2 sm:space-x-4 border-b-2 border-indigo-200 pb-2 mb-4">
+                        {tabs.map((tab) => (
                             <Tab
                                 key={tab}
                                 className={({ selected }) =>
-                                    `px-6 py-3 rounded-lg text-center flex items-center justify-center min-h-[50px] ${
-                                        selected ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'
-                                    } ${index === tabs.length - 1 ? 'col-span-2' : ''}`
+                                    `px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold transition-colors duration-300 focus:outline-none ${
+                                        selected
+                                            ? 'border-b-2 border-indigo-600 text-indigo-600'
+                                            : 'text-gray-600 hover:text-indigo-600'
+                                    }`
                                 }
                             >
                                 {tab}
@@ -97,10 +133,10 @@ const CV = () => {
                             <TabPanel title={content.skills.title}>
                                 {content.skills.content.map((item, index) => {
                                     if (typeof item === 'string') {
-                                        return item === '' ? <br key={index} /> : <p key={index} className="mb-4">{item}</p>;
+                                        return item === '' ? <br key={index} /> : <p key={index} className="mb-2 text-xs sm:text-sm">{item}</p>;
                                     } else {
                                         return (
-                                            <div key={index} className="mb-2">
+                                            <div key={index} className="mb-1 text-xs sm:text-sm">
                                                 <strong>{item.name}:</strong> {item.details}
                                             </div>
                                         );
@@ -110,37 +146,14 @@ const CV = () => {
                         </Tab.Panel>
                         <Tab.Panel>
                             <TabPanel title={content.experience.title}>
-                                <h3 className="text-lg font-semibold mb-2">Utbildning</h3>
-                                <ul className="space-y-2">
-                                    {content.experience.content.education.map((item, index) => (
-                                        <li key={index}>
-                                            <strong>{item.year}:</strong> {item.details}
-                                        </li>
-                                    ))}
-                                </ul>
-                                <h3 className="text-lg font-semibold mt-6 mb-2">Arbetslivserfarenhet</h3>
-                                <ul className="space-y-2">
-                                    {content.experience.content.work.map((item, index) => (
-                                        <li key={index}>
-                                            <strong>{item.year}:</strong> {item.details}
-                                            {item.link && (
-                                                <a
-                                                    href={item.link.href}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="text-blue-500 underline ml-2"
-                                                >
-                                                    {item.link.text}
-                                                </a>
-                                            )}
-                                        </li>
-                                    ))}
-                                </ul>
+                                <section className="mt-4">
+                                    <Timeline events={timelineEvents} />
+                                </section>
                             </TabPanel>
                         </Tab.Panel>
                         <Tab.Panel>
                             <TabPanel title={content.languages.title}>
-                                <ul className="space-y-2">
+                                <ul className="space-y-1 text-xs sm:text-sm">
                                     {content.languages.content.map((item, index) => (
                                         <li key={index}>
                                             <strong>{item.name}:</strong> {item.level}
@@ -151,12 +164,12 @@ const CV = () => {
                         </Tab.Panel>
                         <Tab.Panel>
                             <TabPanel title={content.hobbies.title}>
-                                <p>{content.hobbies.content}</p>
+                                <p className="text-xs sm:text-sm">{content.hobbies.content}</p>
                             </TabPanel>
                         </Tab.Panel>
                         <Tab.Panel>
                             <TabPanel title={content.contact.title}>
-                                <ul className="space-y-2">
+                                <ul className="space-y-1 text-xs sm:text-sm">
                                     {content.contact.content.map((item, index) => (
                                         <li key={index}>
                                             <strong>{item.type}:</strong> {item.details}
@@ -168,34 +181,16 @@ const CV = () => {
                     </Tab.Panels>
                 </Tab.Group>
             </section>
-            <button
-                onClick={() => {
-                    // Notify via Formspree when PDF is downloaded
-                    const data = {
-                        pdf: 'CV_Daniel_Svendsen.pdf',
-                        timestamp: new Date().toISOString(),
-                    };
 
-                    fetch('https://formspree.io/f/xvgowldv', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data),
-                    })
-                        .then((response) => {
-                            if (response.ok) {
-                                console.log('E-post skickad!');
-                            } else {
-                                console.error('Misslyckades att skicka e-post:', response.statusText);
-                            }
-                        })
-                        .catch((error) => console.error('Ett fel uppstod:', error));
-
-                    generatePDF(content);
-                }}
-                className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-lg"
-            >
-                Ladda ner CV som PDF
-            </button>
+            {/* PDF-knapp */}
+            <div className="text-center">
+                <button
+                    onClick={() => generatePDF(content)}
+                    className="px-6 py-2 bg-gradient-to-r from-indigo-500 to-blue-500 text-white rounded-full shadow-xl hover:from-blue-500 hover:to-indigo-500 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 text-xs sm:text-sm"
+                >
+                    Ladda ner CV som PDF
+                </button>
+            </div>
         </main>
     );
 };
