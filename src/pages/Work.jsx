@@ -1,10 +1,11 @@
 // src/pages/Work.jsx
 import React from 'react';
 import { Tab } from '@headlessui/react';
-import TabPanel from '../components/TabPanel';
-import Timeline from '../components/Timeline';
-import { generatePDF } from '../utils/generatePDF';
+import TabPanel from '../components/TabPanel.jsx';
+
+import { generatePDF } from '../utils/generatePDF.jsx';
 import portraitImage from '../assets/portraits/bild1.jpg';
+import Timeline from "../components/TimeLine.jsx";
 
 const CV = () => {
     const content = {
@@ -38,7 +39,7 @@ const CV = () => {
                     {
                         year: "2024 – pågående",
                         details:
-                            "Hjulverkstan - Opensource projekt för Rädda barnen via Alten där jag praktiserade.\nAnvänder: Java, Javascript, Typescript, Springboot, React",
+                            "Hjulverkstan - Opensource projekt för Rädda barnen via Alten där jag praktiserar just nu.\nAnvänder: Java, Javascript, Typescript, Springboot, React",
                         link: {
                             text: "GitHub",
                             href: "https://github.com/Hjulverkstan/hjulverkstan",
@@ -185,11 +186,33 @@ const CV = () => {
             {/* PDF-knapp */}
             <div className="text-center">
                 <button
-                    onClick={() => generatePDF(content)}
+                    onClick={() => {
+                        const data = {
+                            pdf: 'CV_Daniel_Svendsen.pdf',
+                            timestamp: new Date().toISOString(),
+                        };
+
+                        fetch('https://formspree.io/f/xvgowldv', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data),
+                        })
+                            .then((response) => {
+                                if (response.ok) {
+                                    console.log('E-post skickad!');
+                                } else {
+                                    console.error('Misslyckades att skicka e-post:', response.statusText);
+                                }
+                            })
+                            .catch((error) => console.error('Ett fel uppstod:', error));
+
+                        generatePDF(content);
+                    }}
                     className="px-6 py-2 bg-gradient-to-r from-indigo-500 to-blue-500 text-white rounded-full shadow-xl hover:from-blue-500 hover:to-indigo-500 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 text-xs sm:text-sm"
                 >
                     Ladda ner CV som PDF
                 </button>
+
             </div>
         </main>
     );
