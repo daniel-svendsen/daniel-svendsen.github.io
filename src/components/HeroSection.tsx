@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import React, {useEffect, useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+import {Helmet} from 'react-helmet';
 import Typewriter from 'typewriter-effect';
 
 // Define the structure of an image
@@ -21,11 +21,19 @@ export default function HeroSection() {
     useEffect(() => {
         const importImages = async () => {
             // Type assertion to ensure correct type
-            const portraitImages = import.meta.glob('../assets/portraits/*.{jpg,jpeg,png}') as Record<string, () => Promise<{ default: string }>>;
-            const weddingImages = import.meta.glob('../assets/weddings/*.{jpg,jpeg,png}') as Record<string, () => Promise<{ default: string }>>;
-            const companyHobbyImages = import.meta.glob('../assets/companyhobby/*.{jpg,jpeg,png}') as Record<string, () => Promise<{ default: string }>>;
+            const portraitImages = import.meta.glob('../assets/portraits/*.{jpg,jpeg,png}') as Record<string, () => Promise<{
+                default: string
+            }>>;
+            const weddingImages = import.meta.glob('../assets/weddings/*.{jpg,jpeg,png}') as Record<string, () => Promise<{
+                default: string
+            }>>;
+            const companyHobbyImages = import.meta.glob('../assets/companyhobby/*.{jpg,jpeg,png}') as Record<string, () => Promise<{
+                default: string
+            }>>;
 
-            const loadImages = async (imageFiles: Record<string, () => Promise<{ default: string }>>): Promise<string[]> => {
+            const loadImages = async (imageFiles: Record<string, () => Promise<{
+                default: string
+            }>>): Promise<string[]> => {
                 const imagePromises = Object.values(imageFiles).map((importFn) =>
                     importFn().then((mod) => mod.default)
                 );
@@ -83,12 +91,12 @@ export default function HeroSection() {
                 <title>Svendsén Photography - Professionell Fotograf i Göteborg & Kungälv</title>
                 <meta
                     name="description"
-                    content="Välkommen till Svendsén Photography! Vi specialiserar oss på bröllopsfotografering, porträtt och företagsbilder i Göteborg och Kungälv."
+                    content="Välkommen till Svendsén Photography! jag specialiserar mig på bröllopsfotografering, porträtt och företagsbilder i Göteborg och Kungälv."
                 />
             </Helmet>
             <section
                 className="relative flex items-center justify-center overflow-hidden bg-gray-100"
-                style={{ height: 'calc(100vh - 6rem)' }}
+                style={{height: 'calc(100vh - 6rem)'}}
                 aria-labelledby="hero-section"
             >
                 <div className="text-center text-gray-800 bg-white bg-opacity-75 p-8 rounded-md z-10">

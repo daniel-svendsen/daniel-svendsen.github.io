@@ -21,8 +21,8 @@ export default function Home() {
                 <header className="text-center mb-8">
                     <h1 className="text-3xl font-bold mb-4">Welcome to Svendsén Photography!</h1>
                     <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                        I am a photographer based in Kungälv and Gothenburg, specializing in wedding, portrait, and
-                        corporate photography.
+                        Jag är en fotograf baserad i Kungälv och Göteborg, specialiserad på bröllops-, porträtt- och
+                        företagsfotografering.
                     </p>
                 </header>
                 <section aria-label="Services" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">

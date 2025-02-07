@@ -6,7 +6,7 @@ import {TabsDataItem} from "@/components/CvTabs";
 const getTabsData = (content: any, timelineEvents: any[]): TabsDataItem[] => {
     return [
         {
-            label: 'Profile & Kompetenser',
+            label: 'Profile & Skills',
             title: content.skills.title,
             content: (
                 <div className="text-xs sm:text-sm">
@@ -39,7 +39,7 @@ const getTabsData = (content: any, timelineEvents: any[]): TabsDataItem[] => {
             ),
         },
         {
-            label: 'Hobbys',
+            label: 'Hobbies',
             title: content.hobbies.title,
             content: <p className="text-xs sm:text-sm">{content.hobbies.content}</p>,
         },
