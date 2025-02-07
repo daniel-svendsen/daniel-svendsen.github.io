@@ -2,8 +2,8 @@
 
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from "./components/Navbar.jsx";
-import Work from "./pages/Work.jsx";
+import Navbar from "./components/Navbar";
+import Work from "./pages/Work";
 
 // Lazy load dina sidkomponenter
 const Home = React.lazy(() => import('./pages/Home'));
