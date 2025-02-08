@@ -1,4 +1,3 @@
-import {generatePDF} from "@/utils/generatePDF.js";
 import React from "react";
 
 interface PdfDownloadButtonProps {
@@ -6,7 +5,7 @@ interface PdfDownloadButtonProps {
 }
 
 const PdfDownloadButton = ({content}: PdfDownloadButtonProps) => {
-    const handleDownload = () => {
+    const handleDownload = async () => {
         const data = {
             pdf: 'CV_Daniel_Svendsen.pdf',
             timestamp: new Date().toISOString(),
@@ -26,6 +25,7 @@ const PdfDownloadButton = ({content}: PdfDownloadButtonProps) => {
             })
             .catch((error) => console.error('Ett fel uppstod:', error));
 
+        const {generatePDF} = await import("@/utils/generatePDF.js");
         generatePDF(content);
     };
 

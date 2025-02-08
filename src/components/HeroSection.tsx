@@ -125,6 +125,7 @@ export default function HeroSection() {
                     <img
                         key={image.id}
                         src={image.src}
+                        loading="lazy"
                         alt="Inspirerande foto"
                         className="absolute object-cover rounded-full shadow-lg animate-pop"
                         style={{

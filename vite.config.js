@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react-swc';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import sitemap from 'vite-plugin-sitemap';
 import path from 'path';
+import visualizer from "rollup-plugin-visualizer";
 
 export default defineConfig({
     plugins: [
@@ -21,12 +22,16 @@ export default defineConfig({
             outDir: 'docs',
             readable: true,
         }),
+        visualizer.default({
+            filename: 'bundle-analysis.html',
+            open: true,
+        }),
     ],
     base: '/',
     build: {
         outDir: 'docs',
         emptyOutDir: true,
-        chunkSizeWarningLimit: 1000, // Ökar gränsen till 1000 KB för att slippa varning
+        chunkSizeWarningLimit: 1000,
         rollupOptions: {
             output: {
                 manualChunks(id) {

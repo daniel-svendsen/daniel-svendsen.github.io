@@ -5,12 +5,10 @@ interface SectionWrapperProps {
     className?: string;
 }
 
-const SectionWrapper = ({children, className = ''}: SectionWrapperProps) => {
-    return (
-        <section className={`bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-8 ${className}`}>
-            {children}
-        </section>
-    );
-};
-
+const SectionWrapper = ({title, children, className = ""}) => (
+    <section className={`p-6 ${className}`} aria-label={title}>
+        {title && <h2 className="text-2xl font-semibold text-center mb-6">{title}</h2>}
+        {children}
+    </section>
+);
 export default SectionWrapper;
