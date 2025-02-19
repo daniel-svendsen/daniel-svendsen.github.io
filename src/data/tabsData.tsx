@@ -49,11 +49,26 @@ const getTabsData = (content: any, timelineEvents: any[]): TabsDataItem[] => {
             content: (
                 <ul className="space-y-1 text-xs sm:text-sm">
                     {content.contact.content.map((item: any, index: number) => (
-                        <li key={index}><strong>{item.type}:</strong> {item.details}</li>
+                        <li key={index}>
+                            <strong>{item.type}:</strong>{' '}
+                            {item.link ? (
+                                <a
+                                    href={item.link.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-600 hover:underline"
+                                >
+                                    {item.link.text}
+                                </a>
+                            ) : (
+                                item.details
+                            )}
+                        </li>
                     ))}
                 </ul>
             ),
-        },
+        }
+
     ];
 };
 

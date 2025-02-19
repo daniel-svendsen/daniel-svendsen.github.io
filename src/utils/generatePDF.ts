@@ -25,7 +25,7 @@ function renderTable(
     // Header
     doc.setTextColor(255, 255, 255);
     doc.setFillColor(75, 101, 132);
-    doc.rect(margin.left, y - 6, availableWidth, 8, 'F'); // Modern header bakgrund
+    doc.rect(margin.left, y - 6, availableWidth, 8, 'F');
     doc.text(header[0], margin.left + 2, y);
     doc.text(header[1], margin.left + col1Width + 2, y);
     y += 6;
@@ -34,18 +34,18 @@ function renderTable(
     for (let i = 0; i < body.length; i++) {
         const row = body[i];
         doc.setTextColor(50, 50, 50);
-        doc.text(String(row[0]), margin.left, y + 3); // Placera text högre upp
+        doc.text(String(row[0]), margin.left, y + 3);
         const text2 = String(row[1]);
         const textLines = doc.splitTextToSize(text2, col2Width);
-        doc.text(textLines, margin.left + col1Width, y + 3); // Placera text högre upp
+        doc.text(textLines, margin.left + col1Width, y + 3);
 
         // Dynamisk höjd för rader
         const rowHeight = textLines.length * 6;
-        y += rowHeight + 2; // Ge extra utrymme för linjen
+        y += rowHeight + 2;
 
         // Rita linje under hela raden
         doc.setDrawColor(200, 200, 200);
-        doc.line(margin.left, y, margin.left + availableWidth, y); // Linje under raden
+        doc.line(margin.left, y, margin.left + availableWidth, y);
     }
     return y;
 }
@@ -83,9 +83,9 @@ export const generatePDF = (content: any) => {
     let yOffset = 50;
 
     const addSection = (title: string, text: string) => {
-        const imgOffset = 70; // Justera höjd där bilden är placerad
+        const imgOffset = 70;
         if (yOffset < imgOffset) {
-            yOffset = imgOffset; // Hoppa över bildens område
+            yOffset = imgOffset;
         }
 
         doc.setFontSize(14);
@@ -97,17 +97,47 @@ export const generatePDF = (content: any) => {
         const maxTextWidth = pageWidth - margin * 2 - 50;
         const lines = doc.splitTextToSize(text, maxTextWidth);
         doc.text(lines, margin, yOffset);
-        yOffset += lines.length * 6 + 10;
+        yOffset += lines.length * 6 + 12;
     };
 
     // **Profilsektion**
     addSection(content.profile.name, content.profile.description);
 
-    // **Skills**
-    const skillsText = content.skills.content
-        .map((item: any) => typeof item === 'string' ? item : `${item.name}: ${item.details}`)
-        .join('\n');
-    addSection(content.skills.title, skillsText);
+    const addSkillsSection = (title: string, content: any) => {
+        doc.setFontSize(14);
+        doc.setTextColor(75, 101, 132);
+        doc.text(title, margin, yOffset);
+        yOffset += 5;
+
+        // **Första stycket (introduktion)**
+        doc.setFontSize(12);
+        doc.setTextColor(50, 50, 50);
+        const introLines = doc.splitTextToSize(content[0], pageWidth - margin * 2);
+        doc.text(introLines, margin, yOffset);
+        yOffset += introLines.length * 5 + 4;
+
+        // **Resten av listan**
+        content.slice(1).forEach((item: any) => {
+            if (typeof item === "string") {
+                doc.text(item, margin, yOffset);
+                yOffset += 5;
+            } else {
+                doc.setFont(undefined, "bold");
+                doc.text(item.name + ":", margin, yOffset);
+                doc.setFont(undefined, "normal");
+
+                const detailsLines = doc.splitTextToSize(item.details, pageWidth - margin * 2 - 50);
+                doc.text(detailsLines, margin + 45, yOffset);
+
+                yOffset += detailsLines.length * 5 + 3;
+            }
+        });
+    };
+
+
+// **Skills**
+    addSkillsSection(content.skills.title, content.skills.content);
+
 
     doc.addPage();
     yOffset = margin + 10;
@@ -140,10 +170,25 @@ export const generatePDF = (content: any) => {
     addSection(content.hobbies.title, content.hobbies.content);
 
     // **Kontakt**
-    const contactText = content.contact.content
-        .map((item: any) => `${item.type}: ${item.details}`)
-        .join('\n');
-    addSection(content.contact.title, contactText);
+    const addContactSection = (title: string, content: any) => {
+        addSection(title, "");
+
+        content.forEach((item: any) => {
+            if (item.link) {
+                // Om det är en länk, gör den klickbar i PDF:en
+                doc.setTextColor(0, 0, 255);
+                doc.textWithLink(item.link.text, margin, yOffset, {url: item.link.href});
+                doc.setTextColor(50, 50, 50);
+            } else {
+                doc.text(`${item.type}: ${item.details}`, margin, yOffset);
+            }
+            yOffset += 6;
+        });
+    };
+
+// **Kontakt**
+    addContactSection(content.contact.title, content.contact.content);
+
 
     const addFooter = () => {
         doc.setFontSize(10);
