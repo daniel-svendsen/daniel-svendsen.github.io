@@ -14,7 +14,7 @@ export default function Home() {
     const carouselRef = useRef(null);
 
     useEffect(() => {
-        let timeout;
+        let timeout: string | number | NodeJS.Timeout;
         const handleScroll = () => {
             clearTimeout(timeout);
             timeout = setTimeout(() => {
@@ -36,10 +36,28 @@ export default function Home() {
     return (
         <HelmetProvider>
             <Helmet>
-                <title>Fotograf Kungälv & Göteborg - Bröllop, Porträtt & Företag</title>
+                <title>Fotograf i Kungälv & Göteborg - Svendsén Photography</title>
                 <meta name="description"
-                      content="Letar du efter en professionell fotograf i Kungälv eller Göteborg? Svendsén Photography erbjuder bröllopsfotografering, porträtt och företags/hobbybilder."/>
+                      content="Svendsén Photography erbjuder professionell fotografering inom bröllop, porträtt, bilfotografering och företag i Kungälv och Göteborg."/>
+                <meta name="keywords"
+                      content="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, bilfotograf, företagsfotograf"/>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "LocalBusiness",
+                        "name": "Svendsén Photography",
+                        "description": "Fotograf i Kungälv & Göteborg",
+                        "image": "https://www.svendsenphotography.com/logo.jpg",
+                        "url": "https://www.svendsenphotography.com",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Kungälv",
+                            "addressCountry": "SE"
+                        }
+                    })}
+                </script>
             </Helmet>
+
             <main className="p-6">
                 <HeroSection/>
                 <header className="text-center mb-8">

@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {Helmet} from 'react-helmet';
+import {Helmet} from "react-helmet-async";
 import Typewriter from 'typewriter-effect';
+import {useImportedImages} from '../hooks/useImportedImages';
 
 // Define the structure of an image
 interface PopImage {
@@ -14,41 +15,18 @@ interface PopImage {
 
 export default function HeroSection() {
     const navigate = useNavigate();
-    const [popImages, setPopImages] = useState<PopImage[]>([]);
+    const imagesData = useImportedImages(['portraits', 'weddings', 'companyhobby']);
     const [allImages, setAllImages] = useState<string[]>([]);
+    const [popImages, setPopImages] = useState<PopImage[]>([]);
+    const hasLoadedImages = useRef(false);
 
-    // Dynamically import images from folders
     useEffect(() => {
-        const importImages = async () => {
-            // Type assertion to ensure correct type
-            const portraitImages = import.meta.glob('../assets/portraits/*.{jpg,jpeg,png}') as Record<string, () => Promise<{
-                default: string
-            }>>;
-            const weddingImages = import.meta.glob('../assets/weddings/*.{jpg,jpeg,png}') as Record<string, () => Promise<{
-                default: string
-            }>>;
-            const companyHobbyImages = import.meta.glob('../assets/companyhobby/*.{jpg,jpeg,png}') as Record<string, () => Promise<{
-                default: string
-            }>>;
-
-            const loadImages = async (imageFiles: Record<string, () => Promise<{
-                default: string
-            }>>): Promise<string[]> => {
-                const imagePromises = Object.values(imageFiles).map((importFn) =>
-                    importFn().then((mod) => mod.default)
-                );
-                return Promise.all(imagePromises);
-            };
-
-            const portraits = await loadImages(portraitImages);
-            const weddings = await loadImages(weddingImages);
-            const companyHobby = await loadImages(companyHobbyImages);
-
-            setAllImages([...portraits, ...weddings, ...companyHobby]); // Combine all images
-        };
-
-        importImages();
-    }, []);
+        if (!hasLoadedImages.current && imagesData.portraits && imagesData.weddings && imagesData.companyhobby) {
+            const loadedImages = [...(imagesData.portraits || []), ...(imagesData.weddings || []), ...(imagesData.companyhobby || [])];
+            setAllImages(loadedImages);
+            hasLoadedImages.current = true;
+        }
+    }, [imagesData]);
 
     useEffect(() => {
         if (allImages.length === 0) return;
@@ -57,7 +35,7 @@ export default function HeroSection() {
             const randomImage = allImages[Math.floor(Math.random() * allImages.length)];
 
             // Random size
-            const randomSize = Math.random() * (30 - 15) + 15; // Random size in percentage
+            const randomSize = Math.random() * (30 - 25) + 40; // Random size in percentage
             const sizeInPixels = `${randomSize}vw`;
 
             // Limit X and Y to prevent images from overflowing
@@ -79,8 +57,8 @@ export default function HeroSection() {
 
             setTimeout(() => {
                 setPopImages((prev) => prev.filter((img) => img.id !== newImage.id));
-            }, 6000); // Remove after 6 seconds
-        }, 1000);
+            }, 10000); // Remove after 10 seconds
+        }, 2000);
 
         return () => clearInterval(interval);
     }, [allImages]);
@@ -91,9 +69,11 @@ export default function HeroSection() {
                 <title>Svendsén Photography - Professionell Fotograf i Göteborg & Kungälv</title>
                 <meta
                     name="description"
-                    content="Välkommen till Svendsén Photography! jag specialiserar mig på bröllopsfotografering, porträtt och företagsbilder i Göteborg och Kungälv."
+                    content="Välkommen till Svendsén Photography! Jag specialiserar mig på bröllopsfotografering, porträtt, bil och företagsbilder i Göteborg och Kungälv."
                 />
+                {allImages.length > 0 && <link rel="preload" as="image" href={allImages[0]}/>}
             </Helmet>
+
             <section
                 className="relative flex items-center justify-center overflow-hidden bg-gray-100"
                 style={{height: 'calc(100vh - 6rem)'}}
@@ -108,7 +88,7 @@ export default function HeroSection() {
                                 strings: ['Bröllop', 'Porträtt', 'Företagsfoto'],
                                 autoStart: true,
                                 loop: true,
-                                deleteSpeed: 50,
+                                deleteSpeed: 30,
                             }}
                         />
                     </h1>
@@ -120,7 +100,6 @@ export default function HeroSection() {
                     </button>
                 </div>
 
-                {/* Floating images */}
                 {popImages.map((image) => (
                     <img
                         key={image.id}

@@ -1,33 +1,46 @@
-// src/components/Carousel.tsx
-import React from 'react';
-import { useImportedImages } from '@/hooks/useImportedImages';
-import {useEffect, useState} from "react";
-import {shuffleArray} from "@/utils/shuffle";
+import React, {useEffect, useRef, useState} from 'react';
+import {useImportedImages} from '../hooks/useImportedImages';
+import {shuffleArray} from '../utils/shuffle';
 
 interface CarouselProps {
     interval?: number;
     pauseDuration?: number;
 }
 
-export default function Carousel({ interval = 3000, pauseDuration = 5000 }: CarouselProps) {
-    const images = useImportedImages();
+export default function Carousel({interval = 3000, pauseDuration = 5000}: CarouselProps) {
+    const imagesData = useImportedImages(['carousel']);
+    const images = imagesData.carousel || [];
+
     const [shuffledImages, setShuffledImages] = useState<string[]>([]);
     const [currentIndex, setCurrentIndex] = useState<number>(0);
     const [isPaused, setIsPaused] = useState<boolean>(false);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    const hasInitialized = useRef(false);
 
     useEffect(() => {
-        if (images.length > 0) {
+        if (images.length > 0 && !hasInitialized.current) {
             setShuffledImages(shuffleArray(images));
+            setCurrentIndex(0);
+            hasInitialized.current = true;
         }
     }, [images]);
 
     useEffect(() => {
-        if (shuffledImages.length > 0 && !isPaused) {
-            const timer = setInterval(() => {
-                setCurrentIndex((prevIndex) => (prevIndex + 1) % shuffledImages.length);
-            }, interval);
-            return () => clearInterval(timer);
+        if (shuffledImages.length === 0 || isPaused) return;
+
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
         }
+
+        intervalRef.current = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % shuffledImages.length);
+        }, interval);
+
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+        };
     }, [shuffledImages, interval, isPaused]);
 
     const handleUserInteraction = (newIndex: number) => {
@@ -41,7 +54,7 @@ export default function Carousel({ interval = 3000, pauseDuration = 5000 }: Caro
     return (
         <section
             className="relative mx-auto overflow-hidden rounded-lg shadow-md"
-            style={{ width: '75vw', height: '75vh' }}
+            style={{width: '75vw', height: '75vh'}}
             aria-label="Bildkarusell"
         >
             {shuffledImages.map((image, index) => (
@@ -54,6 +67,7 @@ export default function Carousel({ interval = 3000, pauseDuration = 5000 }: Caro
                     <img
                         src={image}
                         alt={`Bild ${index + 1} av ${shuffledImages.length}`}
+                        loading={"lazy"}
                         className="w-full h-full object-contain"
                     />
                 </figure>

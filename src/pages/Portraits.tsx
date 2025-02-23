@@ -1,26 +1,21 @@
 import * as React from 'react';
-import {useEffect, useState} from 'react';
-import {Helmet} from "react-helmet";
+import {useEffect, useRef, useState} from 'react';
+import {Helmet} from "react-helmet-async";
 import {shuffleArray} from "../utils/shuffle";
+import {useImportedImages} from '../hooks/useImportedImages';
 
 export default function Portraits() {
-    const [images, setImages] = useState<string[]>([]);
+    const imagesData = useImportedImages(['portraits']);
+    const [shuffledImages, setShuffledImages] = useState<string[]>([]);
     const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+    const hasInitialized = useRef(false);
 
     useEffect(() => {
-        const importImages = async () => {
-            const imagesModules = import.meta.glob('../assets/portraits/*.{jpg,jpeg,png}');
-            const imagePromises: Promise<string>[] = [];
-            for (const path in imagesModules) {
-                imagePromises.push(
-                    imagesModules[path]().then((mod) => (mod as { default: string }).default)
-                );
-            }
-            const imageUrls = await Promise.all(imagePromises);
-            setImages(shuffleArray(imageUrls));
-        };
-        importImages();
-    }, []);
+        if (!hasInitialized.current && imagesData.portraits?.length > 0) {
+            setShuffledImages(shuffleArray(imagesData.portraits));
+            hasInitialized.current = true;
+        }
+    }, [imagesData]);
 
     useEffect(() => {
         if (selectedImage) {
@@ -34,22 +29,28 @@ export default function Portraits() {
         <>
             <Helmet>
                 <title>Porträttfotograf i Kungälv & Göteborg - Svendsén Photography</title>
-                <meta
-                    name="description"
-                    content="Utforska våra porträttbilder och boka din porträttfotograf i Kungälv och Göteborg. Professionell fotografering för alla tillfällen."
-                />
-                <meta
-                    name="keywords"
-                    content="porträtt, fotograf kungälv, fotograf göteborg, porträttfotografering, Svendsén Photography, bilfotograf kungälv, bilfotograf"
-                />
+                <meta name="description"
+                      content="Professionell porträttfotograf i Kungälv och Göteborg. Se vår portfolio och boka din fotografering idag."/>
+                <meta name="keywords"
+                      content="porträtt, fotograf kungälv, fotograf göteborg, porträttfotografering, Svendsén Photography"/>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Photograph",
+                        "name": "Svendsén Photography - Porträtt",
+                        "description": "Porträttfotograf i Kungälv & Göteborg",
+                        "url": "https://www.svendsenphotography.com/portraits"
+                    })}
+                </script>
             </Helmet>
+
             <main className="p-6">
                 <header>
                     <h1 className="text-3xl font-bold mb-6">Porträttfotograf i Kungälv & Göteborg</h1>
                 </header>
                 <section aria-label="Porträttgalleri"
                          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {images.map((src, index) => (
+                    {shuffledImages.map((src, index) => (
                         <figure key={index} className="relative">
                             <img
                                 src={src}

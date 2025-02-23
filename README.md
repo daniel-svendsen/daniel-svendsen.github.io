@@ -1,8 +1,41 @@
-# React + Vite
+# Svendsén Photography
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Svendsén Photography is a website for a photographer based in Kungälv and
+Gothenburg. The site showcases services such as portrait photography, weddings,
+and corporate photography. It also includes a **/work** page that can generate
+PDF files based on the content displayed on the page.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** – Frontend library
+- **Vite** – Fast development server
+- **TypeScript** – For type safety
+- **React Router** – Client-side routing
+- **Tailwind CSS** – Styling
+- **Formspree** – Form handling
+- **jspdf & jspdf-autotable** – PDF generation
+
+---
+
+## Installation
+
+Follow these steps to run the project locally:
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-repo/svendsen-photography.git
+   cd svendsen-photography
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+   The website is now available at `http://localhost:5173`
+
+---

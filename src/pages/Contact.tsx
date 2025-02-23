@@ -1,4 +1,5 @@
 import React, {FormEvent, useState} from 'react';
+import {Helmet} from "react-helmet-async";
 
 export default function Contact() {
     const [selectedService, setSelectedService] = useState<string>('');
@@ -10,40 +11,68 @@ export default function Contact() {
         'Bröllop',
         'Företagsporträtt',
         'Produktfotografering',
+        'Hobby',
         'Annat',
     ];
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const data = Object.fromEntries(formData.entries());
+        const form = e.currentTarget;
+
+        // Konvertera FormData till JSON
+        const formData = new FormData(form);
+        const data: Record<string, string> = {};
+        formData.forEach((value, key) => {
+            data[key] = value as string;
+        });
+
         try {
             const response = await fetch('https://formspree.io/f/xvgowldv', {
                 method: 'POST',
-                headers: {'Accept': 'application/json'},
+                headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
                 body: JSON.stringify(data),
             });
+
             if (response.ok) {
                 setFormStatus('success');
-                e.currentTarget.reset();
+                if (form) form.reset();
             } else {
+                const errorData = await response.json();
+                console.error("Formspree error:", errorData);
                 setFormStatus('error');
             }
         } catch (error) {
+            console.error("Formspree network error:", error);
             setFormStatus('error');
         }
     };
 
+
     return (
         <main className="p-6 max-w-4xl mx-auto">
+            <Helmet>
+                <title>Kontakta Svendsén Photography - Fotograf i Göteborg & Kungälv</title>
+                <meta name="description"
+                      content="Kontakta Svendsén Photography för bröllop, porträtt, företagsfotografering, bilfotografering och mer i Göteborg och Kungälv."/>
+                <meta name="keywords"
+                      content="kontakt, fotograf göteborg, fotograf kungälv, bröllopsfotograf, porträttfotograf, bilfotograf, bilfotografering"/>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "ContactPage",
+                        "name": "Kontakta Svendsén Photography",
+                        "description": "Boka en fotografering i Kungälv & Göteborg",
+                        "url": "https://www.svendsenphotography.com/contact"
+                    })}
+                </script>
+            </Helmet>
+
             <header>
                 <h1 className="text-2xl font-bold mb-6">Kontakta mig gärna via e-post!</h1>
             </header>
             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-1">
-                        Ditt namn *
-                    </label>
+                    <label htmlFor="name" className="block text-sm font-medium mb-1">Ditt namn *</label>
                     <input
                         id="name"
                         name="name"
@@ -54,9 +83,7 @@ export default function Contact() {
                     />
                 </div>
                 <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-1">
-                        E-postadress *
-                    </label>
+                    <label htmlFor="email" className="block text-sm font-medium mb-1">E-postadress *</label>
                     <input
                         id="email"
                         name="email"
@@ -67,9 +94,7 @@ export default function Contact() {
                     />
                 </div>
                 <fieldset className="md:col-span-2">
-                    <legend className="block text-sm font-medium mb-2">
-                        Vilken tjänst är du intresserad av? *
-                    </legend>
+                    <legend className="block text-sm font-medium mb-2">Vilken tjänst är du intresserad av? *</legend>
                     <div className="space-y-2">
                         {services.map((service) => (
                             <div key={service} className="flex items-center">
@@ -82,17 +107,13 @@ export default function Contact() {
                                     onChange={() => setSelectedService(service)}
                                     className="form-radio h-4 w-4 text-blue-600"
                                 />
-                                <label htmlFor={service} className="ml-2 text-sm text-gray-700">
-                                    {service}
-                                </label>
+                                <label htmlFor={service} className="ml-2 text-sm text-gray-700">{service}</label>
                             </div>
                         ))}
                     </div>
                 </fieldset>
                 <div className="md:col-span-2">
-                    <label htmlFor="message" className="block text-sm font-medium mb-2">
-                        Meddelande *
-                    </label>
+                    <label htmlFor="message" className="block text-sm font-medium mb-2">Meddelande *</label>
                     <textarea
                         id="message"
                         name="message"
