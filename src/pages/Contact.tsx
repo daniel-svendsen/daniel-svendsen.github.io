@@ -11,7 +11,10 @@ export default function Contact() {
         'Bröllop',
         'Företagsporträtt',
         'Produktfotografering',
+        'Verksamhetsfoto',
+        'Film',
         'Hobby',
+        'Hemsida',
         'Annat',
     ];
 

@@ -1,72 +1,87 @@
 import weddingImage from '../assets/pictures/wedding.jpg';
 import portraitImage from '../assets/pictures/portrait.jpg';
-import familyImage from '../assets/pictures/family.jpg';
 import companyImage from '../assets/pictures/company.jpg';
 
 export const homeCards = [
     {
         image: weddingImage,
-        title: 'Bröllop',
-        description: `Ert bröllop är en tid av glädje och kärlek, och mitt mål är att fånga varje vackra ögonblick. Innan den stora dagen vill jag gärna ha en dialog med er för att förstå era drömmar och önskemål. Er vision för er bröllopsdag är det som kommer att forma min fotografering och säkerställa att ni är helt nöjda med resultaten.`,
+        title: 'Bröllopsfotografering & Bröllopsfilm',
+        description: `Ert bröllop är en unik och kärleksfull dag, och jag hjälper er att fånga alla magiska ögonblick. 
+                      Jag erbjuder både bröllopsfoto och film för att skapa tidlösa minnen av er stora dag.`,
+        buttonText: 'Läs mer',
+        buttonLink: '/services',
     },
     {
         image: portraitImage,
-        title: 'Porträtt',
-        description: `Porträtt är en fantastisk möjlighet att visa upp din unika personlighet eller det du brinner för. Oavsett om du behöver en professionell porträttbild för ditt CV, önskar visa upp din passion på sociala medier eller skapa en minnesvärd bild för väggen, så är jag här för att fånga just det du söker.`,
-    },
-    {
-        image: familyImage,
-        title: 'Familjefoto',
-        description: `Familjen är viktig och att bevara ögonblicken med era nära och kära är något jag värdesätter. Jag tar gärna familjefoton eller bilder på era barn eller barnbarn. Om ni har en speciell plats i åtanke där ni vill fotograferas, låt mig veta så skapar vi magiska minnen där.`,
+        title: 'Porträtt & Familjefoto',
+        description: `Oavsett om du behöver en professionell bild för ditt CV, sociala medier eller ett vackert familjeporträtt, hjälper jag dig att fånga naturliga och personliga bilder – utomhus eller på plats hos dig med bakgrund.`,
+        buttonText: 'Läs mer',
+        buttonLink: '/services',
     },
     {
         image: companyImage,
-        title: 'Företag',
-        description: `För företagare kan en stark visuell närvaro göra skillnad. Jag erbjuder tjänster för produktfotografering och porträtt för att förstärka ert varumärke. Kontakta mig och berätta mer om vad ni behöver, så kan vi skapa något unikt för ert företag.`,
+        title: 'Företag, Event & Verksamhetsfoto',
+        description: `Fånga ditt företags unika karaktär med professionella bilder och filmklipp. 
+                      Perfekt för konferenser, mässor, personalporträtt och marknadsföring. 
+                      Har du en hobbyverksamhet eller är bilentusiast? Jag hjälper dig att skapa unika bilder för reklam och sociala medier.`,
+        buttonText: 'Läs mer',
+        buttonLink: '/services',
+    },
+    {
+        // image: Lägg till en passande bild för webbutveckling
+        title: 'Hemsidesutveckling & SEO',
+        description: `Behöver du en modern och snabb hemsida? Jag bygger responsiva webbplatser för företag, fotografer och kreatörer 
+                      med fokus på SEO och användarvänlighet.`,
+        buttonText: 'Läs mer',
+        buttonLink: '/services',
     },
 ];
 
+
 export const serviceCards = [
     {
-        title: 'Porträtt/Familjefoto',
+        title: 'Porträtt & Familjefoto',
         image: portraitImage,
-        description: `Ca 30 minuter fotografering\nInklusive 4st bilder som ni väljer ut.\n150kr/redigerad bild utöver.`,
-        price: 'FRÅN 1200KR',
-        buttonText: 'Boka nu',
+        description: `📷 30 minuters fotografering, 5 redigerade bilder ingår  
+                      ➕ Extra bilder: 150 kr/st  
+                      🎭 Perfekt för CV, LinkedIn, sociala medier, familjeporträtt och generationsbilder`,
+        price: 'Från 1200 KR',
+        buttonText: 'Kontakt',
         buttonLink: '/contact',
-        imageLink: '/portraits',
     },
     {
-        title: 'Bröllop',
+        title: 'Bröllopsfotografering & Bröllopsfilm',
         image: weddingImage,
-        description: `Grundpris för 3 timmar på plats samt 50st bilder som ni väljer.\nKontakta mig om ni vill ha fler/mindre timmar eller andra önskemål.`,
-        price: 'FRÅN 8000KR',
-        buttonText: 'Boka nu',
+        description: `📍 Välj mellan tre paket:  
+                      🥂 Litet Paket – 3 timmar fotografering, 50 redigerade bilder → 7500 kr  
+                      💍 Mellanpaket – 6 timmar fotografering, 100 redigerade bilder → 12 000 kr  
+                      🎊 Heldag – 10 timmar fotografering, 200 redigerade bilder + kort bröllopsfilm → 18 000 kr  
+                      🎥 Film – Cinematisk bröllopsfilm (3-5 min highlight reel) → 5000 kr vid fotopaket / 8000 kr enskilt  
+                      ⏳ Extra timmar → 2000 kr/timme`,
+        price: 'Från 7500 KR',
+        buttonText: 'Kontakt',
         buttonLink: '/contact',
-        imageLink: '/weddings',
     },
     {
-        title: 'Företag, Verksamhetsfoto & Eventfoto',
+        title: 'Företagsfoto, Event & Verksamhetsfoto',
         image: companyImage,
-        description: `Fånga ditt företags unika karaktär med professionella bilder och filmklipp. Jag erbjuder:
-- Företagsporträtt (på plats eller i studio som jag tar med)
-- Eventfotografering (mässor, konferenser, företagsfester)
-- Marknadsföringsbilder för webb och sociala medier
-- Filmning för reklam och presentationer`,
-        price: 'Kontakta mig för en offert',
-        buttonText: 'Boka konsultation',
+        description: `🏢 Företagsporträtt – 1-5 personer → Från 2500 kr, fler personer på offert  
+                      🎤 Eventfotografering – 3 timmar → 4500 kr | Heldag → 12 000 kr  
+                      📸 Produkt- & Marknadsföringsbilder → Från 350 kr/bild  
+                      🎬 Filmning för reklam & presentationer → Offert vid förfrågan`,
+        price: 'Från 2500 KR',
+        buttonText: 'Kontakt',
         buttonLink: '/contact',
     },
     {
-        title: 'Hemsidesutveckling',
-        // image: webDesignImage,
-        description: `Behöver du en stilren och modern hemsida? Jag hjälper företag och kreatörer att synas online. Tjänster inkluderar:
-- Design och utveckling av responsiva hemsidor
-- SEO-optimering och Google-ranking
-- Anpassning för fotografer och kreatörer
-- Underhåll och support`,
-        price: 'Kontakta mig för en offert',
-        buttonText: 'Läs mer',
+        title: 'Hemsidesutveckling & SEO',
+        description: `💻 Enkel landningssida → Från 4500 kr  
+                      🌍 Företagswebbplats (flersidig) → Från 8500 kr  
+                      🔍 SEO-optimering & support → Från 2000 kr/månad`,
+        price: 'Från 4500 KR',
+        buttonText: 'Kontakt',
         buttonLink: '/contact',
     }
 ];
+
+

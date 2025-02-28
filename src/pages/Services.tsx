@@ -52,7 +52,7 @@ export default function Services() {
                         Boka fotografering
                     </a>
                 </header>
-                <section aria-label="Mina tjänster" className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                <section aria-label="Mina tjänster" className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12">
                     {serviceCards.map((service, index) => (
                         <Card key={index} {...service} />
                     ))}
