@@ -51,18 +51,22 @@ export default function Contact() {
     return (
         <main className="p-6 max-w-4xl mx-auto">
             <Helmet>
-                <title>Kontakta Svendsén Photography - Fotograf i Göteborg & Kungälv</title>
+                <title>Kontakta Fotograf i Göteborg & Kungälv - Svendsén Photography</title>
                 <meta name="description"
-                      content="Kontakta Svendsén Photography för bröllop, porträtt, företagsfotografering, bilfotografering och mer i Göteborg och Kungälv."/>
+                      content="Kontakta Svendsén Photography för bröllop, porträtt, företagsfoto och eventfotografering i Göteborg och Kungälv. Skicka din förfrågan idag!"/>
                 <meta name="keywords"
-                      content="kontakt, fotograf göteborg, fotograf kungälv, bröllopsfotograf, porträttfotograf, bilfotograf, bilfotografering"/>
+                      content="kontakt fotograf, fotograf göteborg kontakt, fotograf kungälv kontakt, boka fotograf, offert fotografering"/>
+                <meta property="og:title" content="Kontakta Svendsén Photography"/>
+                <meta property="og:description"
+                      content="Boka en fotografering i Göteborg & Kungälv. Skicka en förfrågan enkelt via vårt kontaktformulär."/>
+                <meta property="og:url" content="https://www.svendsenphotography.com/contact"/>
                 <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "ContactPage",
                         "name": "Kontakta Svendsén Photography",
                         "description": "Boka en fotografering i Kungälv & Göteborg",
-                        "url": "https://www.svendsenphotography.com/contact"
+                        "url": "https://www.svendsenphotography.com/contact",
                     })}
                 </script>
             </Helmet>

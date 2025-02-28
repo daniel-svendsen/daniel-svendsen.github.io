@@ -8,37 +8,51 @@ export default function Services() {
     return (
         <>
             <Helmet>
-                <title>Fototjänster & Prislista - Svendsén Photography</title>
+                <title>Fototjänster i Kungälv & Göteborg - Svendsén Photography</title>
                 <meta name="description"
-                      content="Utforska vår prislista och tjänster inom bröllop, porträtt, företagsfotografering och bilfotografering i Kungälv och Göteborg."/>
+                      content="Upptäck professionella fototjänster hos Svendsén Photography. Vi erbjuder bröllopsfotografering, porträtt, företagsfoto, bilfotografering och eventfoto i Kungälv och Göteborg. Läs mer: https://www.svendsenphotography.com/services"/>
                 <meta name="keywords"
-                      content="fototjänster, prislista, fotograf göteborg, fotograf kungälv, bröllop, porträtt, företagsfotograf, bilfotograf"/>
-                <meta property="og:title" content="Fototjänster & Prislista - Svendsén Photography"/>
-                <meta property="og:description"
-                      content="Se våra priser och tjänster för bröllopsfotografering, porträtt, företagsfotografering och bilfotografering i Kungälv & Göteborg."/>
-                <meta property="og:image"
-                      content="https://www.svendsenphotography.com/assets/socialshare/socialshare.png"/>
-                <meta property="og:url" content="https://www.svendsenphotography.com/services"/>
-                <meta name="twitter:card" content="summary_large_image"/>
+                      content="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, bilfotograf, företagsfotograf, eventfotograf, verksamhetsfoto"/>
                 <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
-                        "@type": "Service",
-                        "name": "Fototjänster - Svendsén Photography",
-                        "description": "Professionell fotografering i Kungälv & Göteborg. Vi erbjuder bröllop, porträtt, företags- och bilfotografering.",
-                        "provider": {
-                            "@type": "LocalBusiness",
-                            "name": "Svendsén Photography"
+                        "@type": "ProfessionalService",
+                        "name": "Svendsén Photography",
+                        "description": "Fotograf i Kungälv & Göteborg - Specialiserad på bröllop, porträtt, företag och event.",
+                        "image": "https://www.svendsenphotography.com/logo.jpg",
+                        "url": "https://www.svendsenphotography.com/services",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "addressLocality": "Kungälv",
+                            "addressCountry": "SE"
                         },
-                        "serviceType": "Photography"
+                        "serviceType": [
+                            "Bröllopsfotografering",
+                            "Porträttfotografering",
+                            "Företagsfotografering",
+                            "Eventfotografering",
+                            "Bilfotografering",
+                            "Hemsidesutveckling"
+                        ],
+                        "areaServed": {
+                            "@type": "City",
+                            "name": ["Kungälv", "Göteborg"]
+                        }
                     })}
                 </script>
             </Helmet>
             <main className="p-6">
-                <header>
-                    <h1 className="text-center text-3xl font-bold mb-12">Tjänster som jag kan erbjuda</h1>
+                <header className="text-center">
+                    <h1 className="text-4xl font-bold mb-6">Professionella fotograferingstjänster</h1>
+                    <p className="text-lg text-gray-700 mb-8">
+                        Boka en fotografering idag och skapa minnen som varar livet ut.
+                    </p>
+                    <a href="/contact"
+                       className="px-6 py-3 bg-blue-600 text-white font-bold rounded-md hover:bg-blue-700">
+                        Boka fotografering
+                    </a>
                 </header>
-                <section aria-label="Mina tjänster" className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <section aria-label="Mina tjänster" className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
                     {serviceCards.map((service, index) => (
                         <Card key={index} {...service} />
                     ))}

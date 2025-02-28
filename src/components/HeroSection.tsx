@@ -123,7 +123,6 @@ export default function HeroSection() {
                         alt="Inspirerande foto"
                         className="absolute object-cover rounded-full shadow-lg animate-pop"
                         style={{
-                            position: 'fixed',
                             top: `${image.y}%`,
                             left: `${image.x}%`,
                             width: image.size,

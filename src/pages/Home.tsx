@@ -38,7 +38,7 @@ export default function Home() {
             <Helmet>
                 <title>Fotograf i Kungälv & Göteborg - Svendsén Photography</title>
                 <meta name="description"
-                      content="Svendsén Photography erbjuder professionell fotografering inom bröllop, porträtt, bilfotografering och företag i Kungälv och Göteborg."/>
+                      content="Svendsén Photography erbjuder professionell fotografering inom bröllop, porträtt, bilfotografering och företag i Kungälv och Göteborg. Läs mer: https://www.svendsenphotography.com"/>
                 <meta name="keywords"
                       content="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, bilfotograf, företagsfotograf"/>
                 <script type="application/ld+json">

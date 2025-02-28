@@ -46,11 +46,27 @@ export const serviceCards = [
         imageLink: '/weddings',
     },
     {
-        title: 'Företag/Hobby',
+        title: 'Företag, Verksamhetsfoto & Eventfoto',
         image: companyImage,
-        description: `Jag kan erbjuda:\n- Porträtt på plats\n- Porträtt studiomiljö\n- Produktfoton\n- Hobbybilder (bilar, verksamhet m.m)`,
-        price: 'Kontakta mig för individuell prissättning',
-        buttonText: 'Kontakta mig',
+        description: `Fånga ditt företags unika karaktär med professionella bilder och filmklipp. Jag erbjuder:
+- Företagsporträtt (på plats eller i studio som jag tar med)
+- Eventfotografering (mässor, konferenser, företagsfester)
+- Marknadsföringsbilder för webb och sociala medier
+- Filmning för reklam och presentationer`,
+        price: 'Kontakta mig för en offert',
+        buttonText: 'Boka konsultation',
         buttonLink: '/contact',
     },
+    {
+        title: 'Hemsidesutveckling',
+        // image: webDesignImage,
+        description: `Behöver du en stilren och modern hemsida? Jag hjälper företag och kreatörer att synas online. Tjänster inkluderar:
+- Design och utveckling av responsiva hemsidor
+- SEO-optimering och Google-ranking
+- Anpassning för fotografer och kreatörer
+- Underhåll och support`,
+        price: 'Kontakta mig för en offert',
+        buttonText: 'Läs mer',
+        buttonLink: '/contact',
+    }
 ];

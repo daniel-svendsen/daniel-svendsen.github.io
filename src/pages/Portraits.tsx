@@ -30,7 +30,7 @@ export default function Portraits() {
             <Helmet>
                 <title>Porträttfotograf i Kungälv & Göteborg - Svendsén Photography</title>
                 <meta name="description"
-                      content="Professionell porträttfotograf i Kungälv och Göteborg. Se vår portfolio och boka din fotografering idag."/>
+                      content="Boka en professionell porträttfotografering i Göteborg & Kungälv. Perfekt för företagsporträtt, CV-bilder och familjeporträtt. Läs mer: https://www.svendsenphotography.com/services/portrattfotografering"/>
                 <meta name="keywords"
                       content="porträtt, fotograf kungälv, fotograf göteborg, porträttfotografering, Svendsén Photography"/>
                 <script type="application/ld+json">

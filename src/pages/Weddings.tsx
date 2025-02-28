@@ -29,7 +29,7 @@ export default function Weddings() {
             <Helmet>
                 <title>Bröllopsfotograf i Kungälv & Göteborg - Svendsén Photography</title>
                 <meta name="description"
-                      content="Erfaren bröllopsfotograf i Kungälv och Göteborg. Vi fångar era magiska ögonblick."/>
+                      content="Fånga ditt bröllop med en erfaren fotograf i Göteborg & Kungälv. Vi erbjuder skräddarsydda bröllopspaket. Se exempel här: https://www.svendsenphotography.com/services/brollopsfotografering"/>
                 <meta name="keywords"
                       content="bröllop, bröllopsfotograf kungälv, bröllopsfotograf göteborg, bröllopsbilder, Svendsén Photography"/>
                 <script type="application/ld+json">
