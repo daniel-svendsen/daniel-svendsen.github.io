@@ -15,14 +15,15 @@ interface PopImage {
 
 export default function HeroSection() {
     const navigate = useNavigate();
-    const imagesData = useImportedImages(['portraits', 'weddings', 'companyhobby']);
+    const imagesData = useImportedImages(['herosection']);
+
     const [allImages, setAllImages] = useState<string[]>([]);
     const [popImages, setPopImages] = useState<PopImage[]>([]);
     const hasLoadedImages = useRef(false);
 
     useEffect(() => {
-        if (!hasLoadedImages.current && imagesData.portraits && imagesData.weddings && imagesData.companyhobby) {
-            const loadedImages = [...(imagesData.portraits || []), ...(imagesData.weddings || []), ...(imagesData.companyhobby || [])];
+        if (!hasLoadedImages.current && imagesData.herosection) {
+            const loadedImages = [...(imagesData.herosection || [])];
             setAllImages(loadedImages);
             hasLoadedImages.current = true;
         }
@@ -31,16 +32,30 @@ export default function HeroSection() {
     useEffect(() => {
         if (allImages.length === 0) return;
 
+        const recentImages = new Set<string>();
+
         const interval = setInterval(() => {
-            const randomImage = allImages[Math.floor(Math.random() * allImages.length)];
+            let randomImage;
+
+            let attempts = 0;
+            do {
+                randomImage = allImages[Math.floor(Math.random() * allImages.length)];
+                attempts++;
+                if (attempts > 10) break;
+            } while (recentImages.has(randomImage) && allImages.length > 5);
+
+            recentImages.add(randomImage);
+            if (recentImages.size > 5) {
+                recentImages.delete([...recentImages][0]);
+            }
 
             // Random size
-            const randomSize = Math.random() * (30 - 25) + 40; // Random size in percentage
+            const randomSize = Math.random() * (30 - 25) + 25; // Random size in percentage
             const sizeInPixels = `${randomSize}vw`;
 
             // Limit X and Y to prevent images from overflowing
             const marginX = randomSize / 2;
-            const marginY = randomSize / (window.innerWidth / window.innerHeight) / 2;
+            const marginY = randomSize / 2;
 
             const randomX = Math.random() * (100 - marginX * 2) + marginX;
             const randomY = Math.random() * (100 - marginY * 2) + marginY;
@@ -108,6 +123,7 @@ export default function HeroSection() {
                         alt="Inspirerande foto"
                         className="absolute object-cover rounded-full shadow-lg animate-pop"
                         style={{
+                            position: 'fixed',
                             top: `${image.y}%`,
                             left: `${image.x}%`,
                             width: image.size,
