@@ -1,5 +1,4 @@
-import react from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
+// eslint.config.js (eller .eslintrc.js)
 
 export default {
   root: true,
@@ -7,10 +6,12 @@ export default {
     browser: true,
     es2021: true,
   },
+  // Lägg in prettier sist i extends, så inaktiveras ESLint-regler som krockar
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:react-hooks/recommended'
+    'plugin:react-hooks/recommended',
+    'prettier',
   ],
   parserOptions: {
     ecmaVersion: 'latest',
@@ -18,6 +19,6 @@ export default {
   },
   settings: { react: { version: '18.3' } },
   rules: {
-    'react/jsx-no-target-blank': 'off'
+    'react/jsx-no-target-blank': 'off',
   },
 }
