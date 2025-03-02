@@ -11,8 +11,15 @@
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C85UxOZX.js">
     <link rel="stylesheet" crossorigin href="/assets/index-BNU3fB5l.css">
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+    <script>
+      if (window.location.pathname !== "/" && !window.location.pathname.startsWith("/assets")) {
+        const url = new URL(window.location);
+        window.location.replace(`${url.origin}/#${url.pathname}`);
+      }
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
+
   </body>
 </html>
