@@ -32,11 +32,11 @@ jobs:
 
       # Step 5: Add custom domain (CNAME)
       - name: Add custom domain
-        run: echo "www.svendsenphotography.com" > docs/CNAME
+        run: echo "www.svendsenphotography.com" > dist/CNAME
 
       # Step 6: Deploy to gh-pages branch
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs
+          publish_dir: dist

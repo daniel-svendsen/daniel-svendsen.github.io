@@ -19,7 +19,7 @@ export default defineConfig({
         '/contact',
         '/work',
       ],
-      outDir: 'docs',
+      outDir: 'dist',
       readable: true,
     }),
     visualizer.default({
@@ -29,7 +29,7 @@ export default defineConfig({
   ],
   base: '/',
   build: {
-    outDir: 'docs',
+    outDir: 'dist',
     emptyOutDir: true,
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
