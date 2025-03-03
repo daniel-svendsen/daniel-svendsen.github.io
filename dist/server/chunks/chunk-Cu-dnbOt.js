@@ -1,0 +1,36 @@
+import { useState, useEffect } from "react";
+const availableFolders = {
+  portraits: /* @__PURE__ */ Object.assign({ "../assets/portraits/bild1.jpg": () => import("./chunk-B7Q9xmcO.js"), "../assets/portraits/portraits-10.jpg": () => import("./chunk-LP9Dy3QG.js"), "../assets/portraits/portraits-11.jpg": () => import("./chunk-Ba4GiN3g.js"), "../assets/portraits/portraits-12.jpg": () => import("./chunk-SrXr9tZl.js"), "../assets/portraits/portraits-13.jpg": () => import("./chunk-CBZtMOFV.js"), "../assets/portraits/portraits-14.jpg": () => import("./chunk-BSau3RtJ.js"), "../assets/portraits/portraits-15.jpg": () => import("./chunk-6MwVvJd8.js"), "../assets/portraits/portraits-17.jpg": () => import("./chunk-CAq1KnZu.js"), "../assets/portraits/portraits-18.jpg": () => import("./chunk-DxR1nnXc.js"), "../assets/portraits/portraits-2.jpg": () => import("./chunk-CYTR4tT2.js"), "../assets/portraits/portraits-20.jpg": () => import("./chunk-BZ_LtlvC.js"), "../assets/portraits/portraits-22.jpg": () => import("./chunk-B6suB1JZ.js"), "../assets/portraits/portraits-23.jpg": () => import("./chunk-DDq78FHo.js"), "../assets/portraits/portraits-24.jpg": () => import("./chunk-YXQX2leA.js"), "../assets/portraits/portraits-3.jpg": () => import("./chunk-C5zg1z1u.js"), "../assets/portraits/portraits-4.jpg": () => import("./chunk-HoMMOoRQ.js"), "../assets/portraits/portraits-5.jpg": () => import("./chunk-fOP6sG3e.js"), "../assets/portraits/portraits-8.jpg": () => import("./chunk-Dt7NNjdV.js"), "../assets/portraits/portraits-9.jpg": () => import("./chunk-B7x6nqva.js"), "../assets/portraits/portraits.jpg": () => import("./chunk-D_MemgHv.js") }),
+  weddings: /* @__PURE__ */ Object.assign({ "../assets/weddings/portraits-10.jpg": () => import("./chunk-Dzr6hqeU.js"), "../assets/weddings/portraits-11.jpg": () => import("./chunk-Cx67XTiD.js"), "../assets/weddings/portraits-12.jpg": () => import("./chunk-CaJ9tOaj.js"), "../assets/weddings/portraits-13.jpg": () => import("./chunk-CnDuIRKC.js"), "../assets/weddings/portraits-14.jpg": () => import("./chunk-Dm9c1DeH.js"), "../assets/weddings/portraits-15.jpg": () => import("./chunk-Wi1RRu_a.js"), "../assets/weddings/portraits-16.jpg": () => import("./chunk-CYJE-nf2.js"), "../assets/weddings/portraits-17.jpg": () => import("./chunk-mywS50-O.js"), "../assets/weddings/portraits-18.jpg": () => import("./chunk-S_mJIlW9.js"), "../assets/weddings/portraits-19.jpg": () => import("./chunk-BPnqeZc0.js"), "../assets/weddings/portraits-2.jpg": () => import("./chunk-BvAebsCn.js"), "../assets/weddings/portraits-20.jpg": () => import("./chunk-Ckmi-0wl.js"), "../assets/weddings/portraits-21.jpg": () => import("./chunk-Cu43acWz.js"), "../assets/weddings/portraits-22.jpg": () => import("./chunk-D0I2-k8J.js"), "../assets/weddings/portraits-23.jpg": () => import("./chunk-DaRkdqJY.js"), "../assets/weddings/portraits-24.jpg": () => import("./chunk-DDuaIIfA.js"), "../assets/weddings/portraits-25.jpg": () => import("./chunk-DaNixVys.js"), "../assets/weddings/portraits-3.jpg": () => import("./chunk-C0Ps_DJV.js"), "../assets/weddings/portraits-4.jpg": () => import("./chunk-BIyNGvtO.js"), "../assets/weddings/portraits-5.jpg": () => import("./chunk-Co01JxP_.js"), "../assets/weddings/portraits-6.jpg": () => import("./chunk-CFpqaKdC.js"), "../assets/weddings/portraits-7.jpg": () => import("./chunk-C99xqYvs.js"), "../assets/weddings/portraits-8.jpg": () => import("./chunk-DSMv4RcD.js"), "../assets/weddings/portraits-9.jpg": () => import("./chunk-BEQ7Ag6F.js"), "../assets/weddings/portraits.jpg": () => import("./chunk-BSGHwVLV.js") }),
+  companyhobby: /* @__PURE__ */ Object.assign({ "../assets/companyhobby/car1.jpg": () => import("./chunk-CobMWfEU.js"), "../assets/companyhobby/car2.jpg": () => import("./chunk-BHEwaGOE.js") }),
+  carousel: /* @__PURE__ */ Object.assign({ "../assets/carousel/carousel-10.jpg": () => import("./chunk-DWkgCAcS.js"), "../assets/carousel/carousel-11.jpg": () => import("./chunk-Cw75OHTR.js"), "../assets/carousel/carousel-12.jpg": () => import("./chunk-D3SRwStK.js"), "../assets/carousel/carousel-13.jpg": () => import("./chunk-D_z9IDMx.js"), "../assets/carousel/carousel-14.jpg": () => import("./chunk-rA1iUBAa.js"), "../assets/carousel/carousel-15.jpg": () => import("./chunk-D4P2tCBM.js"), "../assets/carousel/carousel-16.jpg": () => import("./chunk-BJuVI0h0.js"), "../assets/carousel/carousel-17.jpg": () => import("./chunk-uaxR3Q44.js"), "../assets/carousel/carousel-18.jpg": () => import("./chunk-_bxn7d34.js"), "../assets/carousel/carousel-19.jpg": () => import("./chunk-CXYK-sdK.js"), "../assets/carousel/carousel-2.jpg": () => import("./chunk-DkGHn2qv.js"), "../assets/carousel/carousel-20.jpg": () => import("./chunk-CWeInzOX.js"), "../assets/carousel/carousel-21.jpg": () => import("./chunk-CBHOVcZC.js"), "../assets/carousel/carousel-22.jpg": () => import("./chunk-CzEVJRUr.js"), "../assets/carousel/carousel-3.jpg": () => import("./chunk-k5H7IB59.js"), "../assets/carousel/carousel-4.jpg": () => import("./chunk-D2h483Gd.js"), "../assets/carousel/carousel-5.jpg": () => import("./chunk-D8xiE_-X.js"), "../assets/carousel/carousel-6.jpg": () => import("./chunk-8fcChAkM.js"), "../assets/carousel/carousel-7.jpg": () => import("./chunk-BFjxUkC1.js"), "../assets/carousel/carousel-8.jpg": () => import("./chunk-CmVPqUgP.js"), "../assets/carousel/carousel-9.jpg": () => import("./chunk-BhRrD6Xg.js"), "../assets/carousel/carousel.jpg": () => import("./chunk-CpvWEKs5.js") }),
+  herosection: /* @__PURE__ */ Object.assign({ "../assets/herosection/car1.jpg": () => import("./chunk-CmEzKeHH.js"), "../assets/herosection/car2.jpg": () => import("./chunk-DDB-WX8G.js"), "../assets/herosection/company.jpg": () => import("./chunk-Coo7UNt9.js"), "../assets/herosection/portrait.jpg": () => import("./chunk-5zaFvSLX.js"), "../assets/herosection/portrait2.jpg": () => import("./chunk-46NGb9S2.js"), "../assets/herosection/portraits-13.jpg": () => import("./chunk-pFrHmUIs.js"), "../assets/herosection/portraits-14.jpg": () => import("./chunk-BkUiBkW8.js"), "../assets/herosection/portraits-20.jpg": () => import("./chunk-DuxJMEJC.js"), "../assets/herosection/portraits-23.jpg": () => import("./chunk-D29fFiai.js"), "../assets/herosection/portraits-3.jpg": () => import("./chunk-DYDswg4e.js"), "../assets/herosection/portraits-9.jpg": () => import("./chunk-DN-Ekcbt.js"), "../assets/herosection/portraits.jpg": () => import("./chunk-Gu4RtjbV.js"), "../assets/herosection/wedding.jpg": () => import("./chunk-BHcNdznl.js") })
+};
+function useImportedImages(folders) {
+  const [images, setImages] = useState({});
+  useEffect(() => {
+    const loadImages = async () => {
+      const newImages = {};
+      for (const folder of folders) {
+        if (availableFolders[folder]) {
+          const modules = availableFolders[folder];
+          const paths = Object.keys(modules);
+          newImages[folder] = await Promise.all(
+            paths.map(async (path) => {
+              const mod = await modules[path]();
+              return mod.default;
+            })
+          );
+        } else {
+          console.warn(`Folder '${folder}' is not recognized.`);
+        }
+      }
+      setImages(newImages);
+    };
+    loadImages();
+  }, [folders]);
+  return images;
+}
+export {
+  useImportedImages as u
+};
