@@ -38,6 +38,7 @@ export default defineConfig({
           if (id.includes('node_modules')) {
             if (id.includes('react')) return 'vendor-react'
             if (id.includes('react-router')) return 'vendor-router'
+            if (id.includes('jspdf')) return 'vendor-jspdf'
             return 'vendor'
           }
         },

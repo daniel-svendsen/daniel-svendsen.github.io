@@ -74,7 +74,11 @@ assets/temp/  # Ignorera endast tillfälliga filer
 assets/**/*.psd
 
 printFilesJson.cjs
-_all_analysis.json
-_all_content.txt
+all_analysis.json
+all_content.txt
 _work_analysis.json
 _work_content.txt
+all_code_analysis.json
+all_code_content.txt
+all_config_analysis.json
+all_config_content.txt

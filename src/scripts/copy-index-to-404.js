@@ -3,8 +3,8 @@ import {copyFileSync, existsSync} from 'fs';
 import {resolve} from 'path';
 
 const projectRoot = resolve();
-const srcPath = resolve(projectRoot, 'docs', 'index.html');
-const destPath = resolve(projectRoot, 'docs', '404.html');
+const srcPath = resolve(projectRoot, 'dist', 'index.html');
+const destPath = resolve(projectRoot, 'dist', '404.html');
 
 if (!existsSync(srcPath)) {
     console.error(`Filen "${srcPath}" finns inte. Kontrollera att byggningen har skett korrekt.`);
