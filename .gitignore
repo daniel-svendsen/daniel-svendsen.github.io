@@ -1,6 +1,0 @@
-node_modules/
-dist/
-.cache/
-*.log
-*.lock
-.DS_Store
