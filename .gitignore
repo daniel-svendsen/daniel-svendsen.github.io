@@ -82,3 +82,5 @@ all_code_analysis.json
 all_code_content.txt
 all_config_analysis.json
 all_config_content.txt
+dist_folder_analysis.json
+dist_folder_content.txt
