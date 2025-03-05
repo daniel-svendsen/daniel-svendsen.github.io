@@ -43,7 +43,7 @@ export default function HeroSection(props: HeroSectionProps) {
                 aria-labelledby="hero-section"
             >
                 <div className="text-center text-gray-800 bg-white bg-opacity-75 p-8 rounded-md z-10">
-                    <h1 id="hero-section" className="text-4xl sm:text-5xl font-bold mb-4">
+                    <h1 id="hero-section" className="text-4xl sm:text-5xl mb-4 font-poiret tracking-wider font-thin">
                         Svendsén Photography
                         <Typewriter
                             options={{

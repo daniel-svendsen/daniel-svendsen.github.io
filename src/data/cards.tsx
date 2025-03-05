@@ -1,5 +1,5 @@
 // src/data/cards.ts
-import { Briefcase, Camera, Code, Users } from 'lucide-react'
+import {Briefcase, Camera, Code, Users} from 'lucide-react'
 
 import weddingImage from '../assets/pictures/wedding.jpg'
 import portraitImage from '../assets/pictures/portrait.jpg'
@@ -19,8 +19,7 @@ export const homeCards = [
   {
     image: portraitImage,
     title: 'Porträtt & Familjefoto',
-    description: `Oavsett om du behöver en professionell bild för ditt CV, sociala medier eller ett vackert familjeporträtt, 
-                  hjälper jag dig att fånga naturliga och personliga bilder – utomhus eller på plats med bakgrund.`,
+    description: `Oavsett om du behöver en professionell bild för ditt CV, sociala medier eller ett vackert familjeporträtt, hjälper jag dig att fånga naturliga och personliga bilder – utomhus eller på plats med bakgrund.`,
     buttonText: 'Läs mer',
     buttonLink: '/services',
     icon: Users,
@@ -28,8 +27,7 @@ export const homeCards = [
   {
     image: companyImage,
     title: 'Företag, Event & Verksamhetsfoto',
-    description: `Fånga ditt företags unika karaktär med professionella bilder och filmklipp. Perfekt för konferenser, 
-                  mässor, personalporträtt och marknadsföring. Har du en hobbyverksamhet eller är bilentusiast? 
+    description: `Fånga ditt företags unika karaktär med professionella bilder och filmklipp. Perfekt för konferenser, mässor, personalporträtt och marknadsföring. Har du en hobbyverksamhet eller är bilentusiast? 
                   Jag hjälper dig att skapa unika bilder för reklam och sociala medier.`,
     buttonText: 'Läs mer',
     buttonLink: '/services',
@@ -38,8 +36,7 @@ export const homeCards = [
   {
     // image: webdevImage,
     title: 'Hemsidesutveckling & SEO',
-    description: `Behöver du en modern och snabb hemsida? Jag bygger responsiva webbplatser för företag, fotografer och kreatörer, 
-                  med fokus på SEO och användarvänlighet.`,
+    description: `Behöver du en modern och snabb hemsida? Jag bygger responsiva webbplatser för företag, fotografer och kreatörer, med fokus på SEO och användarvänlighet.`,
     buttonText: 'Läs mer',
     buttonLink: '/services',
     icon: Code,

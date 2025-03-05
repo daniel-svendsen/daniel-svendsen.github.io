@@ -56,9 +56,9 @@ export default function Card({
         <div className='flex items-center gap-2'>
           {/* Rendera ikon om den finns */}
           {IconComponent && <IconComponent size={24} className='text-gray-500' />}
-          <h2 className='text-lg font-bold'>{title}</h2>
+          <h2 className='text-lg font-poiret font-bold tracking-wider'>{title}</h2>
         </div>
-        <p className='text-sm text-gray-600 mt-2 whitespace-pre-line flex-grow'>
+        <p className='text-sm text-gray-600 mt-2 whitespace-pre-line flex-grow font-poiret'>
           {description}
         </p>
         {price && <p className='text-lg font-bold mt-6'>{price}</p>}
