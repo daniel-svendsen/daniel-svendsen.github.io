@@ -4,6 +4,9 @@ module.exports = {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
+			fontFamily: {
+				poiret: ["'Poiret One'", "sans-serif"],
+			},
 			zIndex: {
 				50: '50',
 			},
