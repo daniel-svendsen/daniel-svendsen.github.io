@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import { HashRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import Navbar from './components/Navbar'
 import ScrollToTop from './components/ScrollToTop'
