@@ -56,21 +56,22 @@ const iconMap = {
   SQLite: sqliteIcon,
 }
 
-// Anpassad styling
+// Anpassad styling – med gröna accenter
 const styles = StyleSheet.create({
   page: { padding: 30, fontFamily: 'Open Sans', backgroundColor: '#f3f4f6' },
   section: {
-    marginBottom: 8, // Mindre mellanrum för att undvika onödig plats
+    marginBottom: 8,
     padding: 8,
     backgroundColor: 'white',
     borderRadius: 6,
+    wrap: false, // Förhindrar sidbrytning mitt i sektionen
   },
   profileImage: {
-    width: 80,
+    width: 70,
     height: 80,
     borderRadius: 40,
     borderWidth: 2,
-    borderColor: '#4f46e5',
+    borderColor: '#16a34a',
     marginBottom: 8,
     alignSelf: 'center',
   },
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 4,
     color: '#1f2937',
-    borderBottom: '1 solid #ddd', // Liten linje för separation
+    borderBottom: '1 solid #ddd',
     paddingBottom: 2,
   },
   text: { fontSize: 11, color: '#111827', marginBottom: 4 },
@@ -105,9 +106,9 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   educationYear: {
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: 'bold',
-    color: '#4f46e5',
+    color: '#16a34a',
     minWidth: 75,
   },
   contactItem: {
@@ -133,7 +134,7 @@ const WorkPDF = () => (
           style={{
             fontSize: 22,
             fontWeight: 'bold',
-            color: '#4f46e5',
+            color: '#111827',
             textAlign: 'center',
           }}
         >
@@ -153,7 +154,7 @@ const WorkPDF = () => (
           src="https://www.linkedin.com/in/daniel-svendsen-02423a1b4/"
           style={{
             fontSize: 10,
-            color: '#2563eb',
+            color: '#16a34a',
             textDecoration: 'underline',
             textAlign: 'center',
           }}
@@ -165,8 +166,7 @@ const WorkPDF = () => (
       {/* Profile & Skills */}
       <View style={styles.section} wrap={false}>
         <Text style={styles.sectionTitle}>Profile & Skills</Text>
-        <Text style={styles.text}>{cvContent.skills.content[0]}</Text>{' '}
-        {/* Första textblocket */}
+        <Text style={styles.text}>{cvContent.skills.content[0]}</Text>
       </View>
 
       {/* Languages */}
@@ -219,7 +219,7 @@ const WorkPDF = () => (
       </View>
 
       {/* Soft Skills */}
-      <View style={styles.section}>
+      <View style={styles.section} wrap={false}>
         <Text style={styles.sectionTitle}>Soft Skills</Text>
         <Text style={styles.text}>
           {
@@ -230,7 +230,7 @@ const WorkPDF = () => (
       </View>
 
       {/* Work Methodologies */}
-      <View style={styles.section}>
+      <View style={styles.section} wrap={false}>
         <Text style={styles.sectionTitle}>Work Methodologies</Text>
         <Text style={styles.text}>
           {
@@ -241,26 +241,40 @@ const WorkPDF = () => (
         </Text>
       </View>
 
-      {/* Experience */}
-      <View style={styles.section} break={true}>
-        <Text style={styles.sectionTitle}>Experiences</Text>
+      {/* Work Experience */}
+      <View style={styles.section} wrap={false}>
+        <Text style={styles.sectionTitle}>Work Experience</Text>
+        {cvContent.experience.content.work.map((exp, index) => (
+          <View key={index} style={styles.section} wrap={false}>
+            <Text
+              style={{ fontSize: 12, fontWeight: 'bold', color: '#16a34a' }}
+            >
+              {exp.year}
+            </Text>
+            <Text style={styles.text}>{exp.details}</Text>
+            {exp.link && (
+              <Link
+                src={exp.link.href}
+                style={{
+                  fontSize: 10,
+                  color: '#16a34a',
+                  textDecoration: 'underline',
+                }}
+              >
+                {exp.link.text}
+              </Link>
+            )}
+          </View>
+        ))}
       </View>
-      {cvContent.experience.content.work.map((exp, index) => (
-        <View key={index} style={styles.section} wrap={false}>
-          <Text style={{ fontSize: 12, fontWeight: 'bold', color: '#4f46e5' }}>
-            {exp.year}
-          </Text>
-          <Text style={styles.text}>{exp.details}</Text>
-        </View>
-      ))}
 
       {/* Education */}
       <View style={styles.section} wrap={false}>
         <Text style={styles.sectionTitle}>Education</Text>
         {cvContent.experience.content.education.map((edu, index) => (
-          <View key={index} style={styles.listItem}>
+          <View key={index} style={styles.section} wrap={false}>
             <Text
-              style={{ fontSize: 12, fontWeight: 'bold', color: '#4f46e5' }}
+              style={{ fontSize: 12, fontWeight: 'bold', color: '#16a34a' }}
             >
               {edu.year}
             </Text>
@@ -269,19 +283,56 @@ const WorkPDF = () => (
         ))}
       </View>
 
-      {/* Contact */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Contact</Text>
-        {cvContent.contact.content.map((contact, index) => (
-          <Text key={index} style={styles.text}>
-            {contact.type}: {contact.details}
-          </Text>
+      {/* Personal Projects */}
+      <View style={styles.section} wrap={false}>
+        <Text style={styles.sectionTitle}>
+          {cvContent.personalProjects.title}
+        </Text>
+        {cvContent.personalProjects.content.map((proj, index) => (
+          <View key={index} style={styles.section} wrap={false}>
+            <Text
+              style={{ fontSize: 12, fontWeight: 'bold', color: '#16a34a' }}
+            >
+              {proj.name}
+            </Text>
+            <Text style={styles.text}>{proj.details}</Text>
+          </View>
         ))}
+      </View>
+
+      {/* Contact */}
+      <View style={styles.section} wrap={false}>
+        <Text style={styles.sectionTitle}>Contact</Text>
+        {cvContent.contact.content.map((contact, index) => {
+          if (contact.link) {
+            return (
+              <Text key={index} style={styles.text}>
+                {contact.type}:{' '}
+                <Link
+                  src={contact.link.href}
+                  style={{
+                    fontSize: 10,
+                    color: '#16a34a',
+                    textDecoration: 'underline',
+                  }}
+                >
+                  {contact.link.text}
+                </Link>
+              </Text>
+            )
+          } else {
+            return (
+              <Text key={index} style={styles.text}>
+                {contact.type}: {contact.details}
+              </Text>
+            )
+          }
+        })}
         <Link
           src="https://www.svendsenphotography.com/work"
           style={{
             fontSize: 10,
-            color: '#2563eb',
+            color: '#16a34a',
             textDecoration: 'underline',
           }}
         >

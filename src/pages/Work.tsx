@@ -1,5 +1,4 @@
-import React, { useMemo } from 'react'
-import { motion } from 'framer-motion'
+import React, { useRef } from 'react'
 import { PDFDownloadLink } from '@react-pdf/renderer'
 import portraitImage from '@/assets/portraits/bild1.jpg'
 import cvContent from '../data/cvContent'
@@ -8,97 +7,106 @@ import getTabsData from '../data/tabsData'
 import SectionWrapper from '../components/SectionWrapper'
 import CVTabs from '../components/CvTabs'
 import WorkPDF from '../components/WorkPDF'
+import { useInView } from '../hooks/useInView'
 
 const Work = () => {
   const content = cvContent
-  const timelineEvents = useMemo(() => getTimelineEvents(content), [content])
-  const tabsData = useMemo(
-    () => getTabsData(content, timelineEvents),
-    [content, timelineEvents],
-  )
+  const timelineEvents = getTimelineEvents(content)
+  const tabsData = getTabsData(content, timelineEvents)
+
+  const sections = [
+    {
+      id: 'profile',
+      component: (
+        <SectionWrapper className="bg-white rounded-xl shadow-lg p-8">
+          <div className="flex flex-col items-center">
+            <img
+              src={portraitImage}
+              alt="Daniel Svendsén"
+              className="rounded-full w-34 h-36 sm:w-40 sm:h-44 shadow-2xl border-4 border-green-600"
+            />
+            <h1 className="mt-4 text-3xl sm:text-5xl font-extrabold text-gray-900 text-center">
+              {content.profile.name}
+            </h1>
+            <p className="mt-2 max-w-prose text-center text-gray-700 text-lg">
+              {content.profile.description}
+            </p>
+          </div>
+        </SectionWrapper>
+      ),
+    },
+    {
+      id: 'tabs',
+      component: (
+        <SectionWrapper className="bg-white rounded-xl shadow-lg p-8">
+          <CVTabs tabsData={tabsData} />
+        </SectionWrapper>
+      ),
+    },
+    // {
+    //   id: 'pdfpreview',
+    //   component: (
+    //     <SectionWrapper>
+    //       <div className="w-full h-[500px] mb-4 border border-gray-300 rounded">
+    //         <PDFViewer style={{ width: '100%', height: '100%' }}>
+    //           <WorkPDF />
+    //         </PDFViewer>
+    //       </div>
+    //     </SectionWrapper>
+    //   ),
+    // },
+    {
+      id: 'pdf-download',
+      component: (
+        <SectionWrapper className="bg-white rounded-xl shadow-lg p-8 text-center">
+          <div className="mt-4">
+            <PDFDownloadLink
+              document={<WorkPDF />}
+              fileName="Daniel_Svendsen_CV.pdf"
+            >
+              {({ loading }) => (
+                <button className="px-4 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition">
+                  {loading ? 'Genererar PDF...' : 'Ladda ner CV'}
+                </button>
+              )}
+            </PDFDownloadLink>
+          </div>
+        </SectionWrapper>
+      ),
+    },
+  ]
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100 to-indigo-100 py-12 px-4">
+    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-green-100 to-gray-50 py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        {[
-          {
-            id: 'profile',
-            component: (
-              <SectionWrapper className="bg-white rounded-xl shadow-lg p-8">
-                <div className="flex flex-col items-center">
-                  <img
-                    src={portraitImage}
-                    alt="Daniel Svendsén"
-                    className="rounded-full w-36 h-36 sm:w-44 sm:h-44 shadow-2xl border-4 border-indigo-300"
-                  />
-                  <h1 className="mt-4 text-3xl sm:text-5xl font-extrabold text-gray-900 text-center">
-                    {content.profile.name}
-                  </h1>
-                  <p className="mt-2 max-w-prose text-center text-gray-700 text-lg">
-                    {content.profile.description}
-                  </p>
-                </div>
-              </SectionWrapper>
-            ),
-          },
-          {
-            id: 'tabs',
-            component: (
-              <SectionWrapper className="bg-white rounded-xl shadow-lg p-8">
-                <CVTabs tabsData={tabsData} />
-              </SectionWrapper>
-            ),
-          },
-          // {
-          //   id: 'pdf-preview',
-          //   component: (
-          //     <SectionWrapper className="bg-white rounded-xl shadow-lg p-8">
-          //       <h2 className="text-center text-lg font-semibold mb-4">
-          //         Förhandsvisa CV som PDF
-          //       </h2>
-          //       <PDFViewer width="100%" height={500}>
-          //         <WorkPDF />
-          //       </PDFViewer>
-          //     </SectionWrapper>
-          //   ),
-          // },
-          {
-            id: 'pdf-download',
-            component: (
-              <SectionWrapper className="bg-white rounded-xl shadow-lg p-8 text-center">
-                <div className="mt-4">
-                  <PDFDownloadLink
-                    document={<WorkPDF />}
-                    fileName="Daniel_Svendsen_CV.pdf"
-                  >
-                    {({ loading }) => (
-                      <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 transition">
-                        {loading ? 'Genererar PDF...' : 'Ladda ner CV'}
-                      </button>
-                    )}
-                  </PDFDownloadLink>
-                </div>
-              </SectionWrapper>
-            ),
-          },
-        ].map((section) => (
-          <motion.div
-            key={section.id}
-            className="mb-10"
-            initial={{ opacity: 0, scale: 1 }}
-            animate={{ opacity: 1 }}
-            whileInView={{
-              scale: 1.05,
-              boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.2)',
-            }}
-            exit={{ scale: 1 }}
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-            viewport={{ amount: 0.5 }}
-          >
-            {section.component}
-          </motion.div>
-        ))}
+        {sections.map((section) => {
+          if (section.id === 'tabs') {
+            return (
+              <div key={section.id} className="mb-10">
+                {section.component}
+              </div>
+            )
+          }
+
+          const ref = useRef(null)
+          const { isInView, delayedOutOfView } = useInView(ref, 0.5, 500)
+
+          return (
+            <div
+              key={section.id}
+              ref={ref}
+              className={`mb-10 transform transition-transform duration-500 ease-out ${
+                isInView
+                  ? 'scale-105 shadow-xl'
+                  : delayedOutOfView
+                    ? 'scale-100'
+                    : ''
+              }`}
+            >
+              {section.component}
+            </div>
+          )
+        })}
       </div>
     </main>
   )

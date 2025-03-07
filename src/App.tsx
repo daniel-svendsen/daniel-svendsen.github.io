@@ -19,15 +19,20 @@ function App() {
         <Navbar />
         <ScrollToTop />
         <Suspense
-          fallback={<div className='h-screen flex justify-center items-center text-lg'>Laddar sidan...</div>}>
+          fallback={
+            <div className="h-screen flex justify-center items-center text-lg">
+              Laddar sidan...
+            </div>
+          }
+        >
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/services' element={<Services />} />
-            <Route path='/portraits' element={<Portraits />} />
-            <Route path='/weddings' element={<Weddings />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/faq' element={<FAQ />} />
-            <Route path='/work' element={<Work />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/portraits" element={<Portraits />} />
+            <Route path="/weddings" element={<Weddings />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/work" element={<Work />} />
           </Routes>
         </Suspense>
       </Router>

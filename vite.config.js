@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react-swc'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import sitemap from 'vite-plugin-sitemap'
 import path from 'path'
-import visualizer from 'rollup-plugin-visualizer'
 
 export default defineConfig({
   plugins: [
@@ -22,10 +21,10 @@ export default defineConfig({
       outDir: 'dist',
       readable: true,
     }),
-    visualizer.default({
-      filename: 'bundle-analysis.html',
-      open: true,
-    }),
+    // visualizer.default({
+    //   filename: 'bundle-analysis.html',
+    //   open: true,
+    // }),
   ],
   base: '/',
   build: {
@@ -52,6 +51,8 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['framer-motion'],
-    exclude: ['@react-pdf/renderer'],
+  },
+  ssr: {
+    external: ['framer-motion'],
   },
 })

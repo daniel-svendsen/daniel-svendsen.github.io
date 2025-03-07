@@ -76,11 +76,11 @@ assets/**/*.psd
 printFilesJson.cjs
 all_analysis.json
 all_content.txt
-_work_analysis.json
-_work_content.txt
 all_code_analysis.json
 all_code_content.txt
 all_config_analysis.json
 all_config_content.txt
 dist_folder_analysis.json
 dist_folder_content.txt
+work_related_analysis.json
+work_related_content.txt

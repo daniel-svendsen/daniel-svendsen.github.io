@@ -8,7 +8,6 @@ const cvContent = {
     title: 'Profile & Skills',
     content: [
       'Motivated and versatile full-stack/system developer with a background in leadership and technical problem-solving. Currently completing my Java Enterprise Developer program at Yrgo. Passionate about designing scalable applications, improving workflows, and collaborating in Agile teams.',
-
       {
         name: 'Languages',
         details: [
@@ -38,7 +37,6 @@ const cvContent = {
           { tool: 'SQL', icon: 'SQL' },
           { tool: 'MySQL', icon: 'MySQL' },
           { tool: 'MongoDB', icon: 'MongoDB' },
-          { tool: 'SQL Server', icon: 'SQL Server' },
           { tool: 'SQLite', icon: 'SQLite' },
         ],
       },
@@ -62,7 +60,7 @@ const cvContent = {
           details:
             'Java Enterprise Developer, Yrgo, City of Gothenburg, 400 YH points',
         },
-        { year: '2016', details: 'Programming 1, Grade B' },
+        { year: '2016', details: 'Programming 1, C#, Grade B' },
         {
           year: '2003 – 2006',
           details:
@@ -110,6 +108,17 @@ const cvContent = {
     title: 'Hobbies',
     content:
       'Photography with my own business, cooking, brewing beer, baking sourdough bread, fishing, and going on nature trips with my family.',
+  },
+  personalProjects: {
+    title: 'Personal Projects',
+    content: [
+      {
+        name: 'Personal Website & CV',
+        details:
+          'I built the website myself using React, Vite, and Tailwind CSS. It includes interactive features such as a dynamic PDF generator and responsive design.',
+      },
+      // More projects can be added here
+    ],
   },
   contact: {
     title: 'Contact',
