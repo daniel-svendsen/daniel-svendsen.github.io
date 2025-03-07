@@ -50,4 +50,8 @@ export default defineConfig({
       '@': path.resolve('src'),
     },
   },
+  optimizeDeps: {
+    include: ['framer-motion'],
+    exclude: ['@react-pdf/renderer'],
+  },
 })

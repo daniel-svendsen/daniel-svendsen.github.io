@@ -1,42 +1,39 @@
-import React from "react";
+import React from 'react'
+import { pdf } from '@react-pdf/renderer'
+import WorkPDF from '../components/WorkPDF'
+import { saveAs } from 'file-saver'
 
-interface PdfDownloadButtonProps {
-    content: any;
+const PdfDownloadButton = () => {
+  const handleDownload = async () => {
+    const doc = <WorkPDF />
+    const blob = await pdf(doc).toBlob()
+    saveAs(blob, 'Daniel-Svendsén-CV.pdf')
+
+    const data = { message: 'Daniel-Svendséns CV har laddats ner!' }
+
+    fetch('https://formspree.io/f/xvgowldv', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('E-post skickad!')
+        } else {
+          console.error('Misslyckades att skicka e-post:', response.statusText)
+        }
+      })
+      .catch((error) => console.error('Ett fel uppstod:', error))
+  }
+
+  return (
+    <button
+      onClick={handleDownload}
+      className="bg-indigo-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-indigo-700 transition"
+    >
+      Ladda ner CV
+    </button>
+  )
 }
 
-const PdfDownloadButton = ({content}: PdfDownloadButtonProps) => {
-    const handleDownload = async () => {
-        const data = {
-            pdf: 'CV_Daniel_Svendsen.pdf',
-            timestamp: new Date().toISOString(),
-        };
-
-        fetch('https://formspree.io/f/xvgowldv', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data),
-        })
-            .then((response) => {
-                if (response.ok) {
-                    console.log('E-post skickad!');
-                } else {
-                    console.error('Misslyckades att skicka e-post:', response.statusText);
-                }
-            })
-            .catch((error) => console.error('Ett fel uppstod:', error));
-
-        const {generatePDF} = await import("@/utils/generatePDF.js");
-        generatePDF(content);
-    };
-
-    return (
-        <button
-            onClick={handleDownload}
-            className="px-6 py-2 bg-gradient-to-r from-indigo-500 to-blue-500 text-white rounded-full shadow-xl hover:from-blue-500 hover:to-indigo-500 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-300 text-xs sm:text-sm"
-        >
-            Download as PDF
-        </button>
-    );
-};
-
-export default PdfDownloadButton;
+export default PdfDownloadButton

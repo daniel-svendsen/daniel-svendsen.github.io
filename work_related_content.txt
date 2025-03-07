@@ -1,0 +1,799 @@
+=== WORK_RELATED ===
+
+
+
+=== src/components/CvTabs.tsx ===
+
+import {Tab, TabGroup, TabList, TabPanel, TabPanels} from '@headlessui/react';
+import TabPanelComponent from './TabPanel';
+import React from 'react';
+
+export interface TabsDataItem {
+    label: string;
+    title: string;
+    content: React.ReactNode;
+}
+
+interface CVTabsProps {
+    tabsData: TabsDataItem[];
+}
+
+const CVTabs = ({tabsData}: CVTabsProps) => {
+    return (
+        <TabGroup>
+            <TabList
+                className="flex flex-wrap justify-center space-x-2 sm:space-x-4 border-b-2 border-indigo-200 pb-2 mb-4">
+                {tabsData.map((tab, index) => (
+                    <Tab
+                        key={index}
+                        className={({selected}) =>
+                            `px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold transition-colors duration-300 focus:outline-none ${
+                                selected ? 'border-b-2 border-indigo-600 text-indigo-600' : 'text-gray-600 hover:text-indigo-600'
+                            }`
+                        }
+                    >
+                        {tab.label}
+                    </Tab>
+                ))}
+            </TabList>
+
+            <TabPanels>
+                {tabsData.map((tab, index) => (
+                    <TabPanel key={index}>
+                        <TabPanelComponent title={tab.title}>{tab.content}</TabPanelComponent>
+                    </TabPanel>
+                ))}
+            </TabPanels>
+        </TabGroup>
+    );
+};
+
+export default CVTabs;
+
+
+=== src/components/PdfDownloadButton.tsx ===
+
+import React from 'react'
+import { pdf } from '@react-pdf/renderer'
+import WorkPDF from '../components/WorkPDF'
+import { saveAs } from 'file-saver'
+
+const PdfDownloadButton = () => {
+  const handleDownload = async () => {
+    const doc = <WorkPDF />
+    const blob = await pdf(doc).toBlob()
+    saveAs(blob, 'Daniel-Svendsén-CV.pdf') // 🔹 Spara PDF-filen
+
+    const data = { message: 'Daniel-Svendséns CV har laddats ner!' }
+
+    fetch('https://formspree.io/f/xvgowldv', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('E-post skickad!')
+        } else {
+          console.error('Misslyckades att skicka e-post:', response.statusText)
+        }
+      })
+      .catch((error) => console.error('Ett fel uppstod:', error))
+  }
+
+  return (
+    <button
+      onClick={handleDownload}
+      className="bg-indigo-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-indigo-700 transition"
+    >
+      Ladda ner CV
+    </button>
+  )
+}
+
+export default PdfDownloadButton
+
+=== src/components/Skills.tsx ===
+
+import React from 'react'
+import ToolList from './ToolList'
+import cvContent from '../data/cvContent'
+
+const Skills: React.FC = () => {
+  const skillsContent = cvContent.skills.content
+
+  return (
+    <div className="space-y-6">
+      {skillsContent.map((item, index) => {
+        if (typeof item === 'string') {
+          return <p key={index}>{item}</p>
+        }
+
+        if (Array.isArray(item.details)) {
+          if (item.name === 'Tools') {
+            return (
+              <div key={index}>
+                <h3 className="font-bold text-xl">{item.name}</h3>
+                <ToolList tools={item.details} />
+              </div>
+            )
+          } else {
+            return (
+              <div key={index}>
+                <h3 className="font-bold text-xl">{item.name}</h3>
+                {item.details.map((detail, idx) => (
+                  <p key={idx}>{detail}</p>
+                ))}
+              </div>
+            )
+          }
+        }
+
+        return (
+          <div key={index}>
+            <h3 className="font-bold text-xl">{item.name}</h3>
+            <p>{item.details}</p>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+export default Skills
+
+=== src/components/ToolIcons.tsx ===
+
+import React from 'react'
+import {
+  SiDocker,
+  SiGit,
+  SiGnubash,
+  SiGradle,
+  SiHtml5,
+  SiIntellijidea,
+  SiJavascript,
+  SiJenkins,
+  SiMongodb,
+  SiMysql,
+  SiReact,
+  SiSpringboot,
+  SiSqlite,
+  SiTypescript,
+  SiVite,
+} from 'react-icons/si'
+import { FaDatabase, FaJava, FaWindows } from 'react-icons/fa'
+import { IconType } from 'react-icons'
+
+interface ToolIconProps {
+  toolName: string
+  className?: string
+}
+
+const toolIcons: { [key: string]: IconType | undefined } = {
+  'Spring Boot': SiSpringboot,
+  IntelliJ: SiIntellijidea,
+  Docker: SiDocker,
+  Jenkins: SiJenkins,
+  Bash: SiGnubash,
+  Git: SiGit,
+  Gradle: SiGradle,
+  Vite: SiVite,
+  React: SiReact,
+  Windows: FaWindows,
+  MySQL: SiMysql,
+  MongoDB: SiMongodb,
+  SQLite: SiSqlite,
+  Java: FaJava,
+  JavaScript: SiJavascript,
+  TypeScript: SiTypescript,
+  'HTML/CSS': SiHtml5,
+  SQL: FaDatabase,
+  'SQL Server': FaDatabase,
+}
+
+const ToolIcon: React.FC<ToolIconProps> = ({ toolName, className }) => {
+  const Icon = toolIcons[toolName]
+  return Icon ? (
+    <Icon className={`w-4 h-4 inline-block align-middle ${className}`} />
+  ) : (
+    <span>{toolName}</span>
+  )
+}
+
+export default ToolIcon
+
+=== src/components/ToolList.tsx ===
+
+import React from 'react'
+import ToolIcon from './ToolIcons'
+
+interface Tool {
+  tool: string
+  icon: string
+}
+
+interface ToolListProps {
+  tools: Tool[]
+}
+
+const ToolList: React.FC<ToolListProps> = ({ tools }) => {
+  return (
+    <div className="flex flex-wrap gap-3">
+      {tools.map(({ tool, icon }) => (
+        <div key={tool} className="flex items-center space-x-2">
+          <ToolIcon toolName={icon} className="w-4 h-4 text-indigo-600" />
+          <span className="text-sm">{tool}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export default ToolList
+
+=== src/components/WorkPDF.tsx ===
+
+import React from 'react'
+import {Document, Image, Link, Page, StyleSheet, Text, View,} from '@react-pdf/renderer'
+import cvContent from '../data/cvContent'
+import portraitImage from '../assets/portraits/bild1.jpg'
+
+// Ikon-mappning för verktyg & språk
+import bashIcon from '../assets/icons/bash-original.png'
+import dockerIcon from '../assets/icons/docker-original.png'
+import gitIcon from '../assets/icons/git-original.png'
+import gradleIcon from '../assets/icons/gradle-original.png'
+import html5Icon from '../assets/icons/html5-original.png'
+import intellijIcon from '../assets/icons/intellij-original.png'
+import javaIcon from '../assets/icons/java-original.png'
+import javascriptIcon from '../assets/icons/javascript-original.png'
+import jenkinsIcon from '../assets/icons/jenkins-original.png'
+import mongodbIcon from '../assets/icons/mongodb-original.png'
+import mysqlIcon from '../assets/icons/mysql-original.png'
+import reactIcon from '../assets/icons/react-original.png'
+import springIcon from '../assets/icons/spring-original.png'
+import sqliteIcon from '../assets/icons/sqlite-original.png'
+import typescriptIcon from '../assets/icons/typescript-original.png'
+import viteIcon from '../assets/icons/vite-original.png'
+
+// Anpassad styling
+const styles = StyleSheet.create({
+  page: { padding: 30, fontFamily: 'Helvetica', backgroundColor: '#f3f4f6' },
+  section: {
+    marginBottom: 15,
+    padding: 10,
+    backgroundColor: 'white',
+    borderRadius: 8,
+  },
+  profileImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    borderWidth: 2,
+    borderColor: '#4f46e5',
+    marginBottom: 10,
+    alignSelf: 'center',
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 6,
+    color: '#1f2937',
+  },
+  text: { fontSize: 12, color: '#111827', marginBottom: 5 },
+  listContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+  },
+  listItem: { flexDirection: 'row', alignItems: 'center', marginBottom: 6 },
+  icon: { width: 12, height: 12, marginRight: 6 }, // Justerad ikonstorlek
+})
+
+// Ikon-mappning
+const iconMap = {
+  Java: javaIcon,
+  JavaScript: javascriptIcon,
+  TypeScript: typescriptIcon,
+  'HTML/CSS': html5Icon,
+  'Spring Boot': springIcon,
+  IntelliJ: intellijIcon,
+  Docker: dockerIcon,
+  Jenkins: jenkinsIcon,
+  Bash: bashIcon,
+  Git: gitIcon,
+  Gradle: gradleIcon,
+  Vite: viteIcon,
+  React: reactIcon,
+  MySQL: mysqlIcon,
+  MongoDB: mongodbIcon,
+  SQLite: sqliteIcon,
+}
+
+const WorkPDF = () => (
+  <Document>
+    <Page size="A4" style={styles.page}>
+      {/* Profilbild + Header */}
+      <View style={styles.section} wrap={false}>
+        <Image src={portraitImage} style={styles.profileImage} />
+        <Text
+          style={{
+            fontSize: 22,
+            fontWeight: 'bold',
+            color: '#4f46e5',
+            textAlign: 'center',
+          }}
+        >
+          {cvContent.profile.name}
+        </Text>
+        <Text
+          style={{
+            fontSize: 12,
+            textAlign: 'center',
+            color: '#374151',
+            marginBottom: 5,
+          }}
+        >
+          {cvContent.profile.description}
+        </Text>
+        <Link
+          src="https://www.linkedin.com/in/daniel-svendsen-02423a1b4/"
+          style={{
+            fontSize: 10,
+            color: '#2563eb',
+            textDecoration: 'underline',
+            textAlign: 'center',
+          }}
+        >
+          LinkedIn: Daniel Svendsén
+        </Link>
+      </View>
+
+      {/* Profile & Skills */}
+      <View style={styles.section} wrap={false}>
+        <Text style={styles.sectionTitle}>Profile & Skills</Text>
+        <Text style={styles.text}>{cvContent.skills.content[0]}</Text>{' '}
+        {/* Första textblocket */}
+      </View>
+
+      {/* Languages */}
+      <View style={styles.section} wrap={false}>
+        <Text style={styles.sectionTitle}>Languages</Text>
+        <View style={styles.listContainer}>
+          {['Java', 'JavaScript', 'TypeScript', 'HTML/CSS'].map((lang) => (
+            <View key={lang} style={styles.listItem}>
+              <Image src={iconMap[lang]} style={styles.icon} />
+              <Text style={styles.text}>{lang}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
+
+      {/* Tools */}
+      <View style={styles.section} wrap={false}>
+        <Text style={styles.sectionTitle}>Tools</Text>
+        <View style={styles.listContainer}>
+          {[
+            'Spring Boot',
+            'IntelliJ',
+            'Docker',
+            'Jenkins',
+            'Bash',
+            'Git',
+            'Gradle',
+            'Vite',
+            'React',
+          ].map((tool) => (
+            <View key={tool} style={styles.listItem}>
+              <Image src={iconMap[tool]} style={styles.icon} />
+              <Text style={styles.text}>{tool}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
+
+      {/* Databases */}
+      <View style={styles.section} wrap={false}>
+        <Text style={styles.sectionTitle}>Databases</Text>
+        <View style={styles.listContainer}>
+          {['MySQL', 'MongoDB', 'SQLite'].map((db) => (
+            <View key={db} style={styles.listItem}>
+              <Image src={iconMap[db]} style={styles.icon} />
+              <Text style={styles.text}>{db}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
+
+      {/* Soft Skills */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Soft Skills</Text>
+        <Text style={styles.text}>
+          {
+            cvContent.skills.content.find((s) => s.name === 'Soft Skills')
+              ?.details
+          }
+        </Text>
+      </View>
+
+      {/* Work Methodologies */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Work Methodologies</Text>
+        <Text style={styles.text}>
+          {
+            cvContent.skills.content.find(
+              (s) => s.name === 'Work Methodologies',
+            )?.details
+          }
+        </Text>
+      </View>
+
+      {/* Experience */}
+      <View style={styles.section} break={true}>
+        <Text style={styles.sectionTitle}>Experiences</Text>
+      </View>
+      {cvContent.experience.content.work.map((exp, index) => (
+        <View key={index} style={styles.section} wrap={false}>
+          <Text style={{ fontSize: 12, fontWeight: 'bold', color: '#4f46e5' }}>
+            {exp.year}
+          </Text>
+          <Text style={styles.text}>{exp.details}</Text>
+        </View>
+      ))}
+
+      {/* Education */}
+      <View style={styles.section} wrap={false}>
+        <Text style={styles.sectionTitle}>Education</Text>
+        {cvContent.experience.content.education.map((edu, index) => (
+          <View key={index} style={styles.listItem}>
+            <Text
+              style={{ fontSize: 12, fontWeight: 'bold', color: '#4f46e5' }}
+            >
+              {edu.year}
+            </Text>
+            <Text style={styles.text}>{edu.details}</Text>
+          </View>
+        ))}
+      </View>
+
+      {/* Contact */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Contact</Text>
+        {cvContent.contact.content.map((contact, index) => (
+          <Text key={index} style={styles.text}>
+            {contact.type}: {contact.details}
+          </Text>
+        ))}
+        <Link
+          src="https://www.svendsenphotography.com/work"
+          style={{
+            fontSize: 10,
+            color: '#2563eb',
+            textDecoration: 'underline',
+          }}
+        >
+          www.svendsenphotography.com/work
+        </Link>
+      </View>
+    </Page>
+  </Document>
+)
+
+export default WorkPDF
+
+
+=== src/data/cvContent.tsx ===
+
+const cvContent = {
+  profile: {
+    name: 'Daniel Svendsén',
+    description:
+      'A dedicated and versatile individual with experience in both leadership and technical work, always striving to see the bigger picture.',
+  },
+  skills: {
+    title: 'Profile & Skills',
+    content: [
+      'Motivated and versatile full-stack/system developer with a background in leadership and technical problem-solving. Currently completing my Java Enterprise Developer program at Yrgo. Passionate about designing scalable applications, improving workflows, and collaborating in Agile teams.',
+
+      {
+        name: 'Languages',
+        details: [
+          { tool: 'Java', icon: 'Java' },
+          { tool: 'JavaScript', icon: 'JavaScript' },
+          { tool: 'TypeScript', icon: 'TypeScript' },
+          { tool: 'HTML/CSS', icon: 'HTML/CSS' },
+        ],
+      },
+      {
+        name: 'Tools',
+        details: [
+          { tool: 'Spring Boot', icon: 'Spring Boot' },
+          { tool: 'IntelliJ', icon: 'IntelliJ' },
+          { tool: 'Docker', icon: 'Docker' },
+          { tool: 'Jenkins', icon: 'Jenkins' },
+          { tool: 'Bash', icon: 'Bash' },
+          { tool: 'Git', icon: 'Git' },
+          { tool: 'Gradle', icon: 'Gradle' },
+          { tool: 'Vite', icon: 'Vite' },
+          { tool: 'React', icon: 'React' },
+        ],
+      },
+      {
+        name: 'Databases',
+        details: [
+          { tool: 'SQL', icon: 'SQL' },
+          { tool: 'MySQL', icon: 'MySQL' },
+          { tool: 'MongoDB', icon: 'MongoDB' },
+          { tool: 'SQL Server', icon: 'SQL Server' },
+          { tool: 'SQLite', icon: 'SQLite' },
+        ],
+      },
+      {
+        name: 'Soft Skills',
+        details:
+          'Leadership, Mentorship, Teamwork, Communication, Problem-Solving, Adaptability, Critical Thinking',
+      },
+      {
+        name: 'Work Methodologies',
+        details: 'Agile methodologies, Scrum, Kanban',
+      },
+    ],
+  },
+  experience: {
+    title: 'Experience',
+    content: {
+      education: [
+        {
+          year: '2023 – Present',
+          details:
+            'Java Enterprise Developer, Yrgo, City of Gothenburg, 400 YH points',
+        },
+        { year: '2016', details: 'Programming 1, Grade B' },
+        {
+          year: '2003 – 2006',
+          details:
+            'High School, Aesthetic Orientation TV Production, 2500 points',
+        },
+      ],
+      work: [
+        {
+          year: '2024 – Present',
+          details:
+            'Internship for 27 weeks total + freetime contributing\n' +
+            'Developing an open-source platform for Save the Children via Alten as part of my internship. Main contributions:\n\n' +
+            '- Full-stack development using Java, TypeScript, Spring Boot, and React.\n' +
+            '- API integrations.\n' +
+            '- Writing and optimizing backend logic using Spring Boot.\n' +
+            '- Building and enhancing frontend components in React.\n' +
+            '- Using GitHub for version control and code collaboration.\n' +
+            '- Working with Agile methodologies in a team setting.',
+          link: {
+            text: 'GitHub',
+            href: 'https://github.com/Hjulverkstan/hjulverkstan',
+          },
+        },
+        {
+          year: '2008 – Present',
+          details:
+            'ICA - Warehouse worker, various roles including:\nTeam leader\nPeer supporter\nTeaching\nGoods recipient',
+        },
+        {
+          year: '2007',
+          details:
+            'Svensk Bevakningstjänst - Security guard and civilian guard',
+        },
+      ],
+    },
+  },
+  languages: {
+    title: 'Languages & Miscellaneous',
+    content: [
+      { name: 'Swedish', level: 'Fluent in speaking & writing' },
+      { name: 'English', level: 'Fluent in speaking & writing' },
+    ],
+  },
+  hobbies: {
+    title: 'Hobbies',
+    content:
+      'Photography with my own business, cooking, brewing beer, baking sourdough bread, fishing, and going on nature trips with my family.',
+  },
+  contact: {
+    title: 'Contact',
+    content: [
+      { type: 'Address', details: 'Briljantvägen 55, 44260 Kode' },
+      { type: 'Email', details: 'Daniel-Svendsen@hotmail.se' },
+      { type: 'Phone', details: '0707714306' },
+      {
+        type: 'LinkedIn',
+        link: {
+          text: 'Daniel Svendsen',
+          href: 'https://www.linkedin.com/in/daniel-svendsen-02423a1b4/',
+        },
+      },
+    ],
+  },
+}
+
+export default cvContent
+
+
+=== src/data/tabsData.tsx ===
+
+import Timeline from '../components/TimeLine'
+import React from 'react'
+import { TimelineEvent } from './timeLineEvents'
+import cvContent from './cvContent'
+import { TabsDataItem } from '../components/CvTabs'
+import ToolList from '../components/ToolList'
+
+const getTabsData = (
+  content: typeof cvContent,
+  timelineEvents: TimelineEvent[],
+): TabsDataItem[] => {
+  return [
+    {
+      label: 'Profile & Skills',
+      title: content.skills.title,
+      content: (
+        <div className="text-xs sm:text-sm">
+          {content.skills.content.map((item: any, index: number) => {
+            if (typeof item === 'string') {
+              return (
+                <p key={index} className="mb-2">
+                  {item}
+                </p>
+              )
+            }
+            if (
+              (item.name === 'Languages' ||
+                item.name === 'Tools' ||
+                item.name === 'Databases') &&
+              Array.isArray(item.details)
+            ) {
+              return (
+                <div key={index} className="mb-2">
+                  <strong>{item.name}:</strong>{' '}
+                  <ToolList tools={item.details} />
+                </div>
+              )
+            }
+            return (
+              <p key={index} className="mb-1">
+                <strong>{item.name}:</strong> {item.details}
+              </p>
+            )
+          })}
+        </div>
+      ),
+    },
+    {
+      label: 'Experiences',
+      title: content.experience.title,
+      content: <Timeline events={timelineEvents} />,
+    },
+    {
+      label: 'Language & Miscellaneous',
+      title: content.languages.title,
+      content: (
+        <ul className="space-y-1 text-xs sm:text-sm">
+          {content.languages.content.map((item: any, index: number) => (
+            <li key={index}>
+              <strong>{item.name}:</strong> {item.level}
+            </li>
+          ))}
+        </ul>
+      ),
+    },
+    {
+      label: 'Hobbies',
+      title: content.hobbies.title,
+      content: <p className="text-xs sm:text-sm">{content.hobbies.content}</p>,
+    },
+    {
+      label: 'Contact',
+      title: content.contact.title,
+      content: (
+        <ul className="space-y-1 text-xs sm:text-sm">
+          {content.contact.content.map((item: any, index: number) => (
+            <li key={index}>
+              <strong>{item.type}:</strong>{' '}
+              {item.link ? (
+                <a
+                  href={item.link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  {item.link.text}
+                </a>
+              ) : (
+                item.details
+              )}
+            </li>
+          ))}
+        </ul>
+      ),
+    },
+  ]
+}
+
+export default getTabsData
+
+=== src/pages/Work.tsx ===
+
+// src/pages/Work.tsx
+import React, { useMemo } from 'react'
+import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer' // Importera PDF-funktionalitet
+import portraitImage from '@/assets/portraits/bild1.jpg'
+import cvContent from '../data/cvContent'
+import { getTimelineEvents } from '../data/timeLineEvents'
+import getTabsData from '../data/tabsData'
+import SectionWrapper from '../components/SectionWrapper'
+import CVTabs from '../components/CvTabs'
+import WorkPDF from '../components/WorkPDF' // Importera PDF-komponenten
+
+const Work = () => {
+  const content = cvContent
+  const timelineEvents = useMemo(() => getTimelineEvents(content), [content])
+  const tabsData = useMemo(
+    () => getTabsData(content, timelineEvents),
+    [content, timelineEvents],
+  )
+
+  return (
+    <main className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-100 to-indigo-100 py-12 px-4">
+      <div className="max-w-4xl mx-auto">
+        {/* Profilsektion */}
+        <SectionWrapper className="bg-white rounded-xl shadow-lg p-8 mb-10 transition transform hover:scale-105 hover:shadow-2xl">
+          <div className="flex flex-col items-center">
+            <img
+              src={portraitImage}
+              alt="Daniel Svendsén"
+              className="rounded-full w-36 h-36 sm:w-44 sm:h-44 shadow-2xl border-4 border-indigo-300 transition-transform duration-300 hover:scale-110"
+            />
+            <h1 className="mt-4 text-3xl sm:text-5xl font-extrabold text-gray-900 text-center">
+              {content.profile.name}
+            </h1>
+            <p className="mt-2 max-w-prose text-center text-gray-700 text-lg">
+              {content.profile.description}
+            </p>
+          </div>
+        </SectionWrapper>
+        {/* Fliksektion */}
+        <SectionWrapper className="bg-white rounded-xl shadow-lg p-8 mb-10 transition transform hover:scale-105 hover:shadow-2xl">
+          <CVTabs tabsData={tabsData} />
+        </SectionWrapper>
+        {/* Preshow pdf */}
+        <SectionWrapper className="bg-white rounded-xl shadow-lg p-8 mb-10">
+          <h2 className="text-center text-lg font-semibold mb-4">
+            Förhandsvisa CV som PDF
+          </h2>
+          <PDFViewer width="100%" height={500}>
+            <WorkPDF />
+          </PDFViewer>
+        </SectionWrapper>
+        {/* PDF-knapp */}
+        <SectionWrapper className="bg-white rounded-xl shadow-lg p-8 text-center transition transform hover:scale-105 hover:shadow-2xl">
+          {/*<PdfDownloadButton content={content} />*/}
+
+          {/* Ladda ner PDF-knapp */}
+          <div className="mt-4">
+            <PDFDownloadLink
+              document={<WorkPDF />}
+              fileName="Daniel_Svendsen_CV.pdf"
+            >
+              {({ loading }) => (
+                <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow-md hover:bg-indigo-700 transition">
+                  {loading ? 'Genererar PDF...' : 'Download as PDF'}
+                </button>
+              )}
+            </PDFDownloadLink>
+          </div>
+        </SectionWrapper>
+      </div>
+    </main>
+  )
+}
+
+export default Work
