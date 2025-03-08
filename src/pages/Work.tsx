@@ -1,5 +1,4 @@
 import React, { useRef } from 'react'
-import { PDFDownloadLink } from '@react-pdf/renderer'
 import portraitImage from '@/assets/portraits/bild1.jpg'
 import cvContent from '../data/cvContent'
 import { getTimelineEvents } from '../data/timeLineEvents'
@@ -8,6 +7,7 @@ import SectionWrapper from '../components/SectionWrapper'
 import CVTabs from '../components/CvTabs'
 import WorkPDF from '../components/WorkPDF'
 import { useInView } from '../hooks/useInView'
+import PdfDownloadButton from '../components/PdfDownloadButton'
 
 const Work = () => {
   const content = cvContent
@@ -60,16 +60,16 @@ const Work = () => {
       component: (
         <SectionWrapper className="bg-white rounded-xl shadow-lg p-8 text-center">
           <div className="mt-4">
-            <PDFDownloadLink
+            <PdfDownloadButton
               document={<WorkPDF />}
               fileName="Daniel_Svendsen_CV.pdf"
             >
               {({ loading }) => (
                 <button className="px-4 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition">
-                  {loading ? 'Genererar PDF...' : 'Ladda ner CV'}
+                  {loading ? 'Genererar PDF...' : 'Download as PDF'}
                 </button>
               )}
-            </PDFDownloadLink>
+            </PdfDownloadButton>
           </div>
         </SectionWrapper>
       ),
