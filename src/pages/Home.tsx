@@ -5,6 +5,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async'
 import React, { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import HeroSection from '../components/HeroSection'
 import SectionWrapper from '../components/SectionWrapper'
+import forprosVideo from '../assets/movies/forpros1.mp4'
 
 const Carousel = lazy(() => import('../components/Carousel'))
 
@@ -43,7 +44,7 @@ export default function Home() {
         />
         <meta
           name="keywords"
-          content="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, bilfotograf, företagsfotograf"
+          content="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, bilfotograf, företagsfotograf, filmning"
         />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -80,6 +81,24 @@ export default function Home() {
             ))}
           </div>
         </SectionWrapper>
+
+        <SectionWrapper
+          title="Exempelfilm för företaget For Pros"
+          className="bg-gray-100"
+        >
+          <div className="flex justify-center">
+            <video
+              controls
+              preload="none"
+              poster="/path/to/poster.jpg"
+              className="w-full max-w-4xl"
+            >
+              <source src={forprosVideo} type="video/mp4" />
+              Din webbläsare stödjer inte videoformatet.
+            </video>
+          </div>
+        </SectionWrapper>
+
         <SectionWrapper title="Galleri" className="bg-gray-100">
           <div ref={carouselRef}>
             <Suspense fallback={<div className="h-48 bg-gray-200" />}>
