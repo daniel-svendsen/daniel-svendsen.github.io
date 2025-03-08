@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { ArrowUp } from 'lucide-react'
 
 export default function ScrollToTop() {
   const [visible, setVisible] = useState(false)
@@ -18,12 +19,12 @@ export default function ScrollToTop() {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className={`fixed bottom-5 right-5 p-3 bg-blue-500 text-white rounded-full shadow-lg transition-opacity z-50 ${
+      className={`fixed bottom-5 right-5 p-3 bg-gray-900 text-white rounded-full shadow-lg transition-opacity z-50 ${
         visible ? 'opacity-100' : 'opacity-0'
       }`}
       aria-label="Till toppen"
     >
-      ⬆️
+      <ArrowUp size={24} />
     </button>
   )
 }

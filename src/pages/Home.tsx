@@ -6,6 +6,7 @@ import React, { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import HeroSection from '../components/HeroSection'
 import SectionWrapper from '../components/SectionWrapper'
 import forprosVideo from '../assets/movies/forpros1.mp4'
+import LiftEffect from '../components/LiftEffect'
 
 const Carousel = lazy(() => import('../components/Carousel'))
 
@@ -75,9 +76,15 @@ export default function Home() {
           </p>
         </header>
         <SectionWrapper title="Tjänster">
-          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 gap-6">
             {homeCards.map((card, index) => (
-              <Card key={index} {...card} onClick={handleNavigate} />
+              <LiftEffect key={index} triggerPoint={0.5}>
+                <Card
+                  {...card}
+                  onClick={handleNavigate}
+                  reverse={index % 2 === 1}
+                />
+              </LiftEffect>
             ))}
           </div>
         </SectionWrapper>
