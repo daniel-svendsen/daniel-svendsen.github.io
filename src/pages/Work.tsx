@@ -23,7 +23,7 @@ const Work = () => {
             <img
               src={portraitImage}
               alt="Daniel Svendsén"
-              className="rounded-full w-34 h-36 sm:w-40 sm:h-44 shadow-2xl border-4 border-green-600"
+              className="rounded-full w-34 h-36 sm:w-40 sm:h-44 shadow-2xl border-4 border-blue-600"
             />
             <h1 className="mt-4 text-3xl sm:text-5xl font-extrabold text-gray-900 text-center">
               {content.profile.name}
@@ -65,7 +65,7 @@ const Work = () => {
               fileName="Daniel_Svendsen_CV.pdf"
             >
               {({ loading }) => (
-                <button className="px-4 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition">
+                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition">
                   {loading ? 'Genererar PDF...' : 'Download as PDF'}
                 </button>
               )}
@@ -77,7 +77,7 @@ const Work = () => {
   ]
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-green-100 to-gray-50 py-12 px-4">
+    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-200 to-gray-50 py-12 px-4">
       <div className="max-w-4xl mx-auto">
         {sections.map((section) => {
           if (section.id === 'tabs') {

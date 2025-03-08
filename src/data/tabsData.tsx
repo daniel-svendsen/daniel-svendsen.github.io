@@ -39,14 +39,14 @@ const getTabsData = (
             ) {
               return (
                 <div key={index} className="mb-2">
-                  <strong className="text-green-700">{item.name}:</strong>{' '}
+                  <strong className="text-blue-700">{item.name}:</strong>{' '}
                   <ToolList tools={item.details} />
                 </div>
               )
             }
             return (
               <p key={index} className="mb-1">
-                <strong className="text-green-700">{item.name}:</strong>{' '}
+                <strong className="text-blue-700">{item.name}:</strong>{' '}
                 {item.details}
               </p>
             )
@@ -72,7 +72,7 @@ const getTabsData = (
             content.languages.content as Array<{ name: string; level: string }>
           ).map((item, index) => (
             <li key={index}>
-              <strong className="text-green-700">{item.name}:</strong>{' '}
+              <strong className="text-blue-700">{item.name}:</strong>{' '}
               {item.level}
             </li>
           ))}
@@ -95,7 +95,7 @@ const getTabsData = (
         <div className="p-4 bg-gray-50 rounded-md shadow-sm space-y-3 text-xs sm:text-sm">
           {content.personalProjects.content.map((project, index) => (
             <div key={index} className="mb-2">
-              <h3 className="font-semibold text-green-700">{project.name}</h3>
+              <h3 className="font-semibold text-blue-700">{project.name}</h3>
               <p>{project.details}</p>
             </div>
           ))}
@@ -109,13 +109,13 @@ const getTabsData = (
         <ul className="p-4 bg-gray-50 rounded-md shadow-sm space-y-2 text-xs sm:text-sm">
           {content.contact.content.map((item, index) => (
             <li key={index}>
-              <strong className="text-green-700">{item.type}:</strong>{' '}
+              <strong className="text-blue-700">{item.type}:</strong>{' '}
               {item.link ? (
                 <a
                   href={item.link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-green-600 hover:underline"
+                  className="text-blue-600 hover:underline"
                 >
                   {item.link.text}
                 </a>
