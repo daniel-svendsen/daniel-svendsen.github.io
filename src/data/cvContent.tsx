@@ -91,8 +91,7 @@ const cvContent = {
         },
         {
           year: '2007',
-          details:
-            'Svensk Bevakningstjänst - Security guard and civilian guard',
+          details: 'Svensk Bevakningstjänst - Security and civilian guard',
         },
       ],
     },
@@ -115,7 +114,7 @@ const cvContent = {
       {
         name: 'Personal Website & CV',
         details:
-          'I built the website myself using React, Vite, and Tailwind CSS. It includes interactive features such as a dynamic PDF generator and responsive design.',
+          'I built the website for my photography company and this work page myself using React, Vite, and Tailwind CSS. It includes interactive features such as a dynamic PDF generator and responsive design.',
       },
       // More projects can be added here
     ],
