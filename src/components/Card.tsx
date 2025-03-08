@@ -12,7 +12,7 @@ interface CardProps {
   buttonLink?: string
   onClick?: () => void
   icon?: LucideIcon
-  reverse?: boolean // Ny prop för att byta layout (varannan kort omvänt)
+  reverse?: boolean
 }
 
 export default function Card({
@@ -34,7 +34,7 @@ export default function Card({
         flex flex-col lg:flex-row
         ${reverse ? 'lg:flex-row-reverse' : ''}
         border border-gray-300 rounded-lg bg-transparent
-        transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl
+        transition-transform duration-300 
       `}
     >
       {/* Bilddel med 50% av skärmhöjden */}
@@ -52,7 +52,7 @@ export default function Card({
               <img
                 src={image}
                 alt={title}
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110 cursor-pointer"
+                className="w-full h-full object-cover transition-transform duration-500 cursor-pointer"
                 loading="lazy"
               />
             </Link>
@@ -60,7 +60,7 @@ export default function Card({
             <img
               src={image}
               alt={title}
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              className="w-full h-full object-cover transition-transform duration-500"
               loading="lazy"
             />
           )}
@@ -88,7 +88,7 @@ export default function Card({
         {buttonText && buttonLink && (
           <Link
             to={buttonLink}
-            className="mt-4 px-6 py-2 bg-gray-500 text-white rounded-md shadow hover:bg-gray-700 transition"
+            className="mt-4 px-6 py-2 bg-gray-500 text-white rounded-md shadow transition"
           >
             {buttonText}
           </Link>
