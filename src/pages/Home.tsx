@@ -6,7 +6,6 @@ import React, { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import HeroSection from '../components/HeroSection'
 import SectionWrapper from '../components/SectionWrapper'
 import forprosVideo from '../assets/movies/forpros1.mp4'
-import { useInView } from '../hooks/useInView'
 
 const Carousel = lazy(() => import('../components/Carousel'))
 
@@ -77,33 +76,13 @@ export default function Home() {
         </header>
         <SectionWrapper title="Tjänster">
           <div className="grid grid-cols-1 gap-6">
-            {homeCards.map((card, index) => {
-              // Steg 1: skapa ref och hämta inView-state
-              const cardRef = useRef<HTMLDivElement>(null)
-              const { isInView, delayedOutOfView } = useInView(cardRef, 0.5, 0)
-              // threshold=0.5, delay=0 -> revertar direkt när man skrollar upp igen
-
-              // Steg 2: välj klasser beroende på isInView
-              const scaleClass = isInView
-                ? 'scale-105 shadow-xl'
-                : delayedOutOfView
-                  ? 'scale-100'
-                  : 'scale-100'
-
-              return (
-                <div
-                  key={index}
-                  ref={cardRef}
-                  className={`transition-transform duration-500 ease-out transform ${scaleClass}`}
-                >
-                  <Card
-                    {...card}
-                    onClick={handleNavigate}
-                    reverse={index % 2 === 1}
-                  />
-                </div>
-              )
-            })}
+            {homeCards.map((card, index) => (
+              <Card
+                key={card.id || index}
+                {...card}
+                reverse={index % 2 === 1}
+              />
+            ))}
           </div>
         </SectionWrapper>
 

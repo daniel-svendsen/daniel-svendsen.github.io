@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import type { LucideIcon } from 'lucide-react'
+// 1) Importera motion från framer-motion
+import { motion } from 'framer-motion'
 
 interface CardProps {
   image?: string
@@ -28,14 +30,20 @@ export default function Card({
   reverse = false,
 }: CardProps) {
   return (
-    <article
+    // 2) Byt <article> till <motion.article> och lägg på animeringsprops
+    <motion.article
       onClick={onClick}
       className={`
         flex flex-col lg:flex-row
         ${reverse ? 'lg:flex-row-reverse' : ''}
         border border-gray-300 rounded-lg bg-transparent
-        transition-transform duration-300 
       `}
+      whileHover={{ scale: 1.01 }}
+      whileTap={{ scale: 0.98 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ type: 'spring', stiffness: 300 }}
     >
       {/* Bilddel med 50% av skärmhöjden */}
       {image && (
@@ -94,6 +102,6 @@ export default function Card({
           </Link>
         )}
       </div>
-    </article>
+    </motion.article>
   )
 }

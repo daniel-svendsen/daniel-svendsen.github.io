@@ -1,10 +1,9 @@
 // src/pages/Services.tsx
-import React, { useRef } from 'react'
+import React from 'react'
 import Card from '../components/Card'
 import { serviceCards } from '../data/cards'
 import { Helmet } from 'react-helmet-async'
 import SectionWrapper from '../components/SectionWrapper'
-import { useInView } from '../hooks/useInView'
 
 export default function Services() {
   return (
@@ -65,30 +64,13 @@ export default function Services() {
         </header>
         <SectionWrapper title="Tjänster">
           <div className="grid grid-cols-1 gap-6">
-            {serviceCards.map((card, index) => {
-              const cardRef = useRef<HTMLDivElement>(null)
-
-              const { isInView, delayedOutOfView } = useInView(cardRef, 0.5, 0)
-
-              const scaleClass = isInView
-                ? 'scale-105 shadow-xl'
-                : delayedOutOfView
-                  ? 'scale-100'
-                  : 'scale-100'
-
-              return (
-                <div
-                  key={index}
-                  ref={cardRef}
-                  className={`
-                    transition-transform duration-500 ease-out transform
-                    ${scaleClass}
-                  `}
-                >
-                  <Card {...card} reverse={index % 2 === 1} />
-                </div>
-              )
-            })}
+            {serviceCards.map((card, index) => (
+              <Card
+                key={card.id || index}
+                {...card}
+                reverse={index % 2 === 1}
+              />
+            ))}
           </div>
         </SectionWrapper>
       </main>

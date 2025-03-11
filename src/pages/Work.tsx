@@ -1,4 +1,5 @@
-import React, { useRef } from 'react'
+import React from 'react'
+import { motion } from 'framer-motion'
 import portraitImage from '@/assets/bild1.jpg'
 import cvContent from '../data/cvContent'
 import { getTimelineEvents } from '../data/timeLineEvents'
@@ -6,7 +7,6 @@ import getTabsData from '../data/tabsData'
 import SectionWrapper from '../components/SectionWrapper'
 import CVTabs from '../components/CvTabs'
 import WorkPDF from '../components/WorkPDF'
-import { useInView } from '../hooks/useInView'
 import PdfDownloadButton from '../components/PdfDownloadButton'
 
 const Work = () => {
@@ -43,18 +43,6 @@ const Work = () => {
         </SectionWrapper>
       ),
     },
-    // {
-    //   id: 'pdfpreview',
-    //   component: (
-    //     <SectionWrapper>
-    //       <div className="w-full h-[500px] mb-4 border border-gray-300 rounded">
-    //         <PDFViewer style={{ width: '100%', height: '100%' }}>
-    //           <WorkPDF />
-    //         </PDFViewer>
-    //       </div>
-    //     </SectionWrapper>
-    //   ),
-    // },
     {
       id: 'pdf-download',
       component: (
@@ -77,36 +65,26 @@ const Work = () => {
   ]
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-200 to-gray-50 py-12 px-4">
+    <main className="min-h-screen bg-gradient-to-br justify-start from-gray-50 via-blue-200 to-gray-50 py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        {sections.map((section) => {
-          if (section.id === 'tabs') {
-            return (
-              <div key={section.id} className="mb-10">
-                {section.component}
-              </div>
-            )
-          }
-
-          const ref = useRef(null)
-          const { isInView, delayedOutOfView } = useInView(ref, 0.5, 500)
-
-          return (
-            <div
-              key={section.id}
-              ref={ref}
-              className={`mb-10 transform transition-transform duration-500 ease-out ${
-                isInView
-                  ? 'scale-105 shadow-xl'
-                  : delayedOutOfView
-                    ? 'scale-100'
-                    : ''
-              }`}
-            >
-              {section.component}
-            </div>
-          )
-        })}
+        {sections.map((section) => (
+          // Byt <div> till <motion.div> och använd framer-motion
+          <motion.div
+            key={section.id}
+            // Första läge (innan man scrollat ner)
+            initial={{ opacity: 0, y: 20 }}
+            // Hur det ska se ut när sektionen kommer in i viewport
+            whileInView={{ opacity: 1, y: 0, scale: 1.05 }}
+            // Talar om hur stor del av sektionen som måste synas
+            viewport={{ once: false, amount: 0.05 }}
+            // Vilken typ av animering
+            transition={{ type: 'spring', stiffness: 300 }}
+            // Allmän styling
+            className="mb-10"
+          >
+            {section.component}
+          </motion.div>
+        ))}
       </div>
     </main>
   )
