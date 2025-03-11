@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import portraitImage from '@/assets/portraits/bild1.jpg'
+import portraitImage from '@/assets/bild1.jpg'
 import cvContent from '../data/cvContent'
 import { getTimelineEvents } from '../data/timeLineEvents'
 import getTabsData from '../data/tabsData'

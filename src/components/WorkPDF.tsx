@@ -10,7 +10,7 @@ import {
   View,
 } from '@react-pdf/renderer'
 import cvContent from '../data/cvContent'
-import portraitImage from '../assets/portraits/bild1.jpg'
+import portraitImage from '../assets/bild1.jpg'
 // Ikon-mappning för verktyg & språk
 import bashIcon from '../assets/icons/bash-original.png'
 import dockerIcon from '../assets/icons/docker-original.png'
