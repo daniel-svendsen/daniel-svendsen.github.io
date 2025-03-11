@@ -1,10 +1,10 @@
 // src/data/cards.ts
-import {Briefcase, Camera, Code, Users} from 'lucide-react'
+import { Briefcase, Camera, Code, Users } from 'lucide-react'
 
 import weddingImage from '../assets/pictures/wedding.jpg'
 import portraitImage from '../assets/pictures/portrait.jpg'
 import companyImage from '../assets/pictures/company.jpg'
-// import webdevImage from '../assets/pictures/webdev.jpg';
+import webdevImage from '../assets/webdev.png'
 
 export const homeCards = [
   {
@@ -34,7 +34,7 @@ export const homeCards = [
     icon: Briefcase,
   },
   {
-    // image: webdevImage,
+    image: webdevImage,
     title: 'Hemsidesutveckling & SEO',
     description: `Behöver du en modern och snabb hemsida? Jag bygger responsiva webbplatser för företag, fotografer och kreatörer, med fokus på SEO och användarvänlighet.`,
     buttonText: 'Läs mer',
@@ -88,7 +88,7 @@ export const serviceCards = [
   },
   {
     title: 'Hemsidesutveckling & SEO',
-    // image: webdevImage,
+    image: webdevImage,
     description: `• Enkel landningssida → Från 4500 kr  
                   • Företagswebbplats (flersidig) → Från 8500 kr  
                   • SEO-optimering & support → Från 2000 kr/månad`,
