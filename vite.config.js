@@ -32,21 +32,22 @@ export default defineConfig({
     emptyOutDir: true,
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            if (id.includes('react')) return 'vendor-react'
-            if (id.includes('react-router')) return 'vendor-router'
-            if (id.includes('jspdf')) return 'vendor-jspdf'
-            return 'vendor'
-          }
-        },
-      },
+      // output: {
+      //   manualChunks(id) {
+      //     if (id.includes('node_modules')) {
+      //       if (id.includes('react')) return 'vendor-react'
+      //       if (id.includes('react-router')) return 'vendor-router'
+      //       if (id.includes('jspdf')) return 'vendor-jspdf'
+      //       return 'vendor'
+      //     }
+      //   },
+      // },
     },
   },
   resolve: {
     alias: {
       '@': path.resolve('src'),
+      react: 'react',
     },
   },
   optimizeDeps: {
