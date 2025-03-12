@@ -43,6 +43,18 @@ const Work = () => {
         </SectionWrapper>
       ),
     },
+    // {
+    //   id: 'pdfpreview',
+    //   component: (
+    //     <SectionWrapper>
+    //       <div className="w-full h-[500px] mb-4 border border-gray-300 rounded">
+    //         <PDFViewer style={{ width: '100%', height: '100%' }}>
+    //           <WorkPDF />
+    //         </PDFViewer>
+    //       </div>
+    //     </SectionWrapper>
+    //   ),
+    // },
     {
       id: 'pdf-download',
       component: (
