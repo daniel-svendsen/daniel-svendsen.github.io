@@ -31,7 +31,7 @@ const Navbar = () => {
       className={`w-full fixed top-0 left-0 right-0 transition-all duration-300 z-50 
                         ${isScrolled ? 'bg-white shadow-md' : 'bg-white bg-opacity-10 backdrop-blur-lg'}`}
     >
-      <nav className="flex items-center justify-between py-4 px-6 max-w-6xl mx-auto">
+      <nav className="flex items-center justify-between py-4 px-6 w-full">
         <div className="flex items-center space-x-2">
           <a href="/" className="flex items-center space-x-2">
             <img

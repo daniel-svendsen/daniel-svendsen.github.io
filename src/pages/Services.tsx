@@ -47,11 +47,8 @@ export default function Services() {
           })}
         </script>
       </Helmet>
-      <main className="pt-20 p-6">
-        <header className="text-center">
-          <h1 className="text-4xl font-bold mb-6">
-            Professionella fotograferingstjänster
-          </h1>
+      <main className="pt-20 p-6 bg-background text-textPrimary max-w-full overflow-hidden">
+        <header className="w-full text-center px-4">
           <p className="text-lg text-gray-700 mb-8">
             Boka en fotografering idag och skapa minnen som varar livet ut.
           </p>

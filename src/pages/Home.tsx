@@ -63,7 +63,7 @@ export default function Home() {
         </script>
       </Helmet>
 
-      <main className="pt-10 p-6">
+      <main className="pt-10 p-6 bg-background text-textPrimary max-w-full overflow-hidden">
         <HeroSection />
         <header className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-4 font-poiret font-thin">
