@@ -1,1 +1,0 @@
-import{a as n}from"./index-BtvwidyD.js";function u(r){const t=r.slice();for(let e=t.length-1;e>0;e--){const f=Math.floor(Math.random()*(e+1));[t[e],t[f]]=[t[f],t[e]]}return t}function s(r){const[t,e]=n.useState([]),f=n.useRef(!1);return n.useEffect(()=>{!f.current&&(r==null?void 0:r.length)>0&&(e(u(r)),f.current=!0)},[r]),t}export{s as u};
