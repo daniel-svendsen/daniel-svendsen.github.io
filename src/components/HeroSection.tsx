@@ -1,87 +1,133 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import Typewriter from 'typewriter-effect'
-import { useImportedImages } from '../hooks/useImportedImages'
-import { PopImage, usePopImages } from '../hooks/usePopImages'
 
-interface HeroSectionProps {}
+// Importera bilderna så att Vite hanterar dem korrekt i produktion
+import carouselImage from '../assets/herosection/carousel-3.jpg'
+import weddingImage from '../assets/herosection/wedding.jpg'
+import portraitImage from '../assets/herosection/portrait2.jpg'
+import companyImage from '../assets/herosection/company.jpg'
+import webdevImage from '../assets/webdev.png'
 
-export default function HeroSection(props: HeroSectionProps) {
+export default function HeroSection() {
   const navigate = useNavigate()
-  const imagesData = useImportedImages(['herosection'])
+  const heroRef = useRef(null)
 
-  const [allImages, setAllImages] = useState<string[]>([])
-  const hasLoadedImages = useRef(false)
+  const { scrollY } = useScroll()
+  const y = useTransform(scrollY, [0, 300], [0, -50]) // Parallax-effekt
 
-  useEffect(() => {
-    if (!hasLoadedImages.current && imagesData.herosection) {
-      setAllImages([...imagesData.herosection])
-      hasLoadedImages.current = true
-    }
-  }, [imagesData])
-
-  const popImages: PopImage[] = usePopImages({ allImages })
+  const services = [
+    {
+      title: 'Bröllop',
+      link: '/services',
+      img: weddingImage,
+    },
+    {
+      title: 'Porträtt',
+      link: '/services',
+      img: portraitImage,
+    },
+    {
+      title: 'Företag',
+      link: '/services',
+      img: companyImage,
+    },
+    {
+      title: 'Webb',
+      link: '/services',
+      img: webdevImage,
+    },
+  ]
 
   return (
     <>
       <Helmet>
-        <title>
-          Svendsén Photography - Professionell Fotograf i Göteborg & Kungälv
-        </title>
+        <title>Svendsén Photography - Professionell Fotograf</title>
         <meta
           name="description"
-          content="Välkommen till Svendsén Photography! Jag specialiserar mig på bröllopsfotografering, porträtt, bil och företagsbilder i Göteborg och Kungälv."
+          content="Välkommen till Svendsén Photography! Professionell fotograf för bröllop, porträtt och företagsbilder."
         />
-        {allImages.length > 0 && (
-          <link rel="preload" as="image" href={allImages[0]} />
-        )}
       </Helmet>
 
       <section
-        className="relative flex items-center justify-center overflow-hidden bg-gray-100"
-        style={{ height: 'calc(100vh - 6rem)' }}
-        aria-labelledby="hero-section"
+        ref={heroRef}
+        className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden"
       >
-        <div className="text-center text-gray-800 bg-white bg-opacity-75 p-8 rounded-md z-10">
-          <h1
-            id="hero-section"
-            className="text-4xl sm:text-5xl mb-4 font-poiret tracking-wider font-thin"
-          >
+        {/* Bakgrundsbild med Parallax-effekt */}
+        <motion.div
+          style={{
+            backgroundImage: `url(${carouselImage})`,
+            y,
+          }}
+          className="absolute inset-0 bg-cover bg-center brightness-50"
+        />
+
+        {/* Text och CTA */}
+        <div className="relative text-center text-white p-8 rounded-md z-10">
+          <h1 className="text-5xl sm:text-6xl font-bold tracking-wide mb-4">
             Svendsén Photography
             <Typewriter
               options={{
-                strings: ['Bröllop', 'Porträtt', 'Företag', 'Filmning'],
+                strings: ['Bröllop', 'Porträtt', 'Företag', 'Webbtjänster'],
                 autoStart: true,
                 loop: true,
                 deleteSpeed: 30,
               }}
             />
           </h1>
-          <button
-            onClick={() => navigate('/contact')}
-            className="px-6 py-3 bg-gray-900 text-white rounded-md shadow-md hover:bg-gray-700 transition"
-          >
-            Kontakta mig idag
-          </button>
+          <p className="text-lg sm:text-xl mb-6 opacity-90">
+            Professionell fotografering i Göteborg & Kungälv
+          </p>
+
+          {/* CTA-knappar */}
+          <div className="flex justify-center space-x-4 mb-8">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => navigate('/contact')}
+              className="px-6 py-3 bg-gray-900 text-white rounded-md shadow-md hover:bg-gray-700 transition"
+            >
+              Kontakta mig
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={() => navigate('/services')}
+              className="px-6 py-3 border-2 border-white text-white rounded-md shadow-md hover:bg-white hover:text-black transition"
+            >
+              Se tjänster
+            </motion.button>
+          </div>
         </div>
 
-        {popImages.map((image) => (
-          <img
-            key={image.id}
-            src={image.src}
-            loading="lazy"
-            alt="Inspirerande foto"
-            className="absolute object-cover rounded-full shadow-lg animate-pop"
-            style={{
-              top: `${image.y}%`,
-              left: `${image.x}%`,
-              width: image.size,
-              height: image.size,
-              transform: 'translate(-50%, -50%)',
-            }}
-          />
-        ))}
+        {/* Tjänstekort */}
+        <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 p-6">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative cursor-pointer overflow-hidden rounded-lg shadow-lg"
+              onClick={() => navigate(service.link)}
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50 transition-opacity group-hover:opacity-70" />
+              <img
+                src={service.img}
+                alt={service.title}
+                className="w-full h-48 object-cover transition-transform group-hover:scale-110"
+              />
+              <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+                <div className="p-2 bg-white bg-opacity-80 rounded-md inline-block max-w-[80%]">
+                  <p className="text-black text-center font-semibold break-words">
+                    {service.title}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </section>
     </>
   )

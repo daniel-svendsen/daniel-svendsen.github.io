@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import sitemap from 'vite-plugin-sitemap'
-import path from 'path'
 
 export default defineConfig({
   plugins: [
@@ -18,42 +17,18 @@ export default defineConfig({
         '/contact',
         '/work',
       ],
-      outDir: 'dist',
-      readable: true,
     }),
-    // visualizer.default({
-    //   filename: 'bundle-analysis.html',
-    //   open: true,
-    // }),
   ],
   base: '/',
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    chunkSizeWarningLimit: 1000,
-    rollupOptions: {
-      // output: {
-      //   manualChunks(id) {
-      //     if (id.includes('node_modules')) {
-      //       if (id.includes('react')) return 'vendor-react'
-      //       if (id.includes('react-router')) return 'vendor-router'
-      //       if (id.includes('jspdf')) return 'vendor-jspdf'
-      //       return 'vendor'
-      //     }
-      //   },
-      // },
-    },
+    sourcemap: true,
+    cssCodeSplit: true,
   },
   resolve: {
     alias: {
-      '@': path.resolve('src'),
-      react: 'react',
+      '@': new URL('./src', import.meta.url).pathname,
     },
-  },
-  optimizeDeps: {
-    include: ['framer-motion'],
-  },
-  ssr: {
-    external: ['framer-motion'],
   },
 })
