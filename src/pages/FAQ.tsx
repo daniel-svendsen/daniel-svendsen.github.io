@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async'
 
 export default function FAQ() {
   return (
-    <main className="max-w-4xl mx-auto p-6">
+    <main className="pt-20 max-w-4xl mx-auto p-6">
       <Helmet>
         <title>Vanliga frågor - Svendsén Photography</title>
         <meta

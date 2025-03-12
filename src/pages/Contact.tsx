@@ -54,7 +54,7 @@ export default function Contact() {
   }
 
   return (
-    <main className="p-6 max-w-4xl mx-auto">
+    <main className="pt-20 p-6 max-w-4xl mx-auto">
       <Helmet>
         <title>
           Kontakta Fotograf i Göteborg & Kungälv - Svendsén Photography

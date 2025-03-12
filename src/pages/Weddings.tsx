@@ -45,7 +45,7 @@ export default function WeddingGallery() {
         </script>
       </Helmet>
 
-      <main className="p-6">
+      <main className="pt-20 p-6">
         <header>
           <h1 className="text-3xl font-bold mb-6">
             Bröllopsfotografi i Kungälv & Göteborg

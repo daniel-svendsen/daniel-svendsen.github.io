@@ -47,7 +47,7 @@ export default function Services() {
           })}
         </script>
       </Helmet>
-      <main className="p-6">
+      <main className="pt-20 p-6">
         <header className="text-center">
           <h1 className="text-4xl font-bold mb-6">
             Professionella fotograferingstjänster
