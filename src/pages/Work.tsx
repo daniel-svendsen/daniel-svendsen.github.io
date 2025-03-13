@@ -18,17 +18,17 @@ const Work = () => {
     {
       id: 'profile',
       component: (
-        <SectionWrapper className="bg-white rounded-xl shadow-lg p-8">
+        <SectionWrapper className="mb-20 bg-white rounded-xl shadow-lg p-8">
           <div className="flex flex-col items-center">
             <img
               src={portraitImage}
               alt="Daniel Svendsén"
               className="rounded-full w-34 h-36 sm:w-40 sm:h-44 shadow-2xl border-4 border-highlight"
             />
-            <h1 className="mt-4 text-3xl sm:text-5xl font-extrabold text-textPrimary text-center">
+            <h1 className="text-3xl sm:text-5xl font-extrabold text-textPrimary text-center">
               {content.profile.name}
             </h1>
-            <p className="mt-2 max-w-prose text-center text-textSecondary text-lg">
+            <p className="max-w-prose text-center text-textSecondary text-lg">
               {content.profile.description}
             </p>
           </div>
@@ -38,7 +38,7 @@ const Work = () => {
     {
       id: 'tabs',
       component: (
-        <SectionWrapper className="bg-white rounded-xl shadow-lg p-8">
+        <SectionWrapper className="mt-5 bg-white rounded-xl shadow-lg">
           <CVTabs tabsData={tabsData} />
         </SectionWrapper>
       ),
@@ -58,7 +58,7 @@ const Work = () => {
     {
       id: 'pdf-download',
       component: (
-        <SectionWrapper className="bg-white rounded-xl shadow-lg p-8 text-center">
+        <SectionWrapper className="mt 4 bg-white rounded-xl shadow-lg p-8 text-center">
           <div className="mt-4">
             <PdfDownloadButton />
           </div>

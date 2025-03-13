@@ -15,17 +15,17 @@ interface TimelineProps {
 
 export default function Timeline({ events }: TimelineProps) {
   return (
-    <div className="w-full">
+    <div className="space-y-8">
       {events.map((event, index) => (
         <motion.div
           key={index}
-          className="relative mb-8"
+          className="relative"
           initial={{ opacity: 1, y: 20, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1.05 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ type: 'spring', stiffness: 300 }}
         >
-          <div className="bg-white p-4 rounded-lg shadow-md duration-300 ease-out group-hover:scale-105">
+          <div className="bg-white p-4 rounded-lg shadow-md">
             <h3 className="text-base sm:text-xl font-semibold text-textPrimary">
               {event.title}
             </h3>
