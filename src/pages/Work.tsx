@@ -1,3 +1,4 @@
+// src/pages/Work.tsx
 import React from 'react'
 import { motion } from 'framer-motion'
 import portraitImage from '@/assets/bild1.jpg'
@@ -6,7 +7,6 @@ import { getTimelineEvents } from '../data/timeLineEvents'
 import getTabsData from '../data/tabsData'
 import SectionWrapper from '../components/SectionWrapper'
 import CVTabs from '../components/CvTabs'
-import WorkPDF from '../components/WorkPDF'
 import PdfDownloadButton from '../components/PdfDownloadButton'
 
 const Work = () => {
@@ -23,12 +23,12 @@ const Work = () => {
             <img
               src={portraitImage}
               alt="Daniel Svendsén"
-              className="rounded-full w-34 h-36 sm:w-40 sm:h-44 shadow-2xl border-4 border-blue-600"
+              className="rounded-full w-34 h-36 sm:w-40 sm:h-44 shadow-2xl border-4 border-highlight"
             />
-            <h1 className="mt-4 text-3xl sm:text-5xl font-extrabold text-gray-900 text-center">
+            <h1 className="mt-4 text-3xl sm:text-5xl font-extrabold text-textPrimary text-center">
               {content.profile.name}
             </h1>
-            <p className="mt-2 max-w-prose text-center text-gray-700 text-lg">
+            <p className="mt-2 max-w-prose text-center text-textSecondary text-lg">
               {content.profile.description}
             </p>
           </div>
@@ -47,7 +47,7 @@ const Work = () => {
     //   id: 'pdfpreview',
     //   component: (
     //     <SectionWrapper>
-    //       <div className="w-full h-[500px] mb-4 border border-gray-300 rounded">
+    //       <div className="w-full h-[500px] mb-4 border border-borderColor rounded">
     //         <PDFViewer style={{ width: '100%', height: '100%' }}>
     //           <WorkPDF />
     //         </PDFViewer>
@@ -60,16 +60,7 @@ const Work = () => {
       component: (
         <SectionWrapper className="bg-white rounded-xl shadow-lg p-8 text-center">
           <div className="mt-4">
-            <PdfDownloadButton
-              document={<WorkPDF />}
-              fileName="Daniel_Svendsen_CV.pdf"
-            >
-              {({ loading }) => (
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition">
-                  {loading ? 'Genererar PDF...' : 'Download as PDF'}
-                </button>
-              )}
-            </PdfDownloadButton>
+            <PdfDownloadButton />
           </div>
         </SectionWrapper>
       ),
@@ -77,21 +68,15 @@ const Work = () => {
   ]
 
   return (
-    <main className="min-h-screen bg-gradient-to-br justify-start from-gray-50 via-blue-200 to-gray-50 py-12 px-4">
+    <main className="min-h-screen bg-gradient-to-br from-gradient-from via-gradient-via to-gradient-to py-12 px-4">
       <div className="max-w-4xl mx-auto">
         {sections.map((section) => (
-          // Byt <div> till <motion.div> och använd framer-motion
           <motion.div
             key={section.id}
-            // Första läge (innan man scrollat ner)
             initial={{ opacity: 0, y: 20 }}
-            // Hur det ska se ut när sektionen kommer in i viewport
             whileInView={{ opacity: 1, y: 0, scale: 1.05 }}
-            // Talar om hur stor del av sektionen som måste synas
-            viewport={{ once: false, amount: 0.05 }}
-            // Vilken typ av animering
+            viewport={{ once: true, amount: 0.05 }}
             transition={{ type: 'spring', stiffness: 300 }}
-            // Allmän styling
             className="mb-10"
           >
             {section.component}

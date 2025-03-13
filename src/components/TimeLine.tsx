@@ -1,3 +1,4 @@
+// src/components/TimeLine.tsx
 import React from 'react'
 import { motion } from 'framer-motion'
 
@@ -19,20 +20,19 @@ export default function Timeline({ events }: TimelineProps) {
         <motion.div
           key={index}
           className="relative mb-8"
-          // Framer Motion props
           initial={{ opacity: 1, y: 20, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1.05 }}
           viewport={{ once: false, amount: 0.3 }}
           transition={{ type: 'spring', stiffness: 300 }}
         >
           <div className="bg-white p-4 rounded-lg shadow-md duration-300 ease-out group-hover:scale-105">
-            <h3 className="text-base sm:text-xl font-semibold text-gray-900">
+            <h3 className="text-base sm:text-xl font-semibold text-textPrimary">
               {event.title}
             </h3>
-            <span className="block text-xs sm:text-sm text-gray-500">
+            <span className="block text-xs sm:text-sm text-textSecondary">
               {event.date}
             </span>
-            <p className="mt-2 text-xs sm:text-sm text-gray-700">
+            <p className="mt-2 text-xs sm:text-sm text-textSecondary">
               {event.description}
               {event.link && event.link.href && (
                 <span>
@@ -41,7 +41,7 @@ export default function Timeline({ events }: TimelineProps) {
                     href={event.link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-500 underline"
+                    className="text-highlight underline"
                   >
                     {event.link.text || event.link.href}
                   </a>

@@ -1,3 +1,4 @@
+// src/components/CvTabs.tsx
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import { motion } from 'framer-motion'
 import React from 'react'
@@ -22,15 +23,15 @@ const CVTabs = ({ tabsData }: CVTabsProps) => {
       transition={{ type: 'spring', stiffness: 300 }}
     >
       <TabGroup>
-        <TabList className="flex flex-wrap justify-center space-x-2 sm:space-x-4 border-b-2 border-blue-200 pb-2 mb-4">
+        <TabList className="flex flex-wrap justify-center space-x-2 sm:space-x-4 border-b-2 border-highlight pb-2 mb-4">
           {tabsData.map((tab, index) => (
             <Tab
               key={index}
               className={({ selected }) =>
                 `px-3 sm:px-4 py-2 text-xs sm:text-sm font-semibold focus:outline-none ${
                   selected
-                    ? 'border-b-2 border-blue-600 text-blue-600'
-                    : 'text-gray-600 hover:text-blue-600'
+                    ? 'border-b-2 border-highlight text-textPrimary'
+                    : 'text-textSecondary hover:text-textPrimary'
                 }`
               }
             >

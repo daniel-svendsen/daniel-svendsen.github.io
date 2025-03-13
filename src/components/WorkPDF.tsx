@@ -1,3 +1,4 @@
+// src/components/WorkPDF.tsx
 import React from 'react'
 import {
   Document,
@@ -29,6 +30,8 @@ import sqliteIcon from '../assets/icons/sqlite-original.png'
 import typescriptIcon from '../assets/icons/typescript-original.png'
 import viteIcon from '../assets/icons/vite-original.png'
 
+import workColors from '../config/workColors'
+
 const iconSize = 12
 
 Font.register({
@@ -56,9 +59,13 @@ const iconMap = {
   SQLite: sqliteIcon,
 }
 
-// Anpassad styling – med gröna accenter
+// Anpassad styling – med färger från workColors
 const styles = StyleSheet.create({
-  page: { padding: 30, fontFamily: 'Open Sans', backgroundColor: '#f3f4f6' },
+  page: {
+    padding: 30,
+    fontFamily: 'Open Sans',
+    backgroundColor: workColors.background, // Använder centraliserat värde
+  },
   section: {
     marginBottom: 8,
     padding: 8,
@@ -71,7 +78,7 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 40,
     borderWidth: 2,
-    borderColor: '#16a34a',
+    borderColor: workColors.highlight, // Använder highlight från konfigurationen
     marginBottom: 8,
     alignSelf: 'center',
   },
@@ -79,11 +86,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     marginBottom: 4,
-    color: '#1f2937',
+    color: workColors.primaryText,
     borderBottom: '1 solid #ddd',
     paddingBottom: 2,
   },
-  text: { fontSize: 11, color: '#111827', marginBottom: 4 },
+  text: {
+    fontSize: 11,
+    color: workColors.secondaryText,
+    marginBottom: 4,
+  },
   listContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -108,7 +119,7 @@ const styles = StyleSheet.create({
   educationYear: {
     fontSize: 12,
     fontWeight: 'bold',
-    color: '#16a34a',
+    color: workColors.highlight, // Använd highlight
     minWidth: 75,
   },
   contactItem: {
@@ -119,7 +130,7 @@ const styles = StyleSheet.create({
   contactLabel: {
     fontSize: 11,
     fontWeight: 'bold',
-    color: '#374151',
+    color: workColors.secondaryText,
     minWidth: 75,
   },
 })
@@ -134,7 +145,7 @@ const WorkPDF = () => (
           style={{
             fontSize: 22,
             fontWeight: 'bold',
-            color: '#111827',
+            color: workColors.primaryText,
             textAlign: 'center',
           }}
         >
@@ -144,7 +155,7 @@ const WorkPDF = () => (
           style={{
             fontSize: 12,
             textAlign: 'center',
-            color: '#374151',
+            color: workColors.secondaryText,
             marginBottom: 5,
           }}
         >
@@ -154,7 +165,7 @@ const WorkPDF = () => (
           src="https://www.linkedin.com/in/daniel-svendsen-02423a1b4/"
           style={{
             fontSize: 10,
-            color: '#16a34a',
+            color: workColors.highlight, // Ändrat från hårdkodat "#16a34a"
             textDecoration: 'underline',
             textAlign: 'center',
           }}
@@ -247,7 +258,11 @@ const WorkPDF = () => (
         {cvContent.experience.content.work.map((exp, index) => (
           <View key={index} style={styles.section} wrap={false}>
             <Text
-              style={{ fontSize: 12, fontWeight: 'bold', color: '#16a34a' }}
+              style={{
+                fontSize: 12,
+                fontWeight: 'bold',
+                color: workColors.highlight,
+              }}
             >
               {exp.year}
             </Text>
@@ -257,7 +272,7 @@ const WorkPDF = () => (
                 src={exp.link.href}
                 style={{
                   fontSize: 10,
-                  color: '#16a34a',
+                  color: workColors.highlight,
                   textDecoration: 'underline',
                 }}
               >
@@ -274,7 +289,11 @@ const WorkPDF = () => (
         {cvContent.experience.content.education.map((edu, index) => (
           <View key={index} style={styles.section} wrap={false}>
             <Text
-              style={{ fontSize: 12, fontWeight: 'bold', color: '#16a34a' }}
+              style={{
+                fontSize: 12,
+                fontWeight: 'bold',
+                color: workColors.highlight,
+              }}
             >
               {edu.year}
             </Text>
@@ -291,7 +310,11 @@ const WorkPDF = () => (
         {cvContent.personalProjects.content.map((proj, index) => (
           <View key={index} style={styles.section} wrap={false}>
             <Text
-              style={{ fontSize: 12, fontWeight: 'bold', color: '#16a34a' }}
+              style={{
+                fontSize: 12,
+                fontWeight: 'bold',
+                color: workColors.highlight,
+              }}
             >
               {proj.name}
             </Text>
@@ -312,7 +335,7 @@ const WorkPDF = () => (
                   src={contact.link.href}
                   style={{
                     fontSize: 10,
-                    color: '#16a34a',
+                    color: workColors.highlight,
                     textDecoration: 'underline',
                   }}
                 >
@@ -332,7 +355,7 @@ const WorkPDF = () => (
           src="https://www.svendsenphotography.com/work"
           style={{
             fontSize: 10,
-            color: '#16a34a',
+            color: workColors.highlight,
             textDecoration: 'underline',
           }}
         >

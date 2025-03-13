@@ -1,3 +1,6 @@
+// tailwind.config.js
+const workColors = require('./src/config/workColors').default
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
@@ -7,11 +10,15 @@ module.exports = {
       colors: {
         primary: '#1f2937',
         secondary: '#f2f2f3',
-        background: '#f2f2f3',
-        textPrimary: '#111827',
-        textSecondary: '#374151',
+        background: workColors.background, // centraliserad bakgrund
+        textPrimary: workColors.primaryText, // centraliserad primär text
+        textSecondary: workColors.secondaryText, // centraliserad sekundär text
         borderColor: '#d1d5db',
         highlight: '#2563eb',
+        // Gradient-färger för webbdelen
+        'gradient-from': workColors.backgroundGradient.from,
+        'gradient-via': workColors.backgroundGradient.via,
+        'gradient-to': workColors.backgroundGradient.to,
       },
       fontFamily: {
         poiret: ["'Poiret One'", 'sans-serif'],
