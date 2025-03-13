@@ -8,13 +8,10 @@ import ToolList from '../components/ToolList'
 
 type SkillContentItem =
   | string
-  | {
-      name: string
-      details: string | Array<{ tool: string; icon: string }>
-    }
+  | { name: string; details: string | Array<{ tool: string; icon: string }> }
 
 const uniformContainer =
-  'mt-4 p-4 bg-background rounded-md shadow-sm space-y-3 text-xs sm:text-sm'
+  'p-4 bg-background rounded-md shadow-sm space-y-3 text-xs sm:text-sm'
 
 const getTabsData = (
   content: typeof cvContent,
@@ -27,9 +24,7 @@ const getTabsData = (
       content: (
         <div className={uniformContainer}>
           {(content.skills.content as SkillContentItem[]).map((item, index) => {
-            if (typeof item === 'string') {
-              return <p key={index}>{item}</p>
-            }
+            if (typeof item === 'string') return <p key={index}>{item}</p>
             if (
               (item.name === 'Languages' ||
                 item.name === 'Tools' ||

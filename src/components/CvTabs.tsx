@@ -1,8 +1,8 @@
 // src/components/CvTabs.tsx
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
+import { Tab, TabGroup, TabList, TabPanels } from '@headlessui/react'
 import { motion } from 'framer-motion'
 import React from 'react'
-import TabPanelComponent from './TabPanel'
+import WorkTabPanel from './WorkTabPanel'
 
 export interface TabsDataItem {
   label: string
@@ -42,11 +42,7 @@ const CVTabs = ({ tabsData }: CVTabsProps) => {
 
         <TabPanels>
           {tabsData.map((tab, index) => (
-            <TabPanel key={index}>
-              <TabPanelComponent title={tab.title}>
-                {tab.content}
-              </TabPanelComponent>
-            </TabPanel>
+            <WorkTabPanel key={index}>{tab.content}</WorkTabPanel>
           ))}
         </TabPanels>
       </TabGroup>

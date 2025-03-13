@@ -49,12 +49,12 @@ export default function Services() {
       </Helmet>
       <main className="pt-20 p-6 bg-background text-textPrimary max-w-full overflow-hidden">
         <header className="w-full text-center px-4">
-          <p className="text-lg text-gray-700 mb-8">
+          <p className="text-lg text-textSecondary mb-8">
             Boka en fotografering idag och skapa minnen som varar livet ut.
           </p>
           <a
             href="/contact"
-            className="px-6 py-3 bg-blue-600 text-white font-bold rounded-md hover:bg-blue-700"
+            className="px-6 py-3 bg-highlight text-white font-bold rounded-md hover:bg-highlight/90"
           >
             Boka fotografering
           </a>

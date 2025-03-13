@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet-async'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Typewriter from 'typewriter-effect'
 
-// Importera bilderna så att Vite hanterar dem korrekt i produktion
 import carouselImage from '../assets/herosection/carousel-3.jpg'
 import weddingImage from '../assets/herosection/wedding.jpg'
 import portraitImage from '../assets/herosection/portrait2.jpg'
@@ -16,7 +15,7 @@ export default function HeroSection() {
   const heroRef = useRef(null)
 
   const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 300], [0, -50]) // Parallax-effekt
+  const y = useTransform(scrollY, [0, 300], [0, -50])
 
   const services = [
     {
@@ -55,7 +54,6 @@ export default function HeroSection() {
         ref={heroRef}
         className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden"
       >
-        {/* Bakgrundsbild med Parallax-effekt */}
         <motion.div
           style={{
             backgroundImage: `url(${carouselImage})`,
@@ -64,7 +62,6 @@ export default function HeroSection() {
           className="absolute inset-0 bg-cover bg-center brightness-50"
         />
 
-        {/* Text och CTA */}
         <div className="relative text-center text-white p-8 rounded-md z-10">
           <h1 className="text-5xl sm:text-6xl font-bold tracking-wide mb-4">
             Svendsén Photography
@@ -81,13 +78,12 @@ export default function HeroSection() {
             Professionell fotografering i Göteborg & Kungälv
           </p>
 
-          {/* CTA-knappar */}
           <div className="flex justify-center space-x-4 mb-8">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => navigate('/contact')}
-              className="px-6 py-3 bg-gray-900 text-white rounded-md shadow-md hover:bg-gray-700 transition"
+              className="px-6 py-3 bg-primary text-white rounded-md shadow-md hover:bg-primary/80 transition"
             >
               Kontakta mig
             </motion.button>
@@ -102,7 +98,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Tjänstekort */}
         <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 p-6">
           {services.map((service, index) => (
             <motion.div

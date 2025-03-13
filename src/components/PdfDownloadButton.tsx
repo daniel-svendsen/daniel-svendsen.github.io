@@ -29,7 +29,7 @@ const PdfDownloadButton = () => {
   return (
     <button
       onClick={handleDownload}
-      className="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 transition"
+      className="bg-highlight text-white px-4 py-2 rounded-md shadow-md hover:bg-highlight/90 transition"
     >
       Download as PDF
     </button>

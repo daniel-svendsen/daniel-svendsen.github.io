@@ -22,7 +22,6 @@ export default function Contact() {
     e.preventDefault()
     const form = e.currentTarget
 
-    // Konvertera FormData till JSON
     const formData = new FormData(form)
     const data: Record<string, string> = {}
     formData.forEach((value, key) => {
@@ -41,7 +40,7 @@ export default function Contact() {
 
       if (response.ok) {
         setFormStatus('success')
-        if (form) form.reset()
+        form.reset()
       } else {
         const errorData = await response.json()
         console.error('Formspree error:', errorData)
@@ -106,7 +105,7 @@ export default function Contact() {
             type="text"
             required
             placeholder="Ditt namn"
-            className="block w-full border rounded-md p-2 focus:ring-2 focus:ring-blue-500"
+            className="block w-full border rounded-md p-2 focus:ring-2 focus:ring-highlight"
           />
         </div>
         <div>
@@ -119,7 +118,7 @@ export default function Contact() {
             type="email"
             required
             placeholder="Din e-postadress"
-            className="block w-full border rounded-md p-2 focus:ring-2 focus:ring-blue-500"
+            className="block w-full border rounded-md p-2 focus:ring-2 focus:ring-highlight"
           />
         </div>
         <fieldset className="md:col-span-2">
@@ -136,9 +135,12 @@ export default function Contact() {
                   value={service}
                   checked={selectedService === service}
                   onChange={() => setSelectedService(service)}
-                  className="form-radio h-4 w-4 text-blue-600"
+                  className="form-radio h-4 w-4 text-highlight"
                 />
-                <label htmlFor={service} className="ml-2 text-sm text-gray-700">
+                <label
+                  htmlFor={service}
+                  className="ml-2 text-sm text-textSecondary"
+                >
                   {service}
                 </label>
               </div>
@@ -155,20 +157,20 @@ export default function Contact() {
             rows={4}
             required
             placeholder="Ditt meddelande här"
-            className="block w-full border rounded-md p-2 focus:ring-2 focus:ring-blue-500"
+            className="block w-full border rounded-md p-2 focus:ring-2 focus:ring-highlight"
           />
         </div>
         <div className="md:col-span-2">
           <button
             type="submit"
-            className="w-full px-4 py-2 bg-blue-600 text-white rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="w-full px-4 py-2 bg-highlight text-white rounded-md shadow-sm hover:bg-highlight/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-highlight"
           >
             Skicka
           </button>
         </div>
       </form>
       {formStatus === 'success' && (
-        <p className="mt-4 text-blue-600">
+        <p className="mt-4 text-highlight">
           Tack! Ditt meddelande har skickats.
         </p>
       )}
