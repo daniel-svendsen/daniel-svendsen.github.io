@@ -13,6 +13,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")  // Gäller alla endpoints
+                        .allowedOriginPatterns("*")
                         .allowedOrigins("*")  // Tillåter anrop från alla origins
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*");
