@@ -70,6 +70,22 @@ coverage/
 .npmignore
 .nvmrc
 
+# Backend (Spring Boot) ignore-rules
+backend/target/
+backend/.mvn/
+backend/HELP.md
+backend/.gradle/
+backend/*.log
+backend/*.db
+backend/.settings/
+backend/.idea/
+backend/*.iml
+backend/.classpath
+backend/.project
+backend/.sts4-cache
+backend/.factorypath
+backend/src/main/resources/env.properties
+
 # Ignore static files (just an example, adjust if necessary)
 assets/temp/  # Ignorera endast tillfälliga filer
 assets/**/*.psd
@@ -85,3 +101,5 @@ dist_folder_analysis.json
 dist_folder_content.txt
 work_related_analysis.json
 work_related_content.txt
+backend_content.txt
+backend_analysis.json
