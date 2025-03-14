@@ -1,0 +1,44 @@
+name: Deploy backend to separate branch
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to the 'main' branch
+
+jobs:
+  build-and-push-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch full history for all branches
+
+      - name: Copy backend folder to temporary directory
+        run: |
+          mkdir temp
+          cp -R backend temp/backend
+
+      - name: Create or switch to 'backend-railway-deploy' branch
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git checkout -B backend-railway-deploy
+
+      - name: Remove existing files from branch
+        run: |
+          git rm -rf . || true  # Remove all files, ignore errors if no files exist
+
+      - name: Move backend content to repository root
+        run: |
+          mv temp/backend/* .
+          rm -rf temp
+
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "Update backend from main" || echo "No changes to commit"
+
+      - name: Push to 'backend-railway-deploy' branch
+        run: |
+          git push origin backend-railway-deploy --force

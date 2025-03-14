@@ -1,0 +1,17 @@
+# Ignorera alla frontend-relaterade filer
+eslint.config.js
+sitemap.xml
+vite-env.d.ts
+README.md
+tsconfig.json
+src/
+package.json
+public/
+index.html
+postcss.config.js
+.github/
+vite.config.js
+components.json
+.prettierrc
+tailwind.config.js
+.gitignore
