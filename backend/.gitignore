@@ -21,5 +21,3 @@ HELP.md
 # Maven / Gradle
 .mvn/
 .gradle/
-
-env.properties
