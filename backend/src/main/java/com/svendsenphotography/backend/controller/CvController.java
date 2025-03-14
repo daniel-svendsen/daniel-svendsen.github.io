@@ -18,15 +18,17 @@ public class CvController {
     private final CvExperienceRepository cvExperienceRepository;
     private final CvProjectRepository cvProjectRepository;
     private final CvContactRepository cvContactRepository;
+    private final CvLanguageRepository cvLanguageRepository;
 
     public CvController(CvContentRepository cvContentRepository, CvSkillRepository cvSkillRepository,
                         CvExperienceRepository cvExperienceRepository, CvProjectRepository cvProjectRepository,
-                        CvContactRepository cvContactRepository) {
+                        CvContactRepository cvContactRepository, CvLanguageRepository cvLanguageRepository) {
         this.cvContentRepository = cvContentRepository;
         this.cvSkillRepository = cvSkillRepository;
         this.cvExperienceRepository = cvExperienceRepository;
         this.cvProjectRepository = cvProjectRepository;
         this.cvContactRepository = cvContactRepository;
+        this.cvLanguageRepository = cvLanguageRepository;
     }
 
     @GetMapping("/content")
@@ -52,5 +54,10 @@ public class CvController {
     @GetMapping("/contact")
     public List<CvContact> getCvContact() {
         return cvContactRepository.findAll();
+    }
+
+    @GetMapping("/languages")
+    public List<CvLanguage> getCvLanguages() {
+        return cvLanguageRepository.findAll();
     }
 }
