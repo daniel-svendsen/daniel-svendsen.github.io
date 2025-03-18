@@ -33,6 +33,7 @@ public class CvController {
 
     @GetMapping("/content")
     public List<CvContent> getCvContent() {
+        System.out.println("🚀 API /content anropades!");
         return cvContentRepository.findAll();
     }
 

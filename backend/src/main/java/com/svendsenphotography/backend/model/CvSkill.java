@@ -15,6 +15,46 @@ public class CvSkill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public CvContent getCvContent() {
+        return cvContent;
+    }
+
+    public void setCvContent(CvContent cvContent) {
+        this.cvContent = cvContent;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getTool() {
+        return tool;
+    }
+
+    public void setTool(String tool) {
+        this.tool = tool;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     @ManyToOne
     @JoinColumn(name = "cv_id")
     private CvContent cvContent;

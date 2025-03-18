@@ -15,6 +15,38 @@ public class CvProject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public CvContent getCvContent() {
+        return cvContent;
+    }
+
+    public void setCvContent(CvContent cvContent) {
+        this.cvContent = cvContent;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
     @ManyToOne
     @JoinColumn(name = "cv_id")
     private CvContent cvContent;

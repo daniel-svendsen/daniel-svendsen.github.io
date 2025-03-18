@@ -103,3 +103,7 @@ work_related_analysis.json
 work_related_content.txt
 backend_content.txt
 backend_analysis.json
+backend_config_content.txt
+backend_config_analysis.json
+.env.development
+.env.production
