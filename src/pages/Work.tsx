@@ -62,7 +62,7 @@ const Work: React.FC = () => {
   const profileItem = cvContent.find((item) => item.section === 'profile')
 
   // Hämta introduktionstexten (section "introduction")
-  const introItem = cvContent.find((item) => item.section === 'introduction')
+  const introItem = cvContent.find((item) => item.section === 'intro')
 
   // Filtrera skills: dela upp i "övriga" (visa endast skill.tool),
   // samt de som tillhör Soft Skills och Work Methodologies.
@@ -115,14 +115,12 @@ const Work: React.FC = () => {
         title: 'Daniel Svendsén',
         description: 'No profile description found.',
       }
-      const introduction = content.find(
-        (item) => item.section === 'introduction',
-      )
+      const intro = content.find((item) => item.section === 'intro')
       const personalProjectsTitle = 'Personal Projects'
 
       const cvData = {
         profile,
-        introduction,
+        intro,
         skills,
         experience,
         projects,

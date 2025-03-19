@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
 // Utökad typdefinition för PDF-data
 type CvData = {
   profile: { name: string; description: string }
-  introduction?: { title: string; description: string }
+  intro?: { title: string; description: string }
   skills: any[]
   experience: any[]
   projects: any[]
@@ -141,8 +141,8 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
         {/* Profile & Skills */}
         <View style={styles.section} wrap={false}>
           <Text style={styles.sectionTitle}>Profile & Skills</Text>
-          {cvData.introduction && (
-            <Text style={styles.text}>{cvData.introduction.description}</Text>
+          {cvData.intro && (
+            <Text style={styles.text}>{cvData.intro.description}</Text>
           )}
           <View style={styles.listContainer}>
             {otherSkills.map((skill) => (
