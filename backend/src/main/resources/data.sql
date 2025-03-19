@@ -133,7 +133,8 @@ Goods recipient - Recieving goods from trucks and ensuring proper system entry',
 -- D. cv_projects för cv_id=1 (profile)
 INSERT INTO cv_projects (cv_id, name, details)
 VALUES (1, 'Personal Website & CV',
-        'I built the website for my photography company and this work page myself using React, Vite, and Tailwind CSS. It includes interactive features such as a dynamic PDF generator and responsive design.');
+        'I built the website for my photography company and this work page myself using React, Vite, and Tailwind CSS. It includes interactive features such as a dynamic PDF generator, responsive design,' ||
+        'fetching data from a database for the cv page. Website hosted by Cloudflare with actions on main pushes and backend + database on Railway.');
 
 -- E. cv_contact för cv_id=1 (profile)
 INSERT INTO cv_contact (cv_id, type, details, link_href)

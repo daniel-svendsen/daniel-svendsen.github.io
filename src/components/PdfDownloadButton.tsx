@@ -1,16 +1,21 @@
+// src/components/PdfDownloadButton.tsx
 import React from 'react'
 import { pdf } from '@react-pdf/renderer'
-import WorkPDF from '../components/WorkPDF'
+import WorkPDF from './WorkPDF'
 import { saveAs } from 'file-saver'
+import { CvData } from '../types/CvTypes'
 
-const PdfDownloadButton = () => {
+interface PdfDownloadButtonProps {
+  cvData: CvData | null
+}
+
+const PdfDownloadButton: React.FC<PdfDownloadButtonProps> = ({ cvData }) => {
   const handleDownload = async () => {
-    const doc = <WorkPDF />
-    const blob = await pdf(doc).toBlob()
-    saveAs(blob, 'Daniel-Svendsén-CV.pdf')
+    if (!cvData) return
+    const blob = await pdf(<WorkPDF cvData={cvData} />).toBlob()
+    saveAs(blob, 'cv.pdf')
 
     const data = { message: 'Daniel-Svendséns CV har laddats ner!' }
-
     fetch('https://formspree.io/f/xvgowldv', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -29,9 +34,9 @@ const PdfDownloadButton = () => {
   return (
     <button
       onClick={handleDownload}
-      className="bg-highlight text-white px-4 py-2 rounded-md shadow-md hover:bg-highlight/90 transition"
+      className="px-4 py-2 bg-highlight text-white rounded hover:bg-blue-700 transition"
     >
-      Download as PDF
+      Download CV as PDF
     </button>
   )
 }
