@@ -17,6 +17,7 @@ export default defineConfig({
         '/contact',
         '/work',
       ],
+      generateRobotsTxt: true,
     }),
   ],
   base: '/',
@@ -34,7 +35,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target:
+          'https://daniel-svendsengithubio-production-c975.up.railway.app',
         changeOrigin: true,
         secure: false,
       },
