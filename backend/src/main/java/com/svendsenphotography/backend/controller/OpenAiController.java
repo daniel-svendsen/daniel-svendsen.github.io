@@ -49,21 +49,26 @@ public class OpenAiController {
                     .body(Map.of("error", "För många förfrågningar. Försök igen senare!"));
         }
 
-        // 2. Läs in data från frontend
-        //    body { allergens: [], ingredients: [], servings: number }
+        // 2. Läs in data från frontend: allergens, ingredients, servings och cuisine (valfritt)
         List<String> allergens = (List<String>) body.getOrDefault("allergens", new ArrayList<>());
         List<String> ingredients = (List<String>) body.getOrDefault("ingredients", new ArrayList<>());
         int servings = (int) body.getOrDefault("servings", 2);
+        String cuisine = (String) body.getOrDefault("cuisine", "");
 
-        // 3. Bygg prompt
+        // 3. Bygg upp prompten med ett standardiserat format
         String allergenList = allergens.isEmpty() ? "inga" : String.join(", ", allergens);
         String ingredientList = ingredients.isEmpty() ? "inga" : String.join(", ", ingredients);
+        String cuisineText = cuisine.isEmpty() ? "" : String.format(", anpassade efter %s matkultur", cuisine);
+
         String prompt = String.format(
-                "Hjälp mig att generera 3 olika recept för %d personer. Jag är allergisk mot %s och har dessa ingredienser: %s. Du måste inte använda allt.",
-                servings, allergenList, ingredientList
+                "Generera 3 olika recept för %d personer%s. Varje recept ska ha följande format:\n" +
+                        "1. Ingredienser: en tydlig lista över alla nödvändiga ingredienser.\n" +
+                        "2. Tillvägagångssätt: en steg-för-steg instruktion för hur man tillagar rätten.\n" +
+                        "Jag är allergisk mot %s och har följande ingredienser som en riktlinje: %s. Du kan använda dessa ingredienser som vägledning, men det är tillåtet att inkludera andra lämpliga ingredienser vid behov.",
+                servings, cuisineText, allergenList, ingredientList
         );
 
-        // 4. Anropa OpenAI med prompt
+        // 4. Anropa OpenAI med prompten
         return callOpenAiApi(prompt);
     }
 
