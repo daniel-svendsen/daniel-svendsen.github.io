@@ -26,7 +26,7 @@ public class OpenAiController {
     private final Map<String, Bucket> buckets = new ConcurrentHashMap<>();
 
     // Hämta nyckeln från ex. application.properties eller miljövariabel
-    @Value("${openai.api.key:}")
+    @Value("${OPENAI_API_KEY:}")
     private String openAiApiKey;
 
     // OpenAI-slutpunkt

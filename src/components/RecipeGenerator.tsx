@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import { Button } from '@headlessui/react'
 import { recipeIngredients } from '@/data/recipeIngredients'
-import Checkbox from '@/components/CheckBox'
+import Checkbox from '@/components/Checkbox'
 
 export default function RecipeGenerator() {
   const [selectedAllergens, setSelectedAllergens] = useState<string[]>([])
