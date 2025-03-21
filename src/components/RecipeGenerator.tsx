@@ -25,11 +25,11 @@ export default function RecipeGenerator() {
     'Senap',
   ]
 
-  // Kolla om ingrediens triggar allergi
+  // Returnerar true om någon av de specificerade allergenerna finns i de valda
   const triggersAllergy = (allergens: string[]) =>
     allergens.some((allergen) => selectedAllergens.includes(allergen))
 
-  // Filtrera & ersätt allergiframkallande ingredienser
+  // Filtrerar & ersätter allergiframkallande ingredienser
   function getDisplayableItems(
     items: { name: string; allergens: string[]; alternative?: any }[],
   ) {
@@ -71,7 +71,7 @@ export default function RecipeGenerator() {
     setSelectedIngredients([])
   }
 
-  // Anropa backend: skicka allergier, ingredienser, servings
+  // Anropar backend: skicka allergier, ingredienser, servings
   const generateRecipes = async () => {
     setLoading(true)
     try {
@@ -136,14 +136,14 @@ export default function RecipeGenerator() {
             <Checkbox
               key={all}
               label={all}
-              checked={selectedAllergens.includes(all)}
+              selected={selectedAllergens.includes(all)}
               onChange={() => toggleAllergen(all)}
             />
           ))}
         </div>
       </div>
 
-      {/* Kategorier => ingredienser */}
+      {/* Ingredienskategorier */}
       {Object.entries(recipeIngredients).map(([catName, catItems]) => {
         const displayable = getDisplayableItems(catItems)
         return (
@@ -154,7 +154,7 @@ export default function RecipeGenerator() {
                 <Checkbox
                   key={item.name}
                   label={item.name}
-                  checked={selectedIngredients.includes(item.name)}
+                  selected={selectedIngredients.includes(item.name)}
                   onChange={() => toggleIngredient(item.name)}
                 />
               ))}
@@ -173,7 +173,7 @@ export default function RecipeGenerator() {
     </div>
   )
 
-  // Panel för recept
+  // Panel för att visa genererade recept
   const renderRecipesPanel = () => (
     <div className="rounded-lg bg-gray-100 p-4 shadow w-full">
       <h2 className="text-xl font-bold mb-2">Genererade Recept</h2>
@@ -203,15 +203,21 @@ export default function RecipeGenerator() {
         <div className="flex gap-2 mb-4">
           <button
             onClick={() => setMobileTab('ingredients')}
-            className={`flex-1 py-2 rounded
-              ${mobileTab === 'ingredients' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+            className={`flex-1 py-2 rounded ${
+              mobileTab === 'ingredients'
+                ? 'bg-blue-500 text-white'
+                : 'bg-gray-200 text-black'
+            }`}
           >
             Ingredienser
           </button>
           <button
             onClick={() => setMobileTab('recipes')}
-            className={`flex-1 py-2 rounded
-              ${mobileTab === 'recipes' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+            className={`flex-1 py-2 rounded ${
+              mobileTab === 'recipes'
+                ? 'bg-blue-500 text-white'
+                : 'bg-gray-200 text-black'
+            }`}
           >
             Recept
           </button>

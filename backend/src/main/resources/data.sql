@@ -78,7 +78,9 @@ VALUES ('profile', 'Daniel Svendsén',
         'Photography with my own business, cooking, brewing beer, baking sourdough bread, fishing, and going on nature trips with my family.'),
        ('languages', 'Languages & Miscellaneous', 'Languages proficiency and miscellaneous skills'),
        ('intro', 'Introduction',
-        'I built the website for my photography company and this work page myself using React, Vite, and Tailwind CSS. It includes interactive features such as a dynamic PDF generator, responsive design,fetching data from a database for the cv page. Website hosted by Cloudflare with actions on main pushes and backend + database on Railway.');
+        'Motivated and versatile full-stack/system developer with a background in leadership and technical
+problem-solving. Currently completing my Java Enterprise Developer program at Yrgo. Passionate
+about designing scalable applications, improving workflows, and collaborating in Agile teams.');
 
 -- B. cv_skills för cv_id=1 (profile)
 INSERT INTO cv_skills (cv_id, category, tool, icon)
