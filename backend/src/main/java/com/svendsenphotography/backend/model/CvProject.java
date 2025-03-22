@@ -1,5 +1,6 @@
 package com.svendsenphotography.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,20 @@ public class CvProject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "cv_id")
+    private CvContent cvContent;
+
+    private String name;
+
+    @Column(columnDefinition = "TEXT")
+    private String details;
+
+    @Column(name = "link_href")
+    @JsonProperty("link_href")
+    private String linkHref;
+
+    // Standard getters och setters, om du inte förlitar dig helt på Lombok:
     public Long getId() {
         return id;
     }
@@ -47,12 +62,11 @@ public class CvProject {
         this.details = details;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "cv_id")
-    private CvContent cvContent;
+    public String getLinkHref() {
+        return linkHref;
+    }
 
-    private String name;
-
-    @Column(columnDefinition = "TEXT")
-    private String details;
+    public void setLinkHref(String linkHref) {
+        this.linkHref = linkHref;
+    }
 }

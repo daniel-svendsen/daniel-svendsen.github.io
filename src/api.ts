@@ -34,6 +34,7 @@ export interface CvProject {
   cvContentId?: number
   name: string
   details: string
+  link_href?: string
 }
 
 export interface CvContact {

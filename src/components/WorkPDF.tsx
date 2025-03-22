@@ -213,6 +213,33 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
           ))}
         </View>
 
+        {/* Projects */}
+        <View style={styles.section} wrap={false}>
+          <Text style={styles.sectionTitle}>Projects</Text>
+          {cvData.projects.map((project, index) => (
+            <View key={index} style={{ marginBottom: 8 }}>
+              <Text
+                style={{
+                  fontSize: 12,
+                  fontWeight: 'bold',
+                  color: workColors.highlight,
+                }}
+              >
+                {project.name}
+              </Text>
+              <Text style={styles.text}>{project.details}</Text>
+              {project.link_href && (
+                <Link
+                  style={{ fontSize: 11, color: workColors.highlight }}
+                  src={project.link_href}
+                >
+                  {project.link_href}
+                </Link>
+              )}
+            </View>
+          ))}
+        </View>
+
         {/* Contact */}
         <View style={styles.section} wrap={false}>
           <Text style={styles.sectionTitle}>Contact</Text>
