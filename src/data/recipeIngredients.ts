@@ -1,25 +1,24 @@
 // Fil: src/data/recipeIngredients.ts
-// Justera sökväg och mappstruktur enligt ditt projekt
 
 export interface Ingredient {
   name: string
   allergens: string[]
-  // Vill du ha flera alternativ? Byt ut mot: alternatives?: Ingredient[]
+  // Vill du ha flera alternativ? Använd alternativ?: Ingredient[]
   alternative?: Ingredient
 }
 
 /**
- * Stor lista av ingredienser, med allergener och ev. ersättningsprodukter.
- * Kategorier: protein, dairy, vegetables, fruits, spices, grains, other
- * Utökad med många nya val (asiatiska, mexikanska, medelhav) i passande kategorier.
+ * Stor lista av ingredienser, med allergener och eventuella ersättningsprodukter.
+ * Kategorier: protein, mejeri, grönsaker, frukter, kryddor, gryn, övrigt
+ * Utökad med nya val (asiatiska, mexikanska, medelhav) i passande kategorier.
  */
 export const recipeIngredients = {
   //--- PROTEIN ---//
   protein: [
     { name: 'Kyckling', allergens: [] },
-    { name: 'Nötfärs', allergens: [] }, // Man tål nötfärs även om man är nötallergiker
+    { name: 'Nötfärs', allergens: [] },
     { name: 'Fläskfilé', allergens: [] },
-    { name: 'Korv', allergens: [] }, // ev. laktos/gluten beroende på sort
+    { name: 'Korv', allergens: [] },
     { name: 'Bacon', allergens: [] },
     {
       name: 'Lax',
@@ -34,10 +33,7 @@ export const recipeIngredients = {
     {
       name: 'Tonfisk',
       allergens: ['Fisk'],
-      alternative: {
-        name: 'Quorn',
-        allergens: [], // justera om din Quorn innehåller ägg
-      },
+      alternative: { name: 'Quorn', allergens: [] },
     },
     {
       name: 'Halloumi',
@@ -48,26 +44,14 @@ export const recipeIngredients = {
     { name: 'Röda linser', allergens: [] },
 
     // Nya (asiatiska/mexikanska) proteiner
-    {
-      name: 'Edamame',
-      allergens: ['Soja'],
-    },
-    {
-      name: 'Tofuskinn (Yuba)',
-      allergens: ['Soja'],
-    },
-    {
-      name: 'Svarta bönor', // mexikanskt
-      allergens: [],
-    },
-    {
-      name: 'Refried beans', // mexikanskt
-      allergens: [],
-    },
+    { name: 'Edamame', allergens: ['Soja'] },
+    { name: 'Tofuskinn (Yuba)', allergens: ['Soja'] },
+    { name: 'Svarta bönor', allergens: [] },
+    { name: 'Refried beans', allergens: [] },
   ],
 
   //--- MEJERI ---//
-  dairy: [
+  mejeri: [
     {
       name: 'Mjölk',
       allergens: ['Laktos'],
@@ -76,10 +60,7 @@ export const recipeIngredients = {
     {
       name: 'Grädde',
       allergens: ['Laktos'],
-      alternative: {
-        name: 'Havregrädde',
-        allergens: ['Gluten'], // kan vara kontaminerad
-      },
+      alternative: { name: 'Havregrädde', allergens: ['Gluten'] },
     },
     {
       name: 'Smör',
@@ -104,24 +85,24 @@ export const recipeIngredients = {
 
     // Nya (mexikanska/medelhav)
     {
-      name: 'Queso Fresco', // mexikanskt
+      name: 'Queso Fresco',
       allergens: ['Laktos'],
       alternative: { name: 'Laktosfri Queso', allergens: [] },
     },
     {
-      name: 'Fetaost', // medelhav
+      name: 'Fetaost',
       allergens: ['Laktos'],
       alternative: { name: 'Laktosfri feta', allergens: [] },
     },
     {
-      name: 'Mozzarella', // medelhav
+      name: 'Mozzarella',
       allergens: ['Laktos'],
       alternative: { name: 'Vegansk mozzarella', allergens: [] },
     },
   ],
 
   //--- GRÖNSAKER ---//
-  vegetables: [
+  grönsaker: [
     { name: 'Tomat', allergens: [] },
     { name: 'Gurka', allergens: [] },
     { name: 'Lök', allergens: [] },
@@ -143,16 +124,13 @@ export const recipeIngredients = {
     { name: 'Ruccola', allergens: [] },
 
     // Nya (mexikanska/medelhav)
-    { name: 'Jalapeños', allergens: [] }, // mexikanskt
-    { name: 'Oliver', allergens: [] }, // medelhav
-    {
-      name: 'Soltorkade tomater',
-      allergens: [],
-    },
+    { name: 'Jalapeños', allergens: [] },
+    { name: 'Oliver', allergens: [] },
+    { name: 'Soltorkade tomater', allergens: [] },
   ],
 
   //--- FRUKTER ---//
-  fruits: [
+  frukter: [
     { name: 'Äpple', allergens: [] },
     { name: 'Banan', allergens: [] },
     { name: 'Apelsin', allergens: [] },
@@ -166,7 +144,7 @@ export const recipeIngredients = {
   ],
 
   //--- KRYDDOR ---//
-  spices: [
+  kryddor: [
     { name: 'Salt', allergens: [] },
     { name: 'Peppar', allergens: [] },
     { name: 'Oregano', allergens: [] },
@@ -186,22 +164,13 @@ export const recipeIngredients = {
     { name: 'Rökt paprika', allergens: [] },
 
     // Nya
-    {
-      name: 'Tacokrydda', // mexikanskt
-      allergens: [],
-    },
-    {
-      name: 'Koriander', // mexikanskt men räknas ofta som ört
-      allergens: [],
-    },
-    {
-      name: 'Basilika', // medelhav
-      allergens: [],
-    },
+    { name: 'Tacokrydda', allergens: [] },
+    { name: 'Koriander', allergens: [] },
+    { name: 'Basilika', allergens: [] },
   ],
 
-  //--- GRYN & BRÖD ---//
-  grains: [
+  //--- GRYN ---//
+  gryn: [
     {
       name: 'Pasta',
       allergens: ['Gluten'],
@@ -228,7 +197,7 @@ export const recipeIngredients = {
     },
     {
       name: 'Havregryn',
-      allergens: ['Gluten'], // om ej garanterat GF
+      allergens: ['Gluten'],
       alternative: { name: 'Ren havre (GF-märkt)', allergens: [] },
     },
     { name: 'Quinoa', allergens: [] },
@@ -253,11 +222,11 @@ export const recipeIngredients = {
   ],
 
   //--- ÖVRIGT ---//
-  other: [
+  övrigt: [
     { name: 'Olivolja', allergens: [] },
     {
       name: 'Sojasås',
-      allergens: ['Gluten'], // om ej GF
+      allergens: ['Gluten'],
       alternative: { name: 'Tamari', allergens: [] },
     },
     { name: 'Kokosmjölk', allergens: [] },
@@ -297,40 +266,25 @@ export const recipeIngredients = {
     { name: 'Mirin', allergens: [] },
     {
       name: 'Miso',
-      allergens: ['Soja'], // ev. gluten (kornmiso)
-      alternative: {
-        name: 'Miso (glutenfri)',
-        allergens: ['Soja'],
-      },
+      allergens: ['Soja'],
+      alternative: { name: 'Miso (glutenfri)', allergens: ['Soja'] },
     },
     { name: 'Sriracha', allergens: [] },
     {
       name: 'Kimchi',
-      allergens: ['Fisk'], // vanlig kimchi har fisksås
+      allergens: ['Fisk'],
       alternative: { name: 'Vegansk kimchi', allergens: [] },
     },
+    { name: 'Chipotlepasta', allergens: [] },
+    { name: 'Salsa', allergens: [] },
+    { name: 'Tacosås', allergens: [] },
+    { name: 'Guacamole', allergens: [] },
+    { name: 'Tapenade', allergens: [] },
+    { name: 'Ajvar', allergens: [] },
     {
-      name: 'Chipotlepasta', // mexikanskt
-      allergens: [],
-    },
-    { name: 'Salsa', allergens: [] }, // mexikanskt
-    { name: 'Tacosås', allergens: [] }, // mexikanskt
-    { name: 'Guacamole', allergens: [] }, // mexikanskt
-    {
-      name: 'Tapenade', // medelhav
-      allergens: [],
-    },
-    {
-      name: 'Ajvar', // medelhav
-      allergens: [],
-    },
-    {
-      name: 'Pesto', // medelhav
-      allergens: ['Nötter'], // pinjenötter
-      alternative: {
-        name: 'Pesto utan nötter',
-        allergens: [],
-      },
+      name: 'Pesto',
+      allergens: ['Nötter'],
+      alternative: { name: 'Pesto utan nötter', allergens: [] },
     },
   ],
 }

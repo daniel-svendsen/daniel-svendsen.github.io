@@ -22,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class OpenAiController {
 
     private final Map<String, Bucket> buckets = new ConcurrentHashMap<>();
-    private static final long REQUEST_LIMIT = 50;
+    private static final long REQUEST_LIMIT = 100;
     private static final long REFILL_DAYS = 7;
 
     private final OpenAiService openAiService;

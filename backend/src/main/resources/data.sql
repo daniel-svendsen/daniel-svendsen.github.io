@@ -139,7 +139,7 @@ VALUES (1, 'Personal Website & CV',
         'I built the website for my photography company and this work page myself using React, Vite, and Tailwind CSS. It includes interactive features such as a dynamic PDF generator, responsive design, and fetching data from a database for the CV page. The website is hosted by Cloudflare with actions on main pushes and the backend plus database are deployed on Railway.',
         'https://www.svendsenphotography.com/work'),
        (1, 'ReceptoBot',
-        'I developed ReceptoBot, an application that dynamically generates recipes using OpenAI''s API. The backend is built with Spring Boot and utilizes Bucket4j for rate-limiting, while the frontend is developed with React, Vite, and Tailwind CSS. ReceptoBot customizes recipes based on user-selected ingredients, allergies, and cuisine preferences. The project is deployed on Railway and uses Cloudflare for domain routing.',
+        'I developed ReceptoBot, a service that dynamically generates recipes using OpenAI''s API. The backend is built with Spring Boot and utilizes Bucket4j for rate-limiting, while the frontend is developed with React, Vite, and Tailwind CSS. ReceptoBot customizes recipes based on user-selected ingredients, allergies, and cuisine preferences. The project is deployed on Railway and uses Cloudflare for domain routing.',
         'https://www.svendsenphotography.com/recipes');
 
 -- E. cv_contact för cv_id=1 (profile)
