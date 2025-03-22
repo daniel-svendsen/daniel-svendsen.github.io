@@ -1,7 +1,7 @@
 // src/components/WorkTabs/Contact.tsx
 import React from 'react'
 import SectionWrapper from '../SectionWrapper'
-import { CvContact } from '@/api'
+import { CvContact } from '@/api/api'
 
 interface ContactProps {
   contacts: CvContact[]

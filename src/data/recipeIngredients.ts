@@ -97,14 +97,6 @@ export const recipeIngredients = {
       alternative: { name: 'Soyabaserad Fraiche', allergens: [] },
     },
     {
-      name: 'Mjölkchoklad',
-      allergens: ['Laktos'], // ev. spår av nötter
-      alternative: {
-        name: 'Mörk choklad (vegansk)',
-        allergens: [],
-      },
-    },
-    {
       name: 'Kvarg',
       allergens: ['Laktos'],
       alternative: { name: 'Laktosfri kvarg', allergens: [] },

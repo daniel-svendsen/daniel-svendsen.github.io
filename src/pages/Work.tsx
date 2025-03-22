@@ -7,7 +7,7 @@ import {
   fetchCvLanguages,
   fetchCvProjects,
   fetchCvSkills,
-} from '../api'
+} from '../api/cvApi'
 import {
   CvContact,
   CvContent,
