@@ -22,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class OpenAiController {
 
     private final Map<String, Bucket> buckets = new ConcurrentHashMap<>();
-    private static final long REQUEST_LIMIT = 20;
+    private static final long REQUEST_LIMIT = 50;
     private static final long REFILL_DAYS = 7;
 
     private final OpenAiService openAiService;
@@ -55,9 +55,12 @@ public class OpenAiController {
                 "Generera 3 olika recept för %d personer%s. Varje recept ska ha följande format:\n" +
                         "1. 'id': ett unikt identifieringsnummer eller sträng.\n" +
                         "2. 'title': en kort titel för receptet.\n" +
-                        "3. 'content': en tydlig lista över ingredienser och en steg-för-steg instruktion för tillvägagångssättet.\n" +
-                        "Inkludera endast recept där de valda ingredienserna (%s) beaktas. Jag är allergisk mot %s och har följande ingredienser som riktlinje: %s. " +
-                        "Returnera svaret som en JSON med fältet \"recipes\" som en array av objekt. Svara alltid på svenska.",
+                        "3. 'content': ett objekt med exakt följande fält:\n" +
+                        "   a. 'ingredients': en array med ingredienser.\n" +
+                        "   b. 'instructions': en sträng med en steg-för-steg instruktion.\n" +
+                        "Inkludera endast recept där de valda ingredienserna (%s) beaktas, småsaker kan tilläggas. Jag är allergisk mot %s och har följande ingredienser som riktlinje: %s. " +
+                        "Returnera enbart svaret som en JSON med fältet \"recipes\" som en array av objekt, utan några ytterligare kommentarer. " +
+                        "Svara alltid på svenska.",
                 servings, cuisineText, ingredientList, allergenList, ingredientList
         );
 
