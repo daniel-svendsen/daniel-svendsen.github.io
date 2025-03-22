@@ -1,7 +1,7 @@
 package com.svendsenphotography.backend.controller;
 
 import com.svendsenphotography.backend.model.*;
-import com.svendsenphotography.backend.repository.*;
+import com.svendsenphotography.backend.service.CvService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,54 +11,41 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cv")
-@CrossOrigin(origins = "*") // Tillåt frontend att anropa API:et
+@CrossOrigin(origins = "*")
 public class CvController {
-    private final CvContentRepository cvContentRepository;
-    private final CvSkillRepository cvSkillRepository;
-    private final CvExperienceRepository cvExperienceRepository;
-    private final CvProjectRepository cvProjectRepository;
-    private final CvContactRepository cvContactRepository;
-    private final CvLanguageRepository cvLanguageRepository;
+    private final CvService cvService;
 
-    public CvController(CvContentRepository cvContentRepository, CvSkillRepository cvSkillRepository,
-                        CvExperienceRepository cvExperienceRepository, CvProjectRepository cvProjectRepository,
-                        CvContactRepository cvContactRepository, CvLanguageRepository cvLanguageRepository) {
-        this.cvContentRepository = cvContentRepository;
-        this.cvSkillRepository = cvSkillRepository;
-        this.cvExperienceRepository = cvExperienceRepository;
-        this.cvProjectRepository = cvProjectRepository;
-        this.cvContactRepository = cvContactRepository;
-        this.cvLanguageRepository = cvLanguageRepository;
+    public CvController(CvService cvService) {
+        this.cvService = cvService;
     }
 
     @GetMapping("/content")
     public List<CvContent> getCvContent() {
-        System.out.println("🚀 API /content anropades!");
-        return cvContentRepository.findAll();
+        return cvService.getContent();
     }
 
     @GetMapping("/skills")
     public List<CvSkill> getCvSkills() {
-        return cvSkillRepository.findAll();
+        return cvService.getSkills();
     }
 
     @GetMapping("/experience")
     public List<CvExperience> getCvExperience() {
-        return cvExperienceRepository.findAll();
+        return cvService.getExperience();
     }
 
     @GetMapping("/projects")
     public List<CvProject> getCvProjects() {
-        return cvProjectRepository.findAll();
+        return cvService.getProjects();
     }
 
     @GetMapping("/contact")
     public List<CvContact> getCvContact() {
-        return cvContactRepository.findAll();
+        return cvService.getContacts();
     }
 
     @GetMapping("/languages")
     public List<CvLanguage> getCvLanguages() {
-        return cvLanguageRepository.findAll();
+        return cvService.getLanguages();
     }
 }

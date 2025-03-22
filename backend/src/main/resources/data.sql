@@ -135,8 +135,9 @@ Goods recipient - Recieving goods from trucks and ensuring proper system entry',
 -- D. cv_projects för cv_id=1 (profile)
 INSERT INTO cv_projects (cv_id, name, details)
 VALUES (1, 'Personal Website & CV',
-        'I built the website for my photography company and this work page myself using React, Vite, and Tailwind CSS. It includes interactive features such as a dynamic PDF generator, responsive design,' ||
-        'fetching data from a database for the cv page. Website hosted by Cloudflare with actions on main pushes and backend + database on Railway.');
+        'I built the website for my photography company and this work page myself using React, Vite, and Tailwind CSS. It includes interactive features such as a dynamic PDF generator, responsive design, and fetching data from a database for the CV page. The website is hosted by Cloudflare with actions on main pushes and the backend plus database are deployed on Railway.'),
+       (1, 'ReceptoBot',
+        'I developed ReceptoBot, an application that dynamically generates recipes using OpenAI''s API. The backend is built with Spring Boot and utilizes Bucket4j for rate-limiting, while the frontend is developed with React, Vite, and Tailwind CSS. ReceptoBot customizes recipes based on user-selected ingredients, allergies, and cuisine preferences. The project is deployed on Railway and uses Cloudflare for domain routing.');
 
 -- E. cv_contact för cv_id=1 (profile)
 INSERT INTO cv_contact (cv_id, type, details, link_href)

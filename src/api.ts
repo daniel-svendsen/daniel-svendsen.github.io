@@ -62,25 +62,25 @@ async function fetchData<T>(endpoint: string): Promise<T> {
 
 // --- Exponerade funktioner för varje endpoint ---
 export function fetchCvContent(): Promise<CvContent[]> {
-  return fetchData<CvContent[]>('content')
+  return fetchData<CvContent[]>('cv/content')
 }
 
 export function fetchCvSkills(): Promise<CvSkill[]> {
-  return fetchData<CvSkill[]>('skills')
+  return fetchData<CvSkill[]>('cv/skills')
 }
 
 export function fetchCvExperience(): Promise<CvExperience[]> {
-  return fetchData<CvExperience[]>('experience')
+  return fetchData<CvExperience[]>('cv/experience')
 }
 
 export function fetchCvProjects(): Promise<CvProject[]> {
-  return fetchData<CvProject[]>('projects')
+  return fetchData<CvProject[]>('cv/projects')
 }
 
 export function fetchCvContact(): Promise<CvContact[]> {
-  return fetchData<CvContact[]>('contact')
+  return fetchData<CvContact[]>('cv/contact')
 }
 
 export function fetchCvLanguages(): Promise<CvLanguage[]> {
-  return fetchData<CvLanguage[]>('languages')
+  return fetchData<CvLanguage[]>('cv/languages')
 }

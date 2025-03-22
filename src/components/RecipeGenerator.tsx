@@ -78,7 +78,8 @@ export default function RecipeGenerator() {
   const generateRecipes = async () => {
     setLoading(true)
     try {
-      const response = await fetch('/api/generate-recipes', {
+      const API_URL = import.meta.env.VITE_API_URL
+      const response = await fetch(`${API_URL}/generate-recipes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
