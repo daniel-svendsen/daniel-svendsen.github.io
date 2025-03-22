@@ -1,5 +1,7 @@
 package com.svendsenphotography.backend.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,7 @@ public class OpenAiService {
                     .body(Map.of("error", "OpenAI-nyckel saknas i servern"));
         }
 
+        // Bygg upp payload för OpenAI-anropet
         Map<String, Object> payload = new HashMap<>();
         payload.put("model", "gpt-3.5-turbo");
         payload.put("temperature", 0.7);
@@ -55,7 +58,20 @@ public class OpenAiService {
             Map<String, Object> message = (Map<String, Object>) choices.get(0).get("message");
             String content = (String) message.get("content");
 
-            return ResponseEntity.ok(Map.of("recipes", content.split("\n")));
+            // Försök att parsa GPT-svaret som JSON
+            ObjectMapper mapper = new ObjectMapper();
+            try {
+                // Förväntar att GPT returnerar t.ex.:
+                // { "recipes": [ { "id": "1", "title": "Recept 1", "content": "..." }, {...}, {...} ] }
+                Map<String, Object> result = mapper.readValue(content, new TypeReference<Map<String, Object>>() {
+                });
+                return ResponseEntity.ok(result);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(Map.of("error", "Fel vid tolkning av GPT-svar", "details", e.getMessage()));
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)

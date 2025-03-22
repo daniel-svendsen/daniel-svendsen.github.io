@@ -50,11 +50,14 @@ public class OpenAiController {
         String ingredientList = ingredients.isEmpty() ? "inga" : String.join(", ", ingredients);
         String cuisineText = cuisine.isEmpty() ? "" : String.format(", anpassade efter %s matkultur", cuisine);
 
+        // Uppdatera prompten så att GPT returnerar JSON-format med ett fält "recipes"
         String prompt = String.format(
                 "Generera 3 olika recept för %d personer%s. Varje recept ska ha följande format:\n" +
-                        "1. Ingredienser: en tydlig lista över alla nödvändiga ingredienser, där de valda ingredienserna (%s) prioriteras och bör ingå om de passar receptet, men inte nödvändigtvis måste användas i sin helhet.\n" +
-                        "2. Tillvägagångssätt: en steg-för-steg instruktion för hur man tillagar rätten.\n" +
-                        "Jag är allergisk mot %s och har följande ingredienser som riktlinje: %s. Dessa ingredienser bör beaktas med hög prioritet, men det är tillåtet att inkludera andra lämpliga ingredienser vid behov.",
+                        "1. 'id': ett unikt identifieringsnummer eller sträng.\n" +
+                        "2. 'title': en kort titel för receptet.\n" +
+                        "3. 'content': en tydlig lista över ingredienser och en steg-för-steg instruktion för tillvägagångssättet.\n" +
+                        "Inkludera endast recept där de valda ingredienserna (%s) beaktas. Jag är allergisk mot %s och har följande ingredienser som riktlinje: %s. " +
+                        "Returnera svaret som en JSON med fältet \"recipes\" som en array av objekt. Svara alltid på svenska.",
                 servings, cuisineText, ingredientList, allergenList, ingredientList
         );
 
