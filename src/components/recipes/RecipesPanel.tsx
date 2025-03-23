@@ -10,42 +10,39 @@ interface RecipesPanelProps {
 
 // Hjälpfunktion som tolkar en ingrediens utifrån olika möjliga strukturer
 const formatIngredient = (ing: any): string => {
-  // 1. Objektcheck
   if (ing && typeof ing === 'object') {
-    // 1a. name + quantity/amount
+    // 1. Engelska nycklar: "name" + "quantity" eller "amount"
     if ('name' in ing && ('quantity' in ing || 'amount' in ing)) {
       const qty = ing.quantity || ing.amount
       return `${ing.name} (${qty})`
     }
-    // 1b. enbart "amount"
+    // 2. Svenska nycklar: "namn" och "mängd"
+    if ('namn' in ing && 'mängd' in ing) {
+      return `${ing.namn} (${ing.mängd})`
+    }
+    // 3. Om objektet har egenskaper "amount" men inte "name"
     if ('amount' in ing) {
       const keys = Object.keys(ing)
       if (keys.length === 1) {
-        // Ex. { "Kyckling": "600g" }
         const key = keys[0]
         return `${key} (${ing[key]})`
       } else {
-        // Hitta första nyckeln som inte är "amount"
         if (keys.includes('amount')) {
           const key = keys.find((k) => k !== 'amount') || 'Okänd'
           return `${key} (${ing.amount})`
         }
       }
     }
-    // 1c. Om objektet bara har en enda nyckel (ex. { "Kyckling": "600g" })
+    // 4. Om objektet bara har en enda nyckel (exempelvis { "Kyckling": "600g" })
     const keys = Object.keys(ing)
     if (keys.length === 1) {
       const key = keys[0]
       return `${key} (${ing[key]})`
     }
-
-    // 1d. Sista fallback: Skriv ut alla key-value-par i objektet
-    // Exempel: "Kyckling=600g, salt=1 tsk"
+    // 5. Sista fallback: Skriv ut alla key-value-par
     const pairs = keys.map((key) => `${key}=${ing[key]}`).join(', ')
     return pairs || 'Okänd ingrediens'
   }
-
-  // 2. Om det inte är ett objekt
   return ing || 'Okänd ingrediens'
 }
 

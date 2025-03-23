@@ -41,31 +41,35 @@ public class OpenAiController {
                     .body(Map.of("error", "För många förfrågningar. Försök igen senare!"));
         }
 
+        // Hämta allergener, ingredienser, antal portioner, matkultur och proteiner från body
         List<String> allergens = (List<String>) body.getOrDefault("allergens", new ArrayList<>());
         List<String> ingredients = (List<String>) body.getOrDefault("ingredients", new ArrayList<>());
         int servings = (int) body.getOrDefault("servings", 2);
         String cuisine = (String) body.getOrDefault("cuisine", "");
+        List<String> proteins = (List<String>) body.getOrDefault("proteins", new ArrayList<>());
 
         String allergenList = allergens.isEmpty() ? "inga" : String.join(", ", allergens);
         String ingredientList = ingredients.isEmpty() ? "inga" : String.join(", ", ingredients);
+        String proteinFilter = proteins.isEmpty() ? "" : String.format(" med %s", String.join(", ", proteins));
         String cuisineText = cuisine.isEmpty() ? "" : String.format(", anpassade efter %s matkultur", cuisine);
 
-        // Uppdatera prompten så att GPT returnerar JSON-format med ett fält "recipes"
+        // Uppdaterad prompt med proteinFilter
         String prompt = String.format(
-                "Generera 3 olika recept för %d personer%s. Varje recept ska ha följande format:\n" +
+                "Generera 3 olika recept för %d personer%s%s. Varje recept ska ha följande format:\n" +
                         "1. 'id': ett unikt identifieringsnummer eller sträng.\n" +
                         "2. 'title': en kort titel för receptet.\n" +
                         "3. 'content': ett objekt med exakt följande fält:\n" +
-                        "   a. 'ingredients': en array med ingredienser, där varje ingrediens anges med både namn och exakt mängd (t.ex. gram, dl, msk) som är anpassad för %d personer.\n" +
-                        "   b. 'instructions': en sträng med en steg-för-steg instruktion.\n" +
+                        "   a. 'ingredients': en array med ingredienser där varje ingrediens anges med namn och mängd anpassad för %d personer.\n" +
+                        "   b. 'instructions': en steg-för-steg instruktion.\n" +
                         "Inkludera endast recept där de valda ingredienserna (%s) beaktas, småsaker kan tilläggas. Jag är allergisk mot %s och har följande ingredienser som riktlinje: %s. " +
                         "Returnera enbart svaret som en JSON med fältet \"recipes\" som en array av objekt, utan några ytterligare kommentarer. " +
                         "Svara alltid på svenska.",
-                servings, cuisineText, servings, ingredientList, allergenList, ingredientList
+                servings, cuisineText, proteinFilter, servings, ingredientList, allergenList, ingredientList
         );
 
         return openAiService.callOpenAiApi(prompt);
     }
+
 
     private Bucket createNewBucket(String ip) {
         Bandwidth limit = Bandwidth.classic(

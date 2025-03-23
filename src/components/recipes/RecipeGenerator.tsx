@@ -18,6 +18,7 @@ export interface Recipe {
 export default function RecipeGenerator() {
   const [selectedAllergens, setSelectedAllergens] = useState<string[]>([])
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([])
+  const [selectedProteins, setSelectedProteins] = useState<string[]>([])
   const [recipes, setRecipes] = useState<Recipe[]>([])
   const [loading, setLoading] = useState(false)
   const [servings, setServings] = useState<number>(4)
@@ -68,6 +69,7 @@ export default function RecipeGenerator() {
       const data = await generateRecipesAPI({
         allergens: selectedAllergens,
         ingredients: selectedIngredients,
+        proteins: selectedProteins, // Skicka med proteinvalet
         servings,
         cuisine,
       })
@@ -120,6 +122,7 @@ export default function RecipeGenerator() {
   const deselectAll = () => {
     setSelectedAllergens([])
     setSelectedIngredients([])
+    setSelectedProteins([])
   }
 
   return (
@@ -151,6 +154,8 @@ export default function RecipeGenerator() {
             setSelectedAllergens={setSelectedAllergens}
             selectedIngredients={selectedIngredients}
             setSelectedIngredients={setSelectedIngredients}
+            selectedProteins={selectedProteins}
+            setSelectedProteins={setSelectedProteins}
             servings={servings}
             setServings={setServings}
             cuisine={cuisine}
@@ -189,6 +194,8 @@ export default function RecipeGenerator() {
             setSelectedAllergens={setSelectedAllergens}
             selectedIngredients={selectedIngredients}
             setSelectedIngredients={setSelectedIngredients}
+            selectedProteins={selectedProteins}
+            setSelectedProteins={setSelectedProteins}
             servings={servings}
             setServings={setServings}
             cuisine={cuisine}

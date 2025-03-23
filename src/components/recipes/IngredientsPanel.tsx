@@ -17,6 +17,8 @@ interface IngredientsPanelProps {
   setSelectedAllergens: React.Dispatch<React.SetStateAction<string[]>>
   selectedIngredients: string[]
   setSelectedIngredients: React.Dispatch<React.SetStateAction<string[]>>
+  selectedProteins: string[]
+  setSelectedProteins: React.Dispatch<React.SetStateAction<string[]>>
   servings: number
   setServings: React.Dispatch<React.SetStateAction<number>>
   cuisine: string
@@ -43,6 +45,8 @@ const IngredientsPanel = ({
   setSelectedAllergens,
   selectedIngredients,
   setSelectedIngredients,
+  selectedProteins,
+  setSelectedProteins,
   servings,
   setServings,
   cuisine,
@@ -65,6 +69,14 @@ const IngredientsPanel = ({
       prev.includes(ingredientName)
         ? prev.filter((i) => i !== ingredientName)
         : [...prev, ingredientName],
+    )
+  }
+
+  const toggleProtein = (protein: string) => {
+    setSelectedProteins((prev) =>
+      prev.includes(protein)
+        ? prev.filter((p) => p !== protein)
+        : [...prev, protein],
     )
   }
 
@@ -121,15 +133,12 @@ const IngredientsPanel = ({
           ingredientData = found
         }
       })
-
-      // Om vi hittade data för ingrediensen
       if (ingredientData) {
-        // Om ingrediensen innehåller allergener som användaren har markerat
+        // Om ingrediensen har allergener som användaren markerat
         const hasConflict = ingredientData.allergens.some((allergen) =>
           selectedAllergens.includes(allergen),
         )
         if (hasConflict && ingredientData.alternative) {
-          // Kontrollera att alternativet inte innehåller någon av de markerade allergenerna
           const altConflict = ingredientData.alternative.allergens.some(
             (allergen) => selectedAllergens.includes(allergen),
           )
@@ -139,10 +148,8 @@ const IngredientsPanel = ({
         }
         return ingredientData.name
       }
-      // Om ingen match hittas, returnera basic som fallback
       return basic
     })
-
     setSelectedIngredients(filtered)
   }
 
@@ -152,6 +159,7 @@ const IngredientsPanel = ({
         <h2 className="text-lg font-bold">Välj ingredienser</h2>
       </div>
 
+      {/* Knapparna */}
       <div className="flex flex-col sm:flex-row sm:justify-end gap-2 mb-4">
         <Button
           onClick={deselectAll}
@@ -180,19 +188,7 @@ const IngredientsPanel = ({
           className="w-full rounded border border-gray-300 p-2"
         />
       </div>
-      <div className="mb-4">
-        <h3 className="font-semibold">Allergier</h3>
-        <div className="flex flex-wrap gap-2 mt-2">
-          {allergenOptions.map((allergen) => (
-            <Checkbox
-              key={allergen}
-              label={allergen}
-              selected={selectedAllergens.includes(allergen)}
-              onChange={() => toggleAllergen(allergen)}
-            />
-          ))}
-        </div>
-      </div>
+
       <div className="mb-4">
         <h3 className="font-semibold">Matkultur (valfritt)</h3>
         <select
@@ -208,7 +204,42 @@ const IngredientsPanel = ({
           <option value="nordisk">Nordiskt</option>
         </select>
       </div>
+
+      {/* Allergier */}
+      <div className="mb-4">
+        <h3 className="font-semibold">Allergier</h3>
+        <div className="flex flex-wrap gap-2 mt-2">
+          {allergenOptions.map((allergen) => (
+            <Checkbox
+              key={allergen}
+              label={allergen}
+              selected={selectedAllergens.includes(allergen)}
+              onChange={() => toggleAllergen(allergen)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Proteiner */}
+      {recipeIngredients.protein && (
+        <div className="mb-4">
+          <h3 className="font-semibold">Proteiner</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-2">
+            {recipeIngredients.protein.map((item) => (
+              <Checkbox
+                key={item.name}
+                label={item.name}
+                selected={selectedProteins.includes(item.name)}
+                onChange={() => toggleProtein(item.name)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Övriga ingredienser */}
       {Object.entries(recipeIngredients).map(([catName, catItems]) => {
+        if (catName === 'protein') return null
         const displayable = getDisplayableItems(catItems, selectedAllergens)
         return (
           <div key={catName} className="mb-6">
@@ -226,6 +257,7 @@ const IngredientsPanel = ({
           </div>
         )
       })}
+
       <Button
         onClick={onGenerateRecipes}
         className="mt-4 w-full bg-blue-500 text-white py-2 rounded"
