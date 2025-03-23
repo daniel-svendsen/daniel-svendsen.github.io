@@ -53,7 +53,15 @@ public class OpenAiController {
         String ingredientList = ingredients.isEmpty() ? "inga" : String.join(", ", ingredients);
         String cuisineText = cuisine.isEmpty() ? "" : String.format(", anpassade efter %s matkultur", cuisine);
 
-        // Exempel på en prompt – justera vid behov för att säkerställa att endast valda proteiner används
+        String proteinPromptPart;
+        if (!proteins.isEmpty() && proteins.size() == 1) {
+            proteinPromptPart = proteins.get(0) + " som huvudingrediens";
+        } else if (!proteins.isEmpty()) {
+            proteinPromptPart = String.join(", ", proteins);
+        } else {
+            proteinPromptPart = "";
+        }
+
         String prompt = String.format(
                 "Generera 3 olika recept med %s för %d personer%s. " +
                         "Varje recept ska ha följande format:\n" +
@@ -66,7 +74,7 @@ public class OpenAiController {
                         "Jag är allergisk mot %s. " +
                         "Returnera enbart svaret som en JSON med fältet \"recipes\" som en array av objekt, utan några ytterligare kommentarer. " +
                         "Svara alltid på svenska.",
-                String.join(", ", proteins),
+                proteinPromptPart,
                 servings,
                 cuisineText,
                 servings,
