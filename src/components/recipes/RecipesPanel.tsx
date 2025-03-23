@@ -10,36 +10,42 @@ interface RecipesPanelProps {
 
 // Hjälpfunktion som tolkar en ingrediens utifrån olika möjliga strukturer
 const formatIngredient = (ing: any): string => {
+  // 1. Objektcheck
   if (ing && typeof ing === 'object') {
-    // Om objektet har egenskaper "name" och "quantity" eller "amount"
+    // 1a. name + quantity/amount
     if ('name' in ing && ('quantity' in ing || 'amount' in ing)) {
       const qty = ing.quantity || ing.amount
       return `${ing.name} (${qty})`
     }
-    // Om objektet har egenskaper "amount" men inte "name"
+    // 1b. enbart "amount"
     if ('amount' in ing) {
-      // Försök hitta en annan nyckel, t.ex. om det bara är { "Kyckling": "600g", "amount": "600g" }
-      // Men om det inte finns "name", returnera en sträng med alla nycklar
       const keys = Object.keys(ing)
       if (keys.length === 1) {
+        // Ex. { "Kyckling": "600g" }
         const key = keys[0]
         return `${key} (${ing[key]})`
       } else {
-        // Ta första nyckeln som namn och "amount" som mängd om möjligt
+        // Hitta första nyckeln som inte är "amount"
         if (keys.includes('amount')) {
           const key = keys.find((k) => k !== 'amount') || 'Okänd'
           return `${key} (${ing.amount})`
         }
       }
     }
-    // Om objektet bara har en enda nyckel (exempelvis { "Kyckling": "600g" })
+    // 1c. Om objektet bara har en enda nyckel (ex. { "Kyckling": "600g" })
     const keys = Object.keys(ing)
     if (keys.length === 1) {
       const key = keys[0]
       return `${key} (${ing[key]})`
     }
+
+    // 1d. Sista fallback: Skriv ut alla key-value-par i objektet
+    // Exempel: "Kyckling=600g, salt=1 tsk"
+    const pairs = keys.map((key) => `${key}=${ing[key]}`).join(', ')
+    return pairs || 'Okänd ingrediens'
   }
-  // Om ing är en sträng eller null/undefined
+
+  // 2. Om det inte är ett objekt
   return ing || 'Okänd ingrediens'
 }
 
