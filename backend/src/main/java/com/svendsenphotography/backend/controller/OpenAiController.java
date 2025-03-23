@@ -50,21 +50,21 @@ public class OpenAiController {
 
         String allergenList = allergens.isEmpty() ? "inga" : String.join(", ", allergens);
         String ingredientList = ingredients.isEmpty() ? "inga" : String.join(", ", ingredients);
-        String proteinFilter = proteins.isEmpty() ? "" : String.format(" med %s", String.join(", ", proteins));
         String cuisineText = cuisine.isEmpty() ? "" : String.format(", anpassade efter %s matkultur", cuisine);
 
-        // Uppdaterad prompt med proteinFilter
         String prompt = String.format(
-                "Generera 3 olika recept för %d personer%s%s. Varje recept ska ha följande format:\n" +
+                "Generera 3 olika recept med %s för %d personer%s%s. " +
+                        "Varje recept ska ha följande format:\n" +
                         "1. 'id': ett unikt identifieringsnummer eller sträng.\n" +
                         "2. 'title': en kort titel för receptet.\n" +
                         "3. 'content': ett objekt med exakt följande fält:\n" +
                         "   a. 'ingredients': en array med ingredienser där varje ingrediens anges med namn och mängd anpassad för %d personer.\n" +
                         "   b. 'instructions': en steg-för-steg instruktion.\n" +
-                        "Inkludera endast recept där de valda ingredienserna (%s) beaktas, småsaker kan tilläggas. Jag är allergisk mot %s och har följande ingredienser som riktlinje: %s. " +
+                        "Inkludera endast recept där de valda ingredienserna (%s) beaktas, småsaker kan tilläggas. " +
+                        "Jag är allergisk mot %s. " +
                         "Returnera enbart svaret som en JSON med fältet \"recipes\" som en array av objekt, utan några ytterligare kommentarer. " +
                         "Svara alltid på svenska.",
-                servings, cuisineText, proteinFilter, servings, ingredientList, allergenList, ingredientList
+                String.join(", ", proteins), servings, cuisineText, "", servings, ingredientList, allergenList, ingredientList
         );
 
         return openAiService.callOpenAiApi(prompt);
