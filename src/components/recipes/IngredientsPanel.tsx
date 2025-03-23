@@ -94,6 +94,7 @@ const IngredientsPanel = ({
     'Peppar',
     'Olivolja',
     'Mjöl',
+    'Mjölk',
     'Smör',
     'Socker',
     'Vatten',
@@ -118,6 +119,10 @@ const IngredientsPanel = ({
     'Basilika',
     'Timjan',
     'Rosmarin',
+    'Ost',
+    'Citron',
+    'Äpple',
+    'Ketchup',
   ]
 
   // Funktion som markerar basvaror med allergivänliga alternativ
