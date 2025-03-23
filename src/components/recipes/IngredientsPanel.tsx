@@ -76,16 +76,94 @@ const IngredientsPanel = ({
     setCuisine(e.target.value)
   }
 
+  // Lista med basvaror
+  const basicIngredients = [
+    'Salt',
+    'Peppar',
+    'Olivolja',
+    'Mjöl',
+    'Smör',
+    'Socker',
+    'Vatten',
+    'Ägg',
+    'Vitlök',
+    'Oregano',
+    'Paprikapulver',
+    'Curry',
+    'Tacokrydda',
+    'Kycklingbuljong',
+    'Grönsaksbuljong',
+    'Oxbuljong',
+    'Köttbuljong',
+    'Tomat',
+    'Lök',
+    'Morot',
+    'Broccoli',
+    'Blomkål',
+    'Majs',
+    'Vitlökspulver',
+    'Kanel',
+    'Basilika',
+    'Timjan',
+    'Rosmarin',
+  ]
+
+  // Funktion som markerar basvaror med allergivänliga alternativ
+  const handleSelectBasic = () => {
+    const filtered = basicIngredients.map((basic) => {
+      let ingredientData: IngredientItem | null = null
+      // Sök igenom alla kategorier efter en matchande ingrediens
+      Object.values(recipeIngredients).forEach((category) => {
+        const found = category.find(
+          (item) => item.name.toLowerCase() === basic.toLowerCase(),
+        )
+        if (found) {
+          ingredientData = found
+        }
+      })
+
+      // Om vi hittade data för ingrediensen
+      if (ingredientData) {
+        // Om ingrediensen innehåller allergener som användaren har markerat
+        const hasConflict = ingredientData.allergens.some((allergen) =>
+          selectedAllergens.includes(allergen),
+        )
+        if (hasConflict && ingredientData.alternative) {
+          // Kontrollera att alternativet inte innehåller någon av de markerade allergenerna
+          const altConflict = ingredientData.alternative.allergens.some(
+            (allergen) => selectedAllergens.includes(allergen),
+          )
+          if (!altConflict) {
+            return ingredientData.alternative.name
+          }
+        }
+        return ingredientData.name
+      }
+      // Om ingen match hittas, returnera basic som fallback
+      return basic
+    })
+
+    setSelectedIngredients(filtered)
+  }
+
   return (
     <div className="rounded-lg border bg-white p-4 shadow">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-bold">Välj ingredienser</h2>
-        <button
-          onClick={deselectAll}
-          className="text-xs text-blue-500 underline"
-        >
-          Avmarkera alla
-        </button>
+        <div className="flex gap-2">
+          <Button
+            onClick={deselectAll}
+            className="px-3 py-1 border border-blue-500 text-blue-500 rounded hover:bg-blue-50 transition-colors"
+          >
+            Avmarkera alla
+          </Button>
+          <Button
+            onClick={handleSelectBasic}
+            className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          >
+            Jag har basvaror
+          </Button>
+        </div>
       </div>
       <div className="mb-4">
         <label htmlFor="servings" className="font-semibold block mb-2">

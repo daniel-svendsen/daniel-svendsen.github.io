@@ -3,7 +3,7 @@
 export interface Ingredient {
   name: string
   allergens: string[]
-  // Vill du ha flera alternativ? Använd alternativ?: Ingredient[]
+  // Vill du ha flera alternativ? Använd alternativ?: Ingredient
   alternative?: Ingredient
 }
 
@@ -42,7 +42,6 @@ export const recipeIngredients = {
     },
     { name: 'Kikärtor', allergens: [] },
     { name: 'Röda linser', allergens: [] },
-
     // Nya (asiatiska/mexikanska) proteiner
     { name: 'Edamame', allergens: ['Soja'] },
     { name: 'Tofuskinn (Yuba)', allergens: ['Soja'] },
@@ -82,7 +81,6 @@ export const recipeIngredients = {
       allergens: ['Laktos'],
       alternative: { name: 'Laktosfri kvarg', allergens: [] },
     },
-
     // Nya (mexikanska/medelhav)
     {
       name: 'Queso Fresco',
@@ -98,6 +96,48 @@ export const recipeIngredients = {
       name: 'Mozzarella',
       allergens: ['Laktos'],
       alternative: { name: 'Vegansk mozzarella', allergens: [] },
+    },
+    {
+      name: 'Smaksatt Créme Fraiche',
+      allergens: ['Laktos'],
+      alternative: { name: 'Smaksatt vegansk Créme', allergens: [] },
+    },
+    // Nya smaksatta lätt crème fraiche-varianter (Arla Köket®)
+    {
+      name: 'Lätt crème fraiche',
+      allergens: ['Laktos'],
+    },
+    {
+      name: 'Lätt crème fraiche dragon, citron & vitlök',
+      allergens: ['Laktos'],
+    },
+    {
+      name: 'Lätt crème fraiche feta & soltorkad tomat',
+      allergens: ['Laktos'],
+    },
+    {
+      name: 'Lätt crème fraiche franska örter',
+      allergens: ['Laktos'],
+    },
+    {
+      name: 'Lätt crème fraiche lime & koriander',
+      allergens: ['Laktos'],
+    },
+    {
+      name: 'Lätt crème fraiche paprika&chili',
+      allergens: ['Laktos'],
+    },
+    {
+      name: 'Lätt crème fraiche parmesan&vitlök',
+      allergens: ['Laktos'],
+    },
+    {
+      name: 'Lätt crème fraiche sötstark mango',
+      allergens: ['Laktos'],
+    },
+    {
+      name: 'Lätt crème fraiche tomat&basilika',
+      allergens: ['Laktos'],
     },
   ],
 
@@ -122,7 +162,6 @@ export const recipeIngredients = {
     { name: 'Champinjoner', allergens: [] },
     { name: 'Fänkål', allergens: [] },
     { name: 'Ruccola', allergens: [] },
-
     // Nya (mexikanska/medelhav)
     { name: 'Jalapeños', allergens: [] },
     { name: 'Oliver', allergens: [] },
@@ -162,20 +201,21 @@ export const recipeIngredients = {
     { name: 'Gurkmeja', allergens: [] },
     { name: 'Herbes de Provence', allergens: [] },
     { name: 'Rökt paprika', allergens: [] },
-
     // Nya
     { name: 'Tacokrydda', allergens: [] },
     { name: 'Koriander', allergens: [] },
     { name: 'Basilika', allergens: [] },
+    // Extra vanliga kryddor
+    { name: 'Timjan', allergens: [] },
+    { name: 'Rosmarin', allergens: [] },
+    { name: 'Dragon', allergens: [] },
+    { name: 'Salvia', allergens: [] },
+    { name: 'Persilja', allergens: [] },
+    { name: 'Löksalt', allergens: [] },
   ],
 
   //--- GRYN ---//
   gryn: [
-    {
-      name: 'Pasta',
-      allergens: ['Gluten'],
-      alternative: { name: 'Glutenfri pasta', allergens: [] },
-    },
     { name: 'Ris', allergens: [] },
     {
       name: 'Bröd',
@@ -188,17 +228,17 @@ export const recipeIngredients = {
       alternative: { name: 'Glutenfritt mjöl', allergens: [] },
     },
     {
+      name: 'Havregryn',
+      allergens: ['Gluten'],
+      alternative: { name: 'Ren havre (GF-märkt)', allergens: [] },
+    },
+    {
       name: 'Couscous',
       allergens: ['Gluten'],
       alternative: {
         name: 'Bulgur (kan också innehålla gluten)',
         allergens: ['Gluten'],
       },
-    },
-    {
-      name: 'Havregryn',
-      allergens: ['Gluten'],
-      alternative: { name: 'Ren havre (GF-märkt)', allergens: [] },
     },
     { name: 'Quinoa', allergens: [] },
     {
@@ -207,23 +247,32 @@ export const recipeIngredients = {
       alternative: { name: 'Hirs', allergens: [] },
     },
     { name: 'Polenta', allergens: [] },
-
-    // Nya
     {
       name: 'Ramen (vete)',
       allergens: ['Gluten'],
       alternative: { name: 'Risnudlar', allergens: [] },
     },
+    // Nya vanliga gryn
     {
-      name: 'Vetetortilla',
+      name: 'Dinkel',
       allergens: ['Gluten'],
-      alternative: { name: 'Majstortilla', allergens: [] },
+      alternative: { name: 'Glutenfri dinkel', allergens: [] },
+    },
+    {
+      name: 'Korn',
+      allergens: ['Gluten'],
+      alternative: { name: 'Glutenfritt korn', allergens: [] },
     },
   ],
 
   //--- ÖVRIGT ---//
   övrigt: [
     { name: 'Olivolja', allergens: [] },
+    { name: 'Vatten', allergens: [] },
+    { name: 'Kycklingbuljong', allergens: [] },
+    { name: 'Grönsaksbuljong', allergens: [] },
+    { name: 'Oxbuljong', allergens: [] },
+    { name: 'Köttbuljong', allergens: [] },
     {
       name: 'Sojasås',
       allergens: ['Gluten'],
@@ -252,7 +301,6 @@ export const recipeIngredients = {
       allergens: ['Ägg'],
       alternative: { name: 'Vegansk majonnäs', allergens: [] },
     },
-
     // Asiatiska
     { name: 'Sesamolja', allergens: [] },
     {
