@@ -56,12 +56,12 @@ public class OpenAiController {
                         "1. 'id': ett unikt identifieringsnummer eller sträng.\n" +
                         "2. 'title': en kort titel för receptet.\n" +
                         "3. 'content': ett objekt med exakt följande fält:\n" +
-                        "   a. 'ingredients': en array med ingredienser.\n" +
+                        "   a. 'ingredients': en array med ingredienser, där varje ingrediens anges med både namn och exakt mängd (t.ex. gram, dl, msk) som är anpassad för %d personer.\n" +
                         "   b. 'instructions': en sträng med en steg-för-steg instruktion.\n" +
                         "Inkludera endast recept där de valda ingredienserna (%s) beaktas, småsaker kan tilläggas. Jag är allergisk mot %s och har följande ingredienser som riktlinje: %s. " +
                         "Returnera enbart svaret som en JSON med fältet \"recipes\" som en array av objekt, utan några ytterligare kommentarer. " +
                         "Svara alltid på svenska.",
-                servings, cuisineText, ingredientList, allergenList, ingredientList
+                servings, cuisineText, servings, ingredientList, allergenList, ingredientList
         );
 
         return openAiService.callOpenAiApi(prompt);

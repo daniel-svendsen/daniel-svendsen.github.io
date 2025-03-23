@@ -8,6 +8,41 @@ interface RecipesPanelProps {
   onSelectRecipe: (index: number) => void
 }
 
+// Hjälpfunktion som tolkar en ingrediens utifrån olika möjliga strukturer
+const formatIngredient = (ing: any): string => {
+  if (ing && typeof ing === 'object') {
+    // Om objektet har egenskaper "name" och "quantity" eller "amount"
+    if ('name' in ing && ('quantity' in ing || 'amount' in ing)) {
+      const qty = ing.quantity || ing.amount
+      return `${ing.name} (${qty})`
+    }
+    // Om objektet har egenskaper "amount" men inte "name"
+    if ('amount' in ing) {
+      // Försök hitta en annan nyckel, t.ex. om det bara är { "Kyckling": "600g", "amount": "600g" }
+      // Men om det inte finns "name", returnera en sträng med alla nycklar
+      const keys = Object.keys(ing)
+      if (keys.length === 1) {
+        const key = keys[0]
+        return `${key} (${ing[key]})`
+      } else {
+        // Ta första nyckeln som namn och "amount" som mängd om möjligt
+        if (keys.includes('amount')) {
+          const key = keys.find((k) => k !== 'amount') || 'Okänd'
+          return `${key} (${ing.amount})`
+        }
+      }
+    }
+    // Om objektet bara har en enda nyckel (exempelvis { "Kyckling": "600g" })
+    const keys = Object.keys(ing)
+    if (keys.length === 1) {
+      const key = keys[0]
+      return `${key} (${ing[key]})`
+    }
+  }
+  // Om ing är en sträng eller null/undefined
+  return ing || 'Okänd ingrediens'
+}
+
 const RecipesPanel = forwardRef<HTMLDivElement, RecipesPanelProps>(
   ({ recipes, loading, selectedRecipe, onSelectRecipe }, ref) => {
     return (
@@ -23,6 +58,8 @@ const RecipesPanel = forwardRef<HTMLDivElement, RecipesPanelProps>(
                 recipe.content.ingredients ||
                 recipe.content.ingredienser ||
                 recipe.content.ingrediens ||
+                recipe.content.quantity ||
+                recipe.content.kvantitet ||
                 []
               // Flera fallbacks för instruktioner
               const instructions =
@@ -43,20 +80,15 @@ const RecipesPanel = forwardRef<HTMLDivElement, RecipesPanelProps>(
                       : ''
                   }`}
                 >
-                  {/* Title */}
                   <h3 className="font-bold">{recipe.title}</h3>
-
-                  {/* Ingredients */}
                   <div>
                     <strong>Ingredienser: </strong>
                     <p>
                       {Array.isArray(ingredients)
-                        ? ingredients.join(', ')
-                        : ingredients}
+                        ? ingredients.map(formatIngredient).join(', ')
+                        : ingredients || 'Okända ingredienser'}
                     </p>
                   </div>
-
-                  {/* Instructions */}
                   <div>
                     <strong>Tillvägagångssätt: </strong>
                     <p style={{ whiteSpace: 'pre-line' }}>{instructions}</p>
