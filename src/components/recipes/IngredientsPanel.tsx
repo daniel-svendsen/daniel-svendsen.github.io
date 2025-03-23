@@ -148,23 +148,25 @@ const IngredientsPanel = ({
 
   return (
     <div className="rounded-lg border bg-white p-4 shadow">
-      <div className="flex justify-between items-center mb-4">
+      <div className="mb-4">
         <h2 className="text-lg font-bold">Välj ingredienser</h2>
-        <div className="flex gap-2">
-          <Button
-            onClick={deselectAll}
-            className="px-3 py-1 border border-blue-500 text-blue-500 rounded hover:bg-blue-50 transition-colors"
-          >
-            Avmarkera alla
-          </Button>
-          <Button
-            onClick={handleSelectBasic}
-            className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-          >
-            Jag har basvaror
-          </Button>
-        </div>
       </div>
+
+      <div className="flex flex-col sm:flex-row sm:justify-end gap-2 mb-4">
+        <Button
+          onClick={deselectAll}
+          className="w-full sm:w-auto px-3 py-1 border border-blue-500 text-blue-500 rounded hover:bg-blue-50 transition-colors"
+        >
+          Avmarkera alla
+        </Button>
+        <Button
+          onClick={handleSelectBasic}
+          className="w-full sm:w-auto px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+        >
+          Jag har basvaror
+        </Button>
+      </div>
+
       <div className="mb-4">
         <label htmlFor="servings" className="font-semibold block mb-2">
           Antal personer
