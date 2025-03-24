@@ -54,8 +54,8 @@ public class OpenAiController {
         String cuisineText = cuisine.isEmpty() ? "" : String.format(", anpassade efter %s matkultur", cuisine);
 
         String proteinPromptPart;
-        if (!proteins.isEmpty() && proteins.size() == 1) {
-            proteinPromptPart = proteins.get(0) + " som huvudingrediens";
+        if (!proteins.isEmpty()) {
+            proteinPromptPart = "använd endast " + String.join(", ", proteins) + " som huvudingrediens";
         } else if (!proteins.isEmpty()) {
             proteinPromptPart = String.join(", ", proteins);
         } else {
@@ -63,7 +63,7 @@ public class OpenAiController {
         }
 
         String prompt = String.format(
-                "Generera 3 olika recept med %s för %d personer%s. " +
+                "Generera 3 olika recept %s för %d personer%s. " +
                         "Varje recept ska ha följande format:\n" +
                         "1. 'id': ett unikt identifieringsnummer eller sträng.\n" +
                         "2. 'title': en kort titel för receptet.\n" +
@@ -81,6 +81,7 @@ public class OpenAiController {
                 ingredientList,
                 allergenList
         );
+
 
         return openAiService.callOpenAiApi(prompt);
     }
