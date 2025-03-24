@@ -22,7 +22,7 @@ export const generateRecipesAPI = async ({
       ingredients,
       servings,
       cuisine,
-      proteins: [],
+      proteins,
     }),
   })
   return response.json()

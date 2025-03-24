@@ -1,2 +1,0 @@
-import{o as e}from"./index-BTSoHJWT.js";const o=({isOpen:i,onClose:t,children:l})=>i?e.jsxs("div",{className:"fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50",onClick:t,"aria-modal":"true",role:"dialog",children:[e.jsx("button",{onClick:t,className:"absolute top-4 right-4 text-white text-3xl focus:outline-none","aria-label":"Stäng",children:"×"}),l]}):null;export{o as M};
-//# sourceMappingURL=Modal-Bz06RItG.js.map

@@ -47,19 +47,15 @@ public class OpenAiController {
         List<String> ingredients = receptoBotDTO.getIngredients() != null ? receptoBotDTO.getIngredients() : new ArrayList<>();
         int servings = receptoBotDTO.getServings();
         String cuisine = receptoBotDTO.getCuisine() != null ? receptoBotDTO.getCuisine() : "";
-        List<String> proteins = receptoBotDTO.getProteins() != null ? receptoBotDTO.getProteins() : new ArrayList<>();
 
         String allergenList = allergens.isEmpty() ? "inga" : String.join(", ", allergens);
         String ingredientList = ingredients.isEmpty() ? "inga" : String.join(", ", ingredients);
         String cuisineText = cuisine.isEmpty() ? "" : String.format(", anpassade efter %s matkultur", cuisine);
+        List<String> proteins = receptoBotDTO.getProteins() != null ? receptoBotDTO.getProteins() : new ArrayList<>();
 
         String proteinPromptPart = "";
         if (!proteins.isEmpty()) {
             proteinPromptPart = "använd endast " + String.join(", ", proteins) + " som huvudingrediens";
-        } else if (!proteins.isEmpty()) {
-            proteinPromptPart = String.join(", ", proteins);
-        } else {
-            proteinPromptPart = "";
         }
 
         String prompt = String.format(
@@ -79,10 +75,10 @@ public class OpenAiController {
                 cuisineText,
                 servings,
                 ingredientList,
-                String.join(", ", proteins),
+                proteinPromptPart,
                 allergenList
         );
-
+        System.out.println("ReceptoBotDTO proteiner: " + receptoBotDTO.getProteins());
         return openAiService.callOpenAiApi(prompt);
     }
 
