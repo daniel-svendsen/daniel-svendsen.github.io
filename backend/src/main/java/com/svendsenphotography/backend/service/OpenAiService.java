@@ -59,18 +59,32 @@ public class OpenAiService {
             String content = (String) message.get("content");
 
             // Försök att parsa GPT-svaret som JSON
+            // Försök att parsa GPT-svaret som JSON med fallback
             ObjectMapper mapper = new ObjectMapper();
             try {
-                // Förväntar att GPT returnerar t.ex.:
-                // { "recipes": [ { "id": "1", "title": "Recept 1", "content": "..." }, {...}, {...} ] }
+                // First attempt: parse the full content
                 Map<String, Object> result = mapper.readValue(content, new TypeReference<Map<String, Object>>() {
                 });
                 return ResponseEntity.ok(result);
             } catch (Exception e) {
+                // Fallback: extract the JSON substring from content
+                int start = content.indexOf('{');
+                int end = content.lastIndexOf('}');
+                if (start != -1 && end != -1 && start < end) {
+                    String jsonPart = content.substring(start, end + 1);
+                    try {
+                        Map<String, Object> result = mapper.readValue(jsonPart, new TypeReference<Map<String, Object>>() {
+                        });
+                        return ResponseEntity.ok(result);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
                 e.printStackTrace();
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .body(Map.of("error", "Fel vid tolkning av GPT-svar", "details", e.getMessage()));
             }
+
 
         } catch (Exception e) {
             e.printStackTrace();
