@@ -76,6 +76,10 @@ public class OpenAiService {
                         Map<String, Object> result = mapper.readValue(jsonPart, new TypeReference<Map<String, Object>>() {
                         });
                         result.put("debugPrompt", prompt);
+                        // Om du vill logga i serverns konsol:
+                        if (result.get("debugPrompt") != null) {
+                            System.out.println("Prompt som skickades: " + result.get("debugPrompt"));
+                        }
                         return ResponseEntity.ok(result);
                     } catch (Exception ex) {
                         ex.printStackTrace();

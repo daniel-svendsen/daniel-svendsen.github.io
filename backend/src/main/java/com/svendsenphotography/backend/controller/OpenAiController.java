@@ -74,7 +74,7 @@ public class OpenAiController {
                         "Jag är allergisk mot %s. " +
                         "Returnera enbart svaret som en JSON med fältet \"recipes\" som en array av objekt, utan några ytterligare kommentarer. " +
                         "Svara alltid på svenska.",
-                String.join(", ", proteins),
+                proteinPromptPart,
                 servings,
                 cuisineText,
                 servings,
@@ -82,7 +82,7 @@ public class OpenAiController {
                 String.join(", ", proteins),
                 allergenList
         );
-        
+
         return openAiService.callOpenAiApi(prompt);
     }
 

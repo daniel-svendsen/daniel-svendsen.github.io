@@ -61,25 +61,27 @@ export default function RecipeGenerator() {
   }, [selectedRecipe])
 
   const handleGenerateRecipes = async () => {
+    const payload = {
+      allergens: selectedAllergens,
+      ingredients: selectedIngredients,
+      proteins: selectedProteins,
+      servings,
+      cuisine,
+    }
+
+    console.log('Payload som skickas:', payload)
+
     if (window.innerWidth < 768) {
       setMobileTab('recipes')
     }
     setLoading(true)
     try {
-      const data = await generateRecipesAPI({
-        allergens: selectedAllergens,
-        ingredients: selectedIngredients,
-        proteins: selectedProteins, // Skicka med proteinvalet
-        servings,
-        cuisine,
-      })
-      console.log('DEBUG data from server:', data) // Se vad som faktiskt kommer
+      const data = await generateRecipesAPI(payload)
+      console.log('DEBUG data from server:', data)
       if (data.recipes) {
-        // data.recipes bör vara en array av { id, title, content: { ingredients, instructions } }
         setRecipes(data.recipes)
         setSelectedRecipe(null)
       } else if (data.error) {
-        // Om du vill presentera error som ett "recept"
         setRecipes([
           {
             id: 'error',
@@ -103,6 +105,8 @@ export default function RecipeGenerator() {
         ])
       }
       recipesRef.current?.scrollIntoView({ behavior: 'smooth' })
+
+      // Om backend skickar med debugPrompt, logga den
       if (data.debugPrompt) {
         console.log('Prompt som skickades:', data.debugPrompt)
       }
