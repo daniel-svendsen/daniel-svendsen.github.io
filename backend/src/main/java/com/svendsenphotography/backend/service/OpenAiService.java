@@ -75,6 +75,7 @@ public class OpenAiService {
                     try {
                         Map<String, Object> result = mapper.readValue(jsonPart, new TypeReference<Map<String, Object>>() {
                         });
+                        result.put("debugPrompt", prompt);
                         return ResponseEntity.ok(result);
                     } catch (Exception ex) {
                         ex.printStackTrace();

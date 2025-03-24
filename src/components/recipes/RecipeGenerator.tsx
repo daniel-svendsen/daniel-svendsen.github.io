@@ -103,6 +103,9 @@ export default function RecipeGenerator() {
         ])
       }
       recipesRef.current?.scrollIntoView({ behavior: 'smooth' })
+      if (data.debugPrompt) {
+        console.log('Prompt som skickades:', data.debugPrompt)
+      }
     } catch (error: any) {
       console.error(error)
       setRecipes([
