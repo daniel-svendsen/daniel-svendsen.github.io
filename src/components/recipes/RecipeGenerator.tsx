@@ -1,11 +1,9 @@
-// Anpassa sökvägen för import
-import {useEffect, useRef, useState} from 'react'
+import { useEffect, useRef, useState } from 'react'
 import IngredientsPanel from './IngredientsPanel'
 import RecipesPanel from './RecipesPanel'
-import {generateRecipesAPI} from '@/api/recipeApi'
-import {recipeIngredients} from '@/data/recipeIngredients'
+import { generateRecipesAPI } from '@/api/recipeApi'
+import { recipeIngredients } from '@/data/recipeIngredients'
 
-// En typ som matchar JSON-strukturen
 export interface Recipe {
   id: string
   title: string
@@ -31,7 +29,6 @@ export default function RecipeGenerator() {
   const recipesRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Om du vill läsa in tidigare sparade recept:
     const savedRecipes = localStorage.getItem('recipes')
     if (savedRecipes && savedRecipes !== 'undefined') {
       try {
@@ -68,16 +65,16 @@ export default function RecipeGenerator() {
       servings,
       cuisine,
     }
-
-    console.log('Payload som skickas:', payload)
-
     if (window.innerWidth < 768) {
       setMobileTab('recipes')
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
+
     setLoading(true)
     try {
       const data = await generateRecipesAPI(payload)
-      console.log('DEBUG data from server:', data)
+
       if (data.recipes) {
         setRecipes(data.recipes)
         setSelectedRecipe(null)
@@ -103,12 +100,6 @@ export default function RecipeGenerator() {
             },
           },
         ])
-      }
-      recipesRef.current?.scrollIntoView({ behavior: 'smooth' })
-
-      // Om backend skickar med debugPrompt, logga den
-      if (data.debugPrompt) {
-        console.log('Prompt som skickades:', data.debugPrompt)
       }
     } catch (error: any) {
       console.error(error)
@@ -138,55 +129,25 @@ export default function RecipeGenerator() {
         Välj ingredienser, allergier och matkultur (valfritt). Ange antal
         personer och klicka "Generera Recept".
       </div>
-
-      {/* Mobile layout */}
-      <div className="block md:hidden">
-        <div className="flex gap-2 mb-4">
-          <button
-            onClick={() => setMobileTab('ingredients')}
-            className={`flex-1 py-2 rounded ${mobileTab === 'ingredients' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
-          >
-            Ingredienser
-          </button>
-          <button
-            onClick={() => setMobileTab('recipes')}
-            className={`flex-1 py-2 rounded ${mobileTab === 'recipes' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
-          >
-            Recept
-          </button>
-        </div>
-        {mobileTab === 'ingredients' && (
-          <IngredientsPanel
-            selectedAllergens={selectedAllergens}
-            setSelectedAllergens={setSelectedAllergens}
-            selectedIngredients={selectedIngredients}
-            setSelectedIngredients={setSelectedIngredients}
-            selectedProteins={selectedProteins}
-            setSelectedProteins={setSelectedProteins}
-            servings={servings}
-            setServings={setServings}
-            cuisine={cuisine}
-            setCuisine={setCuisine}
-            recipeIngredients={recipeIngredients}
-            deselectAll={deselectAll}
-            onGenerateRecipes={handleGenerateRecipes}
-            loading={loading}
-          />
-        )}
-        {mobileTab === 'recipes' && (
-          <RecipesPanel
-            recipes={recipes}
-            loading={loading}
-            ref={recipesRef}
-            selectedRecipe={selectedRecipe}
-            onSelectRecipe={setSelectedRecipe}
-          />
-        )}
+      {/* Mobile tab controls */}
+      <div className="flex md:hidden gap-2 mb-4">
+        <button
+          onClick={() => setMobileTab('recipes')}
+          className={`flex-1 py-2 rounded ${mobileTab === 'recipes' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+        >
+          Recept
+        </button>
+        <button
+          onClick={() => setMobileTab('ingredients')}
+          className={`flex-1 py-2 rounded ${mobileTab === 'ingredients' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+        >
+          Ingredienser
+        </button>
       </div>
-
-      {/* Desktop layout */}
-      <div className="hidden md:flex md:gap-4">
-        <div className="md:w-1/2">
+      <div className="md:flex md:gap-4">
+        <div
+          className={`md:w-1/2 ${mobileTab === 'recipes' ? 'block' : 'hidden'} md:block`}
+        >
           <RecipesPanel
             recipes={recipes}
             loading={loading}
@@ -195,7 +156,9 @@ export default function RecipeGenerator() {
             onSelectRecipe={setSelectedRecipe}
           />
         </div>
-        <div className="md:w-1/2">
+        <div
+          className={`md:w-1/2 ${mobileTab === 'ingredients' ? 'block' : 'hidden'} md:block`}
+        >
           <IngredientsPanel
             selectedAllergens={selectedAllergens}
             setSelectedAllergens={setSelectedAllergens}

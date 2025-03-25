@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { Recipe } from './RecipeGenerator' // justera sökvägen efter din struktur
+import { Recipe } from './RecipeGenerator'
 
 interface RecipesPanelProps {
   recipes: Recipe[]
@@ -8,19 +8,15 @@ interface RecipesPanelProps {
   onSelectRecipe: (index: number) => void
 }
 
-// Hjälpfunktion som tolkar en ingrediens utifrån olika möjliga strukturer
 const formatIngredient = (ing: any): string => {
   if (ing && typeof ing === 'object') {
-    // 1. Engelska nycklar: "name" + "quantity" eller "amount"
     if ('name' in ing && ('quantity' in ing || 'amount' in ing)) {
       const qty = ing.quantity || ing.amount
       return `${ing.name} (${qty})`
     }
-    // 2. Svenska nycklar: "namn" och "mängd"
     if ('namn' in ing && 'mängd' in ing) {
       return `${ing.namn} (${ing.mängd})`
     }
-    // 3. Om objektet har egenskaper "amount" men inte "name"
     if ('amount' in ing) {
       const keys = Object.keys(ing)
       if (keys.length === 1) {
@@ -33,13 +29,11 @@ const formatIngredient = (ing: any): string => {
         }
       }
     }
-    // 4. Om objektet bara har en enda nyckel (exempelvis { "Kyckling": "600g" })
     const keys = Object.keys(ing)
     if (keys.length === 1) {
       const key = keys[0]
       return `${key} (${ing[key]})`
     }
-    // 5. Sista fallback: Skriv ut alla key-value-par
     const pairs = keys.map((key) => `${key}=${ing[key]}`).join(', ')
     return pairs || 'Okänd ingrediens'
   }
@@ -56,7 +50,6 @@ const RecipesPanel = forwardRef<HTMLDivElement, RecipesPanelProps>(
         ) : recipes.length ? (
           <ul>
             {recipes.map((recipe, index) => {
-              // Flera fallbacks för ingredienser
               const ingredients =
                 recipe.content.ingredients ||
                 recipe.content.ingredienser ||
@@ -64,7 +57,6 @@ const RecipesPanel = forwardRef<HTMLDivElement, RecipesPanelProps>(
                 recipe.content.quantity ||
                 recipe.content.kvantitet ||
                 []
-              // Flera fallbacks för instruktioner
               const instructions =
                 recipe.content.instructions ||
                 recipe.content.tillagning ||

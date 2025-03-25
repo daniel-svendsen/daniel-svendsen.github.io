@@ -88,7 +88,6 @@ const IngredientsPanel = ({
     setCuisine(e.target.value)
   }
 
-  // Lista med basvaror
   const basicIngredients = [
     'Salt',
     'Peppar',
@@ -125,11 +124,9 @@ const IngredientsPanel = ({
     'Ketchup',
   ]
 
-  // Funktion som markerar basvaror med allergivänliga alternativ
   const handleSelectBasic = () => {
     const filtered = basicIngredients.map((basic) => {
       let ingredientData: IngredientItem | null = null
-      // Sök igenom alla kategorier efter en matchande ingrediens
       Object.values(recipeIngredients).forEach((category) => {
         const found = category.find(
           (item) => item.name.toLowerCase() === basic.toLowerCase(),
@@ -139,7 +136,6 @@ const IngredientsPanel = ({
         }
       })
       if (ingredientData) {
-        // Om ingrediensen har allergener som användaren markerat
         const hasConflict = ingredientData.allergens.some((allergen) =>
           selectedAllergens.includes(allergen),
         )
@@ -164,7 +160,6 @@ const IngredientsPanel = ({
         <h2 className="text-lg font-bold">Välj ingredienser</h2>
       </div>
 
-      {/* Knapparna */}
       <div className="flex flex-col sm:flex-row sm:justify-end gap-2 mb-4">
         <Button
           onClick={deselectAll}
@@ -210,7 +205,6 @@ const IngredientsPanel = ({
         </select>
       </div>
 
-      {/* Allergier */}
       <div className="mb-4">
         <h3 className="font-semibold">Allergier</h3>
         <div className="flex flex-wrap gap-2 mt-2">
@@ -225,7 +219,6 @@ const IngredientsPanel = ({
         </div>
       </div>
 
-      {/* Proteiner */}
       {recipeIngredients.protein && (
         <div className="mb-4">
           <h3 className="font-semibold">Proteiner</h3>
@@ -242,7 +235,6 @@ const IngredientsPanel = ({
         </div>
       )}
 
-      {/* Övriga ingredienser */}
       {Object.entries(recipeIngredients).map(([catName, catItems]) => {
         if (catName === 'protein') return null
         const displayable = getDisplayableItems(catItems, selectedAllergens)

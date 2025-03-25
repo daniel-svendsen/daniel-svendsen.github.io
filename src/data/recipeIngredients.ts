@@ -1,9 +1,6 @@
-// Fil: src/data/recipeIngredients.ts
-
 export interface Ingredient {
   name: string
   allergens: string[]
-  // Vill du ha flera alternativ? Använd alternativ?: Ingredient
   alternative?: Ingredient
 }
 
@@ -13,7 +10,6 @@ export interface Ingredient {
  * Utökad med nya val (asiatiska, mexikanska, medelhav) i passande kategorier.
  */
 export const recipeIngredients = {
-  //--- PROTEIN ---//
   protein: [
     { name: 'Kyckling', allergens: [] },
     { name: 'Nötfärs', allergens: [] },
@@ -42,14 +38,12 @@ export const recipeIngredients = {
     },
     { name: 'Kikärtor', allergens: [] },
     { name: 'Röda linser', allergens: [] },
-    // Nya (asiatiska/mexikanska) proteiner
     { name: 'Edamame', allergens: ['Soja'] },
     { name: 'Tofuskinn (Yuba)', allergens: ['Soja'] },
     { name: 'Svarta bönor', allergens: [] },
     { name: 'Refried beans', allergens: [] },
   ],
 
-  //--- MEJERI ---//
   mejeri: [
     {
       name: 'Mjölk',
@@ -81,7 +75,6 @@ export const recipeIngredients = {
       allergens: ['Laktos'],
       alternative: { name: 'Laktosfri kvarg', allergens: [] },
     },
-    // Nya (mexikanska/medelhav)
     {
       name: 'Queso Fresco',
       allergens: ['Laktos'],
@@ -102,7 +95,6 @@ export const recipeIngredients = {
       allergens: ['Laktos'],
       alternative: { name: 'Smaksatt vegansk Créme', allergens: [] },
     },
-    // Nya smaksatta lätt crème fraiche-varianter (Arla Köket®)
     {
       name: 'Lätt crème fraiche',
       allergens: ['Laktos'],
@@ -141,7 +133,6 @@ export const recipeIngredients = {
     },
   ],
 
-  //--- GRÖNSAKER ---//
   grönsaker: [
     { name: 'Tomat', allergens: [] },
     { name: 'Gurka', allergens: [] },
@@ -162,13 +153,11 @@ export const recipeIngredients = {
     { name: 'Champinjoner', allergens: [] },
     { name: 'Fänkål', allergens: [] },
     { name: 'Ruccola', allergens: [] },
-    // Nya (mexikanska/medelhav)
     { name: 'Jalapeños', allergens: [] },
     { name: 'Oliver', allergens: [] },
     { name: 'Soltorkade tomater', allergens: [] },
   ],
 
-  //--- FRUKTER ---//
   frukter: [
     { name: 'Äpple', allergens: [] },
     { name: 'Banan', allergens: [] },
@@ -182,7 +171,6 @@ export const recipeIngredients = {
     { name: 'Kiwi', allergens: [] },
   ],
 
-  //--- KRYDDOR ---//
   kryddor: [
     { name: 'Salt', allergens: [] },
     { name: 'Peppar', allergens: [] },
@@ -205,7 +193,6 @@ export const recipeIngredients = {
     { name: 'Tacokrydda', allergens: [] },
     { name: 'Koriander', allergens: [] },
     { name: 'Basilika', allergens: [] },
-    // Extra vanliga kryddor
     { name: 'Timjan', allergens: [] },
     { name: 'Rosmarin', allergens: [] },
     { name: 'Dragon', allergens: [] },
@@ -214,7 +201,6 @@ export const recipeIngredients = {
     { name: 'Löksalt', allergens: [] },
   ],
 
-  //--- GRYN ---//
   gryn: [
     { name: 'Ris', allergens: [] },
     {
@@ -252,7 +238,6 @@ export const recipeIngredients = {
       allergens: ['Gluten'],
       alternative: { name: 'Risnudlar', allergens: [] },
     },
-    // Nya vanliga gryn
     {
       name: 'Dinkel',
       allergens: ['Gluten'],
@@ -265,7 +250,6 @@ export const recipeIngredients = {
     },
   ],
 
-  //--- ÖVRIGT ---//
   övrigt: [
     { name: 'Olivolja', allergens: [] },
     { name: 'Vatten', allergens: [] },
@@ -301,7 +285,6 @@ export const recipeIngredients = {
       allergens: ['Ägg'],
       alternative: { name: 'Vegansk majonnäs', allergens: [] },
     },
-    // Asiatiska
     { name: 'Sesamolja', allergens: [] },
     {
       name: 'Fisksås',

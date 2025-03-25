@@ -1,5 +1,3 @@
-// src/components/WorkPDF.tsx
-
 import React from 'react'
 import {
   Document,
@@ -13,17 +11,15 @@ import {
 } from '@react-pdf/renderer'
 import workColors from '../config/workColors'
 import portraitImage from '../assets/bild1.jpg'
-import { iconMap } from '../assets/icons/iconMap' // Säkerställ att denna returnerar en korrekt ikon-mappning
+import { iconMap } from '../assets/icons/iconMap'
 
 const iconSize = 14
 
-// Registrera fonten
 Font.register({
   family: 'Open Sans',
   src: 'https://fonts.gstatic.com/s/opensans/v18/mem8YaGs126MiZpBA-UFVZ0e.ttf',
 })
 
-// Styling för PDF
 const styles = StyleSheet.create({
   page: {
     padding: 30,
@@ -75,7 +71,6 @@ const styles = StyleSheet.create({
   },
 })
 
-// Utökad typdefinition för PDF-data
 type CvData = {
   profile: { name: string; description: string }
   intro?: { title: string; description: string }
@@ -87,7 +82,6 @@ type CvData = {
   personalProjectsTitle: string
 }
 
-// Underkomponenten som bygger PDF-dokumentet
 const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
   const workExp = cvData.experience.filter((exp) => exp.type === 'work')
   const educationExp = cvData.experience.filter(
@@ -262,7 +256,6 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
   )
 }
 
-// **Huvudkomponenten som hämtar data och genererar PDF**
 const WorkPDF = ({ cvData }: { cvData: CvData | null }) => {
   if (!cvData) {
     return <Text>Loading...</Text>
