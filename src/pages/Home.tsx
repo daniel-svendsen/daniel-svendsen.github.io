@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import Card from '../components/Card'
 import { homeCards } from '../data/cards'
-import { Helmet, HelmetProvider } from 'react-helmet-async'
+import { HelmetProvider } from 'react-helmet-async'
 import React, { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import HeroSection from '../components/HeroSection'
 import SectionWrapper from '../components/SectionWrapper'
 import forprosVideo from '../assets/movies/forpros1.mp4'
+import SEO from '@/components/SEO'
 
 const Carousel = lazy(() => import('../components/Carousel'))
 
@@ -30,38 +31,29 @@ export default function Home() {
     import('../pages/Services')
   }, [])
 
-  const handleNavigate = () => {
-    navigate('/services')
+  const homeJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'Svendsén Photography',
+    description: 'Fotograf i Kungälv & Göteborg',
+    image: 'https://www.svendsenphotography.com/logo.jpg',
+    url: 'https://www.svendsenphotography.com',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Kungälv',
+      addressCountry: 'SE',
+    },
   }
 
   return (
     <HelmetProvider>
-      <Helmet>
-        <title>Fotograf i Kungälv & Göteborg - Svendsén Photography</title>
-        <meta
-          name="description"
-          content="Svendsén Photography erbjuder professionell fotografering inom bröllop, porträtt, bilfotografering och företag i Kungälv och Göteborg. Läs mer: https://www.svendsenphotography.com"
-        />
-        <meta
-          name="keywords"
-          content="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, bilfotograf, företagsfotograf, filmning"
-        />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'LocalBusiness',
-            name: 'Svendsén Photography',
-            description: 'Fotograf i Kungälv & Göteborg',
-            image: 'https://www.svendsenphotography.com/logo.jpg',
-            url: 'https://www.svendsenphotography.com',
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: 'Kungälv',
-              addressCountry: 'SE',
-            },
-          })}
-        </script>
-      </Helmet>
+      <SEO
+        title="Fotograf i Kungälv & Göteborg - Svendsén Photography"
+        description="Svendsén Photography erbjuder professionell fotografering inom bröllop, porträtt, bilfotografering och företag i Kungälv och Göteborg. Läs mer: https://www.svendsenphotography.com"
+        url="https://www.svendsenphotography.com"
+        keywords="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, bilfotograf, företagsfotograf, filmning"
+        jsonLd={homeJsonLd}
+      />
 
       <main className="pt-10 p-6 bg-background text-textPrimary max-w-full overflow-hidden">
         <HeroSection />

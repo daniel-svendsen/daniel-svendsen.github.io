@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from 'react'
-import { Helmet } from 'react-helmet-async'
+import SEO from '@/components/SEO'
 
 export default function Contact() {
   const [selectedService, setSelectedService] = useState<string>('')
@@ -52,39 +52,23 @@ export default function Contact() {
     }
   }
 
+  const contactJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Kontakta Svendsén Photography',
+    description: 'Boka en fotografering i Kungälv & Göteborg',
+    url: 'https://www.svendsenphotography.com/contact',
+  }
+
   return (
     <main className="pt-20 p-6 bg-background text-textPrimary max-w-full overflow-hidden">
-      <Helmet>
-        <title>
-          Kontakta Fotograf i Göteborg & Kungälv - Svendsén Photography
-        </title>
-        <meta
-          name="description"
-          content="Kontakta Svendsén Photography för bröllop, porträtt, företagsfoto och eventfotografering i Göteborg och Kungälv. Skicka din förfrågan idag!"
-        />
-        <meta
-          name="keywords"
-          content="kontakt fotograf, fotograf göteborg kontakt, fotograf kungälv kontakt, boka fotograf, offert fotografering"
-        />
-        <meta property="og:title" content="Kontakta Svendsén Photography" />
-        <meta
-          property="og:description"
-          content="Boka en fotografering i Göteborg & Kungälv. Skicka en förfrågan enkelt via vårt kontaktformulär."
-        />
-        <meta
-          property="og:url"
-          content="https://www.svendsenphotography.com/contact"
-        />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'ContactPage',
-            name: 'Kontakta Svendsén Photography',
-            description: 'Boka en fotografering i Kungälv & Göteborg',
-            url: 'https://www.svendsenphotography.com/contact',
-          })}
-        </script>
-      </Helmet>
+      <SEO
+        title="Kontakta Fotograf i Göteborg & Kungälv - Svendsén Photography"
+        description="Kontakta Svendsén Photography för bröllop, porträtt, företagsfoto och eventfotografering i Göteborg och Kungälv. Skicka din förfrågan idag!"
+        url="https://www.svendsenphotography.com/contact"
+        keywords="kontakt fotograf, fotograf göteborg, fotograf kungälv, boka fotograf, offert fotografering"
+        jsonLd={contactJsonLd}
+      />
 
       <header>
         <h1 className="text-2xl font-bold mb-6">

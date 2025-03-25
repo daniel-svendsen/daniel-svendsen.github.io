@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet-async'
 import { useImportedImages } from '../hooks/useImportedImages'
 import { useShuffledImages } from '../hooks/useShuffleImages'
 import { Modal } from '../components/Modal'
+import SEO from '@/components/SEO'
 
 export default function Portraits() {
   const imagesData = useImportedImages(['portraits'])
@@ -21,30 +21,23 @@ export default function Portraits() {
     }
   }, [selectedImage])
 
+  const portraitsJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Photograph',
+    name: 'Svendsén Photography - Porträtt',
+    description: 'Porträttfotograf i Kungälv & Göteborg',
+    url: 'https://www.svendsenphotography.com/portraits',
+  }
+
   return (
     <>
-      <Helmet>
-        <title>
-          Porträttfotograf i Kungälv & Göteborg - Svendsén Photography
-        </title>
-        <meta
-          name="description"
-          content="Boka en professionell porträttfotografering i Göteborg & Kungälv. Perfekt för företagsporträtt, CV-bilder och familjeporträtt. Läs mer: https://www.svendsenphotography.com/services"
-        />
-        <meta
-          name="keywords"
-          content="porträtt, fotograf kungälv, fotograf göteborg, porträttfotografering, Svendsén Photography"
-        />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Photograph',
-            name: 'Svendsén Photography - Porträtt',
-            description: 'Porträttfotograf i Kungälv & Göteborg',
-            url: 'https://www.svendsenphotography.com/portraits',
-          })}
-        </script>
-      </Helmet>
+      <SEO
+        title="Porträttfotograf i Kungälv & Göteborg - Svendsén Photography"
+        description="Boka en professionell porträttfotografering i Göteborg & Kungälv. Perfekt för företagsporträtt, CV-bilder och familjeporträtt. Läs mer: https://www.svendsenphotography.com/services"
+        url="https://www.svendsenphotography.com/portraits"
+        keywords="porträtt, fotograf kungälv, fotograf göteborg, porträttfotografering, Svendsén Photography"
+        jsonLd={portraitsJsonLd}
+      />
 
       <main className="pt-20 p-6 bg-background text-textPrimary max-w-full overflow-hidden">
         <header>

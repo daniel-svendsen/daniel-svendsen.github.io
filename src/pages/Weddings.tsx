@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Helmet } from 'react-helmet-async'
 import { useImportedImages } from '../hooks/useImportedImages'
 import { useShuffledImages } from '../hooks/useShuffleImages'
 import { Modal } from '../components/Modal'
+import SEO from '@/components/SEO'
 
 export default function WeddingGallery() {
   const { weddings: weddingImages } = useImportedImages(['weddings'])
@@ -20,30 +20,23 @@ export default function WeddingGallery() {
     }
   }, [selectedWeddingImage])
 
+  const weddingsJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Photograph',
+    name: 'Svendsén Photography - Bröllopsfotograf',
+    description: 'Bröllopsfotograf i Kungälv & Göteborg',
+    url: 'https://www.svendsenphotography.com/weddings',
+  }
+
   return (
     <>
-      <Helmet>
-        <title>
-          Bröllopsfotograf i Kungälv & Göteborg - Svendsén Photography
-        </title>
-        <meta
-          name="description"
-          content="Boka din bröllopsfotografering med Svendsén Photography i Kungälv & Göteborg. Fånga de magiska ögonblicken på din stora dag. Läs mer: https://www.svendsenphotography.com/weddings"
-        />
-        <meta
-          name="keywords"
-          content="bröllopsfotograf, fotograf kungälv, fotograf göteborg, bröllopsfotografering, Svendsén Photography"
-        />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Photograph',
-            name: 'Svendsén Photography - Bröllopsfotograf',
-            description: 'Bröllopsfotograf i Kungälv & Göteborg',
-            url: 'https://www.svendsenphotography.com/weddings',
-          })}
-        </script>
-      </Helmet>
+      <SEO
+        title="Bröllopsfotograf i Kungälv & Göteborg - Svendsén Photography"
+        description="Boka din bröllopsfotografering med Svendsén Photography i Kungälv & Göteborg. Fånga de magiska ögonblicken på din stora dag. Läs mer: https://www.svendsenphotography.com/weddings"
+        url="https://www.svendsenphotography.com/weddings"
+        keywords="bröllopsfotograf, fotograf kungälv, fotograf göteborg, bröllopsfotografering, Svendsén Photography"
+        jsonLd={weddingsJsonLd}
+      />
 
       <main className="pt-20 p-6 bg-background text-textPrimary max-w-full overflow-hidden">
         <header>
