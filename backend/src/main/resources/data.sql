@@ -138,9 +138,9 @@ INSERT INTO cv_projects (cv_id, name, details, link_href)
 VALUES (1, 'Personal Website & CV',
         'I built the website for my photography company and this work page myself using React, Vite, and Tailwind CSS. It includes interactive features such as a dynamic PDF generator, responsive design, and fetching data from a database for the CV page. The website is hosted by Cloudflare with actions on main pushes and the backend plus database are deployed on Railway.',
         'https://www.svendsenphotography.com/work'),
-       (1, 'ReceptoBot',
-        'I developed ReceptoBot, a service that dynamically generates recipes using OpenAI''s API. The backend is built with Spring Boot and utilizes Bucket4j for rate-limiting, while the frontend is developed with React, Vite, and Tailwind CSS. ReceptoBot customizes recipes based on user-selected ingredients, allergies, and cuisine preferences. The project is deployed on Railway and uses Cloudflare for domain routing.',
-        'https://www.svendsenphotography.com/recipes');
+       (1, 'Receptobot',
+        'I developed Receptobot, a service that dynamically generates recipes using OpenAI''s API. Requires login to be able to generate recipes, each user gets 5 fetches. The backend is built with Spring Boot and utilizes Bucket4j for rate-limiting, while the frontend is developed with React, Vite, and Tailwind CSS. ReceptoBot customizes recipes based on user-selected ingredients, allergies, and cuisine preferences. The project is deployed on Railway and uses Cloudflare for domain routing.',
+        'https://www.receptobot.se');
 
 -- E. cv_contact för cv_id=1 (profile)
 INSERT INTO cv_contact (cv_id, type, details, link_href)
