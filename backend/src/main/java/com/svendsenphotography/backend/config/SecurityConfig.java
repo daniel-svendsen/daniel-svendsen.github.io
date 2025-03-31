@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Configuration
@@ -22,25 +23,22 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .cors(cors -> cors.configurationSource(request -> {
-                    CorsConfiguration config = new CorsConfiguration();
-                    // Använd property för allowedOrigins så att du enkelt kan byta vid behov
-                    config.setAllowedOriginPatterns(List.of(allowedOrigins));
-                    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-                    config.setAllowedHeaders(List.of("*"));
-                    return config;
+                    CorsConfiguration configuration = new CorsConfiguration();
+                    configuration.setAllowedOriginPatterns(Arrays.asList(allowedOrigins)); // ← Använder application.properties
+                    configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                    configuration.setAllowedHeaders(List.of("*"));
+//                    configuration.setAllowCredentials(true); // Om du använder cookies / auth-header
+                    return configuration;
                 }))
-                // Inaktivera CSRF (eller konfigurera det specifikt för vissa endpoints)
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers("/h2-console/**")
                         .disable()
                 )
-                // Säkerhetsregler
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/h2-console/**").permitAll()
-                        .requestMatchers("/api/**").permitAll() // Tillåt alla API-anrop
+                        .requestMatchers("/api/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                // Tillåt att H2 Console visas i en iframe från samma ursprung
                 .headers(headers -> headers
                         .frameOptions(frameOptions -> frameOptions.sameOrigin())
                 )
@@ -49,3 +47,4 @@ public class SecurityConfig {
         return http.build();
     }
 }
+
