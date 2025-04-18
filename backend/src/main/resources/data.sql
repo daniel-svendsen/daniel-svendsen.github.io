@@ -140,7 +140,10 @@ VALUES (1, 'Personal Website & CV',
         'https://www.svendsenphotography.com/work'),
        (1, 'Receptobot',
         'I developed Receptobot, a service that dynamically generates recipes using OpenAI''s API. Requires login to be able to generate recipes, each user gets 5 fetches. The backend is built with Spring Boot and utilizes Bucket4j for rate-limiting, while the frontend is developed with React, Vite, and Tailwind CSS. ReceptoBot customizes recipes based on user-selected ingredients, allergies, and cuisine preferences. The project is deployed on Railway and uses Cloudflare for domain routing.',
-        'https://www.receptobot.se');
+        'https://www.receptobot.se'),
+       (1, 'TapMap',
+        'TapMap, a service that uses your current location to fetch restaurants, pubs and bars while at the same time showing the suns current position for you to help you decide if its a good spot to take a drink. Users can also give ratings, send the price for beers/wine and it calculates the price for the latest 15 for each. This is not yet live on the backend.',
+        'https://tapmap.pages.dev/');
 
 -- E. cv_contact för cv_id=1 (profile)
 INSERT INTO cv_contact (cv_id, type, details, link_href)
