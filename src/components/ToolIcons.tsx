@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+  SiCloudflare,
   SiDocker,
   SiGit,
   SiGnubash,
@@ -8,8 +9,10 @@ import {
   SiIntellijidea,
   SiJavascript,
   SiJenkins,
+  SiJunit5,
   SiMongodb,
   SiMysql,
+  SiRailway,
   SiReact,
   SiSpringboot,
   SiSqlite,
@@ -26,6 +29,9 @@ interface ToolIconProps {
 
 const toolIcons: { [key: string]: IconType | undefined } = {
   'Spring Boot': SiSpringboot,
+  Cloudflare: SiCloudflare,
+  Railway: SiRailway,
+  'JUnit 5': SiJunit5,
   IntelliJ: SiIntellijidea,
   Docker: SiDocker,
   Jenkins: SiJenkins,

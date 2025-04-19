@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Document,
   Font,
@@ -11,245 +10,311 @@ import {
 } from '@react-pdf/renderer'
 import workColors from '../config/workColors'
 import portraitImage from '../assets/bild1.jpg'
-import { iconMap } from '../assets/icons/iconMap'
-
-const iconSize = 14
+import { CvData } from '../types/CvTypes'
 
 Font.register({
   family: 'Open Sans',
   src: 'https://fonts.gstatic.com/s/opensans/v18/mem8YaGs126MiZpBA-UFVZ0e.ttf',
 })
+Font.register({
+  family: 'Open Sans Bold',
+  src: 'https://fonts.gstatic.com/s/opensans/v18/mem5YaGs126MiZpBA-UN7rgOUuhs.ttf',
+})
 
 const styles = StyleSheet.create({
   page: {
-    padding: 30,
+    paddingTop: 30,
+    paddingBottom: 30,
+    paddingHorizontal: 0,
     fontFamily: 'Open Sans',
     backgroundColor: workColors.background,
+    fontSize: 10,
+    color: workColors.secondaryText,
+    lineHeight: 1.4,
+  },
+  bodyPadding: {
+    paddingHorizontal: 35,
+  },
+  headerSection: {
+    backgroundColor: '#f3f4f6',
+    paddingHorizontal: 35,
+    paddingTop: 20,
+    paddingBottom: 15,
+    marginBottom: 15,
   },
   section: {
-    marginBottom: 12,
+    marginBottom: 10,
     padding: 10,
     backgroundColor: 'white',
-    borderRadius: 6,
+    borderRadius: 5,
+    borderTopWidth: 1,
+    borderTopColor: '#eee',
   },
   profileImage: {
-    width: 70,
-    height: 80,
-    borderRadius: 40,
+    width: 65,
+    height: 75,
+    borderRadius: 35,
     borderWidth: 2,
     borderColor: workColors.highlight,
-    marginBottom: 8,
+    marginBottom: 12,
     alignSelf: 'center',
+    objectFit: 'cover',
   },
-  sectionTitle: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginBottom: 6,
+  headerName: {
+    fontSize: 18,
+    fontFamily: 'Open Sans Bold',
+    textAlign: 'center',
     color: workColors.primaryText,
-    borderBottom: '1 solid #ddd',
-    paddingBottom: 3,
+    marginBottom: 6,
   },
-  text: {
-    fontSize: 11,
-    color: workColors.secondaryText,
+  headerTitle: {
+    fontSize: 10,
+    textAlign: 'center',
+    color: workColors.primaryText,
     marginBottom: 4,
   },
-  listContainer: {
+  headerLink: {
+    fontSize: 9,
+    textAlign: 'center',
+    color: workColors.primaryText,
+    textDecoration: 'none',
+    marginTop: 6,
+  },
+  sectionTitle: {
+    fontSize: 13,
+    fontFamily: 'Open Sans Bold',
+    marginBottom: 8,
+    color: workColors.primaryText,
+    borderBottomWidth: 2,
+    borderBottomColor: workColors.highlight,
+    paddingBottom: 4,
+  },
+  subHeading: {
+    fontSize: 11,
+    fontFamily: 'Open Sans Bold',
+    color: workColors.primaryText,
+    marginTop: 8,
+    marginBottom: 4,
+  },
+  text: {
+    fontSize: 9,
+    marginBottom: 4,
+  },
+  boldPrimaryText: {
+    fontSize: 10,
+    fontFamily: 'Open Sans Bold',
+    color: workColors.primaryText,
+    marginBottom: 2,
+  },
+  listItemContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 6,
+    marginTop: 4,
+    marginBottom: 4,
   },
   listItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 4,
+    marginRight: 12,
+    marginBottom: 5,
+    maxWidth: '45%',
   },
-  icon: {
-    width: iconSize,
-    height: iconSize,
-    marginRight: 4,
+  projectLink: {
+    fontSize: 9,
+    color: workColors.primaryText,
+    textDecoration: 'none',
+    marginTop: 2,
+    wordBreak: 'break-all',
+  },
+  contactText: {
+    fontSize: 9.5,
+    marginBottom: 3,
+  },
+  contactLabel: {
+    fontFamily: 'Open Sans Bold',
+    color: workColors.primaryText,
+  },
+  detailList: {
+    marginLeft: 10,
+    marginTop: 2,
+  },
+  detailItem: {
+    fontSize: 9.5,
+    marginBottom: 2,
   },
 })
 
-type CvData = {
-  profile: { name: string; description: string }
-  intro?: { title: string; description: string }
-  skills: any[]
-  experience: any[]
-  projects: any[]
-  contact: any[]
-  languages: any[]
-  personalProjectsTitle: string
-}
-
 const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
-  const workExp = cvData.experience.filter((exp) => exp.type === 'work')
-  const educationExp = cvData.experience.filter(
+  const experiencedSkills = (cvData.skills || []).filter(
+    (skill) =>
+      skill.category.startsWith('Experienced') &&
+      !skill.category.includes('Methodologies'),
+  )
+  const familiarSkills = (cvData.skills || []).filter((skill) =>
+    skill.category.startsWith('Familiar'),
+  )
+
+  const workExp = (cvData.experience || []).filter((exp) => exp.type === 'work')
+  const educationExp = (cvData.experience || []).filter(
     (exp) => exp.type === 'education',
   )
-  const softSkills = cvData.skills.filter((s) => s.category === 'Soft Skills')
-  const workMethodologies = cvData.skills.filter(
-    (s) => s.category === 'Work Methodologies',
-  )
-  const otherSkills = cvData.skills.filter(
-    (s) => !['Soft Skills', 'Work Methodologies'].includes(s.category),
+  const otherContacts = (cvData.contact || []).filter(
+    (ct) => ct.type !== 'LinkedIn' && ct.type !== 'Website',
   )
 
-  const getImageUrl = (iconName: string) => {
-    return window.location.origin + iconMap[iconName]
+  const renderSkillList = (skills: any[]) => (
+    <View style={styles.listItemContainer}>
+      {skills.map((skill) => (
+        <View key={skill.id || skill.tool} style={styles.listItem}>
+          <Text style={styles.text}>{skill.tool}</Text>
+        </View>
+      ))}
+    </View>
+  )
+
+  const renderDetails = (details: string) => {
+    const lines = details
+      .split('\n')
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0)
+    const header = lines[0]
+    const listItems = lines.slice(1)
+
+    return (
+      <View>
+        <Text style={styles.text}>{header}</Text>
+        {listItems.length > 0 && (
+          <View style={styles.detailList}>
+            {listItems.map((item, idx) => (
+              <Text key={idx} style={styles.detailItem}>
+                {item}
+              </Text>
+            ))}
+          </View>
+        )}
+      </View>
+    )
   }
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        {/* Profilbild + Header */}
-        <View style={styles.section} wrap={false}>
-          <Image src={portraitImage} style={styles.profileImage} />
-          <Text
-            style={{
-              fontSize: 22,
-              fontWeight: 'bold',
-              textAlign: 'center',
-              color: workColors.primaryText,
-            }}
-          >
-            {cvData.profile.name}
+        <View style={styles.headerSection}>
+          {portraitImage && (
+            <Image src={portraitImage} style={styles.profileImage} />
+          )}
+          <Text style={styles.headerName}>
+            {cvData.profile?.title || 'Name Missing'}
           </Text>
-          <Text style={{ fontSize: 12, textAlign: 'center', marginBottom: 5 }}>
-            {cvData.profile.description}
+          <Text style={styles.headerTitle}>
+            {cvData.profile?.description || 'Title Missing'}
           </Text>
-          {/* Klickbar LinkedIn-länk */}
           <Link
-            style={{
-              fontSize: 12,
-              textAlign: 'center',
-              marginBottom: 5,
-              color: workColors.highlight,
-            }}
+            style={styles.headerLink}
             src="https://www.linkedin.com/in/daniel-svendsen-02423a1b4/"
           >
-            LinkedIn
+            LinkedIn Profile
           </Link>
         </View>
 
-        {/* Profile & Skills */}
-        <View style={styles.section} wrap={false}>
-          <Text style={styles.sectionTitle}>Profile & Skills</Text>
+        <View style={styles.bodyPadding}>
           {cvData.intro && (
-            <Text style={styles.text}>{cvData.intro.description}</Text>
+            <View style={styles.section} wrap={false}>
+              <Text style={styles.sectionTitle}>
+                {cvData.intro.title || 'Profile'}
+              </Text>
+              <Text style={styles.text}>{cvData.intro.description}</Text>
+            </View>
           )}
-          <View style={styles.listContainer}>
-            {otherSkills.map((skill) => (
-              <View key={skill.tool} style={styles.listItem}>
-                {iconMap[skill.tool] && (
-                  <Image
-                    src={getImageUrl(skill.tool)}
-                    style={{ width: 14, height: 14, marginRight: 4 }}
-                  />
+
+          <View style={styles.section} wrap={false}>
+            <Text style={styles.sectionTitle}>Technical Skills</Text>
+            {experiencedSkills.length > 0 && (
+              <View>
+                <Text style={styles.subHeading}>Experienced In</Text>
+                {renderSkillList(experiencedSkills)}
+              </View>
+            )}
+            {familiarSkills.length > 0 && (
+              <View style={{ marginTop: experiencedSkills.length > 0 ? 4 : 0 }}>
+                <Text style={styles.subHeading}>Familiar With</Text>
+                {renderSkillList(familiarSkills)}
+              </View>
+            )}
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Work Experience</Text>
+            {workExp.map((exp, index) => (
+              // Apply conditional marginBottom: smaller for the last item
+              <View
+                key={exp.id || index}
+                style={{ marginBottom: index === workExp.length - 1 ? 2 : 10 }} // Reduced margin for last item
+                wrap={false}
+              >
+                <Text style={styles.boldPrimaryText}>
+                  {exp.year_text || exp.year}
+                </Text>
+                {renderDetails(exp.details)}
+                {exp.link_text && exp.link_href && (
+                  <Link style={styles.projectLink} src={exp.link_href}>
+                    {exp.link_text}: {exp.link_href}
+                  </Link>
                 )}
-                <Text style={styles.text}>{skill.tool}</Text>
               </View>
             ))}
           </View>
-        </View>
 
-        {/* Soft Skills */}
-        <View style={styles.section} wrap={false}>
-          <Text style={styles.sectionTitle}>Soft Skills</Text>
-          <Text style={styles.text}>
-            {softSkills.map((s) => s.tool).join(', ')}
-          </Text>
-        </View>
-
-        {/* Work Methodologies */}
-        <View style={styles.section} wrap={false}>
-          <Text style={styles.sectionTitle}>Work Methodologies</Text>
-          <Text style={styles.text}>
-            {workMethodologies.map((s) => s.tool).join(', ')}
-          </Text>
-        </View>
-
-        {/* Work Experience */}
-        <View style={styles.section} wrap={false}>
-          <Text style={styles.sectionTitle}>Work Experience</Text>
-          {workExp.map((exp, index) => (
-            <View key={index} style={{ marginBottom: 8 }}>
-              <Text
-                style={{
-                  fontSize: 12,
-                  fontWeight: 'bold',
-                  color: workColors.highlight,
-                }}
+          <View style={styles.section} wrap={false}>
+            <Text style={styles.sectionTitle}>Education</Text>
+            {educationExp.map((edu, index) => (
+              <View
+                key={edu.id || index}
+                style={{ marginBottom: 8 }}
+                wrap={false}
               >
-                {exp.year}
-              </Text>
-              <Text style={styles.text}>{exp.details}</Text>
-            </View>
-          ))}
-        </View>
+                <Text style={styles.boldPrimaryText}>
+                  {edu.year_text || edu.year}
+                </Text>
+                <Text style={styles.text}>{edu.details}</Text>
+              </View>
+            ))}
+          </View>
 
-        {/* Education */}
-        <View style={styles.section} wrap={false}>
-          <Text style={styles.sectionTitle}>Education</Text>
-          {educationExp.map((edu, index) => (
-            <View key={index} style={{ marginBottom: 8 }}>
-              <Text
-                style={{
-                  fontSize: 12,
-                  fontWeight: 'bold',
-                  color: workColors.highlight,
-                }}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Projects</Text>
+            {(cvData.projects || []).map((project, index) => (
+              <View
+                key={project.id || index}
+                style={{ marginBottom: 10 }}
+                wrap={false}
               >
-                {edu.year}
-              </Text>
-              <Text style={styles.text}>{edu.details}</Text>
-            </View>
-          ))}
-        </View>
+                <Text style={styles.boldPrimaryText}>{project.name}</Text>
+                <Text style={styles.text}>{project.details}</Text>
+                {project.link_href && (
+                  <Link style={styles.projectLink} src={project.link_href}>
+                    {project.link_href}
+                  </Link>
+                )}
+              </View>
+            ))}
+          </View>
 
-        {/* Projects */}
-        <View style={styles.section} wrap={false}>
-          <Text style={styles.sectionTitle}>Projects</Text>
-          {cvData.projects.map((project, index) => (
-            <View key={index} style={{ marginBottom: 8 }}>
-              <Text
-                style={{
-                  fontSize: 12,
-                  fontWeight: 'bold',
-                  color: workColors.highlight,
-                }}
-              >
-                {project.name}
-              </Text>
-              <Text style={styles.text}>{project.details}</Text>
-              {project.link_href && (
-                <Link
-                  style={{ fontSize: 11, color: workColors.highlight }}
-                  src={project.link_href}
-                >
-                  {project.link_href}
-                </Link>
-              )}
-            </View>
-          ))}
-        </View>
-
-        {/* Contact */}
-        <View style={styles.section} wrap={false}>
-          <Text style={styles.sectionTitle}>Contact</Text>
-          {cvData.contact
-            .filter((ct) => ct.type !== 'LinkedIn')
-            .map((ct, index) => (
-              <Text key={index} style={styles.text}>
-                {ct.type}: {ct.details}
+          <View style={styles.section} wrap={false}>
+            <Text style={styles.sectionTitle}>Contact</Text>
+            {otherContacts.map((ct, index) => (
+              <Text key={ct.id || index} style={styles.contactText}>
+                <Text style={styles.contactLabel}>{ct.type}: </Text>
+                {ct.details}
               </Text>
             ))}
-          <Link
-            style={[styles.text, { marginTop: 4 }]}
-            src="https://www.svendsenphotography.com/work"
-          >
-            Website: www.svendsenphotography.com/work
-          </Link>
+            <Link
+              style={[styles.contactText, styles.projectLink, { marginTop: 4 }]}
+              src="https://www.svendsenphotography.com/work"
+            >
+              Website: www.svendsenphotography.com/work
+            </Link>
+          </View>
         </View>
       </Page>
     </Document>
@@ -258,9 +323,16 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
 
 const WorkPDF = ({ cvData }: { cvData: CvData | null }) => {
   if (!cvData) {
-    return <Text>Loading...</Text>
+    return <Text>Loading PDF data...</Text>
   }
-  return <WorkPDFDocument cvData={cvData} />
+  const dataWithEnsuredArrays = {
+    ...cvData,
+    skills: Array.isArray(cvData.skills) ? cvData.skills : [],
+    experience: Array.isArray(cvData.experience) ? cvData.experience : [],
+    projects: Array.isArray(cvData.projects) ? cvData.projects : [],
+    contact: Array.isArray(cvData.contact) ? cvData.contact : [],
+  }
+  return <WorkPDFDocument cvData={dataWithEnsuredArrays} />
 }
 
 export default WorkPDF

@@ -13,7 +13,7 @@ const PdfDownloadButton: React.FC<PdfDownloadButtonProps> = ({ cvData }) => {
   const handleDownload = async () => {
     if (!cvData) return
     const blob = await pdf(<WorkPDF cvData={cvData} />).toBlob()
-    saveAs(blob, 'cv.pdf')
+    saveAs(blob, 'DanielSvendsénCV.pdf')
 
     const data = { message: 'Daniel-Svendséns CV har laddats ner!' }
     fetch('https://formspree.io/f/xvgowldv', {

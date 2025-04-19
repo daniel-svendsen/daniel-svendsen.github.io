@@ -100,9 +100,7 @@ const Work: React.FC = () => {
         <ProfileSkills
           profile={profileItem}
           intro={introItem}
-          otherSkills={otherSkills}
-          softSkills={softSkills}
-          workMethodologies={workMethodologies}
+          skills={cvSkills}
         />
       )
       break
