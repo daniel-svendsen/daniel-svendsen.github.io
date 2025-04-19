@@ -11,7 +11,6 @@ const Portraits = React.lazy(() => import('./pages/Portraits'))
 const Weddings = React.lazy(() => import('./pages/Weddings'))
 const Contact = React.lazy(() => import('./pages/Contact'))
 const FAQ = React.lazy(() => import('./pages/FAQ'))
-const Recipes = React.lazy(() => import('./pages/Recipes'))
 
 function App() {
   return (
@@ -34,7 +33,6 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/work" element={<Work />} />
-            <Route path="/recipes" element={<Recipes />} />
           </Routes>
         </Suspense>
       </Router>

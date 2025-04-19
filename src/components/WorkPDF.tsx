@@ -115,13 +115,13 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
           >
             {cvData.profile.name}
           </Text>
-          <Text style={{ fontSize: 12, textAlign: 'center', marginBottom: 5 }}>
+          <Text style={{ fontSize: 11, textAlign: 'center', marginBottom: 5 }}>
             {cvData.profile.description}
           </Text>
           {/* Klickbar LinkedIn-länk */}
           <Link
             style={{
-              fontSize: 12,
+              fontSize: 11,
               textAlign: 'center',
               marginBottom: 5,
               color: workColors.highlight,
@@ -153,21 +153,21 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
           </View>
         </View>
 
-        {/* Soft Skills */}
-        <View style={styles.section} wrap={false}>
-          <Text style={styles.sectionTitle}>Soft Skills</Text>
-          <Text style={styles.text}>
-            {softSkills.map((s) => s.tool).join(', ')}
-          </Text>
-        </View>
+        {/*/!* Soft Skills *!/*/}
+        {/*<View style={styles.section} wrap={false}>*/}
+        {/*  <Text style={styles.sectionTitle}>Soft Skills</Text>*/}
+        {/*  <Text style={styles.text}>*/}
+        {/*    {softSkills.map((s) => s.tool).join(', ')}*/}
+        {/*  </Text>*/}
+        {/*</View>*/}
 
-        {/* Work Methodologies */}
-        <View style={styles.section} wrap={false}>
-          <Text style={styles.sectionTitle}>Work Methodologies</Text>
-          <Text style={styles.text}>
-            {workMethodologies.map((s) => s.tool).join(', ')}
-          </Text>
-        </View>
+        {/*/!* Work Methodologies *!/*/}
+        {/*<View style={styles.section} wrap={false}>*/}
+        {/*  <Text style={styles.sectionTitle}>Work Methodologies</Text>*/}
+        {/*  <Text style={styles.text}>*/}
+        {/*    {workMethodologies.map((s) => s.tool).join(', ')}*/}
+        {/*  </Text>*/}
+        {/*</View>*/}
 
         {/* Work Experience */}
         <View style={styles.section} wrap={false}>
@@ -176,7 +176,7 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
             <View key={index} style={{ marginBottom: 8 }}>
               <Text
                 style={{
-                  fontSize: 12,
+                  fontSize: 11,
                   fontWeight: 'bold',
                   color: workColors.highlight,
                 }}
@@ -195,7 +195,7 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
             <View key={index} style={{ marginBottom: 8 }}>
               <Text
                 style={{
-                  fontSize: 12,
+                  fontSize: 11,
                   fontWeight: 'bold',
                   color: workColors.highlight,
                 }}
@@ -214,7 +214,7 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
             <View key={index} style={{ marginBottom: 8 }}>
               <Text
                 style={{
-                  fontSize: 12,
+                  fontSize: 11,
                   fontWeight: 'bold',
                   color: workColors.highlight,
                 }}
