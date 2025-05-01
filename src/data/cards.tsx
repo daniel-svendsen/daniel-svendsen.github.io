@@ -36,7 +36,7 @@ export const homeCards = [
   {
     image: webdevImage,
     title: 'Hemsidesutveckling & SEO',
-    description: `Behöver du en modern och snabb hemsida? Jag bygger responsiva webbplatser för företag, fotografer och kreatörer, med fokus på SEO och användarvänlighet.`,
+    description: `Behöver du en modern och snabb hemsida eller ett helhetspaket med både fotograf och hemsidebygge? Jag bygger responsiva webbplatser för företag, fotografer och kreatörer, med fokus på SEO och användarvänlighet.`,
     buttonText: 'Läs mer',
     buttonLink: '/services',
     icon: Code,
@@ -91,7 +91,8 @@ export const serviceCards = [
     image: webdevImage,
     description: `• Enkel landningssida → Från 4500 kr  
                   • Företagswebbplats (flersidig) → Från 8500 kr  
-                  • SEO-optimering & support → Från 2000 kr/månad`,
+                  • SEO-optimering & support → Från 2000 kr/månad
+                  • Helhetspaket med fotografering och hemsida → Offert vid förfrågan`,
     price: 'Från 4500 KR',
     buttonText: 'Kontakt',
     buttonLink: '/contact',

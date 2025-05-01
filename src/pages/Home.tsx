@@ -1,34 +1,53 @@
-import { useNavigate } from 'react-router-dom'
 import Card from '../components/Card'
 import { homeCards } from '../data/cards'
 import { HelmetProvider } from 'react-helmet-async'
 import React, { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import HeroSection from '../components/HeroSection'
-import SectionWrapper from '../components/SectionWrapper'
+import { Section } from '@/components/Section'
+import { SectionContent } from '@/components/SectionContent'
 import forprosVideo from '../assets/movies/forpros1.mp4'
 import SEO from '@/components/SEO'
 
 const Carousel = lazy(() => import('../components/Carousel'))
 
 export default function Home() {
-  const navigate = useNavigate()
   const [isCarouselVisible, setIsCarouselVisible] = useState(false)
-  const carouselRef = useRef(null)
+  const carouselRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    let timeout: string | number | NodeJS.Timeout
-    const handleScroll = () => {
-      clearTimeout(timeout)
-      timeout = setTimeout(() => {
-        if (!isCarouselVisible) setIsCarouselVisible(true)
-      }, 100)
+    let timeoutId: NodeJS.Timeout
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          timeoutId = setTimeout(() => {
+            setIsCarouselVisible(true)
+            observer.unobserve(entry.target)
+          }, 200)
+        }
+      },
+      {
+        rootMargin: '0px',
+        threshold: 0.1,
+      },
+    )
+
+    const currentRef = carouselRef.current
+    if (currentRef) {
+      observer.observe(currentRef)
     }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [isCarouselVisible])
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef)
+      }
+      clearTimeout(timeoutId)
+    }
+  }, [])
 
   useEffect(() => {
-    import('../pages/Services')
+    import('../pages/Services').catch((err) =>
+      console.error('Failed to preload Services:', err),
+    )
   }, [])
 
   const homeJsonLd = {
@@ -49,59 +68,80 @@ export default function Home() {
     <HelmetProvider>
       <SEO
         title="Fotograf i Kungälv & Göteborg - Svendsén Photography"
-        description="Svendsén Photography erbjuder professionell fotografering inom bröllop, porträtt, bilfotografering och företag i Kungälv och Göteborg. Läs mer: https://www.svendsenphotography.com"
+        description="Svendsén Photography erbjuder professionell fotografering inom bröllop, porträtt, bilfotografering och företag i Kungälv och Göteborg. Boka din fotografering idag!"
         url="https://www.svendsenphotography.com"
-        keywords="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, bilfotograf, företagsfotograf, filmning"
+        keywords="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, bilfotograf, företagsfotograf, filmning, webbutveckling"
         jsonLd={homeJsonLd}
       />
 
-      <main className="pt-10 p-6 bg-background text-textPrimary max-w-full overflow-hidden">
-        <HeroSection />
-        <header className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-4 font-poiret font-thin">
-            Välkommen till Svendsén Photography!
-          </h1>
-          <p className="text-lg text-gray-700 leading-relaxed mb-4 font-poiret tracking-wider">
-            Jag är en fotograf baserad i Kungälv och Göteborg, specialiserad på
-            bröllops-, porträtt- och företagsfotografering.
-          </p>
-        </header>
-        <SectionWrapper title="Tjänster">
-          <div className="grid grid-cols-1 gap-6">
-            {homeCards.map((card, index) => (
-              <Card
-                key={card.id || index}
-                {...card}
-                reverse={index % 2 === 1}
-              />
-            ))}
-          </div>
-        </SectionWrapper>
+      <HeroSection />
 
-        <SectionWrapper
-          title="Exempelfilm för företaget For Pros"
-          className="bg-gray-100"
-        >
-          <div className="flex justify-center">
-            <video
-              controls
-              preload="none"
-              poster="/path/to/poster.jpg"
-              className="w-full max-w-4xl"
-            >
-              <source src={forprosVideo} type="video/mp4" />
-              Din webbläsare stödjer inte videoformatet.
-            </video>
-          </div>
-        </SectionWrapper>
+      <main className="bg-background text-foreground">
+        {/* Introduktionstext */}
+        <Section variant="white">
+          <SectionContent className="text-center">
+            <h1 className="text-3xl font-bold mb-4 font-poiret tracking-wider">
+              Välkommen till Svendsén Photography!
+            </h1>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-4 font-poiret tracking-wider max-w-3xl mx-auto">
+              Jag är en fotograf baserad i Kungälv och Göteborg, specialiserad
+              på bröllops-, porträtt- och företagsfotografering samt
+              webbtjänster.
+            </p>
+          </SectionContent>
+        </Section>
 
-        <SectionWrapper title="Galleri" className="bg-gray-100">
-          <div ref={carouselRef}>
-            <Suspense fallback={<div className="h-48 bg-gray-200" />}>
-              {isCarouselVisible && <Carousel />}
-            </Suspense>
-          </div>
-        </SectionWrapper>
+        {/* Tjänster Section */}
+        <Section variant="gray" id="services">
+          <SectionContent heading="Tjänster">
+            <div className="grid grid-cols-1 gap-6 md:gap-8">
+              {homeCards.map((card, index) => (
+                <Card
+                  key={card.id || index}
+                  {...card}
+                  reverse={index % 2 !== 0}
+                />
+              ))}
+            </div>
+          </SectionContent>
+        </Section>
+
+        {/* Exempelfilm Section */}
+        <Section variant="white">
+          <SectionContent heading="Exempelfilm för företaget For Pros">
+            <div className="flex justify-center aspect-video bg-muted rounded-lg overflow-hidden shadow-md max-w-4xl mx-auto">
+              <video
+                controls
+                preload="metadata"
+                poster="/path/to/poster-forpros.jpg"
+                className="w-full h-full"
+              >
+                <source src={forprosVideo} type="video/mp4" />
+                Din webbläsare stödjer inte videoformatet.
+              </video>
+            </div>
+          </SectionContent>
+        </Section>
+
+        {/* Galleri Section */}
+        <Section variant="gray" id="gallery">
+          <SectionContent heading="Galleri">
+            <div ref={carouselRef} className="min-h-[300px]">
+              {' '}
+              <Suspense
+                fallback={
+                  <div className="h-72 w-full max-w-4xl mx-auto bg-muted rounded-lg animate-pulse" />
+                }
+              >
+                {isCarouselVisible ? (
+                  <Carousel imageGroupName="carousel" />
+                ) : (
+                  <div className="h-72 w-full max-w-4xl mx-auto bg-muted rounded-lg animate-pulse" />
+                )}
+              </Suspense>
+            </div>
+          </SectionContent>
+        </Section>
       </main>
     </HelmetProvider>
   )

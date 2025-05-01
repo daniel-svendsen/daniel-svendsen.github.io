@@ -10,12 +10,11 @@ module.exports = {
       colors: {
         primary: '#1f2937',
         secondary: '#f2f2f3',
-        background: workColors.background, // centraliserad bakgrund
-        textPrimary: workColors.primaryText, // centraliserad primär text
-        textSecondary: workColors.secondaryText, // centraliserad sekundär text
+        background: workColors.background,
+        textPrimary: workColors.primaryText,
+        textSecondary: workColors.secondaryText,
         borderColor: '#d1d5db',
         highlight: '#2563eb',
-        // Gradient-färger för webbdelen
         'gradient-from': workColors.backgroundGradient.from,
         'gradient-via': workColors.backgroundGradient.via,
         'gradient-to': workColors.backgroundGradient.to,

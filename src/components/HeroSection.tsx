@@ -5,10 +5,6 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import Typewriter from 'typewriter-effect'
 
 import carouselImage from '../assets/herosection/carousel-3.jpg'
-import weddingImage from '../assets/herosection/wedding.jpg'
-import portraitImage from '../assets/herosection/portrait2.jpg'
-import companyImage from '../assets/herosection/company.jpg'
-import webdevImage from '../assets/webdev.png'
 
 export default function HeroSection() {
   const navigate = useNavigate()
@@ -17,28 +13,28 @@ export default function HeroSection() {
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 300], [0, -50])
 
-  const services = [
-    {
-      title: 'Bröllop',
-      link: '/services',
-      img: weddingImage,
-    },
-    {
-      title: 'Porträtt',
-      link: '/services',
-      img: portraitImage,
-    },
-    {
-      title: 'Företag',
-      link: '/services',
-      img: companyImage,
-    },
-    {
-      title: 'Webb',
-      link: '/services',
-      img: webdevImage,
-    },
-  ]
+  // const services = [
+  //   {
+  //     title: 'Bröllop',
+  //     link: '/services',
+  //     img: weddingImage,
+  //   },
+  //   {
+  //     title: 'Porträtt',
+  //     link: '/services',
+  //     img: portraitImage,
+  //   },
+  //   {
+  //     title: 'Företag',
+  //     link: '/services',
+  //     img: companyImage,
+  //   },
+  //   {
+  //     title: 'Webb',
+  //     link: '/services',
+  //     img: webdevImage,
+  //   },
+  // ]
 
   return (
     <>
@@ -98,31 +94,31 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 p-6">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative cursor-pointer overflow-hidden rounded-lg shadow-lg"
-              onClick={() => navigate(service.link)}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50 transition-opacity group-hover:opacity-70" />
-              <img
-                src={service.img}
-                alt={service.title}
-                className="w-full h-48 object-cover transition-transform group-hover:scale-110"
-              />
-              <div className="absolute bottom-4 left-0 right-0 flex justify-center">
-                <div className="p-2 bg-white bg-opacity-80 rounded-md inline-block max-w-[80%]">
-                  <p className="text-black text-center font-semibold break-words">
-                    {service.title}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        {/*<div className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4 p-6">*/}
+        {/*  {services.map((service, index) => (*/}
+        {/*    <motion.div*/}
+        {/*      key={index}*/}
+        {/*      whileHover={{ scale: 1.05 }}*/}
+        {/*      whileTap={{ scale: 0.95 }}*/}
+        {/*      className="group relative cursor-pointer overflow-hidden rounded-lg shadow-lg"*/}
+        {/*      onClick={() => navigate(service.link)}*/}
+        {/*    >*/}
+        {/*      <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-50 transition-opacity group-hover:opacity-70" />*/}
+        {/*      <img*/}
+        {/*        src={service.img}*/}
+        {/*        alt={service.title}*/}
+        {/*        className="w-full h-48 object-cover transition-transform group-hover:scale-110"*/}
+        {/*      />*/}
+        {/*      <div className="absolute bottom-4 left-0 right-0 flex justify-center">*/}
+        {/*        <div className="p-2 bg-white bg-opacity-80 rounded-md inline-block max-w-[80%]">*/}
+        {/*          <p className="text-black text-center font-semibold break-words">*/}
+        {/*            {service.title}*/}
+        {/*          </p>*/}
+        {/*        </div>*/}
+        {/*      </div>*/}
+        {/*    </motion.div>*/}
+        {/*  ))}*/}
+        {/*</div>*/}
       </section>
     </>
   )

@@ -14,6 +14,7 @@ interface CardProps {
   onClick?: () => void
   icon?: LucideIcon
   reverse?: boolean
+  classname?: string
 }
 
 export default function Card({
@@ -27,6 +28,7 @@ export default function Card({
   onClick,
   icon: IconComponent,
   reverse = false,
+  classname = '',
 }: CardProps) {
   return (
     <motion.article

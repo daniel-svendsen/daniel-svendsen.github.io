@@ -2,8 +2,9 @@
 import React from 'react'
 import Card from '../components/Card'
 import { serviceCards } from '../data/cards'
-import SectionWrapper from '../components/SectionWrapper'
 import SEO from '@/components/SEO'
+import { Section } from '@/components/Section'
+import { SectionContent } from '@/components/SectionContent'
 
 const servicesJsonLd = {
   '@context': 'https://schema.org',
@@ -43,29 +44,34 @@ export default function Services() {
         jsonLd={servicesJsonLd}
       />
 
-      <main className="pt-20 p-6 bg-background text-textPrimary max-w-full overflow-hidden">
-        <header className="w-full text-center px-4">
-          <p className="text-lg text-textSecondary mb-8">
-            Boka en fotografering idag och skapa minnen som varar livet ut.
-          </p>
-          <a
-            href="/contact"
-            className="px-6 py-3 bg-highlight text-white font-bold rounded-md hover:bg-highlight/90"
-          >
-            Boka fotografering
-          </a>
-        </header>
-        <SectionWrapper title="Tjänster">
-          <div className="grid grid-cols-1 gap-6">
-            {serviceCards.map((card, index) => (
-              <Card
-                key={card.id || index}
-                {...card}
-                reverse={index % 2 === 1}
-              />
-            ))}
-          </div>
-        </SectionWrapper>
+      <main className="pt-16 md:pt-20 bg-background text-textPrimary">
+        <Section variant="white">
+          <SectionContent className="text-center py-8 md:py-12">
+            <p className="text-lg text-muted-foreground mb-8">
+              Boka en fotografering idag och skapa minnen som varar livet ut.
+            </p>
+            <a
+              href="/contact"
+              className="inline-block px-6 py-3 bg-highlight text-white font-bold rounded-md hover:bg-highlight/90 transition-colors"
+            >
+              Boka fotografering
+            </a>
+          </SectionContent>
+        </Section>
+
+        <Section variant="gray">
+          <SectionContent heading="Tjänster">
+            <div className="grid grid-cols-1 gap-6 md:gap-8">
+              {serviceCards.map((card, index) => (
+                <Card
+                  key={card.id || index}
+                  {...card}
+                  reverse={index % 2 === 1}
+                />
+              ))}
+            </div>
+          </SectionContent>
+        </Section>
       </main>
     </>
   )
