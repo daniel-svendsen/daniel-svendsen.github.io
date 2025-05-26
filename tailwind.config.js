@@ -15,6 +15,7 @@ module.exports = {
         textSecondary: workColors.secondaryText,
         borderColor: '#d1d5db',
         highlight: '#2563eb',
+        'custom-beige': '#eeebeb',
         'gradient-from': workColors.backgroundGradient.from,
         'gradient-via': workColors.backgroundGradient.via,
         'gradient-to': workColors.backgroundGradient.to,
@@ -24,6 +25,15 @@ module.exports = {
       },
       spacing: {
         section: '2rem',
+      },
+      borderRadius: {
+        '4xl': '2rem',
+        '5xl': '2.5rem',
+        '6xl': '3rem',
+        '7xl': '3.5rem',
+        '8xl': '4rem',
+        '9xl': '4.5rem',
+        '10xl': '8rem',
       },
       typography: {
         DEFAULT: {

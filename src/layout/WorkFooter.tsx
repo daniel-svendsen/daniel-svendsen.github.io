@@ -9,7 +9,7 @@ interface WorkFooterProps {
 
 const WorkFooter: React.FC<WorkFooterProps> = ({ cvData }) => {
   return (
-    <footer className="bg-white shadow p-4 text-center">
+    <footer className="bg-custom-beige shadow p-4 text-center">
       <PdfDownloadButton cvData={cvData} />
     </footer>
   )

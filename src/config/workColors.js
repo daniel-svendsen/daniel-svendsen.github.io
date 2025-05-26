@@ -4,7 +4,7 @@ const workColors = {
   background: '#f2f2f3',
   backgroundGradient: {
     from: '#F9FAFB',
-    via: '#BFDBFE',
+    via: '#dedede',
     to: '#F9FAFB',
   },
   highlight: '#2563eb',

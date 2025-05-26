@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { cn } from '@/utils/utils'
 
 interface SectionContentProps {
   children: React.ReactNode
@@ -75,8 +76,7 @@ export const SectionContent: React.FC<SectionContentProps> = ({
           {linkTo && linkLabel && (
             <Link
               to={linkTo}
-              variant={linkVariant}
-              className={linkBaseClasses}
+              className={cn(linkBaseClasses)}
               aria-label={linkLabel}
             >
               {linkLabel}

@@ -76,73 +76,68 @@ export default function Home() {
 
       <HeroSection />
 
-      <main className="bg-background text-foreground">
-        {/* Introduktionstext */}
-        <Section variant="white">
-          <SectionContent className="text-center">
-            <h1 className="text-3xl font-bold mb-4 font-poiret tracking-wider">
-              Välkommen till Svendsén Photography!
-            </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-4 font-poiret tracking-wider max-w-3xl mx-auto">
-              Jag är en fotograf baserad i Kungälv och Göteborg, specialiserad
-              på bröllops-, porträtt- och företagsfotografering samt
-              webbtjänster.
-            </p>
-          </SectionContent>
-        </Section>
+      <Section roundedBottom="10xl" bgColor="lightGray">
+        <SectionContent className="text-center">
+          <h1 className="text-5xl font-bold mb-8 font-poiret tracking-wider">
+            Välkommen till Svendsén Photography!
+          </h1>
+          <p className="text-lg text-muted-foreground leading-relaxed font-poiret tracking-wider max-w-3xl mx-auto">
+            Jag är en fotograf baserad i Kungälv och Göteborg, specialiserad på
+            bröllops-, porträtt- och företagsfotografering samt webbtjänster.
+          </p>
+        </SectionContent>
+      </Section>
 
-        {/* Tjänster Section */}
-        <Section variant="gray" id="services">
-          <SectionContent heading="Tjänster">
-            <div className="grid grid-cols-1 gap-6 md:gap-8">
-              {homeCards.map((card, index) => (
-                <Card
-                  key={card.id || index}
-                  {...card}
-                  reverse={index % 2 !== 0}
-                />
-              ))}
-            </div>
-          </SectionContent>
-        </Section>
+      {/* Tjänster Section */}
+      <Section roundedBottom="10xl" bgColor="offWhite">
+        <SectionContent heading="Tjänster">
+          <div className="grid grid-cols-1 gap-6 md:gap-8">
+            {homeCards.map((card, index) => (
+              <Card
+                key={card.id || index}
+                {...card}
+                reverse={index % 2 !== 0}
+              />
+            ))}
+          </div>
+        </SectionContent>
+      </Section>
 
-        {/* Exempelfilm Section */}
-        <Section variant="white">
-          <SectionContent heading="Exempelfilm för företaget For Pros">
-            <div className="flex justify-center aspect-video bg-muted rounded-lg overflow-hidden shadow-md max-w-4xl mx-auto">
-              <video
-                controls
-                preload="metadata"
-                poster="/path/to/poster-forpros.jpg"
-                className="w-full h-full"
-              >
-                <source src={forprosVideo} type="video/mp4" />
-                Din webbläsare stödjer inte videoformatet.
-              </video>
-            </div>
-          </SectionContent>
-        </Section>
+      {/* Exempelfilm Section */}
+      <Section rounded="10xl" bgColor="lightGray">
+        <SectionContent heading="Exempelfilm för företaget For Pros">
+          <div className="flex justify-center aspect-video bg-muted rounded-lg overflow-hidden shadow-md max-w-4xl mx-auto">
+            <video
+              controls
+              preload="metadata"
+              poster="/path/to/poster-forpros.jpg"
+              className="w-full h-full"
+            >
+              <source src={forprosVideo} type="video/mp4" />
+              Din webbläsare stödjer inte videoformatet.
+            </video>
+          </div>
+        </SectionContent>
+      </Section>
 
-        {/* Galleri Section */}
-        <Section variant="gray" id="gallery">
-          <SectionContent heading="Galleri">
-            <div ref={carouselRef} className="min-h-[300px]">
-              {' '}
-              <Suspense
-                fallback={
-                  <div className="h-72 w-full max-w-4xl mx-auto bg-muted rounded-lg animate-pulse" />
-                }
-              >
-                {isCarouselVisible ? (
-                  <Carousel imageGroupName="carousel" />
-                ) : (
-                  <div className="h-72 w-full max-w-4xl mx-auto bg-muted rounded-lg animate-pulse" />
-                )}
-              </Suspense>
-            </div>
-          </SectionContent>
-        </Section>
-      </main>
+      {/* Galleri Section */}
+      <Section bgColor="offWhite" id="gallery">
+        <SectionContent heading="Galleri">
+          <div ref={carouselRef} className="min-h-[300px]">
+            <Suspense
+              fallback={
+                <div className="h-72 w-full max-w-4xl mx-auto bg-muted rounded-lg animate-pulse" />
+              }
+            >
+              {isCarouselVisible ? (
+                <Carousel imageGroupName="carousel" />
+              ) : (
+                <div className="h-72 w-full max-w-4xl mx-auto bg-muted rounded-lg animate-pulse" />
+              )}
+            </Suspense>
+          </div>
+        </SectionContent>
+      </Section>
     </HelmetProvider>
   )
 }
