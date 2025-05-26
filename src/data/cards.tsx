@@ -9,34 +9,36 @@ import webdevImage from '../assets/webdev.png'
 export const homeCards = [
   {
     image: weddingImage,
-    title: 'Bröllopsfotografering & Bröllopsfilm',
-    description: `Ert bröllop är en unik och kärleksfull dag, och jag hjälper er att fånga alla magiska ögonblick. 
-                  Jag erbjuder både bröllopsfotografering och film för att skapa tidlösa minnen av er stora dag.`,
+    title: 'Bröllopsfoto & Film',
+    description:
+      'Fånga er kärleksdag med tidlösa bilder och film. Jag skapar minnen som varar livet ut.',
     buttonText: 'Läs mer',
     buttonLink: '/services',
     icon: Camera,
   },
   {
     image: portraitImage,
-    title: 'Porträtt & Familjefoto',
-    description: `Oavsett om du behöver en professionell bild för ditt CV, sociala medier eller ett vackert familjeporträtt, hjälper jag dig att fånga naturliga och personliga bilder – utomhus eller på plats med bakgrund.`,
+    title: 'Porträtt & Familj',
+    description:
+      'Personliga porträtt för CV, sociala medier eller vackra familjebilder, utomhus eller på plats.',
     buttonText: 'Läs mer',
     buttonLink: '/services',
     icon: Users,
   },
   {
     image: companyImage,
-    title: 'Företag, Event & Verksamhetsfoto',
-    description: `Fånga ditt företags unika karaktär med professionella bilder och filmklipp. Perfekt för konferenser, mässor, personalporträtt och marknadsföring. Har du en hobbyverksamhet eller är bilentusiast? 
-                  Jag hjälper dig att skapa unika bilder för reklam och sociala medier.`,
+    title: 'Företag & Event',
+    description:
+      'Professionella bilder och film som lyfter ert varumärke, event eller hobbyverksamhet.',
     buttonText: 'Läs mer',
     buttonLink: '/services',
     icon: Briefcase,
   },
   {
     image: webdevImage,
-    title: 'Hemsidesutveckling & SEO',
-    description: `Behöver du en modern och snabb hemsida eller ett helhetspaket med både fotograf och hemsidebygge? Jag bygger responsiva webbplatser för företag, fotografer och kreatörer, med fokus på SEO och användarvänlighet.`,
+    title: 'Hemsidor & SEO',
+    description:
+      'Moderna, snabba och SEO-optimerade hemsidor för företag och kreatörer. Även helhetspaket.',
     buttonText: 'Läs mer',
     buttonLink: '/services',
     icon: Code,

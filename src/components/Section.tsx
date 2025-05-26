@@ -2,7 +2,43 @@ import React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/utils/utils'
 
-const sectionVariantsConfig = cva('relative py-16 md:py-24 lg:py-32', {
+const themeColorToHexMap: Record<string, string> = {
+  white: '#FFFFFF',
+  lightGray: '#F3F4F6',
+  offWhite: '#F9FAFB',
+  beige: '#F5F5DC',
+}
+
+interface CurveSvgProps {
+  fillColor: string
+  curveHeightClassName?: string
+}
+
+const BottomConcaveCurveSvg: React.FC<CurveSvgProps> = ({
+  fillColor,
+  curveHeightClassName = 'h-16 sm:h-20 md:h-24 lg:h-28',
+}) => {
+  return (
+    <div
+      className={cn(
+        'absolute bottom-0 left-0 w-full overflow-hidden leading-none -mb-px',
+        curveHeightClassName,
+      )}
+    >
+      <svg
+        viewBox="0 0 1440 100"
+        preserveAspectRatio="none"
+        className="absolute bottom-0 left-0 w-full h-full block"
+        fill={fillColor}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0,70 C480,0 960,0 1440,70 L1440,100 L0,100 Z" />
+      </svg>
+    </div>
+  )
+}
+
+const sectionVariantsConfig = cva('relative', {
   variants: {
     bgColor: {
       white: 'bg-white text-gray-900',
@@ -11,8 +47,8 @@ const sectionVariantsConfig = cva('relative py-16 md:py-24 lg:py-32', {
       beige: 'bg-custom-beige text-gray-800',
     },
     shape: {
-      default: '',
-      organicSquircle: 'shape-organic-squircle',
+      default: 'py-12 md:py-20 lg:py-24',
+      organicSquircle: 'py-12 md:py-20 lg:py-24 shape-organic-squircle',
     },
     rounded: {
       none: '',
@@ -81,6 +117,9 @@ export interface SectionProps
   children: React.ReactNode
   className?: string
   id?: string
+  hasBottomCurve?: boolean
+  nextSectionBgColor?: keyof typeof themeColorToHexMap
+  curveHeightClassName?: string
 }
 
 export const Section: React.FC<SectionProps> = ({
@@ -92,8 +131,25 @@ export const Section: React.FC<SectionProps> = ({
   children,
   className,
   id,
+  hasBottomCurve,
+  nextSectionBgColor,
+  curveHeightClassName,
   ...props
 }) => {
+  const actualNextSectionBgHex = nextSectionBgColor
+    ? themeColorToHexMap[nextSectionBgColor]
+    : undefined
+
+  let paddingAdjustmentClass = ''
+  if (hasBottomCurve && curveHeightClassName) {
+    const heightValue = curveHeightClassName.match(/h-(\d+|\[.*?\])/)?.[1]
+    if (heightValue) {
+      paddingAdjustmentClass = `pb-${heightValue}`
+    }
+  } else if (hasBottomCurve) {
+    paddingAdjustmentClass = 'pb-16 sm:pb-20 md:pb-24 lg:pb-28'
+  }
+
   return (
     <section
       id={id}
@@ -105,11 +161,18 @@ export const Section: React.FC<SectionProps> = ({
           roundedTop,
           roundedBottom,
         }),
+        paddingAdjustmentClass,
         className,
       )}
       {...props}
     >
       {children}
+      {hasBottomCurve && actualNextSectionBgHex && (
+        <BottomConcaveCurveSvg
+          fillColor={actualNextSectionBgHex}
+          curveHeightClassName={curveHeightClassName}
+        />
+      )}
     </section>
   )
 }
