@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
@@ -8,13 +8,73 @@ import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
 import { Button } from '@/components/Button'
 
-import leftImagePlaceholder from '../assets/herosection/portraits-23.jpg'
-import rightImagePlaceholder from '../assets/herosection/portraits-3.jpg'
+import defaultLeftImage from '../assets/herosection/portraits-23.jpg'
+import defaultRightImage from '../assets/herosection/portraits-3.jpg'
+import { useShuffledImages } from '@/hooks/useShuffleImages'
+
+const heroImageModules = import.meta.glob(
+  '/src/assets/herosection/*.{png,jpg,jpeg,svg,webp}',
+  { eager: true, query: '?url', import: 'default' },
+)
+
+const loadedImagesFromModules: string[] = Object.values(heroImageModules)
+
+const allHeroImageUrls: string[] =
+  loadedImagesFromModules.length === 0
+    ? [defaultLeftImage, defaultRightImage]
+    : loadedImagesFromModules.length === 1
+      ? (() => {
+          const initialFirstImage = loadedImagesFromModules[0]
+          const secondPushedImage =
+            initialFirstImage === defaultLeftImage
+              ? defaultRightImage
+              : defaultLeftImage
+          const imagesArr = [initialFirstImage, secondPushedImage]
+          return imagesArr[0] === imagesArr[1]
+            ? [imagesArr[0], defaultRightImage]
+            : imagesArr
+        })()
+      : loadedImagesFromModules
 
 const MotionButton = motion(Button)
 
 export default function HeroSection() {
   const navigate = useNavigate()
+
+  const imagePool = useMemo(() => {
+    return allHeroImageUrls.length >= 2
+      ? allHeroImageUrls
+      : allHeroImageUrls.length === 1 && allHeroImageUrls[0]
+        ? allHeroImageUrls[0] === defaultLeftImage
+          ? [allHeroImageUrls[0], defaultRightImage]
+          : [allHeroImageUrls[0], defaultLeftImage]
+        : [defaultLeftImage, defaultRightImage]
+  }, [])
+
+  const shuffledImages = useShuffledImages(imagePool)
+
+  const imageForLeft =
+    shuffledImages.length > 0 ? shuffledImages[0] : defaultLeftImage
+
+  const initialImageForRight =
+    shuffledImages.length > 1 ? shuffledImages[1] : defaultRightImage
+
+  let imageForRight =
+    imagePool.length > 1 && imageForLeft === initialImageForRight
+      ? (() => {
+          const distinctInPool = Array.from(new Set(imagePool))
+          const candidate = distinctInPool.find((img) => img !== imageForLeft)
+          return candidate
+            ? candidate
+            : imagePool[0] && imagePool[1]
+              ? imagePool[0] === imageForLeft
+                ? imagePool[1]
+                : imagePool[0]
+              : initialImageForRight
+        })()
+      : imagePool.length === 1 && imagePool[0]
+        ? imagePool[0]
+        : initialImageForRight
 
   return (
     <>
@@ -31,7 +91,7 @@ export default function HeroSection() {
       <Section
         roundedBottom="10xl"
         bgColor="beige"
-        className="h-[100vh] w-full flex flex-col justify-center items-center overflow-hidden py-8 sm:py-10 md:py-0"
+        className="h-[100vh] w-full flex flex-col justify-center items-center overflow-hidden pt-16 pb-8 sm:pt-20 sm:pb-10 md:py-0"
         aria-labelledby="hero-heading"
       >
         <SectionContent className="w-full">
@@ -48,9 +108,9 @@ export default function HeroSection() {
               }}
             >
               <img
-                src={leftImagePlaceholder}
+                src={imageForLeft}
                 alt="Stämningsfull porträttfotografering"
-                className="rounded-2xl shadow-xl w-full max-w-[18rem] sm:max-w-xs md:max-w-full h-auto object-cover transform hover:scale-105 hover:rotate-0 transition-transform duration-400 ease-out"
+                className="rounded-2xl w-full max-h-[24rem] md:max-w-full h-auto object-cover transform hover:scale-105 hover:rotate-0 transition-transform duration-400 ease-out"
               />
             </motion.div>
 
@@ -121,9 +181,9 @@ export default function HeroSection() {
               }}
             >
               <img
-                src={rightImagePlaceholder}
+                src={imageForRight}
                 alt="Detaljbild från företagsfotografering"
-                className="rounded-2xl shadow-xl w-full max-w-[12rem] sm:max-w-[14rem] md:max-w-full h-auto object-contain md:object-cover opacity-100 transform md:rotate-3 hover:scale-105 md:hover:rotate-0 transition-transform duration-400 ease-out"
+                className="rounded-2xl w-full h-[30vh] object-cover max-w-[18rem] sm:h-[35vh] sm:max-w-[14rem] md:h-auto md:max-h-[18rem] md:max-w-full md:object-cover transform md:rotate-3 hover:scale-105 md:hover:rotate-0 transition-transform duration-400 ease-out"
               />
             </motion.div>
           </div>

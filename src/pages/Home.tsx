@@ -79,11 +79,7 @@ export default function Home() {
       <div className="bg-gray-50 dark:bg-gray-900">
         {' '}
         <HeroSection />
-        <Section
-          roundedBottom="10xl"
-          bgColor="offWhite"
-          className="py-12 md:py-20 lg:py-24"
-        >
+        <Section bgColor="offWhite">
           <SectionContent className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-poiret tracking-wider text-textPrimary dark:text-white">
               Välkommen!
@@ -138,17 +134,17 @@ export default function Home() {
           <SectionContent heading="Galleri Highlights">
             <div
               ref={carouselRef}
-              className="min-h-[300px] sm:min-h-[400px] md:min-h-[500px]"
+              className="w-full max-h-[80vh] min-h-[300px] sm:min-h-[400px] md:min-h-[500px] -mt-3 flex flex-col"
             >
               <Suspense
                 fallback={
-                  <div className="h-72 sm:h-96 md:h-[500px] w-full max-w-4xl mx-auto bg-gray-200 dark:bg-gray-700 rounded-2xl animate-pulse" />
+                  <div className="h-full w-full bg-gray-200 dark:bg-gray-700 rounded-2xl animate-pulse" />
                 }
               >
                 {isCarouselVisible ? (
-                  <Carousel imageGroupName="carousel" />
+                  <Carousel />
                 ) : (
-                  <div className="h-72 sm:h-96 md:h-[500px] w-full max-w-4xl mx-auto bg-gray-200 dark:bg-gray-700 rounded-2xl animate-pulse" />
+                  <div className="h-full w-full bg-gray-200 dark:bg-gray-700 rounded-2xl animate-pulse" />
                 )}
               </Suspense>
             </div>

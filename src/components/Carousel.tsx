@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useImportedImages } from '../hooks/useImportedImages'
 import { useShuffledImages } from '../hooks/useShuffleImages'
 
@@ -7,12 +8,17 @@ interface CarouselProps {
   pauseDuration?: number
 }
 
+const carouselImageFolders = ['carousel']
+
 export default function Carousel({
   interval = 3000,
   pauseDuration = 5000,
 }: CarouselProps) {
-  const imagesData = useImportedImages(['carousel'])
-  const images = imagesData.carousel || []
+  const imagesData = useImportedImages(carouselImageFolders)
+
+  const images = useMemo(() => {
+    return imagesData.carousel || []
+  }, [imagesData.carousel])
 
   const shuffledImages = useShuffledImages(images)
 
@@ -21,18 +27,28 @@ export default function Carousel({
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {
-    if (shuffledImages.length === 0 || isPaused) return
+    if (shuffledImages.length === 0 || isPaused) {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+        intervalRef.current = null
+      }
+      return
+    }
 
-    if (intervalRef.current) clearInterval(intervalRef.current)
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current)
+    }
 
     intervalRef.current = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % shuffledImages.length)
     }, interval)
 
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current)
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+      }
     }
-  }, [shuffledImages, interval, isPaused])
+  }, [shuffledImages.length, interval, isPaused])
 
   const handleUserInteraction = (newIndex: number) => {
     setIsPaused(true)
@@ -44,8 +60,7 @@ export default function Carousel({
 
   return (
     <section
-      className="relative mx-auto overflow-hidden rounded-lg"
-      style={{ width: '60vw', height: '75vh' }}
+      className="relative overflow-hidden rounded-lg w-full flex-1"
       aria-label="Bildkarusell"
     >
       {shuffledImages.map((image, index) => (
@@ -70,20 +85,20 @@ export default function Carousel({
             (currentIndex - 1 + shuffledImages.length) % shuffledImages.length,
           )
         }
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full hover:bg-opacity-75 focus:outline-none"
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 focus:outline-none"
         aria-label="Föregående bild"
       >
-        &#8249;
+        <ChevronLeft size={24} aria-hidden="true" />
       </button>
 
       <button
         onClick={() =>
           handleUserInteraction((currentIndex + 1) % shuffledImages.length)
         }
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full hover:bg-opacity-75 focus:outline-none"
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 focus:outline-none"
         aria-label="Nästa bild"
       >
-        &#8250;
+        <ChevronRight size={24} aria-hidden="true" />
       </button>
     </section>
   )
