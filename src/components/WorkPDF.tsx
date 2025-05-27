@@ -246,20 +246,27 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Work Experience</Text>
             {workExp.map((exp, index) => (
-              // Apply conditional marginBottom: smaller for the last item
               <View
-                key={exp.id || index}
-                style={{ marginBottom: index === workExp.length - 1 ? 2 : 10 }} // Reduced margin for last item
+                key={exp.id}
+                style={{
+                  marginBottom: index === workExp.length - 1 ? 2 : 10,
+                }}
                 wrap={false}
               >
-                <Text style={styles.boldPrimaryText}>
-                  {exp.year_text || exp.year}
-                </Text>
+                <Text style={styles.boldPrimaryText}>{exp.year} </Text>
                 {renderDetails(exp.details)}
-                {exp.link_text && exp.link_href && (
-                  <Link style={styles.projectLink} src={exp.link_href}>
-                    {exp.link_text}: {exp.link_href}
-                  </Link>
+                {exp.links && exp.links.length > 0 && (
+                  <View style={{ marginTop: 2 }}>
+                    {exp.links.map((link, linkIdx) => (
+                      <Link
+                        key={linkIdx}
+                        style={styles.projectLink}
+                        src={link.href}
+                      >
+                        {`${link.text}: ${link.href}`}
+                      </Link>
+                    ))}
+                  </View>
                 )}
               </View>
             ))}

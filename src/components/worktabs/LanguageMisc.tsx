@@ -1,6 +1,6 @@
 import React from 'react'
-import SectionWrapper from '../SectionWrapper'
 import { CvLanguage } from '../../types/CvTypes'
+import { SectionContent } from '@/components/SectionContent'
 
 interface LanguageMiscProps {
   languages: CvLanguage[]
@@ -8,7 +8,7 @@ interface LanguageMiscProps {
 
 const LanguageMisc: React.FC<LanguageMiscProps> = ({ languages }) => {
   return (
-    <SectionWrapper title="Language & Miscellaneous">
+    <SectionContent heading="Language & Miscellaneous">
       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {languages.map((lang) => (
           <li
@@ -20,7 +20,7 @@ const LanguageMisc: React.FC<LanguageMiscProps> = ({ languages }) => {
           </li>
         ))}
       </ul>
-    </SectionWrapper>
+    </SectionContent>
   )
 }
 

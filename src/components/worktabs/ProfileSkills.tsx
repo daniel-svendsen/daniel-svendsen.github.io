@@ -1,8 +1,8 @@
 // src/components/WorkTabs/ProfileSkills.tsx
 import React from 'react'
-import SectionWrapper from '../SectionWrapper'
 import ToolIcon from '../ToolIcons'
 import { CvContent, CvSkill } from '../../types/CvTypes'
+import { SectionContent } from '@/components/SectionContent'
 
 interface ProfileSkillsProps {
   profile: CvContent | undefined
@@ -54,14 +54,13 @@ const ProfileSkills: React.FC<ProfileSkillsProps> = ({
   )
 
   return (
-    <SectionWrapper title="Profile & Skills">
+    <SectionContent heading="Profile & Skills">
       {intro && (
         <p className="text-textSecondary bg-white p-3 rounded shadow mb-4">
           {intro.description}
         </p>
       )}
 
-      {/* Render sections only if there are skills in that category */}
       {experiencedSkills.length > 0 && (
         <div className="mb-6">
           <h4 className="text-lg font-semibold text-primaryText mb-2">
@@ -98,7 +97,7 @@ const ProfileSkills: React.FC<ProfileSkillsProps> = ({
           )}
         </div>
       )}
-    </SectionWrapper>
+    </SectionContent>
   )
 }
 

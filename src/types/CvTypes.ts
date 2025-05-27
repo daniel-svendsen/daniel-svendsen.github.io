@@ -14,14 +14,18 @@ export interface CvSkill {
   icon: string
 }
 
+export interface CvExperienceLink {
+  text: string
+  href: string
+}
+
 export interface CvExperience {
   id: number
   cvContentId?: number
   type: string
   year: string
   details: string
-  linkText: string
-  linkHref: string
+  links?: CvExperienceLink[]
 }
 
 export interface CvProject {

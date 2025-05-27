@@ -1,12 +1,17 @@
-// src/components/TimeLine.tsx
 import React from 'react'
 import { motion } from 'framer-motion'
+import { LinkButton } from '@/components/Button'
+
+export interface TimelineEventLink {
+  text: string
+  href: string
+}
 
 export interface TimelineEvent {
   title: string
   date: string
   description: string
-  link?: { text: string; href: string }
+  links?: TimelineEventLink[]
 }
 
 interface TimelineProps {
@@ -20,32 +25,39 @@ export default function Timeline({ events }: TimelineProps) {
         <motion.div
           key={index}
           className="relative"
-          initial={{ opacity: 1, y: 20, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1.05 }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ type: 'spring', stiffness: 300 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
         >
-          <div className="bg-white p-4 rounded-lg shadow-md">
-            <h3 className="text-base sm:text-xl font-semibold text-textPrimary">
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md">
+            <h3 className="text-base sm:text-lg font-semibold text-textPrimary dark:text-white">
               {event.title}
             </h3>
-            <span className="block text-xs sm:text-sm text-textSecondary">
+            <span className="block text-xs sm:text-sm text-textSecondary dark:text-gray-400">
               {event.date}
             </span>
-            <p className="mt-2 text-xs sm:text-sm text-textSecondary whitespace-pre-line">
+            <p className="mt-2 text-xs sm:text-sm text-textSecondary dark:text-gray-300 whitespace-pre-line">
               {event.description}
-              {event.link && event.link.href && (
-                <span>
+              {event.links && event.links.length > 0 && (
+                <>
                   {' '}
-                  <a
-                    href={event.link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-highlight underline"
-                  >
-                    {event.link.text || event.link.href}
-                  </a>
-                </span>
+                  {event.links.map((link, linkIndex) => (
+                    <React.Fragment key={linkIndex}>
+                      <LinkButton
+                        to={link.href}
+                        variant="outline"
+                        subVariant="rounded"
+                        size="sm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.text || 'Länk'}
+                      </LinkButton>
+                      {linkIndex < event.links.length - 1 ? ' | ' : ''}{' '}
+                    </React.Fragment>
+                  ))}
+                </>
               )}
             </p>
           </div>

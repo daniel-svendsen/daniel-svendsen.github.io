@@ -14,7 +14,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
   footer,
 }) => {
   return (
-    <div className="min-h-screen text-textPrimary">
+    <div className="min-h-screen bg-custom-beige text-textPrimary">
       {header}
       {nav}
       {main}

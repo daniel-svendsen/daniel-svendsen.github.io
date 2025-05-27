@@ -10,7 +10,7 @@
       "id": 2,
       "section": "hobbies",
       "title": "Hobbies",
-      "description": "Photography (own business), cooking, brewing beer, baking sourdough bread, fishing, and enjoying nature trips with my family."
+      "description": "Photography with own business, cooking, brewing beer, baking sourdough bread, fishing, and enjoying nature trips with my family."
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "id": 4,
       "section": "intro",
       "title": "Introduction",
-      "description": "Motivated and versatile full-stack/system developer with a background in leadership and technical problem-solving. Currently completing the Java Enterprise Developer program at Yrgo. Passionate about designing scalable applications, improving workflows, and collaborating in Agile teams."
+      "description": "Motivated and versatile full-stack/system developer with a background in leadership and technical problem-solving. Studied Java Enterprise Developer program at Yrgo for 2 years. Passionate about designing scalable applications, improving workflows, and collaborating in Agile teams."
     }
   ],
   "skills": [
@@ -201,9 +201,17 @@
       "cvContentId": 1,
       "type": "work",
       "year": "2024 – Present",
-      "details": "Internship - Full-Stack Developer at Alten (for Save the Children). Developing an open-source platform during a 27-week internship.\n        - Contributed to full-stack development using Java, Spring Boot (backend) and React, TypeScript (frontend).\n        - Implemented and optimized backend logic and API integrations.\n        - Built and enhanced responsive frontend components.\n        - Utilized GitHub for version control and collaboration within an Agile (Scrum) team.",
-      "linkText": "Project GitHub",
-      "linkHref": "https://github.com/Hjulverkstan/hjulverkstan"
+      "details": "Internship - Full-Stack Developer at Alten (for Save the Children). Developing an open-source platform during a 27-week internship to enhance Hjulverkstan's community services.\n        - Contributed to full-stack development using Java, Spring Boot (backend), React, TypeScript (frontend), and AWS S3, focusing on delivering a critical image management system.\n        - Designed and implemented a comprehensive image handling solution: built scalable backend APIs for image upload/deletion to S3 with an automated cleanup service, and developed a mobile-first portal interface for efficient image capture by workshop staff. This directly improved internal vehicle tracking and management.\n        - Developed and launched key features for a new public-facing MVP website, including dynamic display of available vehicles and workshop information with images. This significantly increased Hjulverkstan's online visibility and accessibility to the community.\n        - The integrated solution provided a robust, user-centric platform, laying a scalable foundation for future development and directly supporting Hjulverkstan's operational and outreach goals.\n        - Utilized GitHub for version control and collaboration within an Agile (Scrum/Kanban) team.",
+      "links": [
+        {
+          "text": "Project GitHub",
+          "href": "https://github.com/Hjulverkstan/hjulverkstan"
+        },
+        {
+          "text": "Public Website (Dev)",
+          "href": "https://dev.hjulverkstan.org/"
+        }
+      ]
     },
     {
       "id": 2,
@@ -218,8 +226,8 @@
       "id": 3,
       "cvContentId": 1,
       "type": "education",
-      "year": "2023 – Present",
-      "details": "Java Enterprise Developer, Yrgo, Vocational Education, Gothenburg (400 YH points)",
+      "year": "2023 – 2025",
+      "details": "Java Enterprise Developer, Yrgo, Gothenburg (400 YH points)",
       "linkText": "",
       "linkHref": ""
     },
