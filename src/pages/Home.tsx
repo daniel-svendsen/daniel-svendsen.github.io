@@ -5,7 +5,8 @@ import { SectionContent } from '@/components/SectionContent'
 import HomeCard from '@/components/HomeCard'
 import { homeCards } from '../data/cards'
 import HeroSection from '../components/HeroSection'
-import forprosVideo from '../assets/movies/forpros1.mp4'
+import forprosVideo from '@/assets/movies/forpros1.mp4'
+import forprosImg from '@/assets/movies/img.png'
 import SEO from '@/components/SEO'
 
 const Carousel = lazy(() => import('../components/Carousel'))
@@ -119,7 +120,7 @@ export default function Home() {
               <video
                 controls
                 preload="metadata"
-                poster="/path/to/poster-forpros.jpg"
+                poster={forprosImg}
                 className="w-full h-full"
               >
                 <source src={forprosVideo} type="video/mp4" />
