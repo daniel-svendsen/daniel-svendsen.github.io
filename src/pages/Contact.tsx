@@ -1,8 +1,9 @@
-// src/pages/Contact.tsx
 import React, { FormEvent, useState } from 'react'
 import SEO from '@/components/SEO'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
+import { Button } from '@/components/Button'
+import { HelmetProvider } from 'react-helmet-async'
 
 export default function Contact() {
   const [selectedService, setSelectedService] = useState<string>('')
@@ -29,17 +30,13 @@ export default function Contact() {
     const form = e.currentTarget
 
     const formData = new FormData(form)
-    const data: Record<string, any> = {}
-    formData.forEach((value, key) => {
-      if (key === 'service') {
-        data[key] = selectedService
-      } else {
-        data[key] = value
-      }
-    })
-
-    if (!data.service && selectedService) {
-      data.service = selectedService
+    const formValues = Object.fromEntries(formData.entries()) as Record<
+      string,
+      string
+    >
+    const data = {
+      ...formValues,
+      service: selectedService,
     }
 
     try {
@@ -92,14 +89,15 @@ export default function Contact() {
 
   const inputClasses =
     'block w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
-  const labelClasses = 'block text-sm font-medium mb-1.5 text-foreground'
+  const labelClasses =
+    'block text-sm font-medium mb-1.5 text-foreground text-left'
   const radioLabelClasses =
     'ml-2 text-sm font-medium text-foreground cursor-pointer'
   const radioInputClasses =
     'h-4 w-4 shrink-0 text-primary border-muted-foreground focus:ring-primary focus:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50'
 
   return (
-    <>
+    <HelmetProvider>
       <SEO
         title="Kontakt | Fotograf & Webb | Göteborg & Kungälv - Svendsén Photography"
         description="Kontakta Svendsén Photography för bröllopsfotografering, porträtt, företagsfoto, eventfoto eller webbutveckling i Göteborg och Kungälv. Skicka din förfrågan!"
@@ -109,15 +107,24 @@ export default function Contact() {
       />
 
       <main className="pt-16 md:pt-20 bg-background text-foreground">
-        <Section variant="white">
-          <SectionContent heading="Kontakta mig">
-            <p className="text-muted-foreground mb-8 max-w-xl">
-              Fyll i formuläret nedan så återkommer jag till dig så snart som
-              möjligt via e-post.
-            </p>
+        <Section
+          bgColor="beige"
+          roundedBottom="10xl"
+          className="py-12 md:py-20 lg:py-24"
+        >
+          <SectionContent>
+            <div className="text-center mb-10">
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-textPrimary dark:text-white mb-4 font-poiret">
+                Kontakta mig
+              </h1>
+              <p className="text-lg text-muted-foreground dark:text-gray-300 max-w-xl mx-auto">
+                Fyll i formuläret nedan så återkommer jag till dig så snart som
+                möjligt via e-post.
+              </p>
+            </div>
             <form
               onSubmit={handleSubmit}
-              className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 max-w-3xl"
+              className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 max-w-3xl mx-auto"
             >
               <div>
                 <label htmlFor="name" className={labelClasses}>
@@ -149,16 +156,18 @@ export default function Contact() {
               </div>
 
               <fieldset className="sm:col-span-2">
-                <legend className={labelClasses}>
+                <legend className={`${labelClasses} mb-2`}>
+                  {' '}
                   Vilken tjänst är du intresserad av? *
                 </legend>
-                <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
+                <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+                  {' '}
                   {services.map((service) => (
                     <div key={service} className="flex items-center">
                       <input
                         type="radio"
                         id={service}
-                        name="service"
+                        name="service_option"
                         value={service}
                         checked={selectedService === service}
                         onChange={() => setSelectedService(service)}
@@ -189,18 +198,22 @@ export default function Contact() {
                 />
               </div>
 
-              <div className="sm:col-span-2">
-                <button
+              <div className="sm:col-span-2 flex justify-center mt-4">
+                {' '}
+                <Button
                   type="submit"
+                  variant="default"
+                  subVariant="rounded"
+                  size="lg"
+                  className="w-full sm:w-auto px-8"
                   disabled={isSubmitting}
-                  className="w-full inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-highlight text-secondary hover:bg-primary/90 h-10 px-4 py-2"
                 >
                   {isSubmitting ? 'Skickar...' : 'Skicka meddelande'}
-                </button>
+                </Button>
               </div>
             </form>
 
-            <div className="mt-6 h-6">
+            <div className="mt-8 h-6 text-center max-w-3xl mx-auto">
               {formStatus === 'success' && (
                 <p className="text-sm font-medium text-green-600">
                   Tack! Ditt meddelande har skickats. Jag återkommer snart.
@@ -216,6 +229,6 @@ export default function Contact() {
           </SectionContent>
         </Section>
       </main>
-    </>
+    </HelmetProvider>
   )
 }

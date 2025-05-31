@@ -48,7 +48,7 @@ export default function Services() {
       <div className="bg-gray-50 dark:bg-gray-900 text-textPrimary pt-16 md:pt-20">
         <Section
           roundedBottom="10xl"
-          bgColor="beige"
+          bgColor="offWhite"
           className="pt-12 pb-16 md:pt-20 md:pb-24 lg:pt-24 lg:pb-28"
         >
           <SectionContent className="text-center">
@@ -73,7 +73,7 @@ export default function Services() {
 
         <Section
           roundedTop="10xl"
-          bgColor="offWhite"
+          bgColor="beige"
           className="py-12 md:py-20 lg:py-24"
         >
           <SectionContent>

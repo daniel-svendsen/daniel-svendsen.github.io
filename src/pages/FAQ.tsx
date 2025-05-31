@@ -1,10 +1,12 @@
 // src/pages/FAQ.tsx
 import { Disclosure } from '@headlessui/react'
 import React from 'react'
-import SEO from '../components/SEO'
+import SEO from '@/components/SEO'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
-import { Minus, Plus } from 'lucide-react' // Importera ikoner
+import { Minus, Plus } from 'lucide-react'
+import { LinkButton } from '@/components/Button'
+import { HelmetProvider } from 'react-helmet-async'
 
 export default function FAQ() {
   const faqJsonLd = {
@@ -69,7 +71,7 @@ export default function FAQ() {
   ]
 
   return (
-    <>
+    <HelmetProvider>
       <SEO
         title="Vanliga frågor - Svendsén Photography"
         description="Har du frågor om fotografering, priser och bokning? Här hittar du svar på vanliga frågor om våra tjänster i Göteborg och Kungälv."
@@ -79,13 +81,13 @@ export default function FAQ() {
       />
 
       <main className="pt-16 md:pt-20 bg-background text-foreground">
-        <Section variant="white">
+        <Section bgColor="beige" roundedBottom="10xl">
           <SectionContent>
             <div className="text-center mb-12 md:mb-16">
-              <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
+              <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-textPrimary dark:text-white">
                 Vanliga frågor
               </h1>
-              <p className="text-lg text-muted-foreground mt-3">
+              <p className="text-lg text-muted-foreground dark:text-gray-300 mt-3">
                 Har du frågor? Här hittar du svaren.
               </p>
             </div>
@@ -118,16 +120,19 @@ export default function FAQ() {
 
             <div className="text-center mt-12 md:mt-16 pt-8 border-t border-border">
               <p className="text-muted-foreground mb-4">Har du fler frågor?</p>
-              <a
-                href="/contact"
-                className="inline-block px-6 py-3 bg-highlight text-secondary font-semibold rounded-md hover:bg-primary/90 transition-colors focus:outline-none focus-visible:ring focus-visible:ring-primary focus-visible:ring-offset-2"
+              <LinkButton
+                to="/contact"
+                variant="default"
+                size="lg"
+                subVariant="rounded"
+                className="font-semibold"
               >
                 Kontakta mig
-              </a>
+              </LinkButton>
             </div>
           </SectionContent>
         </Section>
       </main>
-    </>
+    </HelmetProvider>
   )
 }

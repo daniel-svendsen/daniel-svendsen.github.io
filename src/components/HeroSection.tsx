@@ -91,7 +91,7 @@ export default function HeroSection() {
       <Section
         roundedBottom="10xl"
         bgColor="beige"
-        className="h-[100vh] w-full flex flex-col justify-center items-center overflow-hidden pt-16 pb-8 sm:pt-20 sm:pb-10 md:py-0"
+        className="h-[98vh] w-full flex flex-col justify-center items-center overflow-hidden pt-16 pb-8 sm:pt-20 sm:pb-10 md:py-0"
         aria-labelledby="hero-heading"
       >
         <SectionContent className="w-full">
