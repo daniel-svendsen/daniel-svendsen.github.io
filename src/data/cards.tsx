@@ -1,4 +1,3 @@
-// src/data/cards.ts
 import { Briefcase, Camera, Code, Users } from 'lucide-react'
 
 import weddingImage from '../assets/pictures/wedding.jpg'

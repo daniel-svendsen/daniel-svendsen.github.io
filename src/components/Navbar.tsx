@@ -21,6 +21,7 @@ const Navbar = () => {
     { to: '/contact', label: 'Kontakt' },
     { to: '/portraits', label: 'Porträtt' },
     { to: '/weddings', label: 'Bröllop' },
+    { to: '/webservices', label: 'Webtjänster' },
   ]
 
   const linkClasses =

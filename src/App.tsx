@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import Navbar from './components/Navbar'
 import ScrollToTop from './components/ScrollToTop'
 import Work from './pages/Work'
+import WebServicesPage from '@/pages/WebServices'
 
 const Home = React.lazy(() => import('./pages/Home'))
 const Services = React.lazy(() => import('./pages/Services'))
@@ -33,6 +34,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/work" element={<Work />} />
+            <Route path="/webservices" element={<WebServicesPage />} />
           </Routes>
         </Suspense>
       </Router>

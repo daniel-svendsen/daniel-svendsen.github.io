@@ -1,11 +1,10 @@
-// src/pages/Services.tsx
 import React from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import SEO from '@/components/SEO'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
-import { LinkButton } from '@/components/Button' // Importera LinkButton
-import ServiceCard from '@/components/ServiceCard' // Importera din nya ServiceCard
+import { LinkButton } from '@/components/Button'
+import ServiceCard from '@/components/ServiceCard'
 import { serviceCards } from '../data/cards'
 
 const servicesJsonLd = {
