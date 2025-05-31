@@ -128,7 +128,7 @@ export default function WebServicesPage() {
               {servicesList.map((service) => (
                 <div
                   key={service.title}
-                  className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg flex flex-col items-center text-center"
+                  className="bg-white dark:bg-gray-800 p-6 rounded-xl flex flex-col items-center text-center"
                 >
                   {service.icon}
                   <h3 className="text-xl font-semibold text-textPrimary dark:text-white mb-2">
@@ -182,7 +182,7 @@ export default function WebServicesPage() {
                 <img
                   src={webdevImage}
                   alt="Exempel på modern hemsideutveckling och design för SPA-sidor"
-                  className="rounded-2xl shadow-xl object-cover w-full h-auto max-h-[450px]"
+                  className="rounded-2xl object-cover w-full h-auto max-h-[450px]"
                 />
                 <p className="text-center text-xs text-muted-foreground mt-2">
                   Exempel på design och layout för en modern SPA-hemsida.
@@ -203,7 +203,7 @@ export default function WebServicesPage() {
               {processSteps.map((step) => (
                 <div
                   key={step.title}
-                  className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg"
+                  className="bg-white dark:bg-gray-800 p-6 rounded-xl"
                 >
                   <h3 className="text-xl font-semibold text-textPrimary dark:text-white mb-3">
                     {step.title}

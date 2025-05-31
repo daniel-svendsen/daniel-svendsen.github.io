@@ -39,7 +39,7 @@ export const homeCards = [
     description:
       'Moderna, snabba och SEO-optimerade hemsidor för företag och kreatörer. Även helhetspaket.',
     buttonText: 'Läs mer',
-    buttonLink: '/services',
+    buttonLink: '/webservices',
     icon: Code,
   },
 ]
