@@ -154,7 +154,9 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
     skill.category.startsWith('Familiar'),
   )
 
-  const workExp = (cvData.experience || []).filter((exp) => exp.type === 'work')
+  const workExp = (cvData.experience || []).filter(
+    (exp) => exp.type === 'work' || exp.type === 'Internship/Opensource',
+  )
   const educationExp = (cvData.experience || []).filter(
     (exp) => exp.type === 'education',
   )

@@ -4,13 +4,13 @@
       "id": 1,
       "section": "profile",
       "title": "Daniel Svendsén",
-      "description": "Result-driven and passionate full-stack developer with leadership background, experienced in Java, Typescript, Spring Boot and React."
+      "description": "Result-driven and passionate Java developer with full-stack experience and leader/mentorship background."
     },
     {
       "id": 2,
       "section": "hobbies",
       "title": "Hobbies",
-      "description": "Photography with own business, cooking, brewing beer, baking sourdough bread, fishing, and enjoying nature trips with my family."
+      "description": "Photography with own business, cooking food, brewing beer, baking sourdough bread, fishing, and enjoying nature trips with my family."
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "id": 4,
       "section": "intro",
       "title": "Introduction",
-      "description": "Motivated and versatile full-stack/system developer with a background in leadership and technical problem-solving. Studied Java Enterprise Developer program at Yrgo for 2 years. Passionate about designing scalable applications, improving workflows, and collaborating in Agile teams."
+      "description": "Passionate and versatile java/full-stack developer with a background in leadership and mentorship. Studied Java Enterprise Developer program at Yrgo for 2 years. Passionate about designing scalable applications, improving workflows, and collaborating in Agile teams."
     }
   ],
   "skills": [
@@ -199,9 +199,9 @@
     {
       "id": 1,
       "cvContentId": 1,
-      "type": "work",
+      "type": "Internship/Opensource",
       "year": "2024 – Present",
-      "details": "Internship - Full-Stack Developer at Alten (for Save the Children). Developing an open-source platform during internship to enhance Hjulverkstan's community services.\n        - Contributed to full-stack development using Java, Spring Boot (backend), React, TypeScript (frontend), and AWS S3, focusing on delivering a critical image management system.\n        - Designed and implemented a comprehensive image handling solution: built scalable backend APIs for image upload/deletion to S3 with an automated cleanup service, and developed a mobile-first portal interface for efficient image capture by workshop staff. This directly improved internal vehicle tracking and management.\n        - Developed and launched key features for a new public-facing MVP website, including dynamic display of available vehicles and workshop information with images. This significantly increased Hjulverkstan's online visibility and accessibility to the community.\n        - The integrated solution provided a robust, user-centric platform, laying a scalable foundation for future development and directly supporting Hjulverkstan's operational and outreach goals.\n        - Utilized GitHub for version control and collaboration within an Agile (Scrum/Kanban) team.",
+      "details": "Internship - Full-Stack Developer at Alten (for Save the Children). Developing an open-source platform to enhance Hjulverkstan's community services.\n        - Contributed to full-stack development using Java, Spring Boot, React, TypeScript, AWS S3, focusing on delivering a image management system.\n        - Designed and implemented a  image handling solution: built scalable backend APIs for image upload/deletion to S3 with an automated cleanup service, and developed a mobile-first portal interface for efficient image capture by workshop staff. This directly improved internal vehicle management.\n        - Developed and launched key features for a new public-facing MVP website, including dynamic display of available vehicles and workshop information with images. This significantly increased Hjulverkstan's online visibility and accessibility to the community.\n        - The integrated solution provided a robust, user-centric platform, laying a scalable foundation for future development and directly supporting Hjulverkstan's operational and outreach goals.\n        - Utilized GitHub for version control and collaboration within an Agile (Scrum/Kanban) team. \n\n",
       "links": [
         {
           "text": "Project GitHub",
@@ -218,7 +218,7 @@
       "cvContentId": 1,
       "type": "work",
       "year": "2008 – Present",
-      "details": "ICA - Warehouse worker, various roles including:\nTeam leader - Ability to change tactics depending on what the day brings\nPeer supporter - Helping colleagues in tough situations and/or addictions\nTeaching - Teaching colleagues how to operate truck/use system to achieve goals\nImprovement team - Work on improvement suggestions received from employees\nGoods recipient - Recieving goods from trucks and ensuring proper system entry",
+      "details": "ICA - Warehouse worker, various roles including:\nTeam leader - Ability to change tactics depending on what the day brings\nPeer supporter - Helping colleagues in tough situations and/or addictions\nMentorship - Teaching colleagues how to operate truck/use system.\nImprovement team - Work on improvement suggestions received from employees\nGoods recipient - Recieving goods from trucks and ensuring proper system entry",
       "linkText": "",
       "linkHref": ""
     },

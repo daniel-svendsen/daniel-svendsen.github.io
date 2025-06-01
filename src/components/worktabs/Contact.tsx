@@ -32,7 +32,7 @@ const Contact: React.FC<ContactProps> = ({ contacts }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {contact.type === 'LinkedIn' ? 'Besök profil' : 'Länk'}
+                  {contact.type === 'LinkedIn' ? 'Visit Profile' : 'Länk'}
                 </LinkButton>
               )}
             </div>

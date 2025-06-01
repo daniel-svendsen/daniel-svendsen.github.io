@@ -59,5 +59,6 @@ export interface CvData {
   projects: CvProject[]
   contact: CvContact[]
   languages: CvLanguage[]
+  hobbies: CvContent[]
   personalProjectsTitle: string
 }
