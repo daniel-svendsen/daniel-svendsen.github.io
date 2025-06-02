@@ -1,15 +1,23 @@
 import React from 'react'
-import { type CvProject } from '../../types/CvTypes'
+import { type CvProject, LocalizedContent } from '../../types/CvTypes'
 import { LinkButton } from '@/components/Button'
 import { SectionContent } from '@/components/SectionContent'
+import { useLanguage } from '@/components/context/LanguageContext'
 
 interface ProjectsProps {
   projects: CvProject[]
+  heading: LocalizedContent
 }
 
-const Projects: React.FC<ProjectsProps> = ({ projects }) => {
+const Projects: React.FC<ProjectsProps> = ({ projects, heading }) => {
+  const { t } = useLanguage()
+  const visitProjectText: LocalizedContent = {
+    en: 'Visit Project',
+    sv: 'Besök Projekt',
+  }
+
   return (
-    <SectionContent heading="Personal Projects">
+    <SectionContent heading={t(heading)}>
       <div className="space-y-6">
         {projects.map((project) => (
           <div
@@ -17,10 +25,10 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
             className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow"
           >
             <h3 className="text-lg font-semibold text-textPrimary dark:text-white">
-              {project.name}
+              {t(project.name)}
             </h3>
             <p className="mt-1 text-textSecondary dark:text-gray-300 text-sm">
-              {project.details}
+              {t(project.details)}
             </p>
             {project.link_href && (
               <LinkButton
@@ -32,7 +40,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
                 className="mt-2"
                 rel="noopener noreferrer"
               >
-                Visit Project
+                {t(visitProjectText)}
               </LinkButton>
             )}
           </div>

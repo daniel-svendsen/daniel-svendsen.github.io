@@ -8,6 +8,7 @@ import {
   type CvLanguage,
   type CvProject,
   type CvSkill,
+  type LocalizedContent,
 } from '../types/CvTypes'
 
 interface RawCvData {
@@ -26,7 +27,7 @@ export const usePreloadedData = () => {
 
   useEffect(() => {
     try {
-      const typedRawData = rawCvDataFromFile as RawCvData
+      const typedRawData = rawCvDataFromFile as unknown as RawCvData
 
       const profileItem = typedRawData.content.find(
         (item) => item.section === 'profile',
@@ -44,6 +45,11 @@ export const usePreloadedData = () => {
         )
       }
 
+      const personalProjectsTitleLocalized: LocalizedContent = {
+        en: 'Personal Projects',
+        sv: 'Personliga Projekt',
+      }
+
       const processedData: CvData = {
         profile: profileItem,
         intro: introItem,
@@ -53,7 +59,7 @@ export const usePreloadedData = () => {
         contact: typedRawData.contact,
         languages: typedRawData.languages,
         hobbies: hobbiesItems,
-        personalProjectsTitle: 'Personal Projects',
+        personalProjectsTitle: personalProjectsTitleLocalized,
       }
 
       setData(processedData)

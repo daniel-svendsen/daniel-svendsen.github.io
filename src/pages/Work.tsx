@@ -14,22 +14,46 @@ import { SectionContent } from '@/components/SectionContent'
 import { HelmetProvider } from 'react-helmet-async'
 import SEO from '@/components/SEO'
 import PageLayout from '@/layout/PageLayout'
+import { useLanguage } from '@/components/context/LanguageContext'
 
 const Work: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('profile')
   const { data: cvData, isLoading, error: hookError } = usePreloadedData()
+  const { t } = useLanguage()
 
   const pageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'Daniel Svendsén - CV & Arbetslivserfarenhet',
-    description:
-      'Utforska Daniel Svendséns professionella bakgrund, tekniska färdigheter och projekt.',
+    name: t({
+      en: 'Daniel Svendsén - CV & Work Experience',
+      sv: 'Daniel Svendsén - CV & Arbetslivserfarenhet',
+    }),
+    description: t({
+      en: "Explore Daniel Svendsén's professional background, technical skills, and projects.",
+      sv: 'Utforska Daniel Svendséns professionella bakgrund, tekniska färdigheter och projekt.',
+    }),
     url: 'https://www.svendsenphotography.com/work',
   }
 
+  const seoTitle = t({
+    en: 'CV & Experience - Daniel Svendsén',
+    sv: 'CV & Erfarenhet - Daniel Svendsén',
+  })
+  const seoDescription = t({
+    en: "Daniel Svendsén's CV and portfolio - technical skills, work experience, and projects.",
+    sv: 'Daniel Svendséns CV och portfolio - tekniska färdigheter, arbetslivserfarenhet och projekt.',
+  })
+
   const renderTabContent = () => {
-    if (!cvData) return <div>Innehåll ej tillgängligt</div>
+    if (!cvData)
+      return (
+        <div>
+          {t({
+            en: 'Content not available',
+            sv: 'Innehåll ej tillgängligt',
+          })}
+        </div>
+      )
 
     const tabComponents: { [key: string]: React.ReactNode } = {
       profile: (
@@ -42,23 +66,44 @@ const Work: React.FC = () => {
       experience: <Experience experiences={cvData.experience} />,
       language: <LanguageMisc languages={cvData.languages} />,
       hobbies: <Hobbies hobbies={cvData.hobbies} />,
-      projects: <Projects projects={cvData.projects} />,
+      projects: (
+        <Projects
+          projects={cvData.projects}
+          heading={cvData.personalProjectsTitle}
+        />
+      ),
       contact: <ContactTab contacts={cvData.contact} />,
     }
-    return tabComponents[activeTab] || <div>Innehåll ej tillgängligt</div>
+    return (
+      tabComponents[activeTab] || (
+        <div>
+          {t({ en: 'Content not available', sv: 'Innehåll ej tillgängligt' })}
+        </div>
+      )
+    )
   }
 
   return isLoading ? (
-    <div className="text-center p-10">Laddar innehåll...</div>
+    <div className="text-center p-10">
+      {t({
+        en: 'Loading content...',
+        sv: 'Laddar innehåll...',
+      })}
+    </div>
   ) : hookError || !cvData ? (
     <div className="text-red-600 text-center mt-4">
-      Fel: {hookError || 'Kunde inte ladda CV-data.'}
+      {t({ en: 'Error: ', sv: 'Fel: ' })}
+      {hookError ||
+        t({
+          en: 'Could not load CV data.',
+          sv: 'Kunde inte ladda CV-data.',
+        })}
     </div>
   ) : (
     <HelmetProvider>
       <SEO
-        title="CV & Erfarenhet - Daniel Svendsén"
-        description="Daniel Svendséns CV och portfolio - tekniska färdigheter, arbetslivserfarenhet och projekt."
+        title={seoTitle}
+        description={seoDescription}
         url="https://www.svendsenphotography.com/work"
         jsonLd={pageJsonLd}
       />

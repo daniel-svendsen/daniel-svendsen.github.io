@@ -10,7 +10,12 @@ import {
 } from '@react-pdf/renderer'
 import workColors from '../config/workColors'
 import portraitImage from '../assets/bild1.jpg'
-import { CvData } from '../types/CvTypes'
+import {
+  type CvData,
+  type CvSkill,
+  type LocalizedContent,
+} from '../types/CvTypes'
+import { Language } from '@/components/context/LanguageContext'
 
 Font.register({
   family: 'Open Sans',
@@ -28,7 +33,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
     fontFamily: 'Open Sans',
     backgroundColor: workColors.background,
-    fontSize: 10,
+    fontSize: 9,
     color: workColors.secondaryText,
     lineHeight: 1.4,
   },
@@ -144,38 +149,85 @@ const styles = StyleSheet.create({
   },
 })
 
-const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
+const translatePdf = (
+  localized: LocalizedContent | string | undefined,
+  lang: Language,
+): string => {
+  if (!localized) return ''
+  if (typeof localized === 'string') return localized
+  return localized[lang] || localized.en
+}
+
+const pdfSectionTitles: Record<string, LocalizedContent> = {
+  profileIntro: { en: 'Profile', sv: 'Profil' },
+  technicalSkills: { en: 'Technical Skills', sv: 'Tekniska Färdigheter' },
+  experiencedIn: { en: 'Experienced In', sv: 'Erfarenhet Av' },
+  familiarWith: { en: 'Familiar With', sv: 'Kännedom Om' },
+  workExperience: { en: 'Work Experience', sv: 'Arbetslivserfarenhet' },
+  education: { en: 'Education', sv: 'Utbildning' },
+  // personalProjects: { en: 'Projects', sv: 'Projekt' }, // Använder cvData.personalProjectsTitle
+  contact: { en: 'Contact', sv: 'Kontakt' },
+  linkedInName: { en: 'LinkedIn Profile', sv: 'LinkedIn-profil' },
+  websiteLinkText: {
+    en: 'Website: www.svendsenphotography.com/work',
+    sv: 'Webbplats: www.svendsenphotography.com/work',
+  },
+}
+
+const WorkPDFDocument = ({
+  cvData,
+  lang,
+}: {
+  cvData: CvData
+  lang: Language
+}) => {
+  const t = (localized: LocalizedContent | string | undefined) =>
+    translatePdf(localized, lang)
+
+  const experiencedKey = t({ en: 'Experienced', sv: 'Erfarenhet' })
+  const methodologiesKey = t({ en: 'Methodologies', sv: 'Metoder' })
+  const familiarKey = t({ en: 'Familiar', sv: 'Kännedom' })
+  const workKey = t({ en: 'Work', sv: 'Arbete' })
+  const internshipKey = t({
+    en: 'Internship/Opensource',
+    sv: 'Praktik/Öppen Källkod',
+  })
+  const educationKey = t({ en: 'Education', sv: 'Utbildning' })
+  const linkedInTypeKey = t({ en: 'LinkedIn', sv: 'LinkedIn' })
+  const websiteTypeKey = t({ en: 'Website', sv: 'Webbplats' })
+
   const experiencedSkills = (cvData.skills || []).filter(
     (skill) =>
-      skill.category.startsWith('Experienced') &&
-      !skill.category.includes('Methodologies'),
+      t(skill.category).startsWith(experiencedKey) &&
+      !t(skill.category).includes(methodologiesKey),
   )
   const familiarSkills = (cvData.skills || []).filter((skill) =>
-    skill.category.startsWith('Familiar'),
+    t(skill.category).startsWith(familiarKey),
   )
 
   const workExp = (cvData.experience || []).filter(
-    (exp) => exp.type === 'work' || exp.type === 'Internship/Opensource',
+    (exp) => t(exp.type) === workKey || t(exp.type) === internshipKey,
   )
   const educationExp = (cvData.experience || []).filter(
-    (exp) => exp.type === 'education',
+    (exp) => t(exp.type) === educationKey,
   )
   const otherContacts = (cvData.contact || []).filter(
-    (ct) => ct.type !== 'LinkedIn' && ct.type !== 'Website',
+    (ct) => t(ct.type) !== linkedInTypeKey && t(ct.type) !== websiteTypeKey,
   )
 
-  const renderSkillList = (skills: any[]) => (
+  const renderSkillList = (skills: CvSkill[]) => (
     <View style={styles.listItemContainer}>
       {skills.map((skill) => (
-        <View key={skill.id || skill.tool} style={styles.listItem}>
-          <Text style={styles.text}>{skill.tool}</Text>
+        <View key={skill.id || t(skill.tool)} style={styles.listItem}>
+          <Text style={styles.text}>{t(skill.tool)}</Text>
         </View>
       ))}
     </View>
   )
 
-  const renderDetails = (details: string) => {
-    const lines = details
+  const renderDetails = (details: LocalizedContent | string) => {
+    const translatedDetails = t(details)
+    const lines = translatedDetails
       .split('\n')
       .map((line) => line.trim())
       .filter((line) => line.length > 0)
@@ -189,7 +241,7 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
           <View style={styles.detailList}>
             {listItems.map((item, idx) => (
               <Text key={idx} style={styles.detailItem}>
-                {item}
+                {item.startsWith('- ') ? item : `- ${item}`}
               </Text>
             ))}
           </View>
@@ -205,17 +257,15 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
           {portraitImage && (
             <Image src={portraitImage} style={styles.profileImage} />
           )}
-          <Text style={styles.headerName}>
-            {cvData.profile?.title || 'Name Missing'}
-          </Text>
+          <Text style={styles.headerName}>{t(cvData.profile?.title)}</Text>
           <Text style={styles.headerTitle}>
-            {cvData.profile?.description || 'Title Missing'}
+            {t(cvData.profile?.description)}
           </Text>
           <Link
             style={styles.headerLink}
             src="https://www.linkedin.com/in/daniel-svendsen-02423a1b4/"
           >
-            LinkedIn Profile
+            {t(pdfSectionTitles.linkedInName)}
           </Link>
         </View>
 
@@ -223,30 +273,38 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
           {cvData.intro && (
             <View style={styles.section} wrap={false}>
               <Text style={styles.sectionTitle}>
-                {cvData.intro.title || 'Profile'}
+                {t(cvData.intro.title) || t(pdfSectionTitles.profileIntro)}
               </Text>
-              <Text style={styles.text}>{cvData.intro.description}</Text>
+              <Text style={styles.text}>{t(cvData.intro.description)}</Text>
             </View>
           )}
 
           <View style={styles.section} wrap={false}>
-            <Text style={styles.sectionTitle}>Technical Skills</Text>
+            <Text style={styles.sectionTitle}>
+              {t(pdfSectionTitles.technicalSkills)}
+            </Text>
             {experiencedSkills.length > 0 && (
               <View>
-                <Text style={styles.subHeading}>Experienced In</Text>
+                <Text style={styles.subHeading}>
+                  {t(pdfSectionTitles.experiencedIn)}
+                </Text>
                 {renderSkillList(experiencedSkills)}
               </View>
             )}
             {familiarSkills.length > 0 && (
               <View style={{ marginTop: experiencedSkills.length > 0 ? 4 : 0 }}>
-                <Text style={styles.subHeading}>Familiar With</Text>
+                <Text style={styles.subHeading}>
+                  {t(pdfSectionTitles.familiarWith)}
+                </Text>
                 {renderSkillList(familiarSkills)}
               </View>
             )}
           </View>
 
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Work Experience</Text>
+            <Text style={styles.sectionTitle}>
+              {t(pdfSectionTitles.workExperience)}
+            </Text>
             {workExp.map((exp, index) => (
               <View
                 key={exp.id}
@@ -265,7 +323,7 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
                         style={styles.projectLink}
                         src={link.href}
                       >
-                        {`${link.text}: ${link.href}`}
+                        {`${t(link.text)}: ${link.href}`}
                       </Link>
                     ))}
                   </View>
@@ -275,31 +333,25 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
           </View>
 
           <View style={styles.section} wrap={false}>
-            <Text style={styles.sectionTitle}>Education</Text>
+            <Text style={styles.sectionTitle}>
+              {t(pdfSectionTitles.education)}
+            </Text>
             {educationExp.map((edu, index) => (
-              <View
-                key={edu.id || index}
-                style={{ marginBottom: 8 }}
-                wrap={false}
-              >
-                <Text style={styles.boldPrimaryText}>
-                  {edu.year_text || edu.year}
-                </Text>
-                <Text style={styles.text}>{edu.details}</Text>
+              <View key={edu.id} style={{ marginBottom: 8 }} wrap={false}>
+                <Text style={styles.boldPrimaryText}>{edu.year}</Text>
+                <Text style={styles.text}>{t(edu.details)}</Text>
               </View>
             ))}
           </View>
 
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Projects</Text>
+            <Text style={styles.sectionTitle}>
+              {t(cvData.personalProjectsTitle)}
+            </Text>
             {(cvData.projects || []).map((project, index) => (
-              <View
-                key={project.id || index}
-                style={{ marginBottom: 10 }}
-                wrap={false}
-              >
-                <Text style={styles.boldPrimaryText}>{project.name}</Text>
-                <Text style={styles.text}>{project.details}</Text>
+              <View key={project.id} style={{ marginBottom: 10 }} wrap={false}>
+                <Text style={styles.boldPrimaryText}>{t(project.name)}</Text>
+                <Text style={styles.text}>{t(project.details)}</Text>
                 {project.link_href && (
                   <Link style={styles.projectLink} src={project.link_href}>
                     {project.link_href}
@@ -310,10 +362,12 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
           </View>
 
           <View style={styles.section} wrap={false}>
-            <Text style={styles.sectionTitle}>Contact</Text>
+            <Text style={styles.sectionTitle}>
+              {t(pdfSectionTitles.contact)}
+            </Text>
             {otherContacts.map((ct, index) => (
-              <Text key={ct.id || index} style={styles.contactText}>
-                <Text style={styles.contactLabel}>{ct.type}: </Text>
+              <Text key={ct.id} style={styles.contactText}>
+                <Text style={styles.contactLabel}>{t(ct.type)}: </Text>
                 {ct.details}
               </Text>
             ))}
@@ -321,7 +375,7 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
               style={[styles.contactText, styles.projectLink, { marginTop: 4 }]}
               src="https://www.svendsenphotography.com/work"
             >
-              Website: www.svendsenphotography.com/work
+              {t(pdfSectionTitles.websiteLinkText)}
             </Link>
           </View>
         </View>
@@ -330,18 +384,40 @@ const WorkPDFDocument = ({ cvData }: { cvData: CvData }) => {
   )
 }
 
-const WorkPDF = ({ cvData }: { cvData: CvData | null }) => {
+const WorkPDF = ({
+  cvData,
+  lang,
+}: {
+  cvData: CvData | null
+  lang: Language
+}) => {
   if (!cvData) {
-    return <Text>Loading PDF data...</Text>
+    const loadingText =
+      lang === 'sv' ? 'Laddar PDF-data...' : 'Loading PDF data...'
+    return <Text>{loadingText}</Text>
   }
-  const dataWithEnsuredArrays = {
+
+  const dataWithEnsuredArrays: CvData = {
     ...cvData,
+    profile: cvData.profile || {
+      title: { en: '', sv: '' },
+      description: { en: '', sv: '' },
+      id: 0,
+      section: '',
+    },
+    intro: cvData.intro,
     skills: Array.isArray(cvData.skills) ? cvData.skills : [],
     experience: Array.isArray(cvData.experience) ? cvData.experience : [],
     projects: Array.isArray(cvData.projects) ? cvData.projects : [],
     contact: Array.isArray(cvData.contact) ? cvData.contact : [],
+    languages: Array.isArray(cvData.languages) ? cvData.languages : [],
+    hobbies: Array.isArray(cvData.hobbies) ? cvData.hobbies : [],
+    personalProjectsTitle: cvData.personalProjectsTitle || {
+      en: 'Personal Projects',
+      sv: 'Personliga Projekt',
+    },
   }
-  return <WorkPDFDocument cvData={dataWithEnsuredArrays} />
+  return <WorkPDFDocument cvData={dataWithEnsuredArrays} lang={lang} />
 }
 
 export default WorkPDF

@@ -4,16 +4,23 @@ import WorkPDF from './WorkPDF'
 import { saveAs } from 'file-saver'
 import { CvData } from '../types/CvTypes'
 import { Button } from '@/components/Button'
+import { useLanguage } from '@/components/context/LanguageContext'
 
 interface PdfDownloadButtonProps {
   cvData: CvData | null
 }
 
 const PdfDownloadButton: React.FC<PdfDownloadButtonProps> = ({ cvData }) => {
+  const { language, t } = useLanguage()
+
   const handleDownload = async () => {
     if (!cvData) return
-    const blob = await pdf(<WorkPDF cvData={cvData} />).toBlob()
-    saveAs(blob, 'DanielSvendsénCV.pdf')
+    const blob = await pdf(<WorkPDF cvData={cvData} lang={language} />).toBlob()
+    const pdfFileName = t({
+      en: 'DanielSvendsenCV.pdf',
+      sv: 'DanielSvendsénCV.pdf',
+    })
+    saveAs(blob, pdfFileName)
 
     const data = { message: 'Daniel-Svendséns CV har laddats ner!' }
     // fetch('https://formspree.io/f/xvgowldv', {
@@ -31,6 +38,11 @@ const PdfDownloadButton: React.FC<PdfDownloadButtonProps> = ({ cvData }) => {
     //   .catch((error) => console.error('Ett fel uppstod:', error))
   }
 
+  const downloadButtonText = t({
+    en: 'Download as PDF',
+    sv: 'Ladda ner som PDF',
+  })
+
   return (
     <Button
       onClick={handleDownload}
@@ -39,7 +51,7 @@ const PdfDownloadButton: React.FC<PdfDownloadButtonProps> = ({ cvData }) => {
       subVariant="rounded"
       disabled={!cvData}
     >
-      Download as PDF
+      {downloadButtonText}
     </Button>
   )
 }

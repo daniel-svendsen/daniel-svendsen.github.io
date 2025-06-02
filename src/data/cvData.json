@@ -3,293 +3,480 @@
     {
       "id": 1,
       "section": "profile",
-      "title": "Daniel Svendsén",
-      "description": "Result-driven and passionate Java developer with full-stack experience and leader/mentorship background."
+      "title": {
+        "en": "Daniel Svendsén",
+        "sv": "Daniel Svendsén"
+      },
+      "description": {
+        "en": "Result-driven and passionate Java developer with full-stack experience and leader/mentorship background.",
+        "sv": "Resultatinriktad och passionerad Java-utvecklare med fullstack erfarenhet och bakgrund inom ledar och mentorskap."
+      }
     },
     {
       "id": 2,
       "section": "hobbies",
-      "title": "Hobbies",
-      "description": "Photography with own business, cooking food, brewing beer, baking sourdough bread, fishing, and enjoying nature trips with my family."
+      "title": {
+        "en": "Hobbies",
+        "sv": "Hobbys"
+      },
+      "description": {
+        "en": "Photography with own business, cooking food, brewing beer, baking sourdough bread, fishing, gaming and enjoying nature trips with my family.",
+        "sv": "Fotografering med eget företag, matlagning, ölbryggning, surdegsbakning, fiske, spel och naturutflykter med familjen."
+      }
     },
     {
       "id": 3,
       "section": "languages",
-      "title": "Languages & Miscellaneous",
-      "description": "Language proficiency and miscellaneous skills."
+      "title": {
+        "en": "Languages & Miscellaneous",
+        "sv": "Språk & Övrigt"
+      },
+      "description": {
+        "en": "Language proficiency and miscellaneous skills.",
+        "sv": "Språkkunskaper och diverse färdigheter."
+      }
     },
     {
       "id": 4,
       "section": "intro",
-      "title": "Introduction",
-      "description": "Passionate and versatile java/full-stack developer with a background in leadership and mentorship. Studied Java Enterprise Developer program at Yrgo for 2 years. Passionate about designing scalable applications, improving workflows, and collaborating in Agile teams."
+      "title": {
+        "en": "Introduction",
+        "sv": "Introduktion"
+      },
+      "description": {
+        "en": "Passionate and versatile java/full-stack developer with a background in leadership and mentorship. Studied Java Enterprise Developer program at Yrgo for 2 years. Passionate about developing scalable applications, improving workflows, and collaborating in teams.",
+        "sv": "Passionerad och mångsidig java/fullstack-utvecklare med bakgrund inom ledarskap och mentorskap. Studerade Java Enterprise Developer-programmet på Yrgo i 2 år. Brinner för att utveckla skalbara applikationer, förbättra arbetsflöden och samarbeta i team."
+      }
     }
   ],
   "skills": [
     {
       "id": 1,
-      "cvContentId": 1,
-      "category": "Experienced Languages",
-      "tool": "Java",
+      "category": {
+        "en": "Experienced Languages",
+        "sv": "Erfarenhet av Språk"
+      },
+      "tool": {
+        "en": "Java",
+        "sv": "Java"
+      },
       "icon": "Java"
     },
     {
       "id": 2,
-      "cvContentId": 1,
-      "category": "Experienced Languages",
-      "tool": "JavaScript",
+      "category": {
+        "en": "Experienced Languages",
+        "sv": "Erfarenhet av Språk"
+      },
+      "tool": {
+        "en": "JavaScript",
+        "sv": "JavaScript"
+      },
       "icon": "JavaScript"
     },
     {
       "id": 3,
-      "cvContentId": 1,
-      "category": "Experienced Languages",
-      "tool": "TypeScript",
+      "category": {
+        "en": "Experienced Languages",
+        "sv": "Erfarenhet av Språk"
+      },
+      "tool": {
+        "en": "TypeScript",
+        "sv": "TypeScript"
+      },
       "icon": "TypeScript"
     },
     {
       "id": 4,
-      "cvContentId": 1,
-      "category": "Experienced Languages",
-      "tool": "HTML/CSS",
+      "category": {
+        "en": "Experienced Languages",
+        "sv": "Erfarenhet av Språk"
+      },
+      "tool": {
+        "en": "HTML/CSS",
+        "sv": "HTML/CSS"
+      },
       "icon": "HTML/CSS"
     },
     {
       "id": 5,
-      "cvContentId": 1,
-      "category": "Experienced Languages",
-      "tool": "SQL",
+      "category": {
+        "en": "Experienced Languages",
+        "sv": "Erfarenhet av Språk"
+      },
+      "tool": {
+        "en": "SQL",
+        "sv": "SQL"
+      },
       "icon": "SQL"
     },
     {
       "id": 6,
-      "cvContentId": 1,
-      "category": "Experienced Frameworks/Tools",
-      "tool": "Spring Boot",
+      "category": {
+        "en": "Experienced Frameworks/Tools",
+        "sv": "Erfarenhet av Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "Spring Boot",
+        "sv": "Spring Boot"
+      },
       "icon": "Spring Boot"
     },
     {
       "id": 7,
-      "cvContentId": 1,
-      "category": "Experienced Frameworks/Tools",
-      "tool": "React",
+      "category": {
+        "en": "Experienced Frameworks/Tools",
+        "sv": "Erfarenhet av Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "React",
+        "sv": "React"
+      },
       "icon": "React"
     },
     {
       "id": 8,
-      "cvContentId": 1,
-      "category": "Experienced Frameworks/Tools",
-      "tool": "Vite",
+      "category": {
+        "en": "Experienced Frameworks/Tools",
+        "sv": "Erfarenhet av Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "Vite",
+        "sv": "Vite"
+      },
       "icon": "Vite"
     },
     {
       "id": 9,
-      "cvContentId": 1,
-      "category": "Experienced Frameworks/Tools",
-      "tool": "Git",
+      "category": {
+        "en": "Experienced Frameworks/Tools",
+        "sv": "Erfarenhet av Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "Git",
+        "sv": "Git"
+      },
       "icon": "Git"
     },
     {
       "id": 10,
-      "cvContentId": 1,
-      "category": "Experienced Frameworks/Tools",
-      "tool": "Railway",
+      "category": {
+        "en": "Experienced Frameworks/Tools",
+        "sv": "Erfarenhet av Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "Railway",
+        "sv": "Railway"
+      },
       "icon": "Railway"
     },
     {
       "id": 11,
-      "cvContentId": 1,
-      "category": "Experienced Frameworks/Tools",
-      "tool": "Cloudflare",
+      "category": {
+        "en": "Experienced Frameworks/Tools",
+        "sv": "Erfarenhet av Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "Cloudflare",
+        "sv": "Cloudflare"
+      },
       "icon": "Cloudflare"
     },
     {
       "id": 12,
-      "cvContentId": 1,
-      "category": "Experienced Methodologies",
-      "tool": "Scrum",
+      "category": {
+        "en": "Experienced Methodologies",
+        "sv": "Erfarenhet av Metoder"
+      },
+      "tool": {
+        "en": "Scrum",
+        "sv": "Scrum"
+      },
       "icon": ""
     },
     {
       "id": 13,
-      "cvContentId": 1,
-      "category": "Experienced Methodologies",
-      "tool": "Kanban",
+      "category": {
+        "en": "Experienced Methodologies",
+        "sv": "Erfarenhet av Metoder"
+      },
+      "tool": {
+        "en": "Kanban",
+        "sv": "Kanban"
+      },
       "icon": ""
     },
     {
       "id": 14,
-      "cvContentId": 1,
-      "category": "Familiar Frameworks/Tools",
-      "tool": "Gradle",
+      "category": {
+        "en": "Familiar Frameworks/Tools",
+        "sv": "Kännedom om Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "Gradle",
+        "sv": "Gradle"
+      },
       "icon": "Gradle"
     },
     {
       "id": 15,
-      "cvContentId": 1,
-      "category": "Familiar Frameworks/Tools",
-      "tool": "Docker",
+      "category": {
+        "en": "Familiar Frameworks/Tools",
+        "sv": "Kännedom om Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "Docker",
+        "sv": "Docker"
+      },
       "icon": "Docker"
     },
     {
       "id": 16,
-      "cvContentId": 1,
-      "category": "Familiar Frameworks/Tools",
-      "tool": "Jenkins",
+      "category": {
+        "en": "Familiar Frameworks/Tools",
+        "sv": "Kännedom om Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "Jenkins",
+        "sv": "Jenkins"
+      },
       "icon": "Jenkins"
     },
     {
       "id": 17,
-      "cvContentId": 1,
-      "category": "Familiar Frameworks/Tools",
-      "tool": "Bash",
+      "category": {
+        "en": "Familiar Frameworks/Tools",
+        "sv": "Kännedom om Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "Bash",
+        "sv": "Bash"
+      },
       "icon": "Bash"
     },
     {
       "id": 18,
-      "cvContentId": 1,
-      "category": "Familiar Frameworks/Tools",
-      "tool": "JUnit 5",
+      "category": {
+        "en": "Familiar Frameworks/Tools",
+        "sv": "Kännedom om Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "JUnit 5",
+        "sv": "JUnit 5"
+      },
       "icon": "JUnit 5"
     },
     {
       "id": 19,
-      "cvContentId": 1,
-      "category": "Familiar Databases",
-      "tool": "SQL Server",
+      "category": {
+        "en": "Familiar Databases",
+        "sv": "Kännedom om Databaser"
+      },
+      "tool": {
+        "en": "SQL Server",
+        "sv": "SQL Server"
+      },
       "icon": "SQL Server"
     },
     {
       "id": 20,
-      "cvContentId": 1,
-      "category": "Familiar Databases",
-      "tool": "MySQL",
+      "category": {
+        "en": "Familiar Databases",
+        "sv": "Kännedom om Databaser"
+      },
+      "tool": {
+        "en": "MySQL",
+        "sv": "MySQL"
+      },
       "icon": "MySQL"
     },
     {
       "id": 21,
-      "cvContentId": 1,
-      "category": "Familiar Databases",
-      "tool": "MongoDB",
+      "category": {
+        "en": "Familiar Databases",
+        "sv": "Kännedom om Databaser"
+      },
+      "tool": {
+        "en": "MongoDB",
+        "sv": "MongoDB"
+      },
       "icon": "MongoDB"
     },
     {
       "id": 22,
-      "cvContentId": 1,
-      "category": "Familiar Databases",
-      "tool": "SQLite",
+      "category": {
+        "en": "Familiar Databases",
+        "sv": "Kännedom om Databaser"
+      },
+      "tool": {
+        "en": "SQLite",
+        "sv": "SQLite"
+      },
       "icon": "SQLite"
     },
     {
       "id": 23,
-      "cvContentId": 1,
-      "category": "Soft Skills",
-      "tool": "Leadership, Mentorship, Teamwork, Communication, Problem-Solving, Adaptability, Critical Thinking",
+      "category": {
+        "en": "Soft Skills",
+        "sv": "Mjuka Färdigheter"
+      },
+      "tool": {
+        "en": "Leadership, Mentorship, Teamwork, Communication, Problem-Solving, Adaptability, Critical Thinking",
+        "sv": "Ledarskap, Mentorskap, Lagarbete, Kommunikation, Problemlösning, Anpassningsförmåga, Kritiskt Tänkande"
+      },
       "icon": ""
     },
     {
       "id": 24,
-      "cvContentId": 1,
-      "category": "Experienced Methodologies",
-      "tool": "Agile methodologies",
+      "category": {
+        "en": "Experienced Methodologies",
+        "sv": "Erfarenhet av Metoder"
+      },
+      "tool": {
+        "en": "Agile methodologies",
+        "sv": "Agila metoder"
+      },
       "icon": ""
     }
   ],
   "experience": [
     {
       "id": 1,
-      "cvContentId": 1,
-      "type": "Internship/Opensource",
+      "type": {
+        "en": "Internship/Opensource",
+        "sv": "Praktik/Öppen Källkod"
+      },
       "year": "2024 – Present",
-      "details": "Internship - Full-Stack Developer at Alten (for Save the Children). Developing an open-source platform to enhance Hjulverkstan's community services.\n        - Contributed to full-stack development using Java, Spring Boot, React, TypeScript, AWS S3, focusing on delivering a image management system.\n        - Designed and implemented a  image handling solution: built scalable backend APIs for image upload/deletion to S3 with an automated cleanup service, and developed a mobile-first portal interface for efficient image capture by workshop staff. This directly improved internal vehicle management.\n        - Developed and launched key features for a new public-facing MVP website, including dynamic display of available vehicles and workshop information with images. This significantly increased Hjulverkstan's online visibility and accessibility to the community.\n        - The integrated solution provided a robust, user-centric platform, laying a scalable foundation for future development and directly supporting Hjulverkstan's operational and outreach goals.\n        - Utilized GitHub for version control and collaboration within an Agile (Scrum/Kanban) team. \n\n",
+      "details": {
+        "en": "Internship - Full-Stack Developer at Alten (for Save the Children). Developing an open-source platform to enhance Hjulverkstan's community services.\n        - Contributed to full-stack development using Java, Spring Boot, React, TypeScript, AWS S3, focusing on delivering a image management system.\n        - Designed and implemented a  image handling solution: built scalable backend APIs for image upload/deletion to S3 with an automated cleanup service, and developed a mobile-first portal interface for efficient image capture by workshop staff. This directly improved internal vehicle management.\n        - Developed and launched key features for a new public-facing MVP website, including dynamic display of available vehicles and workshop information with images. This significantly increased Hjulverkstan's online visibility and accessibility to the community.\n        - The integrated solution provided a robust, user-centric platform, laying a scalable foundation for future development and directly supporting Hjulverkstan's operational and outreach goals.\n        - Utilized GitHub for version control and collaboration within an Agile (Scrum/Kanban) team. \n\n",
+        "sv": "Praktik - Fullstackutvecklare på Alten (för Rädda Barnen). Utvecklar en plattform med öppen källkod för att förbättra Hjulverkstans tjänster.\n        - Bidrog med fullstackutveckling med Java, Spring Boot, React, TypeScript, AWS S3, med fokus på att leverera ett bildhanteringssystem.\n        - Designade och implementerade en bildhanteringslösning: byggde skalbara backend-API:er för bilduppladdning/borttagning till S3 med en automatiserad rensningstjänst, och utvecklade ett mobilt anpassat portalgränssnitt för smidig bildtagning av verkstadspersonal. Detta förbättrade direkt den interna fordonshanteringen.\n        - Utvecklade och lanserade nyckelfunktioner för en ny publik MVP-webbplats, inklusive dynamisk visning av tillgängliga fordon och verkstadsinformation med bilder. Detta ökade Hjulverkstans synlighet och tillgänglighet för samhället.\n        - Den integrerade lösningen tillhandahöll en robust, användarcentrerad plattform som lade en skalbar grund för framtida utveckling och stödde direkt Hjulverkstans operativa och utåtriktade mål.\n        - Använde GitHub för versionshantering och samarbete inom ett agilt (Scrum/Kanban) team. \n\n"
+      },
       "links": [
         {
-          "text": "Project GitHub",
+          "text": {
+            "en": "Project GitHub",
+            "sv": "Projekt GitHub"
+          },
           "href": "https://github.com/Hjulverkstan/hjulverkstan"
         },
         {
-          "text": "Public Website (Dev)",
+          "text": {
+            "en": "Website (Dev)",
+            "sv": "Webbplats (Utv)"
+          },
           "href": "https://dev.hjulverkstan.org/"
         }
       ]
     },
     {
       "id": 2,
-      "cvContentId": 1,
-      "type": "work",
+      "type": {
+        "en": "Work",
+        "sv": "Arbete"
+      },
       "year": "2008 – Present",
-      "details": "ICA - Warehouse worker, various roles including:\nTeam leader - Ability to change tactics depending on what the day brings\nPeer supporter - Helping colleagues in tough situations and/or addictions\nMentorship - Teaching colleagues how to operate truck/use system.\nImprovement team - Work on improvement suggestions received from employees\nGoods recipient - Recieving goods from trucks and ensuring proper system entry",
-      "linkText": "",
-      "linkHref": ""
+      "details": {
+        "en": "ICA - Warehouse worker, various roles including:\nTeam leader - Ability to change tactics depending on what the day brings\nPeer supporter - Helping colleagues in tough situations and/or addictions\nMentorship - Teaching colleagues how to operate truck/use system.\nImprovement team - Work on improvement suggestions received from employees\nGoods recipient - Recieving goods from trucks and ensuring proper system entry",
+        "sv": "ICA - Lagerarbetare, olika roller inklusive:\nArbetsledare - Förmåga att ändra taktik beroende på dagens utmaningar\nKamratstödjare - Hjälper kollegor i svåra situationer och/eller missbruk\nMentorskap - Lär ut till kollegor hur man kör truck/använder systemet.\nFörbättringsteam - Arbetar med förbättringsförslag från anställda\nVarumottagare - Tar emot gods från lastbilar och säkerställer korrekt systemregistrering"
+      }
     },
     {
       "id": 3,
-      "cvContentId": 1,
-      "type": "education",
+      "type": {
+        "en": "Education",
+        "sv": "Utbildning"
+      },
       "year": "2023 – 2025",
-      "details": "Java Enterprise Developer, Yrgo, Gothenburg (400 YH points)",
-      "linkText": "",
-      "linkHref": ""
+      "details": {
+        "en": "Java Enterprise Developer, Yrgo, Gothenburg (400 YH points)",
+        "sv": "Java Enterprise Developer, Yrgo, Göteborg (400 YH-poäng)"
+      }
     },
     {
       "id": 4,
-      "cvContentId": 1,
-      "type": "education",
+      "type": {
+        "en": "Education",
+        "sv": "Utbildning"
+      },
       "year": "2016",
-      "details": "Programming 1 (C#)",
-      "linkText": "",
-      "linkHref": ""
+      "details": {
+        "en": "Programming 1 (C#)",
+        "sv": "Programmering 1 (C#)"
+      }
     }
   ],
   "projects": [
     {
       "id": 1,
-      "cvContentId": 1,
-      "name": "Personal Website & CV",
-      "details": "Built the website for my photography company and this dynamic CV page using React, Vite, and Tailwind CSS. Features include dynamic PDF generation, responsive design, and fetching CV data from a database. Hosted on Cloudflare Pages with CI/CD via GitHub Actions; backend and database deployed on Railway.",
+      "name": {
+        "en": "Personal Website & CV",
+        "sv": "Personlig Webbplats & CV"
+      },
+      "details": {
+        "en": "Built the website for my photography company and this dynamic CV page using React, Vite, and Tailwind CSS. Features include dynamic PDF generation, localized content, responsive design, and fetching CV data from a database. Hosted on Cloudflare Pages with CI/CD via GitHub Actions; backend and database deployed on Railway.",
+        "sv": "Byggde webbplatsen för mitt fotoföretag och denna dynamiska CV-sida med React, Vite och Tailwind CSS. Funktioner inkluderar dynamisk PDF-generering, lokaliserad data, responsiv design och hämtning av CV-data från en databas/JSON. Hostas på Cloudflare Pages med CI/CD via GitHub Actions; backend och databas driftsatta på Railway."
+      },
       "link_href": "https://www.svendsenphotography.com/work"
     },
     {
       "id": 2,
-      "cvContentId": 1,
-      "name": "Receptobot",
-      "details": "Developed Receptobot, an AI-powered service generating recipes via OpenAI's API based on user input (ingredients, allergies, cuisine). Requires login (5 fetches/user) and possibility to save recipes to users profilepage. Backend: Spring Boot with Bucket4j (rate-limiting). Frontend: React, Vite, Tailwind CSS. Deployed on Railway with Cloudflare DNS.",
+      "name": {
+        "en": "Receptobot",
+        "sv": "Receptobot"
+      },
+      "details": {
+        "en": "Developed Receptobot, an AI-powered service generating recipes via OpenAI's API based on user input (ingredients, allergies, cuisine). Requires login (5 fetches/user) and possibility to save recipes to users profilepage. Backend: Spring Boot with Bucket4j (rate-limiting). Frontend: React, Vite, Tailwind CSS. Deployed on Railway with Cloudflare DNS.",
+        "sv": "Utvecklade Receptobot, en AI-driven tjänst som genererar recept via OpenAI:s API baserat på användarens input (ingredienser, allergier, kök). Kräver inloggning (5 hämtningar/användare) och möjlighet att spara recept på användarens profilsida. Backend: Spring Boot med Bucket4j (rate-limiting). Frontend: React, Vite, Tailwind CSS. Driftsatt på Railway med Cloudflare DNS."
+      },
       "link_href": "https://www.receptobot.se"
     },
     {
       "id": 3,
-      "cvContentId": 1,
-      "name": "TapMap",
-      "details": "Developed the frontend for TapMap, a location-based service concept displaying nearby restaurants/bars alongside real-time sun position data using React, Vite, Tailwind CSS, and Leaflet. Features include an interactive map, location data fetching, user ratings, and price tracking.",
+      "name": {
+        "en": "TapMap",
+        "sv": "TapMap"
+      },
+      "details": {
+        "en": "Developed the frontend for TapMap, a location-based service concept displaying nearby restaurants/bars alongside real-time sun position data using React, Vite, Tailwind CSS, and Leaflet. Features include an interactive map, location data fetching, user ratings, and price tracking.",
+        "sv": "Utvecklade frontenden för TapMap, ett koncept för en platsbaserad tjänst som visar närliggande restauranger/barer tillsammans med realtidsdata om solens position med hjälp av React, Vite, Tailwind CSS och Leaflet. Funktioner inkluderar en interaktiv karta, hämtning av platsdata, användarbetyg och prisspårning."
+      },
       "link_href": "https://tapmap.pages.dev/"
     }
   ],
   "contact": [
     {
       "id": 1,
-      "cvContentId": 1,
-      "type": "Address",
+      "type": {
+        "en": "Address",
+        "sv": "Adress"
+      },
       "details": "Briljantvägen 55, 44260 Kode",
       "linkHref": ""
     },
     {
       "id": 2,
-      "cvContentId": 1,
-      "type": "Email",
+      "type": {
+        "en": "Email",
+        "sv": "E-post"
+      },
       "details": "Daniel-Svendsen@hotmail.se",
       "linkHref": ""
     },
     {
       "id": 3,
-      "cvContentId": 1,
-      "type": "Phone",
+      "type": {
+        "en": "Phone",
+        "sv": "Telefon"
+      },
       "details": "0707714306",
       "linkHref": ""
     },
     {
       "id": 4,
-      "cvContentId": 1,
-      "type": "LinkedIn",
+      "type": {
+        "en": "LinkedIn",
+        "sv": "LinkedIn"
+      },
       "details": "Daniel Svendsén Profile",
       "linkHref": "https://www.linkedin.com/in/daniel-svendsen-02423a1b4/"
     }
@@ -297,15 +484,25 @@
   "languages": [
     {
       "id": 1,
-      "cvContentId": 3,
-      "name": "Swedish",
-      "level": "Native / Fluent"
+      "name": {
+        "en": "Swedish",
+        "sv": "Svenska"
+      },
+      "level": {
+        "en": "Native / Fluent",
+        "sv": "Modersmål / Flytande"
+      }
     },
     {
       "id": 2,
-      "cvContentId": 3,
-      "name": "English",
-      "level": "Fluent"
+      "name": {
+        "en": "English",
+        "sv": "Engelska"
+      },
+      "level": {
+        "en": "Fluent",
+        "sv": "Flytande"
+      }
     }
   ]
 }

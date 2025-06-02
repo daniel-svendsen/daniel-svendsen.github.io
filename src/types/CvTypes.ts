@@ -1,45 +1,49 @@
-// src/types/CvTypes.ts
+export interface LocalizedContent {
+  en: string
+  sv: string
+}
+
 export interface CvContent {
   id: number
   section: string
-  title: string
-  description: string
+  title: LocalizedContent
+  description: LocalizedContent
 }
 
 export interface CvSkill {
   id: number
   cvContentId?: number
-  category: string
-  tool: string
+  category: LocalizedContent
+  tool: LocalizedContent
   icon: string
 }
 
 export interface CvExperienceLink {
-  text: string
+  text: LocalizedContent
   href: string
 }
 
 export interface CvExperience {
   id: number
   cvContentId?: number
-  type: string
+  type: LocalizedContent
   year: string
-  details: string
+  details: LocalizedContent
   links?: CvExperienceLink[]
 }
 
 export interface CvProject {
   id: number
   cvContentId?: number
-  name: string
-  details: string
+  name: LocalizedContent
+  details: LocalizedContent
   link_href?: string
 }
 
 export interface CvContact {
   id: number
   cvContentId?: number
-  type: string
+  type: LocalizedContent
   details: string
   linkHref: string
 }
@@ -47,8 +51,8 @@ export interface CvContact {
 export interface CvLanguage {
   id: number
   cvContentId?: number
-  name: string
-  level: string
+  name: LocalizedContent
+  level: LocalizedContent
 }
 
 export interface CvData {
@@ -60,5 +64,5 @@ export interface CvData {
   contact: CvContact[]
   languages: CvLanguage[]
   hobbies: CvContent[]
-  personalProjectsTitle: string
+  personalProjectsTitle: LocalizedContent
 }

@@ -1,17 +1,31 @@
 import React from 'react'
 import { LinkButton } from '@/components/Button'
-import { CvContact } from '@/types/CvTypes'
+import { CvContact, LocalizedContent } from '@/types/CvTypes'
 import { SectionContent } from '@/components/SectionContent'
 import { Section } from '@/components/Section'
+import { useLanguage } from '@/components/context/LanguageContext'
 
 interface ContactProps {
   contacts: CvContact[]
 }
 
 const Contact: React.FC<ContactProps> = ({ contacts }) => {
+  const { t } = useLanguage()
+
+  const headingContact: LocalizedContent = {
+    en: 'Contact Information',
+    sv: 'Kontaktinformation',
+  }
+  const linkedInText: LocalizedContent = { en: 'LinkedIn', sv: 'LinkedIn' }
+  const visitProfileText: LocalizedContent = {
+    en: 'Visit Profile',
+    sv: 'Besök Profil',
+  }
+  const linkText: LocalizedContent = { en: 'Link', sv: 'Länk' }
+
   return (
     <Section roundedTop="8xl">
-      <SectionContent heading="Contact Information">
+      <SectionContent heading={t(headingContact)}>
         <div className="space-y-4">
           {contacts.map((contact) => (
             <div
@@ -19,7 +33,7 @@ const Contact: React.FC<ContactProps> = ({ contacts }) => {
               className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow"
             >
               <p className="text-textPrimary dark:text-gray-200">
-                <span className="font-semibold">{contact.type}:</span>{' '}
+                <span className="font-semibold">{t(contact.type)}:</span>{' '}
                 {contact.details}
               </p>
               {contact.linkHref && (
@@ -32,7 +46,9 @@ const Contact: React.FC<ContactProps> = ({ contacts }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {contact.type === 'LinkedIn' ? 'Visit Profile' : 'Länk'}
+                  {t(contact.type) === t(linkedInText)
+                    ? t(visitProfileText)
+                    : t(linkText)}
                 </LinkButton>
               )}
             </div>

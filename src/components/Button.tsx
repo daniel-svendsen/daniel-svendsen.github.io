@@ -14,6 +14,8 @@ export const buttonVariantsConfig = cva(
       variant: {
         default:
           'bg-textPrimary text-white hover:bg-textPrimary/90 data-[state=open]:bg-textPrimary/80',
+        muted:
+          'bg-white text-muted hover:bg-gray-100 data-[state=open]:bg-gray-200',
         secondary:
           'bg-secondary text-textPrimary hover:bg-secondary/80 data-[state=open]:bg-secondary/70',
         highlight:
