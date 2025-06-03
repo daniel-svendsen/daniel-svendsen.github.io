@@ -102,7 +102,7 @@ export default function Services() {
         title="Fotograf Kungälv & Göteborg | Bröllop, Porträtt, Företag | Svendsén Photography"
         description="Professionell och engagerad fotograf i Kungälv och Göteborg. Jag erbjuder personlig fotografering för bröllop, porträtt, familj och företag. Låt oss fånga dina minnen!"
         url="https://www.svendsenphotography.com/services"
-        keywords="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, företagsfotograf, familjefotograf göteborg, eventfotograf, fototjänster"
+        keywords="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, företagsfotograf, familjefotograf göteborg, eventfotograf, fototjänster, hemsida"
         jsonLd={photographyPageJsonLd}
         image={pageHeroImage}
       />
@@ -119,7 +119,8 @@ export default function Services() {
             <p className="text-lg md:text-xl text-muted-foreground dark:text-gray-300 mb-10 max-w-2xl mx-auto">
               Som er fotograf i Kungälv och Göteborg hjälper jag er att föreviga
               de stunder som betyder mest – från bröllopsdagens magi till
-              personliga porträtt och professionella företagsbilder.
+              personliga porträtt, professionella företagsbilder eller en
+              helhetslösning med webbutveckling.
             </p>
             <LinkButton
               to="/contact"
@@ -134,7 +135,7 @@ export default function Services() {
         </Section>
 
         <Section
-          bgColor="beige"
+          bgColor="offWhite"
           roundedTop="9xl"
           roundedBottom="9xl"
           className="py-12 md:py-20 lg:py-24"
@@ -160,7 +161,7 @@ export default function Services() {
         </Section>
 
         <Section
-          bgColor="offWhite"
+          bgColor="beige"
           roundedTop="9xl"
           roundedBottom="9xl"
           className="py-12 md:py-20 lg:py-24"
@@ -226,7 +227,7 @@ export default function Services() {
         </Section>
 
         <Section
-          bgColor="beige"
+          bgColor="offWhite"
           roundedTop="9xl"
           roundedBottom="9xl"
           className="py-12 md:py-20 lg:py-24"
@@ -252,7 +253,7 @@ export default function Services() {
         </Section>
 
         <Section
-          bgColor="offWhite"
+          bgColor="beige"
           roundedTop="10xl"
           className="py-16 md:py-24 lg:py-28 text-center"
         >
