@@ -1,0 +1,125 @@
+import { StyleSheet } from '@react-pdf/renderer'
+import { pdfThemeColors } from '@/work/pdf/pdfThemecolors'
+
+export const styles = StyleSheet.create({
+  page: {
+    paddingTop: 30,
+    paddingBottom: 30,
+    paddingHorizontal: 0,
+    fontFamily: 'Open Sans',
+    backgroundColor: pdfThemeColors.pageBackground,
+    fontSize: 9,
+    color: pdfThemeColors.pageText,
+    lineHeight: 1.4,
+  },
+  bodyPadding: {
+    paddingHorizontal: 35,
+  },
+  headerSection: {
+    backgroundColor: '#f3f4f6',
+    paddingHorizontal: 35,
+    paddingTop: 20,
+    paddingBottom: 15,
+    marginBottom: 15,
+  },
+  section: {
+    marginBottom: 10,
+    padding: 10,
+    backgroundColor: '#ffffff',
+    borderRadius: 5,
+    borderTopWidth: 1,
+    borderTopColor: '#eeeeee',
+  },
+  profileImage: {
+    width: 65,
+    height: 75,
+    borderRadius: 35,
+    borderWidth: 2,
+    borderColor: pdfThemeColors.highlight,
+    marginBottom: 12,
+    alignSelf: 'center',
+    objectFit: 'cover',
+  },
+  headerName: {
+    fontSize: 18,
+    fontFamily: 'Open Sans Bold',
+    textAlign: 'center',
+    color: pdfThemeColors.primaryText,
+    marginBottom: 6,
+  },
+  headerTitle: {
+    fontSize: 10,
+    textAlign: 'center',
+    color: pdfThemeColors.primaryText,
+    marginBottom: 4,
+  },
+  headerLink: {
+    fontSize: 9,
+    textAlign: 'center',
+    color: pdfThemeColors.primaryText,
+    textDecoration: 'none',
+    marginTop: 6,
+  },
+  sectionTitle: {
+    fontSize: 13,
+    fontFamily: 'Open Sans Bold',
+    marginBottom: 8,
+    color: pdfThemeColors.primaryText,
+    borderBottomWidth: 2,
+    borderBottomColor: pdfThemeColors.highlight,
+    paddingBottom: 4,
+  },
+  subHeading: {
+    fontSize: 11,
+    fontFamily: 'Open Sans Bold',
+    color: pdfThemeColors.primaryText,
+    marginTop: 8,
+    marginBottom: 4,
+  },
+  text: {
+    fontSize: 9,
+    marginBottom: 4,
+  },
+  boldPrimaryText: {
+    fontSize: 10,
+    fontFamily: 'Open Sans Bold',
+    color: pdfThemeColors.primaryText,
+    marginBottom: 2,
+  },
+  listItemContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 4,
+    marginBottom: 4,
+  },
+  listItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 12,
+    marginBottom: 5,
+    maxWidth: '45%',
+  },
+  projectLink: {
+    fontSize: 9,
+    color: pdfThemeColors.primaryText,
+    textDecoration: 'none',
+    marginTop: 2,
+    wordBreak: 'break-all',
+  },
+  contactText: {
+    fontSize: 9.5,
+    marginBottom: 3,
+  },
+  contactLabel: {
+    fontFamily: 'Open Sans Bold',
+    color: pdfThemeColors.primaryText,
+  },
+  detailList: {
+    marginLeft: 10,
+    marginTop: 2,
+  },
+  detailItem: {
+    fontSize: 9.5,
+    marginBottom: 2,
+  },
+})

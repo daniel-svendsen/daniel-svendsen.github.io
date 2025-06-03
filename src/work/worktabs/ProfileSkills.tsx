@@ -66,8 +66,8 @@ const ProfileSkills: React.FC<ProfileSkillsProps> = ({
     sv: 'Erfarenhet Av',
   }
   const headingFamiliarWith: LocalizedContent = {
-    en: 'Familiar With',
-    sv: 'Kännedom Om',
+    en: 'Familiar with/Studied',
+    sv: 'Känner till/Studerat',
   }
   const headingWorkMethodologies: LocalizedContent = {
     en: 'Work Methodologies',
