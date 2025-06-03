@@ -23,7 +23,7 @@ const LanguageMisc: React.FC<LanguageMiscProps> = ({ languages }) => {
             className="p-3 bg-white rounded shadow flex flex-col"
           >
             <span className="font-semibold">{t(lang.name)}</span>
-            <span className="text-textSecondary text-sm">{t(lang.level)}</span>
+            <span className="text-primary text-sm">{t(lang.level)}</span>
           </li>
         ))}
       </ul>

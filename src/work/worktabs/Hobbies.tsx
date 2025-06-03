@@ -16,7 +16,7 @@ const Hobbies: React.FC<HobbiesProps> = ({ hobbies }) => {
       {hobbies.map((item) => (
         <div key={item.id} className="mb-4 bg-white p-4 rounded shadow">
           <h3 className="text-lg font-semibold">{t(item.title)}</h3>
-          <p className="mt-2 text-textSecondary">{t(item.description)}</p>
+          <p className="mt-2 text-primary">{t(item.description)}</p>
         </div>
       ))}
     </SectionContent>

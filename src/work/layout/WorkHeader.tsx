@@ -21,7 +21,7 @@ const WorkHeader: React.FC<WorkHeaderProps> = ({ title, description }) => {
       />
       <div className="text-center px-2">
         <h1 className="text-2xl sm:text-3xl font-bold">{t(title)}</h1>
-        <p className="mt-2 max-w-xl text-textSecondary">{t(description)}</p>
+        <p className="mt-2 max-w-xl text-primary">{t(description)}</p>
       </div>
     </header>
   )

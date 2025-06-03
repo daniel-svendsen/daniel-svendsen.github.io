@@ -81,7 +81,7 @@ const ProfileSkills: React.FC<ProfileSkillsProps> = ({
   return (
     <SectionContent heading={t(headingProfileSkills)}>
       {intro && (
-        <p className="text-textSecondary bg-white p-3 rounded shadow mb-4">
+        <p className="text-primary bg-white p-3 rounded shadow mb-4">
           {t(intro.description)}
         </p>
       )}
@@ -111,7 +111,7 @@ const ProfileSkills: React.FC<ProfileSkillsProps> = ({
               <h4 className="text-lg font-semibold">
                 {t(headingWorkMethodologies)}
               </h4>
-              <p className="text-textSecondary">
+              <p className="text-primary">
                 {methodologies.map((m) => t(m.tool)).join(', ')}
               </p>
             </div>
@@ -121,7 +121,7 @@ const ProfileSkills: React.FC<ProfileSkillsProps> = ({
               <h4 className="text-lg font-semibold">
                 {t(headingSoftSkillsInternal)}
               </h4>
-              <p className="text-textSecondary">
+              <p className="text-primary">
                 {softSkills[0]?.tool ? t(softSkills[0].tool) : ''}
               </p>
             </div>

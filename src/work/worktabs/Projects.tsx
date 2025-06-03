@@ -27,7 +27,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects, heading }) => {
             <h3 className="text-lg font-semibold text-textPrimary dark:text-white">
               {t(project.name)}
             </h3>
-            <p className="mt-1 text-textSecondary dark:text-gray-300 text-sm">
+            <p className="mt-1 text-primary dark:text-gray-300 text-sm">
               {t(project.details)}
             </p>
             {project.link_href && (
