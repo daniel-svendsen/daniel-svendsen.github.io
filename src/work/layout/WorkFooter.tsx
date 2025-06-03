@@ -1,7 +1,7 @@
 // src/components/Layout/WorkFooter.tsx
 import React from 'react'
 import { CvData } from '@/types/CvTypes'
-import PdfDownloadButton from '@/components/PdfDownloadButton'
+import PdfDownloadButton from '@/work/pdf/PdfDownloadButton'
 
 interface WorkFooterProps {
   cvData: CvData | null

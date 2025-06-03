@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLanguage } from '@/components/context/LanguageContext'
+import { useLanguage } from '@/context/LanguageContext'
 import { type LocalizedContent } from '@/types/CvTypes'
 import { Button } from '@/components/Button'
 import { cn } from '@/utils/utils'

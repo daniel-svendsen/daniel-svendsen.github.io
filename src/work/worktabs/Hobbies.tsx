@@ -1,7 +1,7 @@
 import React from 'react'
 import { CvContent, LocalizedContent } from '../../types/CvTypes'
 import { SectionContent } from '@/components/SectionContent'
-import { useLanguage } from '@/components/context/LanguageContext'
+import { useLanguage } from '@/context/LanguageContext'
 
 interface HobbiesProps {
   hobbies: CvContent[]

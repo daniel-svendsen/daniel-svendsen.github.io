@@ -3,7 +3,7 @@ import { LinkButton } from '@/components/Button'
 import { CvContact, LocalizedContent } from '@/types/CvTypes'
 import { SectionContent } from '@/components/SectionContent'
 import { Section } from '@/components/Section'
-import { useLanguage } from '@/components/context/LanguageContext'
+import { useLanguage } from '@/context/LanguageContext'
 
 interface ContactProps {
   contacts: CvContact[]

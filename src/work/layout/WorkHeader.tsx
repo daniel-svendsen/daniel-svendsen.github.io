@@ -1,7 +1,7 @@
 import React from 'react'
-import profileImg from '../assets/bild1.jpg'
+import profileImg from '../../assets/bild1.jpg'
 import { type LocalizedContent } from '@/types/CvTypes'
-import { useLanguage } from '@/components/context/LanguageContext'
+import { useLanguage } from '@/context/LanguageContext'
 
 interface WorkHeaderProps {
   title: LocalizedContent

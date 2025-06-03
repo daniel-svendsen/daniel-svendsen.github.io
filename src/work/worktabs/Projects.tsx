@@ -2,7 +2,7 @@ import React from 'react'
 import { type CvProject, LocalizedContent } from '../../types/CvTypes'
 import { LinkButton } from '@/components/Button'
 import { SectionContent } from '@/components/SectionContent'
-import { useLanguage } from '@/components/context/LanguageContext'
+import { useLanguage } from '@/context/LanguageContext'
 
 interface ProjectsProps {
   projects: CvProject[]

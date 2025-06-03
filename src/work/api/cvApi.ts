@@ -5,8 +5,8 @@ import type {
   CvLanguage,
   CvProject,
   CvSkill,
-} from '../types/CvTypes'
-import cvDataFromFile from '../data/cvData.json'
+} from '../../types/CvTypes'
+import cvDataFromFile from '../../data/cvData.json'
 
 export function fetchCvContent(): Promise<CvContent[]> {
   return Promise.resolve(cvDataFromFile.content || [])

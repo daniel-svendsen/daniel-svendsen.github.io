@@ -8,14 +8,14 @@ import {
   Text,
   View,
 } from '@react-pdf/renderer'
-import workColors from '../config/workColors'
-import portraitImage from '../assets/bild1.jpg'
+import workColors from '../../config/workColors'
+import portraitImage from '../../assets/bild1.jpg'
 import {
   type CvData,
   type CvSkill,
   type LocalizedContent,
-} from '../types/CvTypes'
-import { Language } from '@/components/context/LanguageContext'
+} from '../../types/CvTypes'
+import { Language } from '@/context/LanguageContext'
 
 Font.register({
   family: 'Open Sans',

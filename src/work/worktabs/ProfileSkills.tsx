@@ -1,8 +1,8 @@
 import React from 'react'
-import ToolIcon from '../ToolIcons'
+import ToolIcon from '../../components/ToolIcons'
 import { CvContent, CvSkill, LocalizedContent } from '../../types/CvTypes'
 import { SectionContent } from '@/components/SectionContent'
-import { useLanguage } from '@/components/context/LanguageContext'
+import { useLanguage } from '@/context/LanguageContext'
 
 interface ProfileSkillsProps {
   profile: CvContent | undefined

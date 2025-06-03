@@ -5,7 +5,7 @@ import Navbar from './components/Navbar'
 import ScrollToTop from './components/ScrollToTop'
 import Work from './pages/Work'
 import WebServicesPage from '@/pages/WebServices'
-import { LanguageProvider } from '@/components/context/LanguageContext'
+import { LanguageProvider } from '@/context/LanguageContext'
 
 const Home = React.lazy(() => import('./pages/Home'))
 const Services = React.lazy(() => import('./pages/Services'))

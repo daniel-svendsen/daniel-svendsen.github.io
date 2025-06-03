@@ -1,7 +1,7 @@
 import React from 'react'
 import { CvLanguage, LocalizedContent } from '../../types/CvTypes'
 import { SectionContent } from '@/components/SectionContent'
-import { useLanguage } from '@/components/context/LanguageContext'
+import { useLanguage } from '@/context/LanguageContext'
 
 interface LanguageMiscProps {
   languages: CvLanguage[]

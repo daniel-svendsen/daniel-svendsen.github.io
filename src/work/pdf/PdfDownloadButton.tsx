@@ -2,9 +2,9 @@ import React from 'react'
 import { pdf } from '@react-pdf/renderer'
 import WorkPDF from './WorkPDF'
 import { saveAs } from 'file-saver'
-import { CvData } from '../types/CvTypes'
+import { CvData } from '../../types/CvTypes'
 import { Button } from '@/components/Button'
-import { useLanguage } from '@/components/context/LanguageContext'
+import { useLanguage } from '@/context/LanguageContext'
 
 interface PdfDownloadButtonProps {
   cvData: CvData | null
