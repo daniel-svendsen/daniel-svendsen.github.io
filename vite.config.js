@@ -17,7 +17,7 @@ export default defineConfig({
         '/contact',
         '/work',
       ],
-      generateRobotsTxt: true,
+      generateRobotsTxt: false,
     }),
   ],
   base: '/',
