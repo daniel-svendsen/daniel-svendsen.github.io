@@ -1,5 +1,5 @@
 import React from 'react'
-import Timeline, { TimelineEvent } from '../../components/TimeLine'
+import Timeline, { TimelineEvent } from '../layout/TimeLine'
 import { CvExperience, LocalizedContent } from '../../types/CvTypes'
 import { SectionContent } from '@/components/SectionContent'
 import { useLanguage } from '@/context/LanguageContext'

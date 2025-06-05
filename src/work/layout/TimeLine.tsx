@@ -37,7 +37,7 @@ export default function Timeline({ events }: TimelineProps) {
             <span className="block text-xs sm:text-sm text-textSecondary dark:text-gray-400">
               {event.date}
             </span>
-            <p className="mt-2 text-xs sm:text-sm text-textSecondary dark:text-gray-300 whitespace-pre-line">
+            <p className="mt-2 text-xs sm:text-sm text-primary dark:text-gray-300 whitespace-pre-line">
               {event.description}
               {event.links && event.links.length > 0 && (
                 <>

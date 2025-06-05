@@ -1,5 +1,5 @@
 import React from 'react'
-import ToolIcon from '../../components/ToolIcons'
+import ToolIcon from './ToolIcons'
 import { CvContent, CvSkill, LocalizedContent } from '../../types/CvTypes'
 import { SectionContent } from '@/components/SectionContent'
 import { useLanguage } from '@/context/LanguageContext'
