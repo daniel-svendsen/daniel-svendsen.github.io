@@ -32,23 +32,6 @@ module.exports = {
         '9xl': '4.5rem',
         '10xl': '8rem',
       },
-      // typography: {
-      //   DEFAULT: {
-      //     css: {
-      //       h1: {
-      //         color: '#1f2937',
-      //         fontWeight: 'bold',
-      //       },
-      //       h2: {
-      //         color: '#1f2937',
-      //         fontWeight: 'semibold',
-      //       },
-      //       p: {
-      //         color: '#1f2937',
-      //       },
-      //     },
-      //   },
-      // },
       boxShadow: {
         lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
       },
