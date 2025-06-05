@@ -8,12 +8,14 @@ import HeroSection from '../components/HeroSection'
 import forprosVideo from '@/assets/movies/forpros1.mp4'
 import forprosImg from '@/assets/movies/img.png'
 import SEO from '@/components/SEO'
+import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 
 const Carousel = lazy(() => import('../components/Carousel'))
 
 export default function Home() {
   const [isCarouselVisible, setIsCarouselVisible] = useState(false)
   const carouselRef = useRef<HTMLDivElement>(null)
+  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout
@@ -65,6 +67,10 @@ export default function Home() {
       addressLocality: 'Kungälv',
       addressCountry: 'SE',
     },
+    areaServed: [
+      { '@type': 'AdministrativeArea', name: 'Kungälv' },
+      { '@type': 'AdministrativeArea', name: 'Göteborg' },
+    ],
   }
 
   return (
@@ -73,6 +79,7 @@ export default function Home() {
         title="Fotograf i Kungälv & Göteborg - Svendsén Photography"
         description="Svendsén Photography erbjuder professionell fotografering inom bröllop, porträtt, bilfotografering och företag i Kungälv och Göteborg. Boka din fotografering idag!"
         url="https://www.svendsenphotography.com"
+        image={absoluteLogoUrl}
         keywords="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, bilfotograf, företagsfotograf, filmning, webbutveckling"
         jsonLd={homeJsonLd}
       />

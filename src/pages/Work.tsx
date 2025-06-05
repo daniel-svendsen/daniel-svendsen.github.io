@@ -15,11 +15,13 @@ import { HelmetProvider } from 'react-helmet-async'
 import SEO from '@/components/SEO'
 import PageLayout from '@/work/layout/PageLayout'
 import { useLanguage } from '@/context/LanguageContext'
+import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 
 const Work: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('profile')
   const { data: cvData, isLoading, error: hookError } = usePreloadedData()
   const { t } = useLanguage()
+  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
 
   const pageJsonLd = {
     '@context': 'https://schema.org',
@@ -105,6 +107,7 @@ const Work: React.FC = () => {
         title={seoTitle}
         description={seoDescription}
         url="https://www.svendsenphotography.com/work"
+        image={absoluteLogoUrl}
         jsonLd={pageJsonLd}
       />
       <PageLayout

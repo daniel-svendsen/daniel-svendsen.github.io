@@ -4,10 +4,11 @@ import { Helmet } from 'react-helmet-async'
 interface SEOProps {
   title: string
   description: string
-  url: string // This URL will now also be used for the canonical link
+  url: string
   image?: string
   keywords?: string
   jsonLd?: Record<string, any>
+  ogType?: string
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -17,13 +18,12 @@ const SEO: React.FC<SEOProps> = ({
   image,
   keywords,
   jsonLd,
+  ogType = 'website',
 }) => (
   <Helmet>
     <title>{title}</title>
     <meta name="description" content={description} />
     {keywords && <meta name="keywords" content={keywords} />}
-
-    {/* Canonical Link Tag */}
     <link rel="canonical" href={url} />
 
     {/* Open Graph */}
@@ -31,10 +31,15 @@ const SEO: React.FC<SEOProps> = ({
     <meta property="og:description" content={description} />
     {image && <meta property="og:image" content={image} />}
     <meta property="og:url" content={url} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Svendsén Photography" />
+    <meta property="og:locale" content="sv_SE" />
 
     {/* Twitter */}
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:card"
+      content={image ? 'summary_large_image' : 'summary'}
+    />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {image && <meta name="twitter:image" content={image} />}

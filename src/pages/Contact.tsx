@@ -4,11 +4,13 @@ import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
 import { Button } from '@/components/Button'
 import { HelmetProvider } from 'react-helmet-async'
+import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 
 export default function Contact() {
   const [selectedService, setSelectedService] = useState<string>('')
   const [formStatus, setFormStatus] = useState<'success' | 'error' | null>(null)
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
 
   const services = [
     'Utefotografering',
@@ -83,7 +85,6 @@ export default function Contact() {
         addressRegion: 'Västra Götaland',
         addressCountry: 'SE',
       },
-      telephone: '+46XXXXXXXXX',
     },
   }
 
@@ -102,6 +103,7 @@ export default function Contact() {
         title="Kontakt | Fotograf & Webb | Göteborg & Kungälv - Svendsén Photography"
         description="Kontakta Svendsén Photography för bröllopsfotografering, porträtt, företagsfoto, eventfoto eller webbutveckling i Göteborg och Kungälv. Skicka din förfrågan!"
         url="https://www.svendsenphotography.com/contact"
+        image={absoluteLogoUrl}
         keywords="kontakt fotograf, fotograf göteborg, fotograf kungälv, webbutvecklare kungälv, boka fotograf, offert fotografering, kontakta webbyrå"
         jsonLd={contactJsonLd}
       />

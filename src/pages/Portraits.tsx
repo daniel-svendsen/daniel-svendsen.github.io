@@ -3,6 +3,7 @@ import { useImportedImages } from '../hooks/useImportedImages'
 import { useShuffledImages } from '../hooks/useShuffleImages'
 import { Modal } from '../components/Modal'
 import SEO from '@/components/SEO'
+import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 
 export default function Portraits() {
   const imagesData = useImportedImages(['portraits'])
@@ -12,6 +13,7 @@ export default function Portraits() {
     src: string
     alt: string
   } | null>(null)
+  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
 
   useEffect(() => {
     if (selectedImage) {
@@ -23,7 +25,7 @@ export default function Portraits() {
 
   const portraitsJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Photograph',
+    '@type': 'ImageGallery',
     name: 'Svendsén Photography - Porträtt',
     description: 'Porträttfotograf i Kungälv & Göteborg',
     url: 'https://www.svendsenphotography.com/portraits',
@@ -35,6 +37,7 @@ export default function Portraits() {
         title="Porträttfotograf i Kungälv & Göteborg - Svendsén Photography"
         description="Boka en professionell porträttfotografering i Göteborg & Kungälv. Perfekt för företagsporträtt, CV-bilder och familjeporträtt. Läs mer: https://www.svendsenphotography.com/services"
         url="https://www.svendsenphotography.com/portraits"
+        image={absoluteLogoUrl}
         keywords="porträtt, fotograf kungälv, fotograf göteborg, porträttfotografering, Svendsén Photography"
         jsonLd={portraitsJsonLd}
       />

@@ -1,4 +1,3 @@
-// src/pages/FAQ.tsx
 import { Disclosure } from '@headlessui/react'
 import React from 'react'
 import SEO from '@/components/SEO'
@@ -7,8 +6,10 @@ import { SectionContent } from '@/components/SectionContent'
 import { Minus, Plus } from 'lucide-react'
 import { LinkButton } from '@/components/Button'
 import { HelmetProvider } from 'react-helmet-async'
+import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 
 export default function FAQ() {
+  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -76,6 +77,7 @@ export default function FAQ() {
         title="Vanliga frågor - Svendsén Photography"
         description="Har du frågor om fotografering, priser och bokning? Här hittar du svar på vanliga frågor om våra tjänster i Göteborg och Kungälv."
         url="https://www.svendsenphotography.com/faq"
+        image={absoluteLogoUrl}
         keywords="fotograf FAQ, fotografering frågor, bröllopsfotograf pris, hur bokar man en fotograf, fotograf göteborg kungälv"
         jsonLd={faqJsonLd}
       />

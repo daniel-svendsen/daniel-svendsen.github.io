@@ -16,6 +16,7 @@ import {
   Smile,
   Sparkles,
 } from 'lucide-react'
+import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 
 const pageHeroImage =
   serviceCards.length > 0
@@ -23,6 +24,7 @@ const pageHeroImage =
     : '/images/default-photo-hero.jpg'
 
 export default function Services() {
+  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
   const photographyPageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Photographer',
@@ -36,10 +38,12 @@ export default function Services() {
       addressRegion: 'Västra Götaland',
       addressCountry: 'SE',
     },
-    telephone: '+46XXXXXXXXX',
     priceRange: 'Kontakta för prisinformation',
-    hasMap: 'https://www.google.com/maps/place/Kungälv',
     url: 'https://www.svendsenphotography.com/services',
+    areaServed: [
+      { '@type': 'AdministrativeArea', name: 'Kungälv' },
+      { '@type': 'AdministrativeArea', name: 'Göteborg' },
+    ],
   }
 
   const whyChooseMeList = [
@@ -104,7 +108,7 @@ export default function Services() {
         url="https://www.svendsenphotography.com/services"
         keywords="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, företagsfotograf, familjefotograf göteborg, eventfotograf, fototjänster, hemsida"
         jsonLd={photographyPageJsonLd}
-        image={pageHeroImage}
+        image={absoluteLogoUrl}
       />
       <div className="bg-background text-textPrimary pt-16 md:pt-20">
         <Section

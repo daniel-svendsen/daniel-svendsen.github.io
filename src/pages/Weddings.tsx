@@ -3,6 +3,7 @@ import { useImportedImages } from '../hooks/useImportedImages'
 import { useShuffledImages } from '../hooks/useShuffleImages'
 import { Modal } from '../components/Modal'
 import SEO from '@/components/SEO'
+import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 
 export default function WeddingGallery() {
   const { weddings: weddingImages } = useImportedImages(['weddings'])
@@ -11,6 +12,7 @@ export default function WeddingGallery() {
     src: string
     alt: string
   } | null>(null)
+  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
 
   useEffect(() => {
     if (selectedWeddingImage) {
@@ -34,6 +36,7 @@ export default function WeddingGallery() {
         title="Bröllopsfotograf i Kungälv & Göteborg - Svendsén Photography"
         description="Boka din bröllopsfotografering med Svendsén Photography i Kungälv & Göteborg. Fånga de magiska ögonblicken på din stora dag. Läs mer: https://www.svendsenphotography.com/weddings"
         url="https://www.svendsenphotography.com/weddings"
+        image={absoluteLogoUrl}
         keywords="bröllopsfotograf, fotograf kungälv, fotograf göteborg, bröllopsfotografering, Svendsén Photography"
         jsonLd={weddingsJsonLd}
       />

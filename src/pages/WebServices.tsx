@@ -6,8 +6,11 @@ import { SectionContent } from '@/components/SectionContent'
 import { LinkButton } from '@/components/Button'
 import webdevImage from '../assets/webdev.png'
 import { CheckCircle, Search, Smartphone, Users, Zap } from 'lucide-react'
+import { toAbsoluteUrl } from '@/utils/utils'
 
 export default function WebServicesPage() {
+  const specificPageImageRelativePath = '../assets/webdev.png'
+  const absoluteSpecificImage = toAbsoluteUrl(specificPageImageRelativePath)
   const pageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebService',
@@ -85,10 +88,10 @@ export default function WebServicesPage() {
       <SEO
         title="Webbutveckling: Moderna SPA Hemsidor med SEO-fokus | Svendsén Photography"
         description="Skapa en modern webbnärvaro med skräddarsydda SPA-hemsidor (Single Page Applications). Jag fokuserar på SEO-anpassning från start. Verksam i Kungälv & Göteborg."
-        url="https://www.svendsenphotography.com/webbtjanster"
+        url="https://www.svendsenphotography.com/webservices"
         keywords="webbutveckling kungälv, spa hemsida göteborg, seo för spa, react utvecklare, modern hemsida, sökmotoroptimering hemsida, webbyrå kungälv"
         jsonLd={pageJsonLd}
-        image={webdevImage}
+        image={absoluteSpecificImage}
       />
       <main className="pt-16 md:pt-20 bg-background text-foreground">
         <Section
