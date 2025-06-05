@@ -47,7 +47,6 @@ export const PdfDocument: React.FC<PdfDocumentProps> = ({ cvData, lang }) => {
         <PdfHeader profile={cvData.profile} lang={lang} />
         <View style={styles.bodyPadding}>
           {cvData.intro && <PdfIntro intro={cvData.intro} lang={lang} />}
-          <PdfSkills skills={cvData.skills} lang={lang} />
           <PdfExperience experiences={workExp} lang={lang} />
           <PdfEducation educations={educationExp} lang={lang} />
           <PdfProjects
@@ -55,6 +54,7 @@ export const PdfDocument: React.FC<PdfDocumentProps> = ({ cvData, lang }) => {
             sectionTitle={cvData.personalProjectsTitle}
             lang={lang}
           />
+          <PdfSkills skills={cvData.skills} lang={lang} />
           <PdfContact contacts={otherContacts} lang={lang} />
         </View>
       </Page>
