@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import sitemap from 'vite-plugin-sitemap'
+import path from 'path' // Importera path
 
 export default defineConfig({
   plugins: [
@@ -29,15 +30,15 @@ export default defineConfig({
     cssCodeSplit: true,
   },
   resolve: {
+    // Använder path.resolve, vilket är standard för Vite/TS-projekt
     alias: {
-      '@': new URL('./src', import.meta.url).pathname,
+      '@': path.resolve(__dirname, './src'),
     },
   },
   server: {
     proxy: {
       '/api': {
-        target:
-          'https://daniel-svendsengithubio-production-c975.up.railway.app',
+        target: 'http://localhost:8787',
         changeOrigin: true,
         secure: false,
       },

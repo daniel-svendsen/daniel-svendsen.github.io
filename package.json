@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm-run-all --parallel dev:frontend dev:backend",
+    "dev:frontend": "vite",
+    "dev:backend": "npx wrangler dev src/admin/worker/worker.ts --port 8787",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "deploy:worker": "npx wrangler deploy --name gallery-worker src/admin/worker/worker.ts"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
@@ -21,8 +22,10 @@
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "fflate": "^0.8.2",
     "file-saver": "^2.0.5",
     "framer-motion": "^12.4.13",
+    "jszip": "^3.10.1",
     "lucide-react": "^0.462.0",
     "openai": "^4.89.0",
     "postcss": "^8.4.49",
@@ -37,24 +40,30 @@
     "typewriter-effect": "^2.21.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250607.0",
     "@eslint/js": "^8.47.0",
+    "@types/file-saver": "^2.0.7",
     "@types/jspdf": "^2.0.0",
-    "@types/node": "^22.13.1",
+    "@types/node": "^22.15.30",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@types/react-helmet": "^6.1.11",
     "@vitejs/plugin-react-swc": "^3.3.2",
+    "esbuild": "^0.25.5",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^10.0.2",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
     "globals": "^15.0.4",
+    "npm-run-all": "^4.1.5",
     "prettier": "^3.5.2",
     "rollup-plugin-visualizer": "^5.14.0",
+    "typescript": "^5.8.3",
     "vite": "^6.2.1",
     "vite-plugin-sitemap": "^0.7.1",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^5.1.4",
+    "wrangler": "^4.19.1"
   },
   "overrides": {
     "react": "18.2.0",

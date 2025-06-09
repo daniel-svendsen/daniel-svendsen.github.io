@@ -107,3 +107,5 @@ backend_config_content.txt
 backend_config_analysis.json
 .env.development
 .env.production
+.dev.vars
+.wrangler

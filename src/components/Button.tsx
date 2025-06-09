@@ -18,6 +18,8 @@ export const buttonVariantsConfig = cva(
           'bg-white text-muted hover:bg-gray-100 data-[state=open]:bg-gray-200',
         secondary:
           'bg-secondary text-textPrimary hover:bg-secondary/80 data-[state=open]:bg-secondary/70',
+        destructive:
+          'bg-destructive text-white hover:bg-textPrimary/90 data-[state=open]:bg-textPrimary/80',
         highlight:
           'bg-highlight text-white hover:bg-highlight/90 data-[state=open]:bg-highlight/80',
         outline:

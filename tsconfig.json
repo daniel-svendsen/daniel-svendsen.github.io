@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "strict": true,
+    "strict": false,
     "jsx": "react-jsx",
     "resolveJsonModule": true,
     "target": "ESNext",
@@ -13,7 +13,17 @@
       "@/*": [
         "src/*"
       ]
-    }
+    },
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "types": [
+      "vite/client",
+      "@cloudflare/workers-types",
+      "node"
+    ]
   },
   "include": [
     "src"

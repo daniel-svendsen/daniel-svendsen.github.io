@@ -1,0 +1,20 @@
+#src/admin/worker/wrangler.toml
+name = "gallery-worker"
+main = "worker.ts"
+compatibility_date = "2024-06-11"
+
+[[r2_buckets]]
+binding = "PICTURES"
+bucket_name = "svendsen-photography-mainbucket"
+
+[[kv_namespaces]]
+binding = "LIKES_V2"
+id = "251c52393b404b8ba7743e0ea5cd9373"
+
+[[kv_namespaces]]
+binding = "SESSIONS_V2"
+id = "0c8d03fc67fd4aa4853f466a87787307"
+
+[[kv_namespaces]]
+binding = "GALLERIES_KV"
+id = "43fdcb47ee75431f8a5dcb7ef22c3c26"
