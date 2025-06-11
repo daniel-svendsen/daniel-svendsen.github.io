@@ -441,6 +441,18 @@
         "sv": "Utvecklade frontenden för TapMap, ett koncept för en platsbaserad tjänst som visar närliggande restauranger/barer tillsammans med realtidsdata om solens position med hjälp av React, Vite, Tailwind CSS och Leaflet. Funktioner inkluderar en interaktiv karta, hämtning av platsdata, användarbetyg och prisspårning."
       },
       "link_href": "https://tapmap.pages.dev/"
+    },
+    {
+      "id": 4,
+      "name": {
+        "en": "Gallery Management System",
+        "sv": "Gallerihanteringssystem"
+      },
+      "details": {
+        "en": "Designed and implemented a fully serverless admin system for managing photo galleries. The system utilizes Cloudflare Workers for backend logic (API, auth), R2 for image storage, and KV for metadata (sessions, gallery lists). The frontend, built with React and Vite, enables full CRUD management of galleries and images.",
+        "sv": "Designade och implementerade ett fullt serverlöst admin-system för hantering av fotogallerier. Systemet använder Cloudflare Workers för backend-logik (API, auth), R2 för bildlagring och KV för metadata (sessioner, gallerilistor). Frontend, byggd med React och Vite, möjliggör komplett CRUD-hantering av gallerier och bilder."
+      },
+      "link_href": "https://www.svendsenphotography.com/galleri/testgalleri"
     }
   ],
   "contact": [
