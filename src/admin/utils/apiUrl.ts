@@ -7,7 +7,9 @@ export const apiUrl = (path: string): string => {
 
 export const imageUrl = (path: string): string => {
   const cleanPath = path.startsWith('api/') ? path.slice(4) : path
-  return `${API_BASE_URL}/api/image${
+  const url = `${API_BASE_URL}/api/image${
     cleanPath.startsWith('/') ? '' : '/'
   }${cleanPath}`
+
+  return `${url}?v=${new Date().getTime()}`
 }

@@ -392,11 +392,23 @@ apiRouter.get(
   async (request: Request, params: { key: string }, env: Env) => {
     try {
       const object = await env.PICTURES.get(params.key)
-      if (object === null)
+
+      if (object === null) {
         return new Response('Object Not Found', { status: 404 })
+      }
+
       const headers = new Headers()
       object.writeHttpMetadata(headers)
       headers.set('etag', object.httpEtag)
+
+      const fileName = params.key.split('/').pop() || 'image'
+      headers.set('Content-Disposition', `attachment; filename="${fileName}"`)
+
+      if (!headers.has('Content-Type')) {
+        const defaultContentType = 'application/octet-stream'
+        headers.set('Content-Type', defaultContentType)
+      }
+
       return new Response(object.body, { headers })
     } catch (e) {
       return new Response(JSON.stringify({ error: 'Failed to get image.' }), {
