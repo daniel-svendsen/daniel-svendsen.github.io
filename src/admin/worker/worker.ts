@@ -1,3 +1,5 @@
+// src/admin/worker/worker.ts
+
 const Router = () => {
   const routes: { method: string; path: RegExp; handler: Function }[] = []
   const add = (method: string, path: RegExp, handler: Function) => {
@@ -51,6 +53,7 @@ const authMiddleware = async (request: Request, env: Env) => {
   return null
 }
 
+const FOLDER_PLACEHOLDER = '.folder-placeholder'
 const apiRouter = Router()
 
 apiRouter.post(
@@ -106,8 +109,8 @@ apiRouter.get(
     const authError = await authMiddleware(request, env)
     if (authError) return authError
     try {
-      const galleryListJson = await env.GALLERIES_KV.get('GALLERY_LIST')
-      const galleries = galleryListJson ? JSON.parse(galleryListJson) : []
+      const listResult = await env.PICTURES.list({ delimiter: '/' })
+      const galleries = listResult.delimitedPrefixes
       return new Response(JSON.stringify(galleries), {
         headers: { 'Content-Type': 'application/json' },
       })
@@ -126,15 +129,6 @@ apiRouter.put(
     const authError = await authMiddleware(request, env)
     if (authError) return authError
     try {
-      const galleryName = params.key.split('/')[0]
-      if (galleryName) {
-        const galleryListJson = await env.GALLERIES_KV.get('GALLERY_LIST')
-        let galleries = galleryListJson ? JSON.parse(galleryListJson) : []
-        if (!galleries.includes(galleryName + '/')) {
-          galleries.push(galleryName + '/')
-          await env.GALLERIES_KV.put('GALLERY_LIST', JSON.stringify(galleries))
-        }
-      }
       await env.PICTURES.put(params.key, request.body)
       return new Response(
         JSON.stringify({ success: `Uploaded ${params.key}!` }),
@@ -177,6 +171,60 @@ apiRouter.delete(
   },
 )
 
+apiRouter.post(
+  /^\/api\/create-folder$/,
+  async (request: Request, params: any, env: Env) => {
+    const authError = await authMiddleware(request, env)
+    if (authError) return authError
+    try {
+      const { path } = (await request.json()) as { path: string }
+      if (!path || !path.endsWith('/')) {
+        return new Response(JSON.stringify({ error: 'Invalid folder path.' }), {
+          status: 400,
+        })
+      }
+      await env.PICTURES.put(path + FOLDER_PLACEHOLDER, null)
+      return new Response(JSON.stringify({ success: true }), { status: 201 })
+    } catch (e) {
+      return new Response(
+        JSON.stringify({ error: 'Could not create folder.' }),
+        {
+          status: 500,
+        },
+      )
+    }
+  },
+)
+
+apiRouter.delete(
+  /^\/api\/folder\/(?<prefix>.+)$/,
+  async (request: Request, params: { prefix: string }, env: Env) => {
+    const authError = await authMiddleware(request, env)
+    if (authError) return authError
+    try {
+      const prefix = params.prefix
+      if (!prefix) {
+        return new Response(JSON.stringify({ error: 'Missing prefix' }), {
+          status: 400,
+        })
+      }
+      const list = await env.PICTURES.list({ prefix })
+      if (list.objects && list.objects.length > 0) {
+        const keysToDelete = list.objects.map((obj) => obj.key)
+        await env.PICTURES.delete(keysToDelete)
+      }
+      return new Response(null, { status: 204 })
+    } catch (e) {
+      return new Response(
+        JSON.stringify({ error: 'Failed to clear folder.' }),
+        {
+          status: 500,
+        },
+      )
+    }
+  },
+)
+
 apiRouter.delete(
   /^\/api\/gallery\/(?<galleryName>.+)$/,
   async (request: Request, params: { galleryName: string }, env: Env) => {
@@ -192,11 +240,6 @@ apiRouter.delete(
         await env.PICTURES.delete(keysToDelete)
       }
       await env.LIKES_V2.delete(galleryId)
-
-      const galleryListJson = await env.GALLERIES_KV.get('GALLERY_LIST')
-      let galleries = galleryListJson ? JSON.parse(galleryListJson) : []
-      galleries = galleries.filter((g: string) => g !== prefix)
-      await env.GALLERIES_KV.put('GALLERY_LIST', JSON.stringify(galleries))
 
       return new Response(
         JSON.stringify({ success: `Deleted gallery ${galleryId}` }),
@@ -274,13 +317,6 @@ apiRouter.post(
         await env.LIKES_V2.put(newGalleryName, likes)
         await env.LIKES_V2.delete(oldGalleryName)
       }
-
-      const galleryListJson = await env.GALLERIES_KV.get('GALLERY_LIST')
-      let galleries = galleryListJson ? JSON.parse(galleryListJson) : []
-      galleries = galleries.map((g: string) =>
-        g === oldPrefix ? newPrefix : g,
-      )
-      await env.GALLERIES_KV.put('GALLERY_LIST', JSON.stringify(galleries))
 
       return new Response(
         JSON.stringify({ success: `Renamed gallery to ${newGalleryName}` }),
@@ -371,15 +407,43 @@ apiRouter.get(
 )
 
 apiRouter.get(
-  /^\/api\/gallery\/(?<galleryName>[^/]+\/?.*)$/,
+  /^\/api\/gallery-contents\/(?<prefix>.+)$/,
+  async (request: Request, params: { prefix: string }, env: Env) => {
+    try {
+      const prefix = params.prefix
+      const list = await env.PICTURES.list({ prefix, delimiter: '/' })
+
+      const images = list.objects
+        .filter((obj) => !obj.key.endsWith(FOLDER_PLACEHOLDER))
+        .map((obj) => obj.key)
+      const folders = list.delimitedPrefixes
+
+      return new Response(JSON.stringify({ images, folders }), {
+        headers: { 'Content-Type': 'application/json' },
+      })
+    } catch (e) {
+      return new Response(
+        JSON.stringify({ error: 'Failed to get gallery content.' }),
+        { status: 500 },
+      )
+    }
+  },
+)
+
+apiRouter.get(
+  /^\/api\/gallery\/(?<galleryName>[^/]+)\/?.*$/,
   async (request: Request, params: { galleryName: string }, env: Env) => {
     try {
-      const galleryName = params.galleryName.endsWith('/')
+      const prefix = params.galleryName.endsWith('/')
         ? params.galleryName
         : `${params.galleryName}/`
-      const list = await env.PICTURES.list({ prefix: galleryName })
-      if (!list.objects) return new Response(JSON.stringify([]))
-      const imageKeys = list.objects.map((obj) => obj.key)
+
+      const list = await env.PICTURES.list({ prefix })
+
+      const imageKeys = list.objects
+        .filter((obj) => !obj.key.endsWith(FOLDER_PLACEHOLDER))
+        .map((obj) => obj.key)
+
       return new Response(JSON.stringify(imageKeys), {
         headers: { 'Content-Type': 'application/json' },
       })
@@ -396,7 +460,6 @@ interface Env {
   PICTURES: R2Bucket
   LIKES_V2: KVNamespace
   SESSIONS_V2: KVNamespace
-  GALLERIES_KV: KVNamespace
   ADMIN_PASSWORD?: string
 }
 

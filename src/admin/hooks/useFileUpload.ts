@@ -10,8 +10,8 @@ export function useFileUpload() {
 
   const uploadFiles = async (
     files: FileList,
-    galleryId: string,
-    onUploadSuccess?: (newKeys: string[]) => void,
+    prefix: string,
+    onUploadSuccess?: () => void,
   ): Promise<string[]> => {
     if (!files || files.length === 0) return []
 
@@ -24,7 +24,7 @@ export function useFileUpload() {
     try {
       for (let i = 0; i < files.length; i++) {
         const file = files[i]
-        const key = `${galleryId}/${file.name.replace(/\s+/g, '_')}`
+        const key = `${prefix}${file.name.replace(/\s+/g, '_')}`
         await fetch(apiUrl(`upload/${key}`), {
           method: 'PUT',
           credentials: 'include',
@@ -35,7 +35,7 @@ export function useFileUpload() {
         setProgress(((i + 1) / files.length) * 100)
       }
       setStatus('success')
-      if (onUploadSuccess) onUploadSuccess(uploadedKeys)
+      if (onUploadSuccess) onUploadSuccess()
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Upload failed'
       setError(message)

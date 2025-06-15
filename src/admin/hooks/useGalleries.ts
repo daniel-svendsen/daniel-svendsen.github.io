@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { apiUrl } from '@/admin/utils/apiUrl'
 
 export function useGalleries() {
@@ -6,7 +6,7 @@ export function useGalleries() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setIsLoading(true)
     try {
       const response = await fetch(apiUrl('galleries'), {
@@ -21,11 +21,11 @@ export function useGalleries() {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [])
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [fetchData])
 
   const deleteGallery = async (galleryName: string) => {
     const galleryId = galleryName.replace(/\/$/, '')
@@ -42,7 +42,7 @@ export function useGalleries() {
         method: 'DELETE',
         credentials: 'include',
       })
-      setGalleries((prev) => prev.filter((g) => g !== galleryName))
+      fetchData()
     } catch (err) {
       alert('Kunde inte ta bort galleriet.')
     }

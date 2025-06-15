@@ -1,31 +1,40 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { apiUrl } from '@/admin/utils/apiUrl'
 
-export function useGalleryDetailData(galleryId: string | undefined) {
+interface GalleryContent {
+  images: string[]
+  folders: string[]
+}
+
+export function useGalleryDetailData(prefix: string | undefined) {
   const [images, setImages] = useState<string[]>([])
+  const [folders, setFolders] = useState<string[]>([])
   const [likedImages, setLikedImages] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
 
-  const fetchData = async () => {
-    if (!galleryId) return
+  const fetchData = useCallback(async () => {
+    if (!prefix) return
 
     setIsLoading(true)
     setError('')
 
     try {
-      const [imagesRes, likesRes] = await Promise.all([
-        fetch(apiUrl(`gallery/${galleryId}`)),
+      const galleryId = prefix.split('/')[0]
+      const [contentRes, likesRes] = await Promise.all([
+        fetch(apiUrl(`gallery-contents/${prefix}`), { credentials: 'include' }),
         fetch(apiUrl(`likes/${galleryId}`), { credentials: 'include' }),
       ])
 
-      if (!imagesRes.ok) throw new Error('Kunde inte ladda bilder.')
+      if (!contentRes.ok)
+        throw new Error('Kunde inte ladda galleriets innehåll.')
       if (!likesRes.ok) throw new Error('Kunde inte ladda gillade bilder.')
 
-      const imagesData = await imagesRes.json()
+      const contentData: GalleryContent = await contentRes.json()
       const likesData = await likesRes.json()
 
-      setImages(imagesData)
+      setImages(contentData.images || [])
+      setFolders(contentData.folders || [])
       setLikedImages(likesData)
     } catch (err) {
       if (err instanceof Error) {
@@ -36,15 +45,17 @@ export function useGalleryDetailData(galleryId: string | undefined) {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [prefix])
 
   useEffect(() => {
     fetchData()
-  }, [galleryId])
+  }, [fetchData])
 
   return {
     images,
+    folders,
     setImages,
+    setFolders,
     likedImages,
     isLoading,
     error,

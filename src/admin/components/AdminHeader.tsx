@@ -2,28 +2,41 @@ import React, { useState } from 'react'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
 import { Button, LinkButton } from '@/components/Button'
-import { ArrowLeft, ClipboardCopy, Pencil, Trash2, Upload } from 'lucide-react'
+import {
+  ArrowLeft,
+  ClipboardCopy,
+  FolderPlus,
+  Pencil,
+  Trash2,
+  Upload,
+} from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { apiUrl } from '@/admin/utils/apiUrl'
 
 interface AdminHeaderProps {
   galleryId: string | undefined
+  currentPath: string
+  isRootLevel: boolean
   likedImageKeys: string[]
   onSelectFiles: () => void
   isUploading: boolean
   uploadProgress: number
   actionError?: string
   onClearGallery: () => void
+  onCreateFolder: () => void
 }
 
 export function AdminHeader({
   galleryId,
+  currentPath,
+  isRootLevel,
   likedImageKeys,
   onSelectFiles,
   isUploading,
   uploadProgress,
   actionError,
   onClearGallery,
+  onCreateFolder,
 }: AdminHeaderProps) {
   const navigate = useNavigate()
   const [copyStatus, setCopyStatus] = useState('')
@@ -92,14 +105,25 @@ export function AdminHeader({
             <span className="sm:hidden">Tillbaka</span>
           </LinkButton>
           <div className="flex-shrink-0 flex items-center justify-center gap-2 flex-wrap">
+            {isRootLevel && (
+              <Button
+                onClick={handleRenameGallery}
+                subVariant="rounded"
+                size="md"
+                variant="outline"
+              >
+                <Pencil className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">Byt namn</span>
+              </Button>
+            )}
             <Button
-              onClick={handleRenameGallery}
+              onClick={onCreateFolder}
               subVariant="rounded"
               size="md"
               variant="outline"
             >
-              <Pencil className="h-4 w-4 sm:mr-2" />
-              <span className="hidden sm:inline">Byt namn</span>
+              <FolderPlus className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline">Ny mapp</span>
             </Button>
             <Button
               onClick={onSelectFiles}
@@ -112,26 +136,30 @@ export function AdminHeader({
                 {isUploading ? 'Laddar...' : 'Lägg till'}
               </span>
             </Button>
-            <Button
-              onClick={handleCopyLikes}
-              disabled={likedImageKeys.length === 0}
-              subVariant="rounded"
-              size="md"
-            >
-              <ClipboardCopy className="h-4 w-4 sm:mr-2" />
-              <span className="hidden sm:inline">
-                Kopiera {likedImageKeys.length}
-              </span>
-            </Button>
-            <Button
-              onClick={onClearGallery}
-              subVariant="rounded"
-              size="md"
-              variant="destructive"
-            >
-              <Trash2 className="h-4 w-4 sm:mr-2" />
-              <span className="hidden sm:inline">Töm Galleri</span>
-            </Button>
+            {isRootLevel && (
+              <>
+                <Button
+                  onClick={handleCopyLikes}
+                  disabled={likedImageKeys.length === 0}
+                  subVariant="rounded"
+                  size="md"
+                >
+                  <ClipboardCopy className="h-4 w-4 sm:mr-2" />
+                  <span className="hidden sm:inline">
+                    Kopiera {likedImageKeys.length}
+                  </span>
+                </Button>
+                <Button
+                  onClick={onClearGallery}
+                  subVariant="rounded"
+                  size="md"
+                  variant="destructive"
+                >
+                  <Trash2 className="h-4 w-4 sm:mr-2" />
+                  <span className="hidden sm:inline">Töm Galleri</span>
+                </Button>
+              </>
+            )}
           </div>
         </div>
         {isUploading && (

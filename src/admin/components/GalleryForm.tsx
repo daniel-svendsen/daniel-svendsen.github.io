@@ -28,7 +28,8 @@ export function CreateGalleryForm({
       setFormError('Välj ett gallerinamn och minst en fil.')
       return
     }
-    await uploadFiles(files, galleryName, onUploadSuccess)
+    const prefix = galleryName.endsWith('/') ? galleryName : `${galleryName}/`
+    await uploadFiles(files, prefix, onUploadSuccess)
   }
 
   useEffect(() => {
