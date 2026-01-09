@@ -403,6 +403,18 @@
         "en": "Programming 1 (C#)",
         "sv": "Programmering 1 (C#)"
       }
+    },
+    {
+      "id": 5,
+      "type": {
+        "en": "Work",
+        "sv": "Arbete"
+      },
+      "year": "2025 – Present",
+      "details": {
+        "en": "Redirect Consulting - IT-consult and packager for Länsstyrelsen:\nWorked in Windows environment with:\nPowershell\nPSADT framework\nAzure DevOps\nScrumBan\nMECM\nService Manager\nTroubleshooting and debugging",
+        "sv": "Redirect Consulting - IT-konsult och paketerare för Länsstyrelsen\nArbetade i Windowsmiljön med:\nPowershell\nPSADT ramverket\nAzure DevOps\nScrumban\nMECM\nService Manager\nFelsökning och debugging"
+      }
     }
   ],
   "projects": [
