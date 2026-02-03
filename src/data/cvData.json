@@ -8,8 +8,8 @@
         "sv": "Daniel Svendsén"
       },
       "description": {
-        "en": "Result-driven and passionate Java developer with full-stack experience and leader/mentorship background.",
-        "sv": "Resultatinriktad och passionerad Java-utvecklare med fullstack erfarenhet och bakgrund inom ledar och mentorskap."
+        "en": "Java Developer and IT Consultant focusing on full-stack development, software packaging, and technical troubleshooting.",
+        "sv": "Java-utvecklare och IT-konsult med fokus på fullstack-utveckling, mjukvarupaketering och teknisk problemlösning."
       }
     },
     {
@@ -44,8 +44,8 @@
         "sv": "Introduktion"
       },
       "description": {
-        "en": "Passionate and versatile java/full-stack developer with a background in leadership and mentorship. Studied Java Enterprise Developer program at Yrgo for 2 years. Passionate about developing scalable applications, improving workflows, and collaborating in teams.",
-        "sv": "Passionerad och mångsidig java/fullstack-utvecklare med bakgrund inom ledarskap och mentorskap. Studerade Java Enterprise Developer-programmet på Yrgo i 2 år. Brinner för att utveckla skalbara applikationer, förbättra arbetsflöden och samarbeta i team."
+        "en": "Versatile Java/full-stack developer educated at Yrgo (Java Enterprise Developer), with a background in leadership and mentorship. I combine my experience in developing scalable applications with practical work in software packaging, MECM, and Active Directory. By understanding the entire chain – from code to distribution and troubleshooting in Windows environments – I can ensure stable and efficient deliveries in complex IT systems.",
+        "sv": "Mångsidig Java/fullstack-utvecklare utbildad vid Yrgo (Java Enterprise Developer), med en bakgrund inom ledarskap och mentorskap. Jag kombinerar min erfarenhet av att utveckla skalbara applikationer med praktiskt arbete inom mjukvarupaketering, MECM och Active Directory. Genom att förstå hela kedjan – från kod till distribution och felsökning i Windows-miljöer – kan jag säkerställa stabila och effektiva leveranser i komplexa IT-system."
       }
     }
   ],
@@ -412,9 +412,9 @@
       },
       "year": "2025 – Present",
       "details": {
-        "en": "Redirect Consulting - IT-consult and packager for Länsstyrelsen:\nWorked in Windows environment with:\nPowershell\nPSADT framework\nAzure DevOps\nScrumBan\nMECM\nService Manager\nTroubleshooting and debugging",
-        "sv": "Redirect Consulting - IT-konsult och paketerare för Länsstyrelsen\nArbetade i Windowsmiljön med:\nPowershell\nPSADT ramverket\nAzure DevOps\nScrumban\nMECM\nService Manager\nFelsökning och debugging"
-      }
+        "en": "Redirect Consulting - IT-consult and packager for Länsstyrelsen:\nApplying my background in software development to automate and quality-assure application distribution in a Windows environment:\n- Software packaging using PowerShell and the PSADT framework\n- Managing deployments and distribution via MECM\n- Administration in Active Directory (AD) regarding users and permissions\n- Technical troubleshooting and debugging in Azure DevOps environment\n- Working in agile teams (ScrumBan) with a focus on improving delivery workflows",
+        "sv": "Redirect Consulting - IT-konsult och paketerare för Länsstyrelsen:\nTillämpar min bakgrund inom mjukvaruutveckling för att automatisera och kvalitetssäkra applikationsdistribution i en Windows-miljö:\n- Paketering av programvara med PowerShell och PSADT-ramverket\n- Hantering av utrullningar och distribution via MECM\n- Administration i Active Directory (AD) gällande användare och rättigheter\n- Teknisk felsökning och debugging i Azure DevOps-miljö\n- Arbete i agila team (ScrumBan) med fokus på att förbättra leveransflöden"
+  }
     }
   ],
   "projects": [
