@@ -117,11 +117,11 @@
         "sv": "Erfarenhet av Ramverk/Verktyg"
       },
       "tool": {
-        "en": "Spring Boot",
-        "sv": "Spring Boot"
-      },
-      "icon": "Spring Boot"
+      "en": "Spring Boot (Data JPA, Security, MVC)",
+      "sv": "Spring Boot (Data JPA, Security, MVC)"
     },
+    "icon": "Spring Boot"
+  },
     {
       "id": 7,
       "category": {
@@ -337,7 +337,67 @@
         "sv": "Agila metoder"
       },
       "icon": ""
-    }
+    },
+    {
+    "id": 25,
+    "category": {
+      "en": "Experienced Frameworks/Tools",
+      "sv": "Erfarenhet av Ramverk/Verktyg"
+    },
+    "tool": {
+      "en": "JWT & Spring Security (Authentication/Authorization)",
+      "sv": "JWT & Spring Security (Autentisering/Auktorisering)"
+    },
+    "icon": ""
+  },
+  {
+    "id": 26,
+    "category": {
+      "en": "Experienced Frameworks/Tools",
+      "sv": "Erfarenhet av Ramverk/Verktyg"
+    },
+    "tool": {
+      "en": "Bucket4j (API Rate Limiting & Resilience)",
+      "sv": "Bucket4j (API Rate Limiting & Resiliens)"
+    },
+    "icon": ""
+  },
+  {
+    "id": 27,
+    "category": {
+      "en": "Experienced Frameworks/Tools",
+      "sv": "Erfarenhet av Ramverk/Verktyg"
+    },
+    "tool": {
+      "en": "REST API Integration (OpenAI & Mailgun)",
+      "sv": "REST API-integration (OpenAI & Mailgun)"
+    },
+    "icon": ""
+  },
+  {
+    "id": 28,
+    "category": {
+      "en": "Experienced Databases",
+      "sv": "Erfarenhet av Databaser"
+    },
+    "tool": {
+      "en": "PostgreSQL & H2",
+      "sv": "PostgreSQL & H2"
+    },
+    "icon": ""
+  },
+  {
+  "id": 29,
+  "category": { 
+    "en": "Experienced Frameworks/Tools", 
+    "sv": "Erfarenhet av Ramverk/Verktyg"
+  },
+  "tool": { 
+    "en": "Cloudflare Workers & Wrangler (TypeScript)", 
+  "sv": "Cloudflare Workers & Wrangler (TypeScript)" 
+},
+  "icon": ""
+}
   ],
   "experience": [
     {
@@ -410,11 +470,11 @@
         "en": "Work",
         "sv": "Arbete"
       },
-      "year": "2025 – Present",
+      "year": "2025 – 2026",
       "details": {
-        "en": "Redirect Consulting - IT-consult and packager for Länsstyrelsen:\nApplying my background in software development to automate and quality-assure application distribution in a Windows environment:\n- Software packaging using PowerShell and the PSADT framework\n- Managing deployments and distribution via MECM\n- Administration in Active Directory (AD) regarding users and permissions\n- Technical troubleshooting and debugging in Azure DevOps environment\n- Working in agile teams (ScrumBan) with a focus on improving delivery workflows",
-        "sv": "Redirect Consulting - IT-konsult och paketerare för Länsstyrelsen:\nTillämpar min bakgrund inom mjukvaruutveckling för att automatisera och kvalitetssäkra applikationsdistribution i en Windows-miljö:\n- Paketering av programvara med PowerShell och PSADT-ramverket\n- Hantering av utrullningar och distribution via MECM\n- Administration i Active Directory (AD) gällande användare och rättigheter\n- Teknisk felsökning och debugging i Azure DevOps-miljö\n- Arbete i agila team (ScrumBan) med fokus på att förbättra leveransflöden"
-  }
+        "en": "Redirect Consulting - IT-consultant for Länsstyrelsen:\n- Completed a fixed-term substitute position with a focus on software packaging and automated distribution.\n- Developed and quality-assured installation scripts using PowerShell and the PSADT framework.\n- Managed deployments and software distribution via MECM and Active Directory in high-security environments.\n- Performed technical troubleshooting and debugging in Windows environments while monitoring delivery flows in Azure DevOps.\n- Worked in an agile ScrumBan team with a focus on maintaining stable and secure delivery workflows.",
+        "sv": "Redirect Consulting - IT-konsult för Länsstyrelsen:\n- Fullföljde ett tidsbegränsat vikariat med fokus på mjukvarupaketering och automatiserad distribution.\n- Utvecklade och kvalitetssäkrade installationsskript med PowerShell och ramverket PSADT.\n- Hanterade utrullningar och distribution av programvara via MECM och Active Directory i säkerhetskritiska miljöer.\n- Utförde teknisk felsökning och debugging i Windows-miljöer samt bevakade leveransflöden i Azure DevOps.\n- Arbetade i ett agilt ScrumBan-team med fokus på att upprätthålla stabila och säkra leveransflöden."
+      }
     }
   ],
   "projects": [
@@ -437,9 +497,9 @@
         "sv": "Receptobot"
       },
       "details": {
-        "en": "Developed Receptobot, an AI-powered service generating recipes via OpenAI's API based on user input (ingredients, allergies, cuisine). Requires login (5 fetches/user) and possibility to save recipes to users profilepage. Backend: Spring Boot with Bucket4j (rate-limiting). Frontend: React, Vite, Tailwind CSS. Deployed on Railway with Cloudflare DNS.",
-        "sv": "Utvecklade Receptobot, en AI-driven tjänst som genererar recept via OpenAI:s API baserat på användarens input (ingredienser, allergier, kök). Kräver inloggning (5 hämtningar/användare) och möjlighet att spara recept på användarens profilsida. Backend: Spring Boot med Bucket4j (rate-limiting). Frontend: React, Vite, Tailwind CSS. Driftsatt på Railway med Cloudflare DNS."
-      },
+    "en": "Developed a full-stack AI service using Spring Boot 3 and React. Key technical features: Implemented JWT-based stateless authentication with Spring Security, integrated Mailgun API for automated user activation, and engineered a robust rate-limiting system using Bucket4j to optimize OpenAI API costs. Architected with a PostgreSQL backend and fully deployed on Railway with automated CI/CD pipelines and a responsive Tailwind CSS frontend.",
+    "sv": "Utvecklade en fullstack AI-tjänst med Spring Boot 3 och React. Tekniska punkter: Implementerade JWT-baserad stateless autentisering med Spring Security, integrerade Mailgun API för automatiserade aktiveringsflöden, och utvecklade ett robust rate-limiting-system med Bucket4j för att optimera OpenAI API-anrop och kostnader. Innehåller en PostgreSQL-backend och är driftsatt på Railway med automatiserade CI/CD-flöden och en responsiv frontend i Tailwind CSS."
+  },
       "link_href": "https://www.receptobot.se"
     },
     {
