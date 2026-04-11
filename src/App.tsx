@@ -10,12 +10,14 @@ import ScrollToTop from './components/ScrollToTop'
 import Work from './pages/Work'
 import WebServicesPage from '@/pages/WebServices'
 
+
 const Home = React.lazy(() => import('./pages/Home'))
 const Services = React.lazy(() => import('./pages/Services'))
 const Portraits = React.lazy(() => import('./pages/Portraits'))
 const Weddings = React.lazy(() => import('./pages/Weddings'))
 const Contact = React.lazy(() => import('./pages/Contact'))
 const FAQ = React.lazy(() => import('./pages/FAQ'))
+const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'))
 
 // --- Nya och ändrade admin-importer ---
 const AdminLoginPage = React.lazy(() => import('./admin/pages/AdminLoginPage'))
@@ -60,6 +62,7 @@ function App() {
                   path="/galleri/:galleryId"
                   element={<CustomerGalleryPage />}
                 />
+                <Route path="/privacy" element={<PrivacyPolicy />} />
 
                 {/* === Admin Routes === */}
                 <Route path="/admin/login" element={<AdminLoginPage />} />
