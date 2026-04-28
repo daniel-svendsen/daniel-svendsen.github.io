@@ -7,7 +7,7 @@ import HomeCard from '@/components/HomeCard'
 import { homeCards } from '../data/cards'
 import HeroSection from '../components/HeroSection'
 import forprosVideo from '@/assets/movies/forpros1.mp4'
-import forprosImg from '@/assets/movies/img.png'
+import forprosImg from '@/assets/movies/img-optimized.jpg'
 import SEO from '@/components/SEO'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 import {

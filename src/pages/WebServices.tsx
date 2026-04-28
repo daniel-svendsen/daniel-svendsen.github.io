@@ -4,7 +4,7 @@ import SEO from '@/components/SEO'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
 import { LinkButton } from '@/components/Button'
-import webdevImage from '../assets/webdev.png'
+import webdevImage from '../assets/webdev-optimized.jpg'
 import { CheckCircle, Search, Smartphone, Users, Zap } from 'lucide-react'
 import { toAbsoluteUrl } from '@/utils/utils'
 
