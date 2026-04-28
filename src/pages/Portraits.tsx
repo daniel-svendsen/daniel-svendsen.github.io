@@ -1,9 +1,35 @@
 import React, { useEffect, useState } from 'react'
-import { useImportedImages } from '../hooks/useImportedImages'
-import { useShuffledImages } from '../hooks/useShuffleImages'
+import { LinkButton } from '@/components/Button'
 import { Modal } from '../components/Modal'
 import SEO from '@/components/SEO'
+import { useImportedImages } from '../hooks/useImportedImages'
+import { useShuffledImages } from '../hooks/useShuffleImages'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+
+const portraitUseCases = [
+  'Profilbilder för LinkedIn, CV och personligt varumärke',
+  'Porträtt för kreatörer, egenföretagare och sociala medier',
+  'Personliga porträtt med naturlig och avslappnad känsla',
+  'Företagsporträtt för webbplats, marknadsföring och presentationer',
+]
+
+const portraitHighlights = [
+  {
+    title: 'Avslappnad fotografering',
+    description:
+      'Målet är att du ska känna dig trygg framför kameran, så att uttrycket blir naturligt och inte stelt.',
+  },
+  {
+    title: 'Anpassat efter syfte',
+    description:
+      'Vi utgår från hur bilderna ska användas och vilken känsla du vill förmedla.',
+  },
+  {
+    title: 'Färdiga bilder att använda',
+    description:
+      'Du får redigerade bilder som fungerar för både privata minnen och professionella sammanhang.',
+  },
+]
 
 export default function Portraits() {
   const imagesData = useImportedImages(['portraits'])
@@ -75,6 +101,39 @@ export default function Portraits() {
             håller över tid.
           </p>
         </header>
+
+        <section className="max-w-5xl mx-auto mb-12 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-6 md:gap-8">
+          <div className="bg-white/90 rounded-3xl p-6 md:p-8 shadow-sm">
+            <h2 className="text-2xl font-semibold mb-4 text-textPrimary">
+              Passar för dig som behöver porträtt till
+            </h2>
+            <ul className="space-y-3 text-textSecondary leading-relaxed">
+              {portraitUseCases.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-2 h-2.5 w-2.5 rounded-full bg-textPrimary/80 flex-shrink-0" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4">
+            {portraitHighlights.map((item) => (
+              <div
+                key={item.title}
+                className="bg-white/90 rounded-3xl p-5 shadow-sm"
+              >
+                <h3 className="text-lg font-semibold text-textPrimary mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-textSecondary leading-relaxed text-sm">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section
           aria-label="Porträttgalleri"
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
@@ -95,6 +154,37 @@ export default function Portraits() {
               />
             </figure>
           ))}
+        </section>
+
+        <section className="max-w-4xl mx-auto mt-14 text-center bg-[rgba(238,235,235,0.6)] rounded-[2rem] p-8 md:p-10">
+          <h2 className="text-2xl md:text-3xl font-semibold text-textPrimary mb-4">
+            Vill du boka porträttfotografering?
+          </h2>
+          <p className="text-lg text-textSecondary leading-relaxed mb-7 max-w-2xl mx-auto">
+            Hör av dig och berätta lite om vad du behöver hjälp med, så
+            återkommer jag med ett upplägg som passar dig, användningsområdet
+            och den känsla du vill ha i bilderna.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <LinkButton
+              to="/contact"
+              variant="default"
+              size="lg"
+              subVariant="rounded"
+              className="font-semibold px-8"
+            >
+              Skicka förfrågan
+            </LinkButton>
+            <LinkButton
+              to="/services"
+              variant="outline"
+              size="lg"
+              subVariant="rounded"
+              className="font-semibold px-8"
+            >
+              Se fler tjänster
+            </LinkButton>
+          </div>
         </section>
 
         {selectedImage && (

@@ -23,6 +23,30 @@ const pageHeroImage =
     ? serviceCards[0].image
     : '/images/default-photo-hero.jpg'
 
+const quickLinks = [
+  {
+    title: 'Porträtt',
+    description:
+      'För dig som vill ha personliga bilder till CV, LinkedIn, sociala medier eller eget varumärke.',
+    to: '/portraits',
+    buttonText: 'Se porträtt',
+  },
+  {
+    title: 'Bröllop',
+    description:
+      'För er som vill dokumentera dagen med naturliga, känslosamma och tidlösa bilder.',
+    to: '/weddings',
+    buttonText: 'Se bröllop',
+  },
+  {
+    title: 'Kontakt',
+    description:
+      'Är du osäker på vilken fotografering som passar bäst? Hör av dig så hjälper jag dig vidare.',
+    to: '/contact',
+    buttonText: 'Kontakta mig',
+  },
+]
+
 export default function Services() {
   const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
   const photographyPageJsonLd = {
@@ -61,7 +85,7 @@ export default function Services() {
     },
     {
       icon: <Award className="h-8 w-8 text-primary mb-3" />,
-      title: 'Hog Kvalitet & Professionalism',
+      title: 'Hög Kvalitet & Professionalism',
       description:
         'Ni kan förvänta er ett professionellt bemötande från första kontakt till levererade bilder av hög teknisk och konstnärlig kvalitet.',
     },
@@ -143,6 +167,40 @@ export default function Services() {
           roundedBottom="9xl"
           className="py-12 md:py-20 lg:py-24"
         >
+          <SectionContent heading="Hitta rätt fotografering för dig">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {quickLinks.map((item) => (
+                <div
+                  key={item.title}
+                  className="bg-white/90 dark:bg-gray-800 rounded-3xl p-6 shadow-sm text-center"
+                >
+                  <h3 className="text-xl font-semibold text-textPrimary mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-textSecondary dark:text-gray-300 leading-relaxed mb-5">
+                    {item.description}
+                  </p>
+                  <LinkButton
+                    to={item.to}
+                    variant="outline"
+                    size="md"
+                    subVariant="rounded"
+                    className="font-semibold"
+                  >
+                    {item.buttonText}
+                  </LinkButton>
+                </div>
+              ))}
+            </div>
+          </SectionContent>
+        </Section>
+
+        <Section
+          bgColor="offWhite"
+          roundedTop="9xl"
+          roundedBottom="9xl"
+          className="py-12 md:py-20 lg:py-24"
+        >
           <SectionContent heading="Mer än bara bilder - en personlig upplevelse">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
               {whyChooseMeList.map((item) => (
@@ -197,14 +255,13 @@ export default function Services() {
                         {card.price}
                       </p>
                     )}
-                    {card.title === 'BrÃ¶llop' && (
+                    {card.title === 'Bröllopsfotografering & Bröllopsfilm' && (
                       <ul className="mt-4 space-y-2">
                         {[
                           'Konsultationsmöte före bröllopet',
-                          'Fotografering enligt överenskommet paket (t.ex. 4, 8, 12 timmar)',
+                          'Fotografering enligt överenskommet paket',
                           'Högupplösta, noggrant redigerade bilder',
                           'Personligt webbgalleri för visning och delning',
-                          'Reseersättning inom X mil ingår',
                         ].map((item) => (
                           <li key={item} className="flex items-start">
                             <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-1" />
