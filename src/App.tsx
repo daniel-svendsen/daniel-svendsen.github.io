@@ -7,9 +7,6 @@ import { AuthProvider } from '@/admin/context/AuthContext'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 import Navbar from './components/Navbar'
 import ScrollToTop from './components/ScrollToTop'
-import Work from './pages/Work'
-import WebServicesPage from '@/pages/WebServices'
-
 
 const Home = React.lazy(() => import('./pages/Home'))
 const Services = React.lazy(() => import('./pages/Services'))
@@ -17,6 +14,8 @@ const Portraits = React.lazy(() => import('./pages/Portraits'))
 const Weddings = React.lazy(() => import('./pages/Weddings'))
 const Contact = React.lazy(() => import('./pages/Contact'))
 const FAQ = React.lazy(() => import('./pages/FAQ'))
+const Work = React.lazy(() => import('./pages/Work'))
+const WebServicesPage = React.lazy(() => import('./pages/WebServices'))
 const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'))
 
 // --- Nya och ändrade admin-importer ---
