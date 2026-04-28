@@ -24,28 +24,53 @@ export default function WeddingGallery() {
 
   const weddingsJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Photograph',
-    name: 'Svendsén Photography - Bröllopsfotograf',
-    description: 'Bröllopsfotograf i Kungälv & Göteborg',
+    '@type': 'Service',
+    name: 'Bröllopsfotografering i Göteborg och Kungälv',
+    serviceType: 'Wedding photography',
+    description:
+      'Bröllopsfotograf i Göteborg och Kungälv med fokus på naturliga, känslosamma och tidlösa bilder.',
     url: 'https://www.svendsenphotography.com/weddings',
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'Svendsen Photography',
+      url: 'https://www.svendsenphotography.com',
+    },
+    areaServed: [
+      { '@type': 'AdministrativeArea', name: 'Göteborg' },
+      { '@type': 'AdministrativeArea', name: 'Kungälv' },
+    ],
   }
 
   return (
     <>
       <SEO
-        title="Bröllopsfotograf i Kungälv & Göteborg - Svendsén Photography"
-        description="Boka din bröllopsfotografering med Svendsén Photography i Kungälv & Göteborg. Fånga de magiska ögonblicken på din stora dag. Läs mer: https://www.svendsenphotography.com/weddings"
+        title="Bröllopsfotograf i Göteborg & Kungälv | Tidlösa bröllopsbilder | Svendsen Photography"
+        description="Söker ni en bröllopsfotograf i Göteborg eller Kungälv? Svendsen Photography dokumenterar er dag med naturliga, personliga och tidlösa bilder."
         url="https://www.svendsenphotography.com/weddings"
         image={absoluteLogoUrl}
-        keywords="bröllopsfotograf, fotograf kungälv, fotograf göteborg, bröllopsfotografering, Svendsén Photography"
         jsonLd={weddingsJsonLd}
       />
 
       <main className="pt-20 p-6 bg-background text-textPrimary max-w-full overflow-hidden">
-        <header>
-          <h1 className="text-3xl font-bold mb-6">
-            Bröllopsfotografi i Kungälv & Göteborg
+        <header className="max-w-4xl mx-auto mb-10">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+            Bröllopsfotograf i Göteborg och Kungälv
           </h1>
+          <p className="text-lg leading-relaxed mb-4">
+            Jag fotograferar bröllop i Göteborg och Kungälv med fokus på äkta
+            känslor, närvaro och detaljerna som gör er dag unik. Målet är att
+            ni ska få bilder som känns personliga både nu och många år framåt.
+          </p>
+          <p className="text-lg leading-relaxed mb-4">
+            För mig handlar bröllopsfotografi inte bara om porträtt, utan om
+            att fånga hela upplevelsen: blickarna, skratten, miljön och de små
+            ögonblicken mellan det planerade.
+          </p>
+          <p className="text-lg leading-relaxed">
+            Oavsett om ni planerar ett mindre bröllop eller en större dag med
+            många gäster anpassar jag fotograferingen efter er, så att
+            resultatet speglar er berättelse på ett naturligt och tidlöst sätt.
+          </p>
         </header>
         <section
           aria-label="Bröllopsgalleri"
@@ -55,12 +80,12 @@ export default function WeddingGallery() {
             <figure key={index} className="relative">
               <img
                 src={src}
-                alt={`Bröllopsfoto ${index + 1}`}
+                alt={`Bröllopsfotografering i Göteborg och Kungälv ${index + 1}`}
                 className="w-full h-full object-cover cursor-pointer"
                 onClick={() =>
                   setSelectedWeddingImage({
                     src,
-                    alt: `Bröllopsfoto ${index + 1}`,
+                    alt: `Bröllopsfotografering ${index + 1}`,
                   })
                 }
                 loading="lazy"

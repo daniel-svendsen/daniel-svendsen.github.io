@@ -28,9 +28,9 @@ export default function Services() {
   const photographyPageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Photographer',
-    name: 'Professionell Fotograf Kungälv & Göteborg - Svendsén Photography',
+    name: 'Fotograf i Göteborg och Kungälv - Svendsen Photography',
     description:
-      'Passionerad och erfaren fotograf i Kungälv och Göteborg. Jag specialiserar mig på att fånga äkta ögonblick för bröllop, porträtt, familj och företag med en personlig och naturlig stil.',
+      'Professionell fotograf i Göteborg och Kungälv för bröllop, porträtt och företag med en personlig och naturlig bildstil.',
     image: pageHeroImage,
     address: {
       '@type': 'PostalAddress',
@@ -61,15 +61,15 @@ export default function Services() {
     },
     {
       icon: <Award className="h-8 w-8 text-primary mb-3" />,
-      title: 'Hög Kvalitet & Professionalism',
+      title: 'Hog Kvalitet & Professionalism',
       description:
-        'Ni kan förvänta er ett professionellt bemötande från första kontakt till levererade bilder av högsta tekniska och konstnärliga kvalitet.',
+        'Ni kan förvänta er ett professionellt bemötande från första kontakt till levererade bilder av hög teknisk och konstnärlig kvalitet.',
     },
     {
       icon: <Smile className="h-8 w-8 text-primary mb-3" />,
       title: 'Avslappnad & Rolig Upplevelse',
       description:
-        'Målet är att ni ska känna er bekväma och ha roligt framför kameran. Då skapas de mest naturliga och minnesvärda bilderna!',
+        'Målet är att ni ska känna er bekväma och ha roligt framför kameran. Då skapas de mest naturliga och minnesvärda bilderna.',
     },
   ]
 
@@ -78,35 +78,34 @@ export default function Services() {
       icon: <MessageCircle className="h-10 w-10 text-primary mb-4" />,
       title: '1. Konsultation',
       description:
-        'Vi startar med ett samtal (fysiskt eller digitalt) där vi diskuterar era önskemål, idéer och visioner för fotograferingen.',
+        'Vi startar med ett samtal där vi diskuterar era önskemål, idéer och visioner för fotograferingen.',
     },
     {
       icon: <Camera className="h-10 w-10 text-primary mb-4" />,
       title: '2. Bokning & Planering',
       description:
-        'När ni känner er trygga bokar vi datum. Vi planerar sedan detaljerna kring plats, tid och eventuella teman.',
+        'När ni känner er trygga bokar vi datum och planerar detaljerna kring plats, tid och upplägg.',
     },
     {
       icon: <Edit3 className="h-10 w-10 text-primary mb-4" />,
       title: '3. Fotograferingen',
       description:
-        'Dags för fotografering! Vi möts upp och skapar magi tillsammans i en avslappnad och kreativ atmosfär.',
+        'Dags för fotografering. Vi möts upp och skapar naturliga bilder i en avslappnad och kreativ atmosfär.',
     },
     {
       icon: <Send className="h-10 w-10 text-primary mb-4" />,
       title: '4. Urval, Redigering & Leverans',
       description:
-        'Efter fotograferingen gör jag ett noggrant urval och redigerar bilderna med omsorg. Era färdiga bilder levereras via ett personligt webbgalleri.',
+        'Efter fotograferingen gör jag ett noggrant urval och redigerar bilderna med omsorg innan leverans.',
     },
   ]
 
   return (
     <HelmetProvider>
       <SEO
-        title="Fotograf Kungälv & Göteborg | Bröllop, Porträtt, Företag | Svendsén Photography"
-        description="Professionell och engagerad fotograf i Kungälv och Göteborg. Jag erbjuder personlig fotografering för bröllop, porträtt, familj och företag. Låt oss fånga dina minnen!"
+        title="Fotograf i Göteborg & Kungälv | Bröllop, porträtt och företag | Svendsen Photography"
+        description="Svendsen Photography erbjuder professionell fotografering i Göteborg och Kungälv inom bröllop, porträtt och företag. Utforska tjänsterna och hitta rätt fotografering för dig."
         url="https://www.svendsenphotography.com/services"
-        keywords="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, företagsfotograf, familjefotograf göteborg, eventfotograf, fototjänster, hemsida"
         jsonLd={photographyPageJsonLd}
         image={absoluteLogoUrl}
       />
@@ -118,13 +117,13 @@ export default function Services() {
         >
           <SectionContent>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-textPrimary dark:text-white mb-6 font-poiret tracking-wider">
-              Fånga Livets Vackraste Ögonblick
+              Fotograf i Göteborg och Kungälv
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground dark:text-gray-300 mb-10 max-w-2xl mx-auto">
-              Som er fotograf i Kungälv och Göteborg hjälper jag er att föreviga
-              de stunder som betyder mest – från bröllopsdagens magi till
-              personliga porträtt, professionella företagsbilder eller en
-              helhetslösning med webbutveckling.
+              Jag erbjuder professionell fotografering i Göteborg och Kungälv
+              för bröllop, porträtt och företag. Här hittar du tjänster för dig
+              som vill ha naturliga bilder, en personlig upplevelse och ett
+              resultat som håller över tid.
             </p>
             <LinkButton
               to="/contact"
@@ -144,7 +143,7 @@ export default function Services() {
           roundedBottom="9xl"
           className="py-12 md:py-20 lg:py-24"
         >
-          <SectionContent heading="Mer Än Bara Bilder – En Personlig Upplevelse">
+          <SectionContent heading="Mer än bara bilder - en personlig upplevelse">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
               {whyChooseMeList.map((item) => (
                 <div
@@ -170,7 +169,7 @@ export default function Services() {
           roundedBottom="9xl"
           className="py-12 md:py-20 lg:py-24"
         >
-          <SectionContent heading="Upptäck Mina Fototjänster">
+          <SectionContent heading="Upptäck mina fototjänster">
             <div className="space-y-16 md:space-y-20 mt-8">
               {serviceCards.map((card, index) => (
                 <div
@@ -198,7 +197,7 @@ export default function Services() {
                         {card.price}
                       </p>
                     )}
-                    {card.title === 'Bröllop' && (
+                    {card.title === 'BrÃ¶llop' && (
                       <ul className="mt-4 space-y-2">
                         {[
                           'Konsultationsmöte före bröllopet',
@@ -221,7 +220,7 @@ export default function Services() {
                       subVariant="rounded"
                       className="mt-6 font-semibold"
                     >
-                      {card.buttonText || 'Läs Mer & Boka'}
+                      {card.buttonText || 'Läs mer & boka'}
                     </LinkButton>
                   </div>
                 </div>
@@ -236,7 +235,7 @@ export default function Services() {
           roundedBottom="9xl"
           className="py-12 md:py-20 lg:py-24"
         >
-          <SectionContent heading="Från Första Kontakt till Färdiga Bilder">
+          <SectionContent heading="Från första kontakt till färdiga bilder">
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {photoProcessSteps.map((step) => (
                 <div
@@ -263,11 +262,11 @@ export default function Services() {
         >
           <SectionContent>
             <h2 className="text-3xl md:text-4xl font-bold text-textPrimary dark:text-white mb-6 font-poiret tracking-wider">
-              Låt Oss Berätta Din Historia Genom Bilder
+              Låt oss berätta din historia genom bilder
             </h2>
             <p className="text-lg text-muted-foreground dark:text-gray-300 mb-10 max-w-xl mx-auto">
               Varje bild har en historia att berätta. Jag ser fram emot att höra
-              din och hjälpa dig att skapa minnen som varar för evigt.
+              din och hjälpa dig att skapa minnen som varar över tid.
             </p>
             <LinkButton
               to="/contact"
@@ -276,7 +275,7 @@ export default function Services() {
               subVariant="rounded"
               className="font-semibold px-10"
             >
-              Kontakta Mig Idag
+              Kontakta mig idag
             </LinkButton>
           </SectionContent>
         </Section>

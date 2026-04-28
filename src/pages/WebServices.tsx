@@ -9,23 +9,24 @@ import { CheckCircle, Search, Smartphone, Users, Zap } from 'lucide-react'
 import { toAbsoluteUrl } from '@/utils/utils'
 
 export default function WebServicesPage() {
-  const specificPageImageRelativePath = '../assets/webdev.png'
-  const absoluteSpecificImage = toAbsoluteUrl(specificPageImageRelativePath)
+  const absoluteSpecificImage = toAbsoluteUrl(webdevImage)
   const pageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebService',
-    name: 'Webbutveckling av SEO-Anpassade SPA Hemsidor - Svendsén Photography',
+    name: 'Webbutveckling och webbtjänster i Göteborg och Kungälv',
     description:
-      'Utveckling av moderna Single Page Applications (SPA) med fokus på SEO-anpassning i Kungälv och Göteborg.',
+      'Webbutveckling och webbtjänster för företag i Göteborg och Kungälv med fokus på modern teknik, prestanda och synlighet online.',
     provider: {
       '@type': 'LocalBusiness',
-      name: 'Svendsén Photography',
+      name: 'Svendsen Photography',
+      url: 'https://www.svendsenphotography.com',
     },
-    serviceType: ['WebDevelopment', 'SEO'],
-    areaServed: {
-      '@type': 'AdministrativeArea',
-      name: ['Kungälv', 'Göteborg'],
-    },
+    serviceType: ['WebDevelopment', 'Website optimization'],
+    areaServed: [
+      { '@type': 'AdministrativeArea', name: 'Kungälv' },
+      { '@type': 'AdministrativeArea', name: 'Göteborg' },
+    ],
+    url: 'https://www.svendsenphotography.com/webservices',
   }
 
   const servicesList = [
@@ -33,25 +34,25 @@ export default function WebServicesPage() {
       icon: <Zap className="h-8 w-8 text-primary mb-3" />,
       title: 'Moderna Användarupplevelser',
       description:
-        'Single Page Applications (SPA) laddar innehåll dynamiskt, vilket kan ge en följsam och interaktiv upplevelse för dina besökare.',
+        'Jag bygger webbplatser som är snabba, tydliga och enkla att använda för dina besökare.',
     },
     {
       icon: <Search className="h-8 w-8 text-primary mb-3" />,
-      title: 'Fokus på SEO-Anpassning',
+      title: 'Fokus på Synlighet',
       description:
-        'Det är viktigt att SPAs byggs på ett sätt som gör dem synliga för sökmotorer. Jag arbetar för att din SPA-sida ska vara indexerbar och anpassad för Google.',
+        'Jag arbetar med grundläggande SEO och tekniska förutsättningar så att din webbplats blir enklare för sökmotorer att förstå.',
     },
     {
       icon: <Smartphone className="h-8 w-8 text-primary mb-3" />,
       title: 'Responsiv Design',
       description:
-        'Jag strävar efter att din hemsida ska se bra ut och fungera väl på olika enheter – datorer, surfplattor och mobiler, med moderna tekniker som React.',
+        'Din hemsida ska fungera bra på dator, surfplatta och mobil med en modern och professionell upplevelse.',
     },
     {
       icon: <Users className="h-8 w-8 text-primary mb-3" />,
-      title: 'Anpassat efter Dina Behov',
+      title: 'Anpassat efter Ditt Företag',
       description:
-        'Varje projekt är unikt. Jag utvecklar hemsidor med dina mål och din målgrupp i åtanke.',
+        'Varje projekt byggs utifrån dina mål, din målgrupp och vilket intryck du vill ge online.',
     },
   ]
 
@@ -62,34 +63,33 @@ export default function WebServicesPage() {
         'Vi startar med att diskutera dina mål och behov. Tillsammans skapar vi en plan för din webbnärvaro.',
     },
     {
-      title: '2. Design & Användarupplevelse (UX)',
+      title: '2. Design & Användarupplevelse',
       description:
-        'Jag tar fram ett designförslag med fokus på att vara både tilltalande och användarvänligt.',
+        'Jag tar fram ett upplägg med fokus på tydlighet, användarvänlighet och ett professionellt uttryck.',
     },
     {
-      title: '3. Utveckling & SEO-Arbete',
+      title: '3. Utveckling & SEO-Grund',
       description:
-        'Din SPA-hemsida byggs med modern teknik som React. Parallellt arbetar jag med grundläggande teknisk SEO för att förbättra synligheten.',
+        'Webbplatsen byggs med modern teknik samtidigt som viktiga SEO-grunder som struktur, innehåll och prestanda tas med från start.',
     },
     {
       title: '4. Testning & Lansering',
       description:
-        'Innan lansering testas sidan på olika enheter och webbläsare för att säkerställa att den fungerar väl.',
+        'Innan lansering testas sidan på olika enheter och skärmstorlekar för att säkerställa att allt fungerar som det ska.',
     },
     {
       title: '5. Uppföljning & Eventuell Support',
       description:
-        'Efter lansering kan jag erbjuda support och diskutera hur du kan arbeta vidare med din hemsida.',
+        'Efter lansering kan jag hjälpa till med fortsatt utveckling, justeringar och råd kring innehåll och synlighet.',
     },
   ]
 
   return (
     <HelmetProvider>
       <SEO
-        title="Webbutveckling: Moderna SPA Hemsidor med SEO-fokus | Svendsén Photography"
-        description="Skapa en modern webbnärvaro med skräddarsydda SPA-hemsidor (Single Page Applications). Jag fokuserar på SEO-anpassning från start. Verksam i Kungälv & Göteborg."
+        title="Webbutveckling och webbtjänster i Göteborg | Svendsen Photography"
+        description="Svendsen Photography erbjuder webbutveckling och webbtjänster för företag som vill ha en modern, snabb och professionell närvaro online i Göteborg och Kungälv."
         url="https://www.svendsenphotography.com/webservices"
-        keywords="webbutveckling kungälv, spa hemsida göteborg, seo för spa, react utvecklare, modern hemsida, sökmotoroptimering hemsida, webbyrå kungälv"
         jsonLd={pageJsonLd}
         image={absoluteSpecificImage}
       />
@@ -101,12 +101,12 @@ export default function WebServicesPage() {
         >
           <SectionContent>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-textPrimary dark:text-white mb-6 font-poiret tracking-wider">
-              Moderna & SEO-Anpassade SPA-Hemsidor
+              Webbtjänster för företag
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground dark:text-gray-300 mb-10 max-w-2xl mx-auto">
-              Vill du ge ditt företag en modern digital närvaro? Jag bygger
-              interaktiva Single Page Applications (SPA) och arbetar med att
-              göra dem synliga för sökmotorer.
+              Jag hjälper företag i Göteborg och Kungälv att bygga en modern
+              digital närvaro med fokus på tydlighet, prestanda och en
+              professionell användarupplevelse.
             </p>
             <LinkButton
               to="/contact"
@@ -126,7 +126,7 @@ export default function WebServicesPage() {
           roundedTop="9xl"
           className="py-12 md:py-20 lg:py-24"
         >
-          <SectionContent heading="Fördelar med SPA och SEO-Anpassning">
+          <SectionContent heading="Fördelar med moderna webbtjänster">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mt-8">
               {servicesList.map((service) => (
                 <div
@@ -152,22 +152,22 @@ export default function WebServicesPage() {
           roundedBottom="9xl"
           className="py-12 md:py-20 lg:py-24"
         >
-          <SectionContent heading="Mina WebbTjänster inom SPA & SEO">
+          <SectionContent heading="Webbutveckling med fokus på nytta och synlighet">
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div className="prose prose-lg text-textSecondary dark:text-gray-300 max-w-none">
                 <p>
-                  Jag kan hjälpa dig att skapa din nya hemsida, från första idé
-                  till en fungerande SPA. Mitt mål är att kombinera modern
-                  teknik med grundläggande SEO-principer.
+                  Jag kan hjälpa dig att skapa en ny hemsida eller vidareutveckla
+                  en befintlig, med fokus på hur sidan upplevs av besökare och
+                  hur tydligt ditt företag presenteras online.
                 </p>
                 <ul className="space-y-3 mt-4">
                   {[
-                    'Nyutveckling av SPA-hemsidor (React)',
-                    'Grundläggande teknisk SEO-implementation',
+                    'Nyutveckling av moderna hemsidor',
+                    'Grundläggande teknisk SEO och sidstruktur',
                     'Responsiv design för olika skärmstorlekar',
-                    'Fokus på sidans laddningstider',
-                    'Eventuell integration med Google Analytics & Search Console',
-                    'Rådgivning kring innehåll och sökord',
+                    'Fokus på laddningstider och användarupplevelse',
+                    'Stöd kring innehåll, struktur och synlighet',
+                    'Möjlighet att kombinera foto och webb i samma lösning',
                   ].map((item) => (
                     <li key={item} className="flex items-start">
                       <CheckCircle className="h-6 w-6 text-green-500 mr-2 flex-shrink-0 mt-1" />
@@ -178,17 +178,17 @@ export default function WebServicesPage() {
                 <p className="mt-6">
                   Har du en befintlig hemsida som behöver ett lyft, eller vill
                   du starta från grunden? Låt oss prata om hur jag kan hjälpa
-                  dig!
+                  dig.
                 </p>
               </div>
               <div>
                 <img
                   src={webdevImage}
-                  alt="Exempel på modern hemsideutveckling och design för SPA-sidor"
+                  alt="Exempel på modern hemsideutveckling för företag"
                   className="rounded-2xl object-cover w-full h-auto max-h-[450px]"
                 />
                 <p className="text-center text-xs text-muted-foreground mt-2">
-                  Exempel på design och layout för en modern SPA-hemsida.
+                  Exempel på design och layout för en modern företagshemsida.
                 </p>
               </div>
             </div>
@@ -201,7 +201,7 @@ export default function WebServicesPage() {
           roundedTop="9xl"
           className="py-12 md:py-20 lg:py-24"
         >
-          <SectionContent heading="Min Process: Från Idé till Hemsida">
+          <SectionContent heading="Min process: från idé till hemsida">
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {processSteps.map((step) => (
                 <div
@@ -227,11 +227,11 @@ export default function WebServicesPage() {
         >
           <SectionContent>
             <h2 className="text-3xl md:text-4xl font-bold text-textPrimary dark:text-white mb-6 font-poiret tracking-wider">
-              Intresserad av en Modern Hemsida?
+              Intresserad av en modern hemsida?
             </h2>
             <p className="text-lg text-muted-foreground dark:text-gray-300 mb-10 max-w-xl mx-auto">
-              Låt oss tillsammans skapa en hemsida som ser bra ut och fungerar
-              väl för dina behov.
+              Låt oss tillsammans skapa en hemsida som ser bra ut, fungerar väl
+              och stöder ditt företags mål online.
             </p>
             <LinkButton
               to="/contact"
@@ -240,7 +240,7 @@ export default function WebServicesPage() {
               subVariant="rounded"
               className="font-semibold px-8"
             >
-              Kontakta Mig För Ett Samtal
+              Kontakta mig för ett samtal
             </LinkButton>
           </SectionContent>
         </Section>

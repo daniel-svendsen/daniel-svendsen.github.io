@@ -25,28 +25,55 @@ export default function Portraits() {
 
   const portraitsJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'ImageGallery',
-    name: 'Svendsén Photography - Porträtt',
-    description: 'Porträttfotograf i Kungälv & Göteborg',
+    '@type': 'Service',
+    name: 'Porträttfotografering i Göteborg och Kungälv',
+    serviceType: 'Portrait photography',
+    description:
+      'Professionell porträttfotografering i Göteborg och Kungälv för privatpersoner, kreatörer och företag.',
     url: 'https://www.svendsenphotography.com/portraits',
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'Svendsen Photography',
+      url: 'https://www.svendsenphotography.com',
+    },
+    areaServed: [
+      { '@type': 'AdministrativeArea', name: 'Göteborg' },
+      { '@type': 'AdministrativeArea', name: 'Kungälv' },
+    ],
   }
 
   return (
     <>
       <SEO
-        title="Porträttfotograf i Kungälv & Göteborg - Svendsén Photography"
-        description="Boka en professionell porträttfotografering i Göteborg & Kungälv. Perfekt för företagsporträtt, CV-bilder och familjeporträtt. Läs mer: https://www.svendsenphotography.com/services"
+        title="Porträttfotograf i Göteborg & Kungälv | Naturliga porträtt | Svendsen Photography"
+        description="Söker du en porträttfotograf i Göteborg eller Kungälv? Svendsen Photography skapar naturliga och professionella porträtt för privatpersoner, kreatörer och företag."
         url="https://www.svendsenphotography.com/portraits"
         image={absoluteLogoUrl}
-        keywords="porträtt, fotograf kungälv, fotograf göteborg, porträttfotografering, Svendsén Photography"
         jsonLd={portraitsJsonLd}
       />
 
       <main className="pt-20 p-6 bg-background text-textPrimary max-w-full overflow-hidden">
-        <header>
-          <h1 className="text-3xl font-bold mb-6">
-            Porträttfotograf i Kungälv & Göteborg
+        <header className="max-w-4xl mx-auto mb-10">
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">
+            Porträttfotograf i Göteborg och Kungälv
           </h1>
+          <p className="text-lg leading-relaxed mb-4">
+            Jag erbjuder porträttfotografering i Göteborg och Kungälv för dig
+            som vill ha naturliga, personliga och professionella bilder.
+            Fotograferingen passar både privatpersoner, kreatörer och företag
+            som behöver porträtt med värme, närvaro och ett genomtänkt uttryck.
+          </p>
+          <p className="text-lg leading-relaxed mb-4">
+            Oavsett om du behöver nya profilbilder, porträtt till ditt
+            personliga varumärke eller bilder för sociala medier anpassar jag
+            fotograferingen efter hur du vill uppfattas och hur bilderna ska
+            användas.
+          </p>
+          <p className="text-lg leading-relaxed">
+            Målet är att skapa en trygg och avslappnad upplevelse där du känner
+            dig bekväm framför kameran, så att resultatet blir naturligt och
+            håller över tid.
+          </p>
         </header>
         <section
           aria-label="Porträttgalleri"
@@ -56,10 +83,13 @@ export default function Portraits() {
             <figure key={index} className="relative">
               <img
                 src={src}
-                alt={`Porträtt av fotograf i Kungälv och Göteborg ${index + 1}`}
+                alt={`Porträttfotografering i Göteborg och Kungälv ${index + 1}`}
                 className="w-full h-full object-cover cursor-pointer"
                 onClick={() =>
-                  setSelectedImage({ src, alt: `Porträtt ${index + 1}` })
+                  setSelectedImage({
+                    src,
+                    alt: `Porträttfotografering ${index + 1}`,
+                  })
                 }
                 loading="lazy"
               />
