@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
+import { LinkButton } from '@/components/Button'
 import HomeCard from '@/components/HomeCard'
 import { homeCards } from '../data/cards'
 import HeroSection from '../components/HeroSection'
@@ -9,8 +10,65 @@ import forprosVideo from '@/assets/movies/forpros1.mp4'
 import forprosImg from '@/assets/movies/img.png'
 import SEO from '@/components/SEO'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import {
+  Camera,
+  HeartHandshake,
+  Images,
+  MapPin,
+  MessageCircle,
+  Send,
+  Sparkles,
+} from 'lucide-react'
 
 const Carousel = lazy(() => import('../components/Carousel'))
+
+const whyChooseMe = [
+  {
+    title: 'Naturlig bildstil',
+    description:
+      'Jag arbetar för att bilderna ska kännas levande, tidlösa och personliga snarare än stela eller överarbetade.',
+    icon: Sparkles,
+  },
+  {
+    title: 'Trygg upplevelse',
+    description:
+      'Du ska kunna känna dig bekväm framför kameran, även om du inte är van att bli fotograferad.',
+    icon: HeartHandshake,
+  },
+  {
+    title: 'Professionell leverans',
+    description:
+      'Jag lägger stor vikt vid urval, redigering och en leverans som känns genomtänkt från början till slut.',
+    icon: Images,
+  },
+]
+
+const processSteps = [
+  {
+    title: '1. Förfrågan',
+    description:
+      'Du hör av dig och berättar vilken typ av fotografering eller innehåll du behöver hjälp med.',
+    icon: MessageCircle,
+  },
+  {
+    title: '2. Planering',
+    description:
+      'Vi går igenom idé, plats, känsla och upplägg så att fotograferingen passar just dig eller ditt företag.',
+    icon: MapPin,
+  },
+  {
+    title: '3. Fotografering',
+    description:
+      'Vi genomför fotograferingen i en lugn och avslappnad miljö med fokus på naturliga bilder och rätt uttryck.',
+    icon: Camera,
+  },
+  {
+    title: '4. Leverans',
+    description:
+      'Du får ett urval redigerade bilder digitalt, färdiga att använda, dela eller spara.',
+    icon: Send,
+  },
+]
 
 export default function Home() {
   const [isCarouselVisible, setIsCarouselVisible] = useState(false)
@@ -84,8 +142,8 @@ export default function Home() {
         jsonLd={homeJsonLd}
       />
       <div className="bg-gray-50 dark:bg-gray-900">
-        {' '}
         <HeroSection />
+
         <Section bgColor="offWhite">
           <SectionContent className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-poiret tracking-wider text-textPrimary dark:text-white">
@@ -98,6 +156,7 @@ export default function Home() {
             </p>
           </SectionContent>
         </Section>
+
         <Section
           roundedBottom="9xl"
           roundedTop="9xl"
@@ -112,6 +171,71 @@ export default function Home() {
             </div>
           </SectionContent>
         </Section>
+
+        <Section
+          roundedBottom="9xl"
+          roundedTop="9xl"
+          bgColor="offWhite"
+          className="py-12 md:py-20 lg:py-24"
+        >
+          <SectionContent heading="Varför kunder väljer mig">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {whyChooseMe.map((item) => {
+                const Icon = item.icon
+
+                return (
+                  <div
+                    key={item.title}
+                    className="bg-white/90 dark:bg-gray-800 rounded-3xl p-6 shadow-sm text-center"
+                  >
+                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[rgba(238,235,235,0.7)]">
+                      <Icon className="h-6 w-6 text-textPrimary" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-textPrimary mb-3">
+                      {item.title}
+                    </h3>
+                    <p className="text-textSecondary dark:text-gray-300 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                )
+              })}
+            </div>
+          </SectionContent>
+        </Section>
+
+        <Section
+          roundedBottom="9xl"
+          roundedTop="9xl"
+          bgColor="beige"
+          className="py-12 md:py-20 lg:py-24"
+        >
+          <SectionContent heading="Så går det till">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              {processSteps.map((step) => {
+                const Icon = step.icon
+
+                return (
+                  <div
+                    key={step.title}
+                    className="bg-white/80 dark:bg-gray-800 rounded-3xl p-6 text-center shadow-sm"
+                  >
+                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white">
+                      <Icon className="h-6 w-6 text-textPrimary" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-textPrimary mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-textSecondary dark:text-gray-300 leading-relaxed text-sm">
+                      {step.description}
+                    </p>
+                  </div>
+                )
+              })}
+            </div>
+          </SectionContent>
+        </Section>
+
         <Section
           roundedBottom="10xl"
           roundedTop="10xl"
@@ -132,6 +256,32 @@ export default function Home() {
             </div>
           </SectionContent>
         </Section>
+
+        <Section
+          roundedBottom="9xl"
+          roundedTop="9xl"
+          bgColor="beige"
+          className="py-12 md:py-20 lg:py-24"
+        >
+          <SectionContent heading="Fotograf i Göteborg och Kungälv">
+            <div className="max-w-4xl mx-auto text-center">
+              <p className="text-lg text-textSecondary dark:text-gray-300 leading-relaxed mb-5">
+                Jag utgår från Kungälv och arbetar i Göteborg och närliggande
+                områden. Jag fotograferar bland annat bröllop, porträtt,
+                familjer, företag och event, och hjälper både privatpersoner
+                och verksamheter som vill ha bilder med hög kvalitet och tydlig
+                känsla.
+              </p>
+              <p className="text-lg text-textSecondary dark:text-gray-300 leading-relaxed">
+                För mig handlar det inte bara om att ta fina bilder, utan om att
+                skapa något som känns äkta och användbart, oavsett om det ska
+                bli ett minne för livet eller visuellt innehåll för ditt
+                företag.
+              </p>
+            </div>
+          </SectionContent>
+        </Section>
+
         <Section
           roundedTop="9xl"
           bgColor="beige"
@@ -154,6 +304,44 @@ export default function Home() {
                   <div className="h-full w-full bg-gray-200 dark:bg-gray-700 rounded-2xl animate-pulse" />
                 )}
               </Suspense>
+            </div>
+          </SectionContent>
+        </Section>
+
+        <Section
+          roundedTop="10xl"
+          bgColor="offWhite"
+          className="py-16 md:py-24 lg:py-28"
+        >
+          <SectionContent>
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-textPrimary mb-5 font-poiret tracking-wider">
+                Redo att boka eller bara ställa en fråga?
+              </h2>
+              <p className="text-lg text-textSecondary dark:text-gray-300 leading-relaxed mb-8 max-w-2xl mx-auto">
+                Berätta vad du har i åtanke, så återkommer jag med ett upplägg
+                som passar dig, ditt tillfälle eller ditt företag.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <LinkButton
+                  to="/contact"
+                  variant="default"
+                  size="lg"
+                  subVariant="rounded"
+                  className="font-semibold px-8"
+                >
+                  Skicka förfrågan
+                </LinkButton>
+                <LinkButton
+                  to="/services"
+                  variant="outline"
+                  size="lg"
+                  subVariant="rounded"
+                  className="font-semibold px-8"
+                >
+                  Se alla tjänster
+                </LinkButton>
+              </div>
             </div>
           </SectionContent>
         </Section>
