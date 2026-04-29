@@ -32,11 +32,65 @@ const portraitHighlights = [
   },
 ]
 
+const portraitDetails = [
+  {
+    title: 'Grundpaket',
+    description:
+      'Porträttfotografering från 1200 kr. Grundpaketet är 30 minuter och passar dig som vill ha ett enkelt och genomtänkt upplägg.',
+  },
+  {
+    title: 'Det här ingår',
+    description:
+      '5 redigerade bilder ingår i priset. Bilderna levereras färdiga att använda för både privata och professionella sammanhang.',
+  },
+  {
+    title: 'Leverans',
+    description:
+      'Normal leveranstid är cirka 1 vecka, beroende på hur hög arbetsbelastningen är just då.',
+  },
+  {
+    title: 'Plats',
+    description:
+      'Jag fotograferar främst utomhus, men det går också bra att fotografera hos kund om det passar bättre för syftet.',
+  },
+]
+
+const portraitFaqs = [
+  {
+    question: 'Vad ingår i en porträttfotografering?',
+    answer:
+      'Grundpaketet är 30 minuter och innehåller 5 redigerade bilder. Det passar bra för exempelvis LinkedIn, CV, sociala medier och personliga porträtt.',
+  },
+  {
+    question: 'Hur lång tid tar en porträttfotografering?',
+    answer:
+      'Grundpaketet är 30 minuter, men upplägget kan anpassas om du behöver mer tid eller ett annat tempo.',
+  },
+  {
+    question: 'Hur många bilder får jag?',
+    answer:
+      '5 redigerade bilder ingår i grundpaketet. Om du vill ha fler bilder går det att diskutera ett upplägg som passar dig.',
+  },
+  {
+    question: 'Kan vi fotografera på en plats jag själv väljer?',
+    answer:
+      'Ja. Jag fotograferar främst utomhus, men det går också bra att fotografera hos kund eller på annan plats som passar syftet med bilderna.',
+  },
+  {
+    question: 'Kan jag skicka referensbilder om jag vill ha en viss stil?',
+    answer:
+      'Ja, absolut. Min bildstil är den du ser på hemsidan, men du får gärna skicka referensbilder om du vill ha en annan känsla eller riktning.',
+  },
+]
+
 export default function Portraits() {
   const imagesData = useImportedImages(['portraits'])
   const images = imagesData.portraits || []
   const shuffledImages = useShuffledImages(images)
-  const featuredImages = useMemo(() => shuffledImages.slice(0, 3), [shuffledImages])
+  const featuredImages = useMemo(
+    () => shuffledImages.slice(0, 3),
+    [shuffledImages],
+  )
   const galleryImages = useMemo(() => shuffledImages.slice(3), [shuffledImages])
   const [selectedImage, setSelectedImage] = useState<{
     src: string
@@ -92,8 +146,8 @@ export default function Portraits() {
             </h1>
             <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
               Porträttfotografering i Göteborg och Kungälv för dig som vill ha
-              personliga och professionella bilder som känns levande, trygga
-              och tidlösa.
+              personliga och professionella bilder som känns levande, trygga och
+              tidlösa.
             </p>
           </div>
 
@@ -168,9 +222,9 @@ export default function Portraits() {
               användas.
             </p>
             <p className="text-base leading-relaxed text-textSecondary">
-              Målet är att skapa en lugn och avslappnad upplevelse där du
-              känner dig bekväm framför kameran, så att resultatet blir
-              naturligt och håller över tid.
+              Målet är att skapa en lugn och avslappnad upplevelse där du känner
+              dig bekväm framför kameran, så att resultatet blir naturligt och
+              håller över tid.
             </p>
           </div>
 
@@ -185,6 +239,72 @@ export default function Portraits() {
                 descriptionClassName="text-sm"
               />
             ))}
+          </div>
+        </section>
+
+        <section className="mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:rounded-[3rem]">
+          <div className="mb-8 max-w-3xl">
+            <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
+              Vad som ingår i porträttfotograferingen
+            </h2>
+            <p className="text-base leading-relaxed text-textSecondary">
+              Porträttfotograferingen är upplagd för att vara enkel, trygg och
+              tydlig redan från början. Här får du en snabb överblick över
+              grundpaketet och hur processen brukar se ut.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {portraitDetails.map((item) => (
+              <InfoCard
+                key={item.title}
+                title={item.title}
+                description={item.description}
+                className="bg-white p-6"
+                titleClassName="mb-2 text-xl"
+                descriptionClassName="text-sm leading-relaxed"
+              />
+            ))}
+          </div>
+        </section>
+
+        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:grid-cols-[1.05fr_0.95fr] lg:rounded-[3rem]">
+          <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] md:p-8">
+            <h2 className="mb-4 text-2xl font-semibold text-textPrimary">
+              Min stil och hur vi formar upplägget
+            </h2>
+            <p className="mb-4 text-base leading-relaxed text-textSecondary">
+              Min porträttstil är den du ser i galleriet här på hemsidan:
+              naturlig, varm och levande. Målet är att bilderna ska kännas
+              avslappnade och genomtänkta snarare än stela eller överarbetade.
+            </p>
+            <p className="text-base leading-relaxed text-textSecondary">
+              Om du har en annan känsla i åtanke går det bra att skicka
+              referensbilder i förväg. Då kan vi prata igenom uttryck, plats och
+              användningsområde innan fotograferingen så att resultatet passar
+              dig bättre.
+            </p>
+          </div>
+
+          <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] md:p-8">
+            <h2 className="mb-4 text-2xl font-semibold text-textPrimary">
+              Vanliga frågor om porträttfotografering
+            </h2>
+            <div className="space-y-4">
+              {portraitFaqs.map((faq) => (
+                <div
+                  key={faq.question}
+                  className="rounded-2xl border border-black/6 bg-[#fcfaf7] px-4 py-4"
+                >
+                  <h3 className="mb-2 text-lg font-semibold text-textPrimary">
+                    {faq.question}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-textSecondary">
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
