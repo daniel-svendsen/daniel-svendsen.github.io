@@ -21,7 +21,7 @@ const Navbar = () => {
     { to: '/contact', label: 'Kontakt' },
     { to: '/portraits', label: 'Porträtt' },
     { to: '/weddings', label: 'Bröllop' },
-    { to: '/webservices', label: 'Webtjänster' },
+    { to: '/webservices', label: 'Webbtjänster' },
   ]
 
   const linkClasses =
@@ -29,33 +29,36 @@ const Navbar = () => {
 
   return (
     <header
-      className={`w-full fixed top-0 left-0 right-0 transition-all duration-300 z-50 
-        ${
-          isScrolled
-            ? 'border-b border-black/5 bg-[rgba(249,248,245,0.94)] shadow-[0_14px_40px_-30px_rgba(31,41,55,0.45)] backdrop-blur-xl'
-            : 'bg-[rgba(255,255,255,0.16)] backdrop-blur-xl'
-        }`}
+      className={`fixed left-0 right-0 top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled
+          ? 'border-b border-black/5 bg-[rgba(249,248,245,0.94)] shadow-[0_14px_40px_-30px_rgba(31,41,55,0.45)] backdrop-blur-xl'
+          : 'bg-[rgba(255,255,255,0.16)] backdrop-blur-xl'
+      }`}
     >
-      <nav className="flex items-center justify-between py-4 px-6 w-full">
+      <nav className="flex w-full items-center justify-between px-6 py-4">
         <div className="flex items-center space-x-2">
           <a href="/" className="flex items-center space-x-2">
             <img
               src={logo}
               alt="Svendsén Photography logo"
-              className="w-10 h-10 object-cover rounded-full ring-1 ring-black/5"
+              className="h-10 w-10 rounded-full object-cover ring-1 ring-black/5"
             />
             <span className="text-lg font-bold tracking-[0.02em] text-textPrimary transition-colors hover:text-textPrimary/80">
               Svendsén Photography
             </span>
           </a>
         </div>
-        <div className="flex-1 hidden md:flex justify-end space-x-6">
+        <div className="hidden flex-1 justify-end space-x-6 md:flex">
           {navLinks.map(({ to, label }) => (
             <NavLink
               key={to}
               to={to}
               className={({ isActive }) =>
-                `${linkClasses} ${isActive ? 'text-textPrimary underline decoration-1 underline-offset-[10px]' : ''}`
+                `${linkClasses} ${
+                  isActive
+                    ? 'text-textPrimary underline decoration-1 underline-offset-[10px]'
+                    : ''
+                }`
               }
             >
               {label}
@@ -63,7 +66,7 @@ const Navbar = () => {
           ))}
         </div>
         <button
-          className="block md:hidden text-textPrimary focus:outline-none"
+          className="block text-textPrimary focus:outline-none md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Open main menu"
           aria-expanded={isMenuOpen}
@@ -74,7 +77,7 @@ const Navbar = () => {
             viewBox="0 0 24 24"
             strokeWidth="2"
             stroke="currentColor"
-            className="w-6 h-6"
+            className="h-6 w-6"
             aria-hidden="true"
           >
             <path

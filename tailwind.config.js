@@ -16,6 +16,7 @@ module.exports = {
         success: '#16a34a',
         overlay: 'rgba(0, 0, 0, 0.4)',
         'custom-beige': '#eeebeb',
+        'warm-gray': '#d7d9d8',
         'gradient-from': '#A7C5EB',
         'gradient-via': '#BEA7EB',
         'gradient-to': '#EBA7C5',

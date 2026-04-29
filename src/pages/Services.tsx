@@ -10,7 +10,6 @@ import { serviceCards } from '../data/cards'
 import {
   Award,
   Camera,
-  CheckCircle,
   Edit3,
   Heart,
   MessageCircle,
@@ -49,6 +48,29 @@ const quickLinks = [
   },
 ]
 
+const renderDescriptionLine = (line: string) => {
+  if (line === 'Filmalternativ') {
+    return (
+      <p className="mt-1 text-sm font-semibold uppercase tracking-[0.12em] text-textPrimary/78">
+        {line}
+      </p>
+    )
+  }
+
+  if (line.startsWith('Välj mellan')) {
+    return null
+  }
+
+  return (
+    <div className="flex items-start gap-3 rounded-2xl border border-black/6 bg-white px-4 py-3 shadow-[0_10px_24px_-20px_rgba(31,41,55,0.28)]">
+      <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-textPrimary/70" />
+      <span className="text-[0.95rem] leading-relaxed text-textPrimary/88">
+        {line}
+      </span>
+    </div>
+  )
+}
+
 export default function Services() {
   const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
   const photographyPageJsonLd = {
@@ -75,25 +97,25 @@ export default function Services() {
   const whyChooseMeList = [
     {
       icon: <Sparkles className="mb-3 h-8 w-8 text-primary" />,
-      title: 'Personlig & Unik Stil',
+      title: 'Personlig & unik stil',
       description:
         'Jag strävar efter att fånga genuina ögonblick och känslor, med en ljus och naturlig bildstil som berättar er unika historia.',
     },
     {
       icon: <Heart className="mb-3 h-8 w-8 text-primary" />,
-      title: 'Engagemang & Passion',
+      title: 'Engagemang & passion',
       description:
         'Fotografering är min stora passion. Jag lägger ner själ och hjärta i varje uppdrag för att ni ska bli mer än nöjda med era bilder.',
     },
     {
       icon: <Award className="mb-3 h-8 w-8 text-primary" />,
-      title: 'Hög Kvalitet & Professionalism',
+      title: 'Hög kvalitet & professionalism',
       description:
         'Ni kan förvänta er ett professionellt bemötande från första kontakt till levererade bilder av hög teknisk och konstnärlig kvalitet.',
     },
     {
       icon: <Smile className="mb-3 h-8 w-8 text-primary" />,
-      title: 'Avslappnad & Rolig Upplevelse',
+      title: 'Avslappnad & rolig upplevelse',
       description:
         'Målet är att ni ska känna er bekväma och ha roligt framför kameran. Då skapas de mest naturliga och minnesvärda bilderna.',
     },
@@ -108,7 +130,7 @@ export default function Services() {
     },
     {
       icon: <Camera className="mb-4 h-10 w-10 text-primary" />,
-      title: '2. Bokning & Planering',
+      title: '2. Bokning & planering',
       description:
         'När ni känner er trygga bokar vi datum och planerar detaljerna kring plats, tid och upplägg.',
     },
@@ -120,7 +142,7 @@ export default function Services() {
     },
     {
       icon: <Send className="mb-4 h-10 w-10 text-primary" />,
-      title: '4. Urval, Redigering & Leverans',
+      title: '4. Urval, redigering & leverans',
       description:
         'Efter fotograferingen gör jag ett noggrant urval och redigerar bilderna med omsorg innan leverans.',
     },
@@ -135,91 +157,69 @@ export default function Services() {
         jsonLd={photographyPageJsonLd}
         image={absoluteLogoUrl}
       />
-      <div className="bg-background pt-16 text-textPrimary md:pt-20">
+      <div className="bg-beige pt-16 text-textPrimary md:pt-20">
         <Section
           bgColor="beige"
           roundedBottom="10xl"
-          className="pb-16 pt-12 text-center md:pb-24 md:pt-20"
+          className="pb-16 pt-10 md:pb-24 md:pt-16"
         >
           <SectionContent>
-            <h1 className="mb-6 font-poiret text-4xl font-bold tracking-wider text-textPrimary dark:text-white md:text-5xl lg:text-6xl">
-              Fotograf i Göteborg och Kungälv
-            </h1>
-            <p className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground dark:text-gray-300 md:text-xl">
-              Jag erbjuder professionell fotografering i Göteborg och Kungälv
-              för bröllop, porträtt och företag. Här hittar du tjänster för dig
-              som vill ha naturliga bilder, en personlig upplevelse och ett
-              resultat som håller över tid.
-            </p>
-            <LinkButton
-              to="/contact"
-              variant="default"
-              size="lg"
-              subVariant="rounded"
-              className="px-8 font-semibold"
-            >
-              Boka din fotografering
-            </LinkButton>
-          </SectionContent>
-        </Section>
-
-        <Section
-          bgColor="offWhite"
-          roundedTop="9xl"
-          roundedBottom="9xl"
-          className="py-12 md:py-20 lg:py-24"
-        >
-          <SectionContent heading="Hitta rätt fotografering för dig">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
-              {quickLinks.map((item) => (
-                <InfoCard
-                  key={item.title}
-                  centered
-                  className="dark:bg-gray-800"
-                >
-                  <h3 className="mb-3 text-xl font-semibold text-textPrimary">
-                    {item.title}
-                  </h3>
-                  <p className="mb-5 leading-relaxed text-textSecondary dark:text-gray-300">
-                    {item.description}
-                  </p>
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+              <div className="max-w-3xl">
+                <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-textSecondary">
+                  Tjänster
+                </p>
+                <h1 className="mb-5 max-w-2xl text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
+                  Fotografering med naturlig känsla och en personlig upplevelse
+                </h1>
+                <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
+                  Jag erbjuder professionell fotografering i Göteborg och
+                  Kungälv för bröllop, porträtt och företag. Här hittar du
+                  tjänster för dig som vill ha bilder som känns levande, trygga
+                  och genomtänkta.
+                </p>
+                <div className="mt-8">
                   <LinkButton
-                    to={item.to}
-                    variant="outline"
-                    size="md"
+                    to="/contact"
+                    variant="default"
+                    size="lg"
                     subVariant="rounded"
-                    className="font-semibold"
+                    className="px-8 font-semibold"
                   >
-                    {item.buttonText}
+                    Boka din fotografering
                   </LinkButton>
-                </InfoCard>
-              ))}
-            </div>
-          </SectionContent>
-        </Section>
-
-        <Section
-          bgColor="offWhite"
-          roundedTop="9xl"
-          roundedBottom="9xl"
-          className="py-12 md:py-20 lg:py-24"
-        >
-          <SectionContent heading="Mer än bara bilder - en personlig upplevelse">
-            <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {whyChooseMeList.map((item) => (
-                <div
-                  key={item.title}
-                  className="flex h-full flex-col items-center rounded-xl bg-secondary p-6 text-center dark:bg-gray-800"
-                >
-                  {item.icon}
-                  <h3 className="mb-2 text-xl font-semibold text-textPrimary dark:text-white">
-                    {item.title}
-                  </h3>
-                  <p className="flex-grow text-sm text-textSecondary dark:text-gray-300">
-                    {item.description}
-                  </p>
                 </div>
-              ))}
+              </div>
+
+              <div className="rounded-[2rem] border border-black/5 bg-[#fcfaf7] p-5 shadow-[0_24px_60px_-36px_rgba(31,41,55,0.28)] md:max-w-[32rem] md:p-6 lg:ml-auto">
+                <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
+                  Hitta rätt väg in
+                </p>
+                <div className="grid grid-cols-1 gap-3">
+                  {quickLinks.map((item) => (
+                    <div
+                      key={item.title}
+                      className="rounded-[1.5rem] border border-black/6 bg-white p-4 shadow-[0_12px_28px_-24px_rgba(31,41,55,0.28)]"
+                    >
+                      <h2 className="mb-2 text-xl font-semibold text-textPrimary">
+                        {item.title}
+                      </h2>
+                      <p className="mb-4 text-sm leading-relaxed text-textSecondary">
+                        {item.description}
+                      </p>
+                      <LinkButton
+                        to={item.to}
+                        variant="outline"
+                        size="md"
+                        subVariant="rounded"
+                        className="font-semibold"
+                      >
+                        {item.buttonText}
+                      </LinkButton>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </SectionContent>
         </Section>
@@ -230,86 +230,137 @@ export default function Services() {
           roundedBottom="9xl"
           className="py-12 md:py-20 lg:py-24"
         >
-          <SectionContent heading="Upptäck mina fototjänster">
-            <div className="mt-8 space-y-16 md:space-y-20">
-              {serviceCards.map((card, index) => (
-                <div
-                  key={card.title}
-                  className={`grid grid-cols-1 items-center gap-8 py-8 md:grid-cols-2 lg:gap-12 ${index > 0 ? 'border-t border-gray-200 pt-12 dark:border-gray-700 md:pt-16' : ''}`}
-                >
+          <SectionContent heading="Utvalda tjänster">
+            <div className="mt-8 space-y-14 md:space-y-20">
+              {serviceCards.map((card, index) => {
+                const descriptionLines = card.description
+                  .split('\n')
+                  .map((line) => line.trim())
+                  .filter(Boolean)
+
+                return (
                   <div
-                    className={index % 2 === 0 ? 'md:order-1' : 'md:order-2'}
+                    key={card.title}
+                    className={`grid grid-cols-1 gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch lg:gap-12 ${
+                      index % 2 === 1
+                        ? 'lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1'
+                        : ''
+                    }`}
                   >
-                    <img
-                      src={card.image}
-                      alt={card.title}
-                      className="aspect-[4/3] max-h-[450px] w-full rounded-2xl object-cover"
-                    />
-                  </div>
-                  <div
-                    className={`prose prose-lg max-w-none text-textSecondary dark:text-gray-300 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}
-                  >
-                    <h3 className="mb-4 font-poiret text-3xl font-semibold text-textPrimary dark:text-white">
-                      {card.title}
-                    </h3>
-                    <p className="whitespace-pre-line">{card.description}</p>
-                    {card.price && (
-                      <p className="mt-4 text-xl font-bold text-primary">
-                        {card.price}
-                      </p>
-                    )}
-                    {card.title === 'Bröllopsfotografering & Bröllopsfilm' && (
-                      <ul className="mt-4 space-y-2">
-                        {[
-                          'Konsultationsmöte före bröllopet',
-                          'Fotografering enligt överenskommet paket',
-                          'Högupplösta, noggrant redigerade bilder',
-                          'Personligt webbgalleri för visning och delning',
-                        ].map((item) => (
-                          <li key={item} className="flex items-start">
-                            <CheckCircle className="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500" />
-                            <span>{item}</span>
-                          </li>
+                    <div className="group relative h-full min-h-[20rem] overflow-hidden rounded-[2rem]">
+                      <img
+                        src={card.image}
+                        alt={card.title}
+                        className="h-full min-h-[20rem] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] lg:min-h-0"
+                      />
+                    </div>
+
+                    <div className="flex h-full flex-col rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] md:p-8">
+                      <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                        <div>
+                          <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
+                            Tjänst {index + 1}
+                          </p>
+                          <h3 className="text-3xl font-semibold text-textPrimary">
+                            {card.title}
+                          </h3>
+                        </div>
+                        {card.price && (
+                          <div className="whitespace-nowrap rounded-full border border-black/6 bg-white px-4 py-2 text-base font-semibold text-textPrimary shadow-[0_10px_24px_-20px_rgba(31,41,55,0.28)]">
+                            {card.price}
+                          </div>
+                        )}
+                      </div>
+
+                      <div
+                        className={`space-y-3 ${
+                          index === 0 || index === 1 || index === 3
+                            ? 'pb-6'
+                            : ''
+                        }`}
+                      >
+                        {descriptionLines.map((line) => (
+                          <React.Fragment key={line}>
+                            {renderDescriptionLine(line)}
+                          </React.Fragment>
                         ))}
-                      </ul>
-                    )}
-                    <LinkButton
-                      to={card.buttonLink || '/contact'}
-                      variant="outline"
-                      size="md"
-                      subVariant="rounded"
-                      className="mt-6 font-semibold"
-                    >
-                      {card.buttonText || 'Läs mer & boka'}
-                    </LinkButton>
+                      </div>
+
+                      <div className="pt-3">
+                        <LinkButton
+                          to={card.buttonLink || '/contact'}
+                          variant="outline"
+                          size="md"
+                          subVariant="rounded"
+                          className="font-semibold"
+                        >
+                          {card.buttonText || 'Läs mer & boka'}
+                        </LinkButton>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </SectionContent>
         </Section>
 
         <Section
-          bgColor="offWhite"
+          bgColor="beige"
+          roundedTop="9xl"
+          roundedBottom="9xl"
+          className="py-12 md:py-20 lg:py-24"
+        >
+          <SectionContent heading="Mer än bara bilder">
+            <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10">
+              <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_24px_60px_-36px_rgba(31,41,55,0.24)] md:p-8">
+                <h3 className="mb-4 text-2xl font-semibold text-textPrimary">
+                  Varför kunder väljer att arbeta med mig
+                </h3>
+                <p className="text-base leading-relaxed text-textSecondary">
+                  För mig handlar fotografering inte bara om att leverera fina
+                  bilder. Det handlar också om att skapa en upplevelse där ni
+                  känner er trygga, hörda och naturliga genom hela processen.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {whyChooseMeList.map((item) => (
+                  <InfoCard key={item.title} className="bg-white p-6">
+                    <div className="mb-2">{item.icon}</div>
+                    <h3 className="mb-2 text-xl font-semibold text-textPrimary">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-textSecondary">
+                      {item.description}
+                    </p>
+                  </InfoCard>
+                ))}
+              </div>
+            </div>
+          </SectionContent>
+        </Section>
+
+        <Section
+          bgColor="beige"
           roundedTop="9xl"
           roundedBottom="9xl"
           className="py-12 md:py-20 lg:py-24"
         >
           <SectionContent heading="Från första kontakt till färdiga bilder">
-            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-4">
+            <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {photoProcessSteps.map((step) => (
-                <div
-                  key={step.title}
-                  className="flex h-full flex-col items-center rounded-xl bg-secondary p-6 text-center dark:bg-gray-800"
-                >
-                  {step.icon}
-                  <h3 className="mb-2 mt-2 text-lg font-semibold text-textPrimary dark:text-white">
+                <InfoCard key={step.title} centered className="bg-white p-6">
+                  <div className="mx-auto mb-1 flex justify-center">
+                    {step.icon}
+                  </div>
+                  <h3 className="mb-2 mt-2 text-lg font-semibold text-textPrimary">
                     {step.title}
                   </h3>
-                  <p className="flex-grow text-sm text-textSecondary dark:text-gray-300">
+                  <p className="text-sm leading-relaxed text-textSecondary">
                     {step.description}
                   </p>
-                </div>
+                </InfoCard>
               ))}
             </div>
           </SectionContent>

@@ -59,7 +59,7 @@ export default function HeroSection() {
   const initialImageForRight =
     shuffledImages.length > 1 ? shuffledImages[1] : defaultRightImage
 
-  let imageForRight =
+  const imageForRight =
     imagePool.length > 1 && imageForLeft === initialImageForRight
       ? (() => {
           const distinctInPool = Array.from(new Set(imagePool))
@@ -91,13 +91,13 @@ export default function HeroSection() {
       <Section
         roundedBottom="10xl"
         bgColor="beige"
-        className="h-[98vh] w-full flex flex-col justify-center items-center overflow-hidden pt-16 pb-8 sm:pt-20 sm:pb-10 md:py-0"
+        className="flex h-[98vh] w-full flex-col items-center justify-center overflow-hidden pt-16 pb-8 sm:pt-20 sm:pb-10 md:py-0"
         aria-labelledby="hero-heading"
       >
         <SectionContent className="w-full">
-          <div className="relative grid grid-cols-1 md:grid-cols-[30%_40%_30%] items-center gap-6 sm:gap-8 md:gap-8 lg:gap-12 md:py-0">
+          <div className="relative grid grid-cols-1 items-center gap-6 sm:gap-8 md:grid-cols-[30%_40%_30%] md:gap-8 md:py-0 lg:gap-12">
             <motion.div
-              className="hidden md:flex md:order-1 justify-center md:justify-start"
+              className="hidden justify-center md:order-1 md:flex md:justify-start"
               initial={{ opacity: 0, x: -80, rotate: -10 }}
               animate={{ opacity: 1, x: 0, rotate: -6 }}
               transition={{
@@ -110,23 +110,23 @@ export default function HeroSection() {
               <img
                 src={imageForLeft}
                 alt="Stämningsfull porträttfotografering"
-                className="rounded-2xl w-full max-h-[24rem] md:max-w-full h-auto object-cover transform hover:scale-105 hover:rotate-0 transition-transform duration-400 ease-out"
+                className="h-auto max-h-[24rem] w-full rounded-2xl object-cover transition-transform duration-400 ease-out hover:scale-105 hover:rotate-0 md:max-w-full"
               />
             </motion.div>
 
             <motion.div
-              className="text-center relative z-10 order-last md:order-2 px-2"
+              className="relative z-10 order-last px-2 text-center md:order-2"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
               <h1
                 id="hero-heading"
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-3"
+                className="mb-3 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
               >
                 Svendsén Photography
               </h1>
-              <div className="text-textPrimary text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 sm:mb-6 font-semibold min-h-[35px] sm:min-h-[40px]">
+              <div className="mb-4 min-h-[35px] text-xl font-semibold text-textPrimary sm:mb-6 sm:min-h-[40px] sm:text-2xl md:text-3xl lg:text-4xl">
                 <Typewriter
                   options={{
                     strings: ['Bröllop', 'Porträtt', 'Företag', 'Webbtjänster'],
@@ -139,16 +139,16 @@ export default function HeroSection() {
                   }}
                 />
               </div>
-              <p className="text-md sm:text-lg md:text-xl mb-8 sm:mb-10 opacity-80">
+              <p className="text-md mb-8 opacity-80 sm:mb-10 sm:text-lg md:text-xl">
                 Professionell fotografering i Göteborg & Kungälv
               </p>
 
-              <div className="flex flex-col items-center sm:flex-row sm:justify-center gap-4">
+              <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
                 <MotionButton
                   variant="default"
                   size="md"
                   subVariant="rounded"
-                  className="px-6 sm:px-7 font-semibold text-sm sm:text-base"
+                  className="px-6 text-sm font-semibold sm:px-7 sm:text-base"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => navigate('/contact')}
@@ -159,7 +159,7 @@ export default function HeroSection() {
                   variant="outline"
                   size="md"
                   subVariant="rounded"
-                  className="px-6 sm:px-7 font-semibold text-sm sm:text-base"
+                  className="px-6 text-sm font-semibold sm:px-7 sm:text-base"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => navigate('/services')}
@@ -170,7 +170,7 @@ export default function HeroSection() {
             </motion.div>
 
             <motion.div
-              className="order-first md:order-3 flex justify-center md:justify-end items-center pt-4 sm:pt-0 md:pt-0"
+              className="order-first flex items-center justify-center pt-4 sm:pt-0 md:order-3 md:justify-end md:pt-0"
               initial={{ opacity: 0, x: 80, rotate: 10 }}
               animate={{ opacity: 1, x: 0, rotate: 3 }}
               transition={{
@@ -183,7 +183,7 @@ export default function HeroSection() {
               <img
                 src={imageForRight}
                 alt="Detaljbild från företagsfotografering"
-                className="rounded-2xl w-full h-[30vh] object-cover max-w-[18rem] sm:h-[35vh] sm:max-w-[14rem] md:h-auto md:max-h-[18rem] md:max-w-full md:object-cover transform md:rotate-3 hover:scale-105 md:hover:rotate-0 transition-transform duration-400 ease-out"
+                className="h-[30vh] w-full max-w-[18rem] rounded-2xl object-cover transition-transform duration-400 ease-out hover:scale-105 sm:h-[35vh] sm:max-w-[14rem] md:h-auto md:max-h-[18rem] md:max-w-full md:rotate-3 md:object-cover md:hover:rotate-0"
               />
             </motion.div>
           </div>
