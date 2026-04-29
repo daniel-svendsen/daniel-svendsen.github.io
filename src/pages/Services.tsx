@@ -1,5 +1,7 @@
 import React from 'react'
 import { HelmetProvider } from 'react-helmet-async'
+import { CTASection } from '@/components/CTASection'
+import { InfoCard } from '@/components/InfoCard'
 import SEO from '@/components/SEO'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
@@ -72,25 +74,25 @@ export default function Services() {
 
   const whyChooseMeList = [
     {
-      icon: <Sparkles className="h-8 w-8 text-primary mb-3" />,
+      icon: <Sparkles className="mb-3 h-8 w-8 text-primary" />,
       title: 'Personlig & Unik Stil',
       description:
         'Jag strävar efter att fånga genuina ögonblick och känslor, med en ljus och naturlig bildstil som berättar er unika historia.',
     },
     {
-      icon: <Heart className="h-8 w-8 text-primary mb-3" />,
+      icon: <Heart className="mb-3 h-8 w-8 text-primary" />,
       title: 'Engagemang & Passion',
       description:
         'Fotografering är min stora passion. Jag lägger ner själ och hjärta i varje uppdrag för att ni ska bli mer än nöjda med era bilder.',
     },
     {
-      icon: <Award className="h-8 w-8 text-primary mb-3" />,
+      icon: <Award className="mb-3 h-8 w-8 text-primary" />,
       title: 'Hög Kvalitet & Professionalism',
       description:
         'Ni kan förvänta er ett professionellt bemötande från första kontakt till levererade bilder av hög teknisk och konstnärlig kvalitet.',
     },
     {
-      icon: <Smile className="h-8 w-8 text-primary mb-3" />,
+      icon: <Smile className="mb-3 h-8 w-8 text-primary" />,
       title: 'Avslappnad & Rolig Upplevelse',
       description:
         'Målet är att ni ska känna er bekväma och ha roligt framför kameran. Då skapas de mest naturliga och minnesvärda bilderna.',
@@ -99,25 +101,25 @@ export default function Services() {
 
   const photoProcessSteps = [
     {
-      icon: <MessageCircle className="h-10 w-10 text-primary mb-4" />,
+      icon: <MessageCircle className="mb-4 h-10 w-10 text-primary" />,
       title: '1. Konsultation',
       description:
         'Vi startar med ett samtal där vi diskuterar era önskemål, idéer och visioner för fotograferingen.',
     },
     {
-      icon: <Camera className="h-10 w-10 text-primary mb-4" />,
+      icon: <Camera className="mb-4 h-10 w-10 text-primary" />,
       title: '2. Bokning & Planering',
       description:
         'När ni känner er trygga bokar vi datum och planerar detaljerna kring plats, tid och upplägg.',
     },
     {
-      icon: <Edit3 className="h-10 w-10 text-primary mb-4" />,
+      icon: <Edit3 className="mb-4 h-10 w-10 text-primary" />,
       title: '3. Fotograferingen',
       description:
         'Dags för fotografering. Vi möts upp och skapar naturliga bilder i en avslappnad och kreativ atmosfär.',
     },
     {
-      icon: <Send className="h-10 w-10 text-primary mb-4" />,
+      icon: <Send className="mb-4 h-10 w-10 text-primary" />,
       title: '4. Urval, Redigering & Leverans',
       description:
         'Efter fotograferingen gör jag ett noggrant urval och redigerar bilderna med omsorg innan leverans.',
@@ -133,17 +135,17 @@ export default function Services() {
         jsonLd={photographyPageJsonLd}
         image={absoluteLogoUrl}
       />
-      <div className="bg-background text-textPrimary pt-16 md:pt-20">
+      <div className="bg-background pt-16 text-textPrimary md:pt-20">
         <Section
           bgColor="beige"
           roundedBottom="10xl"
-          className="pt-12 pb-16 md:pt-20 md:pb-24 text-center"
+          className="pb-16 pt-12 text-center md:pb-24 md:pt-20"
         >
           <SectionContent>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-textPrimary dark:text-white mb-6 font-poiret tracking-wider">
+            <h1 className="mb-6 font-poiret text-4xl font-bold tracking-wider text-textPrimary dark:text-white md:text-5xl lg:text-6xl">
               Fotograf i Göteborg och Kungälv
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground dark:text-gray-300 mb-10 max-w-2xl mx-auto">
+            <p className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground dark:text-gray-300 md:text-xl">
               Jag erbjuder professionell fotografering i Göteborg och Kungälv
               för bröllop, porträtt och företag. Här hittar du tjänster för dig
               som vill ha naturliga bilder, en personlig upplevelse och ett
@@ -154,7 +156,7 @@ export default function Services() {
               variant="default"
               size="lg"
               subVariant="rounded"
-              className="font-semibold px-8"
+              className="px-8 font-semibold"
             >
               Boka din fotografering
             </LinkButton>
@@ -168,16 +170,17 @@ export default function Services() {
           className="py-12 md:py-20 lg:py-24"
         >
           <SectionContent heading="Hitta rätt fotografering för dig">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
               {quickLinks.map((item) => (
-                <div
+                <InfoCard
                   key={item.title}
-                  className="bg-white/90 dark:bg-gray-800 rounded-3xl p-6 shadow-sm text-center"
+                  centered
+                  className="dark:bg-gray-800"
                 >
-                  <h3 className="text-xl font-semibold text-textPrimary mb-3">
+                  <h3 className="mb-3 text-xl font-semibold text-textPrimary">
                     {item.title}
                   </h3>
-                  <p className="text-textSecondary dark:text-gray-300 leading-relaxed mb-5">
+                  <p className="mb-5 leading-relaxed text-textSecondary dark:text-gray-300">
                     {item.description}
                   </p>
                   <LinkButton
@@ -189,7 +192,7 @@ export default function Services() {
                   >
                     {item.buttonText}
                   </LinkButton>
-                </div>
+                </InfoCard>
               ))}
             </div>
           </SectionContent>
@@ -202,17 +205,17 @@ export default function Services() {
           className="py-12 md:py-20 lg:py-24"
         >
           <SectionContent heading="Mer än bara bilder - en personlig upplevelse">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+            <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {whyChooseMeList.map((item) => (
                 <div
                   key={item.title}
-                  className="bg-secondary dark:bg-gray-800 p-6 rounded-xl flex flex-col items-center text-center h-full"
+                  className="flex h-full flex-col items-center rounded-xl bg-secondary p-6 text-center dark:bg-gray-800"
                 >
                   {item.icon}
-                  <h3 className="text-xl font-semibold text-textPrimary dark:text-white mb-2">
+                  <h3 className="mb-2 text-xl font-semibold text-textPrimary dark:text-white">
                     {item.title}
                   </h3>
-                  <p className="text-textSecondary dark:text-gray-300 text-sm flex-grow">
+                  <p className="flex-grow text-sm text-textSecondary dark:text-gray-300">
                     {item.description}
                   </p>
                 </div>
@@ -228,11 +231,11 @@ export default function Services() {
           className="py-12 md:py-20 lg:py-24"
         >
           <SectionContent heading="Upptäck mina fototjänster">
-            <div className="space-y-16 md:space-y-20 mt-8">
+            <div className="mt-8 space-y-16 md:space-y-20">
               {serviceCards.map((card, index) => (
                 <div
                   key={card.title}
-                  className={`grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center py-8 ${index > 0 ? 'border-t border-gray-200 dark:border-gray-700 pt-12 md:pt-16' : ''}`}
+                  className={`grid grid-cols-1 items-center gap-8 py-8 md:grid-cols-2 lg:gap-12 ${index > 0 ? 'border-t border-gray-200 pt-12 dark:border-gray-700 md:pt-16' : ''}`}
                 >
                   <div
                     className={index % 2 === 0 ? 'md:order-1' : 'md:order-2'}
@@ -240,18 +243,18 @@ export default function Services() {
                     <img
                       src={card.image}
                       alt={card.title}
-                      className="rounded-2xl object-cover w-full h-auto max-h-[450px] aspect-[4/3]"
+                      className="aspect-[4/3] max-h-[450px] w-full rounded-2xl object-cover"
                     />
                   </div>
                   <div
-                    className={`prose prose-lg text-textSecondary dark:text-gray-300 max-w-none ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}
+                    className={`prose prose-lg max-w-none text-textSecondary dark:text-gray-300 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}
                   >
-                    <h3 className="text-3xl font-semibold text-textPrimary dark:text-white mb-4 font-poiret">
+                    <h3 className="mb-4 font-poiret text-3xl font-semibold text-textPrimary dark:text-white">
                       {card.title}
                     </h3>
                     <p className="whitespace-pre-line">{card.description}</p>
                     {card.price && (
-                      <p className="text-xl font-bold text-primary mt-4">
+                      <p className="mt-4 text-xl font-bold text-primary">
                         {card.price}
                       </p>
                     )}
@@ -264,7 +267,7 @@ export default function Services() {
                           'Personligt webbgalleri för visning och delning',
                         ].map((item) => (
                           <li key={item} className="flex items-start">
-                            <CheckCircle className="h-5 w-5 text-green-500 mr-2 flex-shrink-0 mt-1" />
+                            <CheckCircle className="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500" />
                             <span>{item}</span>
                           </li>
                         ))}
@@ -293,17 +296,17 @@ export default function Services() {
           className="py-12 md:py-20 lg:py-24"
         >
           <SectionContent heading="Från första kontakt till färdiga bilder">
-            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-4">
               {photoProcessSteps.map((step) => (
                 <div
                   key={step.title}
-                  className="bg-secondary dark:bg-gray-800 p-6 rounded-xl text-center flex flex-col items-center h-full"
+                  className="flex h-full flex-col items-center rounded-xl bg-secondary p-6 text-center dark:bg-gray-800"
                 >
                   {step.icon}
-                  <h3 className="text-lg font-semibold text-textPrimary dark:text-white mb-2 mt-2">
+                  <h3 className="mb-2 mt-2 text-lg font-semibold text-textPrimary dark:text-white">
                     {step.title}
                   </h3>
-                  <p className="text-textSecondary dark:text-gray-300 text-sm flex-grow">
+                  <p className="flex-grow text-sm text-textSecondary dark:text-gray-300">
                     {step.description}
                   </p>
                 </div>
@@ -315,25 +318,14 @@ export default function Services() {
         <Section
           bgColor="beige"
           roundedTop="10xl"
-          className="py-16 md:py-24 lg:py-28 text-center"
+          className="py-16 text-center md:py-24 lg:py-28"
         >
           <SectionContent>
-            <h2 className="text-3xl md:text-4xl font-bold text-textPrimary dark:text-white mb-6 font-poiret tracking-wider">
-              Låt oss berätta din historia genom bilder
-            </h2>
-            <p className="text-lg text-muted-foreground dark:text-gray-300 mb-10 max-w-xl mx-auto">
-              Varje bild har en historia att berätta. Jag ser fram emot att höra
-              din och hjälpa dig att skapa minnen som varar över tid.
-            </p>
-            <LinkButton
-              to="/contact"
-              variant="default"
-              size="lg"
-              subVariant="rounded"
-              className="font-semibold px-10"
-            >
-              Kontakta mig idag
-            </LinkButton>
+            <CTASection
+              title="Låt oss berätta din historia genom bilder"
+              description="Varje bild har en historia att berätta. Jag ser fram emot att höra din och hjälpa dig att skapa minnen som varar över tid."
+              actions={[{ to: '/contact', label: 'Kontakta mig idag' }]}
+            />
           </SectionContent>
         </Section>
       </div>

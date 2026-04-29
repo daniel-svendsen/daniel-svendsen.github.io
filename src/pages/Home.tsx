@@ -1,14 +1,15 @@
 import React, { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
+import { CTASection } from '@/components/CTASection'
+import { InfoCard } from '@/components/InfoCard'
+import HomeCard from '@/components/HomeCard'
+import SEO from '@/components/SEO'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
-import { LinkButton } from '@/components/Button'
-import HomeCard from '@/components/HomeCard'
-import { homeCards } from '../data/cards'
 import HeroSection from '../components/HeroSection'
-import forprosVideo from '@/assets/movies/forpros1.mp4'
 import forprosImg from '@/assets/movies/img-optimized.jpg'
-import SEO from '@/components/SEO'
+import forprosVideo from '@/assets/movies/forpros1.mp4'
+import { homeCards } from '../data/cards'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 import {
   Camera,
@@ -146,10 +147,10 @@ export default function Home() {
 
         <Section bgColor="offWhite">
           <SectionContent className="text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-poiret tracking-wider text-textPrimary dark:text-white">
+            <h2 className="mb-6 font-poiret text-4xl font-bold tracking-wider text-textPrimary dark:text-white md:text-5xl">
               Välkommen!
             </h2>
-            <p className="text-lg text-muted-foreground dark:text-gray-300 leading-relaxed font-poiret tracking-wider max-w-3xl mx-auto">
+            <p className="mx-auto max-w-3xl font-poiret text-lg leading-relaxed tracking-wider text-muted-foreground dark:text-gray-300">
               Jag är en fotograf baserad i Kungälv och Göteborg, specialiserad
               på bröllops-, porträtt- och företagsfotografering samt
               webbtjänster.
@@ -164,7 +165,7 @@ export default function Home() {
           className="py-12 md:py-20 lg:py-24"
         >
           <SectionContent heading="Mina Tjänster">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-2">
               {homeCards.map((card) => (
                 <HomeCard key={card.title} {...card} />
               ))}
@@ -179,25 +180,26 @@ export default function Home() {
           className="py-12 md:py-20 lg:py-24"
         >
           <SectionContent heading="Varför kunder väljer mig">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
               {whyChooseMe.map((item) => {
                 const Icon = item.icon
 
                 return (
-                  <div
+                  <InfoCard
                     key={item.title}
-                    className="bg-white/90 dark:bg-gray-800 rounded-3xl p-6 shadow-sm text-center"
+                    centered
+                    className="dark:bg-gray-800"
                   >
                     <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[rgba(238,235,235,0.7)]">
                       <Icon className="h-6 w-6 text-textPrimary" />
                     </div>
-                    <h3 className="text-xl font-semibold text-textPrimary mb-3">
+                    <h3 className="mb-3 text-xl font-semibold text-textPrimary">
                       {item.title}
                     </h3>
-                    <p className="text-textSecondary dark:text-gray-300 leading-relaxed">
+                    <p className="leading-relaxed text-textSecondary dark:text-gray-300">
                       {item.description}
                     </p>
-                  </div>
+                  </InfoCard>
                 )
               })}
             </div>
@@ -211,25 +213,26 @@ export default function Home() {
           className="py-12 md:py-20 lg:py-24"
         >
           <SectionContent heading="Så går det till">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-4">
               {processSteps.map((step) => {
                 const Icon = step.icon
 
                 return (
-                  <div
+                  <InfoCard
                     key={step.title}
-                    className="bg-white/80 dark:bg-gray-800 rounded-3xl p-6 text-center shadow-sm"
+                    centered
+                    className="bg-white/80 dark:bg-gray-800"
                   >
                     <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white">
                       <Icon className="h-6 w-6 text-textPrimary" />
                     </div>
-                    <h3 className="text-lg font-semibold text-textPrimary mb-3">
+                    <h3 className="mb-3 text-lg font-semibold text-textPrimary">
                       {step.title}
                     </h3>
-                    <p className="text-textSecondary dark:text-gray-300 leading-relaxed text-sm">
+                    <p className="text-sm leading-relaxed text-textSecondary dark:text-gray-300">
                       {step.description}
                     </p>
-                  </div>
+                  </InfoCard>
                 )
               })}
             </div>
@@ -243,12 +246,12 @@ export default function Home() {
           className="py-12 md:py-20 lg:py-24"
         >
           <SectionContent heading="Exempelfilm för For Pros">
-            <div className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-2xl overflow-hidden shadow-xl max-w-4xl mx-auto">
+            <div className="mx-auto aspect-video max-w-4xl overflow-hidden rounded-2xl bg-gray-200 shadow-xl dark:bg-gray-700">
               <video
                 controls
                 preload="metadata"
                 poster={forprosImg}
-                className="w-full h-full"
+                className="h-full w-full"
               >
                 <source src={forprosVideo} type="video/mp4" />
                 Din webbläsare stödjer inte videoformatet.
@@ -264,15 +267,15 @@ export default function Home() {
           className="py-12 md:py-20 lg:py-24"
         >
           <SectionContent heading="Fotograf i Göteborg och Kungälv">
-            <div className="max-w-4xl mx-auto text-center">
-              <p className="text-lg text-textSecondary dark:text-gray-300 leading-relaxed mb-5">
+            <div className="mx-auto max-w-4xl text-center">
+              <p className="mb-5 text-lg leading-relaxed text-textSecondary dark:text-gray-300">
                 Jag utgår från Kungälv och arbetar i Göteborg och närliggande
                 områden. Jag fotograferar bland annat bröllop, porträtt,
                 familjer, företag och event, och hjälper både privatpersoner
                 och verksamheter som vill ha bilder med hög kvalitet och tydlig
                 känsla.
               </p>
-              <p className="text-lg text-textSecondary dark:text-gray-300 leading-relaxed">
+              <p className="text-lg leading-relaxed text-textSecondary dark:text-gray-300">
                 För mig handlar det inte bara om att ta fina bilder, utan om att
                 skapa något som känns äkta och användbart, oavsett om det ska
                 bli ett minne för livet eller visuellt innehåll för ditt
@@ -291,17 +294,17 @@ export default function Home() {
           <SectionContent heading="Galleri Highlights">
             <div
               ref={carouselRef}
-              className="w-full max-h-[80vh] min-h-[300px] sm:min-h-[400px] md:min-h-[500px] -mt-3 flex flex-col"
+              className="-mt-3 flex max-h-[80vh] min-h-[300px] w-full flex-col sm:min-h-[400px] md:min-h-[500px]"
             >
               <Suspense
                 fallback={
-                  <div className="h-full w-full bg-gray-200 dark:bg-gray-700 rounded-2xl animate-pulse" />
+                  <div className="h-full w-full animate-pulse rounded-2xl bg-gray-200 dark:bg-gray-700" />
                 }
               >
                 {isCarouselVisible ? (
                   <Carousel />
                 ) : (
-                  <div className="h-full w-full bg-gray-200 dark:bg-gray-700 rounded-2xl animate-pulse" />
+                  <div className="h-full w-full animate-pulse rounded-2xl bg-gray-200 dark:bg-gray-700" />
                 )}
               </Suspense>
             </div>
@@ -314,35 +317,18 @@ export default function Home() {
           className="py-16 md:py-24 lg:py-28"
         >
           <SectionContent>
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-textPrimary mb-5 font-poiret tracking-wider">
-                Redo att boka eller bara ställa en fråga?
-              </h2>
-              <p className="text-lg text-textSecondary dark:text-gray-300 leading-relaxed mb-8 max-w-2xl mx-auto">
-                Berätta vad du har i åtanke, så återkommer jag med ett upplägg
-                som passar dig, ditt tillfälle eller ditt företag.
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <LinkButton
-                  to="/contact"
-                  variant="default"
-                  size="lg"
-                  subVariant="rounded"
-                  className="font-semibold px-8"
-                >
-                  Skicka förfrågan
-                </LinkButton>
-                <LinkButton
-                  to="/services"
-                  variant="outline"
-                  size="lg"
-                  subVariant="rounded"
-                  className="font-semibold px-8"
-                >
-                  Se alla tjänster
-                </LinkButton>
-              </div>
-            </div>
+            <CTASection
+              title="Redo att boka eller bara ställa en fråga?"
+              description="Berätta vad du har i åtanke, så återkommer jag med ett upplägg som passar dig, ditt tillfälle eller ditt företag."
+              actions={[
+                { to: '/contact', label: 'Skicka förfrågan' },
+                {
+                  to: '/services',
+                  label: 'Se alla tjänster',
+                  variant: 'outline',
+                },
+              ]}
+            />
           </SectionContent>
         </Section>
       </div>

@@ -48,7 +48,6 @@ const sectionVariantsConfig = cva('relative', {
     },
     shape: {
       default: 'py-12 md:py-20 lg:py-24',
-      organicSquircle: 'py-12 md:py-20 lg:py-24 shape-organic-squircle',
     },
     rounded: {
       none: '',
