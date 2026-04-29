@@ -157,11 +157,12 @@ export default function Services() {
         jsonLd={photographyPageJsonLd}
         image={absoluteLogoUrl}
       />
-      <div className="bg-beige pt-16 text-textPrimary md:pt-20">
+      <div className="bg-[#f7f5f2] pt-16 text-textPrimary md:pt-20">
         <Section
           bgColor="beige"
+          roundedTop="10xl"
           roundedBottom="10xl"
-          className="pb-16 pt-10 md:pb-24 md:pt-16"
+          className="mx-3 overflow-hidden pb-16 pt-10 sm:mx-4 md:mx-5 md:pb-24 md:pt-16 lg:mx-6"
         >
           <SectionContent>
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
@@ -228,7 +229,7 @@ export default function Services() {
           bgColor="beige"
           roundedTop="9xl"
           roundedBottom="9xl"
-          className="py-12 md:py-20 lg:py-24"
+          className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-20 lg:mx-6 lg:py-24"
         >
           <SectionContent heading="Utvalda tjänster">
             <div className="mt-8 space-y-14 md:space-y-20">
@@ -309,7 +310,7 @@ export default function Services() {
           bgColor="beige"
           roundedTop="9xl"
           roundedBottom="9xl"
-          className="py-12 md:py-20 lg:py-24"
+          className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-20 lg:mx-6 lg:py-24"
         >
           <SectionContent heading="Mer än bara bilder">
             <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10">
@@ -345,7 +346,7 @@ export default function Services() {
           bgColor="beige"
           roundedTop="9xl"
           roundedBottom="9xl"
-          className="py-12 md:py-20 lg:py-24"
+          className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-20 lg:mx-6 lg:py-24"
         >
           <SectionContent heading="Från första kontakt till färdiga bilder">
             <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -369,7 +370,8 @@ export default function Services() {
         <Section
           bgColor="beige"
           roundedTop="10xl"
-          className="py-16 text-center md:py-24 lg:py-28"
+          roundedBottom="10xl"
+          className="mx-3 overflow-hidden py-16 text-center sm:mx-4 md:mx-5 md:py-24 lg:mx-6 lg:py-28"
         >
           <SectionContent>
             <CTASection

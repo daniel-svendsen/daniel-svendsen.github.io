@@ -93,11 +93,12 @@ export default function WebServicesPage() {
         jsonLd={pageJsonLd}
         image={absoluteSpecificImage}
       />
-      <main className="pt-16 md:pt-20 bg-background text-foreground">
+      <main className="bg-[#f7f5f2] pt-16 text-foreground md:pt-20">
         <Section
           bgColor="offWhite"
+          roundedTop="10xl"
           roundedBottom="9xl"
-          className="pt-12 pb-16 md:pt-20 md:pb-24 text-center"
+          className="mx-3 overflow-hidden pt-12 pb-16 text-center sm:mx-4 md:mx-5 md:pt-20 md:pb-24 lg:mx-6"
         >
           <SectionContent>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-textPrimary dark:text-white mb-6 font-poiret tracking-wider">
@@ -124,7 +125,7 @@ export default function WebServicesPage() {
           bgColor="beige"
           roundedBottom="9xl"
           roundedTop="9xl"
-          className="py-12 md:py-20 lg:py-24"
+          className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-20 lg:mx-6 lg:py-24"
         >
           <SectionContent heading="Fördelar med moderna webbtjänster">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mt-8">
@@ -150,7 +151,7 @@ export default function WebServicesPage() {
           bgColor="offWhite"
           roundedTop="9xl"
           roundedBottom="9xl"
-          className="py-12 md:py-20 lg:py-24"
+          className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-20 lg:mx-6 lg:py-24"
         >
           <SectionContent heading="Webbutveckling med fokus på nytta och synlighet">
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -199,7 +200,7 @@ export default function WebServicesPage() {
           bgColor="beige"
           roundedBottom="9xl"
           roundedTop="9xl"
-          className="py-12 md:py-20 lg:py-24"
+          className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-20 lg:mx-6 lg:py-24"
         >
           <SectionContent heading="Min process: från idé till hemsida">
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -223,7 +224,8 @@ export default function WebServicesPage() {
         <Section
           bgColor="offWhite"
           roundedTop="9xl"
-          className="py-16 md:py-24 lg:py-28 text-center"
+          roundedBottom="10xl"
+          className="mx-3 overflow-hidden py-16 text-center sm:mx-4 md:mx-5 md:py-24 lg:mx-6 lg:py-28"
         >
           <SectionContent>
             <h2 className="text-3xl md:text-4xl font-bold text-textPrimary dark:text-white mb-6 font-poiret tracking-wider">

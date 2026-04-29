@@ -82,8 +82,13 @@ export default function FAQ() {
         jsonLd={faqJsonLd}
       />
 
-      <main className="pt-16 md:pt-20 bg-background text-foreground">
-        <Section bgColor="beige" roundedBottom="10xl">
+      <main className="bg-[#f7f5f2] pt-16 text-foreground md:pt-20">
+        <Section
+          bgColor="beige"
+          roundedTop="10xl"
+          roundedBottom="10xl"
+          className="mx-3 overflow-hidden sm:mx-4 md:mx-5 lg:mx-6"
+        >
           <SectionContent>
             <div className="text-center mb-12 md:mb-16">
               <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-textPrimary dark:text-white">

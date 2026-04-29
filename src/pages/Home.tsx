@@ -142,15 +142,20 @@ export default function Home() {
         keywords="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, bilfotograf, företagsfotograf, filmning, webbutveckling"
         jsonLd={homeJsonLd}
       />
-      <div className="bg-gray-50 dark:bg-gray-900">
+      <div className="bg-[#f7f5f2] dark:bg-gray-900">
         <HeroSection />
 
-        <Section bgColor="offWhite">
+        <Section
+          roundedTop="8xl"
+          roundedBottom="8xl"
+          bgColor="offWhite"
+          className="mx-3 overflow-hidden py-10 sm:mx-4 md:mx-5 md:py-14 lg:mx-6"
+        >
           <SectionContent className="text-center">
-            <h2 className="mb-6 font-poiret text-4xl font-bold tracking-wider text-textPrimary dark:text-white md:text-5xl">
+            <h2 className="mb-5 font-poiret text-4xl font-bold tracking-[0.08em] text-textPrimary dark:text-white md:text-5xl">
               Välkommen!
             </h2>
-            <p className="mx-auto max-w-3xl font-poiret text-lg leading-relaxed tracking-wider text-muted-foreground dark:text-gray-300">
+            <p className="mx-auto max-w-2xl font-poiret text-lg leading-relaxed tracking-[0.04em] text-muted-foreground dark:text-gray-300">
               Jag är en fotograf baserad i Kungälv och Göteborg, specialiserad
               på bröllops-, porträtt- och företagsfotografering samt
               webbtjänster.
@@ -159,12 +164,19 @@ export default function Home() {
         </Section>
 
         <Section
-          roundedBottom="9xl"
-          roundedTop="9xl"
+          roundedBottom="10xl"
+          roundedTop="10xl"
           bgColor="beige"
-          className="py-12 md:py-20 lg:py-24"
+          className="mx-3 overflow-hidden py-14 sm:mx-4 md:mx-5 md:py-24 lg:mx-6 lg:py-28"
         >
-          <SectionContent heading="Mina Tjänster">
+          <SectionContent>
+            <div className="mb-10 max-w-2xl lg:mb-14">
+              <div className="max-w-2xl">
+                <h2 className="text-3xl font-semibold tracking-tight text-textPrimary md:text-4xl">
+                  Mina Tjänster
+                </h2>
+              </div>
+            </div>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-2">
               {homeCards.map((card) => (
                 <HomeCard key={card.title} {...card} />
@@ -174,13 +186,18 @@ export default function Home() {
         </Section>
 
         <Section
-          roundedBottom="9xl"
-          roundedTop="9xl"
+          roundedTop="8xl"
+          roundedBottom="8xl"
           bgColor="offWhite"
-          className="py-12 md:py-20 lg:py-24"
+          className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-16 lg:mx-6 lg:py-20"
         >
-          <SectionContent heading="Varför kunder väljer mig">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+          <SectionContent>
+            <div className="mb-10 max-w-2xl">
+              <h2 className="text-3xl font-semibold tracking-tight text-textPrimary md:text-4xl">
+                Varför kunder väljer mig
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
               {whyChooseMe.map((item) => {
                 const Icon = item.icon
 
@@ -188,9 +205,9 @@ export default function Home() {
                   <InfoCard
                     key={item.title}
                     centered
-                    className="dark:bg-gray-800/90"
+                    className="border-black/6 bg-white/78 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.18)] dark:bg-gray-800/90"
                   >
-                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[rgba(238,235,235,0.7)]">
+                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#f2ece8]">
                       <Icon className="h-6 w-6 text-textPrimary" />
                     </div>
                     <h3 className="mb-3 text-xl font-semibold text-textPrimary">
@@ -207,13 +224,20 @@ export default function Home() {
         </Section>
 
         <Section
-          roundedBottom="9xl"
-          roundedTop="9xl"
+          roundedBottom="8xl"
+          roundedTop="8xl"
           bgColor="beige"
-          className="py-12 md:py-20 lg:py-24"
+          className="mx-3 overflow-hidden py-14 sm:mx-4 md:mx-5 md:py-20 lg:mx-6 lg:py-24"
         >
-          <SectionContent heading="Så går det till">
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-4">
+          <SectionContent>
+            <div className="mb-10 max-w-2xl lg:mb-12">
+              <div className="max-w-2xl">
+                <h2 className="text-3xl font-semibold tracking-tight text-textPrimary md:text-4xl">
+                  Så går det till
+                </h2>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:gap-6 lg:grid-cols-4">
               {processSteps.map((step) => {
                 const Icon = step.icon
 
@@ -221,9 +245,9 @@ export default function Home() {
                   <InfoCard
                     key={step.title}
                     centered
-                    className="bg-white dark:bg-gray-800/90"
+                    className="h-full border-black/6 bg-white/92 dark:bg-gray-800/90"
                   >
-                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white">
+                    <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#f8f5f1]">
                       <Icon className="h-6 w-6 text-textPrimary" />
                     </div>
                     <h3 className="mb-3 text-lg font-semibold text-textPrimary">
@@ -240,33 +264,45 @@ export default function Home() {
         </Section>
 
         <Section
-          roundedBottom="10xl"
-          roundedTop="10xl"
+          roundedTop="8xl"
+          roundedBottom="8xl"
           bgColor="offWhite"
-          className="py-12 md:py-20 lg:py-24"
+          className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-16 lg:mx-6 lg:py-20"
         >
-          <SectionContent heading="Exempelfilm för For Pros">
-            <div className="mx-auto aspect-video max-w-4xl overflow-hidden rounded-2xl bg-gray-200 shadow-xl dark:bg-gray-700">
-              <video
-                controls
-                preload="metadata"
-                poster={forprosImg}
-                className="h-full w-full"
-              >
-                <source src={forprosVideo} type="video/mp4" />
-                Din webbläsare stödjer inte videoformatet.
-              </video>
+          <SectionContent>
+            <div className="mb-8 max-w-2xl">
+              <h2 className="text-3xl font-semibold tracking-tight text-textPrimary md:text-4xl">
+                Exempelfilm för For Pros
+              </h2>
+            </div>
+            <div className="mx-auto max-w-5xl rounded-[2rem] border border-black/5 bg-white/75 p-4 shadow-[0_24px_60px_-38px_rgba(31,41,55,0.25)] md:p-5">
+              <div className="aspect-video overflow-hidden rounded-[1.5rem] bg-gray-200 shadow-xl dark:bg-gray-700">
+                <video
+                  controls
+                  preload="metadata"
+                  poster={forprosImg}
+                  className="h-full w-full"
+                >
+                  <source src={forprosVideo} type="video/mp4" />
+                  Din webbläsare stödjer inte videoformatet.
+                </video>
+              </div>
             </div>
           </SectionContent>
         </Section>
 
         <Section
-          roundedBottom="9xl"
-          roundedTop="9xl"
+          roundedTop="8xl"
+          roundedBottom="8xl"
           bgColor="lightGray"
-          className="py-12 md:py-20 lg:py-24"
+          className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-16 lg:mx-6 lg:py-20"
         >
-          <SectionContent heading="Fotograf i Göteborg och Kungälv">
+          <SectionContent>
+            <div className="mb-8 text-center">
+              <h2 className="text-3xl font-semibold tracking-tight text-textPrimary md:text-4xl">
+                Fotograf i Göteborg och Kungälv
+              </h2>
+            </div>
             <div className="mx-auto max-w-4xl text-center">
               <p className="mb-5 text-lg leading-relaxed text-textSecondary dark:text-gray-300">
                 Jag utgår från Kungälv och arbetar i Göteborg och närliggande
@@ -286,12 +322,20 @@ export default function Home() {
         </Section>
 
         <Section
-          roundedTop="9xl"
+          roundedTop="10xl"
+          roundedBottom="10xl"
           bgColor="beige"
           id="gallery"
-          className="py-12 md:py-20 lg:py-24"
+          className="mx-3 overflow-hidden py-14 sm:mx-4 md:mx-5 md:py-22 lg:mx-6 lg:py-28"
         >
-          <SectionContent heading="Galleri Highlights">
+          <SectionContent>
+            <div className="mb-8 max-w-2xl">
+              <div className="max-w-2xl">
+                <h2 className="text-3xl font-semibold tracking-tight text-textPrimary md:text-4xl">
+                  Galleri Highlights
+                </h2>
+              </div>
+            </div>
             <div
               ref={carouselRef}
               className="-mt-3 flex max-h-[80vh] min-h-[300px] w-full flex-col sm:min-h-[400px] md:min-h-[500px]"
@@ -314,7 +358,7 @@ export default function Home() {
         <Section
           roundedTop="10xl"
           bgColor="offWhite"
-          className="py-16 md:py-24 lg:py-28"
+          className="mx-3 overflow-hidden py-16 sm:mx-4 md:mx-5 md:py-24 lg:mx-6 lg:py-32"
         >
           <SectionContent>
             <CTASection
