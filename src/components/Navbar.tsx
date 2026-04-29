@@ -25,12 +25,16 @@ const Navbar = () => {
   ]
 
   const linkClasses =
-    'text-textPrimary hover:text-highlight font-medium transition-colors'
+    'font-medium tracking-[0.01em] text-textPrimary/88 transition-colors hover:text-textPrimary'
 
   return (
     <header
       className={`w-full fixed top-0 left-0 right-0 transition-all duration-300 z-50 
-        ${isScrolled ? 'bg-white shadow-md' : 'bg-white bg-opacity-5 backdrop-blur-lg'}`}
+        ${
+          isScrolled
+            ? 'border-b border-black/5 bg-[rgba(249,248,245,0.94)] shadow-[0_14px_40px_-30px_rgba(31,41,55,0.45)] backdrop-blur-xl'
+            : 'bg-[rgba(255,255,255,0.16)] backdrop-blur-xl'
+        }`}
     >
       <nav className="flex items-center justify-between py-4 px-6 w-full">
         <div className="flex items-center space-x-2">
@@ -38,9 +42,9 @@ const Navbar = () => {
             <img
               src={logo}
               alt="Svendsén Photography logo"
-              className="w-10 h-10 object-cover rounded-full"
+              className="w-10 h-10 object-cover rounded-full ring-1 ring-black/5"
             />
-            <span className="text-lg font-bold text-textPrimary hover:text-highlight">
+            <span className="text-lg font-bold tracking-[0.02em] text-textPrimary transition-colors hover:text-textPrimary/80">
               Svendsén Photography
             </span>
           </a>
@@ -51,7 +55,7 @@ const Navbar = () => {
               key={to}
               to={to}
               className={({ isActive }) =>
-                `${linkClasses} ${isActive ? 'text-highlight' : ''}`
+                `${linkClasses} ${isActive ? 'text-textPrimary underline decoration-1 underline-offset-[10px]' : ''}`
               }
             >
               {label}
@@ -83,7 +87,7 @@ const Navbar = () => {
       </nav>
       {isMenuOpen && (
         <nav
-          className="mt-4 md:hidden bg-white bg-opacity-90 shadow-md p-4"
+          className="mt-4 border-t border-black/5 bg-[rgba(249,248,245,0.97)] p-4 shadow-[0_18px_40px_-30px_rgba(31,41,55,0.45)] backdrop-blur-xl md:hidden"
           aria-label="Mobile main navigation"
         >
           <ul className="flex flex-col space-y-2">

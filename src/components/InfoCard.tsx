@@ -25,7 +25,7 @@ export const InfoCard: React.FC<InfoCardProps> = ({
   return (
     <div
       className={cn(
-        'rounded-3xl bg-white/90 p-6 shadow-sm',
+        'rounded-[1.75rem] border border-black/5 bg-white/92 p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.28)] backdrop-blur-sm md:rounded-[2rem]',
         centered && 'text-center',
         className,
       )}

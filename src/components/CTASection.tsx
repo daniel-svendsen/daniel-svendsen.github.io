@@ -24,7 +24,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
   return (
     <section
       className={cn(
-        'mx-auto max-w-4xl rounded-[2rem] bg-[rgba(238,235,235,0.6)] p-8 text-center md:p-10',
+        'mx-auto max-w-4xl rounded-[1.75rem] border border-black/5 bg-white/70 p-8 text-center shadow-[0_24px_60px_-36px_rgba(31,41,55,0.35)] backdrop-blur-sm md:rounded-[2.5rem] md:p-10',
         className,
       )}
     >

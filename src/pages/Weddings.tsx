@@ -101,7 +101,7 @@ export default function WeddingGallery() {
         </header>
 
         <section className="mx-auto mb-12 grid max-w-5xl grid-cols-1 gap-6 md:gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <InfoCard className="p-6 md:p-8">
+          <InfoCard className="bg-white p-6 md:p-8">
             <h2 className="mb-4 text-2xl font-semibold text-textPrimary">
               Passar för er som vill ha
             </h2>
@@ -121,7 +121,7 @@ export default function WeddingGallery() {
                 key={item.title}
                 title={item.title}
                 description={item.description}
-                className="p-5"
+                className="bg-white p-5"
                 titleClassName="mb-2 text-lg"
                 descriptionClassName="text-sm"
               />
@@ -152,7 +152,7 @@ export default function WeddingGallery() {
         </section>
 
         <CTASection
-          className="mt-14"
+          className="mt-14 bg-white/82"
           title="Vill ni boka bröllopsfotografering?"
           description="Hör av er och berätta lite om er dag, ert upplägg och vad ni vill ha hjälp med, så återkommer jag med ett förslag som passar er och den känsla ni vill bära med er från dagen."
           actions={[

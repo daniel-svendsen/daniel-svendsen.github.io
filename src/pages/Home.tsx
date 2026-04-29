@@ -188,7 +188,7 @@ export default function Home() {
                   <InfoCard
                     key={item.title}
                     centered
-                    className="dark:bg-gray-800"
+                    className="dark:bg-gray-800/90"
                   >
                     <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[rgba(238,235,235,0.7)]">
                       <Icon className="h-6 w-6 text-textPrimary" />
@@ -221,7 +221,7 @@ export default function Home() {
                   <InfoCard
                     key={step.title}
                     centered
-                    className="bg-white/80 dark:bg-gray-800"
+                    className="dark:bg-gray-800/90"
                   >
                     <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white">
                       <Icon className="h-6 w-6 text-textPrimary" />
@@ -263,7 +263,7 @@ export default function Home() {
         <Section
           roundedBottom="9xl"
           roundedTop="9xl"
-          bgColor="beige"
+          bgColor="lightGray"
           className="py-12 md:py-20 lg:py-24"
         >
           <SectionContent heading="Fotograf i Göteborg och Kungälv">
