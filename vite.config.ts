@@ -16,8 +16,8 @@ export default defineConfig({
         '/portraits',
         '/faq',
         '/contact',
-        '/work',
         '/webservices',
+        '/privacy',
       ],
       generateRobotsTxt: true,
     }),
@@ -28,6 +28,9 @@ export default defineConfig({
     emptyOutDir: true,
     sourcemap: true,
     cssCodeSplit: true,
+  },
+  ssr: {
+    noExternal: ['react-helmet-async'],
   },
   resolve: {
     // Använder path.resolve, vilket är standard för Vite/TS-projekt

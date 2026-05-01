@@ -7,7 +7,9 @@
     "dev": "npm-run-all --parallel dev:frontend dev:backend",
     "dev:frontend": "vite",
     "dev:backend": "npx wrangler dev src/admin/worker/worker.ts --port 8787",
-    "build": "vite build",
+    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs",
+    "build:client": "vite build",
+    "build:server": "vite build --ssr src/entry-server.tsx --outDir dist-server",
     "deploy:worker": "npx wrangler deploy --name gallery-worker src/admin/worker/worker.ts"
   },
   "dependencies": {

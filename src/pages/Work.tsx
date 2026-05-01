@@ -109,6 +109,7 @@ const Work: React.FC = () => {
         url="https://www.svendsenphotography.com/work"
         image={absoluteLogoUrl}
         jsonLd={pageJsonLd}
+        noIndex
       />
       <PageLayout
         header={

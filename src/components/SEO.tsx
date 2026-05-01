@@ -9,6 +9,7 @@ interface SEOProps {
   keywords?: string
   jsonLd?: Record<string, any>
   ogType?: string
+  noIndex?: boolean
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -19,10 +20,13 @@ const SEO: React.FC<SEOProps> = ({
   keywords,
   jsonLd,
   ogType = 'website',
+  noIndex = false,
 }) => (
   <Helmet>
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    {noIndex && <meta name="googlebot" content="noindex, nofollow" />}
     {keywords && <meta name="keywords" content={keywords} />}
     <link rel="canonical" href={url} />
 
