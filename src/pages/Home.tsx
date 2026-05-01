@@ -136,10 +136,10 @@ export default function Home() {
     <HelmetProvider>
       <SEO
         title="Fotograf i Kungälv & Göteborg - Svendsén Photography"
-        description="Svendsén Photography erbjuder professionell fotografering inom bröllop, porträtt, bilfotografering och företag i Kungälv och Göteborg. Boka din fotografering idag!"
+        description="Svendsén Photography erbjuder professionell fotografering inom bröllop, porträtt, familj, bilfotografering och företag i Kungälv och Göteborg. Boka din fotografering idag!"
         url="https://www.svendsenphotography.com"
         image={absoluteLogoUrl}
-        keywords="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, bilfotograf, företagsfotograf, filmning, webbutveckling"
+        keywords="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, familjefotograf, familjefoto, bilfotograf, företagsfotograf, filmning, webbutveckling"
         jsonLd={homeJsonLd}
       />
       <div className="bg-[#f7f5f2] dark:bg-gray-900">
@@ -157,7 +157,7 @@ export default function Home() {
             </h2>
             <p className="mx-auto max-w-2xl font-poiret text-lg leading-relaxed tracking-[0.04em] text-muted-foreground dark:text-gray-300">
               Jag är en fotograf baserad i Kungälv och Göteborg, specialiserad
-              på bröllops-, porträtt- och företagsfotografering samt
+              på bröllops-, porträtt-, familje- och företagsfotografering samt
               webbtjänster.
             </p>
           </SectionContent>

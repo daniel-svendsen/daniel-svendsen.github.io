@@ -84,7 +84,7 @@ export default function HeroSection() {
         </title>
         <meta
           name="description"
-          content="Välkommen till Svendsén Photography! Din kreativa partner för bröllop, porträtt, företag och webb. Stilren och professionell fotografering."
+          content="Välkommen till Svendsén Photography! Din kreativa partner för bröllop, porträtt, familj, företag och webb. Stilren och professionell fotografering."
         />
       </Helmet>
 

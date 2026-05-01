@@ -15,7 +15,7 @@ export default function FAQ() {
     {
       question: 'Vad ingår i porträttfotograferingen?',
       answer:
-        'Grundpaketet för porträtt är 30 minuter och innehåller 5 redigerade bilder. Det passar bra för exempelvis LinkedIn, CV, sociala medier och personliga porträtt.',
+        'Grundpaketet för porträtt är 30 minuter och innehåller 5 redigerade bilder. Det passar bra för exempelvis LinkedIn, CV, sociala medier, personliga porträtt och mindre familjefotograferingar.',
     },
     {
       question: 'Hur lång leveranstid är det på porträttbilder?',
@@ -78,7 +78,7 @@ export default function FAQ() {
         description="Har du frågor om fotografering, priser och bokning? Här hittar du svar på vanliga frågor om våra tjänster i Göteborg och Kungälv."
         url="https://www.svendsenphotography.com/faq"
         image={absoluteLogoUrl}
-        keywords="fotograf FAQ, fotografering frågor, bröllopsfotograf pris, hur bokar man en fotograf, fotograf göteborg kungälv"
+        keywords="fotograf FAQ, fotografering frågor, familjefotograf, bröllopsfotograf pris, hur bokar man en fotograf, fotograf göteborg kungälv"
         jsonLd={faqJsonLd}
       />
 

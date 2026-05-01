@@ -10,6 +10,7 @@ import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 const portraitUseCases = [
   'Profilbilder för LinkedIn, CV och personligt varumärke',
   'Porträtt för kreatörer, egenföretagare och sociala medier',
+  'Familjebilder och generationsporträtt med naturlig känsla',
   'Personliga porträtt med naturlig och avslappnad känsla',
   'Företagsporträtt för webbplats, marknadsföring och presentationer',
 ]
@@ -36,7 +37,7 @@ const portraitDetails = [
   {
     title: 'Grundpaket',
     description:
-      'Porträttfotografering från 1200 kr. Grundpaketet är 30 minuter och passar dig som vill ha ett enkelt och genomtänkt upplägg.',
+      'Porträtt- och familjefotografering från 1200 kr. Grundpaketet är 30 minuter och passar dig som vill ha ett enkelt och genomtänkt upplägg.',
   },
   {
     title: 'Det här ingår',
@@ -59,7 +60,7 @@ const portraitFaqs = [
   {
     question: 'Vad ingår i en porträttfotografering?',
     answer:
-      'Grundpaketet är 30 minuter och innehåller 5 redigerade bilder. Det passar bra för exempelvis LinkedIn, CV, sociala medier och personliga porträtt.',
+      'Grundpaketet är 30 minuter och innehåller 5 redigerade bilder. Det passar bra för exempelvis LinkedIn, CV, sociala medier, personliga porträtt och mindre familjefotograferingar.',
   },
   {
     question: 'Hur lång tid tar en porträttfotografering?',
@@ -112,7 +113,7 @@ export default function Portraits() {
     name: 'Porträttfotografering i Göteborg och Kungälv',
     serviceType: 'Portrait photography',
     description:
-      'Professionell porträttfotografering i Göteborg och Kungälv för privatpersoner, kreatörer och företag.',
+      'Professionell porträtt- och familjefotografering i Göteborg och Kungälv för privatpersoner, kreatörer och företag.',
     url: 'https://www.svendsenphotography.com/portraits',
     provider: {
       '@type': 'LocalBusiness',
@@ -128,8 +129,8 @@ export default function Portraits() {
   return (
     <>
       <SEO
-        title="Porträttfotograf i Göteborg & Kungälv | Naturliga porträtt | Svendsen Photography"
-        description="Söker du en porträttfotograf i Göteborg eller Kungälv? Svendsen Photography skapar naturliga och professionella porträtt för privatpersoner, kreatörer och företag."
+        title="Porträtt- & familjefotograf i Göteborg & Kungälv | Naturliga porträtt | Svendsen Photography"
+        description="Söker du en porträtt- eller familjefotograf i Göteborg eller Kungälv? Svendsen Photography skapar naturliga och professionella porträtt och familjebilder för privatpersoner, kreatörer och företag."
         url="https://www.svendsenphotography.com/portraits"
         image={absoluteLogoUrl}
         jsonLd={portraitsJsonLd}
@@ -145,9 +146,9 @@ export default function Portraits() {
               Naturliga porträtt med närvaro, värme och ett genomtänkt uttryck
             </h1>
             <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
-              Porträttfotografering i Göteborg och Kungälv för dig som vill ha
-              personliga och professionella bilder som känns levande, trygga och
-              tidlösa.
+              Porträtt- och familjefotografering i Göteborg och Kungälv för dig
+              som vill ha personliga och professionella bilder som känns levande,
+              trygga och tidlösa.
             </p>
           </div>
 
@@ -217,9 +218,9 @@ export default function Portraits() {
             </h2>
             <p className="mb-4 text-base leading-relaxed text-textSecondary">
               Oavsett om du behöver nya profilbilder, porträtt till ditt
-              personliga varumärke eller bilder för sociala medier anpassar jag
-              fotograferingen efter hur du vill uppfattas och hur bilderna ska
-              användas.
+              personliga varumärke, familjebilder eller bilder för sociala medier
+              anpassar jag fotograferingen efter hur du vill uppfattas och hur
+              bilderna ska användas.
             </p>
             <p className="text-base leading-relaxed text-textSecondary">
               Målet är att skapa en lugn och avslappnad upplevelse där du känner

@@ -14,6 +14,7 @@ export default function Contact() {
 
   const services = [
     'Utefotografering',
+    'Familjefotografering',
     'Studiofoto',
     'Bröllop',
     'Företagsporträtt',
@@ -101,10 +102,10 @@ export default function Contact() {
     <HelmetProvider>
       <SEO
         title="Kontakt | Fotograf & Webb | Göteborg & Kungälv - Svendsén Photography"
-        description="Kontakta Svendsén Photography för bröllopsfotografering, porträtt, företagsfoto, eventfoto eller webbutveckling i Göteborg och Kungälv. Skicka din förfrågan!"
+        description="Kontakta Svendsén Photography för bröllopsfotografering, porträtt, familjefoto, företagsfoto, eventfoto eller webbutveckling i Göteborg och Kungälv. Skicka din förfrågan!"
         url="https://www.svendsenphotography.com/contact"
         image={absoluteLogoUrl}
-        keywords="kontakt fotograf, fotograf göteborg, fotograf kungälv, webbutvecklare kungälv, boka fotograf, offert fotografering, kontakta webbyrå"
+        keywords="kontakt fotograf, familjefotograf göteborg, fotograf göteborg, fotograf kungälv, webbutvecklare kungälv, boka fotograf, offert fotografering, kontakta webbyrå"
         jsonLd={contactJsonLd}
       />
 

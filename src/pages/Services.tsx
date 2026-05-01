@@ -26,11 +26,11 @@ const pageHeroImage =
 
 const quickLinks = [
   {
-    title: 'Porträtt',
+    title: 'Porträtt & Familj',
     description:
-      'För dig som vill ha personliga bilder till CV, LinkedIn, sociala medier eller eget varumärke.',
+      'För dig som vill ha personliga porträtt, familjebilder eller naturliga bilder till CV, LinkedIn och sociala medier.',
     to: '/portraits',
-    buttonText: 'Se porträtt',
+    buttonText: 'Se porträtt & familj',
   },
   {
     title: 'Bröllop',
@@ -78,7 +78,7 @@ export default function Services() {
     '@type': 'Photographer',
     name: 'Fotograf i Göteborg och Kungälv - Svendsen Photography',
     description:
-      'Professionell fotograf i Göteborg och Kungälv för bröllop, porträtt och företag med en personlig och naturlig bildstil.',
+      'Professionell fotograf i Göteborg och Kungälv för bröllop, porträtt, familj och företag med en personlig och naturlig bildstil.',
     image: pageHeroImage,
     address: {
       '@type': 'PostalAddress',
@@ -151,8 +151,8 @@ export default function Services() {
   return (
     <HelmetProvider>
       <SEO
-        title="Fotograf i Göteborg & Kungälv | Bröllop, porträtt och företag | Svendsen Photography"
-        description="Svendsen Photography erbjuder professionell fotografering i Göteborg och Kungälv inom bröllop, porträtt och företag. Utforska tjänsterna och hitta rätt fotografering för dig."
+        title="Fotograf i Göteborg & Kungälv | Bröllop, porträtt, familj och företag | Svendsen Photography"
+        description="Svendsen Photography erbjuder professionell fotografering i Göteborg och Kungälv inom bröllop, porträtt, familj och företag. Utforska tjänsterna och hitta rätt fotografering för dig."
         url="https://www.svendsenphotography.com/services"
         jsonLd={photographyPageJsonLd}
         image={absoluteLogoUrl}
@@ -175,7 +175,7 @@ export default function Services() {
                 </h1>
                 <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
                   Jag erbjuder professionell fotografering i Göteborg och
-                  Kungälv för bröllop, porträtt och företag. Här hittar du
+                  Kungälv för bröllop, porträtt, familj och företag. Här hittar du
                   tjänster för dig som vill ha bilder som känns levande, trygga
                   och genomtänkta.
                 </p>
