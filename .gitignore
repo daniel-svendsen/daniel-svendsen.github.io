@@ -18,6 +18,7 @@ out/
 build/
 !docs/
 dist
+dist-server/
 
 # Local environment files
 *.env
@@ -109,3 +110,6 @@ backend_config_analysis.json
 .env.production
 .dev.vars
 .wrangler
+AGENTS.md
+admin_analysis.json
+admin_content.txt
