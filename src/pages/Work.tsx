@@ -122,9 +122,10 @@ const Work: React.FC = () => {
         main={
           <main className="pb-12">
             <Section
-              shape="organicSquircle"
+              shape="workPanel"
               bgColor="offWhite"
-              className="my-8 md:my-12 w-full lg:mx-auto max-w-none lg:max-w-7xl xl:max-w-screen-2xl"
+              rounded="9xl"
+              className="my-8 mx-3 w-auto overflow-hidden shadow-[0_18px_50px_-30px_rgba(31,41,55,0.28)] sm:mx-4 md:my-12 md:mx-5 lg:mx-auto lg:max-w-7xl xl:max-w-screen-2xl"
             >
               <SectionContent>{renderTabContent()}</SectionContent>
             </Section>

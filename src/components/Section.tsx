@@ -48,6 +48,7 @@ const sectionVariantsConfig = cva('relative', {
     },
     shape: {
       default: 'py-12 md:py-20 lg:py-24',
+      workPanel: 'py-12 md:py-16 lg:py-20',
     },
     rounded: {
       none: '',
