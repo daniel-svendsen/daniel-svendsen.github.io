@@ -421,6 +421,18 @@
   "sv": "RESTful" 
 },
   "icon": ""
+},
+{
+  "id": 32,
+  "category": { 
+    "en": "Experienced Frameworks/Tools", 
+    "sv": "Erfarenhet av Ramverk/Verktyg"
+  },
+  "tool": { 
+    "en": "PowerShell", 
+  "sv": "PowerShell" 
+},
+  "icon": ""
 }
   ],
   "experience": [
