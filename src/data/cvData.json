@@ -397,6 +397,30 @@
   "sv": "Cloudflare Workers & Wrangler (TypeScript)" 
 },
   "icon": ""
+},
+{
+  "id": 30,
+  "category": { 
+    "en": "Familiar Frameworks/Tools",
+    "sv": "Kännedom om Ramverk/Verktyg"
+  },
+  "tool": { 
+    "en": "Python", 
+  "sv": "Python" 
+},
+  "icon": ""
+},
+{
+  "id": 31,
+  "category": { 
+    "en": "Familiar Frameworks/Tools",
+    "sv": "Kännedom om Ramverk/Verktyg"
+  },
+  "tool": { 
+    "en": "RESTful", 
+  "sv": "RESTful" 
+},
+  "icon": ""
 }
   ],
   "experience": [
