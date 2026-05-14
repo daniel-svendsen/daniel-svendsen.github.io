@@ -1,0 +1,37 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+.dev.vars
+backend/env.properties
+
+# Dependencies
+node_modules/
+backend/.mvn/
+
+# Build outputs and caches
+dist/
+dist-server/
+build/
+out/
+coverage/
+.cache/
+.wrangler/
+src/admin/worker/.wrangler/
+backend/target/
+backend/.gradle/
+
+# Logs and temporary files
+logs/
+*.log
+*.tmp
+*.bak
+*.swp
+*.pid
+*.pid.lock
+
+# Editor/OS noise
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

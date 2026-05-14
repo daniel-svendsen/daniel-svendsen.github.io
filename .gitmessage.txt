@@ -1,0 +1,6 @@
+Short imperative subject
+
+- What changed:
+- Why:
+- Risk/impact:
+- Tests/checks:
