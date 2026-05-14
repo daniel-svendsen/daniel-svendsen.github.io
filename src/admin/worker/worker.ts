@@ -54,7 +54,95 @@ const authMiddleware = async (request: Request, env: Env) => {
 }
 
 const FOLDER_PLACEHOLDER = '.folder-placeholder'
+const IMAGE_CACHE_SECONDS = 60 * 60 * 24 * 30
+const R2_DELETE_BATCH_SIZE = 1000
 const apiRouter = Router()
+const imageCache = (caches as CacheStorage & { default: Cache }).default
+
+const jsonResponse = (
+  body: unknown,
+  init: ResponseInit = {},
+  cacheControl?: string,
+) => {
+  const headers = new Headers(init.headers)
+  headers.set('Content-Type', 'application/json')
+  if (cacheControl) {
+    headers.set('Cache-Control', cacheControl)
+  }
+  return new Response(JSON.stringify(body), { ...init, headers })
+}
+
+const listAllObjects = async (
+  bucket: R2Bucket,
+  options: R2ListOptions,
+): Promise<R2Object[]> => {
+  const objects: R2Object[] = []
+  let cursor: string | undefined
+
+  do {
+    const page = await bucket.list({ ...options, cursor })
+    objects.push(...page.objects)
+    cursor = page.truncated ? page.cursor : undefined
+  } while (cursor)
+
+  return objects
+}
+
+const listAllObjectsAndPrefixes = async (
+  bucket: R2Bucket,
+  options: R2ListOptions,
+): Promise<{ objects: R2Object[]; delimitedPrefixes: string[] }> => {
+  const objects: R2Object[] = []
+  const delimitedPrefixes = new Set<string>()
+  let cursor: string | undefined
+
+  do {
+    const page = await bucket.list({ ...options, cursor })
+    objects.push(...page.objects)
+    page.delimitedPrefixes.forEach((prefix) => delimitedPrefixes.add(prefix))
+    cursor = page.truncated ? page.cursor : undefined
+  } while (cursor)
+
+  return { objects, delimitedPrefixes: [...delimitedPrefixes] }
+}
+
+const deleteKeys = async (bucket: R2Bucket, keys: string[]) => {
+  for (let i = 0; i < keys.length; i += R2_DELETE_BATCH_SIZE) {
+    await bucket.delete(keys.slice(i, i + R2_DELETE_BATCH_SIZE))
+  }
+}
+
+const cachedImageRequest = (request: Request, key: string) => {
+  const url = new URL(request.url)
+  url.pathname = `/api/image/${key}`
+  url.search = ''
+  return new Request(url.toString(), { method: 'GET' })
+}
+
+const deleteImageCache = async (
+  request: Request,
+  key: string,
+  ctx?: ExecutionContext,
+) => {
+  const cacheRequest = cachedImageRequest(request, key)
+  const deletePromise = imageCache.delete(cacheRequest)
+  if (ctx) {
+    ctx.waitUntil(deletePromise)
+  } else {
+    await deletePromise
+  }
+}
+
+const deleteImageCaches = (
+  request: Request,
+  keys: string[],
+  ctx: ExecutionContext,
+) => {
+  const deletePromise = Promise.all(
+    keys.map((key) => imageCache.delete(cachedImageRequest(request, key))),
+  )
+  ctx.waitUntil(deletePromise)
+}
 
 apiRouter.post(
   /^\/api\/login$/,
@@ -109,11 +197,11 @@ apiRouter.get(
     const authError = await authMiddleware(request, env)
     if (authError) return authError
     try {
-      const listResult = await env.PICTURES.list({ delimiter: '/' })
-      const galleries = listResult.delimitedPrefixes
-      return new Response(JSON.stringify(galleries), {
-        headers: { 'Content-Type': 'application/json' },
+      const listResult = await listAllObjectsAndPrefixes(env.PICTURES, {
+        delimiter: '/',
       })
+      const galleries = listResult.delimitedPrefixes
+      return jsonResponse(galleries, {}, 'private, max-age=30')
     } catch (e) {
       return new Response(
         JSON.stringify({ error: 'Failed to list galleries.' }),
@@ -125,11 +213,20 @@ apiRouter.get(
 
 apiRouter.put(
   /^\/api\/upload\/(?<key>.+)$/,
-  async (request: Request, params: { key: string }, env: Env) => {
+  async (
+    request: Request,
+    params: { key: string },
+    env: Env,
+    ctx: ExecutionContext,
+  ) => {
     const authError = await authMiddleware(request, env)
     if (authError) return authError
     try {
-      await env.PICTURES.put(params.key, request.body)
+      const contentType = request.headers.get('Content-Type') || undefined
+      await env.PICTURES.put(params.key, request.body, {
+        httpMetadata: contentType ? { contentType } : undefined,
+      })
+      await deleteImageCache(request, params.key, ctx)
       return new Response(
         JSON.stringify({ success: `Uploaded ${params.key}!` }),
         {
@@ -147,15 +244,21 @@ apiRouter.put(
 
 apiRouter.delete(
   /^\/api\/gallery\/(?<galleryName>[^/]+)\/images$/,
-  async (request: Request, params: { galleryName: string }, env: Env) => {
+  async (
+    request: Request,
+    params: { galleryName: string },
+    env: Env,
+    ctx: ExecutionContext,
+  ) => {
     const authError = await authMiddleware(request, env)
     if (authError) return authError
     try {
       const prefix = `${params.galleryName}/`
-      const list = await env.PICTURES.list({ prefix })
-      if (list.objects && list.objects.length > 0) {
-        const keysToDelete = list.objects.map((obj) => obj.key)
-        await env.PICTURES.delete(keysToDelete)
+      const objects = await listAllObjects(env.PICTURES, { prefix })
+      if (objects.length > 0) {
+        const keysToDelete = objects.map((obj) => obj.key)
+        await deleteKeys(env.PICTURES, keysToDelete)
+        deleteImageCaches(request, keysToDelete, ctx)
       }
       await env.LIKES_V2.delete(params.galleryName)
       return new Response(
@@ -198,7 +301,12 @@ apiRouter.post(
 
 apiRouter.delete(
   /^\/api\/folder\/(?<prefix>.+)$/,
-  async (request: Request, params: { prefix: string }, env: Env) => {
+  async (
+    request: Request,
+    params: { prefix: string },
+    env: Env,
+    ctx: ExecutionContext,
+  ) => {
     const authError = await authMiddleware(request, env)
     if (authError) return authError
     try {
@@ -208,10 +316,11 @@ apiRouter.delete(
           status: 400,
         })
       }
-      const list = await env.PICTURES.list({ prefix })
-      if (list.objects && list.objects.length > 0) {
-        const keysToDelete = list.objects.map((obj) => obj.key)
-        await env.PICTURES.delete(keysToDelete)
+      const objects = await listAllObjects(env.PICTURES, { prefix })
+      if (objects.length > 0) {
+        const keysToDelete = objects.map((obj) => obj.key)
+        await deleteKeys(env.PICTURES, keysToDelete)
+        deleteImageCaches(request, keysToDelete, ctx)
       }
       return new Response(null, { status: 204 })
     } catch (e) {
@@ -227,17 +336,23 @@ apiRouter.delete(
 
 apiRouter.delete(
   /^\/api\/gallery\/(?<galleryName>.+)$/,
-  async (request: Request, params: { galleryName: string }, env: Env) => {
+  async (
+    request: Request,
+    params: { galleryName: string },
+    env: Env,
+    ctx: ExecutionContext,
+  ) => {
     const authError = await authMiddleware(request, env)
     if (authError) return authError
     try {
       const galleryId = params.galleryName.replace(/\/$/, '')
       const prefix = `${galleryId}/`
 
-      const list = await env.PICTURES.list({ prefix })
-      if (list.objects && list.objects.length > 0) {
-        const keysToDelete = list.objects.map((obj) => obj.key)
-        await env.PICTURES.delete(keysToDelete)
+      const objects = await listAllObjects(env.PICTURES, { prefix })
+      if (objects.length > 0) {
+        const keysToDelete = objects.map((obj) => obj.key)
+        await deleteKeys(env.PICTURES, keysToDelete)
+        deleteImageCaches(request, keysToDelete, ctx)
       }
       await env.LIKES_V2.delete(galleryId)
 
@@ -256,11 +371,17 @@ apiRouter.delete(
 
 apiRouter.delete(
   /^\/api\/image\/(?<key>.+)$/,
-  async (request: Request, params: { key: string }, env: Env) => {
+  async (
+    request: Request,
+    params: { key: string },
+    env: Env,
+    ctx: ExecutionContext,
+  ) => {
     const authError = await authMiddleware(request, env)
     if (authError) return authError
     try {
       await env.PICTURES.delete(params.key)
+      await deleteImageCache(request, params.key, ctx)
       return new Response(JSON.stringify({ success: `Deleted ${params.key}!` }))
     } catch (e) {
       return new Response(
@@ -273,7 +394,7 @@ apiRouter.delete(
 
 apiRouter.post(
   /^\/api\/rename-gallery$/,
-  async (request: Request, params: any, env: Env) => {
+  async (request: Request, params: any, env: Env, ctx: ExecutionContext) => {
     const authError = await authMiddleware(request, env)
     if (authError) return authError
     try {
@@ -297,9 +418,9 @@ apiRouter.post(
 
       const oldPrefix = `${oldGalleryName}/`
       const newPrefix = `${newGalleryName}/`
-      const list = await env.PICTURES.list({ prefix: oldPrefix })
-      if (list.objects && list.objects.length > 0) {
-        for (const obj of list.objects) {
+      const objects = await listAllObjects(env.PICTURES, { prefix: oldPrefix })
+      if (objects.length > 0) {
+        for (const obj of objects) {
           const newKey = obj.key.replace(oldPrefix, newPrefix)
           const object = await env.PICTURES.get(obj.key)
           if (object) {
@@ -308,6 +429,7 @@ apiRouter.post(
               customMetadata: object.customMetadata,
             })
             await env.PICTURES.delete(obj.key)
+            deleteImageCaches(request, [obj.key, newKey], ctx)
           }
         }
       }
@@ -389,8 +511,19 @@ apiRouter.get(
 
 apiRouter.get(
   /^\/api\/image\/(?<key>.+)/,
-  async (request: Request, params: { key: string }, env: Env) => {
+  async (
+    request: Request,
+    params: { key: string },
+    env: Env,
+    ctx: ExecutionContext,
+  ) => {
     try {
+      const cacheRequest = cachedImageRequest(request, params.key)
+      const cachedResponse = await imageCache.match(cacheRequest)
+      if (cachedResponse) {
+        return new Response(cachedResponse.body, cachedResponse)
+      }
+
       const object = await env.PICTURES.get(params.key)
 
       if (object === null) {
@@ -400,6 +533,10 @@ apiRouter.get(
       const headers = new Headers()
       object.writeHttpMetadata(headers)
       headers.set('etag', object.httpEtag)
+      headers.set(
+        'Cache-Control',
+        `public, max-age=${IMAGE_CACHE_SECONDS}, s-maxage=${IMAGE_CACHE_SECONDS}, immutable`,
+      )
 
       const fileName = params.key.split('/').pop() || 'image'
       headers.set('Content-Disposition', `attachment; filename="${fileName}"`)
@@ -409,7 +546,9 @@ apiRouter.get(
         headers.set('Content-Type', defaultContentType)
       }
 
-      return new Response(object.body, { headers })
+      const response = new Response(object.body, { headers })
+      ctx.waitUntil(imageCache.put(cacheRequest, response.clone()))
+      return response
     } catch (e) {
       return new Response(JSON.stringify({ error: 'Failed to get image.' }), {
         status: 500,
@@ -419,20 +558,58 @@ apiRouter.get(
 )
 
 apiRouter.get(
+  /^\/api\/gallery-detail\/(?<prefix>.+)$/,
+  async (request: Request, params: { prefix: string }, env: Env) => {
+    const authError = await authMiddleware(request, env)
+    if (authError) return authError
+    try {
+      const prefix = params.prefix
+      const galleryId = prefix.split('/')[0]
+      const [list, likedImagesJson] = await Promise.all([
+        listAllObjectsAndPrefixes(env.PICTURES, { prefix, delimiter: '/' }),
+        env.LIKES_V2.get(galleryId),
+      ])
+
+      const images = list.objects
+        .filter((obj) => !obj.key.endsWith(FOLDER_PLACEHOLDER))
+        .map((obj) => obj.key)
+      const folders = list.delimitedPrefixes
+      const likedImages = likedImagesJson ? JSON.parse(likedImagesJson) : []
+
+      return jsonResponse(
+        { images, folders, likedImages },
+        {},
+        'private, max-age=15, stale-while-revalidate=30',
+      )
+    } catch (e) {
+      return new Response(
+        JSON.stringify({ error: 'Failed to get gallery detail.' }),
+        { status: 500 },
+      )
+    }
+  },
+)
+
+apiRouter.get(
   /^\/api\/gallery-contents\/(?<prefix>.+)$/,
   async (request: Request, params: { prefix: string }, env: Env) => {
     try {
       const prefix = params.prefix
-      const list = await env.PICTURES.list({ prefix, delimiter: '/' })
+      const list = await listAllObjectsAndPrefixes(env.PICTURES, {
+        prefix,
+        delimiter: '/',
+      })
 
       const images = list.objects
         .filter((obj) => !obj.key.endsWith(FOLDER_PLACEHOLDER))
         .map((obj) => obj.key)
       const folders = list.delimitedPrefixes
 
-      return new Response(JSON.stringify({ images, folders }), {
-        headers: { 'Content-Type': 'application/json' },
-      })
+      return jsonResponse(
+        { images, folders },
+        {},
+        'private, max-age=15, stale-while-revalidate=30',
+      )
     } catch (e) {
       return new Response(
         JSON.stringify({ error: 'Failed to get gallery content.' }),
@@ -450,15 +627,17 @@ apiRouter.get(
         ? params.galleryName
         : `${params.galleryName}/`
 
-      const list = await env.PICTURES.list({ prefix })
+      const objects = await listAllObjects(env.PICTURES, { prefix })
 
-      const imageKeys = list.objects
+      const imageKeys = objects
         .filter((obj) => !obj.key.endsWith(FOLDER_PLACEHOLDER))
         .map((obj) => obj.key)
 
-      return new Response(JSON.stringify(imageKeys), {
-        headers: { 'Content-Type': 'application/json' },
-      })
+      return jsonResponse(
+        imageKeys,
+        {},
+        'public, max-age=60, stale-while-revalidate=300',
+      )
     } catch (e) {
       return new Response(
         JSON.stringify({ error: 'Failed to get gallery content.' }),

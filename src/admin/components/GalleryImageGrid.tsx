@@ -34,6 +34,8 @@ export function GalleryImageGrid({
           <motion.img
             src={imageUrl(key)}
             alt={key}
+            loading="lazy"
+            decoding="async"
             onClick={() => onImageClick(index)}
             className="w-full h-full object-cover rounded-lg cursor-pointer"
             layoutId={`gallery-image-${key}`}

@@ -53,6 +53,8 @@ export function AdminImageGrid({
           <img
             src={imageUrl(key)}
             alt={key}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover rounded-lg"
           />
           <div className="absolute inset-0 bg-overlay flex items-center justify-center rounded-lg opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">

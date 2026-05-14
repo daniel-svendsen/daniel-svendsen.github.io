@@ -4,6 +4,7 @@ import { apiUrl } from '@/admin/utils/apiUrl'
 interface GalleryContent {
   images: string[]
   folders: string[]
+  likedImages: string[]
 }
 
 export function useGalleryDetailData(prefix: string | undefined) {
@@ -20,22 +21,18 @@ export function useGalleryDetailData(prefix: string | undefined) {
     setError('')
 
     try {
-      const galleryId = prefix.split('/')[0]
-      const [contentRes, likesRes] = await Promise.all([
-        fetch(apiUrl(`gallery-contents/${prefix}`), { credentials: 'include' }),
-        fetch(apiUrl(`likes/${galleryId}`), { credentials: 'include' }),
-      ])
+      const contentRes = await fetch(apiUrl(`gallery-detail/${prefix}`), {
+        credentials: 'include',
+      })
 
       if (!contentRes.ok)
         throw new Error('Kunde inte ladda galleriets innehåll.')
-      if (!likesRes.ok) throw new Error('Kunde inte ladda gillade bilder.')
 
       const contentData: GalleryContent = await contentRes.json()
-      const likesData = await likesRes.json()
 
       setImages(contentData.images || [])
       setFolders(contentData.folders || [])
-      setLikedImages(likesData)
+      setLikedImages(contentData.likedImages || [])
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message)
