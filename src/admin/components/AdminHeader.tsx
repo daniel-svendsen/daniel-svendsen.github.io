@@ -26,6 +26,16 @@ interface AdminHeaderProps {
   onCreateFolder: () => void
 }
 
+const readableFileNameFromKey = (key: string) => {
+  const fileName = key.split('/').pop() || ''
+
+  try {
+    return decodeURIComponent(fileName)
+  } catch {
+    return fileName
+  }
+}
+
 export function AdminHeader({
   galleryId,
   currentPath,
@@ -47,7 +57,7 @@ export function AdminHeader({
       setTimeout(() => setCopyStatus(''), 3000)
       return
     }
-    const likedFileNames = likedImageKeys.map((key) => key.split('/').pop())
+    const likedFileNames = likedImageKeys.map(readableFileNameFromKey)
     navigator.clipboard.writeText(likedFileNames.join(', '))
     setCopyStatus(`Kopierade ${likedFileNames.length} filnamn!`)
     setTimeout(() => setCopyStatus(''), 3000)
