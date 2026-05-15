@@ -1,14 +1,19 @@
 import { useCallback, useEffect, useState } from 'react'
 import { apiUrl } from '@/admin/utils/apiUrl'
+import {
+  normalizeGalleryImages,
+  type GalleryImage,
+  type GalleryImageResponse,
+} from '@/admin/types/gallery'
 
 interface GalleryContent {
-  images: string[]
+  images: GalleryImageResponse[]
   folders: string[]
   likedImages: string[]
 }
 
 export function useGalleryDetailData(prefix: string | undefined) {
-  const [images, setImages] = useState<string[]>([])
+  const [images, setImages] = useState<GalleryImage[]>([])
   const [folders, setFolders] = useState<string[]>([])
   const [likedImages, setLikedImages] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -30,7 +35,7 @@ export function useGalleryDetailData(prefix: string | undefined) {
 
       const contentData: GalleryContent = await contentRes.json()
 
-      setImages(contentData.images || [])
+      setImages(normalizeGalleryImages(contentData.images))
       setFolders(contentData.folders || [])
       setLikedImages(contentData.likedImages || [])
     } catch (err) {

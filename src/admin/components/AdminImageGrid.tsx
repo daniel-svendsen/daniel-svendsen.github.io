@@ -2,13 +2,14 @@ import React from 'react'
 import { Trash2 } from 'lucide-react'
 import { imageUrl } from '@/admin/utils/apiUrl'
 import { FolderItem } from './FolderItem'
+import type { GalleryImage } from '@/admin/types/gallery'
 
 interface AdminImageGridProps {
-  images: string[]
+  images: GalleryImage[]
   folders: string[]
   isLoading: boolean
   error: string | null
-  onDeleteImage: (imageKey: string) => void
+  onDeleteImage: (image: GalleryImage) => void
   onNavigateToFolder: (path: string) => void
   onClearFolder: (path: string) => void
 }
@@ -49,10 +50,10 @@ export function AdminImageGrid({
         />
       ))}
       {images.map((key) => (
-        <div key={key} className="relative group aspect-square">
+        <div key={key.id} className="relative group aspect-square">
           <img
-            src={imageUrl(key)}
-            alt={key}
+            src={imageUrl(key.previewKey)}
+            alt={key.fileName}
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover rounded-lg"
@@ -61,7 +62,7 @@ export function AdminImageGrid({
             <button
               onClick={() => onDeleteImage(key)}
               className="p-2 bg-destructive text-white rounded-full"
-              aria-label={`Ta bort bild ${key}`}
+              aria-label={`Ta bort bild ${key.fileName}`}
             >
               <Trash2 className="h-5 w-5" />
             </button>

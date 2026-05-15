@@ -9,17 +9,22 @@ import { GalleryModal } from '@/admin/components/GalleryModal'
 import { GalleryImageGrid } from '@/admin/components/GalleryImageGrid'
 import { GalleryHeader } from '@/admin/components/GalleryHeader'
 import { apiUrl } from '@/admin/utils/apiUrl'
+import {
+  normalizeGalleryImages,
+  type GalleryImage,
+  type GalleryImageResponse,
+} from '@/admin/types/gallery'
 
 export default function CustomerGalleryPage() {
   const { galleryId } = useParams<{ galleryId: string }>()
-  const [imageKeys, setImageKeys] = useState<string[]>([])
+  const [images, setImages] = useState<GalleryImage[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
 
   const { likedImages, toggleLike } = useGalleryLikes(galleryId || '')
   const { status, message, downloadAndZip } = useImageDownloader()
   const { currentIndex, openModalAtIndex, closeModal, goToNext, goToPrevious } =
-    useGalleryNavigation(imageKeys.length)
+    useGalleryNavigation(images.length)
 
   useEffect(() => {
     if (!galleryId) return
@@ -28,8 +33,8 @@ export default function CustomerGalleryPage() {
       try {
         const response = await fetch(apiUrl(`gallery/${galleryId}`))
         if (!response.ok) throw new Error('Kunde inte ladda galleriet.')
-        const data = await response.json()
-        setImageKeys(data)
+        const data = (await response.json()) as GalleryImageResponse[]
+        setImages(normalizeGalleryImages(data))
       } catch (err) {
         if (err instanceof Error) setError(err.message)
         else setError('Ett okänt fel inträffade.')
@@ -40,7 +45,7 @@ export default function CustomerGalleryPage() {
     fetchImages()
   }, [galleryId])
 
-  const currentImageKey = currentIndex !== null ? imageKeys[currentIndex] : null
+  const currentImage = currentIndex !== null ? images[currentIndex] : null
 
   return (
     <main className="pt-16 md:pt-20 bg-background text-foreground">
@@ -48,12 +53,12 @@ export default function CustomerGalleryPage() {
         galleryId={galleryId}
         downloadStatus={status}
         downloadMessage={message}
-        onDownloadAll={() => downloadAndZip(imageKeys, galleryId || 'gallery')}
+        onDownloadAll={() => downloadAndZip(images, galleryId || 'gallery')}
       />
       <Section roundedTop="9xl">
         <SectionContent>
           <GalleryImageGrid
-            imageKeys={imageKeys}
+            images={images}
             isLoading={isLoading}
             error={error}
             onImageClick={openModalAtIndex}
@@ -63,12 +68,12 @@ export default function CustomerGalleryPage() {
       <GalleryModal
         isOpen={currentIndex !== null}
         onClose={closeModal}
-        imageKey={currentImageKey}
-        isLiked={!!currentImageKey && likedImages.includes(currentImageKey)}
+        image={currentImage}
+        isLiked={!!currentImage && likedImages.includes(currentImage.originalKey)}
         onLike={toggleLike}
         onNext={goToNext}
         onPrevious={goToPrevious}
-        hasNext={currentIndex !== null && currentIndex < imageKeys.length - 1}
+        hasNext={currentIndex !== null && currentIndex < images.length - 1}
         hasPrevious={currentIndex !== null && currentIndex > 0}
       />
     </main>

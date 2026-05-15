@@ -8,6 +8,7 @@ import { useGalleryDetailData } from '@/admin/hooks/useGalleryDetailData'
 import { useFileUpload } from '@/admin/hooks/useFileUpload'
 import { apiUrl } from '@/admin/utils/apiUrl'
 import { ChevronRight } from 'lucide-react'
+import type { GalleryImage } from '@/admin/types/gallery'
 
 export default function GalleryDetailPage() {
   const { galleryId } = useParams<{ galleryId: string }>()
@@ -34,20 +35,25 @@ export default function GalleryDetailPage() {
     }
   }
 
-  const handleDeleteImage = async (imageKey: string) => {
-    const fileName = imageKey.split('/').pop()
+  const handleDeleteImage = async (image: GalleryImage) => {
+    const fileName = image.fileName
     if (
       !window.confirm(`Är du säker på att du vill ta bort bilden ${fileName}?`)
     ) {
       return
     }
     try {
-      const response = await fetch(apiUrl(`image/${imageKey}`), {
-        method: 'DELETE',
-        credentials: 'include',
-      })
-      if (!response.ok) {
-        throw new Error('Kunde inte ta bort bild.')
+      const keysToDelete = Array.from(
+        new Set([image.originalKey, image.previewKey]),
+      )
+      for (const key of keysToDelete) {
+        const response = await fetch(apiUrl(`image/${key}`), {
+          method: 'DELETE',
+          credentials: 'include',
+        })
+        if (!response.ok) {
+          throw new Error('Kunde inte ta bort bild.')
+        }
       }
       refetchData()
     } catch (err) {

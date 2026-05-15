@@ -54,10 +54,19 @@ const authMiddleware = async (request: Request, env: Env) => {
 }
 
 const FOLDER_PLACEHOLDER = '.folder-placeholder'
+const ORIGINALS_FOLDER = 'originals'
+const PREVIEWS_FOLDER = 'previews'
 const IMAGE_CACHE_SECONDS = 60 * 60 * 24 * 30
 const R2_DELETE_BATCH_SIZE = 1000
 const apiRouter = Router()
 const imageCache = (caches as CacheStorage & { default: Cache }).default
+
+interface GalleryImage {
+  id: string
+  previewKey: string
+  originalKey: string
+  fileName: string
+}
 
 const jsonResponse = (
   body: unknown,
@@ -110,6 +119,146 @@ const deleteKeys = async (bucket: R2Bucket, keys: string[]) => {
   for (let i = 0; i < keys.length; i += R2_DELETE_BATCH_SIZE) {
     await bucket.delete(keys.slice(i, i + R2_DELETE_BATCH_SIZE))
   }
+}
+
+const stripExtension = (fileName: string) =>
+  fileName.replace(/\.[^/.]+$/, '')
+
+const isFolderPlaceholder = (key: string) => key.endsWith(FOLDER_PLACEHOLDER)
+
+const systemFolderPrefix = (prefix: string, folder: string) =>
+  `${prefix}${folder}/`
+
+const buildScopedGalleryImages = (
+  objects: R2Object[],
+  prefix: string,
+  directObjects: R2Object[] = [],
+): GalleryImage[] => {
+  const byId = new Map<string, Partial<GalleryImage> & { id: string }>()
+  const originalsPrefix = systemFolderPrefix(prefix, ORIGINALS_FOLDER)
+  const previewsPrefix = systemFolderPrefix(prefix, PREVIEWS_FOLDER)
+
+  const ensureImage = (id: string) => {
+    const existing = byId.get(id)
+    if (existing) return existing
+    const next: Partial<GalleryImage> & { id: string } = { id }
+    byId.set(id, next)
+    return next
+  }
+
+  objects.forEach((obj) => {
+    if (isFolderPlaceholder(obj.key)) return
+
+    if (obj.key.startsWith(originalsPrefix)) {
+      const fileName = obj.key.slice(originalsPrefix.length)
+      if (!fileName || fileName.includes('/')) return
+      const id = `${prefix}${stripExtension(fileName)}`
+      const image = ensureImage(id)
+      image.originalKey = obj.key
+      image.fileName = fileName
+      return
+    }
+
+    if (obj.key.startsWith(previewsPrefix)) {
+      const fileName = obj.key.slice(previewsPrefix.length)
+      if (!fileName || fileName.includes('/')) return
+      const id = `${prefix}${stripExtension(fileName)}`
+      const image = ensureImage(id)
+      image.previewKey = obj.key
+      if (!image.fileName) image.fileName = fileName
+    }
+  })
+
+  directObjects.forEach((obj) => {
+    if (isFolderPlaceholder(obj.key)) return
+    const fileName = obj.key.split('/').pop() || obj.key
+    byId.set(obj.key, {
+      id: obj.key,
+      previewKey: obj.key,
+      originalKey: obj.key,
+      fileName,
+    })
+  })
+
+  return [...byId.values()]
+    .map((image) => ({
+      id: image.id,
+      previewKey: image.previewKey || image.originalKey || image.id,
+      originalKey: image.originalKey || image.previewKey || image.id,
+      fileName:
+        image.fileName ||
+        (image.originalKey || image.previewKey || image.id).split('/').pop() ||
+        'image',
+    }))
+    .sort((a, b) => a.fileName.localeCompare(b.fileName))
+}
+
+const buildRecursiveGalleryImages = (
+  objects: R2Object[],
+  galleryPrefix: string,
+): GalleryImage[] => {
+  const byId = new Map<string, Partial<GalleryImage> & { id: string }>()
+  const directLegacyObjects: R2Object[] = []
+
+  const ensureImage = (id: string) => {
+    const existing = byId.get(id)
+    if (existing) return existing
+    const next: Partial<GalleryImage> & { id: string } = { id }
+    byId.set(id, next)
+    return next
+  }
+
+  objects.forEach((obj) => {
+    if (isFolderPlaceholder(obj.key)) return
+
+    const relativeKey = obj.key.slice(galleryPrefix.length)
+    const systemMatch = relativeKey.match(
+      new RegExp(`(^|/)(${ORIGINALS_FOLDER}|${PREVIEWS_FOLDER})/(.+)$`),
+    )
+
+    if (!systemMatch) {
+      directLegacyObjects.push(obj)
+      return
+    }
+
+    const systemFolder = systemMatch[2]
+    const fileName = systemMatch[3]
+    if (!fileName || fileName.includes('/')) return
+
+    const parentPath = relativeKey.slice(
+      0,
+      relativeKey.length - `${systemFolder}/${fileName}`.length,
+    )
+    const id = `${galleryPrefix}${parentPath}${stripExtension(fileName)}`
+    const image = ensureImage(id)
+
+    if (systemFolder === ORIGINALS_FOLDER) {
+      image.originalKey = obj.key
+      image.fileName = fileName
+    } else {
+      image.previewKey = obj.key
+      if (!image.fileName) image.fileName = fileName
+    }
+  })
+
+  const scopedImages = buildScopedGalleryImages(
+    [],
+    galleryPrefix,
+    directLegacyObjects,
+  )
+  scopedImages.forEach((image) => byId.set(image.id, image))
+
+  return [...byId.values()]
+    .map((image) => ({
+      id: image.id,
+      previewKey: image.previewKey || image.originalKey || image.id,
+      originalKey: image.originalKey || image.previewKey || image.id,
+      fileName:
+        image.fileName ||
+        (image.originalKey || image.previewKey || image.id).split('/').pop() ||
+        'image',
+    }))
+    .sort((a, b) => a.fileName.localeCompare(b.fileName))
 }
 
 const cachedImageRequest = (request: Request, key: string) => {
@@ -436,7 +585,24 @@ apiRouter.post(
 
       const likes = await env.LIKES_V2.get(oldGalleryName)
       if (likes) {
-        await env.LIKES_V2.put(newGalleryName, likes)
+        try {
+          const likedImages = JSON.parse(likes) as unknown
+          if (Array.isArray(likedImages)) {
+            const updatedLikes = likedImages.map((key) =>
+              typeof key === 'string' && key.startsWith(oldPrefix)
+                ? key.replace(oldPrefix, newPrefix)
+                : key,
+            )
+            await env.LIKES_V2.put(
+              newGalleryName,
+              JSON.stringify(updatedLikes),
+            )
+          } else {
+            await env.LIKES_V2.put(newGalleryName, likes)
+          }
+        } catch {
+          await env.LIKES_V2.put(newGalleryName, likes)
+        }
         await env.LIKES_V2.delete(oldGalleryName)
       }
 
@@ -565,15 +731,23 @@ apiRouter.get(
     try {
       const prefix = params.prefix
       const galleryId = prefix.split('/')[0]
-      const [list, likedImagesJson] = await Promise.all([
+      const [list, objects, likedImagesJson] = await Promise.all([
         listAllObjectsAndPrefixes(env.PICTURES, { prefix, delimiter: '/' }),
+        listAllObjects(env.PICTURES, { prefix }),
         env.LIKES_V2.get(galleryId),
       ])
 
-      const images = list.objects
-        .filter((obj) => !obj.key.endsWith(FOLDER_PLACEHOLDER))
-        .map((obj) => obj.key)
-      const folders = list.delimitedPrefixes
+      const directObjects = list.objects.filter((obj) => {
+        if (isFolderPlaceholder(obj.key)) return false
+        const relativeKey = obj.key.slice(prefix.length)
+        return !relativeKey.includes('/')
+      })
+      const images = buildScopedGalleryImages(objects, prefix, directObjects)
+      const folders = list.delimitedPrefixes.filter(
+        (folder) =>
+          folder !== systemFolderPrefix(prefix, ORIGINALS_FOLDER) &&
+          folder !== systemFolderPrefix(prefix, PREVIEWS_FOLDER),
+      )
       const likedImages = likedImagesJson ? JSON.parse(likedImagesJson) : []
 
       return jsonResponse(
@@ -601,9 +775,13 @@ apiRouter.get(
       })
 
       const images = list.objects
-        .filter((obj) => !obj.key.endsWith(FOLDER_PLACEHOLDER))
+        .filter((obj) => !isFolderPlaceholder(obj.key))
         .map((obj) => obj.key)
-      const folders = list.delimitedPrefixes
+      const folders = list.delimitedPrefixes.filter(
+        (folder) =>
+          folder !== systemFolderPrefix(prefix, ORIGINALS_FOLDER) &&
+          folder !== systemFolderPrefix(prefix, PREVIEWS_FOLDER),
+      )
 
       return jsonResponse(
         { images, folders },
@@ -629,12 +807,10 @@ apiRouter.get(
 
       const objects = await listAllObjects(env.PICTURES, { prefix })
 
-      const imageKeys = objects
-        .filter((obj) => !obj.key.endsWith(FOLDER_PLACEHOLDER))
-        .map((obj) => obj.key)
+      const images = buildRecursiveGalleryImages(objects, prefix)
 
       return jsonResponse(
-        imageKeys,
+        images,
         {},
         'public, max-age=60, stale-while-revalidate=300',
       )

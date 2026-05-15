@@ -2,6 +2,7 @@ import { useState } from 'react'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
 import { imageUrl } from '@/admin/utils/apiUrl'
+import type { GalleryImage } from '@/admin/types/gallery'
 
 type DownloadStatus = 'idle' | 'downloading' | 'zipping' | 'error' | 'success'
 
@@ -10,23 +11,23 @@ export function useImageDownloader() {
   const [message, setMessage] = useState('')
   const [progress, setProgress] = useState(0)
 
-  const downloadAndZip = async (imageKeys: string[], zipName: string) => {
-    if (imageKeys.length === 0) return
+  const downloadAndZip = async (images: GalleryImage[], zipName: string) => {
+    if (images.length === 0) return
     setStatus('downloading')
     setMessage('')
     setProgress(0)
 
     const zip = new JSZip()
     try {
-      for (let i = 0; i < imageKeys.length; i++) {
-        const key = imageKeys[i]
-        const fileName = key.split('/').pop() || 'unknown-file'
+      for (let i = 0; i < images.length; i++) {
+        const image = images[i]
+        const fileName = image.fileName || 'unknown-file'
         setMessage(
-          `Laddar ner bild ${i + 1} av ${imageKeys.length}: ${fileName}`,
+          `Laddar ner bild ${i + 1} av ${images.length}: ${fileName}`,
         )
-        setProgress(((i + 1) / imageKeys.length) * 100)
+        setProgress(((i + 1) / images.length) * 100)
 
-        const response = await fetch(imageUrl(key))
+        const response = await fetch(imageUrl(image.originalKey))
         if (!response.ok) throw new Error(`Kunde inte ladda ner ${fileName}`)
         const blob = await response.blob()
         zip.file(fileName, blob)
