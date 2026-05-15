@@ -28,12 +28,15 @@ interface AdminHeaderProps {
 
 const readableFileNameFromKey = (key: string) => {
   const fileName = key.split('/').pop() || ''
+  let readableFileName = fileName
 
   try {
-    return decodeURIComponent(fileName)
+    readableFileName = decodeURIComponent(fileName)
   } catch {
-    return fileName
+    readableFileName = fileName
   }
+
+  return readableFileName.replace(/\.[^/.]+$/, '')
 }
 
 export function AdminHeader({
