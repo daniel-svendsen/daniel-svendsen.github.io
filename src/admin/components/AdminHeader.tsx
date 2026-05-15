@@ -12,6 +12,8 @@ import {
 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { apiUrl } from '@/admin/utils/apiUrl'
+import { UploadProgressPanel } from '@/admin/components/UploadProgressPanel'
+import type { UploadProgressState } from '@/admin/hooks/useFileUpload'
 
 interface AdminHeaderProps {
   galleryId: string | undefined
@@ -20,7 +22,7 @@ interface AdminHeaderProps {
   likedImageKeys: string[]
   onSelectFiles: () => void
   isUploading: boolean
-  uploadProgress: number
+  uploadProgressDetails: UploadProgressState
   actionError?: string
   onClearGallery: () => void
   onCreateFolder: () => void
@@ -46,7 +48,7 @@ export function AdminHeader({
   likedImageKeys,
   onSelectFiles,
   isUploading,
-  uploadProgress,
+  uploadProgressDetails,
   actionError,
   onClearGallery,
   onCreateFolder,
@@ -176,13 +178,8 @@ export function AdminHeader({
           </div>
         </div>
         {isUploading && (
-          <div className="mt-4">
-            <div className="w-full bg-secondary rounded-full h-2.5">
-              <div
-                className="bg-primary h-2.5 rounded-full"
-                style={{ width: `${uploadProgress}%` }}
-              ></div>
-            </div>
+          <div className="mx-auto mt-5 max-w-2xl">
+            <UploadProgressPanel progress={uploadProgressDetails} />
           </div>
         )}
         {copyStatus && (

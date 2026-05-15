@@ -2,6 +2,13 @@ import { useState } from 'react'
 import { apiUrl } from '@/admin/utils/apiUrl'
 
 type UploadStatus = 'idle' | 'uploading' | 'error' | 'success'
+export interface UploadProgressState {
+  percent: number
+  completedFiles: number
+  totalFiles: number
+  currentFileName: string
+  currentStep: string
+}
 
 const PREVIEW_MAX_SIZE = 1800
 const PREVIEW_QUALITY = 0.82
@@ -57,17 +64,42 @@ const createWebpPreview = async (file: File): Promise<Blob> => {
   }
 }
 
-const uploadObject = async (key: string, body: BodyInit, contentType: string) => {
-  const response = await fetch(apiUrl(`upload/${key}`), {
-    method: 'PUT',
-    credentials: 'include',
-    body,
-    headers: { 'Content-Type': contentType },
-  })
+const uploadObject = async (
+  key: string,
+  body: XMLHttpRequestBodyInit,
+  contentType: string,
+  onProgress?: (loaded: number, total: number) => void,
+) => {
+  await new Promise<void>((resolve, reject) => {
+    const request = new XMLHttpRequest()
+    request.open('PUT', apiUrl(`upload/${key}`))
+    request.withCredentials = true
+    request.setRequestHeader('Content-Type', contentType)
 
-  if (!response.ok) {
-    throw new Error(`Kunde inte ladda upp ${key.split('/').pop() || key}.`)
-  }
+    request.upload.onprogress = (event) => {
+      if (!event.lengthComputable) return
+      onProgress?.(event.loaded, event.total)
+    }
+
+    request.onload = () => {
+      if (request.status >= 200 && request.status < 300) {
+        resolve()
+        return
+      }
+
+      reject(new Error(`Kunde inte ladda upp ${key.split('/').pop() || key}.`))
+    }
+    request.onerror = () => {
+      reject(new Error(`Kunde inte ladda upp ${key.split('/').pop() || key}.`))
+    }
+    request.onabort = () => {
+      reject(
+        new Error(`Uppladdningen avbröts för ${key.split('/').pop() || key}.`),
+      )
+    }
+
+    request.send(body)
+  })
 }
 
 const deleteObject = async (key: string) => {
@@ -84,6 +116,13 @@ const deleteObject = async (key: string) => {
 export function useFileUpload() {
   const [status, setStatus] = useState<UploadStatus>('idle')
   const [progress, setProgress] = useState(0)
+  const [progressDetails, setProgressDetails] = useState<UploadProgressState>({
+    percent: 0,
+    completedFiles: 0,
+    totalFiles: 0,
+    currentFileName: '',
+    currentStep: '',
+  })
   const [error, setError] = useState('')
 
   const uploadFiles = async (
@@ -95,6 +134,13 @@ export function useFileUpload() {
 
     setStatus('uploading')
     setProgress(0)
+    setProgressDetails({
+      percent: 0,
+      completedFiles: 0,
+      totalFiles: files.length,
+      currentFileName: '',
+      currentStep: 'Förbereder bilder',
+    })
     setError('')
 
     const uploadedKeys: string[] = []
@@ -109,6 +155,26 @@ export function useFileUpload() {
         0,
       )
       let completedSteps = 0
+      let completedFiles = 0
+
+      const updateProgress = (
+        currentFileName: string,
+        currentStep: string,
+        currentStepProgress = 0,
+      ) => {
+        const percent = Math.min(
+          100,
+          ((completedSteps + currentStepProgress) / totalSteps) * 100,
+        )
+        setProgress(percent)
+        setProgressDetails({
+          percent,
+          completedFiles,
+          totalFiles: fileEntries.length,
+          currentFileName,
+          currentStep,
+        })
+      }
 
       for (const { file, shouldCreatePreview } of fileEntries) {
         const sanitizedName = sanitizeFileName(file.name)
@@ -116,11 +182,20 @@ export function useFileUpload() {
         const previewKey = `${prefix}previews/${baseName}.webp`
         const originalKey = `${prefix}originals/${sanitizedName}`
 
+        updateProgress(file.name, 'Förbereder bild')
+
         if (shouldCreatePreview) {
+          updateProgress(file.name, 'Skapar webpreview')
           const previewBlob = await createWebpPreview(file)
-          await uploadObject(previewKey, previewBlob, 'image/webp')
+          await uploadObject(
+            previewKey,
+            previewBlob,
+            'image/webp',
+            (loaded, total) =>
+              updateProgress(file.name, 'Laddar upp preview', loaded / total),
+          )
           completedSteps += 1
-          setProgress((completedSteps / totalSteps) * 100)
+          updateProgress(file.name, 'Preview klar')
         } else {
           await deleteObject(previewKey)
         }
@@ -129,11 +204,22 @@ export function useFileUpload() {
           originalKey,
           file,
           file.type || 'application/octet-stream',
+          (loaded, total) =>
+            updateProgress(file.name, 'Laddar upp original', loaded / total),
         )
         completedSteps += 1
+        completedFiles += 1
         uploadedKeys.push(originalKey)
-        setProgress((completedSteps / totalSteps) * 100)
+        updateProgress(file.name, 'Bild klar')
       }
+      setProgress(100)
+      setProgressDetails({
+        percent: 100,
+        completedFiles: fileEntries.length,
+        totalFiles: fileEntries.length,
+        currentFileName: '',
+        currentStep: 'Uppladdning klar',
+      })
       setStatus('success')
       if (onUploadSuccess) onUploadSuccess()
     } catch (err) {
@@ -146,5 +232,5 @@ export function useFileUpload() {
     return uploadedKeys
   }
 
-  return { uploadFiles, status, progress, error }
+  return { uploadFiles, status, progress, progressDetails, error }
 }

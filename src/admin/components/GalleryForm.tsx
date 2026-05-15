@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button } from '@/components/Button'
 import { Upload } from 'lucide-react'
 import { useFileUpload } from '@/admin/hooks/useFileUpload'
+import { UploadProgressPanel } from '@/admin/components/UploadProgressPanel'
 
 const inputClasses =
   'block w-full rounded-md border border-borderColor bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-highlight focus-visible:ring-offset-2'
@@ -18,7 +19,8 @@ export function CreateGalleryForm({
   const [galleryName, setGalleryName] = useState('')
   const [files, setFiles] = useState<FileList | null>(null)
   const [formError, setFormError] = useState('')
-  const { uploadFiles, status, error: uploadError } = useFileUpload()
+  const { uploadFiles, status, progressDetails, error: uploadError } =
+    useFileUpload()
   const formRef = React.useRef<HTMLFormElement>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -102,6 +104,7 @@ export function CreateGalleryForm({
         <Upload className="mr-2 h-5 w-5" />
         {isUploading ? 'Laddar upp...' : 'Ladda upp'}
       </Button>
+      {isUploading && <UploadProgressPanel progress={progressDetails} />}
       {formError && (
         <p className="text-center text-sm mt-2 text-destructive">{formError}</p>
       )}

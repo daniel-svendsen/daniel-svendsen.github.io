@@ -22,7 +22,12 @@ export default function GalleryDetailPage() {
   const { images, folders, likedImages, isLoading, error, refetchData } =
     useGalleryDetailData(currentPrefix)
 
-  const { uploadFiles, status, progress, error: uploadError } = useFileUpload()
+  const {
+    uploadFiles,
+    status,
+    progressDetails,
+    error: uploadError,
+  } = useFileUpload()
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleFileUpload = async (
@@ -157,7 +162,7 @@ export default function GalleryDetailPage() {
         likedImageKeys={likedImages}
         onSelectFiles={() => fileInputRef.current?.click()}
         isUploading={status === 'uploading'}
-        uploadProgress={progress}
+        uploadProgressDetails={progressDetails}
         actionError={uploadError}
         onClearGallery={handleClearGallery}
         onCreateFolder={handleCreateFolder}
