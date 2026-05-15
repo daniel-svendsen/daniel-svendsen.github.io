@@ -76,7 +76,7 @@ export function AdminHeader({
         }),
       })
       if (!response.ok) {
-        const errorData = await response.json()
+        const errorData = (await response.json()) as { error?: string }
         throw new Error(
           errorData.error || 'Misslyckades med att byta namn på galleriet.',
         )

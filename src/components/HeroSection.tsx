@@ -17,7 +17,7 @@ const heroImageModules = import.meta.glob(
   { eager: true, query: '?url', import: 'default' },
 )
 
-const loadedImagesFromModules: string[] = Object.values(heroImageModules)
+const loadedImagesFromModules = Object.values(heroImageModules) as string[]
 
 const allHeroImageUrls: string[] =
   loadedImagesFromModules.length === 0

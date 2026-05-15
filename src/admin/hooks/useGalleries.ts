@@ -13,7 +13,7 @@ export function useGalleries() {
         credentials: 'include',
       })
       if (!response.ok) throw new Error('Kunde inte hämta gallerier.')
-      const data = await response.json()
+      const data = (await response.json()) as string[]
       setGalleries(data)
     } catch (err) {
       if (err instanceof Error) setError(err.message)

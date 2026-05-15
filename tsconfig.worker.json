@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "strict": false,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext"],
+    "types": ["@cloudflare/workers-types"],
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": ["src/admin/worker/worker.ts"]
+}

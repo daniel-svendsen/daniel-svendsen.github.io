@@ -52,7 +52,7 @@ export const Card: React.FC<CardProps> = ({
         {buttonLink && buttonText && (
           <div className="mt-auto pt-2">
             <LinkButton
-              href={buttonLink}
+              to={buttonLink}
               variant="highlight"
               size="sm"
               className="w-full sm:w-auto"

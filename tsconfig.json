@@ -21,11 +21,14 @@
     ],
     "types": [
       "vite/client",
-      "@cloudflare/workers-types",
       "node"
-    ]
+    ],
+    "skipLibCheck": true
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "src/admin/worker"
   ]
 }
