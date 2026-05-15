@@ -108,12 +108,6 @@ export default function Home() {
     }
   }, [])
 
-  useEffect(() => {
-    import('../pages/Services').catch((err) =>
-      console.error('Failed to preload Services:', err),
-    )
-  }, [])
-
   const homeJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',

@@ -8,8 +8,6 @@ import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
 import { Button } from '@/components/Button'
 
-import defaultLeftImage from '../assets/herosection/portraits-23.jpg'
-import defaultRightImage from '../assets/herosection/portraits-3.jpg'
 import { useShuffledImages } from '@/hooks/useShuffleImages'
 
 const heroImageModules = import.meta.glob(
@@ -17,11 +15,22 @@ const heroImageModules = import.meta.glob(
   { eager: true, query: '?url', import: 'default' },
 )
 
-const loadedImagesFromModules = Object.values(heroImageModules) as string[]
+const loadedImageEntries = Object.entries(heroImageModules) as [string, string][]
+const loadedImagesFromModules = loadedImageEntries.map(([, src]) => src)
+
+const defaultLeftImage =
+  loadedImageEntries.find(([path]) => path.endsWith('/portraits-23.jpg'))?.[1] ??
+  loadedImagesFromModules[0] ??
+  ''
+
+const defaultRightImage =
+  loadedImageEntries.find(([path]) => path.endsWith('/portraits-3.jpg'))?.[1] ??
+  loadedImagesFromModules.find((src) => src !== defaultLeftImage) ??
+  defaultLeftImage
 
 const allHeroImageUrls: string[] =
   loadedImagesFromModules.length === 0
-    ? [defaultLeftImage, defaultRightImage]
+    ? [defaultLeftImage, defaultRightImage].filter(Boolean)
     : loadedImagesFromModules.length === 1
       ? (() => {
           const initialFirstImage = loadedImagesFromModules[0]
