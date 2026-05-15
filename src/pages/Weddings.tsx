@@ -115,7 +115,7 @@ export default function WeddingGallery() {
     serviceType: 'Wedding photography',
     description:
       'Bröllopsfotograf i Göteborg och Kungälv med fokus på naturliga, känslosamma och tidlösa bilder.',
-    url: 'https://www.svendsenphotography.com/weddings',
+    url: 'https://www.svendsenphotography.com/weddings/',
     provider: {
       '@type': 'LocalBusiness',
       name: 'Svendsen Photography',
@@ -132,7 +132,7 @@ export default function WeddingGallery() {
       <SEO
         title="Bröllopsfotograf i Göteborg & Kungälv | Tidlösa bröllopsbilder | Svendsen Photography"
         description="Söker ni en bröllopsfotograf i Göteborg eller Kungälv? Svendsen Photography dokumenterar er dag med naturliga, personliga och tidlösa bilder."
-        url="https://www.svendsenphotography.com/weddings"
+        url="https://www.svendsenphotography.com/weddings/"
         image={absoluteLogoUrl}
         jsonLd={weddingsJsonLd}
       />

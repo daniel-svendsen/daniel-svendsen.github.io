@@ -1,5 +1,4 @@
 import React, { lazy, Suspense, useEffect, useRef, useState } from 'react'
-import { HelmetProvider } from 'react-helmet-async'
 import { CTASection } from '@/components/CTASection'
 import { InfoCard } from '@/components/InfoCard'
 import HomeCard from '@/components/HomeCard'
@@ -127,7 +126,7 @@ export default function Home() {
   }
 
   return (
-    <HelmetProvider>
+    <>
       <SEO
         title="Fotograf i Kungälv & Göteborg - Svendsén Photography"
         description="Svendsén Photography erbjuder professionell fotografering inom bröllop, porträtt, familj, bilfotografering och företag i Kungälv och Göteborg. Boka din fotografering idag!"
@@ -370,6 +369,6 @@ export default function Home() {
           </SectionContent>
         </Section>
       </div>
-    </HelmetProvider>
+    </>
   )
 }

@@ -114,7 +114,7 @@ export default function Portraits() {
     serviceType: 'Portrait photography',
     description:
       'Professionell porträtt- och familjefotografering i Göteborg och Kungälv för privatpersoner, kreatörer och företag.',
-    url: 'https://www.svendsenphotography.com/portraits',
+    url: 'https://www.svendsenphotography.com/portraits/',
     provider: {
       '@type': 'LocalBusiness',
       name: 'Svendsen Photography',
@@ -131,7 +131,7 @@ export default function Portraits() {
       <SEO
         title="Porträtt- & familjefotograf i Göteborg & Kungälv | Naturliga porträtt | Svendsen Photography"
         description="Söker du en porträtt- eller familjefotograf i Göteborg eller Kungälv? Svendsen Photography skapar naturliga och professionella porträtt och familjebilder för privatpersoner, kreatörer och företag."
-        url="https://www.svendsenphotography.com/portraits"
+        url="https://www.svendsenphotography.com/portraits/"
         image={absoluteLogoUrl}
         jsonLd={portraitsJsonLd}
       />

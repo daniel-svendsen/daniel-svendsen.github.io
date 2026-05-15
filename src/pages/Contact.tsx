@@ -3,7 +3,6 @@ import SEO from '@/components/SEO'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
 import { Button } from '@/components/Button'
-import { HelmetProvider } from 'react-helmet-async'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 
 export default function Contact() {
@@ -75,7 +74,7 @@ export default function Contact() {
     name: 'Kontakta Svendsén Photography',
     description:
       'Kontakta och boka fotograf eller webbutvecklare i Kungälv & Göteborg.',
-    url: 'https://www.svendsenphotography.com/contact',
+    url: 'https://www.svendsenphotography.com/contact/',
     mainEntity: {
       '@type': 'LocalBusiness',
       name: 'Svendsén Photography',
@@ -99,11 +98,11 @@ export default function Contact() {
     'h-4 w-4 shrink-0 text-primary border-muted-foreground focus:ring-primary focus:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50'
 
   return (
-    <HelmetProvider>
+    <>
       <SEO
         title="Kontakt | Fotograf & Webb | Göteborg & Kungälv - Svendsén Photography"
         description="Kontakta Svendsén Photography för bröllopsfotografering, porträtt, familjefoto, företagsfoto, eventfoto eller webbutveckling i Göteborg och Kungälv. Skicka din förfrågan!"
-        url="https://www.svendsenphotography.com/contact"
+        url="https://www.svendsenphotography.com/contact/"
         image={absoluteLogoUrl}
         keywords="kontakt fotograf, familjefotograf göteborg, fotograf göteborg, fotograf kungälv, webbutvecklare kungälv, boka fotograf, offert fotografering, kontakta webbyrå"
         jsonLd={contactJsonLd}
@@ -232,6 +231,6 @@ export default function Contact() {
           </SectionContent>
         </Section>
       </main>
-    </HelmetProvider>
+    </>
   )
 }

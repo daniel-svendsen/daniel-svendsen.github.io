@@ -1,5 +1,4 @@
 import React from 'react'
-import { HelmetProvider } from 'react-helmet-async'
 import { CTASection } from '@/components/CTASection'
 import { InfoCard } from '@/components/InfoCard'
 import SEO from '@/components/SEO'
@@ -87,7 +86,7 @@ export default function Services() {
       addressCountry: 'SE',
     },
     priceRange: 'Kontakta för prisinformation',
-    url: 'https://www.svendsenphotography.com/services',
+    url: 'https://www.svendsenphotography.com/services/',
     areaServed: [
       { '@type': 'AdministrativeArea', name: 'Kungälv' },
       { '@type': 'AdministrativeArea', name: 'Göteborg' },
@@ -149,11 +148,11 @@ export default function Services() {
   ]
 
   return (
-    <HelmetProvider>
+    <>
       <SEO
         title="Fotograf i Göteborg & Kungälv | Bröllop, porträtt, familj och företag | Svendsen Photography"
         description="Svendsen Photography erbjuder professionell fotografering i Göteborg och Kungälv inom bröllop, porträtt, familj och företag. Utforska tjänsterna och hitta rätt fotografering för dig."
-        url="https://www.svendsenphotography.com/services"
+        url="https://www.svendsenphotography.com/services/"
         jsonLd={photographyPageJsonLd}
         image={absoluteLogoUrl}
       />
@@ -382,6 +381,6 @@ export default function Services() {
           </SectionContent>
         </Section>
       </div>
-    </HelmetProvider>
+    </>
   )
 }

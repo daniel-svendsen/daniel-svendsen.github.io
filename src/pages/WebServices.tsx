@@ -1,5 +1,4 @@
 import React from 'react'
-import { HelmetProvider } from 'react-helmet-async'
 import SEO from '@/components/SEO'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
@@ -26,7 +25,7 @@ export default function WebServicesPage() {
       { '@type': 'AdministrativeArea', name: 'Kungälv' },
       { '@type': 'AdministrativeArea', name: 'Göteborg' },
     ],
-    url: 'https://www.svendsenphotography.com/webservices',
+    url: 'https://www.svendsenphotography.com/webservices/',
   }
 
   const servicesList = [
@@ -85,11 +84,11 @@ export default function WebServicesPage() {
   ]
 
   return (
-    <HelmetProvider>
+    <>
       <SEO
         title="Webbutveckling och webbtjänster i Göteborg | Svendsen Photography"
         description="Svendsen Photography erbjuder webbutveckling och webbtjänster för företag som vill ha en modern, snabb och professionell närvaro online i Göteborg och Kungälv."
-        url="https://www.svendsenphotography.com/webservices"
+        url="https://www.svendsenphotography.com/webservices/"
         jsonLd={pageJsonLd}
         image={absoluteSpecificImage}
       />
@@ -247,6 +246,6 @@ export default function WebServicesPage() {
           </SectionContent>
         </Section>
       </main>
-    </HelmetProvider>
+    </>
   )
 }

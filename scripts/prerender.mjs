@@ -18,6 +18,16 @@ const prerenderRoutes = [
   '/privacy',
 ]
 
+const sitemapCanonicalRoutes = [
+  '/services',
+  '/portraits',
+  '/weddings',
+  '/contact',
+  '/faq',
+  '/webservices',
+  '/privacy',
+]
+
 const { render } = await import(pathToFileURL(serverEntryPath).href)
 const template = await fs.readFile(templatePath, 'utf8')
 
@@ -45,3 +55,15 @@ for (const route of prerenderRoutes) {
   await fs.mkdir(path.dirname(outputPath), { recursive: true })
   await fs.writeFile(outputPath, html, 'utf8')
 }
+
+const sitemapPath = path.join(distDir, 'sitemap.xml')
+let sitemap = await fs.readFile(sitemapPath, 'utf8')
+
+for (const route of sitemapCanonicalRoutes) {
+  sitemap = sitemap.replaceAll(
+    `https://www.svendsenphotography.com${route}</loc>`,
+    `https://www.svendsenphotography.com${route}/</loc>`,
+  )
+}
+
+await fs.writeFile(sitemapPath, sitemap, 'utf8')

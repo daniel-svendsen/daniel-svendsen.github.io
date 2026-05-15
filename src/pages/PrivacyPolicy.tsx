@@ -10,7 +10,7 @@ export default function PrivacyPolicy() {
     '@type': 'WebPage',
     name: 'Privacy Policy - Svendsen Photography',
     description: 'Privacy Policy for Svendsen Photography',
-    url: 'https://www.svendsenphotography.com/privacy',
+    url: 'https://www.svendsenphotography.com/privacy/',
   }
 
   return (
@@ -18,7 +18,7 @@ export default function PrivacyPolicy() {
       <SEO
         title="Privacy Policy - Svendsen Photography"
         description="Read about how Svendsen Photography handles your personal data and website cookies."
-        url="https://www.svendsenphotography.com/privacy"
+        url="https://www.svendsenphotography.com/privacy/"
         image={absoluteLogoUrl}
         keywords="privacy policy, cookie policy, integritetspolicy, cookies, Svendsen Photography"
         jsonLd={privacyJsonLd}

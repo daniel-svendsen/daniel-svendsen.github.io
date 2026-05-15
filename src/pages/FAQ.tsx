@@ -5,7 +5,6 @@ import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
 import { Minus, Plus } from 'lucide-react'
 import { LinkButton } from '@/components/Button'
-import { HelmetProvider } from 'react-helmet-async'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 
 export default function FAQ() {
@@ -72,11 +71,11 @@ export default function FAQ() {
   }
 
   return (
-    <HelmetProvider>
+    <>
       <SEO
         title="Vanliga frågor - Svendsén Photography"
         description="Har du frågor om fotografering, priser och bokning? Här hittar du svar på vanliga frågor om våra tjänster i Göteborg och Kungälv."
-        url="https://www.svendsenphotography.com/faq"
+        url="https://www.svendsenphotography.com/faq/"
         image={absoluteLogoUrl}
         keywords="fotograf FAQ, fotografering frågor, familjefotograf, bröllopsfotograf pris, hur bokar man en fotograf, fotograf göteborg kungälv"
         jsonLd={faqJsonLd}
@@ -140,6 +139,6 @@ export default function FAQ() {
           </SectionContent>
         </Section>
       </main>
-    </HelmetProvider>
+    </>
   )
 }

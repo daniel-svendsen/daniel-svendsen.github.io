@@ -11,7 +11,6 @@ import Projects from '@/work/worktabs/Projects'
 import ContactTab from '@/work/worktabs/Contact'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
-import { HelmetProvider } from 'react-helmet-async'
 import SEO from '@/components/SEO'
 import PageLayout from '@/work/layout/PageLayout'
 import { useLanguage } from '@/context/LanguageContext'
@@ -34,7 +33,7 @@ const Work: React.FC = () => {
       en: "Explore Daniel Svendsén's professional background, technical skills, and projects.",
       sv: 'Utforska Daniel Svendséns professionella bakgrund, tekniska färdigheter och projekt.',
     }),
-    url: 'https://www.svendsenphotography.com/work',
+    url: 'https://www.svendsenphotography.com/work/',
   }
 
   const seoTitle = t({
@@ -102,11 +101,11 @@ const Work: React.FC = () => {
         })}
     </div>
   ) : (
-    <HelmetProvider>
+    <>
       <SEO
         title={seoTitle}
         description={seoDescription}
-        url="https://www.svendsenphotography.com/work"
+        url="https://www.svendsenphotography.com/work/"
         image={absoluteLogoUrl}
         jsonLd={pageJsonLd}
         noIndex
@@ -133,7 +132,7 @@ const Work: React.FC = () => {
         }
         footer={<WorkFooter cvData={cvData} />}
       />
-    </HelmetProvider>
+    </>
   )
 }
 
