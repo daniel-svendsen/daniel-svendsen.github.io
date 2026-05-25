@@ -6,10 +6,11 @@ import SEO from '@/components/SEO'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
 import HeroSection from '../components/HeroSection'
-import forprosImg from '@/assets/movies/img-optimized.jpg'
+import forprosImg from '@/assets/movies/img-optimized.jpg?responsive'
 import forprosVideo from '@/assets/movies/forpros1.mp4'
 import { homeCards } from '../data/cards'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getImageSrc } from '@/utils/responsiveImages'
 import {
   Camera,
   HeartHandshake,
@@ -273,7 +274,7 @@ export default function Home() {
                 <video
                   controls
                   preload="metadata"
-                  poster={forprosImg}
+                  poster={getImageSrc(forprosImg)}
                   className="h-full w-full"
                 >
                   <source src={forprosVideo} type="video/mp4" />

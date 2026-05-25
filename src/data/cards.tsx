@@ -1,9 +1,9 @@
 import { Briefcase, Camera, Code, Users } from 'lucide-react'
 
-import weddingImage from '../assets/pictures/wedding.jpg'
-import portraitImage from '../assets/pictures/portrait.jpg'
-import companyImage from '../assets/pictures/company.jpg'
-import webdevImage from '../assets/webdev-optimized.jpg'
+import weddingImage from '../assets/pictures/wedding.jpg?responsive'
+import portraitImage from '../assets/pictures/portrait.jpg?responsive'
+import companyImage from '../assets/pictures/company.jpg?responsive'
+import webdevImage from '../assets/webdev-optimized.jpg?responsive'
 
 export const homeCards = [
   {

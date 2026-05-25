@@ -1,9 +1,11 @@
 import React from 'react'
 import { cn } from '@/utils/utils'
 import { LinkButton } from '@/components/Button'
+import { ResponsiveImage } from '@/components/ResponsiveImage'
+import { type ImageAsset } from '@/utils/responsiveImages'
 
 interface CardProps {
-  image?: string
+  image?: ImageAsset
   icon?: React.ElementType
   title: string
   description: string
@@ -34,9 +36,10 @@ export const Card: React.FC<CardProps> = ({
     >
       {image && (
         <div className={cn('w-full h-48 overflow-hidden', imageClassName)}>
-          <img
-            src={image}
+          <ResponsiveImage
+            image={image}
             alt={title}
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="w-full h-full object-cover "
           />
         </div>

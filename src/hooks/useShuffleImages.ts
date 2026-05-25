@@ -9,8 +9,8 @@ function shuffleArray<T>(array: T[]): T[] {
   return arr
 }
 
-export function useShuffledImages(images: string[]): string[] {
-  const [shuffled, setShuffled] = useState<string[]>([])
+export function useShuffledImages<T>(images: T[]): T[] {
+  const [shuffled, setShuffled] = useState<T[]>([])
   const hasInitialized = useRef(false)
 
   useEffect(() => {

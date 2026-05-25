@@ -3,9 +3,7 @@ import { useEffect, useState } from 'react'
 const availableFolders = {
   portraits: import.meta.glob('../assets/portraits/*.{jpg,jpeg,png}'),
   weddings: import.meta.glob('../assets/weddings/*.{jpg,jpeg,png}'),
-  companyhobby: import.meta.glob('../assets/companyhobby/*.{jpg,jpeg,png}'),
   carousel: import.meta.glob('../assets/carousel/*.{jpg,jpeg,png}'),
-  herosection: import.meta.glob('../assets/herosection/*.{jpg,jpeg,png}'),
 }
 
 export function useImportedImages(folders: string[]) {

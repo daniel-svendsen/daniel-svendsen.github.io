@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ResponsiveImage } from '@/components/ResponsiveImage'
 import { useImportedImages } from '../hooks/useImportedImages'
 import { useShuffledImages } from '../hooks/useShuffleImages'
 
@@ -70,10 +71,11 @@ export default function Carousel({
             index === currentIndex ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <img
-            src={image}
+          <ResponsiveImage
+            image={image}
             alt={`Bild ${index + 1} av ${shuffledImages.length}`}
             loading="lazy"
+            sizes="(min-width: 1024px) 1100px, 100vw"
             className="w-full h-full object-contain"
           />
         </figure>

@@ -5,6 +5,7 @@ import SEO from '@/components/SEO'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
 import { LinkButton } from '@/components/Button'
+import { ResponsiveImage } from '@/components/ResponsiveImage'
 import { serviceCards } from '../data/cards'
 import {
   Award,
@@ -17,10 +18,11 @@ import {
   Sparkles,
 } from 'lucide-react'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getImageSrc } from '@/utils/responsiveImages'
 
 const pageHeroImage =
   serviceCards.length > 0
-    ? serviceCards[0].image
+    ? getImageSrc(serviceCards[0].image)
     : '/images/default-photo-hero.jpg'
 
 const quickLinks = [
@@ -248,9 +250,10 @@ export default function Services() {
                     }`}
                   >
                     <div className="group relative h-full min-h-[20rem] overflow-hidden rounded-[2rem]">
-                      <img
-                        src={card.image}
+                      <ResponsiveImage
+                        image={card.image}
                         alt={card.title}
+                        sizes="(min-width: 1024px) 50vw, 100vw"
                         className="h-full min-h-[20rem] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] lg:min-h-0"
                       />
                     </div>

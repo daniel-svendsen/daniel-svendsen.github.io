@@ -3,9 +3,11 @@ import { CTASection } from '@/components/CTASection'
 import { InfoCard } from '@/components/InfoCard'
 import SEO from '@/components/SEO'
 import { Modal } from '../components/Modal'
+import { ResponsiveImage } from '@/components/ResponsiveImage'
 import { useImportedImages } from '../hooks/useImportedImages'
 import { useShuffledImages } from '../hooks/useShuffleImages'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getImageSrc, type ImageAsset } from '@/utils/responsiveImages'
 
 const weddingIncludes = [
   'Bröllopsporträtt med fokus på närvaro och naturlig känsla',
@@ -95,7 +97,7 @@ export default function WeddingGallery() {
     [shuffledWeddingImages],
   )
   const [selectedWeddingImage, setSelectedWeddingImage] = useState<{
-    src: string
+    src: ImageAsset
     alt: string
   } | null>(null)
   const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
@@ -176,9 +178,10 @@ export default function WeddingGallery() {
             className="mx-auto mb-12 grid max-w-6xl grid-cols-1 gap-4 rounded-[2.25rem] bg-gray-50 px-4 py-4 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.14)] md:px-5 md:py-5 lg:grid-cols-[1.2fr_0.8fr] lg:rounded-[3rem]"
           >
             <figure className="group relative overflow-hidden rounded-[2rem]">
-              <img
-                src={featuredImages[0]}
+              <ResponsiveImage
+                image={featuredImages[0]}
                 alt="Utvald bröllopsbild"
+                sizes="(min-width: 1024px) 670px, 100vw"
                 className="h-[28rem] w-full cursor-pointer object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-[38rem]"
                 onClick={() =>
                   setSelectedWeddingImage({
@@ -192,12 +195,13 @@ export default function WeddingGallery() {
             <div className="grid grid-cols-1 gap-4">
               {featuredImages.slice(1).map((src, index) => (
                 <figure
-                  key={src}
+                  key={getImageSrc(src)}
                   className="group relative overflow-hidden rounded-[2rem]"
                 >
-                  <img
-                    src={src}
+                  <ResponsiveImage
+                    image={src}
                     alt={`Utvald bröllopsbild ${index + 2}`}
+                    sizes="(min-width: 1024px) 430px, 100vw"
                     className="h-[13.5rem] w-full cursor-pointer object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-[18.6rem]"
                     onClick={() =>
                       setSelectedWeddingImage({
@@ -321,9 +325,10 @@ export default function WeddingGallery() {
                 key={index}
                 className="relative overflow-hidden rounded-[1.6rem]"
               >
-                <img
-                  src={src}
+                <ResponsiveImage
+                  image={src}
                   alt={`Bröllopsfotografering i Göteborg och Kungälv ${index + 1}`}
+                  sizes="(min-width: 1024px) 265px, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="h-full w-full cursor-pointer object-cover transition-transform duration-500 hover:scale-[1.02]"
                   onClick={() =>
                     setSelectedWeddingImage({
@@ -353,9 +358,10 @@ export default function WeddingGallery() {
             isOpen={!!selectedWeddingImage}
             onClose={() => setSelectedWeddingImage(null)}
           >
-            <img
-              src={selectedWeddingImage.src}
+            <ResponsiveImage
+              image={selectedWeddingImage.src}
               alt={selectedWeddingImage.alt}
+              sizes="100vw"
               className="max-h-full max-w-full"
             />
           </Modal>

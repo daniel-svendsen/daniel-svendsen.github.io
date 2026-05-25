@@ -2,10 +2,12 @@
 import React from 'react'
 import { cn } from '@/utils/utils'
 import { LinkButton } from '@/components/Button'
+import { ResponsiveImage } from '@/components/ResponsiveImage'
+import { type ImageAsset } from '@/utils/responsiveImages'
 import { type LucideIcon } from 'lucide-react'
 
 interface ServiceCardProps {
-  image: string
+  image: ImageAsset
   icon: LucideIcon
   title: string
   description: string
@@ -33,7 +35,12 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       )}
     >
       <div className="w-full h-48 sm:h-56 overflow-hidden">
-        <img src={image} alt={title} className="w-full h-full object-cover" />
+        <ResponsiveImage
+          image={image}
+          alt={title}
+          sizes="(min-width: 640px) 50vw, 100vw"
+          className="w-full h-full object-cover"
+        />
       </div>
       <div className="p-6 flex flex-col flex-grow">
         {Icon && <Icon className="w-10 h-10 text-primary mb-4 flex-shrink-0" />}

@@ -7,43 +7,23 @@ import Typewriter from 'typewriter-effect'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
 import { Button } from '@/components/Button'
+import { ResponsiveImage } from '@/components/ResponsiveImage'
 
 import { useShuffledImages } from '@/hooks/useShuffleImages'
+import { type ResponsiveImageAsset } from '@/utils/responsiveImages'
+import heroPortraitWide from '@/assets/herosection/portraits-23.jpg?responsive'
+import heroPortraitTight from '@/assets/herosection/portraits-3.jpg?responsive'
+import heroWedding from '@/assets/herosection/wedding.jpg?responsive'
+import heroCarousel from '@/assets/herosection/carousel-13.jpg?responsive'
 
-const heroImageModules = import.meta.glob(
-  '/src/assets/herosection/*.{png,jpg,jpeg,svg,webp}',
-  { eager: true, query: '?url', import: 'default' },
-)
-
-const loadedImageEntries = Object.entries(heroImageModules) as [string, string][]
-const loadedImagesFromModules = loadedImageEntries.map(([, src]) => src)
-
-const defaultLeftImage =
-  loadedImageEntries.find(([path]) => path.endsWith('/portraits-23.jpg'))?.[1] ??
-  loadedImagesFromModules[0] ??
-  ''
-
-const defaultRightImage =
-  loadedImageEntries.find(([path]) => path.endsWith('/portraits-3.jpg'))?.[1] ??
-  loadedImagesFromModules.find((src) => src !== defaultLeftImage) ??
-  defaultLeftImage
-
-const allHeroImageUrls: string[] =
-  loadedImagesFromModules.length === 0
-    ? [defaultLeftImage, defaultRightImage].filter(Boolean)
-    : loadedImagesFromModules.length === 1
-      ? (() => {
-          const initialFirstImage = loadedImagesFromModules[0]
-          const secondPushedImage =
-            initialFirstImage === defaultLeftImage
-              ? defaultRightImage
-              : defaultLeftImage
-          const imagesArr = [initialFirstImage, secondPushedImage]
-          return imagesArr[0] === imagesArr[1]
-            ? [imagesArr[0], defaultRightImage]
-            : imagesArr
-        })()
-      : loadedImagesFromModules
+const defaultLeftImage = heroPortraitWide
+const defaultRightImage = heroPortraitTight
+const allHeroImageUrls: ResponsiveImageAsset[] = [
+  heroPortraitWide,
+  heroPortraitTight,
+  heroWedding,
+  heroCarousel,
+]
 
 const MotionButton = motion(Button)
 
@@ -116,9 +96,10 @@ export default function HeroSection() {
                 stiffness: 50,
               }}
             >
-              <img
-                src={imageForLeft}
+              <ResponsiveImage
+                image={imageForLeft}
                 alt="Stämningsfull porträttfotografering"
+                sizes="(min-width: 768px) 30vw, 0px"
                 className="h-auto max-h-[24rem] w-full rounded-2xl object-cover transition-transform duration-400 ease-out hover:scale-105 hover:rotate-0 md:max-w-full"
               />
             </motion.div>
@@ -189,9 +170,10 @@ export default function HeroSection() {
                 stiffness: 50,
               }}
             >
-              <img
-                src={imageForRight}
+              <ResponsiveImage
+                image={imageForRight}
                 alt="Detaljbild från företagsfotografering"
+                sizes="(min-width: 768px) 30vw, 288px"
                 className="h-[30vh] w-full max-w-[18rem] rounded-2xl object-cover transition-transform duration-400 ease-out hover:scale-105 sm:h-[35vh] sm:max-w-[14rem] md:h-auto md:max-h-[18rem] md:max-w-full md:rotate-3 md:object-cover md:hover:rotate-0"
               />
             </motion.div>

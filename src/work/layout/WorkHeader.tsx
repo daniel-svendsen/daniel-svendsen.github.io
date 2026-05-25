@@ -1,5 +1,6 @@
 import React from 'react'
-import profileImg from '../../assets/bild1.jpg'
+import { ResponsiveImage } from '@/components/ResponsiveImage'
+import profileImg from '../../assets/bild1.jpg?responsive'
 import { type LocalizedContent } from '@/types/CvTypes'
 import { useLanguage } from '@/context/LanguageContext'
 
@@ -14,9 +15,10 @@ const WorkHeader: React.FC<WorkHeaderProps> = ({ title, description }) => {
 
   return (
     <header className="pt-20 bg-custom-beige p-6 flex flex-col items-center">
-      <img
-        src={profileImg}
+      <ResponsiveImage
+        image={profileImg}
         alt={profileAltText}
+        sizes="128px"
         className="w-20 h-24 sm:w-32 sm:h-32 rounded-full mb-4 object-cover"
       />
       <div className="text-center px-2">

@@ -3,12 +3,14 @@ import SEO from '@/components/SEO'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
 import { LinkButton } from '@/components/Button'
-import webdevImage from '../assets/webdev-optimized.jpg'
+import { ResponsiveImage } from '@/components/ResponsiveImage'
+import webdevImage from '../assets/webdev-optimized.jpg?responsive'
 import { CheckCircle, Search, Smartphone, Users, Zap } from 'lucide-react'
 import { toAbsoluteUrl } from '@/utils/utils'
+import { getImageSrc } from '@/utils/responsiveImages'
 
 export default function WebServicesPage() {
-  const absoluteSpecificImage = toAbsoluteUrl(webdevImage)
+  const absoluteSpecificImage = toAbsoluteUrl(getImageSrc(webdevImage))
   const pageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebService',
@@ -182,9 +184,10 @@ export default function WebServicesPage() {
                 </p>
               </div>
               <div>
-                <img
-                  src={webdevImage}
+                <ResponsiveImage
+                  image={webdevImage}
                   alt="Exempel på modern hemsideutveckling för företag"
+                  sizes="(min-width: 768px) 50vw, 100vw"
                   className="rounded-2xl object-cover w-full h-auto max-h-[450px]"
                 />
                 <p className="text-center text-xs text-muted-foreground mt-2">
