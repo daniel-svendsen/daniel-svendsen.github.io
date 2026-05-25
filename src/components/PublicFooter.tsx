@@ -2,9 +2,9 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const footerLinks = [
-  { to: '/contact', label: 'Kontakt' },
-  { to: '/faq', label: 'FAQ' },
-  { to: '/privacy', label: 'Integritetspolicy' },
+  { to: '/contact/', label: 'Kontakt' },
+  { to: '/faq/', label: 'FAQ' },
+  { to: '/privacy/', label: 'Integritetspolicy' },
 ]
 
 export default function PublicFooter() {

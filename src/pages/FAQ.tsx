@@ -127,7 +127,7 @@ export default function FAQ() {
             <div className="mt-12 border-t border-border pt-8 text-center md:mt-16">
               <p className="mb-4 text-muted-foreground">Har du fler frågor?</p>
               <LinkButton
-                to="/contact"
+                to="/contact/"
                 variant="default"
                 size="lg"
                 subVariant="rounded"

@@ -29,13 +29,13 @@ const CustomerGalleryPage = React.lazy(
 
 export const prerenderRoutes = [
   '/',
-  '/services',
-  '/portraits',
-  '/weddings',
-  '/contact',
-  '/faq',
-  '/webservices',
-  '/privacy',
+  '/services/',
+  '/portraits/',
+  '/weddings/',
+  '/contact/',
+  '/faq/',
+  '/webservices/',
+  '/privacy/',
 ]
 
 function RouteIndexingGuards() {
@@ -59,6 +59,10 @@ function RouteIndexingGuards() {
 
 export default function AppRoutes() {
   const location = useLocation()
+  const normalizedPathname =
+    location.pathname !== '/' && location.pathname.endsWith('/')
+      ? location.pathname.slice(0, -1)
+      : location.pathname
   const footerRoutes = new Set([
     '/',
     '/services',
@@ -70,7 +74,7 @@ export default function AppRoutes() {
     '/privacy',
   ])
 
-  const showPublicFooter = footerRoutes.has(location.pathname)
+  const showPublicFooter = footerRoutes.has(normalizedPathname)
 
   return (
     <>

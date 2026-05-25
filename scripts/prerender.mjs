@@ -9,13 +9,13 @@ const templatePath = path.join(distDir, 'index.html')
 
 const prerenderRoutes = [
   '/',
-  '/services',
-  '/portraits',
-  '/weddings',
-  '/contact',
-  '/faq',
-  '/webservices',
-  '/privacy',
+  '/services/',
+  '/portraits/',
+  '/weddings/',
+  '/contact/',
+  '/faq/',
+  '/webservices/',
+  '/privacy/',
 ]
 
 const sitemapCanonicalRoutes = [
@@ -50,7 +50,7 @@ for (const route of prerenderRoutes) {
   const outputPath =
     route === '/'
       ? path.join(distDir, 'index.html')
-      : path.join(distDir, route.slice(1), 'index.html')
+      : path.join(distDir, route.replace(/^\/|\/$/g, ''), 'index.html')
 
   await fs.mkdir(path.dirname(outputPath), { recursive: true })
   await fs.writeFile(outputPath, html, 'utf8')

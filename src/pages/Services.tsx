@@ -28,21 +28,21 @@ const quickLinks = [
     title: 'Porträtt & Familj',
     description:
       'För dig som vill ha personliga porträtt, familjebilder eller naturliga bilder till CV, LinkedIn och sociala medier.',
-    to: '/portraits',
+    to: '/portraits/',
     buttonText: 'Se porträtt & familj',
   },
   {
     title: 'Bröllop',
     description:
       'För er som vill dokumentera dagen med naturliga, känslosamma och tidlösa bilder.',
-    to: '/weddings',
+    to: '/weddings/',
     buttonText: 'Se bröllop',
   },
   {
     title: 'Kontakt',
     description:
       'Är du osäker på vilken fotografering som passar bäst? Hör av dig så hjälper jag dig vidare.',
-    to: '/contact',
+    to: '/contact/',
     buttonText: 'Kontakta mig',
   },
 ]
@@ -180,7 +180,7 @@ export default function Services() {
                 </p>
                 <div className="mt-8">
                   <LinkButton
-                    to="/contact"
+                    to="/contact/"
                     variant="default"
                     size="lg"
                     subVariant="rounded"
@@ -288,7 +288,7 @@ export default function Services() {
 
                       <div className="pt-3">
                         <LinkButton
-                          to={card.buttonLink || '/contact'}
+                          to={card.buttonLink || '/contact/'}
                           variant="outline"
                           size="md"
                           subVariant="rounded"
@@ -376,7 +376,7 @@ export default function Services() {
             <CTASection
               title="Låt oss berätta din historia genom bilder"
               description="Varje bild har en historia att berätta. Jag ser fram emot att höra din och hjälpa dig att skapa minnen som varar över tid."
-              actions={[{ to: '/contact', label: 'Kontakta mig idag' }]}
+              actions={[{ to: '/contact/', label: 'Kontakta mig idag' }]}
             />
           </SectionContent>
         </Section>

@@ -343,8 +343,8 @@ export default function WeddingGallery() {
           title="Vill ni boka bröllopsfotografering?"
           description="Hör av er och berätta lite om er dag, ert upplägg och vad ni vill ha hjälp med, så återkommer jag med ett förslag som passar er och den känsla ni vill bära med er från dagen."
           actions={[
-            { to: '/contact', label: 'Skicka förfrågan' },
-            { to: '/services', label: 'Se fler tjänster', variant: 'outline' },
+            { to: '/contact/', label: 'Skicka förfrågan' },
+            { to: '/services/', label: 'Se fler tjänster', variant: 'outline' },
           ]}
         />
 

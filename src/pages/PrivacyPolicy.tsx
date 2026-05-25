@@ -120,7 +120,7 @@ export default function PrivacyPolicy() {
             <h2 className="mb-2 text-xl font-semibold">Contact</h2>
             <p className="leading-relaxed text-textSecondary">
               If you have questions about this privacy policy, please contact us via the{' '}
-              <a href="/contact" className="underline hover:opacity-70">
+              <a href="/contact/" className="underline hover:opacity-70">
                 contact form
               </a>
               .
@@ -226,7 +226,7 @@ export default function PrivacyPolicy() {
             <h2 className="mb-2 text-xl font-semibold">Kontakt</h2>
             <p className="leading-relaxed text-textSecondary">
               Har du frågor om denna integritetspolicy? Kontakta oss via{' '}
-              <a href="/contact" className="underline hover:opacity-70">
+              <a href="/contact/" className="underline hover:opacity-70">
                 kontaktformuläret
               </a>
               .

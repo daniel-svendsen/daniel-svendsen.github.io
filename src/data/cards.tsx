@@ -12,7 +12,7 @@ export const homeCards = [
     description:
       'Fånga er kärleksdag med tidlösa bilder och film. Jag skapar minnen som varar livet ut.',
     buttonText: 'Läs mer',
-    buttonLink: '/services',
+    buttonLink: '/services/',
     icon: Camera,
   },
   {
@@ -21,7 +21,7 @@ export const homeCards = [
     description:
       'Personliga porträtt för CV, sociala medier eller vackra familjebilder, utomhus eller på plats.',
     buttonText: 'Läs mer',
-    buttonLink: '/services',
+    buttonLink: '/services/',
     icon: Users,
   },
   {
@@ -30,7 +30,7 @@ export const homeCards = [
     description:
       'Professionella bilder och film som lyfter ert varumärke, event eller hobbyverksamhet.',
     buttonText: 'Läs mer',
-    buttonLink: '/services',
+    buttonLink: '/services/',
     icon: Briefcase,
   },
   {
@@ -39,7 +39,7 @@ export const homeCards = [
     description:
       'Moderna, snabba och SEO-optimerade hemsidor för företag och kreatörer. Även helhetspaket.',
     buttonText: 'Läs mer',
-    buttonLink: '/webservices',
+    buttonLink: '/webservices/',
     icon: Code,
   },
 ]
@@ -54,7 +54,7 @@ Extra bilder kan köpas till för 150 kr/st
 Passar för CV, LinkedIn, sociala medier, familjeporträtt och generationsbilder`,
     price: 'Från 1200 kr',
     buttonText: 'Kontakt',
-    buttonLink: '/contact',
+    buttonLink: '/contact/',
     icon: Users,
   },
   {
@@ -69,7 +69,7 @@ Cinematisk bröllopsfilm (3-5 min highlight reel) -> 5000 kr vid fotopaket / 800
 Extra timmar utöver paketen -> 2000 kr/timme`,
     price: 'Från 7500 kr',
     buttonText: 'Kontakt',
-    buttonLink: '/contact',
+    buttonLink: '/contact/',
     icon: Camera,
   },
   {
@@ -81,7 +81,7 @@ Produkt- och marknadsföringsbilder -> från 350 kr/bild
 Filmning för reklam och presentationer -> offert vid förfrågan`,
     price: 'Från 2500 kr',
     buttonText: 'Kontakt',
-    buttonLink: '/contact',
+    buttonLink: '/contact/',
     icon: Briefcase,
   },
   {
@@ -93,7 +93,7 @@ SEO-optimering och support -> från 2000 kr/månad
 Helhetspaket med fotografering och hemsida -> offert vid förfrågan`,
     price: 'Från 4500 kr',
     buttonText: 'Kontakt',
-    buttonLink: '/contact',
+    buttonLink: '/contact/',
     icon: Code,
   },
 ]

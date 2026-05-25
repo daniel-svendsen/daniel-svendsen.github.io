@@ -341,8 +341,8 @@ export default function Portraits() {
           title="Vill du boka porträttfotografering?"
           description="Hör av dig och berätta lite om vad du behöver hjälp med, så återkommer jag med ett upplägg som passar dig, användningsområdet och den känsla du vill ha i bilderna."
           actions={[
-            { to: '/contact', label: 'Skicka förfrågan' },
-            { to: '/services', label: 'Se fler tjänster', variant: 'outline' },
+            { to: '/contact/', label: 'Skicka förfrågan' },
+            { to: '/services/', label: 'Se fler tjänster', variant: 'outline' },
           ]}
         />
 

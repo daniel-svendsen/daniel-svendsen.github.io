@@ -358,9 +358,9 @@ export default function Home() {
               title="Redo att boka eller bara ställa en fråga?"
               description="Berätta vad du har i åtanke, så återkommer jag med ett upplägg som passar dig, ditt tillfälle eller ditt företag."
               actions={[
-                { to: '/contact', label: 'Skicka förfrågan' },
+                { to: '/contact/', label: 'Skicka förfrågan' },
                 {
-                  to: '/services',
+                  to: '/services/',
                   label: 'Se alla tjänster',
                   variant: 'outline',
                 },

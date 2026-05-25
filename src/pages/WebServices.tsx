@@ -109,7 +109,7 @@ export default function WebServicesPage() {
               professionell användarupplevelse.
             </p>
             <LinkButton
-              to="/contact"
+              to="/contact/"
               variant="default"
               size="lg"
               subVariant="rounded"
@@ -235,7 +235,7 @@ export default function WebServicesPage() {
               och stöder ditt företags mål online.
             </p>
             <LinkButton
-              to="/contact"
+              to="/contact/"
               variant="default"
               size="lg"
               subVariant="rounded"

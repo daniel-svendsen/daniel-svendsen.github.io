@@ -16,19 +16,32 @@ import Weddings from './pages/Weddings'
 
 export const prerenderRoutes = [
   '/',
-  '/services',
-  '/portraits',
-  '/weddings',
-  '/contact',
-  '/faq',
-  '/webservices',
-  '/privacy',
+  '/services/',
+  '/portraits/',
+  '/weddings/',
+  '/contact/',
+  '/faq/',
+  '/webservices/',
+  '/privacy/',
 ]
 
 export default function PublicAppRoutes() {
   const location = useLocation()
-  const footerRoutes = new Set(prerenderRoutes)
-  const showPublicFooter = footerRoutes.has(location.pathname)
+  const normalizedPathname =
+    location.pathname !== '/' && location.pathname.endsWith('/')
+      ? location.pathname.slice(0, -1)
+      : location.pathname
+  const footerRoutes = new Set([
+    '/',
+    '/services',
+    '/portraits',
+    '/weddings',
+    '/contact',
+    '/faq',
+    '/webservices',
+    '/privacy',
+  ])
+  const showPublicFooter = footerRoutes.has(normalizedPathname)
 
   return (
     <>

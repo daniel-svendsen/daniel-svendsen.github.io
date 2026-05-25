@@ -160,7 +160,7 @@ export default function HeroSection() {
                   className="px-6 text-sm font-semibold sm:px-7 sm:text-base"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => navigate('/contact')}
+                  onClick={() => navigate('/contact/')}
                 >
                   Kontakta mig
                 </MotionButton>
@@ -171,7 +171,7 @@ export default function HeroSection() {
                   className="px-6 text-sm font-semibold sm:px-7 sm:text-base"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => navigate('/services')}
+                  onClick={() => navigate('/services/')}
                 >
                   Se tjänster
                 </MotionButton>
