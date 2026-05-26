@@ -1,5 +1,7 @@
 // src/admin/worker/worker.ts
 
+import { downloadZip, predictLength } from 'client-zip'
+
 const Router = () => {
   const routes: { method: string; path: RegExp; handler: Function }[] = []
   const add = (method: string, path: RegExp, handler: Function) => {
@@ -58,6 +60,7 @@ const ORIGINALS_FOLDER = 'originals'
 const PREVIEWS_FOLDER = 'previews'
 const IMAGE_CACHE_SECONDS = 60 * 60 * 24 * 30
 const R2_DELETE_BATCH_SIZE = 1000
+const MAX_GALLERY_ZIP_BYTES = 3.5 * 1024 * 1024 * 1024
 const apiRouter = Router()
 const imageCache = (caches as CacheStorage & { default: Cache }).default
 
@@ -266,6 +269,35 @@ const cachedImageRequest = (request: Request, key: string) => {
   url.pathname = `/api/image/${key}`
   url.search = ''
   return new Request(url.toString(), { method: 'GET' })
+}
+
+const safeHeaderFileName = (fileName: string) =>
+  fileName.replace(/[\r\n"]/g, '').replace(/[\\/:*?<>|]+/g, '-')
+
+const safeZipEntryName = (fileName: string) => {
+  const cleaned = fileName
+    .replace(/\\/g, '/')
+    .split('/')
+    .filter((part) => part && part !== '.' && part !== '..')
+    .join('/')
+  return cleaned || 'image'
+}
+
+const zipEntryNameForImage = (image: GalleryImage, galleryPrefix: string) => {
+  const key = image.originalKey || image.previewKey || image.id
+  const relativeKey = key.startsWith(galleryPrefix)
+    ? key.slice(galleryPrefix.length)
+    : key
+  const parts = relativeKey.split('/').filter(Boolean)
+  const systemFolderIndex = parts.findIndex(
+    (part) => part === ORIGINALS_FOLDER || part === PREVIEWS_FOLDER,
+  )
+
+  if (systemFolderIndex !== -1) {
+    parts.splice(systemFolderIndex, 1)
+  }
+
+  return safeZipEntryName(parts.join('/') || image.fileName)
 }
 
 const deleteImageCache = async (
@@ -791,6 +823,82 @@ apiRouter.get(
     } catch (e) {
       return new Response(
         JSON.stringify({ error: 'Failed to get gallery content.' }),
+        { status: 500 },
+      )
+    }
+  },
+)
+
+apiRouter.get(
+  /^\/api\/gallery\/(?<galleryName>[^/]+)\/download$/,
+  async (request: Request, params: { galleryName: string }, env: Env) => {
+    try {
+      const galleryId = params.galleryName.replace(/\/$/, '')
+      const prefix = `${galleryId}/`
+      const objects = await listAllObjects(env.PICTURES, { prefix })
+      const images = buildRecursiveGalleryImages(objects, prefix).filter(
+        (image) => image.originalKey,
+      )
+
+      if (images.length === 0) {
+        return jsonResponse(
+          { error: 'No images found for this gallery.' },
+          { status: 404 },
+        )
+      }
+
+      const objectByKey = new Map(objects.map((object) => [object.key, object]))
+      const metadata = images.map((image) => {
+        const object = objectByKey.get(image.originalKey)
+        return {
+          name: zipEntryNameForImage(image, prefix),
+          size: object?.size ?? 0,
+          lastModified: object?.uploaded,
+        }
+      })
+      const zipLength = predictLength(metadata)
+
+      if (zipLength > BigInt(Math.floor(MAX_GALLERY_ZIP_BYTES))) {
+        return jsonResponse(
+          {
+            error:
+              'Gallery is too large to download as one zip. Please download individual images.',
+          },
+          { status: 413 },
+        )
+      }
+
+      async function* zipFiles() {
+        for (const image of images) {
+          const object = await env.PICTURES.get(image.originalKey)
+          if (!object) continue
+
+          yield {
+            name: zipEntryNameForImage(image, prefix),
+            input: object.body,
+            size: object.size,
+            lastModified: object.uploaded,
+          }
+        }
+      }
+
+      const zipResponse = downloadZip(zipFiles(), {
+        metadata,
+        buffersAreUTF8: true,
+      })
+      const headers = new Headers(zipResponse.headers)
+      const fileName = safeHeaderFileName(`${galleryId || 'galleri'}.zip`)
+      headers.set('Content-Type', 'application/zip')
+      headers.set('Content-Disposition', `attachment; filename="${fileName}"`)
+      headers.set('Cache-Control', 'private, no-store')
+
+      return new Response(zipResponse.body, {
+        status: zipResponse.status,
+        headers,
+      })
+    } catch (e) {
+      return jsonResponse(
+        { error: 'Failed to create gallery download.' },
         { status: 500 },
       )
     }

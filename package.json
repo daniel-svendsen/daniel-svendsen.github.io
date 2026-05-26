@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "npm-run-all --parallel dev:frontend dev:backend",
     "dev:frontend": "vite",
-    "dev:backend": "npx wrangler dev src/admin/worker/worker.ts --port 8787",
+    "dev:backend": "node scripts/run-wrangler-dev.cjs",
     "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs",
     "build:client": "vite build",
     "build:server": "vite build --ssr src/entry-server.tsx --outDir dist-server",
@@ -23,6 +23,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
+    "client-zip": "^2.5.0",
     "clsx": "^2.1.1",
     "file-saver": "^2.0.5",
     "framer-motion": "^12.4.13",

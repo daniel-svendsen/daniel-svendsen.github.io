@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
 import { useGalleryLikes } from '@/admin/hooks/useGalleryLikes'
-import { useImageDownloader } from '@/admin/hooks/useImageDownloader'
 import { useGalleryNavigation } from '@/admin/hooks/useGalleryNavigation'
 import { GalleryModal } from '@/admin/components/GalleryModal'
 import { GalleryImageGrid } from '@/admin/components/GalleryImageGrid'
@@ -22,7 +21,6 @@ export default function CustomerGalleryPage() {
   const [error, setError] = useState('')
 
   const { likedImages, toggleLike } = useGalleryLikes(galleryId || '')
-  const { status, message, downloadAndZip } = useImageDownloader()
   const { currentIndex, openModalAtIndex, closeModal, goToNext, goToPrevious } =
     useGalleryNavigation(images.length)
 
@@ -51,9 +49,7 @@ export default function CustomerGalleryPage() {
     <main className="pt-16 md:pt-20 bg-background text-foreground">
       <GalleryHeader
         galleryId={galleryId}
-        downloadStatus={status}
-        downloadMessage={message}
-        onDownloadAll={() => downloadAndZip(images, galleryId || 'gallery')}
+        downloadUrl={apiUrl(`gallery/${galleryId || 'gallery'}/download`)}
       />
       <Section roundedTop="9xl">
         <SectionContent>

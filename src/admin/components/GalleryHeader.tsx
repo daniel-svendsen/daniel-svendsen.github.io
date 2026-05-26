@@ -2,46 +2,29 @@ import React from 'react'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
 import { Button } from '@/components/Button'
-import { Download, LoaderCircle } from 'lucide-react'
-
-type DownloadStatus = 'idle' | 'downloading' | 'zipping' | 'error' | 'success'
+import { Download } from 'lucide-react'
 
 interface GalleryHeaderProps {
   galleryId: string | undefined
-  downloadStatus: DownloadStatus
-  downloadMessage: string
-  onDownloadAll: () => void
+  downloadUrl: string
 }
 
 export function GalleryHeader({
   galleryId,
-  downloadStatus,
-  downloadMessage,
-  onDownloadAll,
+  downloadUrl,
 }: GalleryHeaderProps) {
   const displayGalleryId = galleryId
     ? galleryId.charAt(0).toUpperCase() + galleryId.slice(1)
     : ''
 
-  const isDownloading =
-    downloadStatus === 'downloading' || downloadStatus === 'zipping'
-
-  const getDownloadButton = () => {
-    if (isDownloading) {
-      return (
-        <Button subVariant="rounded" size="lg" disabled>
-          <LoaderCircle className="mr-2 h-5 w-5 animate-spin" />
-          Arbetar...
-        </Button>
-      )
-    }
-    return (
-      <Button onClick={onDownloadAll} subVariant="rounded" size="lg">
+  const getDownloadButton = () => (
+    <Button asChild subVariant="rounded" size="lg">
+      <a href={downloadUrl}>
         <Download className="mr-2 h-5 w-5" />
         Ladda ner alla
-      </Button>
-    )
-  }
+      </a>
+    </Button>
+  )
 
   return (
     <Section bgColor="beige" roundedBottom="9xl">
@@ -52,18 +35,12 @@ export function GalleryHeader({
           </h1>
           {getDownloadButton()}
         </div>
-        <div className="text-center mt-4 min-h-[20px]">
-          {downloadStatus !== 'idle' && (
-            <p
-              className={`text-sm mt-2 ${
-                downloadStatus === 'error'
-                  ? 'text-destructive'
-                  : 'text-textSecondary'
-              }`}
-            >
-              {downloadMessage}
-            </p>
-          )}
+        <div className="mt-4 text-center">
+          <p className="text-sm text-textSecondary">
+            Bilderna laddas ner som en zip-fil. På mobil hittar du den oftast i
+            Filer eller Hämtade filer och trycker på zip-filen för att packa upp
+            bilderna.
+          </p>
         </div>
       </SectionContent>
     </Section>
