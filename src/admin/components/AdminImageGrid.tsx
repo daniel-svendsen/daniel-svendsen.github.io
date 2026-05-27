@@ -67,6 +67,14 @@ export function AdminImageGrid({
               <Trash2 className="h-5 w-5" />
             </button>
           </div>
+          <div className="absolute inset-x-0 bottom-0 z-10 rounded-b-lg bg-black/60 px-2 py-1">
+            <p
+              className="truncate text-[11px] leading-4 text-white"
+              title={key.fileName}
+            >
+              {key.fileName}
+            </p>
+          </div>
         </div>
       ))}
     </div>

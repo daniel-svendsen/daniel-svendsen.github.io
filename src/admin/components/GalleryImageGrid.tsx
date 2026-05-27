@@ -41,6 +41,14 @@ export function GalleryImageGrid({
             className="w-full h-full object-cover rounded-lg cursor-pointer"
             layoutId={`gallery-image-${image.id}`}
           />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 rounded-b-lg bg-black/60 px-2 py-1">
+            <p
+              className="truncate text-[11px] leading-4 text-white"
+              title={image.fileName}
+            >
+              {image.fileName}
+            </p>
+          </div>
         </div>
       ))}
     </div>

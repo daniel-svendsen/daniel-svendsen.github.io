@@ -68,6 +68,7 @@ const uploadObject = async (
   key: string,
   body: XMLHttpRequestBodyInit,
   contentType: string,
+  originalFileName?: string,
   onProgress?: (loaded: number, total: number) => void,
 ) => {
   await new Promise<void>((resolve, reject) => {
@@ -75,6 +76,12 @@ const uploadObject = async (
     request.open('PUT', apiUrl(`upload/${key}`))
     request.withCredentials = true
     request.setRequestHeader('Content-Type', contentType)
+    if (originalFileName) {
+      request.setRequestHeader(
+        'X-Original-File-Name',
+        encodeURIComponent(originalFileName),
+      )
+    }
 
     request.upload.onprogress = (event) => {
       if (!event.lengthComputable) return
@@ -191,6 +198,7 @@ export function useFileUpload() {
             previewKey,
             previewBlob,
             'image/webp',
+            undefined,
             (loaded, total) =>
               updateProgress(file.name, 'Laddar upp preview', loaded / total),
           )
@@ -204,6 +212,7 @@ export function useFileUpload() {
           originalKey,
           file,
           file.type || 'application/octet-stream',
+          file.name,
           (loaded, total) =>
             updateProgress(file.name, 'Laddar upp original', loaded / total),
         )

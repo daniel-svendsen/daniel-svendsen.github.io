@@ -132,6 +132,22 @@ const isFolderPlaceholder = (key: string) => key.endsWith(FOLDER_PLACEHOLDER)
 const systemFolderPrefix = (prefix: string, folder: string) =>
   `${prefix}${folder}/`
 
+const decodeOriginalFileNameHeader = (request: Request) => {
+  const value = request.headers.get('X-Original-File-Name')
+  if (!value) return undefined
+
+  try {
+    return decodeURIComponent(value)
+  } catch {
+    return undefined
+  }
+}
+
+const objectFileName = (object: R2Object, fallbackKey: string) =>
+  object.customMetadata?.originalFileName ||
+  fallbackKey.split('/').pop() ||
+  'image'
+
 const buildScopedGalleryImages = (
   objects: R2Object[],
   prefix: string,
@@ -153,9 +169,10 @@ const buildScopedGalleryImages = (
     if (isFolderPlaceholder(obj.key)) return
 
     if (obj.key.startsWith(originalsPrefix)) {
-      const fileName = obj.key.slice(originalsPrefix.length)
-      if (!fileName || fileName.includes('/')) return
-      const id = `${prefix}${stripExtension(fileName)}`
+      const keyFileName = obj.key.slice(originalsPrefix.length)
+      if (!keyFileName || keyFileName.includes('/')) return
+      const fileName = objectFileName(obj, obj.key)
+      const id = `${prefix}${stripExtension(keyFileName)}`
       const image = ensureImage(id)
       image.originalKey = obj.key
       image.fileName = fileName
@@ -237,7 +254,7 @@ const buildRecursiveGalleryImages = (
 
     if (systemFolder === ORIGINALS_FOLDER) {
       image.originalKey = obj.key
-      image.fileName = fileName
+      image.fileName = objectFileName(obj, obj.key)
     } else {
       image.previewKey = obj.key
       if (!image.fileName) image.fileName = fileName
@@ -274,6 +291,12 @@ const cachedImageRequest = (request: Request, key: string) => {
 const safeHeaderFileName = (fileName: string) =>
   fileName.replace(/[\r\n"]/g, '').replace(/[\\/:*?<>|]+/g, '-')
 
+const contentDispositionAttachment = (fileName: string) => {
+  const safeName = safeHeaderFileName(fileName)
+  const fallbackName = safeName.replace(/[^\x20-\x7E]/g, '_') || 'download'
+  return `attachment; filename="${fallbackName}"; filename*=UTF-8''${encodeURIComponent(safeName)}`
+}
+
 const safeZipEntryName = (fileName: string) => {
   const cleaned = fileName
     .replace(/\\/g, '/')
@@ -295,6 +318,10 @@ const zipEntryNameForImage = (image: GalleryImage, galleryPrefix: string) => {
 
   if (systemFolderIndex !== -1) {
     parts.splice(systemFolderIndex, 1)
+  }
+
+  if (parts.length > 0) {
+    parts[parts.length - 1] = image.fileName
   }
 
   return safeZipEntryName(parts.join('/') || image.fileName)
@@ -404,8 +431,10 @@ apiRouter.put(
     if (authError) return authError
     try {
       const contentType = request.headers.get('Content-Type') || undefined
+      const originalFileName = decodeOriginalFileNameHeader(request)
       await env.PICTURES.put(params.key, request.body, {
         httpMetadata: contentType ? { contentType } : undefined,
+        customMetadata: originalFileName ? { originalFileName } : undefined,
       })
       await deleteImageCache(request, params.key, ctx)
       return new Response(
@@ -736,8 +765,8 @@ apiRouter.get(
         `public, max-age=${IMAGE_CACHE_SECONDS}, s-maxage=${IMAGE_CACHE_SECONDS}, immutable`,
       )
 
-      const fileName = params.key.split('/').pop() || 'image'
-      headers.set('Content-Disposition', `attachment; filename="${fileName}"`)
+      const fileName = objectFileName(object, params.key)
+      headers.set('Content-Disposition', contentDispositionAttachment(fileName))
 
       if (!headers.has('Content-Type')) {
         const defaultContentType = 'application/octet-stream'
@@ -889,7 +918,10 @@ apiRouter.get(
       const headers = new Headers(zipResponse.headers)
       const fileName = safeHeaderFileName(`${galleryId || 'galleri'}.zip`)
       headers.set('Content-Type', 'application/zip')
-      headers.set('Content-Disposition', `attachment; filename="${fileName}"`)
+      headers.set(
+        'Content-Disposition',
+        contentDispositionAttachment(fileName),
+      )
       headers.set('Cache-Control', 'private, no-store')
 
       return new Response(zipResponse.body, {
