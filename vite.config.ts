@@ -4,18 +4,46 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import sitemap from 'vite-plugin-sitemap'
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import crypto from 'node:crypto'
 import type { Plugin } from 'vite'
 
 const responsiveWidths = [480, 768, 1024, 1440, 1920]
+const responsiveAssetDir = 'assets/responsive'
+const responsiveFormats = [
+  { extension: 'avif', type: 'image/avif', quality: 58 },
+  { extension: 'webp', type: 'image/webp', quality: 78 },
+] as const
+
+function assetUrl(base: string, fileName: string) {
+  return `${base.endsWith('/') ? base : `${base}/`}${fileName}`
+}
+
+function getResponsiveImageName(root: string, filePath: string) {
+  const relativePath = path.relative(root, filePath).replace(/\\/g, '/')
+  const imageName = path.basename(filePath, path.extname(filePath))
+  const pathHash = crypto
+    .createHash('sha256')
+    .update(relativePath)
+    .digest('hex')
+    .slice(0, 8)
+
+  return `${imageName}-${pathHash}`
+}
 
 function responsiveImagesPlugin(): Plugin {
   let isBuild = false
+  let isClientBuild = false
+  let root = process.cwd()
+  let base = '/'
 
   return {
     name: 'responsive-images',
     enforce: 'pre',
     configResolved(config) {
+      root = config.root
+      base = config.base
       isBuild = config.command === 'build'
+      isClientBuild = config.command === 'build' && !config.build.ssr
     },
     async load(id) {
       const [filePath, query] = id.split('?')
@@ -32,39 +60,46 @@ function responsiveImagesPlugin(): Plugin {
       }
 
       const sharp = (await import('sharp')).default
-      const input = await fs.readFile(filePath)
-      const metadata = await sharp(input).metadata()
+      const metadata = await sharp(filePath).metadata()
+      const input = isClientBuild ? await fs.readFile(filePath) : undefined
       const originalWidth = metadata.width ?? responsiveWidths[0]
       const originalHeight = metadata.height
       const outputWidths = responsiveWidths.filter((width) => width < originalWidth)
       outputWidths.push(originalWidth)
 
-      const imageName = path.basename(filePath, path.extname(filePath))
-      const formats = [
-        { extension: 'avif', type: 'image/avif', quality: 58 },
-        { extension: 'webp', type: 'image/webp', quality: 78 },
-      ] as const
+      const imageName = getResponsiveImageName(root, filePath)
+      const originalFileName = `${responsiveAssetDir}/${imageName}${path.extname(filePath)}`
+      const src = assetUrl(base, originalFileName)
 
-      const declarations: string[] = []
+      if (isClientBuild && input) {
+        this.emitFile({
+          type: 'asset',
+          fileName: originalFileName,
+          source: input,
+        })
+      }
+
       const sources = await Promise.all(
-        formats.map(async (format) => {
+        responsiveFormats.map(async (format) => {
           const srcSetParts = await Promise.all(
-            Array.from(new Set(outputWidths)).map(async (width, index) => {
-              const output = await sharp(input)
-                .rotate()
-                .resize({ width, withoutEnlargement: true })
-                .toFormat(format.extension, { quality: format.quality })
-                .toBuffer()
-              const referenceId = this.emitFile({
-                type: 'asset',
-                name: `${imageName}-${width}.${format.extension}`,
-                source: output,
-              })
-              const variableName = `${format.extension}${index}`
-              declarations.push(
-                `const ${variableName} = import.meta.ROLLUP_FILE_URL_${referenceId};`,
-              )
-              return `\${${variableName}} ${width}w`
+            Array.from(new Set(outputWidths)).map(async (width) => {
+              const fileName = `${responsiveAssetDir}/${imageName}-${width}.${format.extension}`
+
+              if (isClientBuild && input) {
+                const output = await sharp(input)
+                  .rotate()
+                  .resize({ width, withoutEnlargement: true })
+                  .toFormat(format.extension, { quality: format.quality })
+                  .toBuffer()
+
+                this.emitFile({
+                  type: 'asset',
+                  fileName,
+                  source: output,
+                })
+              }
+
+              return `${assetUrl(base, fileName)} ${width}w`
             }),
           )
 
@@ -73,10 +108,8 @@ function responsiveImagesPlugin(): Plugin {
       )
 
       return `
-        import src from ${JSON.stringify(`${filePath}?url`)};
-        ${declarations.join('\n')}
         export default {
-          src,
+          src: ${JSON.stringify(src)},
           sources: [${sources.join(', ')}],
           width: ${originalWidth},
           height: ${originalHeight ?? 'undefined'},
