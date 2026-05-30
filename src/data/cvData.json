@@ -539,7 +539,19 @@
       "link_href": "https://www.receptobot.se"
     },
     {
-      "id": 3,
+  "id": 3,
+  "name": {
+    "en": "Shardborne",
+    "sv": "Shardborne"
+  },
+  "details": {
+    "en": "Built a playable full-stack ARPG prototype with React, TypeScript, Phaser, Spring Boot, PostgreSQL and Flyway. The project includes account login, saved character progression, inventory/shop systems, spells/supports, map progression and automated tests. It also demonstrates structured AI-assisted development through architecture guardrails, roadmap-driven documentation and verification-focused workflows. Screenshots and demo notes are included in the repository.",
+    "sv": "Byggde en spelbar fullstack-ARPG-prototyp med React, TypeScript, Phaser, Spring Boot, PostgreSQL och Flyway. Projektet innehåller inloggning, sparad karaktärsprogression, inventory/shop-system, spells/supports, map progression och automatiserade tester. Det demonstrerar även strukturerad AI-assisterad utveckling genom arkitekturregler, roadmap-styrd dokumentation och verifieringsfokuserade arbetsflöden. Screenshots och demo-information finns i repot."
+  },
+  "link_href": "https://github.com/daniel-svendsen/Rpg-Game"
+},
+    {
+      "id": 4,
       "name": {
         "en": "TapMap",
         "sv": "TapMap"
@@ -551,7 +563,7 @@
       "link_href": "https://tapmap.pages.dev/"
     },
     {
-      "id": 4,
+      "id": 5,
       "name": {
         "en": "Gallery Management System",
         "sv": "Gallerihanteringssystem"
