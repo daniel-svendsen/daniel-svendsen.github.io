@@ -102,7 +102,7 @@ export default defineConfig({
         '/webservices/',
         '/privacy/',
       ],
-      generateRobotsTxt: true,
+      generateRobotsTxt: false,
     }),
   ],
   base: '/',

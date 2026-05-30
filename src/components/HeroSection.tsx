@@ -14,7 +14,7 @@ import { type ResponsiveImageAsset } from '@/utils/responsiveImages'
 import heroPortraitWide from '@/assets/herosection/portraits-23.jpg?responsive'
 import heroPortraitTight from '@/assets/herosection/portraits-3.jpg?responsive'
 import heroWedding from '@/assets/herosection/wedding.jpg?responsive'
-import heroCarousel from '@/assets/herosection/carousel-13.jpg?responsive'
+import heroCarousel from '@/assets/herosection/carousel-15.jpg?responsive'
 
 const defaultLeftImage = heroPortraitWide
 const defaultRightImage = heroPortraitTight
