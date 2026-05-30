@@ -11,19 +11,14 @@ import { ResponsiveImage } from '@/components/ResponsiveImage'
 
 import { useShuffledImages } from '@/hooks/useShuffleImages'
 import { type ResponsiveImageAsset } from '@/utils/responsiveImages'
-import heroPortraitWide from '@/assets/herosection/portraits-23.jpg?responsive'
-import heroPortraitTight from '@/assets/herosection/portraits-3.jpg?responsive'
-import heroWedding from '@/assets/herosection/wedding.jpg?responsive'
-import heroCarousel from '@/assets/herosection/carousel-15.jpg?responsive'
 
-const defaultLeftImage = heroPortraitWide
-const defaultRightImage = heroPortraitTight
-const allHeroImageUrls: ResponsiveImageAsset[] = [
-  heroPortraitWide,
-  heroPortraitTight,
-  heroWedding,
-  heroCarousel,
-]
+const allHeroImageUrls = Object.values(
+  import.meta.glob('../assets/herosection/*.{jpg,jpeg,png}', {
+    eager: true,
+    import: 'default',
+    query: '?responsive',
+  }),
+) as ResponsiveImageAsset[]
 
 const MotionButton = motion(Button)
 
@@ -31,22 +26,14 @@ export default function HeroSection() {
   const navigate = useNavigate()
 
   const imagePool = useMemo(() => {
-    return allHeroImageUrls.length >= 2
-      ? allHeroImageUrls
-      : allHeroImageUrls.length === 1 && allHeroImageUrls[0]
-        ? allHeroImageUrls[0] === defaultLeftImage
-          ? [allHeroImageUrls[0], defaultRightImage]
-          : [allHeroImageUrls[0], defaultLeftImage]
-        : [defaultLeftImage, defaultRightImage]
+    return allHeroImageUrls.length > 0 ? allHeroImageUrls : []
   }, [])
 
   const shuffledImages = useShuffledImages(imagePool)
 
-  const imageForLeft =
-    shuffledImages.length > 0 ? shuffledImages[0] : defaultLeftImage
+  const imageForLeft = shuffledImages[0] ?? imagePool[0]
 
-  const initialImageForRight =
-    shuffledImages.length > 1 ? shuffledImages[1] : defaultRightImage
+  const initialImageForRight = shuffledImages[1] ?? imagePool[1] ?? imageForLeft
 
   const imageForRight =
     imagePool.length > 1 && imageForLeft === initialImageForRight
@@ -64,6 +51,10 @@ export default function HeroSection() {
       : imagePool.length === 1 && imagePool[0]
         ? imagePool[0]
         : initialImageForRight
+
+  if (!imageForLeft || !imageForRight) {
+    return null
+  }
 
   return (
     <>
