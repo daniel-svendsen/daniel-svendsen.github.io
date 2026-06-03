@@ -154,15 +154,15 @@ export default function Portraits() {
             </p>
           </div>
 
-          <div className="rounded-[2rem] border border-black/6 bg-warm-gray p-5 shadow-[0_24px_60px_-36px_rgba(31,41,55,0.28)] md:p-6">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-textPrimary">
+          <div className="rounded-[2rem] border border-black/5 bg-[#fcfaf7] p-5 shadow-[0_24px_60px_-36px_rgba(31,41,55,0.24)] md:p-6">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
               Passar för
             </p>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {portraitUseCases.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-black/6 bg-white px-4 py-3 text-sm font-medium leading-relaxed text-textPrimary shadow-[0_10px_24px_-20px_rgba(31,41,55,0.24)]"
+                  className="rounded-2xl border border-black/5 bg-white px-4 py-3 text-sm font-medium leading-relaxed text-textPrimary shadow-[0_10px_24px_-20px_rgba(31,41,55,0.2)]"
                 >
                   {item}
                 </div>

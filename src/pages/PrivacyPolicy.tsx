@@ -92,8 +92,8 @@ export default function PrivacyPolicy() {
             <p className="leading-relaxed text-textSecondary">
               This website currently uses only cookies or similar local storage that are
               necessary for basic functionality, security or services that you explicitly
-              request. Examples may include session handling for protected admin features
-              and storage of essential site preferences.
+              request. Examples include session handling for protected admin features and
+              local storage used to remember gallery likes or essential site preferences.
             </p>
             <p className="mt-3 leading-relaxed text-textSecondary">
               We do not currently use advertising cookies, marketing pixels or
@@ -139,8 +139,8 @@ export default function PrivacyPolicy() {
           <div>
             <h2 className="mb-2 text-xl font-semibold">Vem vi är</h2>
             <p className="leading-relaxed text-textSecondary">
-              Svendsen Photography är ett enskilt företag som erbjuder
-              fotografitjänster i Kungälv och Göteborg. Webbplatsens adress är{' '}
+              Svendsen Photography är ett enskilt företag som erbjuder fotografitjänster
+              i Kungälv och Göteborg. Webbplatsens adress är{' '}
               <a href="https://www.svendsenphotography.com" className="underline hover:opacity-70">
                 www.svendsenphotography.com
               </a>
@@ -198,7 +198,8 @@ export default function PrivacyPolicy() {
               Webbplatsen använder för närvarande bara cookies eller liknande lokal
               lagring som är nödvändig för grundläggande funktionalitet, säkerhet eller
               tjänster som du uttryckligen begär. Det kan till exempel handla om
-              sessionshantering för skyddade adminfunktioner och lagring av nödvändiga
+              sessionshantering för skyddade adminfunktioner och lokal lagring för att
+              komma ihåg gilla-markeringar i gallerier eller andra nödvändiga
               inställningar.
             </p>
             <p className="mt-3 leading-relaxed text-textSecondary">

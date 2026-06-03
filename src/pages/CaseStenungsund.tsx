@@ -70,12 +70,14 @@ export default function CaseStenungsund() {
             </figure>
           </div>
           <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)] lg:h-full">
-            <ResponsiveImage
-              image={getImage(3)}
-              alt="Paret vid vassen i Stenungsund"
-              className="h-[24rem] w-full object-cover sm:h-[30rem] lg:h-full"
-              sizes="(min-width: 1024px) 740px, 100vw"
-            />
+            <div className="grid h-full grid-rows-[1fr_auto] gap-4">
+              <ResponsiveImage
+                image={getImage(3)}
+                alt="Paret vid vassen i Stenungsund"
+                className="h-[24rem] w-full object-cover sm:h-[30rem] lg:h-full"
+                sizes="(min-width: 1024px) 740px, 100vw"
+              />
+            </div>
           </figure>
         </section>
 
@@ -108,10 +110,11 @@ export default function CaseStenungsund() {
               className="bg-white p-6"
             />
           </div>
+
         </section>
 
         <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {caseImages.slice(4).map((image, index) => (
+          {[getImage(2), getImage(4), getImage(5)].map((image, index) => (
             <figure
               key={image}
               className="overflow-hidden rounded-[1.75rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]"
