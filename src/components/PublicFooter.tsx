@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 const footerLinks = [
   { to: '/contact/', label: 'Kontakt' },
   { to: '/faq/', label: 'FAQ' },
+  { to: '/webservices/', label: 'Webbtjänster' },
   { to: '/privacy/', label: 'Integritetspolicy' },
 ]
 

@@ -15,6 +15,14 @@ const prerenderRoutes = [
   '/contact/',
   '/faq/',
   '/webservices/',
+  '/guider/',
+  '/guider/brollopsplanerare/',
+  '/guider/brollopsbilder-promenad/',
+  '/guider/brollopstidslinje/',
+  '/brollopsfotograf-kungalv/',
+  '/brollop/',
+  '/brollop/kungalv/',
+  '/brollop/stenungsund/',
   '/privacy/',
 ]
 
@@ -25,6 +33,14 @@ const sitemapCanonicalRoutes = [
   '/contact',
   '/faq',
   '/webservices',
+  '/guider',
+  '/guider/brollopsplanerare',
+  '/guider/brollopsbilder-promenad',
+  '/guider/brollopstidslinje',
+  '/brollopsfotograf-kungalv',
+  '/brollop',
+  '/brollop/kungalv',
+  '/brollop/stenungsund',
   '/privacy',
 ]
 

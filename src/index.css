@@ -6,3 +6,62 @@
     --radius: 0.5rem
   }
 }
+
+@media print {
+  body:has(.planner-page) header,
+  body:has(.planner-page) footer,
+  body:has(.planner-page) .planner-screen {
+    display: none !important;
+  }
+
+  body:has(.planner-page) {
+    background: #ffffff !important;
+  }
+
+  body:has(.planner-page) .planner-page {
+    display: block !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    color: #111827 !important;
+  }
+
+  body:has(.planner-page) .planner-print {
+    display: block !important;
+    max-width: none !important;
+    padding: 0 !important;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+
+  body:has(.planner-page) .planner-print h1 {
+    margin: 0 0 0.35in;
+    font-size: 24pt;
+    line-height: 1.15;
+  }
+
+  body:has(.planner-page) .planner-print h2 {
+    margin: 0.3in 0 0.12in;
+    font-size: 15pt;
+    line-height: 1.2;
+  }
+
+  body:has(.planner-page) .planner-print h3 {
+    margin: 0.18in 0 0.05in;
+    font-size: 11pt;
+  }
+
+  body:has(.planner-page) .planner-print p,
+  body:has(.planner-page) .planner-print li {
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+
+  body:has(.planner-page) .planner-print ul {
+    margin: 0;
+    padding-left: 0.22in;
+  }
+
+  @page {
+    margin: 0.65in;
+  }
+}

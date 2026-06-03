@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { CTASection } from '@/components/CTASection'
 import { InfoCard } from '@/components/InfoCard'
+import { LinkButton } from '@/components/Button'
 import SEO from '@/components/SEO'
 import { Modal } from '../components/Modal'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
@@ -30,7 +31,7 @@ const weddingHighlights = [
   {
     title: 'Anpassat efter er dag',
     description:
-      'Vi utgår från ert upplägg, era önskemål och vilken typ av minnen ni vill kunna bära med er efteråt.',
+      'Jag utgår från ert upplägg, era önskemål och vilken typ av minnen ni vill kunna bära med er efteråt.',
   },
 ]
 
@@ -53,7 +54,7 @@ const weddingPackages = [
   {
     title: 'Bokning',
     description:
-      'Jag ser gärna att ni bokar minst 2 veckor i förväg så att vi hinner prata igenom upplägg, plats och känsla.',
+      'Jag ser gärna att ni bokar minst 2 veckor i förväg så att jag hinner prata igenom upplägg, plats och känsla med er.',
   },
 ]
 
@@ -247,6 +248,41 @@ export default function WeddingGallery() {
           </div>
         </section>
 
+        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:grid-cols-[0.9fr_1.1fr] lg:rounded-[3rem]">
+          <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] md:p-8">
+            <h2 className="mb-4 text-2xl font-semibold text-textPrimary">
+              Bröllopsfotograf i Kungälv
+            </h2>
+            <p className="mb-6 text-base leading-relaxed text-textSecondary">
+              För er som planerar bröllop i Kungälv finns det mycket att vinna
+              på ett upplägg där vigsel, familj och en lugn promenad får ta
+              plats. Det behöver inte vara stort för att kännas personligt.
+            </p>
+            <LinkButton
+              to="/brollopsfotograf-kungalv/"
+              variant="outline"
+              size="lg"
+              subVariant="rounded"
+              className="px-8 font-semibold"
+            >
+              Läs mer om bröllop i Kungälv
+            </LinkButton>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <InfoCard
+              title="Promenadbilder"
+              description="En kort promenad ger ofta mer avslappnade bilder där ni får fokusera på varandra."
+              className="bg-white p-6"
+            />
+            <InfoCard
+              title="Riktigt exempel"
+              description="Se ett bröllop från Kungälv där promenaden blev en viktig del av bildberättelsen."
+              className="bg-white p-6"
+            />
+          </div>
+        </section>
+
         <section className="mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:rounded-[3rem]">
           <div className="mb-8 max-w-3xl">
             <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
@@ -349,7 +385,11 @@ export default function WeddingGallery() {
           description="Hör av er och berätta lite om er dag, ert upplägg och vad ni vill ha hjälp med, så återkommer jag med ett förslag som passar er och den känsla ni vill bära med er från dagen."
           actions={[
             { to: '/contact/', label: 'Skicka förfrågan' },
-            { to: '/services/', label: 'Se fler tjänster', variant: 'outline' },
+            {
+              to: '/guider/brollopsplanerare/',
+              label: 'Planera bildlistan',
+              variant: 'outline',
+            },
           ]}
         />
 

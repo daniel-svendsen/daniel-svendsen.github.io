@@ -16,6 +16,20 @@ const FAQ = React.lazy(() => import('./pages/FAQ'))
 const Work = React.lazy(() => import('./pages/Work'))
 const WebServicesPage = React.lazy(() => import('./pages/WebServices'))
 const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'))
+const Guides = React.lazy(() => import('./pages/Guides'))
+const WeddingPhotoPlanner = React.lazy(
+  () => import('./pages/WeddingPhotoPlanner'),
+)
+const WeddingWalkGuide = React.lazy(() => import('./pages/WeddingWalkGuide'))
+const WeddingTimelineGuide = React.lazy(
+  () => import('./pages/WeddingTimelineGuide'),
+)
+const WeddingPhotographerKungalv = React.lazy(
+  () => import('./pages/WeddingPhotographerKungalv'),
+)
+const CaseStudies = React.lazy(() => import('./pages/CaseStudies'))
+const CaseKungalv = React.lazy(() => import('./pages/CaseKungalv'))
+const CaseStenungsund = React.lazy(() => import('./pages/CaseStenungsund'))
 const AdminLoginPage = React.lazy(() => import('./admin/pages/AdminLoginPage'))
 const AdminDashboardPage = React.lazy(
   () => import('./admin/pages/AdminDashboardPage'),
@@ -35,6 +49,14 @@ export const prerenderRoutes = [
   '/contact/',
   '/faq/',
   '/webservices/',
+  '/guider/',
+  '/guider/brollopsplanerare/',
+  '/guider/brollopsbilder-promenad/',
+  '/guider/brollopstidslinje/',
+  '/brollopsfotograf-kungalv/',
+  '/brollop/',
+  '/brollop/kungalv/',
+  '/brollop/stenungsund/',
   '/privacy/',
 ]
 
@@ -71,6 +93,14 @@ export default function AppRoutes() {
     '/contact',
     '/faq',
     '/webservices',
+    '/guider',
+    '/guider/brollopsplanerare',
+    '/guider/brollopsbilder-promenad',
+    '/guider/brollopstidslinje',
+    '/brollopsfotograf-kungalv',
+    '/brollop',
+    '/brollop/kungalv',
+    '/brollop/stenungsund',
     '/privacy',
   ])
 
@@ -95,6 +125,26 @@ export default function AppRoutes() {
           <Route path="/weddings" element={<Weddings />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/guider" element={<Guides />} />
+          <Route
+            path="/guider/brollopsplanerare"
+            element={<WeddingPhotoPlanner />}
+          />
+          <Route
+            path="/guider/brollopsbilder-promenad"
+            element={<WeddingWalkGuide />}
+          />
+          <Route
+            path="/guider/brollopstidslinje"
+            element={<WeddingTimelineGuide />}
+          />
+          <Route
+            path="/brollopsfotograf-kungalv"
+            element={<WeddingPhotographerKungalv />}
+          />
+          <Route path="/brollop" element={<CaseStudies />} />
+          <Route path="/brollop/kungalv" element={<CaseKungalv />} />
+          <Route path="/brollop/stenungsund" element={<CaseStenungsund />} />
           <Route path="/work" element={<Work />} />
           <Route path="/webservices" element={<WebServicesPage />} />
           <Route

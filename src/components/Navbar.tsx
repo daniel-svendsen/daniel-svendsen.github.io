@@ -17,11 +17,11 @@ const Navbar = () => {
   const navLinks = [
     { to: '/', label: 'Hem' },
     { to: '/services/', label: 'Tjänster' },
-    { to: '/faq/', label: 'FAQ' },
-    { to: '/contact/', label: 'Kontakt' },
     { to: '/portraits/', label: 'Porträtt' },
     { to: '/weddings/', label: 'Bröllop' },
-    { to: '/webservices/', label: 'Webbtjänster' },
+    { to: '/guider/', label: 'Guider' },
+    { to: '/faq/', label: 'FAQ' },
+    { to: '/contact/', label: 'Kontakt' },
   ]
 
   const linkClasses =
