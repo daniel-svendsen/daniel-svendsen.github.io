@@ -217,9 +217,9 @@ export default function WeddingWalkGuide() {
               Se hur det kan kännas i bild
             </h2>
             <p className="mb-6 text-base leading-relaxed text-textSecondary">
-              I ett bröllop från Kungälv blev just promenaden en viktig del av
-              bildserien. Paret fick vara i naturen, röra sig lugnt och släppa
-              kameran för en stund.
+              I bröllop från både Kungälv och Stenungsund blev promenaden och
+              miljön en viktig del av bildserien. Paret fick röra sig lugnt,
+              släppa kameran för en stund och vara nära varandra.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row">
               <LinkButton
@@ -230,6 +230,15 @@ export default function WeddingWalkGuide() {
                 className="px-8 font-semibold"
               >
                 Se bröllop i Kungälv
+              </LinkButton>
+              <LinkButton
+                to="/brollop/stenungsund/"
+                variant="outline"
+                size="lg"
+                subVariant="rounded"
+                className="px-8 font-semibold"
+              >
+                Se bröllop i Stenungsund
               </LinkButton>
               <LinkButton
                 to="/brollopsfotograf-kungalv/"

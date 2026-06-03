@@ -34,7 +34,7 @@ export default function Guides() {
           </div>
         </header>
 
-        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           <InfoCard className="bg-white p-6 md:p-8">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
               Planerare
@@ -92,6 +92,26 @@ export default function Guides() {
               subVariant="rounded"
             >
               Läs guiden
+            </LinkButton>
+          </InfoCard>
+
+          <InfoCard className="bg-white p-6 md:p-8">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
+              Exempel
+            </p>
+            <h2 className="mb-3 text-2xl font-semibold text-textPrimary">
+              Bröllop i Stenungsund
+            </h2>
+            <p className="mb-6 text-base leading-relaxed text-textSecondary">
+              Se ett heldagsbröllop vid havet med first look, vigsel, mingel,
+              middag och lugna parbilder.
+            </p>
+            <LinkButton
+              to="/brollop/stenungsund/"
+              size="lg"
+              subVariant="rounded"
+            >
+              Se bilderna
             </LinkButton>
           </InfoCard>
         </section>
