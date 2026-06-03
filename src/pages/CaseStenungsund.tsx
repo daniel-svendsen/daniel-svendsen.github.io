@@ -70,14 +70,12 @@ export default function CaseStenungsund() {
             </figure>
           </div>
           <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)] lg:h-full">
-            <div className="grid h-full grid-rows-[1fr_auto] gap-4">
-              <ResponsiveImage
-                image={getImage(3)}
-                alt="Paret vid vassen i Stenungsund"
-                className="h-[24rem] w-full object-cover sm:h-[30rem] lg:h-full"
-                sizes="(min-width: 1024px) 740px, 100vw"
-              />
-            </div>
+            <ResponsiveImage
+              image={getImage(3)}
+              alt="Paret vid vassen i Stenungsund"
+              className="block h-[24rem] w-full object-cover sm:h-[30rem] lg:h-full"
+              sizes="(min-width: 1024px) 740px, 100vw"
+            />
           </figure>
         </section>
 

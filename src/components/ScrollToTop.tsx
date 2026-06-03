@@ -1,13 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { ArrowUp } from 'lucide-react'
 import { useLocation } from 'react-router-dom'
+
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 export default function ScrollToTop() {
   const [visible, setVisible] = useState(false)
   const { pathname, search } = useLocation()
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+  }, [])
+
+  useIsomorphicLayoutEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    })
   }, [pathname, search])
 
   useEffect(() => {

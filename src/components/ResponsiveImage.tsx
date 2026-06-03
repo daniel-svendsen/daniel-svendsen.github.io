@@ -20,17 +20,18 @@ export const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
   ...props
 }) => {
   const src = getImageSrc(image)
+  const className = ['block', props.className].filter(Boolean).join(' ')
 
   if (!src) {
     return null
   }
 
   if (!isResponsiveImage(image) || image.sources?.length === 0) {
-    return <img src={src} {...props} />
+    return <img src={src} {...props} className={className} />
   }
 
   return (
-    <picture>
+    <picture className="block">
       {image.sources?.map((source) => (
         <source
           key={source.type}
@@ -45,6 +46,7 @@ export const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
         height={image.height}
         sizes={sizes}
         {...props}
+        className={className}
       />
     </picture>
   )
