@@ -30,3 +30,4 @@ Short context for agents. Prefer source code over this file when details matter.
 - Keep agent docs short and self-contained.
 - Do not add real environment values, Cloudflare IDs, tokens, cookies, or passwords to docs.
 - Prefer updating existing docs over creating new ones.
+- Current SEO architecture and deployment checks are documented in `docs/SEO_SETUP.md`.
