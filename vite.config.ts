@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import sitemap from 'vite-plugin-sitemap'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import crypto from 'node:crypto'
@@ -124,27 +123,6 @@ export default defineConfig({
     responsiveImagesPlugin(),
     react(),
     tsconfigPaths(),
-    sitemap({
-      hostname: 'https://www.svendsenphotography.com',
-      dynamicRoutes: [
-        '/services/',
-        '/weddings/',
-        '/portraits/',
-        '/faq/',
-        '/contact/',
-        '/webservices/',
-        '/guider/',
-        '/guider/brollopsplanerare/',
-        '/guider/brollopsbilder-promenad/',
-        '/guider/brollopstidslinje/',
-        '/brollopsfotograf-kungalv/',
-        '/brollop/',
-        '/brollop/kungalv/',
-        '/brollop/stenungsund/',
-        '/privacy/',
-      ],
-      generateRobotsTxt: false,
-    }),
   ],
   base: '/',
   build: {

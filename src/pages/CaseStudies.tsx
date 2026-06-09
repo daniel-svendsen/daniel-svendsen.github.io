@@ -21,7 +21,7 @@ export default function CaseStudies() {
   return (
     <>
       <SEO
-        title="Bröllop jag fotograferat | Kungälv och Stenungsund | Svendsen Photography"
+        title="Bröllop jag fotograferat | Kungälv och Stenungsund | Svendsén Photography"
         description="Se bröllop jag fotograferat i Kungälv och Stenungsund, med fokus på promenadporträtt, vigsel, mingel och personliga bilder."
         url="https://www.svendsenphotography.com/brollop/"
         image={absoluteLogoUrl}

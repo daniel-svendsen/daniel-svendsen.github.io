@@ -10,6 +10,7 @@ import forprosImg from '@/assets/movies/img-optimized.jpg?responsive'
 import forprosVideo from '@/assets/movies/forpros1.mp4'
 import { homeCards } from '../data/cards'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { businessJsonLd, SITE_URL } from '@/config/seo'
 import { getImageSrc } from '@/utils/responsiveImages'
 import {
   Camera,
@@ -108,33 +109,15 @@ export default function Home() {
     }
   }, [])
 
-  const homeJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'Svendsén Photography',
-    description: 'Fotograf i Kungälv & Göteborg',
-    image: 'https://www.svendsenphotography.com/logo.jpg',
-    url: 'https://www.svendsenphotography.com',
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Kungälv',
-      addressCountry: 'SE',
-    },
-    areaServed: [
-      { '@type': 'AdministrativeArea', name: 'Kungälv' },
-      { '@type': 'AdministrativeArea', name: 'Göteborg' },
-    ],
-  }
-
   return (
     <>
       <SEO
         title="Fotograf i Kungälv & Göteborg - Svendsén Photography"
         description="Svendsén Photography erbjuder professionell fotografering inom bröllop, porträtt, familj, bilfotografering och företag i Kungälv och Göteborg. Boka din fotografering idag!"
-        url="https://www.svendsenphotography.com"
+        url={`${SITE_URL}/`}
         image={absoluteLogoUrl}
         keywords="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, familjefotograf, familjefoto, bilfotograf, företagsfotograf, filmning, webbutveckling"
-        jsonLd={homeJsonLd}
+        jsonLd={businessJsonLd}
       />
       <div className="bg-[#f7f5f2] dark:bg-gray-900">
         <HeroSection />

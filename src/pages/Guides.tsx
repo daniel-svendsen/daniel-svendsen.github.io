@@ -12,7 +12,7 @@ export default function Guides() {
   return (
     <>
       <SEO
-        title="Guider för bröllopsbilder | Svendsen Photography"
+        title="Guider för bröllopsbilder | Svendsén Photography"
         description="Guider för er som planerar bröllopsbilder med naturlig känsla, promenadporträtt och personliga upplägg."
         url="https://www.svendsenphotography.com/guider/"
         image={absoluteLogoUrl}

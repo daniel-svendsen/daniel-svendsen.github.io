@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import Typewriter from 'typewriter-effect'
 
@@ -57,18 +56,7 @@ export default function HeroSection() {
   }
 
   return (
-    <>
-      <Helmet>
-        <title>
-          Svendsén Photography - Professionell Fotograf i Göteborg & Kungälv
-        </title>
-        <meta
-          name="description"
-          content="Välkommen till Svendsén Photography! Din kreativa partner för bröllop, porträtt, familj, företag och webb. Stilren och professionell fotografering."
-        />
-      </Helmet>
-
-      <Section
+    <Section
         roundedBottom="10xl"
         bgColor="beige"
         className="flex h-[98vh] w-full flex-col items-center justify-center overflow-hidden pt-16 pb-8 sm:pt-20 sm:pb-10 md:py-0"
@@ -170,7 +158,6 @@ export default function HeroSection() {
             </motion.div>
           </div>
         </SectionContent>
-      </Section>
-    </>
+    </Section>
   )
 }

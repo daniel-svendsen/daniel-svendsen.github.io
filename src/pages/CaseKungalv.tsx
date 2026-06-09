@@ -29,7 +29,7 @@ export default function CaseKungalv() {
   return (
     <>
       <SEO
-        title="Bröllop i Kungälv | Kersti & Jakob | Svendsen Photography"
+        title="Bröllop i Kungälv | Kersti & Jakob | Svendsén Photography"
         description="Bröllopsfotografering i Kungälv med promenadporträtt, vitsippor, vigsel och familjebilder i en lugn och personlig stil."
         url="https://www.svendsenphotography.com/brollop/kungalv/"
         image={absoluteLogoUrl}

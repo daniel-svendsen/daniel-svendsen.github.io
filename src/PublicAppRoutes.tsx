@@ -12,6 +12,7 @@ import CaseKungalv from './pages/CaseKungalv'
 import CaseStenungsund from './pages/CaseStenungsund'
 import Guides from './pages/Guides'
 import Home from './pages/Home'
+import NotFound from './pages/NotFound'
 import Portraits from './pages/Portraits'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import Services from './pages/Services'
@@ -100,6 +101,7 @@ export default function PublicAppRoutes() {
         <Route path="/brollop/stenungsund" element={<CaseStenungsund />} />
         <Route path="/webservices" element={<WebServicesPage />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       {showPublicFooter && <PublicFooter />}
     </>

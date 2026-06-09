@@ -1,6 +1,8 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 
+import { BUSINESS } from '@/config/seo'
+
 interface SEOProps {
   title: string
   description: string
@@ -36,7 +38,7 @@ const SEO: React.FC<SEOProps> = ({
     {image && <meta property="og:image" content={image} />}
     <meta property="og:url" content={url} />
     <meta property="og:type" content={ogType} />
-    <meta property="og:site_name" content="Svendsén Photography" />
+    <meta property="og:site_name" content={BUSINESS.name} />
     <meta property="og:locale" content="sv_SE" />
 
     {/* Twitter */}

@@ -94,7 +94,7 @@ export default function WeddingWalkGuide() {
   return (
     <>
       <SEO
-        title="Promenadbilder på bröllopsdagen | Guide | Svendsen Photography"
+        title="Promenadbilder på bröllopsdagen | Guide | Svendsén Photography"
         description="Guide till promenadbilder på bröllopsdagen: hur lång tid ni behöver, vad ni kan tänka på och fina miljöer i Kungälv och Stenungsund."
         url="https://www.svendsenphotography.com/guider/brollopsbilder-promenad/"
         image={absoluteLogoUrl}

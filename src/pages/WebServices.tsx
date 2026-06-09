@@ -8,6 +8,7 @@ import webdevImage from '../assets/webdev-optimized.jpg?responsive'
 import { CheckCircle, Search, Smartphone, Users, Zap } from 'lucide-react'
 import { toAbsoluteUrl } from '@/utils/utils'
 import { getImageSrc } from '@/utils/responsiveImages'
+import { businessReference, BUSINESS } from '@/config/seo'
 
 export default function WebServicesPage() {
   const absoluteSpecificImage = toAbsoluteUrl(getImageSrc(webdevImage))
@@ -17,16 +18,12 @@ export default function WebServicesPage() {
     name: 'Webbutveckling och webbtjänster i Göteborg och Kungälv',
     description:
       'Webbutveckling och webbtjänster för företag i Göteborg och Kungälv med fokus på modern teknik, prestanda och synlighet online.',
-    provider: {
-      '@type': 'LocalBusiness',
-      name: 'Svendsen Photography',
-      url: 'https://www.svendsenphotography.com',
-    },
+    provider: businessReference,
     serviceType: ['WebDevelopment', 'Website optimization'],
-    areaServed: [
-      { '@type': 'AdministrativeArea', name: 'Kungälv' },
-      { '@type': 'AdministrativeArea', name: 'Göteborg' },
-    ],
+    areaServed: BUSINESS.serviceAreas.map((name) => ({
+      '@type': 'AdministrativeArea',
+      name,
+    })),
     url: 'https://www.svendsenphotography.com/webservices/',
   }
 
@@ -88,8 +85,8 @@ export default function WebServicesPage() {
   return (
     <>
       <SEO
-        title="Webbutveckling och webbtjänster i Göteborg | Svendsen Photography"
-        description="Svendsen Photography erbjuder webbutveckling och webbtjänster för företag som vill ha en modern, snabb och professionell närvaro online i Göteborg och Kungälv."
+        title="Webbutveckling och webbtjänster i Göteborg | Svendsén Photography"
+        description="Svendsén Photography erbjuder webbutveckling och webbtjänster för företag som vill ha en modern, snabb och professionell närvaro online i Göteborg och Kungälv."
         url="https://www.svendsenphotography.com/webservices/"
         jsonLd={pageJsonLd}
         image={absoluteSpecificImage}

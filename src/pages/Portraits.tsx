@@ -8,6 +8,7 @@ import { useImportedImages } from '../hooks/useImportedImages'
 import { useShuffledImages } from '../hooks/useShuffleImages'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 import { getImageSrc, type ImageAsset } from '@/utils/responsiveImages'
+import { businessReference, BUSINESS } from '@/config/seo'
 
 const portraitUseCases = [
   'Profilbilder för LinkedIn, CV och personligt varumärke',
@@ -117,22 +118,18 @@ export default function Portraits() {
     description:
       'Professionell porträtt- och familjefotografering i Göteborg och Kungälv för privatpersoner, kreatörer och företag.',
     url: 'https://www.svendsenphotography.com/portraits/',
-    provider: {
-      '@type': 'LocalBusiness',
-      name: 'Svendsen Photography',
-      url: 'https://www.svendsenphotography.com',
-    },
-    areaServed: [
-      { '@type': 'AdministrativeArea', name: 'Göteborg' },
-      { '@type': 'AdministrativeArea', name: 'Kungälv' },
-    ],
+    provider: businessReference,
+    areaServed: BUSINESS.serviceAreas.map((name) => ({
+      '@type': 'AdministrativeArea',
+      name,
+    })),
   }
 
   return (
     <>
       <SEO
-        title="Porträtt- & familjefotograf i Göteborg & Kungälv | Naturliga porträtt | Svendsen Photography"
-        description="Söker du en porträtt- eller familjefotograf i Göteborg eller Kungälv? Svendsen Photography skapar naturliga och professionella porträtt och familjebilder för privatpersoner, kreatörer och företag."
+        title="Porträtt- & familjefotograf i Göteborg & Kungälv | Naturliga porträtt | Svendsén Photography"
+        description="Söker du en porträtt- eller familjefotograf i Göteborg eller Kungälv? Svendsén Photography skapar naturliga och professionella porträtt och familjebilder för privatpersoner, kreatörer och företag."
         url="https://www.svendsenphotography.com/portraits/"
         image={absoluteLogoUrl}
         jsonLd={portraitsJsonLd}

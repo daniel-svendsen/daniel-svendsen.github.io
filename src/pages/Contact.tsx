@@ -4,6 +4,7 @@ import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
 import { Button } from '@/components/Button'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { businessReference } from '@/config/seo'
 
 export default function Contact() {
   const [selectedService, setSelectedService] = useState<string>('')
@@ -75,17 +76,7 @@ export default function Contact() {
     description:
       'Kontakta och boka fotograf eller webbutvecklare i Kungälv & Göteborg.',
     url: 'https://www.svendsenphotography.com/contact/',
-    mainEntity: {
-      '@type': 'LocalBusiness',
-      name: 'Svendsén Photography',
-      url: 'https://www.svendsenphotography.com',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Kungälv',
-        addressRegion: 'Västra Götaland',
-        addressCountry: 'SE',
-      },
-    },
+    mainEntity: businessReference,
   }
 
   const inputClasses =

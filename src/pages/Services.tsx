@@ -19,6 +19,7 @@ import {
 } from 'lucide-react'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 import { getImageSrc } from '@/utils/responsiveImages'
+import { businessReference, BUSINESS } from '@/config/seo'
 
 const pageHeroImage =
   serviceCards.length > 0
@@ -76,23 +77,18 @@ export default function Services() {
   const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
   const photographyPageJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Photographer',
-    name: 'Fotograf i Göteborg och Kungälv - Svendsen Photography',
+    '@type': 'Service',
+    name: 'Fotografering i Göteborg, Kungälv och Stenungsund',
+    serviceType: 'Photography',
     description:
-      'Professionell fotograf i Göteborg och Kungälv för bröllop, porträtt, familj och företag med en personlig och naturlig bildstil.',
-    image: pageHeroImage,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Kungälv',
-      addressRegion: 'Västra Götaland',
-      addressCountry: 'SE',
-    },
-    priceRange: 'Kontakta för prisinformation',
+      'Professionell fotograf för bröllop, porträtt, familj och företag med en personlig och naturlig bildstil.',
+    image: toAbsoluteUrl(pageHeroImage),
     url: 'https://www.svendsenphotography.com/services/',
-    areaServed: [
-      { '@type': 'AdministrativeArea', name: 'Kungälv' },
-      { '@type': 'AdministrativeArea', name: 'Göteborg' },
-    ],
+    provider: businessReference,
+    areaServed: BUSINESS.serviceAreas.map((name) => ({
+      '@type': 'AdministrativeArea',
+      name,
+    })),
   }
 
   const whyChooseMeList = [
@@ -152,8 +148,8 @@ export default function Services() {
   return (
     <>
       <SEO
-        title="Fotograf i Göteborg & Kungälv | Bröllop, porträtt, familj och företag | Svendsen Photography"
-        description="Svendsen Photography erbjuder professionell fotografering i Göteborg och Kungälv inom bröllop, porträtt, familj och företag. Utforska tjänsterna och hitta rätt fotografering för dig."
+        title="Fotograf i Göteborg & Kungälv | Bröllop, porträtt, familj och företag | Svendsén Photography"
+        description="Svendsén Photography erbjuder professionell fotografering i Göteborg och Kungälv inom bröllop, porträtt, familj och företag. Utforska tjänsterna och hitta rätt fotografering för dig."
         url="https://www.svendsenphotography.com/services/"
         jsonLd={photographyPageJsonLd}
         image={absoluteLogoUrl}

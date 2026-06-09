@@ -29,7 +29,7 @@ export default function CaseStenungsund() {
   return (
     <>
       <SEO
-        title="Bröllop i Stenungsund | Rebecka & Aron | Svendsen Photography"
+        title="Bröllop i Stenungsund | Rebecka & Aron | Svendsén Photography"
         description="Ett heldagsbröllop i Stenungsund med first look, vigsel, mingel, middag, fest och lugna parbilder vid vassen."
         url="https://www.svendsenphotography.com/brollop/stenungsund/"
         image={absoluteLogoUrl}

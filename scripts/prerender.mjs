@@ -26,28 +26,10 @@ const prerenderRoutes = [
   '/privacy/',
 ]
 
-const sitemapCanonicalRoutes = [
-  '/services',
-  '/portraits',
-  '/weddings',
-  '/contact',
-  '/faq',
-  '/webservices',
-  '/guider',
-  '/guider/brollopsplanerare',
-  '/guider/brollopsbilder-promenad',
-  '/guider/brollopstidslinje',
-  '/brollopsfotograf-kungalv',
-  '/brollop',
-  '/brollop/kungalv',
-  '/brollop/stenungsund',
-  '/privacy',
-]
-
 const { render } = await import(pathToFileURL(serverEntryPath).href)
 const template = await fs.readFile(templatePath, 'utf8')
 
-for (const route of prerenderRoutes) {
+async function renderPage(route, outputPath) {
   const { appHtml, helmet } = render(route)
   const helmetData = helmet.helmet ?? {}
   const titleTag =
@@ -63,23 +45,41 @@ for (const route of prerenderRoutes) {
     .replace('<!--app-head-->', headTags)
     .replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
 
+  await fs.mkdir(path.dirname(outputPath), { recursive: true })
+  await fs.writeFile(outputPath, html, 'utf8')
+}
+
+for (const route of prerenderRoutes) {
   const outputPath =
     route === '/'
       ? path.join(distDir, 'index.html')
       : path.join(distDir, route.replace(/^\/|\/$/g, ''), 'index.html')
 
-  await fs.mkdir(path.dirname(outputPath), { recursive: true })
-  await fs.writeFile(outputPath, html, 'utf8')
+  await renderPage(route, outputPath)
 }
 
-const sitemapPath = path.join(distDir, 'sitemap.xml')
-let sitemap = await fs.readFile(sitemapPath, 'utf8')
+await renderPage('/404', path.join(distDir, '404.html'))
 
-for (const route of sitemapCanonicalRoutes) {
-  sitemap = sitemap.replaceAll(
-    `https://www.svendsenphotography.com${route}</loc>`,
-    `https://www.svendsenphotography.com${route}/</loc>`,
+const appShell = template
+  .replace(
+    /<title>[\s\S]*?<\/title>/,
+    '<title>Svendsén Photography</title>',
   )
-}
+  .replace(
+    '<!--app-head-->',
+    '<meta name="robots" content="noindex, nofollow"><meta name="googlebot" content="noindex, nofollow">',
+  )
+await fs.writeFile(path.join(distDir, 'app-shell.html'), appShell, 'utf8')
 
-await fs.writeFile(sitemapPath, sitemap, 'utf8')
+const sitemapUrls = prerenderRoutes
+  .map(
+    (route) =>
+      `  <url><loc>https://www.svendsenphotography.com${route}</loc></url>`,
+  )
+  .join('\n')
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapUrls}
+</urlset>
+`
+await fs.writeFile(path.join(distDir, 'sitemap.xml'), sitemap, 'utf8')

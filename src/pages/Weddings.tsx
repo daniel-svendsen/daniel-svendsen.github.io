@@ -9,6 +9,7 @@ import { useImportedImages } from '../hooks/useImportedImages'
 import { useShuffledImages } from '../hooks/useShuffleImages'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 import { getImageSrc, type ImageAsset } from '@/utils/responsiveImages'
+import { businessReference, BUSINESS } from '@/config/seo'
 
 const weddingIncludes = [
   'Bröllopsporträtt med fokus på närvaro och naturlig känsla',
@@ -119,22 +120,18 @@ export default function WeddingGallery() {
     description:
       'Bröllopsfotograf i Göteborg och Kungälv med fokus på naturliga, känslosamma och tidlösa bilder.',
     url: 'https://www.svendsenphotography.com/weddings/',
-    provider: {
-      '@type': 'LocalBusiness',
-      name: 'Svendsen Photography',
-      url: 'https://www.svendsenphotography.com',
-    },
-    areaServed: [
-      { '@type': 'AdministrativeArea', name: 'Göteborg' },
-      { '@type': 'AdministrativeArea', name: 'Kungälv' },
-    ],
+    provider: businessReference,
+    areaServed: BUSINESS.serviceAreas.map((name) => ({
+      '@type': 'AdministrativeArea',
+      name,
+    })),
   }
 
   return (
     <>
       <SEO
-        title="Bröllopsfotograf i Göteborg & Kungälv | Tidlösa bröllopsbilder | Svendsen Photography"
-        description="Söker ni en bröllopsfotograf i Göteborg eller Kungälv? Svendsen Photography dokumenterar er dag med naturliga, personliga och tidlösa bilder."
+        title="Bröllopsfotograf i Göteborg & Kungälv | Tidlösa bröllopsbilder | Svendsén Photography"
+        description="Söker ni en bröllopsfotograf i Göteborg eller Kungälv? Svendsén Photography dokumenterar er dag med naturliga, personliga och tidlösa bilder."
         url="https://www.svendsenphotography.com/weddings/"
         image={absoluteLogoUrl}
         jsonLd={weddingsJsonLd}

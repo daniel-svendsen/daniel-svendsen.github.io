@@ -6,6 +6,7 @@ import { LinkButton } from '@/components/Button'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { businessReference } from '@/config/seo'
 
 const kungalvHeroImages = Object.entries(
   import.meta.glob(
@@ -81,18 +82,14 @@ export default function WeddingPhotographerKungalv() {
     description:
       'Bröllopsfotografering i Kungälv med naturliga porträtt, vigselbilder och lugna promenadbilder.',
     url: 'https://www.svendsenphotography.com/brollopsfotograf-kungalv/',
-    provider: {
-      '@type': 'LocalBusiness',
-      name: 'Svendsen Photography',
-      url: 'https://www.svendsenphotography.com',
-    },
+    provider: businessReference,
     areaServed: [{ '@type': 'AdministrativeArea', name: 'Kungälv' }],
   }
 
   return (
     <>
       <SEO
-        title="Bröllopsfotograf i Kungälv | Naturliga bröllopsbilder | Svendsen Photography"
+        title="Bröllopsfotograf i Kungälv | Naturliga bröllopsbilder | Svendsén Photography"
         description="Söker ni bröllopsfotograf i Kungälv? Jag fotograferar vigsel, familj och naturliga porträtt med lugn känsla och plats för promenadbilder."
         url="https://www.svendsenphotography.com/brollopsfotograf-kungalv/"
         image={absoluteLogoUrl}

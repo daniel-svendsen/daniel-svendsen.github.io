@@ -30,6 +30,7 @@ const WeddingPhotographerKungalv = React.lazy(
 const CaseStudies = React.lazy(() => import('./pages/CaseStudies'))
 const CaseKungalv = React.lazy(() => import('./pages/CaseKungalv'))
 const CaseStenungsund = React.lazy(() => import('./pages/CaseStenungsund'))
+const NotFound = React.lazy(() => import('./pages/NotFound'))
 const AdminLoginPage = React.lazy(() => import('./admin/pages/AdminLoginPage'))
 const AdminDashboardPage = React.lazy(
   () => import('./admin/pages/AdminDashboardPage'),
@@ -160,6 +161,7 @@ export default function AppRoutes() {
               element={<GalleryDetailPage />}
             />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
       {showPublicFooter && <PublicFooter />}

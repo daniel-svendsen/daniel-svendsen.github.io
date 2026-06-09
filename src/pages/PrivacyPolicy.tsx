@@ -8,19 +8,19 @@ export default function PrivacyPolicy() {
   const privacyJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'Privacy Policy - Svendsen Photography',
-    description: 'Privacy Policy for Svendsen Photography',
+    name: 'Privacy Policy - Svendsén Photography',
+    description: 'Privacy Policy for Svendsén Photography',
     url: 'https://www.svendsenphotography.com/privacy/',
   }
 
   return (
     <>
       <SEO
-        title="Privacy Policy - Svendsen Photography"
-        description="Read about how Svendsen Photography handles your personal data and website cookies."
+        title="Privacy Policy - Svendsén Photography"
+        description="Read about how Svendsén Photography handles your personal data and website cookies."
         url="https://www.svendsenphotography.com/privacy/"
         image={absoluteLogoUrl}
-        keywords="privacy policy, cookie policy, integritetspolicy, cookies, Svendsen Photography"
+        keywords="privacy policy, cookie policy, integritetspolicy, cookies, Svendsén Photography"
         jsonLd={privacyJsonLd}
       />
 
@@ -34,7 +34,7 @@ export default function PrivacyPolicy() {
           <div>
             <h2 className="mb-2 text-xl font-semibold">Who we are</h2>
             <p className="leading-relaxed text-textSecondary">
-              Svendsen Photography is a sole proprietorship offering photography services
+              Svendsén Photography is a sole proprietorship offering photography services
               in Kungalv and Gothenburg, Sweden. The website address is{' '}
               <a href="https://www.svendsenphotography.com" className="underline hover:opacity-70">
                 www.svendsenphotography.com
@@ -139,7 +139,7 @@ export default function PrivacyPolicy() {
           <div>
             <h2 className="mb-2 text-xl font-semibold">Vem vi är</h2>
             <p className="leading-relaxed text-textSecondary">
-              Svendsen Photography är ett enskilt företag som erbjuder fotografitjänster
+              Svendsén Photography är ett enskilt företag som erbjuder fotografitjänster
               i Kungälv och Göteborg. Webbplatsens adress är{' '}
               <a href="https://www.svendsenphotography.com" className="underline hover:opacity-70">
                 www.svendsenphotography.com
