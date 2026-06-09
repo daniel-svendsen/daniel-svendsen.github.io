@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 import Navbar from '@/components/Navbar'
@@ -153,6 +153,10 @@ export default function AppRoutes() {
             element={<CustomerGalleryPage />}
           />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route
+            path="/app-shell"
+            element={<Navigate to="/admin/login" replace />}
+          />
           <Route path="/admin/login" element={<AdminLoginPage />} />
           <Route path="/admin" element={<ProtectedRoute />}>
             <Route index element={<AdminDashboardPage />} />
