@@ -1,6 +1,6 @@
 # Keep private and dynamic client routes working when a top-level 404.html exists.
-/galleri/* /app-shell.html 200
-/admin /app-shell.html 200
-/admin/* /app-shell.html 200
-/work /app-shell.html 200
-/work/ /app-shell.html 200
+/galleri/* /app-shell 200
+/admin /app-shell 200
+/admin/* /app-shell 200
+/work /app-shell 200
+/work/ /app-shell 200
