@@ -69,7 +69,9 @@ const appShell = template
     '<!--app-head-->',
     '<meta name="robots" content="noindex, nofollow"><meta name="googlebot" content="noindex, nofollow">',
   )
-await fs.writeFile(path.join(distDir, 'app-shell.html'), appShell, 'utf8')
+const appShellPath = path.join(distDir, 'app-shell', 'index.html')
+await fs.mkdir(path.dirname(appShellPath), { recursive: true })
+await fs.writeFile(appShellPath, appShell, 'utf8')
 
 const sitemapUrls = prerenderRoutes
   .map(
