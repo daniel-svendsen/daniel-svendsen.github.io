@@ -13,6 +13,26 @@ Current technical SEO setup for Svendsén Photography.
 - Google Search Console and Bing Webmaster Tools use:
   `https://www.svendsenphotography.com/sitemap.xml`
 - Cloudflare Crawler Hints is enabled for IndexNow-style discovery.
+- Direct IndexNow verification uses the public key file:
+  `https://www.svendsenphotography.com/2a15b0098704420d84c253f881032323.txt`
+
+## IndexNow
+
+The IndexNow key file is intentionally public and tracked in Git because
+search engines must fetch it from the production site to verify ownership. It
+is not an account password or a general-purpose API credential and should not
+be added to `.gitignore`.
+
+After a deployment containing an added, updated, or deleted public page,
+submit only the affected canonical URLs:
+
+```powershell
+npm run indexnow -- /changed-page/ /another-changed-page/
+```
+
+Absolute URLs on `https://www.svendsenphotography.com` also work. The script
+rejects URLs belonging to other hosts. Run it only after the key file is
+available on the production domain.
 
 ## Indexing Rules
 
@@ -64,13 +84,15 @@ redirect `/admin` to `/app-shell`.
 1. Run `npx tsc --noEmit`.
 2. Run `npm run build`.
 3. Confirm `dist/sitemap.xml` contains only intended public routes.
-4. Confirm `dist/404.html` contains `noindex`.
-5. Confirm `dist/app-shell/index.html` contains `noindex`.
-6. Verify an unknown production URL returns HTTP `404`.
-7. Verify `/admin`, `/admin/login`, `/work`, and a real `/galleri/*` URL load.
-8. Verify `sitemap.xml` is accepted by Google Search Console and Bing
+4. Confirm the IndexNow key file exists at the root of `dist/`.
+5. Confirm `dist/404.html` contains `noindex`.
+6. Confirm `dist/app-shell/index.html` contains `noindex`.
+7. Verify an unknown production URL returns HTTP `404`.
+8. Verify `/admin`, `/admin/login`, `/work`, and a real `/galleri/*` URL load.
+9. Verify `sitemap.xml` is accepted by Google Search Console and Bing
    Webmaster Tools.
-9. Test the home page in Google Rich Results Test after schema changes.
+10. Verify recent IndexNow submissions in Bing Webmaster Tools.
+11. Test the home page in Google Rich Results Test after schema changes.
 
 ## Expected Limitations
 
