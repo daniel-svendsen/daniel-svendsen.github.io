@@ -59,6 +59,24 @@ const portraitDetails = [
   },
 ]
 
+const portraitLocations = [
+  {
+    title: 'Porträttfotograf i Kungälv',
+    description:
+      'För dig som vill ha porträtt, familjebilder eller profilbilder nära Kungälv, med möjlighet till både naturmiljöer och platser som känns personliga.',
+  },
+  {
+    title: 'Porträttfotograf i Göteborg',
+    description:
+      'För företag, kreatörer och privatpersoner i Göteborg som behöver naturliga porträtt till webb, LinkedIn, CV, sociala medier eller familj.',
+  },
+  {
+    title: 'Porträttfotograf i Stenungsund',
+    description:
+      'För porträtt- och familjefotografering i Stenungsund med omnejd, gärna utomhus och med ett lugnt upplägg som passar syftet med bilderna.',
+  },
+]
+
 const portraitFaqs = [
   {
     question: 'Vad ingår i en porträttfotografering?',
@@ -113,10 +131,10 @@ export default function Portraits() {
   const portraitsJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Porträttfotografering i Göteborg och Kungälv',
+    name: 'Porträttfotografering i Kungälv, Göteborg och Stenungsund',
     serviceType: 'Portrait photography',
     description:
-      'Professionell porträtt- och familjefotografering i Göteborg och Kungälv för privatpersoner, kreatörer och företag.',
+      'Professionell porträtt- och familjefotografering i Kungälv, Göteborg och Stenungsund för privatpersoner, kreatörer och företag.',
     url: 'https://www.svendsenphotography.com/portraits/',
     provider: businessReference,
     areaServed: BUSINESS.serviceAreas.map((name) => ({
@@ -128,8 +146,8 @@ export default function Portraits() {
   return (
     <>
       <SEO
-        title="Porträtt- & familjefotograf i Göteborg & Kungälv | Naturliga porträtt | Svendsén Photography"
-        description="Söker du en porträtt- eller familjefotograf i Göteborg eller Kungälv? Svendsén Photography skapar naturliga och professionella porträtt och familjebilder för privatpersoner, kreatörer och företag."
+        title="Porträttfotograf i Kungälv, Göteborg & Stenungsund | Svendsén Photography"
+        description="Söker du porträttfotograf i Kungälv, Göteborg eller Stenungsund? Jag fotograferar naturliga porträtt, familjebilder och profilbilder för privatpersoner, kreatörer och företag."
         url="https://www.svendsenphotography.com/portraits/"
         image={absoluteLogoUrl}
         jsonLd={portraitsJsonLd}
@@ -142,12 +160,11 @@ export default function Portraits() {
               Porträtt
             </p>
             <h1 className="mb-5 max-w-2xl text-4xl font-bold leading-tight md:text-5xl">
-              Naturliga porträtt med närvaro, värme och ett genomtänkt uttryck
+              Porträttfotograf i Kungälv, Göteborg och Stenungsund
             </h1>
             <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
-              Porträtt- och familjefotografering i Göteborg och Kungälv för dig
-              som vill ha personliga och professionella bilder som känns levande,
-              trygga och tidlösa.
+              Porträtt- och familjefotografering för dig som vill ha personliga
+              och professionella bilder som känns levande, trygga och tidlösa.
             </p>
           </div>
 
@@ -270,6 +287,32 @@ export default function Portraits() {
           </div>
         </section>
 
+        <section className="mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:rounded-[3rem]">
+          <div className="mb-8 max-w-3xl">
+            <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
+              Porträttfotografering nära dig
+            </h2>
+            <p className="text-base leading-relaxed text-textSecondary">
+              Jag utgår från Kungälv och fotograferar porträtt, familj och
+              profilbilder i Kungälv, Göteborg och Stenungsund. Platsen väljer vi
+              efter vilken känsla bilderna ska ha och hur de ska användas.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {portraitLocations.map((location) => (
+              <InfoCard
+                key={location.title}
+                title={location.title}
+                description={location.description}
+                className="bg-white p-6"
+                titleClassName="mb-2 text-xl"
+                descriptionClassName="text-sm leading-relaxed"
+              />
+            ))}
+          </div>
+        </section>
+
         <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:grid-cols-[1.05fr_0.95fr] lg:rounded-[3rem]">
           <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] md:p-8">
             <h2 className="mb-4 text-2xl font-semibold text-textPrimary">
@@ -322,7 +365,7 @@ export default function Portraits() {
               >
                 <ResponsiveImage
                   image={src}
-                  alt={`Porträttfotografering i Göteborg och Kungälv ${index + 1}`}
+                  alt={`Porträttfotografering i Kungälv, Göteborg och Stenungsund ${index + 1}`}
                   sizes="(min-width: 1024px) 265px, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="h-full w-full cursor-pointer object-cover transition-transform duration-500 hover:scale-[1.02]"
                   onClick={() =>

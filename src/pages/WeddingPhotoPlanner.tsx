@@ -119,6 +119,34 @@ const plannerFaqs = [
     answer:
       'Ja. Vid en kort vigsel kan ni markera det allra viktigaste, medan halvdag eller heldag ger mer plats för förberedelser, mingel, middag och kvällsbilder.',
   },
+  {
+    question: 'Hur lång tid tar bröllopsfotografering?',
+    answer:
+      'Det beror på hur mycket av dagen ni vill dokumentera. En kort vigsel kan ofta fotograferas på några timmar, medan halvdag eller heldag ger mer tid för förberedelser, porträtt, mingel, middag och fest.',
+  },
+  {
+    question: 'När under dagen ska man ta bröllopsbilder?',
+    answer:
+      'Familjebilder tas ofta direkt efter vigseln när alla är samlade. Parbilder kan tas före vigseln, efter gratulationerna eller under en kort promenad senare på dagen om ljuset och schemat passar.',
+  },
+]
+
+const checklistTips = [
+  {
+    title: 'Börja med det viktigaste',
+    description:
+      'Markera först de bilder ni absolut inte vill missa: familj, parbilder, vigsel, detaljer eller särskilda personer.',
+  },
+  {
+    title: 'Planera tid för porträtt',
+    description:
+      'Avsätt gärna en lugn stund för parbilder. Det kan vara en first look, en promenad efter vigseln eller några minuter i mjukt kvällsljus.',
+  },
+  {
+    title: 'Håll listan lagom tydlig',
+    description:
+      'En bra bildlista hjälper fotografen att förstå era prioriteringar utan att dagen behöver kännas styrd av ett schema.',
+  },
 ]
 
 type Notes = Record<string, string>
@@ -179,7 +207,7 @@ export default function WeddingPhotoPlanner() {
   const plannerJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'Bröllopsplanerare för fotografering',
+    name: 'Checklista för bröllopsfotografering',
     applicationCategory: 'LifestyleApplication',
     description:
       'Printvänlig checklista för bröllopsfotografering, bildlista och planering av familjebilder, parbilder, vigsel, mingel och detaljer.',
@@ -228,8 +256,8 @@ export default function WeddingPhotoPlanner() {
   return (
     <>
       <SEO
-        title="Bröllopsplanerare för fotografering | Checklista för era bilder"
-        description="Planera vilka bröllopsbilder ni vill ha med en printvänlig checklista för vigsel, familj, porträtt, detaljer, mingel och egna önskemål."
+        title="Checklista för bröllopsfotografering | Planera era bröllopsbilder"
+        description="Planera era bröllopsbilder med en printvänlig checklista för bröllopsfotografering: vigsel, familj, porträtt, detaljer, mingel och egna önskemål."
         url="https://www.svendsenphotography.com/guider/brollopsplanerare/"
         image={absoluteLogoUrl}
         jsonLd={plannerJsonLd}
@@ -239,15 +267,15 @@ export default function WeddingPhotoPlanner() {
         <header className="planner-screen mx-auto mb-8 rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:mb-12 md:px-8 md:py-10 lg:max-w-6xl lg:rounded-[3rem]">
           <div className="max-w-3xl">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-textSecondary">
-              Planerare
+              Checklista
             </p>
             <h1 className="mb-5 max-w-2xl text-4xl font-bold leading-tight md:text-5xl">
-              Planera vilka bröllopsbilder ni vill ha
+              Checklista för bröllopsfotografering
             </h1>
             <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
-              Kryssa i de bilder och moment som känns viktiga, lägg till egna
-              anteckningar och skriv ut, ladda ner eller maila listan inför
-              fotograferingen.
+              Kryssa i de bilder och moment som känns viktiga inför
+              bröllopsdagen, lägg till egna anteckningar och skriv ut, ladda ner
+              eller maila listan inför fotograferingen.
             </p>
           </div>
         </header>
@@ -392,6 +420,30 @@ export default function WeddingPhotoPlanner() {
               <p>Inga egna anteckningar är ifyllda ännu.</p>
             )}
           </section>
+        </section>
+
+        <section className="planner-screen mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-white px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.14)] md:px-8 md:py-10 lg:rounded-[3rem]">
+          <div className="mb-8 max-w-3xl">
+            <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
+              Så använder ni checklistan inför bröllopsdagen
+            </h2>
+            <p className="text-base leading-relaxed text-textSecondary">
+              En checklista för bröllopsfotografering behöver inte vara en exakt
+              bild för bild-plan. Den fungerar bäst som ett enkelt sätt att
+              samla era viktigaste önskemål, tider och personer innan dagen.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {checklistTips.map((tip) => (
+              <InfoCard
+                key={tip.title}
+                title={tip.title}
+                description={tip.description}
+                className="bg-custom-beige p-6"
+              />
+            ))}
+          </div>
         </section>
 
         <section className="planner-screen mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:rounded-[3rem]">

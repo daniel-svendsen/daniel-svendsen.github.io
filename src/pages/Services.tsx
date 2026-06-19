@@ -50,6 +50,24 @@ const quickLinks = [
   },
 ]
 
+const serviceAreas = [
+  {
+    title: 'Fotograf i Kungälv',
+    description:
+      'Jag utgår från Kungälv och fotograferar bröllop, porträtt, familj och företag med ett naturligt och personligt uttryck.',
+  },
+  {
+    title: 'Fotograf i Göteborg',
+    description:
+      'För dig som söker fotograf i Göteborg för porträtt, företag, bröllop eller familjebilder med en trygg och genomtänkt process.',
+  },
+  {
+    title: 'Fotograf i Stenungsund',
+    description:
+      'Jag fotograferar även i Stenungsund och närliggande områden, både för bröllop, porträtt och familjer som vill ha bilder med platskänsla.',
+  },
+]
+
 const renderDescriptionLine = (line: string) => {
   if (line === 'Filmalternativ') {
     return (
@@ -148,8 +166,8 @@ export default function Services() {
   return (
     <>
       <SEO
-        title="Fotograf i Göteborg & Kungälv | Bröllop, porträtt, familj och företag | Svendsén Photography"
-        description="Svendsén Photography erbjuder professionell fotografering i Göteborg och Kungälv inom bröllop, porträtt, familj och företag. Utforska tjänsterna och hitta rätt fotografering för dig."
+        title="Fotograf i Kungälv, Göteborg & Stenungsund | Svendsén Photography"
+        description="Söker du fotograf i Kungälv, Göteborg eller Stenungsund? Svendsén Photography erbjuder fotografering för bröllop, porträtt, familj och företag."
         url="https://www.svendsenphotography.com/services/"
         jsonLd={photographyPageJsonLd}
         image={absoluteLogoUrl}
@@ -168,13 +186,12 @@ export default function Services() {
                   Tjänster
                 </p>
                 <h1 className="mb-5 max-w-2xl text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
-                  Fotografering med naturlig känsla och en personlig upplevelse
+                  Fotograf i Kungälv, Göteborg och Stenungsund
                 </h1>
                 <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
-                  Jag erbjuder professionell fotografering i Göteborg och
-                  Kungälv för bröllop, porträtt, familj och företag. Här hittar du
-                  tjänster för dig som vill ha bilder som känns levande, trygga
-                  och genomtänkta.
+                  Jag erbjuder professionell fotografering för bröllop,
+                  porträtt, familj och företag. Här hittar du tjänster för dig
+                  som vill ha bilder som känns levande, trygga och genomtänkta.
                 </p>
                 <div className="mt-8">
                   <LinkButton
@@ -218,6 +235,34 @@ export default function Services() {
                   ))}
                 </div>
               </div>
+            </div>
+          </SectionContent>
+        </Section>
+
+        <Section
+          bgColor="beige"
+          roundedTop="9xl"
+          roundedBottom="9xl"
+          className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-20 lg:mx-6 lg:py-24"
+        >
+          <SectionContent heading="Fotografering i ditt område">
+            <p className="mt-4 max-w-3xl text-base leading-relaxed text-textSecondary">
+              Oavsett om du söker fotograf i Kungälv, Göteborg eller Stenungsund
+              börjar vi med vad bilderna ska användas till och vilken känsla de
+              ska ha. Sedan formar vi plats, tid och upplägg efter uppdraget.
+            </p>
+
+            <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+              {serviceAreas.map((area) => (
+                <InfoCard
+                  key={area.title}
+                  title={area.title}
+                  description={area.description}
+                  className="bg-white p-6"
+                  titleClassName="mb-2 text-xl"
+                  descriptionClassName="text-sm leading-relaxed"
+                />
+              ))}
             </div>
           </SectionContent>
         </Section>
