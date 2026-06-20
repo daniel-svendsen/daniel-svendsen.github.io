@@ -256,11 +256,22 @@ export default function WeddingPhotoPlanner() {
   return (
     <>
       <SEO
-        title="Checklista för bröllopsfotografering | Planera era bröllopsbilder"
-        description="Planera era bröllopsbilder med en printvänlig checklista för bröllopsfotografering: vigsel, familj, porträtt, detaljer, mingel och egna önskemål."
+        title="Checklista för bröllopsfotografering | Skriv ut & planera bilderna"
+        description="Kryssa i viktiga bröllopsbilder, skriv egna anteckningar och skriv ut eller ladda ner en enkel checklista för bröllopsfotografering."
         url="https://www.svendsenphotography.com/guider/brollopsplanerare/"
         image={absoluteLogoUrl}
         jsonLd={plannerJsonLd}
+        breadcrumbs={[
+          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          {
+            name: 'Guider',
+            url: 'https://www.svendsenphotography.com/guider/',
+          },
+          {
+            name: 'Checklista för bröllopsfotografering',
+            url: 'https://www.svendsenphotography.com/guider/brollopsplanerare/',
+          },
+        ]}
       />
 
       <main className="planner-page max-w-full overflow-hidden bg-[#f7f5f2] px-3 pb-8 pt-20 text-textPrimary sm:px-4 md:px-5 lg:px-6">
@@ -277,6 +288,16 @@ export default function WeddingPhotoPlanner() {
               bröllopsdagen, lägg till egna anteckningar och skriv ut, ladda ner
               eller maila listan inför fotograferingen.
             </p>
+            <div className="mt-6 max-w-2xl rounded-2xl border border-black/6 bg-white px-5 py-4 shadow-[0_14px_32px_-28px_rgba(31,41,55,0.32)]">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-textSecondary">
+                Snabbt svar
+              </p>
+              <p className="mt-2 text-base leading-relaxed text-textPrimary">
+                Börja med de bilder ni absolut inte vill missa: familj, parbilder,
+                vigsel, detaljer och viktiga personer. Resten kan anpassas efter
+                tid och plats.
+              </p>
+            </div>
           </div>
         </header>
 

@@ -16,6 +16,13 @@ export default function Guides() {
         description="Guider för er som planerar bröllopsbilder med naturlig känsla, promenadporträtt och personliga upplägg."
         url="https://www.svendsenphotography.com/guider/"
         image={absoluteLogoUrl}
+        breadcrumbs={[
+          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          {
+            name: 'Guider',
+            url: 'https://www.svendsenphotography.com/guider/',
+          },
+        ]}
       />
 
       <main className="max-w-full overflow-hidden bg-[#f7f5f2] px-3 pb-8 pt-20 text-textPrimary sm:px-4 md:px-5 lg:px-6">

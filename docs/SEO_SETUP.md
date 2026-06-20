@@ -55,6 +55,8 @@ When adding or removing an indexable public route, update the route list in
 ## Metadata And Entity Data
 
 - Shared metadata component: `src/components/SEO.tsx`
+- Breadcrumb schema is emitted through the shared `SEO` component when a page
+  passes `breadcrumbs`.
 - Canonical site URL and business data: `src/config/seo.ts`
 - Business schema types: `LocalBusiness` and `ProfessionalService`
 - Business name: Svendsén Photography

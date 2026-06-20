@@ -141,6 +141,17 @@ export default function WeddingTimelineGuide() {
         url="https://www.svendsenphotography.com/guider/brollopstidslinje/"
         image={absoluteLogoUrl}
         jsonLd={guideJsonLd}
+        breadcrumbs={[
+          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          {
+            name: 'Guider',
+            url: 'https://www.svendsenphotography.com/guider/',
+          },
+          {
+            name: 'Bröllopstidslinje för fotografering',
+            url: 'https://www.svendsenphotography.com/guider/brollopstidslinje/',
+          },
+        ]}
       />
 
       <main className="max-w-full overflow-hidden bg-[#f7f5f2] px-3 pb-8 pt-20 text-textPrimary sm:px-4 md:px-5 lg:px-6">
@@ -156,6 +167,16 @@ export default function WeddingTimelineGuide() {
               En enkel guide till hur ni kan planera tid för familjebilder,
               porträtt, first look och de små stunderna som ofta betyder mest.
             </p>
+            <div className="mb-7 max-w-2xl rounded-2xl border border-black/6 bg-white px-5 py-4 shadow-[0_14px_32px_-28px_rgba(31,41,55,0.32)]">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-textSecondary">
+                Snabbt svar
+              </p>
+              <p className="mt-2 text-base leading-relaxed text-textPrimary">
+                En kort vigsel kan ofta fotograferas på några timmar. Halvdag
+                eller heldag ger mer plats för förberedelser, familjebilder,
+                porträtt, mingel och fest.
+              </p>
+            </div>
             <LinkButton
               to="/contact/"
               size="lg"

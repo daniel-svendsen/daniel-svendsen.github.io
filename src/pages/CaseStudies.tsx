@@ -26,6 +26,17 @@ export default function CaseStudies() {
         url="https://www.svendsenphotography.com/brollop/"
         image={absoluteLogoUrl}
         jsonLd={caseStudyJsonLd}
+        breadcrumbs={[
+          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          {
+            name: 'Bröllop',
+            url: 'https://www.svendsenphotography.com/weddings/',
+          },
+          {
+            name: 'Bröllop jag fotograferat',
+            url: 'https://www.svendsenphotography.com/brollop/',
+          },
+        ]}
       />
 
       <main className="max-w-full overflow-hidden bg-[#f7f5f2] px-3 pb-8 pt-20 text-textPrimary sm:px-4 md:px-5 lg:px-6">

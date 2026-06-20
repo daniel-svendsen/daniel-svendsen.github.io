@@ -99,6 +99,17 @@ export default function WeddingWalkGuide() {
         url="https://www.svendsenphotography.com/guider/brollopsbilder-promenad/"
         image={absoluteLogoUrl}
         jsonLd={guideJsonLd}
+        breadcrumbs={[
+          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          {
+            name: 'Guider',
+            url: 'https://www.svendsenphotography.com/guider/',
+          },
+          {
+            name: 'Promenadbilder på bröllopsdagen',
+            url: 'https://www.svendsenphotography.com/guider/brollopsbilder-promenad/',
+          },
+        ]}
       />
 
       <main className="max-w-full overflow-hidden bg-[#f7f5f2] px-3 pb-8 pt-20 text-textPrimary sm:px-4 md:px-5 lg:px-6">
@@ -115,6 +126,15 @@ export default function WeddingWalkGuide() {
               promenad får ni bilder som känns närvarande, naturliga och mer som
               er själva.
             </p>
+            <div className="mb-7 max-w-2xl rounded-2xl border border-black/6 bg-white px-5 py-4 shadow-[0_14px_32px_-28px_rgba(31,41,55,0.32)]">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-textSecondary">
+                Snabbt svar
+              </p>
+              <p className="mt-2 text-base leading-relaxed text-textPrimary">
+                Räkna gärna med 20 till 30 minuter om schemat tillåter det. Det
+                ger tid att landa, gå en bit och få variation utan stress.
+              </p>
+            </div>
             <LinkButton
               to="/contact/"
               size="lg"

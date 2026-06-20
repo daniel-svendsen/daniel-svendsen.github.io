@@ -112,12 +112,13 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Fotograf i Kungälv & Göteborg - Svendsén Photography"
-        description="Svendsén Photography erbjuder professionell fotografering inom bröllop, porträtt, familj, bilfotografering och företag i Kungälv och Göteborg. Boka din fotografering idag!"
+        title="Fotograf i Kungälv, Stenungsund & Göteborg - Svendsén Photography"
+        description="Fotograf för bröllop, porträtt, familj, företag, event och verksamheter i Kungälv, Stenungsund och Göteborg. Boka din fotografering idag!"
         url={`${SITE_URL}/`}
         image={absoluteLogoUrl}
-        keywords="fotograf kungälv, fotograf göteborg, bröllopsfotograf, porträttfotograf, familjefotograf, familjefoto, bilfotograf, företagsfotograf, filmning, webbutveckling"
+        keywords="fotograf kungälv, fotograf stenungsund, fotograf göteborg, bröllopsfotograf, porträttfotograf, familjefotograf, familjefoto, företagsfotograf, verksamhetsfoto, hobbyfoto, filmning, webbutveckling"
         jsonLd={businessJsonLd}
+        breadcrumbs={[{ name: 'Hem', url: `${SITE_URL}/` }]}
       />
       <div className="bg-[#f7f5f2] dark:bg-gray-900">
         <HeroSection />

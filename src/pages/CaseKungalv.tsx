@@ -33,6 +33,17 @@ export default function CaseKungalv() {
         description="Bröllopsfotografering i Kungälv med promenadporträtt, vitsippor, vigsel och familjebilder i en lugn och personlig stil."
         url="https://www.svendsenphotography.com/brollop/kungalv/"
         image={absoluteLogoUrl}
+        breadcrumbs={[
+          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          {
+            name: 'Bröllop jag fotograferat',
+            url: 'https://www.svendsenphotography.com/brollop/',
+          },
+          {
+            name: 'Bröllop i Kungälv',
+            url: 'https://www.svendsenphotography.com/brollop/kungalv/',
+          },
+        ]}
       />
 
       <main className="max-w-full overflow-hidden bg-[#f7f5f2] px-3 pb-8 pt-20 text-textPrimary sm:px-4 md:px-5 lg:px-6">

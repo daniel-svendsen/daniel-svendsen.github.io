@@ -90,6 +90,13 @@ export default function WebServicesPage() {
         url="https://www.svendsenphotography.com/webservices/"
         jsonLd={pageJsonLd}
         image={absoluteSpecificImage}
+        breadcrumbs={[
+          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          {
+            name: 'Webbtjänster',
+            url: 'https://www.svendsenphotography.com/webservices/',
+          },
+        ]}
       />
       <main className="bg-[#f7f5f2] pt-16 text-foreground md:pt-20">
         <Section
