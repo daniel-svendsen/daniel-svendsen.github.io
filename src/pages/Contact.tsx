@@ -19,9 +19,8 @@ export default function Contact() {
     'Bröllop',
     'Företagsporträtt',
     'Produktfotografering',
-    'Verksamhetsfoto',
-    'Film',
-    'Hobby',
+    'Verksamhetsfoto / hobby / fordon',
+    'Film som tillägg',
     'Hemsida',
     'Annat',
   ]
@@ -97,6 +96,13 @@ export default function Contact() {
         image={absoluteLogoUrl}
         keywords="kontakt fotograf, familjefotograf göteborg, fotograf göteborg, fotograf kungälv, webbutvecklare kungälv, boka fotograf, offert fotografering, kontakta webbyrå"
         jsonLd={contactJsonLd}
+        breadcrumbs={[
+          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          {
+            name: 'Kontakt',
+            url: 'https://www.svendsenphotography.com/contact/',
+          },
+        ]}
       />
 
       <main className="pt-16 md:pt-20 bg-background text-foreground">

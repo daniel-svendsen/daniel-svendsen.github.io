@@ -9,6 +9,7 @@ import { useShuffledImages } from '../hooks/useShuffleImages'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 import { getImageSrc, type ImageAsset } from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
+import { PRICING } from '@/config/pricing'
 
 const portraitUseCases = [
   'Profilbilder för LinkedIn, CV och personligt varumärke',
@@ -16,6 +17,12 @@ const portraitUseCases = [
   'Familjebilder och generationsporträtt med naturlig känsla',
   'Personliga porträtt med naturlig och avslappnad känsla',
   'Företagsporträtt för webbplats, marknadsföring och presentationer',
+]
+
+const portraitFacts = [
+  PRICING.portrait.baseFrom,
+  PRICING.portrait.baseDuration,
+  PRICING.portrait.baseImages,
 ]
 
 const portraitHighlights = [
@@ -40,12 +47,17 @@ const portraitDetails = [
   {
     title: 'Grundpaket',
     description:
-      'Porträtt- och familjefotografering från 1200 kr. Grundpaketet är 30 minuter och passar dig som vill ha ett enkelt och genomtänkt upplägg.',
+      `Porträttfotografering från ${PRICING.portrait.basePrice}. Grundpaketet är ${PRICING.portrait.baseDuration} och passar dig som vill ha ett enkelt och genomtänkt upplägg.`,
+  },
+  {
+    title: 'Familj',
+    description:
+      `Familjefotografering från ${PRICING.portrait.familyPrice}. Upplägget är ${PRICING.portrait.familyDuration} och innehåller ${PRICING.portrait.familyImages}.`,
   },
   {
     title: 'Det här ingår',
     description:
-      '5 redigerade bilder ingår i priset. Bilderna levereras färdiga att använda för både privata och professionella sammanhang.',
+      `${PRICING.portrait.baseImages} ingår i porträttbasen. Extra bilder kan köpas till för ${PRICING.portrait.extraImage}.`,
   },
   {
     title: 'Leverans',
@@ -81,7 +93,7 @@ const portraitFaqs = [
   {
     question: 'Vad ingår i en porträttfotografering?',
     answer:
-      'Grundpaketet är 30 minuter och innehåller 5 redigerade bilder. Det passar bra för exempelvis LinkedIn, CV, sociala medier, personliga porträtt och mindre familjefotograferingar.',
+      `Porträtt Bas är ${PRICING.portrait.baseDuration} och innehåller ${PRICING.portrait.baseImages}. Familjefotografering är ${PRICING.portrait.familyDuration} och innehåller ${PRICING.portrait.familyImages}.`,
   },
   {
     question: 'Hur lång tid tar en porträttfotografering?',
@@ -91,7 +103,7 @@ const portraitFaqs = [
   {
     question: 'Hur många bilder får jag?',
     answer:
-      '5 redigerade bilder ingår i grundpaketet. Om du vill ha fler bilder går det att diskutera ett upplägg som passar dig.',
+      `${PRICING.portrait.baseImages} ingår i Porträtt Bas och ${PRICING.portrait.familyImages} ingår i familjepaketet. Extra bilder kan köpas till för ${PRICING.portrait.extraImage}.`,
   },
   {
     question: 'Kan vi fotografera på en plats jag själv väljer?',
@@ -151,6 +163,13 @@ export default function Portraits() {
         url="https://www.svendsenphotography.com/portraits/"
         image={absoluteLogoUrl}
         jsonLd={portraitsJsonLd}
+        breadcrumbs={[
+          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          {
+            name: 'Porträtt',
+            url: 'https://www.svendsenphotography.com/portraits/',
+          },
+        ]}
       />
 
       <main className="max-w-full overflow-hidden bg-[#f7f5f2] px-3 pb-8 pt-20 text-textPrimary sm:px-4 md:px-5 lg:px-6">
@@ -166,6 +185,16 @@ export default function Portraits() {
               Porträtt- och familjefotografering för dig som vill ha personliga
               och professionella bilder som känns levande, trygga och tidlösa.
             </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {portraitFacts.map((fact) => (
+                <span
+                  key={fact}
+                  className="rounded-full border border-black/6 bg-white px-4 py-2 text-sm font-semibold text-textPrimary shadow-[0_10px_24px_-20px_rgba(31,41,55,0.28)]"
+                >
+                  {fact}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="rounded-[2rem] border border-black/5 bg-[#fcfaf7] p-5 shadow-[0_24px_60px_-36px_rgba(31,41,55,0.24)] md:p-6">

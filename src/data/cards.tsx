@@ -4,15 +4,16 @@ import weddingImage from '../assets/pictures/wedding.jpg?responsive'
 import portraitImage from '../assets/pictures/portrait.jpg?responsive'
 import companyImage from '../assets/pictures/company.jpg?responsive'
 import webdevImage from '../assets/webdev-optimized.jpg?responsive'
+import { PRICING } from '@/config/pricing'
 
 export const homeCards = [
   {
     image: weddingImage,
-    title: 'Bröllopsfoto & Film',
+    title: 'Bröllopsfoto',
     description:
-      'Fånga er kärleksdag med tidlösa bilder och film. Jag skapar minnen som varar livet ut.',
+      'Fånga er kärleksdag med tidlösa bilder och ett lugnt upplägg. Film kan läggas till vid behov.',
     buttonText: 'Läs mer',
-    buttonLink: '/services/',
+    buttonLink: '/weddings/',
     icon: Camera,
   },
   {
@@ -21,14 +22,14 @@ export const homeCards = [
     description:
       'Personliga porträtt för CV, sociala medier eller vackra familjebilder, utomhus eller på plats.',
     buttonText: 'Läs mer',
-    buttonLink: '/services/',
+    buttonLink: '/portraits/',
     icon: Users,
   },
   {
     image: companyImage,
-    title: 'Företag & Event',
+    title: 'Företag, Event & Hobby',
     description:
-      'Professionella bilder och film som lyfter ert varumärke, event eller hobbyverksamhet.',
+      'Professionella bilder för företag, event, verksamheter, fordon och andra personliga sammanhang.',
     buttonText: 'Läs mer',
     buttonLink: '/services/',
     icon: Briefcase,
@@ -50,24 +51,24 @@ export const serviceCards = [
     image: portraitImage,
     description: `30 minuters fotografering
 5 redigerade bilder ingår
-Extra bilder kan köpas till för 150 kr/st
+Extra bilder kan köpas till för ${PRICING.portrait.extraImage}
 Passar för CV, LinkedIn, sociala medier, familjeporträtt och generationsbilder`,
-    price: 'Från 1200 kr',
+    price: PRICING.portrait.baseFrom,
     buttonText: 'Kontakt',
     buttonLink: '/contact/',
     icon: Users,
   },
   {
-    title: 'Bröllopsfotografering & Bröllopsfilm',
+    title: 'Bröllopsfotografering',
     image: weddingImage,
     description: `Välj mellan tre olika paket beroende på hur mycket av bröllopsdagen du vill dokumentera
-Litet paket - 3 timmar fotografering, 50 redigerade bilder -> 7500 kr
-Mellanpaket - 6 timmar fotografering, 100 redigerade bilder -> 12 000 kr
-Heldag - 10 timmar fotografering, 200 redigerade bilder + kort bröllopsfilm -> 18 000 kr
+Kort vigsel - ${PRICING.wedding.shortDuration} fotografering, ${PRICING.wedding.shortImages} -> ${PRICING.wedding.shortPrice}
+Halvdag - ${PRICING.wedding.halfDayDuration} fotografering, ${PRICING.wedding.halfDayImages} -> ${PRICING.wedding.halfDayPrice}
+Heldag - ${PRICING.wedding.fullDayDuration} fotografering, ${PRICING.wedding.fullDayImages} -> ${PRICING.wedding.fullDayPrice}
 Filmalternativ
-Cinematisk bröllopsfilm (3-5 min highlight reel) -> 5000 kr vid fotopaket / 8000 kr enskilt
-Extra timmar utöver paketen -> 2000 kr/timme`,
-    price: 'Från 7500 kr',
+Highlightfilm (3-5 min) -> ${PRICING.wedding.highlightFilmWithPhoto} vid fotopaket / ${PRICING.wedding.highlightFilmStandalone} enskilt
+Extra timmar utöver paketen -> ${PRICING.wedding.extraHour}`,
+    price: PRICING.wedding.shortFrom,
     buttonText: 'Kontakt',
     buttonLink: '/contact/',
     icon: Camera,
@@ -75,11 +76,12 @@ Extra timmar utöver paketen -> 2000 kr/timme`,
   {
     title: 'Företagsfoto, Event & Verksamhetsfoto',
     image: companyImage,
-    description: `Företagsporträtt (1-5 personer) -> från 2500 kr, fler personer enligt offert
-Eventfotografering - 3 timmar -> 4500 kr | heldag -> 12 000 kr
-Produkt- och marknadsföringsbilder -> från 350 kr/bild
+    description: `Företagsporträtt -> från ${PRICING.business.portraitFrom} ${PRICING.business.taxNote}, fler personer enligt offert
+Eventfotografering -> från ${PRICING.business.eventFrom} ${PRICING.business.taxNote} | heldag från ${PRICING.business.eventFullDayFrom} ${PRICING.business.taxNote}
+Verksamhets- och hobbyfoto för miljöer, fordon, föreningar och personliga projekt -> från ${PRICING.business.activityHourlyFrom} ${PRICING.business.taxNote}
+Produktfotografering -> startpaket från ${PRICING.business.productStartFrom} ${PRICING.business.taxNote}, extra bilder från ${PRICING.business.productExtraImageFrom}
 Filmning för reklam och presentationer -> offert vid förfrågan`,
-    price: 'Från 2500 kr',
+    price: `Från ${PRICING.business.portraitFrom}`,
     buttonText: 'Kontakt',
     buttonLink: '/contact/',
     icon: Briefcase,
@@ -87,11 +89,11 @@ Filmning för reklam och presentationer -> offert vid förfrågan`,
   {
     title: 'Hemsidesutveckling & SEO',
     image: webdevImage,
-    description: `Enkel landningssida -> från 4500 kr
-Företagswebbplats (flersidig) -> från 8500 kr
-SEO-optimering och support -> från 2000 kr/månad
+    description: `Enkel landningssida -> från ${PRICING.web.landingPageFrom}
+Företagswebbplats (flersidig) -> från ${PRICING.web.websiteFrom}
+SEO-optimering och support -> från ${PRICING.web.seoSupportFrom}
 Helhetspaket med fotografering och hemsida -> offert vid förfrågan`,
-    price: 'Från 4500 kr',
+    price: `Från ${PRICING.web.landingPageFrom}`,
     buttonText: 'Kontakt',
     buttonLink: '/contact/',
     icon: Code,

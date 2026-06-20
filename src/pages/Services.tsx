@@ -18,13 +18,26 @@ import {
   Sparkles,
 } from 'lucide-react'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
-import { getImageSrc } from '@/utils/responsiveImages'
+import { getImageSrc, type ResponsiveImageAsset } from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
+import { PRICING } from '@/config/pricing'
 
 const pageHeroImage =
   serviceCards.length > 0
     ? getImageSrc(serviceCards[0].image)
     : '/images/default-photo-hero.jpg'
+
+const productImages = (
+  Object.entries(
+    import.meta.glob('../assets/companyhobby/DSC*.{jpg,jpeg,png}', {
+      eager: true,
+      import: 'default',
+      query: '?responsive',
+    }),
+  ) as [string, ResponsiveImageAsset][]
+)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, image]) => image)
 
 const quickLinks = [
   {
@@ -66,6 +79,12 @@ const serviceAreas = [
     description:
       'Jag fotograferar även i Stenungsund och närliggande områden, både för bröllop, porträtt och familjer som vill ha bilder med platskänsla.',
   },
+]
+
+const serviceFacts = [
+  'Kungälv, Stenungsund & Göteborg',
+  'Bröllop, porträtt & företag',
+  'Produktfoto, hobby & fordon',
 ]
 
 const renderDescriptionLine = (line: string) => {
@@ -167,10 +186,17 @@ export default function Services() {
     <>
       <SEO
         title="Fotograf i Kungälv, Göteborg & Stenungsund | Svendsén Photography"
-        description="Söker du fotograf i Kungälv, Göteborg eller Stenungsund? Svendsén Photography erbjuder fotografering för bröllop, porträtt, familj och företag."
+        description="Söker du fotograf i Kungälv, Göteborg eller Stenungsund? Jag fotograferar bröllop, porträtt, familj, företag, event och verksamheter."
         url="https://www.svendsenphotography.com/services/"
         jsonLd={photographyPageJsonLd}
         image={absoluteLogoUrl}
+        breadcrumbs={[
+          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          {
+            name: 'Tjänster',
+            url: 'https://www.svendsenphotography.com/services/',
+          },
+        ]}
       />
       <div className="bg-[#f7f5f2] pt-16 text-textPrimary md:pt-20">
         <Section
@@ -193,6 +219,16 @@ export default function Services() {
                   porträtt, familj och företag. Här hittar du tjänster för dig
                   som vill ha bilder som känns levande, trygga och genomtänkta.
                 </p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {serviceFacts.map((fact) => (
+                    <span
+                      key={fact}
+                      className="rounded-full border border-black/6 bg-white px-4 py-2 text-sm font-semibold text-textPrimary shadow-[0_10px_24px_-20px_rgba(31,41,55,0.28)]"
+                    >
+                      {fact}
+                    </span>
+                  ))}
+                </div>
                 <div className="mt-8">
                   <LinkButton
                     to="/contact/"
@@ -384,6 +420,47 @@ export default function Services() {
             </div>
           </SectionContent>
         </Section>
+
+        {productImages.length > 0 && (
+          <Section
+            bgColor="beige"
+            roundedTop="9xl"
+            roundedBottom="9xl"
+            className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-20 lg:mx-6 lg:py-24"
+          >
+            <SectionContent heading="Produktfotografering för företag">
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-textSecondary">
+                Jag fotograferar produkter för webbshop, katalog, sociala medier
+                och marknadsföring. Jag har återkommande arbetat med produktbilder
+                för företag, bland annat produkter som penslar, tejp och tillbehör
+                där tydlighet, färg och användbarhet är viktigt.
+              </p>
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-textSecondary">
+                Startpaket för produktfoto börjar från{' '}
+                {PRICING.business.productStartFrom} {PRICING.business.taxNote}.
+                Större produktserier och återkommande uppdrag anpassas efter
+                antal produkter, miljö och hur bilderna ska användas.
+              </p>
+
+              <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                {productImages.map((image, index) => (
+                  <figure
+                    key={getImageSrc(image)}
+                    className="overflow-hidden rounded-[1.75rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]"
+                  >
+                    <ResponsiveImage
+                      image={image}
+                      alt={`Produktfotografering av penslar, tejp och tillbehör ${index + 1}`}
+                      sizes="(min-width: 1024px) 360px, (min-width: 640px) 33vw, 100vw"
+                      className="h-[18rem] w-full object-cover sm:h-[16rem] lg:h-[20rem]"
+                      loading="lazy"
+                    />
+                  </figure>
+                ))}
+              </div>
+            </SectionContent>
+          </Section>
+        )}
 
         <Section
           bgColor="beige"

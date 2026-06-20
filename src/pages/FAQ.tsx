@@ -6,6 +6,7 @@ import { SectionContent } from '@/components/SectionContent'
 import { Minus, Plus } from 'lucide-react'
 import { LinkButton } from '@/components/Button'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { PRICING } from '@/config/pricing'
 
 export default function FAQ() {
   const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
@@ -14,7 +15,7 @@ export default function FAQ() {
     {
       question: 'Vad ingår i porträttfotograferingen?',
       answer:
-        'Grundpaketet för porträtt är 30 minuter och innehåller 5 redigerade bilder. Det passar bra för exempelvis LinkedIn, CV, sociala medier, personliga porträtt och mindre familjefotograferingar.',
+        `Porträtt Bas är ${PRICING.portrait.baseDuration} och innehåller ${PRICING.portrait.baseImages}. Familjefotografering är ${PRICING.portrait.familyDuration} och innehåller ${PRICING.portrait.familyImages}.`,
     },
     {
       question: 'Hur lång leveranstid är det på porträttbilder?',
@@ -31,14 +32,14 @@ export default function FAQ() {
       answer: 'Ja, men reseersättning kan tillkomma.',
     },
     {
-      question: 'Vad ingår i grundpaketet för bröllopsfotografering?',
+      question: 'Vad ingår i kort vigsel-paketet för bröllopsfotografering?',
       answer:
-        'Grundpaketet för bröllop är 4 timmar och innehåller cirka 50 redigerade bilder. Det är ett bra upplägg för mindre bröllop eller för er som vill fokusera på vissa delar av dagen.',
+        `Kort vigsel är ${PRICING.wedding.shortDuration} och innehåller ${PRICING.wedding.shortImages}. Det passar bra för mindre bröllop, rådhusvigsel eller för er som vill fokusera på de viktigaste delarna av dagen.`,
     },
     {
       question: 'Kan vi anpassa ett bröllopspaket efter vår dag?',
       answer:
-        'Ja. De tre paket som visas på hemsidan gäller som grund, men det går bra att lägga till, ta bort eller ändra upplägget så att det passar er bättre.',
+        'Ja. Paketen Kort vigsel, Halvdag och Heldag fungerar som grund, men det går bra att lägga till tid eller justera upplägget så att det passar er bättre.',
     },
     {
       question: 'Hur lång är leveranstiden för bröllopsbilder?',
@@ -79,6 +80,13 @@ export default function FAQ() {
         image={absoluteLogoUrl}
         keywords="fotograf FAQ, fotografering frågor, familjefotograf, bröllopsfotograf pris, hur bokar man en fotograf, fotograf göteborg kungälv"
         jsonLd={faqJsonLd}
+        breadcrumbs={[
+          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          {
+            name: 'FAQ',
+            url: 'https://www.svendsenphotography.com/faq/',
+          },
+        ]}
       />
 
       <main className="bg-[#f7f5f2] pt-16 text-foreground md:pt-20">

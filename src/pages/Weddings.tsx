@@ -10,12 +10,19 @@ import { useShuffledImages } from '../hooks/useShuffleImages'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 import { getImageSrc, type ImageAsset } from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
+import { PRICING } from '@/config/pricing'
 
 const weddingIncludes = [
   'Bröllopsporträtt med fokus på närvaro och naturlig känsla',
   'Dokumentation av detaljer, miljö och ögonblick mellan det planerade',
   'Fotografering anpassad efter mindre ceremonier eller längre upplägg',
   'Färdiga bilder som fungerar både som minnen och för att dela med familj och vänner',
+]
+
+const weddingFacts = [
+  PRICING.wedding.shortFrom,
+  PRICING.wedding.shortDuration,
+  PRICING.wedding.shortImages,
 ]
 
 const weddingHighlights = [
@@ -38,14 +45,24 @@ const weddingHighlights = [
 
 const weddingPackages = [
   {
-    title: 'Grundpaket',
+    title: 'Kort vigsel',
     description:
-      'Från 7500 kr. Grundpaketet är 4 timmar och innehåller cirka 50 redigerade bilder.',
+      `${PRICING.wedding.shortFrom}. Kort vigsel är ${PRICING.wedding.shortDuration} och innehåller ${PRICING.wedding.shortImages}. Det passar bra för mindre bröllop, rådhusvigsel eller er som vill fånga de viktigaste ögonblicken.`,
   },
   {
-    title: 'Fler upplägg',
+    title: 'Halvdag',
     description:
-      'De tre paket som visas på hemsidan gäller som grund, men det går också bra att lägga till, ta bort eller justera efter er dag.',
+      `${PRICING.wedding.halfDayPrice}. Halvdag är ${PRICING.wedding.halfDayDuration} och innehåller ${PRICING.wedding.halfDayImages}. Ett bra upplägg för porträtt, vigsel, gratulationer och mingel.`,
+  },
+  {
+    title: 'Heldag',
+    description:
+      `${PRICING.wedding.fullDayPrice}. Heldag är ${PRICING.wedding.fullDayDuration} och innehåller ${PRICING.wedding.fullDayImages}, från förberedelser till middag eller kvällens känsla.`,
+  },
+  {
+    title: 'Film som tillägg',
+    description:
+      `Eftersom jag oftast arbetar själv är foto huvudleveransen. Highlightfilm kan läggas till när upplägget passar, från ${PRICING.wedding.highlightFilmWithPhoto} vid fotopaket.`,
   },
   {
     title: 'Leverans',
@@ -61,9 +78,14 @@ const weddingPackages = [
 
 const weddingFaqs = [
   {
-    question: 'Vad ingår i grundpaketet för bröllopsfotografering?',
+    question: 'Vad brukar bröllopsfotografering kosta?',
     answer:
-      'Grundpaketet är 4 timmar och innehåller cirka 50 redigerade bilder. Det passar bra för mindre bröllop eller för er som vill fokusera på utvalda delar av dagen.',
+      `Priset beror framför allt på hur många timmar som ska fotograferas, om ni vill ha en kort vigsel, halvdag eller heldag, hur många bilder som ingår och hur mycket planering som behövs. Mina bröllopspaket börjar från ${PRICING.wedding.shortPrice} för ${PRICING.wedding.shortDuration} och ${PRICING.wedding.shortImages}.`,
+  },
+  {
+    question: 'Vad ingår i kort vigsel-paketet?',
+    answer:
+      `Kort vigsel är ${PRICING.wedding.shortDuration} och innehåller ${PRICING.wedding.shortImages}. Det passar bra för mindre bröllop, rådhusvigsel eller för er som vill fokusera på de viktigaste delarna av dagen.`,
   },
   {
     question: 'Kan vi anpassa ett paket efter vår dag?',
@@ -73,7 +95,7 @@ const weddingFaqs = [
   {
     question: 'Hur många bilder får vi från vårt bröllop?',
     answer:
-      'Det beror på vilket upplägg ni väljer, men i grundpaketet ingår cirka 50 redigerade bilder.',
+      `Det beror på vilket upplägg ni väljer. Kort vigsel innehåller ${PRICING.wedding.shortImages}, halvdag ${PRICING.wedding.halfDayImages} och heldag ${PRICING.wedding.fullDayImages}.`,
   },
   {
     question: 'Hur lång är leveranstiden för bröllopsbilder?',
@@ -135,6 +157,13 @@ export default function WeddingGallery() {
         url="https://www.svendsenphotography.com/weddings/"
         image={absoluteLogoUrl}
         jsonLd={weddingsJsonLd}
+        breadcrumbs={[
+          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          {
+            name: 'Bröllop',
+            url: 'https://www.svendsenphotography.com/weddings/',
+          },
+        ]}
       />
 
       <main className="max-w-full overflow-hidden bg-[#f7f5f2] px-3 pb-8 pt-20 text-textPrimary sm:px-4 md:px-5 lg:px-6">
@@ -151,6 +180,16 @@ export default function WeddingGallery() {
               naturliga, personliga bilder där både de stora ögonblicken och de
               små detaljerna får ta plats.
             </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {weddingFacts.map((fact) => (
+                <span
+                  key={fact}
+                  className="rounded-full border border-black/6 bg-white px-4 py-2 text-sm font-semibold text-textPrimary shadow-[0_10px_24px_-20px_rgba(31,41,55,0.28)]"
+                >
+                  {fact}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="rounded-[2rem] border border-black/5 bg-[#fcfaf7] p-5 shadow-[0_24px_60px_-36px_rgba(31,41,55,0.24)] md:p-6">
