@@ -25,6 +25,22 @@ const splitFileName = (fileName: string) => {
   return { baseName: fileName.slice(0, lastDotIndex) }
 }
 
+const uploadFailureMessage = (request: XMLHttpRequest, key: string) => {
+  const fileName = key.split('/').pop() || key
+  const fallback = `Kunde inte ladda upp ${fileName}.`
+
+  try {
+    const body = JSON.parse(request.responseText) as { error?: unknown }
+    if (typeof body.error === 'string' && body.error.trim()) {
+      return `${fallback} Servern svarade ${request.status}: ${body.error}`
+    }
+  } catch {
+    // The Worker normally returns JSON, but keep the original message if it does not.
+  }
+
+  return `${fallback} Servern svarade ${request.status}.`
+}
+
 const createWebpPreview = async (file: File): Promise<Blob> => {
   const bitmap = await createImageBitmap(file)
 
@@ -94,7 +110,7 @@ const uploadObject = async (
         return
       }
 
-      reject(new Error(`Kunde inte ladda upp ${key.split('/').pop() || key}.`))
+      reject(new Error(uploadFailureMessage(request, key)))
     }
     request.onerror = () => {
       reject(new Error(`Kunde inte ladda upp ${key.split('/').pop() || key}.`))

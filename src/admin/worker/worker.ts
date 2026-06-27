@@ -983,7 +983,8 @@ export default {
     const origin = request.headers.get('Origin')
     const corsHeaders: Record<string, string> = {
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization, Cookie',
+      'Access-Control-Allow-Headers':
+        'Content-Type, Authorization, Cookie, X-Original-File-Name',
       'Access-Control-Allow-Credentials': 'true',
     }
     if (origin && allowedOrigins.includes(origin)) {
