@@ -91,10 +91,10 @@ export default function Contact() {
     <>
       <SEO
         title="Kontakt | Fotograf & Webb | Göteborg & Kungälv - Svendsén Photography"
-        description="Kontakta Svendsén Photography för bröllopsfotografering, porträtt, familjefoto, företagsfoto, eventfoto eller webbutveckling i Göteborg och Kungälv. Skicka din förfrågan!"
+        description="Kontakta Svendsén Photography för bröllopsfotografering, porträtt, familjefoto, företagsfoto, eventfoto eller webbutveckling i Göteborg, Kungälv, Stenungsund och närliggande områden."
         url="https://www.svendsenphotography.com/contact/"
         image={absoluteLogoUrl}
-        keywords="kontakt fotograf, familjefotograf göteborg, fotograf göteborg, fotograf kungälv, webbutvecklare kungälv, boka fotograf, offert fotografering, kontakta webbyrå"
+        keywords="kontakt fotograf, familjefotograf göteborg, fotograf göteborg, fotograf kungälv, fotograf stenungsund, webbutvecklare kungälv, boka fotograf, offert fotografering, kontakta webbyrå"
         jsonLd={contactJsonLd}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
@@ -121,6 +121,20 @@ export default function Contact() {
                 möjligt via e-post.
               </p>
             </div>
+
+            <div className="mx-auto mb-10 max-w-3xl rounded-[1.75rem] border border-black/5 bg-white/70 px-5 py-6 text-left shadow-[0_18px_45px_-34px_rgba(31,41,55,0.22)] md:px-8">
+              <h2 className="mb-3 text-2xl font-semibold text-textPrimary">
+                Fotograf i Göteborg, Kungälv och Stenungsund med omnejd
+              </h2>
+              <p className="leading-relaxed text-muted-foreground dark:text-gray-300">
+                Jag fotograferar bröllop, porträtt, familjer och företag i
+                Göteborg, Kungälv, Stenungsund och närliggande områden. Oavsett
+                om fotograferingen sker vid havet, i stadsmiljö, hemma hos er
+                eller på en plats som betyder något, anpassar jag upplägget
+                efter ljuset, platsen och känslan ni vill åt.
+              </p>
+            </div>
+
             <form
               onSubmit={handleSubmit}
               className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 max-w-3xl mx-auto"

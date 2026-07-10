@@ -400,7 +400,7 @@ export default function WeddingPhotoPlanner() {
         </section>
 
         <section className="planner-print hidden">
-          <h1>Bröllopsplanerare för fotografering</h1>
+          <h2>Bröllopsplanerare för fotografering</h2>
           <p>
             Valda bilder och anteckningar inför bröllopsfotograferingen.
           </p>
