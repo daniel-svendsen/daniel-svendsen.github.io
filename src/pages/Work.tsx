@@ -119,12 +119,12 @@ const Work: React.FC = () => {
         }
         nav={<WorkNav activeTab={activeTab} onTabChange={setActiveTab} />}
         main={
-          <main className="pb-12">
+          <main className="pb-14">
             <Section
               shape="workPanel"
               bgColor="offWhite"
-              rounded="9xl"
-              className="my-8 mx-3 w-auto overflow-hidden shadow-[0_18px_50px_-30px_rgba(31,41,55,0.28)] sm:mx-4 md:my-12 md:mx-5 lg:mx-auto lg:max-w-7xl xl:max-w-screen-2xl"
+              rounded="3xl"
+              className="mx-3 my-8 w-auto overflow-hidden border border-black/6 bg-white shadow-[0_24px_70px_-58px_rgba(31,41,55,0.5)] sm:mx-4 md:mx-5 md:my-10 lg:mx-auto lg:max-w-6xl"
             >
               <SectionContent>{renderTabContent()}</SectionContent>
             </Section>

@@ -101,7 +101,7 @@ const renderDescriptionLine = (line: string) => {
   }
 
   return (
-    <div className="flex items-start gap-3 rounded-2xl border border-black/6 bg-white px-4 py-3 shadow-[0_10px_24px_-20px_rgba(31,41,55,0.28)]">
+    <div className="flex items-start gap-3 rounded-2xl border border-black/6 bg-[#f8f8f5] px-4 py-3">
       <span className="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-textPrimary/70" />
       <span className="text-[0.95rem] leading-relaxed text-textPrimary/88">
         {line}
@@ -198,12 +198,11 @@ export default function Services() {
           },
         ]}
       />
-      <div className="bg-[#f7f5f2] pt-16 text-textPrimary md:pt-20">
+      <div className="bg-[#f5f5f2] pt-24 text-textPrimary md:pt-28">
         <Section
-          bgColor="beige"
-          roundedTop="10xl"
-          roundedBottom="10xl"
-          className="mx-3 overflow-hidden pb-16 pt-10 sm:mx-4 md:mx-5 md:pb-24 md:pt-16 lg:mx-6"
+          bgColor="white"
+          rounded="3xl"
+          className="mx-3 overflow-hidden border border-black/6 bg-white pb-14 pt-10 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.5)] sm:mx-4 md:mx-5 md:pb-20 md:pt-14 lg:mx-auto lg:max-w-6xl"
         >
           <SectionContent>
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
@@ -211,7 +210,7 @@ export default function Services() {
                 <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-textSecondary">
                   Tjänster
                 </p>
-                <h1 className="mb-5 max-w-2xl text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
+                <h1 className="mb-5 max-w-2xl text-4xl font-semibold leading-tight tracking-tight md:text-5xl lg:text-6xl">
                   Fotograf i Kungälv, Göteborg och Stenungsund
                 </h1>
                 <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
@@ -223,7 +222,7 @@ export default function Services() {
                   {serviceFacts.map((fact) => (
                     <span
                       key={fact}
-                      className="rounded-full border border-black/6 bg-white px-4 py-2 text-sm font-semibold text-textPrimary shadow-[0_10px_24px_-20px_rgba(31,41,55,0.28)]"
+                      className="rounded-full border border-black/6 bg-[#f8f8f5] px-4 py-2 text-sm font-semibold text-textPrimary"
                     >
                       {fact}
                     </span>
@@ -242,7 +241,7 @@ export default function Services() {
                 </div>
               </div>
 
-              <div className="rounded-[2rem] border border-black/5 bg-[#fcfaf7] p-5 shadow-[0_24px_60px_-36px_rgba(31,41,55,0.28)] md:max-w-[32rem] md:p-6 lg:ml-auto">
+              <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-5 md:max-w-[32rem] md:p-6 lg:ml-auto">
                 <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
                   Hitta rätt väg in
                 </p>
@@ -250,7 +249,7 @@ export default function Services() {
                   {quickLinks.map((item) => (
                     <div
                       key={item.title}
-                      className="rounded-[1.5rem] border border-black/6 bg-white p-4 shadow-[0_12px_28px_-24px_rgba(31,41,55,0.28)]"
+                      className="rounded-[1.35rem] border border-black/6 bg-white p-4"
                     >
                       <h2 className="mb-2 text-xl font-semibold text-textPrimary">
                         {item.title}
@@ -276,10 +275,9 @@ export default function Services() {
         </Section>
 
         <Section
-          bgColor="beige"
-          roundedTop="9xl"
-          roundedBottom="9xl"
-          className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-20 lg:mx-6 lg:py-24"
+          bgColor="white"
+          rounded="3xl"
+          className="mx-3 mt-10 overflow-hidden border border-black/6 bg-white py-12 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] sm:mx-4 md:mx-5 md:py-20 lg:mx-auto lg:max-w-6xl"
         >
           <SectionContent heading="Fotografering i ditt område">
             <p className="mt-4 max-w-3xl text-base leading-relaxed text-textSecondary">
@@ -294,7 +292,7 @@ export default function Services() {
                   key={area.title}
                   title={area.title}
                   description={area.description}
-                  className="bg-white p-6"
+                  className="border-black/6 bg-[#f8f8f5] p-6 shadow-none"
                   titleClassName="mb-2 text-xl"
                   descriptionClassName="text-sm leading-relaxed"
                 />
@@ -304,10 +302,9 @@ export default function Services() {
         </Section>
 
         <Section
-          bgColor="beige"
-          roundedTop="9xl"
-          roundedBottom="9xl"
-          className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-20 lg:mx-6 lg:py-24"
+          bgColor="white"
+          rounded="3xl"
+          className="mx-3 mt-10 overflow-hidden border border-black/6 bg-white py-12 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] sm:mx-4 md:mx-5 md:py-20 lg:mx-auto lg:max-w-6xl"
         >
           <SectionContent heading="Utvalda tjänster">
             <div className="mt-8 space-y-14 md:space-y-20">
@@ -326,7 +323,7 @@ export default function Services() {
                         : ''
                     }`}
                   >
-                    <div className="group relative h-full min-h-[20rem] overflow-hidden rounded-[2rem]">
+                    <div className="group relative h-full min-h-[20rem] overflow-hidden rounded-[1.5rem]">
                       <ResponsiveImage
                         image={card.image}
                         alt={card.title}
@@ -335,7 +332,7 @@ export default function Services() {
                       />
                     </div>
 
-                    <div className="flex h-full flex-col rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] md:p-8">
+                    <div className="flex h-full flex-col rounded-[1.5rem] border border-black/6 bg-white p-6 md:p-8">
                       <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
                         <div>
                           <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
@@ -346,7 +343,7 @@ export default function Services() {
                           </h3>
                         </div>
                         {card.price && (
-                          <div className="whitespace-nowrap rounded-full border border-black/6 bg-white px-4 py-2 text-base font-semibold text-textPrimary shadow-[0_10px_24px_-20px_rgba(31,41,55,0.28)]">
+                          <div className="whitespace-nowrap rounded-full border border-black/6 bg-[#f8f8f5] px-4 py-2 text-base font-semibold text-textPrimary">
                             {card.price}
                           </div>
                         )}
@@ -386,14 +383,13 @@ export default function Services() {
         </Section>
 
         <Section
-          bgColor="beige"
-          roundedTop="9xl"
-          roundedBottom="9xl"
-          className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-20 lg:mx-6 lg:py-24"
+          bgColor="white"
+          rounded="3xl"
+          className="mx-3 mt-10 overflow-hidden border border-black/6 bg-white py-12 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] sm:mx-4 md:mx-5 md:py-20 lg:mx-auto lg:max-w-6xl"
         >
           <SectionContent heading="Mer än bara bilder">
             <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-10">
-              <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_24px_60px_-36px_rgba(31,41,55,0.24)] md:p-8">
+              <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-6 md:p-8">
                 <h3 className="mb-4 text-2xl font-semibold text-textPrimary">
                   Varför kunder väljer att arbeta med mig
                 </h3>
@@ -406,7 +402,10 @@ export default function Services() {
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {whyChooseMeList.map((item) => (
-                  <InfoCard key={item.title} className="bg-white p-6">
+                  <InfoCard
+                    key={item.title}
+                    className="border-black/6 bg-[#f8f8f5] p-6 shadow-none"
+                  >
                     <div className="mb-2">{item.icon}</div>
                     <h3 className="mb-2 text-xl font-semibold text-textPrimary">
                       {item.title}
@@ -423,10 +422,9 @@ export default function Services() {
 
         {productImages.length > 0 && (
           <Section
-            bgColor="beige"
-            roundedTop="9xl"
-            roundedBottom="9xl"
-            className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-20 lg:mx-6 lg:py-24"
+            bgColor="white"
+            rounded="3xl"
+            className="mx-3 mt-10 overflow-hidden border border-black/6 bg-white py-12 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] sm:mx-4 md:mx-5 md:py-20 lg:mx-auto lg:max-w-6xl"
           >
             <SectionContent heading="Produktfotografering för företag">
               <p className="mt-4 max-w-3xl text-base leading-relaxed text-textSecondary">
@@ -446,7 +444,7 @@ export default function Services() {
                 {productImages.map((image, index) => (
                   <figure
                     key={getImageSrc(image)}
-                    className="overflow-hidden rounded-[1.75rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]"
+                    className="overflow-hidden rounded-[1.5rem] border border-black/6 bg-white"
                   >
                     <ResponsiveImage
                       image={image}
@@ -463,15 +461,18 @@ export default function Services() {
         )}
 
         <Section
-          bgColor="beige"
-          roundedTop="9xl"
-          roundedBottom="9xl"
-          className="mx-3 overflow-hidden py-12 sm:mx-4 md:mx-5 md:py-20 lg:mx-6 lg:py-24"
+          bgColor="white"
+          rounded="3xl"
+          className="mx-3 mt-10 overflow-hidden border border-black/6 bg-white py-12 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] sm:mx-4 md:mx-5 md:py-20 lg:mx-auto lg:max-w-6xl"
         >
           <SectionContent heading="Från första kontakt till färdiga bilder">
             <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {photoProcessSteps.map((step) => (
-                <InfoCard key={step.title} centered className="bg-white p-6">
+                <InfoCard
+                  key={step.title}
+                  centered
+                  className="border-black/6 bg-[#f8f8f5] p-6 shadow-none"
+                >
                   <div className="mx-auto mb-1 flex justify-center">
                     {step.icon}
                   </div>
@@ -488,10 +489,9 @@ export default function Services() {
         </Section>
 
         <Section
-          bgColor="beige"
-          roundedTop="10xl"
-          roundedBottom="10xl"
-          className="mx-3 overflow-hidden py-16 text-center sm:mx-4 md:mx-5 md:py-24 lg:mx-6 lg:py-28"
+          bgColor="offWhite"
+          rounded="none"
+          className="mt-10 overflow-hidden bg-[#f5f5f2] py-16 text-center md:py-24 lg:py-28"
         >
           <SectionContent>
             <CTASection

@@ -20,10 +20,14 @@ const LanguageMisc: React.FC<LanguageMiscProps> = ({ languages }) => {
         {languages.map((lang) => (
           <li
             key={lang.id}
-            className="p-3 bg-white rounded shadow flex flex-col"
+            className="flex flex-col rounded-2xl border border-black/6 bg-[#f8f9fb] p-5"
           >
-            <span className="font-semibold">{t(lang.name)}</span>
-            <span className="text-primary text-sm">{t(lang.level)}</span>
+            <span className="font-semibold text-textPrimary">
+              {t(lang.name)}
+            </span>
+            <span className="mt-1 text-sm text-textPrimary/68">
+              {t(lang.level)}
+            </span>
           </li>
         ))}
       </ul>

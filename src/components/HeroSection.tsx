@@ -1,13 +1,11 @@
 import React, { useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
-import Typewriter from 'typewriter-effect'
 
+import { LinkButton } from '@/components/Button'
+import { ResponsiveImage } from '@/components/ResponsiveImage'
 import { Section } from '@/components/Section'
 import { SectionContent } from '@/components/SectionContent'
-import { Button } from '@/components/Button'
-import { ResponsiveImage } from '@/components/ResponsiveImage'
-
 import { useShuffledImages } from '@/hooks/useShuffleImages'
 import { type ResponsiveImageAsset } from '@/utils/responsiveImages'
 
@@ -19,145 +17,117 @@ const allHeroImageUrls = Object.values(
   }),
 ) as ResponsiveImageAsset[]
 
-const MotionButton = motion(Button)
-
 export default function HeroSection() {
-  const navigate = useNavigate()
-
   const imagePool = useMemo(() => {
     return allHeroImageUrls.length > 0 ? allHeroImageUrls : []
   }, [])
 
   const shuffledImages = useShuffledImages(imagePool)
 
-  const imageForLeft = shuffledImages[0] ?? imagePool[0]
+  const heroImage = shuffledImages[0] ?? imagePool[0]
+  const supportingImage = shuffledImages[1] ?? imagePool[1] ?? heroImage
+  const detailImage = shuffledImages[2] ?? imagePool[2] ?? supportingImage
 
-  const initialImageForRight = shuffledImages[1] ?? imagePool[1] ?? imageForLeft
-
-  const imageForRight =
-    imagePool.length > 1 && imageForLeft === initialImageForRight
-      ? (() => {
-          const distinctInPool = Array.from(new Set(imagePool))
-          const candidate = distinctInPool.find((img) => img !== imageForLeft)
-          return candidate
-            ? candidate
-            : imagePool[0] && imagePool[1]
-              ? imagePool[0] === imageForLeft
-                ? imagePool[1]
-                : imagePool[0]
-              : initialImageForRight
-        })()
-      : imagePool.length === 1 && imagePool[0]
-        ? imagePool[0]
-        : initialImageForRight
-
-  if (!imageForLeft || !imageForRight) {
+  if (!heroImage || !supportingImage || !detailImage) {
     return null
   }
 
   return (
     <Section
-        roundedBottom="10xl"
-        bgColor="beige"
-        className="flex h-[98vh] w-full flex-col items-center justify-center overflow-hidden pt-16 pb-8 sm:pt-20 sm:pb-10 md:py-0"
-        aria-labelledby="hero-heading"
-      >
-        <SectionContent className="w-full">
-          <div className="relative grid grid-cols-1 items-center gap-6 sm:gap-8 md:grid-cols-[30%_40%_30%] md:gap-8 md:py-0 lg:gap-12">
-            <motion.div
-              className="hidden justify-center md:order-1 md:flex md:justify-start"
-              initial={{ opacity: 0, x: -80, rotate: -10 }}
-              animate={{ opacity: 1, x: 0, rotate: -6 }}
-              transition={{
-                duration: 0.7,
-                delay: 0.2,
-                type: 'spring',
-                stiffness: 50,
-              }}
+      bgColor="offWhite"
+      className="min-h-screen overflow-hidden bg-[#f5f5f2] pt-24 text-textPrimary md:pt-28"
+      aria-labelledby="hero-heading"
+    >
+      <SectionContent className="grid min-h-[calc(100vh-7rem)] items-center gap-12 pb-12 md:grid-cols-[0.92fr_1.08fr] md:gap-14 lg:gap-20">
+        <motion.div
+          className="order-1 max-w-2xl"
+          initial={{ opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
+        >
+          <p className="mb-6 text-sm font-semibold uppercase tracking-[0.24em] text-textSecondary">
+            Fotograf i Göteborg & Kungälv
+          </p>
+          <h1
+            id="hero-heading"
+            className="mb-6 max-w-3xl text-5xl font-semibold leading-[0.96] tracking-tight text-textPrimary sm:text-6xl lg:text-7xl"
+          >
+            Svendsén
+            <span className="block font-poiret font-bold tracking-[0.06em]">
+              Photography
+            </span>
+          </h1>
+          <p className="max-w-xl text-lg leading-8 text-textPrimary/72 sm:text-xl">
+            Stillsamma, naturliga bilder för bröllop, porträtt och visuellt
+            innehåll. Skapat med lugn närvaro, tydlig riktning och känsla för
+            det som faktiskt betyder något.
+          </p>
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <LinkButton
+              to="/services/"
+              variant="default"
+              size="lg"
+              subVariant="rounded"
+              className="px-7"
             >
-              <ResponsiveImage
-                image={imageForLeft}
-                alt="Stämningsfull porträttfotografering"
-                sizes="(min-width: 768px) 30vw, 0px"
-                className="h-auto max-h-[24rem] w-full rounded-2xl object-cover transition-transform duration-400 ease-out hover:scale-105 hover:rotate-0 md:max-w-full"
-              />
-            </motion.div>
+              Se tjänster
+            </LinkButton>
+            <LinkButton
+              to="/contact/"
+              variant="link"
+              size="lg"
+              className="gap-2 px-0 text-textPrimary no-underline hover:text-textPrimary/70"
+            >
+              Kontakta mig
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </LinkButton>
+          </div>
+        </motion.div>
 
-            <motion.div
-              className="relative z-10 order-last px-2 text-center md:order-2"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-            >
-              <h1
-                id="hero-heading"
-                className="mb-3 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
-              >
-                Svendsén Photography
-              </h1>
-              <div className="mb-4 min-h-[35px] text-xl font-semibold text-textPrimary sm:mb-6 sm:min-h-[40px] sm:text-2xl md:text-3xl lg:text-4xl">
-                <Typewriter
-                  options={{
-                    strings: ['Bröllop', 'Porträtt', 'Företag', 'Webbtjänster'],
-                    autoStart: true,
-                    loop: true,
-                    deleteSpeed: 40,
-                    delay: 70,
-                    wrapperClassName: 'typewriter-wrapper',
-                    cursorClassName: 'typewriter-cursor-primary',
-                  }}
+        <motion.div
+          className="order-2"
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.08, ease: 'easeOut' }}
+        >
+          <div className="grid grid-cols-[0.72fr_1fr] items-end gap-3 sm:gap-4">
+            <div className="space-y-3 sm:space-y-4">
+              <div className="overflow-hidden rounded-[1.35rem] bg-white shadow-[0_28px_70px_-52px_rgba(31,41,55,0.65)]">
+                <ResponsiveImage
+                  image={supportingImage}
+                  alt="Naturligt porträtt med mjukt ljus"
+                  sizes="(min-width: 768px) 23vw, 40vw"
+                  className="aspect-[4/5] h-full w-full object-cover"
                 />
               </div>
-              <p className="text-md mb-8 opacity-80 sm:mb-10 sm:text-lg md:text-xl">
-                Professionell fotografering i Göteborg & Kungälv
-              </p>
-
-              <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-                <MotionButton
-                  variant="default"
-                  size="md"
-                  subVariant="rounded"
-                  className="px-6 text-sm font-semibold sm:px-7 sm:text-base"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => navigate('/contact/')}
-                >
-                  Kontakta mig
-                </MotionButton>
-                <MotionButton
-                  variant="outline"
-                  size="md"
-                  subVariant="rounded"
-                  className="px-6 text-sm font-semibold sm:px-7 sm:text-base"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => navigate('/services/')}
-                >
-                  Se tjänster
-                </MotionButton>
+              <div className="rounded-[1.35rem] border border-black/6 bg-white/78 p-5 shadow-[0_24px_60px_-52px_rgba(31,41,55,0.35)] backdrop-blur">
+                <p className="text-sm font-medium leading-6 text-textPrimary/70">
+                  Bröllop, porträtt, familj, företag och visuellt innehåll med
+                  personlig känsla.
+                </p>
               </div>
-            </motion.div>
-
-            <motion.div
-              className="order-first flex items-center justify-center pt-4 sm:pt-0 md:order-3 md:justify-end md:pt-0"
-              initial={{ opacity: 0, x: 80, rotate: 10 }}
-              animate={{ opacity: 1, x: 0, rotate: 3 }}
-              transition={{
-                duration: 0.7,
-                delay: 0.6,
-                type: 'spring',
-                stiffness: 50,
-              }}
-            >
-              <ResponsiveImage
-                image={imageForRight}
-                alt="Detaljbild från företagsfotografering"
-                sizes="(min-width: 768px) 30vw, 288px"
-                className="h-[30vh] w-full max-w-[18rem] rounded-2xl object-cover transition-transform duration-400 ease-out hover:scale-105 sm:h-[35vh] sm:max-w-[14rem] md:h-auto md:max-h-[18rem] md:max-w-full md:rotate-3 md:object-cover md:hover:rotate-0"
-              />
-            </motion.div>
+            </div>
+            <div className="space-y-3 sm:space-y-4">
+              <div className="overflow-hidden rounded-[1.75rem] bg-white shadow-[0_36px_90px_-54px_rgba(31,41,55,0.7)]">
+                <ResponsiveImage
+                  image={heroImage}
+                  alt="Stämningsfull fotografering i naturligt ljus"
+                  sizes="(min-width: 1024px) 46vw, (min-width: 768px) 50vw, 58vw"
+                  className="aspect-[5/6] h-full w-full object-cover"
+                />
+              </div>
+              <div className="ml-auto hidden w-3/4 overflow-hidden rounded-[1.25rem] bg-white shadow-[0_24px_60px_-48px_rgba(31,41,55,0.55)] sm:block">
+                <ResponsiveImage
+                  image={detailImage}
+                  alt="Detaljbild från fotografering"
+                  sizes="(min-width: 768px) 30vw, 0px"
+                  className="aspect-[16/10] h-full w-full object-cover"
+                />
+              </div>
+            </div>
           </div>
-        </SectionContent>
+        </motion.div>
+      </SectionContent>
     </Section>
   )
 }

@@ -1,10 +1,44 @@
 import React from 'react'
 
-import { CTASection } from '@/components/CTASection'
-import { InfoCard } from '@/components/InfoCard'
 import { LinkButton } from '@/components/Button'
+import { EditorialIntro, EditorialSection } from '@/components/Editorial'
 import SEO from '@/components/SEO'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+
+const guideCards = [
+  {
+    eyebrow: 'Planerare',
+    title: 'Bröllopsplanerare för fotografering',
+    description:
+      'Kryssa i bilder och moment, skriv egna anteckningar och skriv ut, ladda ner eller maila listan.',
+    to: '/guider/brollopsplanerare/',
+    label: 'Öppna planeraren',
+  },
+  {
+    eyebrow: 'Bröllop',
+    title: 'Promenadbilder på bröllopsdagen',
+    description:
+      'En guide om hur en kort promenad kan ge mer avslappnade och personliga bilder på er två.',
+    to: '/guider/brollopsbilder-promenad/',
+    label: 'Läs guiden',
+  },
+  {
+    eyebrow: 'Planering',
+    title: 'Bröllopstidslinje för fotografering',
+    description:
+      'En guide till hur ni kan planera tid för familjebilder, porträtt, first look och lugna stunder under dagen.',
+    to: '/guider/brollopstidslinje/',
+    label: 'Läs guiden',
+  },
+  {
+    eyebrow: 'Exempel',
+    title: 'Bröllop i Stenungsund',
+    description:
+      'Se ett heldagsbröllop vid havet med first look, vigsel, mingel, middag och lugna parbilder.',
+    to: '/brollop/stenungsund/',
+    label: 'Se bilderna',
+  },
+]
 
 export default function Guides() {
   const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
@@ -25,113 +59,83 @@ export default function Guides() {
         ]}
       />
 
-      <main className="max-w-full overflow-hidden bg-[#f7f5f2] px-3 pb-8 pt-20 text-textPrimary sm:px-4 md:px-5 lg:px-6">
-        <header className="mx-auto mb-8 max-w-6xl rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:mb-12 md:px-8 md:py-10 lg:rounded-[3rem]">
-          <div className="max-w-3xl">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-textSecondary">
-              Guider
-            </p>
-            <h1 className="mb-5 max-w-2xl text-4xl font-bold leading-tight md:text-5xl">
-              Hjälp inför era bröllopsbilder
-            </h1>
-            <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
-              Praktiska guider för er som vill planera bilder som känns
-              naturliga, personliga och enkla att vara i.
-            </p>
+      <main className="bg-[#f5f5f2] pt-24 text-textPrimary md:pt-28">
+        <EditorialSection
+          tone="white"
+          className="mx-3 rounded-[1.75rem] border border-black/6 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.5)] sm:mx-4 md:mx-5 lg:mx-auto lg:max-w-6xl"
+        >
+          <EditorialIntro
+            eyebrow="Guider"
+            headingLevel="h1"
+            title="Hjälp inför era bröllopsbilder."
+            description="Praktiska guider för er som vill planera bilder som känns naturliga, personliga och enkla att vara i."
+          />
+        </EditorialSection>
+
+        <EditorialSection
+          tone="white"
+          className="mx-3 mt-10 rounded-[1.75rem] border border-black/6 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] sm:mx-4 md:mx-5 lg:mx-auto lg:max-w-6xl"
+        >
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            {guideCards.map((guide) => (
+              <article
+                key={guide.title}
+                className="flex min-h-[18rem] flex-col rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-6 md:p-8"
+              >
+                <p className="mb-5 text-sm font-semibold uppercase tracking-[0.22em] text-textSecondary">
+                  {guide.eyebrow}
+                </p>
+                <h2 className="mb-4 text-2xl font-semibold tracking-tight text-textPrimary md:text-3xl">
+                  {guide.title}
+                </h2>
+                <p className="mb-8 max-w-xl text-base leading-8 text-textPrimary/68">
+                  {guide.description}
+                </p>
+                <LinkButton
+                  to={guide.to}
+                  size="lg"
+                  subVariant="rounded"
+                  className="mt-auto w-fit px-7 font-semibold"
+                >
+                  {guide.label}
+                </LinkButton>
+              </article>
+            ))}
           </div>
-        </header>
+        </EditorialSection>
 
-        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <InfoCard className="bg-white p-6 md:p-8">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
-              Planerare
+        <EditorialSection>
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-textSecondary">
+              Nästa steg
             </p>
-            <h2 className="mb-3 text-2xl font-semibold text-textPrimary">
-              Bröllopsplanerare för fotografering
+            <h2 className="mb-6 text-3xl font-semibold tracking-tight text-textPrimary md:text-4xl">
+              Vill ni prata igenom ert upplägg?
             </h2>
-            <p className="mb-6 text-base leading-relaxed text-textSecondary">
-              Kryssa i bilder och moment, skriv egna anteckningar och skriv ut,
-              ladda ner eller maila listan.
+            <p className="mx-auto mb-10 max-w-xl text-lg leading-8 text-textPrimary/68">
+              Berätta lite om platsen, dagen och vilken känsla ni hoppas på, så
+              hjälper jag er hitta ett upplägg som passar.
             </p>
-            <LinkButton
-              to="/guider/brollopsplanerare/"
-              size="lg"
-              subVariant="rounded"
-            >
-              Öppna planeraren
-            </LinkButton>
-          </InfoCard>
-
-          <InfoCard className="bg-white p-6 md:p-8">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
-              Bröllop
-            </p>
-            <h2 className="mb-3 text-2xl font-semibold text-textPrimary">
-              Promenadbilder på bröllopsdagen
-            </h2>
-            <p className="mb-6 text-base leading-relaxed text-textSecondary">
-              En guide om hur en kort promenad kan ge mer avslappnade och
-              personliga bilder på er två.
-            </p>
-            <LinkButton
-              to="/guider/brollopsbilder-promenad/"
-              size="lg"
-              subVariant="rounded"
-            >
-              Läs guiden
-            </LinkButton>
-          </InfoCard>
-
-          <InfoCard className="bg-white p-6 md:p-8">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
-              Planering
-            </p>
-            <h2 className="mb-3 text-2xl font-semibold text-textPrimary">
-              Bröllopstidslinje för fotografering
-            </h2>
-            <p className="mb-6 text-base leading-relaxed text-textSecondary">
-              En guide till hur ni kan planera tid för familjebilder, porträtt,
-              first look och lugna stunder under dagen.
-            </p>
-            <LinkButton
-              to="/guider/brollopstidslinje/"
-              size="lg"
-              subVariant="rounded"
-            >
-              Läs guiden
-            </LinkButton>
-          </InfoCard>
-
-          <InfoCard className="bg-white p-6 md:p-8">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
-              Exempel
-            </p>
-            <h2 className="mb-3 text-2xl font-semibold text-textPrimary">
-              Bröllop i Stenungsund
-            </h2>
-            <p className="mb-6 text-base leading-relaxed text-textSecondary">
-              Se ett heldagsbröllop vid havet med first look, vigsel, mingel,
-              middag och lugna parbilder.
-            </p>
-            <LinkButton
-              to="/brollop/stenungsund/"
-              size="lg"
-              subVariant="rounded"
-            >
-              Se bilderna
-            </LinkButton>
-          </InfoCard>
-        </section>
-
-        <CTASection
-          className="rounded-[2.25rem] bg-white/82 lg:rounded-[3rem]"
-          title="Vill ni prata igenom ert upplägg?"
-          description="Berätta lite om platsen, dagen och vilken känsla ni hoppas på, så hjälper jag er hitta ett upplägg som passar."
-          actions={[
-            { to: '/contact/', label: 'Skicka förfrågan' },
-            { to: '/weddings/', label: 'Se bröllopssidan', variant: 'outline' },
-          ]}
-        />
+            <div className="flex flex-col justify-center gap-3 sm:flex-row">
+              <LinkButton
+                to="/contact/"
+                size="lg"
+                subVariant="rounded"
+                className="px-8 font-semibold"
+              >
+                Skicka förfrågan
+              </LinkButton>
+              <LinkButton
+                to="/weddings/"
+                variant="link"
+                size="lg"
+                className="px-0 text-textPrimary no-underline hover:text-textPrimary/70"
+              >
+                Se bröllopssidan
+              </LinkButton>
+            </div>
+          </div>
+        </EditorialSection>
       </main>
     </>
   )

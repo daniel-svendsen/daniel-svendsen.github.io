@@ -274,13 +274,13 @@ export default function WeddingPhotoPlanner() {
         ]}
       />
 
-      <main className="planner-page max-w-full overflow-hidden bg-[#f7f5f2] px-3 pb-8 pt-20 text-textPrimary sm:px-4 md:px-5 lg:px-6">
-        <header className="planner-screen mx-auto mb-8 rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:mb-12 md:px-8 md:py-10 lg:max-w-6xl lg:rounded-[3rem]">
+      <main className="planner-page max-w-full overflow-hidden bg-[#f5f5f2] px-3 pb-8 pt-24 text-textPrimary sm:px-4 md:px-5 md:pt-28 lg:px-6">
+        <header className="planner-screen mx-auto mb-10 rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.5)] md:px-8 md:py-10 lg:max-w-6xl">
           <div className="max-w-3xl">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-textSecondary">
               Checklista
             </p>
-            <h1 className="mb-5 max-w-2xl text-4xl font-bold leading-tight md:text-5xl">
+            <h1 className="mb-5 max-w-2xl text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
               Checklista för bröllopsfotografering
             </h1>
             <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
@@ -288,7 +288,7 @@ export default function WeddingPhotoPlanner() {
               bröllopsdagen, lägg till egna anteckningar och skriv ut, ladda ner
               eller maila listan inför fotograferingen.
             </p>
-            <div className="mt-6 max-w-2xl rounded-2xl border border-black/6 bg-white px-5 py-4 shadow-[0_14px_32px_-28px_rgba(31,41,55,0.32)]">
+            <div className="mt-6 max-w-2xl rounded-2xl border border-black/6 bg-[#f8f8f5] px-5 py-4">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-textSecondary">
                 Snabbt svar
               </p>
@@ -301,10 +301,13 @@ export default function WeddingPhotoPlanner() {
           </div>
         </header>
 
-        <section className="planner-screen mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-[0.72fr_0.28fr]">
+        <section className="planner-screen mx-auto mb-10 grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-[0.72fr_0.28fr]">
           <div className="space-y-6">
             {plannerSections.map((section) => (
-              <InfoCard key={section.title} className="bg-white p-6 md:p-8">
+              <InfoCard
+                key={section.title}
+                className="border-black/6 bg-white p-6 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.42)] md:p-8"
+              >
                 <div className="mb-5">
                   <h2 className="mb-2 text-2xl font-semibold text-textPrimary">
                     {section.title}
@@ -318,7 +321,7 @@ export default function WeddingPhotoPlanner() {
                   {section.items.map((item) => (
                     <label
                       key={item}
-                      className="flex cursor-pointer items-start gap-3 rounded-2xl border border-black/6 bg-[#f7f5f2] px-4 py-3 text-sm font-medium leading-relaxed text-textPrimary"
+                      className="flex cursor-pointer items-start gap-3 rounded-2xl border border-black/6 bg-[#f8f8f5] px-4 py-3 text-sm font-medium leading-relaxed text-textPrimary transition hover:border-textPrimary/25"
                     >
                       <input
                         type="checkbox"
@@ -333,7 +336,7 @@ export default function WeddingPhotoPlanner() {
               </InfoCard>
             ))}
 
-            <InfoCard className="bg-white p-6 md:p-8">
+            <InfoCard className="border-black/6 bg-white p-6 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.42)] md:p-8">
               <h2 className="mb-5 text-2xl font-semibold text-textPrimary">
                 Egna anteckningar
               </h2>
@@ -348,7 +351,7 @@ export default function WeddingPhotoPlanner() {
                       onChange={(event) => updateNote(field.id, event.target.value)}
                       placeholder={field.placeholder}
                       rows={3}
-                      className="w-full rounded-2xl border border-black/10 bg-[#f7f5f2] px-4 py-3 text-sm leading-relaxed text-textPrimary outline-none transition focus:border-textPrimary"
+                      className="w-full rounded-2xl border border-black/10 bg-[#f8f8f5] px-4 py-3 text-sm leading-relaxed text-textPrimary outline-none transition focus:border-textPrimary focus:ring-4 focus:ring-textPrimary/8"
                     />
                   </label>
                 ))}
@@ -356,7 +359,7 @@ export default function WeddingPhotoPlanner() {
             </InfoCard>
           </div>
 
-          <aside className="h-fit rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] lg:sticky lg:top-24">
+          <aside className="h-fit rounded-[1.5rem] border border-black/6 bg-white p-6 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.5)] lg:sticky lg:top-24">
             <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
               Sammanfattning
             </p>
@@ -443,7 +446,7 @@ export default function WeddingPhotoPlanner() {
           </section>
         </section>
 
-        <section className="planner-screen mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-white px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.14)] md:px-8 md:py-10 lg:rounded-[3rem]">
+        <section className="planner-screen mx-auto mb-10 max-w-6xl rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10">
           <div className="mb-8 max-w-3xl">
             <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
               Så använder ni checklistan inför bröllopsdagen
@@ -461,13 +464,13 @@ export default function WeddingPhotoPlanner() {
                 key={tip.title}
                 title={tip.title}
                 description={tip.description}
-                className="bg-custom-beige p-6"
+                className="border-black/6 bg-[#f8f8f5] p-6 shadow-none"
               />
             ))}
           </div>
         </section>
 
-        <section className="planner-screen mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:rounded-[3rem]">
+        <section className="planner-screen mx-auto mb-10 max-w-6xl rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10">
           <div className="max-w-3xl">
             <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
               Bra att känna till
@@ -503,7 +506,7 @@ export default function WeddingPhotoPlanner() {
           </div>
         </section>
 
-        <section className="planner-screen mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-white px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.14)] md:px-8 md:py-10 lg:rounded-[3rem]">
+        <section className="planner-screen mx-auto mb-10 max-w-6xl rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10">
           <div className="mb-8 max-w-3xl">
             <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
               Vanliga frågor om bildlistan
@@ -519,14 +522,14 @@ export default function WeddingPhotoPlanner() {
                 key={faq.question}
                 title={faq.question}
                 description={faq.answer}
-                className="bg-custom-beige p-6"
+                className="border-black/6 bg-[#f8f8f5] p-6 shadow-none"
               />
             ))}
           </div>
         </section>
 
         <CTASection
-          className="planner-screen rounded-[2.25rem] bg-white/82 lg:rounded-[3rem]"
+          className="planner-screen rounded-[1.75rem] border border-black/6 bg-white shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)]"
           title="Vill ni prata igenom listan?"
           description="När ni har valt vad som känns viktigast kan jag hjälpa er att forma ett upplägg som passar platsen, tempot och dagen."
           actions={[

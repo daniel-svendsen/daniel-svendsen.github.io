@@ -22,12 +22,12 @@ const Projects: React.FC<ProjectsProps> = ({ projects, heading }) => {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow"
+            className="rounded-2xl border border-black/6 bg-[#f8f9fb] p-5"
           >
-            <h3 className="text-lg font-semibold text-textPrimary dark:text-white">
+            <h3 className="text-lg font-semibold text-textPrimary">
               {t(project.name)}
             </h3>
-            <p className="mt-1 text-primary dark:text-gray-300 text-sm">
+            <p className="mt-2 text-sm leading-7 text-textPrimary/68">
               {t(project.details)}
             </p>
             {project.link_href && (
@@ -37,7 +37,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects, heading }) => {
                 size="sm"
                 subVariant="rounded"
                 target="_blank"
-                className="mt-2"
+                className="mt-4"
                 rel="noopener noreferrer"
               >
                 {t(visitProjectText)}

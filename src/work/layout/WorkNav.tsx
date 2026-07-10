@@ -36,21 +36,21 @@ const WorkNav: React.FC<WorkNavProps> = ({ activeTab, onTabChange }) => {
   const { language, setLanguage, t } = useLanguage()
 
   return (
-    <nav className="bg-custom-beige py-2 px-4">
-      <div className="max-w-7xl mx-auto flex flex-col items-center">
-        <ul className="flex flex-wrap justify-center gap-1 sm:gap-3 mb-3">
+    <nav className="sticky top-[73px] z-30 border-y border-black/6 bg-white/90 px-4 py-3 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-6xl flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        <ul className="scrollbar-none flex gap-2 overflow-x-auto pb-1 md:flex-wrap md:overflow-visible md:pb-0">
           {tabs.map((tab) => (
-            <li key={tab.id}>
+            <li key={tab.id} className="flex-shrink-0">
               <Button
-                variant="muted"
+                variant={activeTab === tab.id ? 'default' : 'ghost'}
                 subVariant="rounded"
                 size="sm"
                 onClick={() => onTabChange(tab.id)}
                 className={cn(
-                  'py-2 px-2 sm:text-sm',
+                  'border border-transparent px-3 text-xs sm:text-sm',
                   activeTab === tab.id
-                    ? 'border-b-2 text-primary hover:!bg-transparent'
-                    : 'text-muted hover:gray hover:!bg-transparent',
+                    ? 'border-textPrimary bg-textPrimary text-white hover:bg-textPrimary/90'
+                    : 'text-textPrimary/70 hover:bg-black/5 hover:text-textPrimary',
                 )}
               >
                 {t(tab.label)}
@@ -58,22 +58,24 @@ const WorkNav: React.FC<WorkNavProps> = ({ activeTab, onTabChange }) => {
             </li>
           ))}
         </ul>
-        <div className="flex gap-2">
+        <div className="flex justify-center gap-2">
           <Button
-            variant={language === 'sv' ? 'secondary' : 'default'}
+            variant={language === 'sv' ? 'default' : 'outline'}
             subVariant="rounded"
             size="sm"
             onClick={() => setLanguage('sv')}
             disabled={language === 'sv'}
+            className="px-4"
           >
             Svenska
           </Button>
           <Button
-            variant={language === 'en' ? 'secondary' : 'default'}
+            variant={language === 'en' ? 'default' : 'outline'}
             subVariant="rounded"
             size="sm"
             onClick={() => setLanguage('en')}
             disabled={language === 'en'}
+            className="px-4"
           >
             English
           </Button>
