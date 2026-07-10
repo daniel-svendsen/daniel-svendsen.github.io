@@ -166,13 +166,13 @@ export default function WeddingGallery() {
         ]}
       />
 
-      <main className="max-w-full overflow-hidden bg-[#f7f5f2] px-3 pb-8 pt-20 text-textPrimary sm:px-4 md:px-5 lg:px-6">
-        <header className="mx-auto mb-8 grid max-w-6xl grid-cols-1 gap-6 rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:mb-12 md:px-8 md:py-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:rounded-[3rem]">
+      <main className="max-w-full overflow-hidden bg-[#f5f5f2] px-3 pb-10 pt-24 text-textPrimary sm:px-4 md:px-5 md:pt-28 lg:px-6">
+        <header className="mx-auto mb-8 grid max-w-6xl grid-cols-1 gap-8 rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.5)] md:mb-12 md:px-8 md:py-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <div className="max-w-3xl">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-textSecondary">
               Bröllop
             </p>
-            <h1 className="mb-5 max-w-2xl text-4xl font-bold leading-tight md:text-5xl">
+            <h1 className="mb-5 max-w-2xl text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
               Tidlösa bröllopsbilder med närvaro, känsla och plats för er berättelse
             </h1>
             <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
@@ -184,7 +184,7 @@ export default function WeddingGallery() {
               {weddingFacts.map((fact) => (
                 <span
                   key={fact}
-                  className="rounded-full border border-black/6 bg-white px-4 py-2 text-sm font-semibold text-textPrimary shadow-[0_10px_24px_-20px_rgba(31,41,55,0.28)]"
+                  className="rounded-full border border-black/6 bg-[#f8f8f5] px-4 py-2 text-sm font-semibold text-textPrimary"
                 >
                   {fact}
                 </span>
@@ -192,7 +192,7 @@ export default function WeddingGallery() {
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-black/5 bg-[#fcfaf7] p-5 shadow-[0_24px_60px_-36px_rgba(31,41,55,0.24)] md:p-6">
+          <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-5 md:p-6">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
               Passar för
             </p>
@@ -200,7 +200,7 @@ export default function WeddingGallery() {
               {weddingIncludes.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-black/5 bg-white px-4 py-3 text-sm font-medium leading-relaxed text-textPrimary shadow-[0_10px_24px_-20px_rgba(31,41,55,0.2)]"
+                  className="rounded-2xl border border-black/6 bg-white px-4 py-3 text-sm font-medium leading-relaxed text-textPrimary/78"
                 >
                   {item}
                 </div>
@@ -212,7 +212,7 @@ export default function WeddingGallery() {
         {featuredImages.length > 0 && (
           <section
             aria-label="Utvalda bröllopsbilder"
-            className="mx-auto mb-12 grid max-w-6xl grid-cols-1 gap-4 rounded-[2.25rem] bg-gray-50 px-4 py-4 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.14)] md:px-5 md:py-5 lg:grid-cols-[1.2fr_0.8fr] lg:rounded-[3rem]"
+            className="mx-auto mb-12 grid max-w-6xl grid-cols-1 gap-4 rounded-[1.75rem] border border-black/6 bg-white px-4 py-4 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-5 md:py-5 lg:grid-cols-[1.2fr_0.8fr]"
           >
             <figure className="group relative overflow-hidden rounded-[2rem]">
               <ResponsiveImage
@@ -253,8 +253,8 @@ export default function WeddingGallery() {
           </section>
         )}
 
-        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10 lg:rounded-[3rem]">
-          <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] md:p-8">
+        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
+          <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-6 md:p-8">
             <h2 className="mb-4 text-2xl font-semibold text-textPrimary">
               En lugn upplevelse genom hela dagen
             </h2>
@@ -276,7 +276,7 @@ export default function WeddingGallery() {
                 key={item.title}
                 title={item.title}
                 description={item.description}
-                className="bg-white p-5"
+                className="border-black/6 bg-[#f8f8f5] p-5 shadow-none"
                 titleClassName="mb-2 text-lg"
                 descriptionClassName="text-sm"
               />
@@ -284,8 +284,8 @@ export default function WeddingGallery() {
           </div>
         </section>
 
-        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:grid-cols-[0.9fr_1.1fr] lg:rounded-[3rem]">
-          <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] md:p-8">
+        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-6 md:p-8">
             <h2 className="mb-4 text-2xl font-semibold text-textPrimary">
               Bröllopsfotograf i Kungälv
             </h2>
@@ -309,17 +309,17 @@ export default function WeddingGallery() {
             <InfoCard
               title="Promenadbilder"
               description="En kort promenad ger ofta mer avslappnade bilder där ni får fokusera på varandra."
-              className="bg-white p-6"
+              className="border-black/6 bg-[#f8f8f5] p-6 shadow-none"
             />
             <InfoCard
               title="Riktigt exempel"
               description="Se ett bröllop från Kungälv där promenaden blev en viktig del av bildberättelsen."
-              className="bg-white p-6"
+              className="border-black/6 bg-[#f8f8f5] p-6 shadow-none"
             />
           </div>
         </section>
 
-        <section className="mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:rounded-[3rem]">
+        <section className="mx-auto mb-14 max-w-6xl rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10">
           <div className="mb-8 max-w-3xl">
             <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
               Paket och upplägg
@@ -338,7 +338,7 @@ export default function WeddingGallery() {
                 key={item.title}
                 title={item.title}
                 description={item.description}
-                className="bg-white p-6"
+                className="border-black/6 bg-[#f8f8f5] p-6 shadow-none"
                 titleClassName="mb-2 text-xl"
                 descriptionClassName="text-sm leading-relaxed"
               />
@@ -346,8 +346,8 @@ export default function WeddingGallery() {
           </div>
         </section>
 
-        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:grid-cols-[1.05fr_0.95fr] lg:rounded-[3rem]">
-          <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] md:p-8">
+        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-6 md:p-8">
             <h2 className="mb-4 text-2xl font-semibold text-textPrimary">
               Så arbetar jag under bröllopsdagen
             </h2>
@@ -365,7 +365,7 @@ export default function WeddingGallery() {
             </p>
           </div>
 
-          <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] md:p-8">
+          <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-6 md:p-8">
             <h2 className="mb-4 text-2xl font-semibold text-textPrimary">
               Vanliga frågor om bröllopsfotografering
             </h2>
@@ -373,7 +373,7 @@ export default function WeddingGallery() {
               {weddingFaqs.map((faq) => (
                 <div
                   key={faq.question}
-                  className="rounded-2xl border border-black/6 bg-[#fcfaf7] px-4 py-4"
+                  className="rounded-2xl border border-black/6 bg-white px-4 py-4"
                 >
                   <h3 className="mb-2 text-lg font-semibold text-textPrimary">
                     {faq.question}
@@ -389,7 +389,7 @@ export default function WeddingGallery() {
 
         <section
           aria-label="Bröllopsgalleri"
-          className="mx-auto grid max-w-6xl grid-cols-1 gap-4 rounded-[2.25rem] bg-gray-50 px-4 py-4 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.14)] sm:grid-cols-2 md:grid-cols-3 md:px-5 md:py-5 lg:grid-cols-4 lg:rounded-[3rem]"
+          className="mx-auto grid max-w-6xl grid-cols-1 gap-4 rounded-[1.75rem] border border-black/6 bg-white px-4 py-4 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] sm:grid-cols-2 md:grid-cols-3 md:px-5 md:py-5 lg:grid-cols-4"
         >
           {(galleryImages.length > 0 ? galleryImages : shuffledWeddingImages).map(
             (src, index) => (
@@ -416,7 +416,7 @@ export default function WeddingGallery() {
         </section>
 
         <CTASection
-          className="mt-14 rounded-[2.25rem] bg-white/82 lg:rounded-[3rem]"
+          className="mt-14 rounded-[1.75rem] border border-black/6 bg-white"
           title="Vill ni boka bröllopsfotografering?"
           description="Hör av er och berätta lite om er dag, ert upplägg och vad ni vill ha hjälp med, så återkommer jag med ett förslag som passar er och den känsla ni vill bära med er från dagen."
           actions={[

@@ -1,12 +1,12 @@
 import { Disclosure } from '@headlessui/react'
 import React from 'react'
-import SEO from '@/components/SEO'
-import { Section } from '@/components/Section'
-import { SectionContent } from '@/components/SectionContent'
 import { Minus, Plus } from 'lucide-react'
+
 import { LinkButton } from '@/components/Button'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { EditorialIntro, EditorialSection } from '@/components/Editorial'
+import SEO from '@/components/SEO'
 import { PRICING } from '@/config/pricing'
+import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 
 export default function FAQ() {
   const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
@@ -14,8 +14,7 @@ export default function FAQ() {
   const faqs = [
     {
       question: 'Vad ingår i porträttfotograferingen?',
-      answer:
-        `Porträtt Bas är ${PRICING.portrait.baseDuration} och innehåller ${PRICING.portrait.baseImages}. Familjefotografering är ${PRICING.portrait.familyDuration} och innehåller ${PRICING.portrait.familyImages}.`,
+      answer: `Porträtt Bas är ${PRICING.portrait.baseDuration} och innehåller ${PRICING.portrait.baseImages}. Familjefotografering är ${PRICING.portrait.familyDuration} och innehåller ${PRICING.portrait.familyImages}.`,
     },
     {
       question: 'Hur lång leveranstid är det på porträttbilder?',
@@ -33,8 +32,7 @@ export default function FAQ() {
     },
     {
       question: 'Vad ingår i kort vigsel-paketet för bröllopsfotografering?',
-      answer:
-        `Kort vigsel är ${PRICING.wedding.shortDuration} och innehåller ${PRICING.wedding.shortImages}. Det passar bra för mindre bröllop, rådhusvigsel eller för er som vill fokusera på de viktigaste delarna av dagen.`,
+      answer: `Kort vigsel är ${PRICING.wedding.shortDuration} och innehåller ${PRICING.wedding.shortImages}. Det passar bra för mindre bröllop, rådhusvigsel eller för er som vill fokusera på de viktigaste delarna av dagen.`,
     },
     {
       question: 'Kan vi anpassa ett bröllopspaket efter vår dag?',
@@ -89,63 +87,55 @@ export default function FAQ() {
         ]}
       />
 
-      <main className="bg-[#f7f5f2] pt-16 text-foreground md:pt-20">
-        <Section
-          bgColor="beige"
-          roundedTop="10xl"
-          roundedBottom="10xl"
-          className="mx-3 overflow-hidden sm:mx-4 md:mx-5 lg:mx-6"
-        >
-          <SectionContent>
-            <div className="mb-12 text-center md:mb-16">
-              <h1 className="text-3xl font-bold tracking-tight text-textPrimary dark:text-white md:text-4xl">
-                Vanliga frågor
-              </h1>
-              <p className="mt-3 text-lg text-muted-foreground dark:text-gray-300">
-                Har du frågor? Här hittar du svaren.
-              </p>
-            </div>
+      <main className="bg-[#f5f5f2] pt-24 text-textPrimary md:pt-28">
+        <EditorialSection tone="white" className="mx-3 rounded-[1.75rem] border border-black/6 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.5)] sm:mx-4 md:mx-5 lg:mx-auto lg:max-w-5xl">
+          <EditorialIntro
+            align="center"
+            eyebrow="FAQ"
+            headingLevel="h1"
+            title="Vanliga frågor"
+            description="Har du frågor om fotografering, priser eller bokning? Här hittar du de vanligaste svaren."
+          />
 
-            <div className="mx-auto max-w-3xl space-y-4">
-              {faqs.map((faq, index) => (
-                <Disclosure
-                  key={index}
-                  as="div"
-                  className="border-b border-border last:border-b-0"
-                >
-                  {({ open }) => (
-                    <>
-                      <Disclosure.Button className="flex w-full items-center justify-between rounded-md px-2 py-4 text-left text-lg font-medium text-foreground hover:bg-muted/50 focus:outline-none focus-visible:ring focus-visible:ring-primary focus-visible:ring-opacity-75">
-                        <span>{faq.question}</span>
-                        {open ? (
-                          <Minus className="h-5 w-5 text-primary" />
-                        ) : (
-                          <Plus className="h-5 w-5 text-muted-foreground" />
-                        )}
-                      </Disclosure.Button>
-                      <Disclosure.Panel className="px-2 pb-4 pt-2 text-base text-muted-foreground">
-                        {faq.answer}
-                      </Disclosure.Panel>
-                    </>
-                  )}
-                </Disclosure>
-              ))}
-            </div>
-
-            <div className="mt-12 border-t border-border pt-8 text-center md:mt-16">
-              <p className="mb-4 text-muted-foreground">Har du fler frågor?</p>
-              <LinkButton
-                to="/contact/"
-                variant="default"
-                size="lg"
-                subVariant="rounded"
-                className="font-semibold"
+          <div className="mx-auto mt-12 max-w-3xl space-y-4">
+            {faqs.map((faq, index) => (
+              <Disclosure
+                key={index}
+                as="div"
+                className="rounded-2xl border border-black/6 bg-[#f8f8f5]"
               >
-                Kontakta mig
-              </LinkButton>
-            </div>
-          </SectionContent>
-        </Section>
+                {({ open }) => (
+                  <>
+                    <Disclosure.Button className="flex w-full items-center justify-between gap-4 rounded-2xl px-5 py-4 text-left text-base font-semibold text-textPrimary transition hover:bg-black/[0.025] focus:outline-none focus-visible:ring focus-visible:ring-textPrimary/20">
+                      <span>{faq.question}</span>
+                      {open ? (
+                        <Minus className="h-5 w-5 flex-shrink-0 text-textPrimary" />
+                      ) : (
+                        <Plus className="h-5 w-5 flex-shrink-0 text-textSecondary" />
+                      )}
+                    </Disclosure.Button>
+                    <Disclosure.Panel className="px-5 pb-5 text-base leading-8 text-textPrimary/68">
+                      {faq.answer}
+                    </Disclosure.Panel>
+                  </>
+                )}
+              </Disclosure>
+            ))}
+          </div>
+
+          <div className="mx-auto mt-12 max-w-3xl border-t border-black/6 pt-8 text-center">
+            <p className="mb-4 text-textPrimary/68">Har du fler frågor?</p>
+            <LinkButton
+              to="/contact/"
+              variant="default"
+              size="lg"
+              subVariant="rounded"
+              className="font-semibold"
+            >
+              Kontakta mig
+            </LinkButton>
+          </div>
+        </EditorialSection>
       </main>
     </>
   )

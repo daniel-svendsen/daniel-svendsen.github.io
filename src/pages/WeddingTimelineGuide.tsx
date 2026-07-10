@@ -154,20 +154,20 @@ export default function WeddingTimelineGuide() {
         ]}
       />
 
-      <main className="max-w-full overflow-hidden bg-[#f7f5f2] px-3 pb-8 pt-20 text-textPrimary sm:px-4 md:px-5 lg:px-6">
-        <header className="mx-auto mb-8 grid max-w-6xl grid-cols-1 gap-6 rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:mb-12 md:px-8 md:py-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:rounded-[3rem]">
+      <main className="max-w-full overflow-hidden bg-[#f5f5f2] px-3 pb-8 pt-24 text-textPrimary sm:px-4 md:px-5 md:pt-28 lg:px-6">
+        <header className="mx-auto mb-10 grid max-w-6xl grid-cols-1 gap-8 rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.5)] md:px-8 md:py-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div className="max-w-3xl">
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-textSecondary">
               Guide
             </p>
-            <h1 className="mb-5 max-w-2xl text-4xl font-bold leading-tight md:text-5xl">
+            <h1 className="mb-5 max-w-2xl text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
               Bröllopstidslinje för fotografering
             </h1>
             <p className="mb-7 max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
               En enkel guide till hur ni kan planera tid för familjebilder,
               porträtt, first look och de små stunderna som ofta betyder mest.
             </p>
-            <div className="mb-7 max-w-2xl rounded-2xl border border-black/6 bg-white px-5 py-4 shadow-[0_14px_32px_-28px_rgba(31,41,55,0.32)]">
+            <div className="mb-7 max-w-2xl rounded-2xl border border-black/6 bg-[#f8f8f5] px-5 py-4">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-textSecondary">
                 Snabbt svar
               </p>
@@ -187,17 +187,17 @@ export default function WeddingTimelineGuide() {
             </LinkButton>
           </div>
 
-          <figure className="overflow-hidden rounded-[2rem] shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]">
+          <figure className="overflow-hidden rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-3">
             <ResponsiveImage
               image={getImage(3)}
               alt="Bröllopspar under porträttfotografering"
-              className="h-[26rem] w-full object-cover object-top md:h-[34rem]"
+              className="h-[26rem] w-full rounded-[1.15rem] object-cover object-top md:h-[34rem]"
               sizes="(min-width: 1024px) 520px, 100vw"
             />
           </figure>
         </header>
 
-        <section className="mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:rounded-[3rem]">
+        <section className="mx-auto mb-10 max-w-6xl rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10">
           <div className="mb-8 max-w-3xl">
             <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
               En lugnare dag börjar med rimliga tider
@@ -211,7 +211,10 @@ export default function WeddingTimelineGuide() {
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {timelineBlocks.map((block) => (
-              <InfoCard key={block.title} className="bg-white p-6">
+              <InfoCard
+                key={block.title}
+                className="border-black/6 bg-[#f8f8f5] p-6 shadow-none"
+              >
                 <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-textSecondary">
                   {block.time}
                 </p>
@@ -226,18 +229,18 @@ export default function WeddingTimelineGuide() {
           </div>
         </section>
 
-        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:grid-cols-[0.95fr_1.05fr] lg:rounded-[3rem]">
-          <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]">
+        <section className="mx-auto mb-10 grid max-w-6xl grid-cols-1 gap-6 rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10 lg:grid-cols-[0.95fr_1.05fr]">
+          <figure className="overflow-hidden rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-3">
             <ResponsiveImage
               image={getImage(5)}
               alt="Bröllopsdetaljer under en planerad fotograferingsdag"
-              className="h-[24rem] w-full object-cover md:h-full"
+              className="h-[24rem] w-full rounded-[1.15rem] object-cover md:h-full"
               sizes="(min-width: 1024px) 520px, 100vw"
               loading="lazy"
             />
           </figure>
 
-          <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] md:p-8">
+          <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-6 md:p-8">
             <h2 className="mb-4 text-2xl font-semibold text-textPrimary">
               Det par ofta glömmer
             </h2>
@@ -253,7 +256,7 @@ export default function WeddingTimelineGuide() {
           </div>
         </section>
 
-        <section className="mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:rounded-[3rem]">
+        <section className="mx-auto mb-10 max-w-6xl rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10">
           <div className="mb-8 max-w-3xl">
             <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
               Exempel på tidslinjer
@@ -267,7 +270,10 @@ export default function WeddingTimelineGuide() {
 
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
             {timelineExamples.map((example) => (
-              <InfoCard key={example.title} className="bg-white p-6">
+              <InfoCard
+                key={example.title}
+                className="border-black/6 bg-[#f8f8f5] p-6 shadow-none"
+              >
                 <h3 className="mb-3 text-xl font-semibold text-textPrimary">
                   {example.title}
                 </h3>
@@ -276,7 +282,7 @@ export default function WeddingTimelineGuide() {
                 </p>
                 <ul className="space-y-2 text-sm leading-relaxed text-textSecondary">
                   {example.items.map((item) => (
-                    <li key={item} className="rounded-2xl bg-[#f7f5f2] px-4 py-2">
+                    <li key={item} className="rounded-2xl bg-white px-4 py-2">
                       {item}
                     </li>
                   ))}
@@ -286,7 +292,7 @@ export default function WeddingTimelineGuide() {
           </div>
         </section>
 
-        <section className="mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:rounded-[3rem]">
+        <section className="mx-auto mb-10 max-w-6xl rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10">
           <div className="mb-8 max-w-3xl">
             <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
               Små saker som gör planeringen enklare
@@ -303,14 +309,14 @@ export default function WeddingTimelineGuide() {
                 key={card.title}
                 title={card.title}
                 description={card.description}
-                className="bg-white p-6"
+                className="border-black/6 bg-[#f8f8f5] p-6 shadow-none"
               />
             ))}
           </div>
         </section>
 
-        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:grid-cols-[1.05fr_0.95fr] lg:rounded-[3rem]">
-          <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] md:p-8">
+        <section className="mx-auto mb-10 grid max-w-6xl grid-cols-1 gap-6 rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-6 md:p-8">
             <h2 className="mb-4 text-2xl font-semibold text-textPrimary">
               Koppla ihop tidslinjen med känslan
             </h2>
@@ -354,7 +360,7 @@ export default function WeddingTimelineGuide() {
             {guideFaqs.map((faq) => (
               <div
                 key={faq.question}
-                className="rounded-2xl border border-black/6 bg-white px-5 py-5 shadow-[0_18px_45px_-32px_rgba(31,41,55,0.22)]"
+                className="rounded-2xl border border-black/6 bg-[#f8f8f5] px-5 py-5"
               >
                 <h3 className="mb-2 text-lg font-semibold text-textPrimary">
                   {faq.question}
@@ -368,7 +374,7 @@ export default function WeddingTimelineGuide() {
         </section>
 
         <CTASection
-          className="rounded-[2.25rem] bg-white/82 lg:rounded-[3rem]"
+          className="rounded-[1.75rem] border border-black/6 bg-white shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)]"
           title="Vill ni få hjälp att planera fotodelarna?"
           description="Berätta hur dagen ser ut och vilka bilder som känns viktigast, så hjälper jag er hitta ett upplägg som passar tempot."
           actions={[

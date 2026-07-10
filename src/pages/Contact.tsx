@@ -1,10 +1,11 @@
 import React, { FormEvent, useState } from 'react'
-import SEO from '@/components/SEO'
-import { Section } from '@/components/Section'
-import { SectionContent } from '@/components/SectionContent'
+import { Mail, MapPin, MessageCircle } from 'lucide-react'
+
 import { Button } from '@/components/Button'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { EditorialIntro, EditorialSection } from '@/components/Editorial'
+import SEO from '@/components/SEO'
 import { businessReference } from '@/config/seo'
+import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 
 export default function Contact() {
   const [selectedService, setSelectedService] = useState<string>('')
@@ -79,13 +80,10 @@ export default function Contact() {
   }
 
   const inputClasses =
-    'block w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
-  const labelClasses =
-    'block text-sm font-medium mb-1.5 text-foreground text-left'
-  const radioLabelClasses =
-    'ml-2 text-sm font-medium text-foreground cursor-pointer'
+    'block w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-textPrimary shadow-none outline-none transition focus:border-textPrimary/45 focus:ring-4 focus:ring-textPrimary/8 disabled:cursor-not-allowed disabled:opacity-55'
+  const labelClasses = 'mb-2 block text-sm font-semibold text-textPrimary'
   const radioInputClasses =
-    'h-4 w-4 shrink-0 text-primary border-muted-foreground focus:ring-primary focus:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50'
+    'h-4 w-4 shrink-0 border-black/20 text-textPrimary focus:ring-textPrimary focus:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50'
 
   return (
     <>
@@ -105,39 +103,57 @@ export default function Contact() {
         ]}
       />
 
-      <main className="pt-16 md:pt-20 bg-background text-foreground">
-        <Section
-          bgColor="beige"
-          roundedBottom="10xl"
-          className="py-12 md:py-20 lg:py-24"
-        >
-          <SectionContent>
-            <div className="text-center mb-10">
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-textPrimary dark:text-white mb-4 font-poiret">
-                Kontakta mig
-              </h1>
-              <p className="text-lg text-muted-foreground dark:text-gray-300 max-w-xl mx-auto">
-                Fyll i formuläret nedan så återkommer jag till dig så snart som
-                möjligt via e-post.
-              </p>
-            </div>
+      <main className="bg-[#f5f5f2] pt-20 text-textPrimary md:pt-24">
+        <EditorialSection compact>
+          <EditorialIntro
+            align="center"
+            eyebrow="Kontakt"
+            headingLevel="h1"
+            title="Berätta vad du planerar."
+            description="Fyll i formuläret så återkommer jag med ett upplägg som passar fotograferingen, platsen och känslan du vill åt."
+          />
+        </EditorialSection>
 
-            <div className="mx-auto mb-10 max-w-3xl rounded-[1.75rem] border border-black/5 bg-white/70 px-5 py-6 text-left shadow-[0_18px_45px_-34px_rgba(31,41,55,0.22)] md:px-8">
-              <h2 className="mb-3 text-2xl font-semibold text-textPrimary">
-                Fotograf i Göteborg, Kungälv och Stenungsund med omnejd
-              </h2>
-              <p className="leading-relaxed text-muted-foreground dark:text-gray-300">
-                Jag fotograferar bröllop, porträtt, familjer och företag i
-                Göteborg, Kungälv, Stenungsund och närliggande områden. Oavsett
-                om fotograferingen sker vid havet, i stadsmiljö, hemma hos er
-                eller på en plats som betyder något, anpassar jag upplägget
-                efter ljuset, platsen och känslan ni vill åt.
+        <EditorialSection tone="white" className="pt-0">
+          <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+            <aside className="rounded-[1.75rem] border border-black/6 bg-[#f8f8f5] p-6 md:p-8">
+              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.22em] text-textSecondary">
+                Område
               </p>
-            </div>
+              <h2 className="mb-4 text-2xl font-semibold tracking-tight text-textPrimary">
+                Fotograf i Göteborg, Kungälv och Stenungsund med omnejd.
+              </h2>
+              <p className="leading-8 text-textPrimary/68">
+                Jag fotograferar bröllop, porträtt, familjer och företag. Oavsett
+                om fotograferingen sker vid havet, i stadsmiljö, hemma hos er
+                eller på en plats som betyder något, anpassar jag upplägget efter
+                ljuset, platsen och känslan ni vill åt.
+              </p>
+
+              <div className="mt-8 grid gap-3">
+                {[
+                  { icon: MapPin, text: 'Kungälv, Göteborg & Stenungsund' },
+                  { icon: MessageCircle, text: 'Svar via e-post så snart jag kan' },
+                  { icon: Mail, text: 'Bokning, offert eller enkel fråga' },
+                ].map((item) => {
+                  const Icon = item.icon
+
+                  return (
+                    <div
+                      key={item.text}
+                      className="flex items-center gap-3 rounded-2xl border border-black/6 bg-white px-4 py-3 text-sm font-semibold text-textPrimary/78"
+                    >
+                      <Icon className="h-4 w-4 text-textPrimary" />
+                      {item.text}
+                    </div>
+                  )
+                })}
+              </div>
+            </aside>
 
             <form
               onSubmit={handleSubmit}
-              className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 max-w-3xl mx-auto"
+              className="grid grid-cols-1 gap-x-5 gap-y-6 rounded-[1.75rem] border border-black/6 bg-white p-6 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.5)] sm:grid-cols-2 md:p-8"
             >
               <div>
                 <label htmlFor="name" className={labelClasses}>
@@ -169,14 +185,16 @@ export default function Contact() {
               </div>
 
               <fieldset className="sm:col-span-2">
-                <legend className={`${labelClasses} mb-2`}>
-                  {' '}
+                <legend className={labelClasses}>
                   Vilken tjänst är du intresserad av? *
                 </legend>
-                <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
-                  {' '}
+                <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {services.map((service) => (
-                    <div key={service} className="flex items-center">
+                    <label
+                      key={service}
+                      htmlFor={service}
+                      className="flex cursor-pointer items-center gap-3 rounded-2xl border border-black/6 bg-[#f8f8f5] px-4 py-3 text-sm font-medium text-textPrimary/78 transition hover:border-textPrimary/25"
+                    >
                       <input
                         type="radio"
                         id={service}
@@ -188,10 +206,8 @@ export default function Contact() {
                         className={radioInputClasses}
                         disabled={isSubmitting}
                       />
-                      <label htmlFor={service} className={radioLabelClasses}>
-                        {service}
-                      </label>
-                    </div>
+                      {service}
+                    </label>
                   ))}
                 </div>
               </fieldset>
@@ -203,7 +219,7 @@ export default function Contact() {
                 <textarea
                   id="message"
                   name="message"
-                  rows={5}
+                  rows={6}
                   required
                   placeholder="Berätta lite om vad du behöver hjälp med..."
                   className={inputClasses}
@@ -211,36 +227,35 @@ export default function Contact() {
                 />
               </div>
 
-              <div className="sm:col-span-2 flex justify-center mt-4">
-                {' '}
+              <div className="sm:col-span-2">
                 <Button
                   type="submit"
                   variant="default"
                   subVariant="rounded"
                   size="lg"
-                  className="w-full sm:w-auto px-8"
+                  className="w-full px-8 sm:w-auto"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? 'Skickar...' : 'Skicka meddelande'}
                 </Button>
               </div>
-            </form>
 
-            <div className="mt-8 h-6 text-center max-w-3xl mx-auto">
-              {formStatus === 'success' && (
-                <p className="text-sm font-medium text-green-600">
-                  Tack! Ditt meddelande har skickats. Jag återkommer snart.
-                </p>
-              )}
-              {formStatus === 'error' && (
-                <p className="text-sm font-medium text-destructive">
-                  Ett fel uppstod när meddelandet skulle skickas. Försök igen
-                  eller kontakta mig direkt via e-post.
-                </p>
-              )}
-            </div>
-          </SectionContent>
-        </Section>
+              <div className="min-h-6 sm:col-span-2">
+                {formStatus === 'success' && (
+                  <p className="text-sm font-medium text-green-600">
+                    Tack! Ditt meddelande har skickats. Jag återkommer snart.
+                  </p>
+                )}
+                {formStatus === 'error' && (
+                  <p className="text-sm font-medium text-destructive">
+                    Ett fel uppstod när meddelandet skulle skickas. Försök igen
+                    eller kontakta mig direkt via e-post.
+                  </p>
+                )}
+              </div>
+            </form>
+          </div>
+        </EditorialSection>
       </main>
     </>
   )

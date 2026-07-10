@@ -24,15 +24,15 @@ const Contact: React.FC<ContactProps> = ({ contacts }) => {
   const linkText: LocalizedContent = { en: 'Link', sv: 'Länk' }
 
   return (
-    <Section roundedTop="8xl">
+    <Section roundedTop="none" className="bg-transparent p-0">
       <SectionContent heading={t(headingContact)}>
         <div className="space-y-4">
           {contacts.map((contact) => (
             <div
               key={contact.id}
-              className="bg-white dark:bg-gray-800 p-4 rounded-xl shadow"
+              className="rounded-2xl border border-black/6 bg-[#f8f9fb] p-5"
             >
-              <p className="text-textPrimary dark:text-gray-200">
+              <p className="text-textPrimary">
                 <span className="font-semibold">{t(contact.type)}:</span>{' '}
                 {contact.details}
               </p>
