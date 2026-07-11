@@ -11,7 +11,7 @@ export const homeCards = [
     image: weddingImage,
     title: 'Bröllopsfoto',
     description:
-      'Fånga er kärleksdag med tidlösa bilder och ett lugnt upplägg. Film kan läggas till vid behov.',
+      'Fånga er dag med tidlösa bilder och ett lugnt upplägg. Film kan läggas till vid behov.',
     buttonText: 'Läs mer',
     buttonLink: '/weddings/',
     icon: Camera,

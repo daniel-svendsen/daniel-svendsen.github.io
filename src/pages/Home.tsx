@@ -119,7 +119,7 @@ export default function Home() {
             align="center"
             eyebrow="Svendsén Photography"
             title="Bilder som känns enkla att återvända till."
-            description="Jag är baserad i Kungälv och Göteborg och fotograferar bröllop, porträtt, familjer, företag och visuellt innehåll med en lugn, naturlig och genomtänkt känsla."
+            description="Jag utgår från Kungälv och fotograferar gärna runt Göteborgsområdet, Stenungsund och resten av västkusten."
           />
         </EditorialSection>
 
