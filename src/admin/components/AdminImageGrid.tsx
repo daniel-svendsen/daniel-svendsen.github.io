@@ -24,7 +24,7 @@ export function AdminImageGrid({
   onClearFolder,
 }: AdminImageGridProps) {
   if (isLoading) {
-    return <p className="text-center">Laddar...</p>
+    return <p className="text-center text-textPrimary/68">Laddar...</p>
   }
 
   if (error) {
@@ -35,12 +35,14 @@ export function AdminImageGrid({
 
   if (!hasContent) {
     return (
-      <p className="text-center text-textSecondary">Detta galleri är tomt.</p>
+      <p className="rounded-[1.5rem] border border-black/6 bg-white p-8 text-center text-textSecondary">
+        Detta galleri är tomt.
+      </p>
     )
   }
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       {folders.map((path) => (
         <FolderItem
           key={path}
@@ -50,24 +52,27 @@ export function AdminImageGrid({
         />
       ))}
       {images.map((key) => (
-        <div key={key.id} className="relative group aspect-square">
+        <div
+          key={key.id}
+          className="group relative aspect-square overflow-hidden rounded-[1.15rem] border border-black/6 bg-white"
+        >
           <img
             src={imageUrl(key.previewKey)}
             alt={key.fileName}
             loading="lazy"
             decoding="async"
-            className="w-full h-full object-cover rounded-lg"
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
           />
-          <div className="absolute inset-0 bg-overlay flex items-center justify-center rounded-lg opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="absolute inset-0 flex items-center justify-center bg-black/45 opacity-100 transition-opacity md:opacity-0 group-hover:opacity-100">
             <button
               onClick={() => onDeleteImage(key)}
-              className="p-2 bg-destructive text-white rounded-full"
+              className="rounded-full bg-destructive p-2 text-white shadow-lg transition hover:bg-destructive/85"
               aria-label={`Ta bort bild ${key.fileName}`}
             >
               <Trash2 className="h-5 w-5" />
             </button>
           </div>
-          <div className="absolute inset-x-0 bottom-0 z-10 rounded-b-lg bg-black/60 px-2 py-1">
+          <div className="absolute inset-x-0 bottom-0 z-10 bg-black/60 px-2 py-1">
             <p
               className="truncate text-[11px] leading-4 text-white"
               title={key.fileName}

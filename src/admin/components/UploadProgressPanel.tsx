@@ -19,13 +19,13 @@ export function UploadProgressPanel({
 
   return (
     <div
-      className="w-full rounded-lg border border-borderColor bg-white/90 p-4 shadow-sm"
+      className="w-full rounded-2xl border border-black/6 bg-white p-4 shadow-[0_18px_45px_-36px_rgba(31,41,55,0.35)]"
       role="status"
       aria-live="polite"
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex min-w-0 items-start gap-3">
-          <div className="mt-0.5 rounded-full bg-secondary p-2 text-textPrimary">
+          <div className="mt-0.5 rounded-full bg-[#f8f8f5] p-2 text-textPrimary">
             {isComplete ? (
               <CheckCircle2 className="h-5 w-5 text-success" />
             ) : (
@@ -48,7 +48,7 @@ export function UploadProgressPanel({
           <p className="text-xs text-textSecondary">{imageCountText}</p>
         </div>
       </div>
-      <div className="mt-3 h-3 overflow-hidden rounded-full bg-secondary">
+      <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-[#f1f1ee]">
         <div
           className="h-full rounded-full bg-highlight transition-[width] duration-300 ease-out"
           style={{ width: `${visiblePercent}%` }}

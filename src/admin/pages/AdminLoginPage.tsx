@@ -31,12 +31,17 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className=" bg-custom-beige flex items-center justify-center min-h-screen">
+    <div className="flex min-h-screen items-center justify-center bg-[#f5f5f2] px-4 text-textPrimary">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-sm p-8 space-y-4 bg-white rounded-lg shadow-lg"
+        className="w-full max-w-sm space-y-5 rounded-[1.5rem] border border-black/6 bg-white p-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.55)]"
       >
-        <h1 className="text-2xl font-bold text-center">Admin Login</h1>
+        <div className="text-center">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-textSecondary">
+            Svendsén Photography
+          </p>
+          <h1 className="text-2xl font-semibold tracking-tight">Admin Login</h1>
+        </div>
         <Input
           type="password"
           value={password}

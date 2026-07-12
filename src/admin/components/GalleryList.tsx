@@ -16,7 +16,7 @@ export function GalleryList({
   onDeleteGallery,
 }: GalleryListProps) {
   if (isLoading) {
-    return <p>Laddar gallerier...</p>
+    return <p className="text-textPrimary/68">Laddar gallerier...</p>
   }
 
   if (error) {
@@ -24,18 +24,18 @@ export function GalleryList({
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {galleries.map((gallery) => {
         const galleryId = gallery.replace(/\/$/, '')
         return (
           <div
             key={galleryId}
-            className="bg-white p-4 rounded-xl shadow-md flex flex-col justify-between"
+            className="flex flex-col justify-between rounded-[1.25rem] border border-black/6 bg-white p-5 shadow-[0_18px_45px_-38px_rgba(31,41,55,0.38)]"
           >
-            <p className="font-semibold text-textPrimary truncate">
+            <p className="truncate text-base font-semibold text-textPrimary">
               {galleryId}
             </p>
-            <div className="flex items-center justify-between mt-4 gap-2">
+            <div className="mt-5 flex items-center justify-between gap-2">
               <a
                 href={`/galleri/${galleryId}`}
                 target="_blank"
@@ -65,7 +65,7 @@ export function GalleryList({
               </LinkButton>
               <Button
                 variant="ghost"
-                className="p-2 h-auto"
+                className="h-9 w-9 p-0"
                 onClick={() => onDeleteGallery(gallery)}
                 aria-label={`Ta bort galleri ${galleryId}`}
               >

@@ -9,10 +9,7 @@ interface GalleryHeaderProps {
   downloadUrl: string
 }
 
-export function GalleryHeader({
-  galleryId,
-  downloadUrl,
-}: GalleryHeaderProps) {
+export function GalleryHeader({ galleryId, downloadUrl }: GalleryHeaderProps) {
   const displayGalleryId = galleryId
     ? galleryId.charAt(0).toUpperCase() + galleryId.slice(1)
     : ''
@@ -27,16 +24,22 @@ export function GalleryHeader({
   )
 
   return (
-    <Section bgColor="beige" roundedBottom="9xl">
+    <Section
+      bgColor="offWhite"
+      rounded="none"
+      className="bg-[#f5f5f2] pb-10 pt-24"
+    >
       <SectionContent>
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-textPrimary text-center font-poiret">
-            {displayGalleryId}
-          </h1>
-          {getDownloadButton()}
+        <div className="rounded-[1.75rem] border border-black/6 bg-white p-6 text-center shadow-[0_24px_70px_-58px_rgba(31,41,55,0.5)] md:p-8">
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+            <h1 className="text-center text-3xl font-semibold tracking-tight text-textPrimary md:text-4xl">
+              {displayGalleryId}
+            </h1>
+            {getDownloadButton()}
+          </div>
         </div>
         <div className="mt-4 text-center">
-          <p className="text-sm text-textSecondary">
+          <p className="mx-auto max-w-3xl text-sm leading-7 text-textPrimary/64">
             Bilderna laddas ner som en zip-fil. På mobil hittar du den oftast i
             Filer eller Hämtade filer och trycker på zip-filen för att packa upp
             bilderna.

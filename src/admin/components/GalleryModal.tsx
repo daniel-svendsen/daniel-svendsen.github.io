@@ -33,12 +33,12 @@ export function GalleryModal({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <div className="relative w-full h-full flex items-center justify-center">
+      <div className="relative flex h-full w-full items-center justify-center">
         <motion.img
           key={image.id}
           src={imageUrl(image.previewKey)}
           alt="Förstorad bild"
-          className="max-w-[85vw] max-h-[85vh] object-contain z-10"
+          className="z-10 max-h-[85vh] max-w-[85vw] object-contain"
           layoutId={`gallery-image-${image.id}`}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -48,7 +48,7 @@ export function GalleryModal({
             else if (offset.x < -100 || velocity.x < -500) onNext()
           }}
         />
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex justify-center items-center gap-4 p-2 bg-overlay rounded-full">
+        <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 items-center justify-center gap-3 rounded-full bg-black/55 p-2 backdrop-blur-md">
           <Button asChild subVariant="rounded" size="sm">
             <a href={imageUrl(image.originalKey)} download={image.fileName}>
               <Download className="mr-2 h-4 w-4" />
@@ -78,7 +78,7 @@ export function GalleryModal({
               e.stopPropagation()
               onPrevious()
             }}
-            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-overlay text-white rounded-full hover:opacity-80"
+            className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/55 p-2 text-white backdrop-blur-md transition-opacity hover:opacity-80 sm:left-4"
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
@@ -89,7 +89,7 @@ export function GalleryModal({
               e.stopPropagation()
               onNext()
             }}
-            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-overlay text-white rounded-full hover:opacity-80"
+            className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-black/55 p-2 text-white backdrop-blur-md transition-opacity hover:opacity-80 sm:right-4"
           >
             <ChevronRight className="h-6 w-6" />
           </button>

@@ -23,7 +23,8 @@ const normalizeFolderPath = (path: string) =>
     .filter(Boolean)
     .join('/')
 
-const folderName = (path: string) => path.split('/').filter(Boolean).pop() || path
+const folderName = (path: string) =>
+  path.split('/').filter(Boolean).pop() || path
 
 export default function CustomerGalleryPage() {
   const { galleryId } = useParams<{ galleryId: string }>()
@@ -119,12 +120,12 @@ export default function CustomerGalleryPage() {
     currentIndex !== null ? galleryEntries.images[currentIndex] : null
 
   return (
-    <main className="pt-16 md:pt-20 bg-background text-foreground">
+    <main className="bg-[#f5f5f2] pt-16 text-foreground md:pt-20">
       <GalleryHeader
         galleryId={galleryId}
         downloadUrl={apiUrl(`gallery/${galleryId || 'gallery'}/download`)}
       />
-      <Section roundedTop="9xl">
+      <Section bgColor="offWhite" rounded="none" className="bg-[#f5f5f2] pb-14">
         <SectionContent>
           {isLoading || error || images.length === 0 ? (
             <GalleryImageGrid
@@ -142,7 +143,7 @@ export default function CustomerGalleryPage() {
                 <button
                   type="button"
                   onClick={() => navigateToFolder('')}
-                  className={`hover:text-textPrimary hover:underline ${
+                  className={`rounded-full px-3 py-1.5 transition-colors hover:bg-black/5 hover:text-textPrimary ${
                     currentFolderPath ? '' : 'font-semibold text-textPrimary'
                   }`}
                 >
@@ -154,7 +155,7 @@ export default function CustomerGalleryPage() {
                     <button
                       type="button"
                       onClick={() => navigateToFolder(crumb.path)}
-                      className={`hover:text-textPrimary hover:underline ${
+                      className={`rounded-full px-3 py-1.5 transition-colors hover:bg-black/5 hover:text-textPrimary ${
                         crumb.path === currentFolderPath
                           ? 'font-semibold text-textPrimary'
                           : ''
@@ -173,11 +174,11 @@ export default function CustomerGalleryPage() {
                       key={path}
                       type="button"
                       onClick={() => navigateToFolder(path)}
-                      className="group aspect-square rounded-lg bg-secondary p-4 text-center transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+                      className="group aspect-square rounded-[1.15rem] border border-black/6 bg-white p-4 text-center shadow-[0_18px_55px_-50px_rgba(31,41,55,0.55)] transition-colors hover:bg-[#f8f8f5] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-[#f5f5f2]"
                     >
                       <span className="flex h-full flex-col items-center justify-center">
-                        <Folder className="h-16 w-16 text-textSecondary transition-colors group-hover:text-textPrimary" />
-                        <span className="mt-3 w-full truncate text-sm font-medium text-textPrimary">
+                        <Folder className="h-14 w-14 text-textSecondary transition-colors group-hover:text-textPrimary" />
+                        <span className="mt-3 w-full truncate text-sm font-semibold text-textPrimary">
                           {folderName(path)}
                         </span>
                       </span>
@@ -208,12 +209,15 @@ export default function CustomerGalleryPage() {
         isOpen={currentIndex !== null}
         onClose={closeModal}
         image={currentImage}
-        isLiked={!!currentImage && likedImages.includes(currentImage.originalKey)}
+        isLiked={
+          !!currentImage && likedImages.includes(currentImage.originalKey)
+        }
         onLike={toggleLike}
         onNext={goToNext}
         onPrevious={goToPrevious}
         hasNext={
-          currentIndex !== null && currentIndex < galleryEntries.images.length - 1
+          currentIndex !== null &&
+          currentIndex < galleryEntries.images.length - 1
         }
         hasPrevious={currentIndex !== null && currentIndex > 0}
       />

@@ -106,90 +106,101 @@ export function AdminHeader({
   }
 
   return (
-    <Section bgColor="beige" roundedBottom="9xl">
+    <Section
+      bgColor="offWhite"
+      rounded="none"
+      className="bg-[#f5f5f2] pb-10 pt-24"
+    >
       <SectionContent>
-        <h1 className="text-2xl sm:text-3xl font-bold text-textPrimary font-poiret text-center">
-          Hantera: {galleryId}
-        </h1>
-        <div className="mt-6 flex flex-col-reverse sm:flex-row sm:justify-between items-center gap-4">
-          <LinkButton variant="secondary" subVariant="rounded" to="/admin">
-            <ArrowLeft className="h-4 w-4 mr-1" />
-            <span className="hidden sm:inline">
-              Tillbaka till alla gallerier
-            </span>
-            <span className="sm:hidden">Tillbaka</span>
-          </LinkButton>
-          <div className="flex-shrink-0 flex items-center justify-center gap-2 flex-wrap">
-            {isRootLevel && (
+        <div className="rounded-[1.75rem] border border-black/6 bg-white p-6 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.5)] md:p-8">
+          <p className="mb-2 text-center text-sm font-semibold uppercase tracking-[0.22em] text-textSecondary">
+            Hantera galleri
+          </p>
+          <h1 className="text-center text-2xl font-semibold tracking-tight text-textPrimary sm:text-3xl">
+            {galleryId}
+          </h1>
+          <div className="mt-6 flex flex-col-reverse items-center gap-4 sm:flex-row sm:justify-between">
+            <LinkButton variant="secondary" subVariant="rounded" to="/admin">
+              <ArrowLeft className="h-4 w-4 mr-1" />
+              <span className="hidden sm:inline">
+                Tillbaka till alla gallerier
+              </span>
+              <span className="sm:hidden">Tillbaka</span>
+            </LinkButton>
+            <div className="flex flex-shrink-0 flex-wrap items-center justify-center gap-2">
+              {isRootLevel && (
+                <Button
+                  onClick={handleRenameGallery}
+                  subVariant="rounded"
+                  size="md"
+                  variant="outline"
+                >
+                  <Pencil className="h-4 w-4 sm:mr-2" />
+                  <span className="hidden sm:inline">Byt namn</span>
+                </Button>
+              )}
               <Button
-                onClick={handleRenameGallery}
+                onClick={onCreateFolder}
                 subVariant="rounded"
                 size="md"
                 variant="outline"
               >
-                <Pencil className="h-4 w-4 sm:mr-2" />
-                <span className="hidden sm:inline">Byt namn</span>
+                <FolderPlus className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">Ny mapp</span>
               </Button>
-            )}
-            <Button
-              onClick={onCreateFolder}
-              subVariant="rounded"
-              size="md"
-              variant="outline"
-            >
-              <FolderPlus className="h-4 w-4 sm:mr-2" />
-              <span className="hidden sm:inline">Ny mapp</span>
-            </Button>
-            <Button
-              onClick={onSelectFiles}
-              disabled={isUploading}
-              subVariant="rounded"
-              size="md"
-            >
-              <Upload className="h-4 w-4 sm:mr-2" />
-              <span className="hidden sm:inline">
-                {isUploading ? 'Laddar...' : 'Lägg till'}
-              </span>
-            </Button>
-            {isRootLevel && (
-              <>
-                <Button
-                  onClick={handleCopyLikes}
-                  disabled={likedImageKeys.length === 0}
-                  subVariant="rounded"
-                  size="md"
-                >
-                  <ClipboardCopy className="h-4 w-4 sm:mr-2" />
-                  <span className="hidden sm:inline">
-                    Kopiera {likedImageKeys.length}
-                  </span>
-                </Button>
-                <Button
-                  onClick={onClearGallery}
-                  subVariant="rounded"
-                  size="md"
-                  variant="destructive"
-                >
-                  <Trash2 className="h-4 w-4 sm:mr-2" />
-                  <span className="hidden sm:inline">Töm Galleri</span>
-                </Button>
-              </>
-            )}
+              <Button
+                onClick={onSelectFiles}
+                disabled={isUploading}
+                subVariant="rounded"
+                size="md"
+              >
+                <Upload className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">
+                  {isUploading ? 'Laddar...' : 'Lägg till'}
+                </span>
+              </Button>
+              {isRootLevel && (
+                <>
+                  <Button
+                    onClick={handleCopyLikes}
+                    disabled={likedImageKeys.length === 0}
+                    subVariant="rounded"
+                    size="md"
+                  >
+                    <ClipboardCopy className="h-4 w-4 sm:mr-2" />
+                    <span className="hidden sm:inline">
+                      Kopiera {likedImageKeys.length}
+                    </span>
+                  </Button>
+                  <Button
+                    onClick={onClearGallery}
+                    subVariant="rounded"
+                    size="md"
+                    variant="destructive"
+                  >
+                    <Trash2 className="h-4 w-4 sm:mr-2" />
+                    <span className="hidden sm:inline">Töm Galleri</span>
+                  </Button>
+                </>
+              )}
+            </div>
           </div>
+          {isUploading && (
+            <div className="mx-auto mt-5 max-w-2xl">
+              <UploadProgressPanel progress={uploadProgressDetails} />
+            </div>
+          )}
+          {copyStatus && (
+            <p className="text-center text-sm text-success mt-2">
+              {copyStatus}
+            </p>
+          )}
+          {actionError && (
+            <p className="text-center text-sm text-destructive mt-2">
+              {actionError}
+            </p>
+          )}
         </div>
-        {isUploading && (
-          <div className="mx-auto mt-5 max-w-2xl">
-            <UploadProgressPanel progress={uploadProgressDetails} />
-          </div>
-        )}
-        {copyStatus && (
-          <p className="text-center text-sm text-success mt-2">{copyStatus}</p>
-        )}
-        {actionError && (
-          <p className="text-center text-sm text-destructive mt-2">
-            {actionError}
-          </p>
-        )}
       </SectionContent>
     </Section>
   )

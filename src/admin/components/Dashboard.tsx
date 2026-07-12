@@ -16,12 +16,21 @@ export function Dashboard({ onLogout }: DashboardProps) {
 
   return (
     <>
-      <Section bgColor="beige" roundedBottom="9xl" className="py-12">
+      <Section
+        bgColor="offWhite"
+        rounded="none"
+        className="bg-[#f5f5f2] pb-10 pt-24"
+      >
         <SectionContent>
-          <div className="flex justify-between items-center">
-            <h1 className="text-4xl font-bold text-textPrimary font-poiret">
-              Admin Dashboard
-            </h1>
+          <div className="flex flex-col gap-5 rounded-[1.75rem] border border-black/6 bg-white p-6 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.5)] sm:flex-row sm:items-center sm:justify-between md:p-8">
+            <div>
+              <p className="mb-2 text-sm font-semibold uppercase tracking-[0.22em] text-textSecondary">
+                Admin
+              </p>
+              <h1 className="text-3xl font-semibold tracking-tight text-textPrimary md:text-4xl">
+                Dashboard
+              </h1>
+            </div>
             <Button
               onClick={onLogout}
               variant="outline"
@@ -34,13 +43,21 @@ export function Dashboard({ onLogout }: DashboardProps) {
         </SectionContent>
       </Section>
 
-      <Section roundedTop="9xl" roundedBottom="9xl">
+      <Section
+        bgColor="white"
+        rounded="none"
+        className="bg-white py-12 md:py-16"
+      >
         <SectionContent heading="Skapa / Lägg till i Galleri">
           <CreateGalleryForm galleries={galleries} onUploadSuccess={refetch} />
         </SectionContent>
       </Section>
 
-      <Section bgColor="beige" roundedTop="9xl">
+      <Section
+        bgColor="offWhite"
+        rounded="none"
+        className="bg-[#f5f5f2] py-12 md:py-16"
+      >
         <SectionContent heading="Befintliga Gallerier">
           <GalleryList
             galleries={galleries}

@@ -154,7 +154,7 @@ export default function GalleryDetailPage() {
   ]
 
   return (
-    <main className="pt-16 md:pt-20 bg-background text-foreground min-h-screen">
+    <main className="min-h-screen bg-[#f5f5f2] text-foreground">
       <AdminHeader
         galleryId={galleryId}
         currentPath={currentPrefix}
@@ -168,14 +168,14 @@ export default function GalleryDetailPage() {
         onCreateFolder={handleCreateFolder}
       />
 
-      <Section roundedTop="9xl">
+      <Section bgColor="offWhite" rounded="none" className="bg-[#f5f5f2] pb-14">
         <SectionContent>
-          <nav className="flex items-center space-x-2 mb-6 text-sm">
+          <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm">
             {breadcrumbs.map((crumb, index) => (
               <React.Fragment key={index}>
                 <button
                   onClick={() => handleBreadcrumbClick(index)}
-                  className={`hover:underline ${
+                  className={`rounded-full px-3 py-1.5 transition hover:bg-black/5 ${
                     index === breadcrumbs.length - 1
                       ? 'font-semibold text-textPrimary'
                       : 'text-textSecondary'
