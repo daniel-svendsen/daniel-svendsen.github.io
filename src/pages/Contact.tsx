@@ -89,7 +89,7 @@ export default function Contact() {
     <>
       <SEO
         title="Kontakt | Fotograf & Webb | Göteborg & Kungälv - Svendsén Photography"
-        description="Kontakta Svendsén Photography för bröllopsfotografering, porträtt, familjefoto, företagsfoto, eventfoto eller webbutveckling i Göteborg, Kungälv, Stenungsund och närliggande områden."
+        description="Kontakta Svendsén Photography för fotografering, porträtt, familjefoto, företagsfoto och webbutveckling i Göteborg, Kungälv och Stenungsund."
         url="https://www.svendsenphotography.com/contact/"
         image={absoluteLogoUrl}
         keywords="kontakt fotograf, familjefotograf göteborg, fotograf göteborg, fotograf kungälv, fotograf stenungsund, webbutvecklare kungälv, boka fotograf, offert fotografering, kontakta webbyrå"

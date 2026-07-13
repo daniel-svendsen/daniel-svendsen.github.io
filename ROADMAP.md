@@ -1,74 +1,71 @@
 # Roadmap
 
-Kort strategi för att bygga mer relevant trafik och fler kundförfrågningar utan att fylla sajten med generiska AI-artiklar.
+Kort strategi för att göra hemsidan bättre på det som faktiskt spelar roll: fler relevanta förfrågningar, starkare förtroende, bättre lokal synlighet och enklare underhåll.
 
 ## Princip
 
-Satsa på kvalitet före kvantitet. 20-30 nischade, lokala och hjälpsamma sidor är mer värdefullt än 100 tunna bloggposter. AI kan användas för research, struktur och korrektur, men slutresultatet ska kännas lokalt, personligt och bilddrivet.
+Prioritera förbättringar som gör sidan tydligare, mer förtroendeingivande eller lättare att hitta för rätt kunder. Nya sidor ska bara skapas när de fyller en tydlig lucka, har lokalt eller kundnära innehåll och kan kopplas naturligt till bokningsflödet.
 
 ## Fokusområden
 
-### 1. Lokal SEO med tydlig intention
+### 1. Konvertering och förtroende
 
-- Prioritera sökningar kopplade till Göteborg, Kungälv och närområdet.
-- Skapa guider som svarar på konkreta kundproblem, till exempel platser, tider, klädval, brudlokaler och planering.
-- Byt generella ämnen som "tips inför fotografering" mot lokala vinklar som "bästa platserna för utomhusporträtt i Göteborg".
+- Förtydliga vägen från startsida, tjänstsidor, guider och case till kontakt.
+- Se över CTA:er så de känns naturliga, återkommer på rätt platser och leder till nästa rimliga steg.
+- Visa process, leverans, bildurval och förväntningar så kunden förstår vad som händer före, under och efter fotograferingen.
+- Placera recensioner/testimonials där de stärker beslutet att höra av sig, särskilt på tjänstsidor och nära kontaktflödet.
+- Förbättra kontaktcopy och formulärflöde om det finns friktion eller otydlighet.
 
-### 2. Korta content-hubbar och tydliga undersidor
+### 2. Lokal synlighet
 
-- Bygg en enkel navsida för guider: `/guider/`.
-- Skapa få men starka undersidor istället för många tunna sidor.
-- Prioritera sidor med tydligt syfte och konkret nytta.
+- Prioritera Google Business Profile, recensioner och lokal konsekvens före att skapa många nya sidor.
+- Använd Search Console för att hitta befintliga sidor med impressions men låg CTR, svag position eller otydlig sökintention.
+- Förbättra befintliga lokala sidor och case innan nya landningssidor byggs.
+- Skapa nya lokala sidor bara när det finns en tydlig lucka, till exempel Göteborg-case, porträtt/företagscase eller en lokal guide med verkligt underlag.
+- Fortsätt hålla copy lokal, konkret och bilddriven i stället för generisk SEO-text.
 
-Föreslagen v1-struktur:
+### 3. Bild- och innehållskvalitet
 
-- `/guider/`
-- `/guider/brollopsplanerare/`
-- `/guider/brollopstidslinje/`
-- `/guider/golden-hour/`
-- `/guider/brollop-checklista-goteborg/`
-- `/case/`
-- `/case/brollop-goteborg/`
-- `/case/portratt-foretag/`
+- Använd egna bilder mer systematiskt med bra filnamn, alt-text och lokal kontext.
+- Uppdatera befintliga guider och case med tydligare interna länkar, bättre bildurval och starkare koppling till relevant tjänst.
+- Lägg till nya case först när det finns egna bilder, tydlig plats, tydligt upplägg och tillräckligt unikt innehåll.
+- Utvärdera bröllopsplaneraren innan fler verktyg byggs. Förbättra den bara om den hjälper kunden eller driver kontakt.
+- Använd AI för research, struktur och korrektur, men låt publicerad copy bygga på egen erfarenhet, lokalkännedom och riktiga uppdrag.
 
-### 3. Praktiska verktyg
+### 4. Engelska språkversioner
 
-- Bygg enkla interaktiva verktyg som faktiskt hjälper kunden att boka eller planera.
-- Första verktyget bör vara en bröllopsplanerare med checkboxar för bildmoment, till exempel gäster, familj, mingel, detaljer, vigsel, gruppbilder och porträtt.
-- Bygg sidan som vanlig React + print-stöd med `window.print()` och `@media print`, istället för att börja med PDF.
-- Ha bara en utskriftsanpassad layout för ett konkret brukstillfälle.
+Mål: nå engelsktalande kunder utan att försvaga den svenska lokala SEO:n.
 
-### 4. Case studies från riktiga uppdrag
+- Bygg engelska sidor som ett kontrollerat `/en/`-lager med egna URL:er.
+- Börja med de publika sidor som kan driva förfrågningar: startsida, tjänster, bröllop, porträtt, kontakt och FAQ.
+- Lämna admin, kundgallerier och `/work` utanför v1 om det inte finns ett tydligt behov.
+- Skriv engelsk copy för målgruppen, inte ord-för-ord-översättningar. Prioritera naturliga söktermer som `wedding photographer in Gothenburg`, `portrait photographer in Gothenburg`, `photographer in Kungälv` och `Swedish west coast`.
+- Lägg copy i typade språkfiler per sida, till exempel `src/content/sv/home.ts` och `src/content/en/home.ts`, i stället för en stor JSON-fil.
+- Ge varje språkversion egna SEO-fält: title, description, canonical URL, Open Graph-copy och structured data där det är relevant.
+- Lägg till `hreflang` mellan svenska och engelska motsvarigheter, inklusive själv-refererande länkar och gärna `x-default`.
+- Lägg till en diskret språkväxlare i header/footer som behåller motsvarande sida när den finns, till exempel `/weddings/` till `/en/weddings/`.
+- Uppdatera sitemap/prerender så engelska URL:er byggs, indexeras och kan kontrolleras i Search Console.
+- Verifiera att engelska sidor inte får blandad svensk/engelsk copy i synliga rubriker, nav, metadata eller delningspreview.
 
-- Skriv korta case med problem, lösning och resultat.
-- Använd dem för att visa erfarenhet och skapa förtroende.
-- Håll dem lokala och konkreta i stället för generiska.
+Föreslagen etappindelning:
 
-### 5. AI som assistent
+1. Teknisk grund: locale-typning, route-hjälpare, språkväxlare, SEO/hreflang-stöd och sitemap/prerender-stöd.
+2. v1-innehåll: `/en/`, `/en/services/`, `/en/weddings/`, `/en/portraits/`, `/en/contact/` och `/en/faq/`.
+3. Lokal SEO-förstärkning: engelska case- och landningssidor för Göteborg, Kungälv, Stenungsund och västkusten om de har tillräckligt unikt innehåll.
+4. Uppföljning: kontrollera Search Console, indexering, impressions och vilka engelska söktermer som faktiskt ger synlighet.
 
-- Använd AI för sökordsförslag, vanliga kundfrågor, dispositioner och korrektur.
-- Lägg alltid till egen erfarenhet, lokala tips, kundcase och unika bilder.
-- Optimera egna bilder med tydliga filnamn och alt-texter, till exempel `foretagsfotografering-goteborg.jpg`.
+### 5. Teknisk SEO och drift
 
-### 6. Kunddrivande innehåll
-
-- Skapa en enkel rutin för att be om recensioner efter levererad galleri-länk.
-- Optimera Google Business Profile.
-- Skapa nedladdningsbara guider om det finns ett tydligt syfte, men bara när de hjälper kunden och stöttar försäljning eller förfrågan.
+- Behåll tydliga metadata, canonical-URL:er, Open Graph-data, breadcrumbs och strukturerad data på publika sidor.
+- När en ny indexerbar route läggs till ska den finnas i route-listorna och i prerender/sitemap-flödet.
+- Verifiera att `dist/sitemap.xml` bara innehåller avsedda publika routes efter `npm run build`.
+- Håll `/work`, `/admin`, `/galleri/*`, `/app-shell` och 404 utanför indexering.
+- Använd PDF eller nya tekniska exportflöden bara när det finns ett konkret kundbehov.
 
 ## Nästa steg
 
-1. Lista 10-15 specifika problem som lokala kunder ofta har.
-2. Välj 5 prioriterade sidor att skapa först.
-3. Planera första verktyget som en printvänlig bröllopsplanerare.
-4. Ta fram 2-3 lokala case studies från riktiga uppdrag.
-5. Sätt en enkel rutin för recensioner efter avslutat uppdrag.
-6. Använd egna bilder mer systematiskt med bra namn, alt-text och lokal kontext.
-
-## Tekniskt för verktygen
-
-- Bygg nya kundsidor som vanliga React-sidor i samma route-struktur som resten av sajten.
-- Använd print CSS för att göra sidan utskriftsvänlig.
-- Håll navigation, footer och andra oviktiga element utanför utskrift.
-- Lägg till en enkel skriv-ut-knapp på sidan.
-- Använd PDF bara om ni senare behöver en exakt exportfil.
+1. Gå igenom befintliga tjänstsidor, guider och case med fokus på CTA, internlänkning och förtroendesign.
+2. Kontrollera Search Console för sidor med impressions men låg CTR eller svag position.
+3. Prioritera nästa innehållsinsats utifrån faktisk lucka: Göteborg-case, porträtt/företagscase, lokal guide eller ingen ny sida alls.
+4. Sätt en enkel rutin för recensioner efter avslutat uppdrag.
+5. Besluta om engelska språkversioner ska byggas som nästa större SEO-spår och börja i så fall med teknisk grund plus startsida.
