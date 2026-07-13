@@ -107,7 +107,7 @@ export default function Home() {
         description="Fotograf för bröllop, porträtt, familj, företag, event och verksamheter i Kungälv, Stenungsund och Göteborg. Boka din fotografering idag!"
         url={`${SITE_URL}/`}
         image={absoluteLogoUrl}
-        keywords="fotograf kungälv, fotograf stenungsund, fotograf göteborg, bröllopsfotograf, porträttfotograf, familjefotograf, familjefoto, företagsfotograf, verksamhetsfoto, hobbyfoto, filmning, webbutveckling"
+        keywords="fotograf kungälv, fotograf stenungsund, fotograf göteborg, bröllopsfotograf, porträttfotograf, familjefotograf, familjefoto, företagsfotograf, eventfotograf"
         jsonLd={businessJsonLd}
         breadcrumbs={[{ name: 'Hem', url: `${SITE_URL}/` }]}
       />

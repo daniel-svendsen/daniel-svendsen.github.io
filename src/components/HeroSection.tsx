@@ -46,7 +46,7 @@ export default function HeroSection() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           <p className="mb-6 text-sm font-semibold uppercase tracking-[0.24em] text-textSecondary">
-            Fotograf i Göteborg & Kungälv
+            Fotograf i Kungälv, Göteborg & Stenungsund
           </p>
           <h1
             id="hero-heading"
@@ -58,9 +58,9 @@ export default function HeroSection() {
             </span>
           </h1>
           <p className="max-w-xl text-lg leading-8 text-textPrimary/72 sm:text-xl">
-            Stillsamma, naturliga bilder för bröllop, porträtt och visuellt
-            innehåll. Skapat med lugn närvaro, tydlig riktning och känsla för
-            det som faktiskt betyder något.
+            Stillsamma, naturliga bilder för bröllop, porträtt, familj och
+            företag. Skapat med lugn närvaro, tydlig riktning och känsla för det
+            som faktiskt betyder något.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <LinkButton
@@ -102,7 +102,7 @@ export default function HeroSection() {
               </div>
               <div className="rounded-[1.35rem] border border-black/6 bg-white/78 p-5 shadow-[0_24px_60px_-52px_rgba(31,41,55,0.35)] backdrop-blur">
                 <p className="text-sm font-medium leading-6 text-textPrimary/70">
-                  Bröllop, porträtt, familj, företag och visuellt innehåll med
+                  Bröllop, porträtt, familj, företag och event med
                   personlig känsla.
                 </p>
               </div>

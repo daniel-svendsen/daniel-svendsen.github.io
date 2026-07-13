@@ -5,8 +5,11 @@ export const BUSINESS = {
   name: 'Svendsén Photography',
   ownerName: 'Daniel Svendsén',
   email: 'daniel@svendsenphotography.com',
+  phone: '+46707714306',
+  phoneDisplay: '070-771 43 06',
   logoUrl: `${SITE_URL}/LOGO.png`,
   serviceAreas: ['Kungälv', 'Stenungsund', 'Göteborg'],
+  openingHours: 'Måndag-fredag 09:00-17:00',
   sameAs: [
     'https://www.instagram.com/svendsen_photography/',
     'https://www.facebook.com/DSvendsenphotography',
@@ -32,6 +35,15 @@ export const businessJsonLd = {
   logo: BUSINESS.logoUrl,
   image: BUSINESS.logoUrl,
   email: BUSINESS.email,
+  telephone: BUSINESS.phone,
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '17:00',
+    },
+  ],
   founder: {
     '@type': 'Person',
     name: BUSINESS.ownerName,

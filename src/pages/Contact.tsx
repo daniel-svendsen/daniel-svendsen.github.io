@@ -1,10 +1,10 @@
 import React, { FormEvent, useState } from 'react'
-import { Mail, MapPin, MessageCircle } from 'lucide-react'
+import { Clock, Mail, MapPin, Phone } from 'lucide-react'
 
 import { Button } from '@/components/Button'
 import { EditorialIntro, EditorialSection } from '@/components/Editorial'
 import SEO from '@/components/SEO'
-import { businessReference } from '@/config/seo'
+import { BUSINESS, businessReference } from '@/config/seo'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 
 export default function Contact() {
@@ -88,11 +88,11 @@ export default function Contact() {
   return (
     <>
       <SEO
-        title="Kontakt | Fotograf & Webb | Göteborg & Kungälv - Svendsén Photography"
-        description="Kontakta Svendsén Photography för fotografering, porträtt, familjefoto, företagsfoto och webbutveckling i Göteborg, Kungälv och Stenungsund."
+        title="Boka fotograf i Göteborg, Kungälv & Stenungsund | Kontakt"
+        description="Boka fotograf eller be om offert för bröllop, porträtt, familjefoto, företagsfoto och webbutveckling i Göteborg, Kungälv och Stenungsund."
         url="https://www.svendsenphotography.com/contact/"
         image={absoluteLogoUrl}
-        keywords="kontakt fotograf, familjefotograf göteborg, fotograf göteborg, fotograf kungälv, fotograf stenungsund, webbutvecklare kungälv, boka fotograf, offert fotografering, kontakta webbyrå"
+        keywords="boka fotograf, kontakt fotograf, offert fotografering, fotograf göteborg, fotograf kungälv, fotograf stenungsund, familjefotograf göteborg, webbutvecklare kungälv"
         jsonLd={contactJsonLd}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
@@ -109,8 +109,8 @@ export default function Contact() {
             align="center"
             eyebrow="Kontakt"
             headingLevel="h1"
-            title="Berätta vad du planerar."
-            description="Fyll i formuläret så återkommer jag med ett upplägg som passar fotograferingen, platsen och känslan du vill åt."
+            title="Boka fotograf eller skicka en förfrågan."
+            description="Fyll i formuläret om du vill boka fotograf i Göteborg, Kungälv eller Stenungsund, eller om du vill ha offert på fotografering eller hemsida."
           />
         </EditorialSection>
 
@@ -133,8 +133,8 @@ export default function Contact() {
               <div className="mt-8 grid gap-3">
                 {[
                   { icon: MapPin, text: 'Kungälv, Göteborg & Stenungsund' },
-                  { icon: MessageCircle, text: 'Svar via e-post så snart jag kan' },
-                  { icon: Mail, text: 'Bokning, offert eller enkel fråga' },
+                  { icon: Clock, text: BUSINESS.openingHours },
+                  { icon: Phone, text: BUSINESS.phoneDisplay },
                 ].map((item) => {
                   const Icon = item.icon
 

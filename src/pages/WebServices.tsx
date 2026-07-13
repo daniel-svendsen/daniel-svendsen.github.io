@@ -15,9 +15,9 @@ export default function WebServicesPage() {
   const pageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebService',
-    name: 'Webbutveckling och webbtjänster i Göteborg och Kungälv',
+    name: 'Webbutveckling för små företag i Göteborg och Kungälv',
     description:
-      'Webbutveckling och webbtjänster för företag i Göteborg och Kungälv med fokus på modern teknik, prestanda och synlighet online.',
+      'Webbutveckling och hemsidor för små företag i Göteborg och Kungälv med fokus på modern teknik, prestanda och synlighet online.',
     provider: businessReference,
     serviceType: ['WebDevelopment', 'Website optimization'],
     areaServed: BUSINESS.serviceAreas.map((name) => ({
@@ -94,8 +94,8 @@ export default function WebServicesPage() {
   return (
     <>
       <SEO
-        title="Webbutveckling och webbtjänster i Göteborg | Svendsén Photography"
-        description="Svendsén Photography erbjuder webbutveckling och webbtjänster för företag som vill ha en modern, snabb och professionell närvaro online i Göteborg och Kungälv."
+        title="Webbutveckling för små företag i Göteborg & Kungälv | Svendsén Photography"
+        description="Behöver du en hemsida för ditt företag? Jag bygger moderna, snabba och tydliga webbplatser för små företag i Göteborg och Kungälv."
         url="https://www.svendsenphotography.com/webservices/"
         jsonLd={pageJsonLd}
         image={absoluteSpecificImage}
@@ -118,12 +118,12 @@ export default function WebServicesPage() {
                 Webbtjänster
               </p>
               <h1 className="mb-6 max-w-2xl text-4xl font-semibold leading-tight tracking-tight text-textPrimary md:text-5xl lg:text-6xl">
-                Moderna hemsidor för små företag.
+                Webbutveckling och hemsidor för små företag.
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-textPrimary/68 md:text-xl">
-                Jag hjälper företag i Göteborg och Kungälv att bygga en modern
-                digital närvaro med fokus på tydlighet, prestanda och en
-                professionell användarupplevelse.
+                Jag hjälper små företag i Göteborg och Kungälv att bygga
+                hemsidor och webbplatser med tydlig struktur, bra prestanda och
+                en professionell användarupplevelse.
               </p>
               <LinkButton
                 to="/contact/"
@@ -178,8 +178,8 @@ export default function WebServicesPage() {
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <EditorialIntro
               eyebrow="Nytta"
-              title="Webbutveckling med fokus på struktur och synlighet."
-              description="Jag kan hjälpa dig att skapa en ny hemsida eller vidareutveckla en befintlig, med fokus på hur sidan upplevs av besökare och hur tydligt ditt företag presenteras online."
+              title="Webbutveckling med fokus på struktur, prestanda och synlighet."
+              description="Jag kan hjälpa dig att skapa en ny hemsida eller vidareutveckla en befintlig webbplats, med fokus på hur sidan upplevs av besökare och hur tydligt ditt företag presenteras online."
             />
             <ul className="grid gap-3">
               {featureList.map((item) => (

@@ -1,6 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
+import { BUSINESS } from '@/config/seo'
+
 const footerLinks = [
   { to: '/contact/', label: 'Kontakt' },
   { to: '/faq/', label: 'FAQ' },
@@ -17,7 +19,10 @@ export default function PublicFooter() {
             Svendsén Photography
           </p>
           <p className="mt-1 text-textSecondary/90">
-            Fotograf i Kungälv och Göteborg
+            Fotograf i Kungälv, Göteborg och Stenungsund
+          </p>
+          <p className="mt-1 text-textSecondary/90">
+            {BUSINESS.openingHours} · {BUSINESS.phoneDisplay}
           </p>
         </div>
 
