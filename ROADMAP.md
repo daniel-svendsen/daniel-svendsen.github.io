@@ -20,14 +20,19 @@ Prioritera förbättringar som gör sidan tydligare, mer förtroendeingivande el
 
 - Prioritera Google Business Profile, recensioner och lokal konsekvens före att skapa många nya sidor.
 - Använd Search Console för att hitta befintliga sidor med impressions men låg CTR, svag position eller otydlig sökintention.
+- Följ upp primära lokala sökspår: `fotograf Kungälv`, `fotograf i Kungälv`, `bröllopsfotograf Kungälv`, `porträttfotograf Kungälv`, `familjefotograf Kungälv`, `företagsfotograf Kungälv`, `fotograf Stenungsund`, `bröllopsfotograf Stenungsund`, `bröllopsfotograf Göteborg` och `bröllopsfotograf västkusten`.
 - Förbättra befintliga lokala sidor och case innan nya landningssidor byggs.
 - Skapa nya lokala sidor bara när det finns en tydlig lucka, till exempel Göteborg-case, porträtt/företagscase eller en lokal guide med verkligt underlag.
+- Utvärdera en dedikerad sida för `porträttfotograf Kungälv`, `familjefotograf Kungälv` eller `företagsfotograf Kungälv` först när tjänsten ska prioriteras och sidan kan få eget innehåll, egna bilder och tydlig kontaktväg.
 - Fortsätt hålla copy lokal, konkret och bilddriven i stället för generisk SEO-text.
 
 ### 3. Bild- och innehållskvalitet
 
 - Använd egna bilder mer systematiskt med bra filnamn, alt-text och lokal kontext.
+- Skriv alt-texter som beskriver motiv, tjänst och plats när det är sant och naturligt, till exempel bröllopsporträtt i Kungälv eller familjefotografering utomhus.
+- Undvik keyword stuffing i alt-text, rubriker och brödtext.
 - Uppdatera befintliga guider och case med tydligare interna länkar, bättre bildurval och starkare koppling till relevant tjänst.
+- Prioritera praktiska och lokala guideämnen, till exempel fina platser för bröllopsbilder i Kungälv, vad bröllopsfotograf i Kungälv kostar, familjebilder på bröllopsdagen, porträttfotografering utomhus i Kungälv och företagsporträtt i Kungälv.
 - Lägg till nya case först när det finns egna bilder, tydlig plats, tydligt upplägg och tillräckligt unikt innehåll.
 - Utvärdera bröllopsplaneraren innan fler verktyg byggs. Förbättra den bara om den hjälper kunden eller driver kontakt.
 - Använd AI för research, struktur och korrektur, men låt publicerad copy bygga på egen erfarenhet, lokalkännedom och riktiga uppdrag.
@@ -58,14 +63,16 @@ Föreslagen etappindelning:
 
 - Behåll tydliga metadata, canonical-URL:er, Open Graph-data, breadcrumbs och strukturerad data på publika sidor.
 - När en ny indexerbar route läggs till ska den finnas i route-listorna och i prerender/sitemap-flödet.
+- Generera `lastmod` i sitemap automatiskt vid build så publicerade deploys ger sökmotorer en tydligare uppdateringssignal.
 - Verifiera att `dist/sitemap.xml` bara innehåller avsedda publika routes efter `npm run build`.
 - Håll `/work`, `/admin`, `/galleri/*`, `/app-shell` och 404 utanför indexering.
 - Använd PDF eller nya tekniska exportflöden bara när det finns ett konkret kundbehov.
 
 ## Nästa steg
 
-1. Gå igenom befintliga tjänstsidor, guider och case med fokus på CTA, internlänkning och förtroendesign.
+1. Gå igenom befintliga tjänstsidor, guider och case med fokus på CTA, internlänkning, förtroendesign och matchning mot primära lokala sökspår.
 2. Kontrollera Search Console för sidor med impressions men låg CTR eller svag position.
-3. Prioritera nästa innehållsinsats utifrån faktisk lucka: Göteborg-case, porträtt/företagscase, lokal guide eller ingen ny sida alls.
-4. Sätt en enkel rutin för recensioner efter avslutat uppdrag.
-5. Besluta om engelska språkversioner ska byggas som nästa större SEO-spår och börja i så fall med teknisk grund plus startsida.
+3. Kontrollera Google Business Profile, bildinnehåll och rutin för recensioner efter avslutat uppdrag.
+4. Prioritera nästa innehållsinsats utifrån faktisk lucka: Göteborg-case, porträtt/företagscase, lokal guide eller ingen ny sida alls.
+5. Göra en första bild-SEO-passning på de viktigaste publika sidorna.
+6. Besluta om engelska språkversioner ska byggas som nästa större SEO-spår och börja i så fall med teknisk grund plus startsida.
