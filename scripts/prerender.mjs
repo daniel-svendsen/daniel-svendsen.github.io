@@ -73,10 +73,16 @@ const appShellPath = path.join(distDir, 'app-shell', 'index.html')
 await fs.mkdir(path.dirname(appShellPath), { recursive: true })
 await fs.writeFile(appShellPath, appShell, 'utf8')
 
+const buildDate = new Date().toISOString().slice(0, 10)
 const sitemapUrls = prerenderRoutes
   .map(
     (route) =>
-      `  <url><loc>https://www.svendsenphotography.com${route}</loc></url>`,
+      [
+        '  <url>',
+        `    <loc>https://www.svendsenphotography.com${route}</loc>`,
+        `    <lastmod>${buildDate}</lastmod>`,
+        '  </url>',
+      ].join('\n'),
   )
   .join('\n')
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
