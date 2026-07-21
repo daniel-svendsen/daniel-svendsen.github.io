@@ -29,7 +29,7 @@ export const homeCards = [
     image: companyImage,
     title: 'Företag, Event & Hobby',
     description:
-      'Professionella bilder för företag, event, verksamheter, fordon och andra personliga sammanhang.',
+      'Professionella bilder för företag, event, verksamheter och andra personliga sammanhang.',
     buttonText: 'Läs mer',
     buttonLink: '/services/',
     icon: Briefcase,
@@ -78,7 +78,8 @@ Extra timmar utöver paketen -> ${PRICING.wedding.extraHour}`,
     image: companyImage,
     description: `Företagsporträtt -> från ${PRICING.business.portraitFrom} ${PRICING.business.taxNote}, fler personer enligt offert
 Eventfotografering -> från ${PRICING.business.eventFrom} ${PRICING.business.taxNote} | heldag från ${PRICING.business.eventFullDayFrom} ${PRICING.business.taxNote}
-Verksamhets- och hobbyfoto för miljöer, fordon, föreningar och personliga projekt -> från ${PRICING.business.activityHourlyFrom} ${PRICING.business.taxNote}
+Verksamhets- och hobbyfoto för miljöer, föreningar och personliga projekt -> från ${PRICING.business.activityHourlyFrom} ${PRICING.business.taxNote}
+Bilfotografering i Kungälv erbjuds i mindre skala -> offert efter upplägg
 Produktfotografering -> startpaket från ${PRICING.business.productStartFrom} ${PRICING.business.taxNote}, extra bilder från ${PRICING.business.productExtraImageFrom}
 Filmning för reklam och presentationer -> offert vid förfrågan`,
     price: `Från ${PRICING.business.portraitFrom}`,
