@@ -111,3 +111,7 @@ backend_config_analysis.json
 .wrangler
 admin_analysis.json
 admin_content.txt
+
+# Local planning documents
+docs/SEO_ROADMAP.md
+docs/SEO_IMPLEMENTATION_LOG.md

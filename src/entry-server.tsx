@@ -5,6 +5,8 @@ import { StaticRouter } from 'react-router-dom/server'
 import AppProviders from './AppProviders'
 import PublicAppRoutes from './PublicAppRoutes'
 
+export { INDEXABLE_PUBLIC_ROUTES as prerenderRoutes } from './config/publicRoutes'
+
 export function render(url: string) {
   const helmetContext: Record<string, unknown> = {}
   const appHtml = renderToString(

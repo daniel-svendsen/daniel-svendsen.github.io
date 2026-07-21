@@ -10,6 +10,7 @@ export default [
       'backend/**',
       'dist/**',
       'dist-server/**',
+      '.wrangler/**',
       'node_modules/**',
       'printFilesJson.cjs',
       'src/**/*.ts',

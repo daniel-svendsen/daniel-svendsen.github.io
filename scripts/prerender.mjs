@@ -6,27 +6,112 @@ const projectRoot = process.cwd()
 const distDir = path.join(projectRoot, 'dist')
 const serverEntryPath = path.join(projectRoot, 'dist-server', 'entry-server.js')
 const templatePath = path.join(distDir, 'index.html')
+const siteUrl = 'https://www.svendsenphotography.com'
 
-const prerenderRoutes = [
-  '/',
-  '/services/',
-  '/portraits/',
-  '/weddings/',
-  '/contact/',
-  '/faq/',
-  '/webservices/',
-  '/guider/',
-  '/guider/brollopsplanerare/',
-  '/guider/brollopsbilder-promenad/',
-  '/guider/brollopstidslinje/',
-  '/brollopsfotograf-kungalv/',
-  '/brollop/',
-  '/brollop/kungalv/',
-  '/brollop/stenungsund/',
-  '/privacy/',
-]
+function assertBuild(condition, message) {
+  if (!condition) {
+    throw new Error(`SEO build verification failed: ${message}`)
+  }
+}
 
-const { render } = await import(pathToFileURL(serverEntryPath).href)
+function countMatches(value, pattern) {
+  return value.match(pattern)?.length ?? 0
+}
+
+async function verifyGeneratedSeo() {
+  assertBuild(
+    new Set(prerenderRoutes).size === prerenderRoutes.length,
+    'prerender routes must be unique',
+  )
+
+  for (const route of prerenderRoutes) {
+    const outputPath =
+      route === '/'
+        ? path.join(distDir, 'index.html')
+        : path.join(distDir, route.replace(/^\/|\/$/g, ''), 'index.html')
+    const html = await fs.readFile(outputPath, 'utf8')
+    const canonical = `${siteUrl}${route}`
+
+    assertBuild(
+      countMatches(html, /<title(?:\s[^>]*)?>[\s\S]*?<\/title>/g) === 1,
+      `${route} must contain exactly one title`,
+    )
+    assertBuild(
+      countMatches(html, /<meta[^>]+name="description"/g) === 1,
+      `${route} must contain exactly one meta description`,
+    )
+    assertBuild(
+      countMatches(html, /<link[^>]+rel="canonical"/g) === 1 &&
+        html.includes(`href="${canonical}"`),
+      `${route} must contain exactly one matching canonical`,
+    )
+    assertBuild(
+      countMatches(html, /<meta[^>]+name="robots"/g) === 0,
+      `${route} must remain indexable`,
+    )
+    assertBuild(
+      !html.includes('<div id="root"></div>'),
+      `${route} must contain prerendered app content`,
+    )
+  }
+
+  for (const relativePath of ['404.html', 'app-shell/index.html']) {
+    const html = await fs.readFile(path.join(distDir, relativePath), 'utf8')
+
+    assertBuild(
+      /<meta[^>]+name="robots"[^>]+content="noindex, nofollow"/.test(html),
+      `${relativePath} must be noindex`,
+    )
+    assertBuild(
+      /<meta[^>]+name="googlebot"[^>]+content="noindex, nofollow"/.test(html),
+      `${relativePath} must be noindex for Googlebot`,
+    )
+  }
+
+  const sitemapXml = await fs.readFile(
+    path.join(distDir, 'sitemap.xml'),
+    'utf8',
+  )
+  const sitemapLocations = Array.from(
+    sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g),
+    (match) => match[1],
+  )
+  const expectedLocations = prerenderRoutes.map((route) => `${siteUrl}${route}`)
+
+  assertBuild(
+    sitemapLocations.length === expectedLocations.length &&
+      sitemapLocations.every(
+        (location, index) => location === expectedLocations[index],
+      ),
+    'sitemap routes must exactly match prerender routes',
+  )
+
+  const robots = await fs.readFile(path.join(distDir, 'robots.txt'), 'utf8')
+  assertBuild(
+    robots.includes(`Sitemap: ${siteUrl}/sitemap.xml`),
+    'robots.txt must reference the generated sitemap',
+  )
+
+  const redirects = await fs.readFile(path.join(distDir, '_redirects'), 'utf8')
+  const privateRouteRewrites = [
+    '/galleri/* /app-shell/ 200',
+    '/admin /app-shell/ 200',
+    '/admin/* /app-shell/ 200',
+    '/work /app-shell/ 200',
+    '/work/ /app-shell/ 200',
+  ]
+
+  for (const rewrite of privateRouteRewrites) {
+    assertBuild(
+      redirects.includes(rewrite),
+      `private route rewrite is missing: ${rewrite}`,
+    )
+  }
+}
+
+const { prerenderRoutes, render } = await import(
+  pathToFileURL(serverEntryPath).href
+)
 const template = await fs.readFile(templatePath, 'utf8')
 
 async function renderPage(route, outputPath) {
@@ -61,10 +146,7 @@ for (const route of prerenderRoutes) {
 await renderPage('/404', path.join(distDir, '404.html'))
 
 const appShell = template
-  .replace(
-    /<title>[\s\S]*?<\/title>/,
-    '<title>Svendsén Photography</title>',
-  )
+  .replace(/<title>[\s\S]*?<\/title>/, '<title>Svendsén Photography</title>')
   .replace(
     '<!--app-head-->',
     '<meta name="robots" content="noindex, nofollow"><meta name="googlebot" content="noindex, nofollow">',
@@ -75,14 +157,13 @@ await fs.writeFile(appShellPath, appShell, 'utf8')
 
 const buildDate = new Date().toISOString().slice(0, 10)
 const sitemapUrls = prerenderRoutes
-  .map(
-    (route) =>
-      [
-        '  <url>',
-        `    <loc>https://www.svendsenphotography.com${route}</loc>`,
-        `    <lastmod>${buildDate}</lastmod>`,
-        '  </url>',
-      ].join('\n'),
+  .map((route) =>
+    [
+      '  <url>',
+      `    <loc>${siteUrl}${route}</loc>`,
+      `    <lastmod>${buildDate}</lastmod>`,
+      '  </url>',
+    ].join('\n'),
   )
   .join('\n')
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -91,3 +172,8 @@ ${sitemapUrls}
 </urlset>
 `
 await fs.writeFile(path.join(distDir, 'sitemap.xml'), sitemap, 'utf8')
+
+await verifyGeneratedSeo()
+console.log(
+  `SEO build verification passed for ${prerenderRoutes.length} public routes, 404 and app shell.`,
+)
