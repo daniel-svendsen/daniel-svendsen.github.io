@@ -59,7 +59,7 @@ export default function CaseKungalv() {
               {caseStudy?.location}
             </p>
             <h1 className="mb-5 max-w-2xl text-4xl font-bold leading-tight md:text-5xl">
-              {caseStudy?.title}
+              Kersti & Jakobs bröllop i Kungälv
             </h1>
             <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
               {caseStudy?.intro}
@@ -121,8 +121,8 @@ export default function CaseKungalv() {
               className="bg-white p-6"
             />
             <InfoCard
-              title="Promenadporträtt"
-              description="Välj gärna en plats där det finns lite variation längs vägen, till exempel träd, öppnare ytor eller mjukt ljus. Då går det att få flera olika uttryck utan att behöva flytta långt."
+              title="Vigsel och familj"
+              description="Efter promenaden dokumenterades vigseln och några bilder tillsammans med familjen som en del av samma nära berättelse."
               className="bg-white p-6"
             />
           </div>
@@ -147,13 +147,16 @@ export default function CaseKungalv() {
 
         <CTASection
           className="rounded-[2.25rem] bg-white/82 lg:rounded-[3rem]"
-          title="Vill ni ha samma lugna känsla i era bilder?"
-          description="Om ni planerar ett bröllop i Kungälv eller närliggande områden kan jag hjälpa er att hitta ett upplägg med promenadbilder, vigsel och familj på ett sätt som känns naturligt."
+          title="Planerar ni bröllop i Kungälv?"
+          description="På den lokala tjänstesidan ser ni hur ni går vidare med en förfrågan. Paket och priser finns på den regionala bröllopssidan."
           actions={[
-            { to: '/contact/', label: 'Skicka förfrågan' },
+            {
+              to: '/brollopsfotograf-kungalv/',
+              label: 'Bröllopsfotografering i Kungälv',
+            },
             {
               to: '/brollop/',
-              label: 'Tillbaka till bröllop',
+              label: 'Fler verkliga bröllop',
               variant: 'outline',
             },
           ]}

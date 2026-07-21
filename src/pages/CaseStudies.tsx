@@ -93,44 +93,13 @@ export default function CaseStudies() {
           ))}
         </section>
 
-        <section className="mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:rounded-[3rem]">
-          <div className="mb-8 max-w-3xl">
-            <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
-              Inför er egen planering
-            </h2>
-            <p className="text-base leading-relaxed text-textSecondary">
-              De här berättelserna visar hur olika en bröllopsfotografering kan
-              kännas beroende på plats, tempo och hur mycket av dagen ni vill
-              dokumentera.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            <InfoCard
-              title="Lokal förankring"
-              description="Platserna runt Kungälv och Stenungsund ger bilderna en tydlig känsla och hjälper er att se vad som kan fungera för er dag."
-              className="bg-white p-6"
-            />
-            <InfoCard
-              title="Naturliga situationer"
-              description="Promenader, first look, familjebilder och mingel ger olika typer av bilder utan att fotograferingen behöver kännas stel."
-              className="bg-white p-6"
-            />
-            <InfoCard
-              title="Personlig känsla"
-              description="Jag försöker skapa utrymme för bilder där ni får vara i stunden, särskilt när ni får några minuter bara för er själva."
-              className="bg-white p-6"
-            />
-          </div>
-        </section>
-
         <CTASection
           className="rounded-[2.25rem] bg-white/82 lg:rounded-[3rem]"
-          title="Vill ni boka bröllopsfotografering?"
-          description="Berätta lite om er dag, platsen ni tänker er och vilken typ av bilder ni vill ha, så återkommer jag med ett upplägg som passar er."
+          title="Från verkliga bröllop till ert eget upplägg"
+          description="När ni har utforskat uppdragen kan ni jämföra paket och omfattning på den regionala bröllopssidan."
           actions={[
-            { to: '/contact/', label: 'Skicka förfrågan' },
-            { to: '/weddings/', label: 'Se bröllopssidan', variant: 'outline' },
+            { to: '/weddings/', label: 'Jämför paket och upplägg' },
+            { to: '/contact/', label: 'Skicka förfrågan', variant: 'outline' },
           ]}
         />
       </main>

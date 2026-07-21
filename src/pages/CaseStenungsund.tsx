@@ -59,7 +59,7 @@ export default function CaseStenungsund() {
               {caseStudy?.location}
             </p>
             <h1 className="mb-5 max-w-2xl text-4xl font-bold leading-tight md:text-5xl">
-              {caseStudy?.title}
+              Rebecka & Arons heldagsbröllop i Stenungsund
             </h1>
             <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
               {caseStudy?.intro}
@@ -120,8 +120,8 @@ export default function CaseStenungsund() {
               className="bg-white p-6"
             />
             <InfoCard
-              title="En stund för bara er"
-              description="Det behöver inte vara långt eller komplicerat. En kort promenad, en plats med bra ljus eller ett stilla stopp nära lokalen kan räcka för att få bilder som känns mer personliga."
+              title="Dagens omfattning"
+              description="Uppdraget följde first look, porträtt, vigsel, mingel, middag och fest, med en lugnare stund för paret mellan dagens olika delar."
               className="bg-white p-6"
             />
           </div>
@@ -147,13 +147,13 @@ export default function CaseStenungsund() {
 
         <CTASection
           className="rounded-[2.25rem] bg-white/82 lg:rounded-[3rem]"
-          title="Vill ni planera ett heldagsupplägg?"
-          description="Om ni vill dokumentera hela dagen och samtidigt få tid för några lugna porträtt kan jag forma ett upplägg som passar både plats och tempo."
+          title="Vill ni jämföra upplägg för er dag?"
+          description="På den regionala bröllopssidan finns paket för kort vigsel, halvdag och heldag samt vägen vidare till en förfrågan."
           actions={[
-            { to: '/contact/', label: 'Skicka förfrågan' },
+            { to: '/weddings/', label: 'Jämför bröllopspaket' },
             {
               to: '/brollop/',
-              label: 'Tillbaka till bröllop',
+              label: 'Fler verkliga bröllop',
               variant: 'outline',
             },
           ]}

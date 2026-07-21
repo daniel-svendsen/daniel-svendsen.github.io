@@ -20,36 +20,24 @@ const kungalvHeroImages = Object.entries(
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([, image]) => image as string)
 
-const kungalvGalleryImages = Object.entries(
-  import.meta.glob(
-    '../assets/cases/brollopkungalvbilder/*.{jpg,jpeg,png}',
-    {
-      eager: true,
-      import: 'default',
-    },
-  ),
-)
-  .sort(([a], [b]) => a.localeCompare(b))
-  .map(([, image]) => image as string)
-
 const getImage = (index: number) =>
   kungalvHeroImages[index] ?? kungalvHeroImages[0] ?? ''
 
-const planningTips = [
+const localServiceFacts = [
   {
-    title: 'Promenadbilder',
+    title: 'Lokalt i Kungälv',
     description:
-      'En kort promenad kan räcka långt. Det viktiga är att platsen ger lite variation och att ni får några minuter där ni kan slappna av tillsammans.',
+      'Jag utgår från Kungälv och planerar fotograferingen utifrån er vigselplats, dagens tider och de miljöer som hör ihop med ert bröllop.',
   },
   {
-    title: 'Vigsel och familj',
+    title: 'Från vigsel till längre dag',
     description:
-      'För mindre upplägg går det fint att fokusera på vigseln, några familjebilder och porträtt på er två utan att dagen behöver kännas styrd av kameran.',
+      'Upplägget kan fokusera på vigsel, familj och porträtt eller omfatta fler delar av dagen. De regionala paketen visar pris och omfattning.',
   },
   {
-    title: 'Ljus och miljö',
+    title: 'Bokning genom personlig kontakt',
     description:
-      'Mjukt ljus, lugna bakgrunder och en plats där det går att röra sig naturligt gör ofta mer för bilderna än en avancerad fotoplats.',
+      'Berätta om datum, plats och vilka delar ni vill dokumentera. Därefter pratar vi igenom ett upplägg som passar dagen.',
   },
 ]
 
@@ -156,39 +144,30 @@ export default function WeddingPhotographerKungalv() {
         <section className="mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:rounded-[3rem]">
           <div className="mb-8 max-w-3xl">
             <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
-              Naturliga bilder runt er dag
+              Lokal bröllopsfotografering i Kungälv
             </h2>
             <p className="text-base leading-relaxed text-textSecondary">
-              Många par vill ha bilder som känns fina men inte för regisserade.
-              Därför arbetar jag gärna med enkla rörelser, promenader och små
-              pauser där ni får vara med varandra medan jag fångar känslan.
+              Eftersom jag utgår från Kungälv kan planeringen börja i platsen ni
+              har valt och hur vigsel, porträtt och familjebilder passar in i
+              dagens tider. Bokningen sker genom personlig kontakt.
             </p>
             <LinkButton
-              to="/guider/brollopsbilder-promenad/"
+              to="/weddings/"
               variant="outline"
               size="lg"
               subVariant="rounded"
               className="mt-6 px-8 font-semibold"
             >
-              Läs guide om promenadbilder
-            </LinkButton>
-            <LinkButton
-              to="/guider/brollopsplanerare/"
-              variant="outline"
-              size="lg"
-              subVariant="rounded"
-              className="ml-0 mt-4 px-8 font-semibold sm:ml-3"
-            >
-              Checklista för bröllopsbilder
+              Jämför paket och priser
             </LinkButton>
           </div>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {planningTips.map((tip) => (
+            {localServiceFacts.map((fact) => (
               <InfoCard
-                key={tip.title}
-                title={tip.title}
-                description={tip.description}
+                key={fact.title}
+                title={fact.title}
+                description={fact.description}
                 className="bg-white p-6"
               />
             ))}
@@ -208,17 +187,17 @@ export default function WeddingPhotographerKungalv() {
 
           <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] md:p-8">
             <h2 className="mb-4 text-2xl font-semibold text-textPrimary">
-              Promenadbilder för paret
+              Ett verkligt bröllop i Kungälv
             </h2>
             <p className="mb-4 text-base leading-relaxed text-textSecondary">
-              En promenad fungerar särskilt bra om ni vill ha bilder där ni får
-              vara lite mer för er själva. Det kan vara nära vigselplatsen, vid
-              en promenadslinga eller i en miljö som redan betyder något för er.
+              Kersti och Jakob valde ett nära upplägg med en vårpromenad,
+              vigseln och bilder tillsammans med familjen. Promenaden gav dem
+              utrymme att vara med varandra medan bildberättelsen växte fram.
             </p>
             <p className="mb-6 text-base leading-relaxed text-textSecondary">
-              Det viktigaste är att det finns utrymme att gå, stanna till och
-              byta riktning utan att det känns som en lång fotografering. Då kan
-              bilderna bli mer levande och mindre poserade.
+              Caset visar det färdiga uppdraget och bildkänslan. Den här sidan
+              fokuserar i stället på den lokala tjänsten och hur ni går vidare
+              med en egen förfrågan.
             </p>
             <LinkButton
               to="/brollop/kungalv/"
@@ -227,7 +206,7 @@ export default function WeddingPhotographerKungalv() {
               subVariant="rounded"
               className="px-8 font-semibold"
             >
-              Se exempel från Kungälv
+              Se Kersti och Jakobs bröllop
             </LinkButton>
           </div>
         </section>
@@ -235,17 +214,16 @@ export default function WeddingPhotographerKungalv() {
         <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:grid-cols-[1.05fr_0.95fr] lg:rounded-[3rem]">
           <div className="rounded-[2rem] border border-black/5 bg-white p-6 shadow-[0_18px_45px_-28px_rgba(31,41,55,0.2)] md:p-8">
             <h2 className="mb-4 text-2xl font-semibold text-textPrimary">
-              Upplägg för bröllop i Kungälv
+              Boka bröllopsfotografering i Kungälv
             </h2>
             <p className="mb-4 text-base leading-relaxed text-textSecondary">
-              Fotograferingen kan vara kort och fokuserad eller täcka fler
-              delar av dagen. För ett mindre upplägg kan vigsel, familj och
-              porträtt räcka långt.
+              Skicka datum, plats och vilka delar av dagen ni vill ha
+              fotograferade. Då kan vi stämma av tillgänglighet och vilket
+              upplägg som passar ert bröllop.
             </p>
             <p className="text-base leading-relaxed text-textSecondary">
-              Om ni planerar en längre dag går det att lägga till förberedelser,
-              first look, mingel och fest. Jag anpassar upplägget efter vad ni
-              vill kunna minnas efteråt.
+              Priser och omfattning för kort vigsel, halvdag och heldag finns
+              samlade på den regionala bröllopssidan.
             </p>
           </div>
 
@@ -266,45 +244,13 @@ export default function WeddingPhotographerKungalv() {
           </div>
         </section>
 
-        {kungalvGalleryImages.length > 0 && (
-          <section className="mx-auto mb-14 max-w-6xl rounded-[2.25rem] bg-custom-beige px-5 py-8 shadow-[0_18px_45px_-34px_rgba(31,41,55,0.16)] md:px-8 md:py-10 lg:rounded-[3rem]">
-            <div className="mb-8 max-w-3xl">
-              <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
-                Fler bröllopsbilder från Kungälv
-              </h2>
-              <p className="text-base leading-relaxed text-textSecondary">
-                Några fler bilder från bröllop i Kungälv, som visar hur både
-                miljö, detaljer och kortare porträttstunder kan få ta plats i
-                ett personligt upplägg.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {kungalvGalleryImages.map((image, index) => (
-                <figure
-                  key={image}
-                  className="overflow-hidden rounded-[1.75rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]"
-                >
-                  <ResponsiveImage
-                    image={image}
-                    alt={`Bröllopsbild från Kungälv ${index + 1}`}
-                    className="h-[22rem] w-full object-cover lg:h-[18rem]"
-                    sizes="(min-width: 1024px) 280px, (min-width: 640px) 50vw, 100vw"
-                    loading="lazy"
-                  />
-                </figure>
-              ))}
-            </div>
-          </section>
-        )}
-
         <CTASection
           className="rounded-[2.25rem] bg-white/82 lg:rounded-[3rem]"
           title="Letar ni efter bröllopsfotograf i Kungälv?"
           description="Berätta lite om er dag, platsen och vilken typ av bilder ni hoppas på, så återkommer jag med ett upplägg som passar."
           actions={[
             { to: '/contact/', label: 'Skicka förfrågan' },
-            { to: '/weddings/', label: 'Se bröllopssidan', variant: 'outline' },
+            { to: '/weddings/', label: 'Jämför paket och priser', variant: 'outline' },
           ]}
         />
       </main>

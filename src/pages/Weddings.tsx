@@ -174,12 +174,12 @@ export default function WeddingGallery() {
               Bröllop
             </p>
             <h1 className="mb-5 max-w-2xl text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-              Tidlösa bröllopsbilder med närvaro, känsla och plats för er berättelse
+              Bröllopsfotografering för kort vigsel, halvdag och heldag
             </h1>
             <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
-              Bröllopsfotografering i Göteborg och Kungälv för er som vill ha
-              naturliga, personliga bilder där både de stora ögonblicken och de
-              små detaljerna får ta plats.
+              Jämför bröllopspaket för olika delar av dagen och välj hur mycket
+              ni vill få dokumenterat. Jag utgår från Kungälv och fotograferar
+              även i Göteborg, Stenungsund och andra orter enligt överenskommelse.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               {weddingFacts.map((fact) => (
@@ -190,6 +190,25 @@ export default function WeddingGallery() {
                   {fact}
                 </span>
               ))}
+            </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <LinkButton
+                to="/contact/"
+                size="lg"
+                subVariant="rounded"
+                className="px-8 font-semibold"
+              >
+                Fråga om ert datum
+              </LinkButton>
+              <LinkButton
+                to="/brollop/"
+                variant="outline"
+                size="lg"
+                subVariant="rounded"
+                className="px-8 font-semibold"
+              >
+                Se verkliga bröllop
+              </LinkButton>
             </div>
           </div>
 
