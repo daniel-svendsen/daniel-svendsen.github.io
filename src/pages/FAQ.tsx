@@ -6,10 +6,10 @@ import { LinkButton } from '@/components/Button'
 import { EditorialIntro, EditorialSection } from '@/components/Editorial'
 import SEO from '@/components/SEO'
 import { PRICING } from '@/config/pricing'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
 
 export default function FAQ() {
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('faq')
 
   const faqs = [
     {
@@ -75,7 +75,8 @@ export default function FAQ() {
         title="Vanliga frågor - Svendsén Photography"
         description="Har du frågor om fotografering, priser och bokning? Här hittar du svar på vanliga frågor om våra tjänster i Göteborg och Kungälv."
         url="https://www.svendsenphotography.com/faq/"
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         keywords="fotograf FAQ, fotografering frågor, familjefotograf, bröllopsfotograf pris, hur bokar man en fotograf, fotograf göteborg kungälv"
         jsonLd={faqJsonLd}
         breadcrumbs={[

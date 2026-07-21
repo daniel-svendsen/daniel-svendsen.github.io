@@ -5,7 +5,7 @@ import { InfoCard } from '@/components/InfoCard'
 import { LinkButton } from '@/components/Button'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
 
 const timelineImages = Object.entries(
   import.meta.glob(
@@ -118,7 +118,7 @@ const guideFaqs = [
 ]
 
 export default function WeddingTimelineGuide() {
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('weddingTimelineGuide')
 
   const guideJsonLd = {
     '@context': 'https://schema.org',
@@ -139,7 +139,8 @@ export default function WeddingTimelineGuide() {
         title="Bröllopstidslinje för fotografering | Guide | Svendsén Photography"
         description="Guide till bröllopstidslinje för fotografering med exempel för kort vigsel, halvdag och heldag, plus tid för familjebilder och porträtt."
         url="https://www.svendsenphotography.com/guider/brollopstidslinje/"
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         jsonLd={guideJsonLd}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },

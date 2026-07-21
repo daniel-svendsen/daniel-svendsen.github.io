@@ -5,7 +5,7 @@ import { InfoCard } from '@/components/InfoCard'
 import { LinkButton } from '@/components/Button'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
 import { businessReference } from '@/config/seo'
 
 const kungalvHeroImages = Object.entries(
@@ -72,7 +72,7 @@ const localFaqs = [
 ]
 
 export default function WeddingPhotographerKungalv() {
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('weddingPhotographerKungalv')
 
   const serviceJsonLd = {
     '@context': 'https://schema.org',
@@ -92,7 +92,8 @@ export default function WeddingPhotographerKungalv() {
         title="Bröllopsfotograf i Kungälv | Naturliga bröllopsbilder | Svendsén Photography"
         description="Söker ni bröllopsfotograf i Kungälv? Jag fotograferar vigsel, familj och naturliga porträtt med lugn känsla och plats för promenadbilder."
         url="https://www.svendsenphotography.com/brollopsfotograf-kungalv/"
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         jsonLd={serviceJsonLd}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },

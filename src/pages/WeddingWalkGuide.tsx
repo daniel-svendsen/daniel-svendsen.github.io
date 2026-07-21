@@ -5,7 +5,7 @@ import { InfoCard } from '@/components/InfoCard'
 import { LinkButton } from '@/components/Button'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
 
 const guideImages = Object.entries(
   import.meta.glob(
@@ -76,7 +76,7 @@ const guideFaqs = [
 ]
 
 export default function WeddingWalkGuide() {
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('weddingWalkGuide')
 
   const guideJsonLd = {
     '@context': 'https://schema.org',
@@ -97,7 +97,8 @@ export default function WeddingWalkGuide() {
         title="Promenadbilder på bröllopsdagen | Guide | Svendsén Photography"
         description="Guide till promenadbilder på bröllopsdagen: hur lång tid ni behöver, vad ni kan tänka på och fina miljöer i Kungälv och Stenungsund."
         url="https://www.svendsenphotography.com/guider/brollopsbilder-promenad/"
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         jsonLd={guideJsonLd}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },

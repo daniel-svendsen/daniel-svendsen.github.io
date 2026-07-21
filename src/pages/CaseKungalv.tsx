@@ -5,7 +5,7 @@ import { InfoCard } from '@/components/InfoCard'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { caseStudyBySlug } from '@/data/cases'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
 
 const caseStudy = caseStudyBySlug['brollop-kungalv']
 
@@ -24,7 +24,7 @@ const caseImages = Object.entries(
 const getImage = (index: number) => caseImages[index] ?? caseImages[0] ?? ''
 
 export default function CaseKungalv() {
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('weddingCaseKungalv')
 
   return (
     <>
@@ -32,7 +32,8 @@ export default function CaseKungalv() {
         title="Bröllop i Kungälv | Kersti & Jakob | Svendsén Photography"
         description="Bröllopsfotografering i Kungälv med promenadporträtt, vitsippor, vigsel och familjebilder i en lugn och personlig stil."
         url="https://www.svendsenphotography.com/brollop/kungalv/"
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
           {

@@ -5,13 +5,13 @@ import { Button } from '@/components/Button'
 import { EditorialIntro, EditorialSection } from '@/components/Editorial'
 import SEO from '@/components/SEO'
 import { BUSINESS, businessReference } from '@/config/seo'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
 
 export default function Contact() {
   const [selectedService, setSelectedService] = useState<string>('')
   const [formStatus, setFormStatus] = useState<'success' | 'error' | null>(null)
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('contact')
 
   const services = [
     'Utefotografering',
@@ -91,7 +91,8 @@ export default function Contact() {
         title="Boka fotograf i Göteborg, Kungälv & Stenungsund | Kontakt"
         description="Boka fotograf eller be om offert för bröllop, porträtt, familjefoto, företagsfoto och webbutveckling i Göteborg, Kungälv och Stenungsund."
         url="https://www.svendsenphotography.com/contact/"
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         keywords="boka fotograf, kontakt fotograf, offert fotografering, fotograf göteborg, fotograf kungälv, fotograf stenungsund, familjefotograf göteborg, webbutvecklare kungälv"
         jsonLd={contactJsonLd}
         breadcrumbs={[

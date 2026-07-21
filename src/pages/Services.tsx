@@ -17,7 +17,8 @@ import {
   Smile,
   Sparkles,
 } from 'lucide-react'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
+import { toAbsoluteUrl } from '@/utils/utils'
 import { getImageSrc, type ResponsiveImageAsset } from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
 import { PRICING } from '@/config/pricing'
@@ -111,7 +112,7 @@ const renderDescriptionLine = (line: string) => {
 }
 
 export default function Services() {
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('services')
   const photographyPageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -189,7 +190,8 @@ export default function Services() {
         description="Söker du fotograf i Kungälv, Göteborg eller Stenungsund? Jag fotograferar bröllop, porträtt, familj, företag, event och verksamheter."
         url="https://www.svendsenphotography.com/services/"
         jsonLd={photographyPageJsonLd}
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
           {

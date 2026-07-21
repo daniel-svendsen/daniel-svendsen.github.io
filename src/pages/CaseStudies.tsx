@@ -5,10 +5,10 @@ import { InfoCard } from '@/components/InfoCard'
 import SEO from '@/components/SEO'
 import { LinkButton } from '@/components/Button'
 import { caseStudies } from '@/data/cases'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
 
 export default function CaseStudies() {
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('weddingCases')
   const caseStudyJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -24,7 +24,8 @@ export default function CaseStudies() {
         title="Bröllop jag fotograferat | Kungälv och Stenungsund | Svendsén Photography"
         description="Se bröllop jag fotograferat i Kungälv och Stenungsund, med fokus på promenadporträtt, vigsel, mingel och personliga bilder."
         url="https://www.svendsenphotography.com/brollop/"
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         jsonLd={caseStudyJsonLd}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },

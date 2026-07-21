@@ -6,7 +6,7 @@ import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { useImportedImages } from '../hooks/useImportedImages'
 import { useShuffledImages } from '../hooks/useShuffleImages'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
 import { getImageSrc, type ImageAsset } from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
 import { PRICING } from '@/config/pricing'
@@ -130,7 +130,7 @@ export default function Portraits() {
     src: ImageAsset
     alt: string
   } | null>(null)
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('portraits')
 
   useEffect(() => {
     if (selectedImage) {
@@ -161,7 +161,8 @@ export default function Portraits() {
         title="Porträttfotograf i Kungälv, Göteborg & Stenungsund | Svendsén Photography"
         description="Söker du porträttfotograf i Kungälv, Göteborg eller Stenungsund? Jag fotograferar naturliga porträtt, familjebilder och profilbilder för privatpersoner, kreatörer och företag."
         url="https://www.svendsenphotography.com/portraits/"
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         jsonLd={portraitsJsonLd}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },

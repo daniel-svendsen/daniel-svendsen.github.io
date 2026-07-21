@@ -5,7 +5,7 @@ import { InfoCard } from '@/components/InfoCard'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { caseStudyBySlug } from '@/data/cases'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
 
 const caseStudy = caseStudyBySlug['brollop-stenungsund']
 
@@ -24,7 +24,7 @@ const caseImages = Object.entries(
 const getImage = (index: number) => caseImages[index] ?? caseImages[0] ?? ''
 
 export default function CaseStenungsund() {
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('weddingCaseStenungsund')
 
   return (
     <>
@@ -32,7 +32,8 @@ export default function CaseStenungsund() {
         title="Bröllop i Stenungsund | Rebecka & Aron | Svendsén Photography"
         description="Ett heldagsbröllop i Stenungsund med first look, vigsel, mingel, middag, fest och lugna parbilder vid vassen."
         url="https://www.svendsenphotography.com/brollop/stenungsund/"
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
           {

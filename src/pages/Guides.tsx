@@ -3,7 +3,7 @@ import React from 'react'
 import { LinkButton } from '@/components/Button'
 import { EditorialIntro, EditorialSection } from '@/components/Editorial'
 import SEO from '@/components/SEO'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
 
 const guideCards = [
   {
@@ -41,7 +41,7 @@ const guideCards = [
 ]
 
 export default function Guides() {
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('guides')
 
   return (
     <>
@@ -49,7 +49,8 @@ export default function Guides() {
         title="Guider för bröllopsbilder | Svendsén Photography"
         description="Guider för er som planerar bröllopsbilder med naturlig känsla, promenadporträtt och personliga upplägg."
         url="https://www.svendsenphotography.com/guider/"
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
           {

@@ -18,11 +18,29 @@ function countMatches(value, pattern) {
   return value.match(pattern)?.length ?? 0
 }
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function getMetaContent(html, attribute, value) {
+  const tag = html.match(
+    new RegExp(`<meta[^>]+${attribute}="${escapeRegExp(value)}"[^>]*>`),
+  )?.[0]
+
+  return tag?.match(/content="([^"]*)"/)?.[1]
+}
+
+function getCanonicalHref(html) {
+  return html.match(/<link[^>]+rel="canonical"[^>]+href="([^"]+)"/)?.[1]
+}
+
 async function verifyGeneratedSeo() {
   assertBuild(
     new Set(prerenderRoutes).size === prerenderRoutes.length,
     'prerender routes must be unique',
   )
+
+  const renderedMetadata = []
 
   for (const route of prerenderRoutes) {
     const outputPath =
@@ -31,6 +49,22 @@ async function verifyGeneratedSeo() {
         : path.join(distDir, route.replace(/^\/|\/$/g, ''), 'index.html')
     const html = await fs.readFile(outputPath, 'utf8')
     const canonical = `${siteUrl}${route}`
+    const title = html.match(/<title(?:\s[^>]*)?>([\s\S]*?)<\/title>/)?.[1]
+    const description = getMetaContent(html, 'name', 'description')
+    const canonicalHref = getCanonicalHref(html)
+    const ogTitle = getMetaContent(html, 'property', 'og:title')
+    const ogDescription = getMetaContent(html, 'property', 'og:description')
+    const ogUrl = getMetaContent(html, 'property', 'og:url')
+    const ogImage = getMetaContent(html, 'property', 'og:image')
+    const ogImageAlt = getMetaContent(html, 'property', 'og:image:alt')
+    const twitterTitle = getMetaContent(html, 'name', 'twitter:title')
+    const twitterDescription = getMetaContent(
+      html,
+      'name',
+      'twitter:description',
+    )
+    const twitterImage = getMetaContent(html, 'name', 'twitter:image')
+    const twitterImageAlt = getMetaContent(html, 'name', 'twitter:image:alt')
 
     assertBuild(
       countMatches(html, /<title(?:\s[^>]*)?>[\s\S]*?<\/title>/g) === 1,
@@ -42,8 +76,26 @@ async function verifyGeneratedSeo() {
     )
     assertBuild(
       countMatches(html, /<link[^>]+rel="canonical"/g) === 1 &&
-        html.includes(`href="${canonical}"`),
+        canonicalHref === canonical,
       `${route} must contain exactly one matching canonical`,
+    )
+    assertBuild(
+      ogTitle === title && twitterTitle === title,
+      `${route} OG and Twitter titles must match the page title`,
+    )
+    assertBuild(
+      ogDescription === description && twitterDescription === description,
+      `${route} OG and Twitter descriptions must match the meta description`,
+    )
+    assertBuild(ogUrl === canonical, `${route} OG URL must match the canonical`)
+    assertBuild(
+      Boolean(ogImage) && ogImage.startsWith('https://'),
+      `${route} must contain one absolute OG image`,
+    )
+    assertBuild(Boolean(ogImageAlt), `${route} must contain OG image alt text`)
+    assertBuild(
+      twitterImage === ogImage && twitterImageAlt === ogImageAlt,
+      `${route} Twitter image metadata must match Open Graph`,
     )
     assertBuild(
       countMatches(html, /<meta[^>]+name="robots"/g) === 0,
@@ -52,6 +104,29 @@ async function verifyGeneratedSeo() {
     assertBuild(
       !html.includes('<div id="root"></div>'),
       `${route} must contain prerendered app content`,
+    )
+
+    renderedMetadata.push({
+      route,
+      title,
+      description,
+      canonical: canonicalHref,
+      image: ogImage,
+      imageAlt: ogImageAlt,
+    })
+  }
+
+  for (const field of [
+    'title',
+    'description',
+    'canonical',
+    'image',
+    'imageAlt',
+  ]) {
+    const values = renderedMetadata.map((metadata) => metadata[field])
+    assertBuild(
+      values.every(Boolean) && new Set(values).size === values.length,
+      `public route ${field} values must be complete and unique`,
     )
   }
 

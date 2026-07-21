@@ -8,6 +8,7 @@ interface SEOProps {
   description: string
   url: string
   image?: string
+  imageAlt?: string
   keywords?: string
   jsonLd?: Record<string, any>
   breadcrumbs?: Array<{
@@ -23,6 +24,7 @@ const SEO: React.FC<SEOProps> = ({
   description,
   url,
   image,
+  imageAlt,
   keywords,
   jsonLd,
   breadcrumbs,
@@ -56,6 +58,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       {image && <meta property="og:image" content={image} />}
+      {image && imageAlt && <meta property="og:image:alt" content={imageAlt} />}
       <meta property="og:url" content={url} />
       <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={BUSINESS.name} />
@@ -69,6 +72,9 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       {image && <meta name="twitter:image" content={image} />}
+      {image && imageAlt && (
+        <meta name="twitter:image:alt" content={imageAlt} />
+      )}
 
       {jsonLd && (
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>

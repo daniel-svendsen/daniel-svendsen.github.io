@@ -13,7 +13,7 @@ import HeroSection from '../components/HeroSection'
 import forprosImg from '@/assets/movies/img-optimized.jpg?responsive'
 import forprosVideo from '@/assets/movies/forpros1.mp4'
 import { homeCards } from '../data/cards'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
 import { businessJsonLd, SITE_URL } from '@/config/seo'
 import { getImageSrc } from '@/utils/responsiveImages'
 
@@ -66,7 +66,7 @@ const processSteps = [
 export default function Home() {
   const [isCarouselVisible, setIsCarouselVisible] = useState(false)
   const carouselRef = useRef<HTMLDivElement>(null)
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('home')
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout
@@ -106,7 +106,8 @@ export default function Home() {
         title="Fotograf i Kungälv, Stenungsund & Göteborg - Svendsén Photography"
         description="Fotograf för bröllop, porträtt, familj, företag, event och verksamheter i Kungälv, Stenungsund och Göteborg. Boka din fotografering idag!"
         url={`${SITE_URL}/`}
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         keywords="fotograf kungälv, fotograf stenungsund, fotograf göteborg, bröllopsfotograf, porträttfotograf, familjefotograf, familjefoto, företagsfotograf, eventfotograf"
         jsonLd={businessJsonLd}
         breadcrumbs={[{ name: 'Hem', url: `${SITE_URL}/` }]}

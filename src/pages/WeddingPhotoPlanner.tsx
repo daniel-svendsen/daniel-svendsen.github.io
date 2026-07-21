@@ -4,7 +4,7 @@ import { Button, LinkButton } from '@/components/Button'
 import { CTASection } from '@/components/CTASection'
 import { InfoCard } from '@/components/InfoCard'
 import SEO from '@/components/SEO'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
 
 interface PlannerSection {
   title: string
@@ -166,7 +166,7 @@ const buildInitialNotes = () =>
   }, {})
 
 export default function WeddingPhotoPlanner() {
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('weddingPhotoPlanner')
   const [checkedItems, setCheckedItems] = useState(buildInitialChecked)
   const [notes, setNotes] = useState(buildInitialNotes)
 
@@ -259,7 +259,8 @@ export default function WeddingPhotoPlanner() {
         title="Checklista för bröllopsfotografering | Skriv ut & planera bilderna"
         description="Kryssa i viktiga bröllopsbilder, skriv egna anteckningar och skriv ut eller ladda ner en enkel checklista för bröllopsfotografering."
         url="https://www.svendsenphotography.com/guider/brollopsplanerare/"
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         jsonLd={plannerJsonLd}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },

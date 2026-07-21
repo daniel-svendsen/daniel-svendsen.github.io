@@ -1,9 +1,9 @@
 import React from 'react'
 import SEO from '@/components/SEO'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
 
 export default function PrivacyPolicy() {
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('privacy')
 
   const privacyJsonLd = {
     '@context': 'https://schema.org',
@@ -19,7 +19,8 @@ export default function PrivacyPolicy() {
         title="Privacy Policy - Svendsén Photography"
         description="Read about how Svendsén Photography handles your personal data and website cookies."
         url="https://www.svendsenphotography.com/privacy/"
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         keywords="privacy policy, cookie policy, integritetspolicy, cookies, Svendsén Photography"
         jsonLd={privacyJsonLd}
       />

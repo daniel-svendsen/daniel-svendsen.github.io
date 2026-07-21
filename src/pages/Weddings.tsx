@@ -7,7 +7,7 @@ import { Modal } from '../components/Modal'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import { useImportedImages } from '../hooks/useImportedImages'
 import { useShuffledImages } from '../hooks/useShuffleImages'
-import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
+import { getPageOgImage } from '@/config/pageSeo'
 import { getImageSrc, type ImageAsset } from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
 import { PRICING } from '@/config/pricing'
@@ -124,7 +124,7 @@ export default function WeddingGallery() {
     src: ImageAsset
     alt: string
   } | null>(null)
-  const absoluteLogoUrl = toAbsoluteUrl(SITE_CONFIG.defaultOgImage)
+  const ogImage = getPageOgImage('weddings')
 
   useEffect(() => {
     if (selectedWeddingImage) {
@@ -155,7 +155,8 @@ export default function WeddingGallery() {
         title="Bröllopsfotograf i Göteborg & Kungälv | Tidlösa bröllopsbilder | Svendsén Photography"
         description="Söker ni en bröllopsfotograf i Göteborg eller Kungälv? Svendsén Photography dokumenterar er dag med naturliga, personliga och tidlösa bilder."
         url="https://www.svendsenphotography.com/weddings/"
-        image={absoluteLogoUrl}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         jsonLd={weddingsJsonLd}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },

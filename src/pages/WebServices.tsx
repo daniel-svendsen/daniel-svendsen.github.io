@@ -5,13 +5,13 @@ import { LinkButton } from '@/components/Button'
 import { EditorialIntro, EditorialSection } from '@/components/Editorial'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
+import { getPageOgImage } from '@/config/pageSeo'
 import { businessReference, BUSINESS } from '@/config/seo'
 import webdevImage from '../assets/webdev-optimized.jpg?responsive'
 import { getImageSrc } from '@/utils/responsiveImages'
-import { toAbsoluteUrl } from '@/utils/utils'
 
 export default function WebServicesPage() {
-  const absoluteSpecificImage = toAbsoluteUrl(getImageSrc(webdevImage))
+  const ogImage = getPageOgImage('webservices')
   const pageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebService',
@@ -98,7 +98,8 @@ export default function WebServicesPage() {
         description="Behöver du en hemsida för ditt företag? Jag bygger moderna, snabba och tydliga webbplatser för små företag i Göteborg och Kungälv."
         url="https://www.svendsenphotography.com/webservices/"
         jsonLd={pageJsonLd}
-        image={absoluteSpecificImage}
+        image={ogImage.src}
+        imageAlt={ogImage.alt}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
           {
