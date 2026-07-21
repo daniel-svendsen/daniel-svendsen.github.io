@@ -6,6 +6,10 @@ import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { caseStudyBySlug } from '@/data/cases'
 import { getPageOgImage } from '@/config/pageSeo'
+import {
+  getImageSrc,
+  type ResponsiveImageAsset,
+} from '@/utils/responsiveImages'
 
 const caseStudy = caseStudyBySlug['brollop-stenungsund']
 
@@ -15,13 +19,14 @@ const caseImages = Object.entries(
     {
       eager: true,
       import: 'default',
+      query: '?responsive',
     },
   ),
 )
   .sort(([a], [b]) => a.localeCompare(b))
-  .map(([, image]) => image as string)
+  .map(([, image]) => image as ResponsiveImageAsset)
 
-const getImage = (index: number) => caseImages[index] ?? caseImages[0] ?? ''
+const getImage = (index: number) => caseImages[index] ?? caseImages[0]
 
 export default function CaseStenungsund() {
   const ogImage = getPageOgImage('weddingCaseStenungsund')
@@ -126,7 +131,7 @@ export default function CaseStenungsund() {
         <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[getImage(2), getImage(4), getImage(5)].map((image, index) => (
             <figure
-              key={image}
+              key={getImageSrc(image)}
               className="overflow-hidden rounded-[1.75rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]"
             >
               <ResponsiveImage

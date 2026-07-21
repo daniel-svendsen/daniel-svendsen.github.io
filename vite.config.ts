@@ -64,7 +64,11 @@ function responsiveImagesPlugin(): Plugin {
       const originalWidth = metadata.width ?? responsiveWidths[0]
       const originalHeight = metadata.height
       const outputWidths = responsiveWidths.filter((width) => width < originalWidth)
-      outputWidths.push(originalWidth)
+      const largestResponsiveWidth = responsiveWidths.at(-1) ?? originalWidth
+
+      if (originalWidth <= largestResponsiveWidth) {
+        outputWidths.push(originalWidth)
+      }
 
       const imageName = getResponsiveImageName(root, filePath)
       const originalFileName = `${responsiveAssetDir}/${imageName}${path.extname(filePath)}`

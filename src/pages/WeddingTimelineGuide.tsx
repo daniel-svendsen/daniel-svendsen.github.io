@@ -6,6 +6,7 @@ import { LinkButton } from '@/components/Button'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
+import { type ResponsiveImageAsset } from '@/utils/responsiveImages'
 
 const timelineImages = Object.entries(
   import.meta.glob(
@@ -13,13 +14,14 @@ const timelineImages = Object.entries(
     {
       eager: true,
       import: 'default',
+      query: '?responsive',
     },
   ),
 )
   .sort(([a], [b]) => a.localeCompare(b))
-  .map(([, image]) => image as string)
+  .map(([, image]) => image as ResponsiveImageAsset)
 
-const getImage = (index: number) => timelineImages[index] ?? timelineImages[0] ?? ''
+const getImage = (index: number) => timelineImages[index] ?? timelineImages[0]
 
 const timelineBlocks = [
   {
