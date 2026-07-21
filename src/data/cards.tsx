@@ -54,8 +54,8 @@ export const serviceCards = [
 Extra bilder kan köpas till för ${PRICING.portrait.extraImage}
 Passar för CV, LinkedIn, sociala medier, familjeporträtt och generationsbilder`,
     price: PRICING.portrait.baseFrom,
-    buttonText: 'Kontakt',
-    buttonLink: '/contact/',
+    buttonText: 'Se porträtt & familj',
+    buttonLink: '/portraits/',
     icon: Users,
   },
   {
@@ -69,8 +69,8 @@ Filmalternativ
 Highlightfilm (3-5 min) -> ${PRICING.wedding.highlightFilmWithPhoto} vid fotopaket / ${PRICING.wedding.highlightFilmStandalone} enskilt
 Extra timmar utöver paketen -> ${PRICING.wedding.extraHour}`,
     price: PRICING.wedding.shortFrom,
-    buttonText: 'Kontakt',
-    buttonLink: '/contact/',
+    buttonText: 'Se bröllopspaket',
+    buttonLink: '/weddings/',
     icon: Camera,
   },
   {
@@ -82,7 +82,7 @@ Verksamhets- och hobbyfoto för miljöer, fordon, föreningar och personliga pro
 Produktfotografering -> startpaket från ${PRICING.business.productStartFrom} ${PRICING.business.taxNote}, extra bilder från ${PRICING.business.productExtraImageFrom}
 Filmning för reklam och presentationer -> offert vid förfrågan`,
     price: `Från ${PRICING.business.portraitFrom}`,
-    buttonText: 'Kontakt',
+    buttonText: 'Be om offert',
     buttonLink: '/contact/',
     icon: Briefcase,
   },
@@ -94,8 +94,8 @@ Företagswebbplats (flersidig) -> från ${PRICING.web.websiteFrom}
 SEO-optimering och support -> från ${PRICING.web.seoSupportFrom}
 Helhetspaket med fotografering och hemsida -> offert vid förfrågan`,
     price: `Från ${PRICING.web.landingPageFrom}`,
-    buttonText: 'Kontakt',
-    buttonLink: '/contact/',
+    buttonText: 'Se webbtjänster',
+    buttonLink: '/webservices/',
     icon: Code,
   },
 ]
