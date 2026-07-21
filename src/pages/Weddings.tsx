@@ -11,6 +11,28 @@ import { getPageOgImage } from '@/config/pageSeo'
 import { getImageSrc, type ImageAsset } from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
 import { PRICING } from '@/config/pricing'
+import featuredWeddingKiss from '../assets/weddings/DSC09579.jpg?responsive'
+import featuredWeddingBlackAndWhite from '../assets/weddings/portraits-3.jpg?responsive'
+import featuredWeddingForest from '../assets/weddings/portraits-17.jpg?responsive'
+
+const featuredWeddings = [
+  {
+    image: featuredWeddingKiss,
+    alt: 'Bröllopspar som kysser varandra i högt gräs',
+  },
+  {
+    image: featuredWeddingBlackAndWhite,
+    alt: 'Svartvit bröllopsbild av ett par som håller handen utomhus',
+  },
+  {
+    image: featuredWeddingForest,
+    alt: 'Bröllopspar som promenerar tillsammans i grönskande skog',
+  },
+]
+
+const featuredWeddingSources = new Set(
+  featuredWeddings.map(({ image }) => getImageSrc(image)),
+)
 
 const weddingIncludes = [
   'Bröllopsporträtt med fokus på närvaro och naturlig känsla',
@@ -112,12 +134,11 @@ const weddingFaqs = [
 export default function WeddingGallery() {
   const { weddings: weddingImages } = useImportedImages(['weddings'])
   const shuffledWeddingImages = useShuffledImages(weddingImages || [])
-  const featuredImages = useMemo(
-    () => shuffledWeddingImages.slice(0, 3),
-    [shuffledWeddingImages],
-  )
   const galleryImages = useMemo(
-    () => shuffledWeddingImages.slice(3),
+    () =>
+      shuffledWeddingImages.filter(
+        (image) => !featuredWeddingSources.has(getImageSrc(image)),
+      ),
     [shuffledWeddingImages],
   )
   const [selectedWeddingImage, setSelectedWeddingImage] = useState<{
@@ -229,49 +250,42 @@ export default function WeddingGallery() {
           </div>
         </header>
 
-        {featuredImages.length > 0 && (
-          <section
-            aria-label="Utvalda bröllopsbilder"
-            className="mx-auto mb-12 grid max-w-6xl grid-cols-1 gap-4 rounded-[1.75rem] border border-black/6 bg-white px-4 py-4 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-5 md:py-5 lg:grid-cols-[1.2fr_0.8fr]"
-          >
-            <figure className="group relative overflow-hidden rounded-[2rem]">
-              <ResponsiveImage
-                image={featuredImages[0]}
-                alt="Utvald bröllopsbild"
-                sizes="(min-width: 1024px) 670px, 100vw"
-                className="h-[28rem] w-full cursor-pointer object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-[38rem]"
-                onClick={() =>
-                  setSelectedWeddingImage({
-                    src: featuredImages[0],
-                    alt: 'Utvald bröllopsbild',
-                  })
-                }
-              />
-            </figure>
+        <section
+          aria-label="Utvalda bröllopsbilder"
+          className="mx-auto mb-12 grid max-w-6xl grid-cols-1 gap-4 rounded-[1.75rem] border border-black/6 bg-white px-4 py-4 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-5 md:py-5 lg:grid-cols-[1.2fr_0.8fr]"
+        >
+          <figure className="group relative overflow-hidden rounded-[2rem]">
+            <ResponsiveImage
+              image={featuredWeddings[0].image}
+              alt={featuredWeddings[0].alt}
+              sizes="(min-width: 1024px) 670px, 100vw"
+              className="h-[28rem] w-full cursor-pointer object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-[38rem]"
+              onClick={() =>
+                setSelectedWeddingImage({
+                  src: featuredWeddings[0].image,
+                  alt: featuredWeddings[0].alt,
+                })
+              }
+            />
+          </figure>
 
-            <div className="grid grid-cols-1 gap-4">
-              {featuredImages.slice(1).map((src, index) => (
-                <figure
-                  key={getImageSrc(src)}
-                  className="group relative overflow-hidden rounded-[2rem]"
-                >
-                  <ResponsiveImage
-                    image={src}
-                    alt={`Utvald bröllopsbild ${index + 2}`}
-                    sizes="(min-width: 1024px) 430px, 100vw"
-                    className="h-[13.5rem] w-full cursor-pointer object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-[18.6rem]"
-                    onClick={() =>
-                      setSelectedWeddingImage({
-                        src,
-                        alt: `Utvald bröllopsbild ${index + 2}`,
-                      })
-                    }
-                  />
-                </figure>
-              ))}
-            </div>
-          </section>
-        )}
+          <div className="grid grid-cols-1 gap-4">
+            {featuredWeddings.slice(1).map(({ image, alt }) => (
+              <figure
+                key={getImageSrc(image)}
+                className="group relative overflow-hidden rounded-[2rem]"
+              >
+                <ResponsiveImage
+                  image={image}
+                  alt={alt}
+                  sizes="(min-width: 1024px) 430px, 100vw"
+                  className="h-[13.5rem] w-full cursor-pointer object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-[18.6rem]"
+                  onClick={() => setSelectedWeddingImage({ src: image, alt })}
+                />
+              </figure>
+            ))}
+          </div>
+        </section>
 
         <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
           <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-6 md:p-8">

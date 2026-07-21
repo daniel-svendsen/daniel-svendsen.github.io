@@ -10,6 +10,28 @@ import { getPageOgImage } from '@/config/pageSeo'
 import { getImageSrc, type ImageAsset } from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
 import { PRICING } from '@/config/pricing'
+import featuredPortraitBaby from '../assets/portraits/portraits-2.jpg?responsive'
+import featuredPortraitChildren from '../assets/portraits/portraits-13.jpg?responsive'
+import featuredPortraitMan from '../assets/portraits/portraits-17.jpg?responsive'
+
+const featuredPortraits = [
+  {
+    image: featuredPortraitBaby,
+    alt: 'Baby i röd tröja fotograferad mot ljus bakgrund',
+  },
+  {
+    image: featuredPortraitChildren,
+    alt: 'Två barn vid en trehjuling intill ett stort fönster',
+  },
+  {
+    image: featuredPortraitMan,
+    alt: 'Svartvitt porträtt av en man med hatt',
+  },
+]
+
+const featuredPortraitSources = new Set(
+  featuredPortraits.map(({ image }) => getImageSrc(image)),
+)
 
 const portraitUseCases = [
   'Profilbilder för LinkedIn, CV och personligt varumärke',
@@ -121,11 +143,13 @@ export default function Portraits() {
   const imagesData = useImportedImages(['portraits'])
   const images = imagesData.portraits || []
   const shuffledImages = useShuffledImages(images)
-  const featuredImages = useMemo(
-    () => shuffledImages.slice(0, 3),
+  const galleryImages = useMemo(
+    () =>
+      shuffledImages.filter(
+        (image) => !featuredPortraitSources.has(getImageSrc(image)),
+      ),
     [shuffledImages],
   )
-  const galleryImages = useMemo(() => shuffledImages.slice(3), [shuffledImages])
   const [selectedImage, setSelectedImage] = useState<{
     src: ImageAsset
     alt: string
@@ -215,49 +239,42 @@ export default function Portraits() {
           </div>
         </header>
 
-        {featuredImages.length > 0 && (
-          <section
-            aria-label="Utvalda porträtt"
-            className="mx-auto mb-12 grid max-w-6xl grid-cols-1 gap-4 rounded-[1.75rem] border border-black/6 bg-white px-4 py-4 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-5 md:py-5 lg:grid-cols-[1.2fr_0.8fr]"
-          >
-            <figure className="group relative overflow-hidden rounded-[2rem]">
-              <ResponsiveImage
-                image={featuredImages[0]}
-                alt="Utvalt porträttfotografi"
-                sizes="(min-width: 1024px) 670px, 100vw"
-                className="h-[28rem] w-full cursor-pointer object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-[38rem]"
-                onClick={() =>
-                  setSelectedImage({
-                    src: featuredImages[0],
-                    alt: 'Utvalt porträttfotografi',
-                  })
-                }
-              />
-            </figure>
+        <section
+          aria-label="Utvalda porträtt"
+          className="mx-auto mb-12 grid max-w-6xl grid-cols-1 gap-4 rounded-[1.75rem] border border-black/6 bg-white px-4 py-4 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-5 md:py-5 lg:grid-cols-[1.2fr_0.8fr]"
+        >
+          <figure className="group relative overflow-hidden rounded-[2rem]">
+            <ResponsiveImage
+              image={featuredPortraits[0].image}
+              alt={featuredPortraits[0].alt}
+              sizes="(min-width: 1024px) 670px, 100vw"
+              className="h-[28rem] w-full cursor-pointer object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-[38rem]"
+              onClick={() =>
+                setSelectedImage({
+                  src: featuredPortraits[0].image,
+                  alt: featuredPortraits[0].alt,
+                })
+              }
+            />
+          </figure>
 
-            <div className="grid grid-cols-1 gap-4">
-              {featuredImages.slice(1).map((src, index) => (
-                <figure
-                  key={getImageSrc(src)}
-                  className="group relative overflow-hidden rounded-[2rem]"
-                >
-                  <ResponsiveImage
-                    image={src}
-                    alt={`Utvalt porträttfotografi ${index + 2}`}
-                    sizes="(min-width: 1024px) 430px, 100vw"
-                    className="h-[13.5rem] w-full cursor-pointer object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-[18.6rem]"
-                    onClick={() =>
-                      setSelectedImage({
-                        src,
-                        alt: `Utvalt porträttfotografi ${index + 2}`,
-                      })
-                    }
-                  />
-                </figure>
-              ))}
-            </div>
-          </section>
-        )}
+          <div className="grid grid-cols-1 gap-4">
+            {featuredPortraits.slice(1).map(({ image, alt }) => (
+              <figure
+                key={getImageSrc(image)}
+                className="group relative overflow-hidden rounded-[2rem]"
+              >
+                <ResponsiveImage
+                  image={image}
+                  alt={alt}
+                  sizes="(min-width: 1024px) 430px, 100vw"
+                  className="h-[13.5rem] w-full cursor-pointer object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-[18.6rem]"
+                  onClick={() => setSelectedImage({ src: image, alt })}
+                />
+              </figure>
+            ))}
+          </div>
+        </section>
 
         <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
           <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-6 md:p-8">
