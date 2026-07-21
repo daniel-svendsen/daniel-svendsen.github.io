@@ -6,12 +6,12 @@ import path from 'node:path'
 import crypto from 'node:crypto'
 import type { Plugin } from 'vite'
 
-const responsiveWidths = [480, 768, 1024, 1440, 1920]
+const responsiveWidths = [640, 1280, 1920]
 const responsiveAssetDir = 'assets/responsive'
 const responsiveFormats = [
-  { extension: 'avif', type: 'image/avif', quality: 58 },
   { extension: 'webp', type: 'image/webp', quality: 78 },
 ] as const
+const responsiveCacheVersion = 'v1'
 
 function assetUrl(base: string, fileName: string) {
   return `${base.endsWith('/') ? base : `${base}/`}${fileName}`
@@ -34,6 +34,12 @@ function responsiveImagesPlugin(): Plugin {
   let isClientBuild = false
   let root = process.cwd()
   let base = '/'
+  let cacheDir = ''
+  let processedImages = 0
+  let cacheHits = 0
+  let generatedVariants = 0
+  let inBuildReuses = 0
+  const variantJobs = new Map<string, Promise<Buffer>>()
 
   return {
     name: 'responsive-images',
@@ -43,6 +49,27 @@ function responsiveImagesPlugin(): Plugin {
       base = config.base
       isBuild = config.command === 'build'
       isClientBuild = config.command === 'build' && !config.build.ssr
+
+      const configuredCacheDir = process.env.RESPONSIVE_IMAGE_CACHE_DIR?.trim()
+      const npmCacheDir = process.env.npm_config_cache?.trim()
+      const cloudflareNpmCacheDir =
+        npmCacheDir ??
+        (process.env.HOME?.trim()
+          ? path.join(process.env.HOME, '.npm')
+          : undefined)
+
+      cacheDir = configuredCacheDir
+        ? path.resolve(root, configuredCacheDir)
+        : process.env.CF_PAGES === '1' && cloudflareNpmCacheDir
+          ? path.join(cloudflareNpmCacheDir, 'svendsen-responsive-images')
+          : path.join(root, 'node_modules', '.cache', 'responsive-images')
+    },
+    buildStart() {
+      processedImages = 0
+      cacheHits = 0
+      generatedVariants = 0
+      inBuildReuses = 0
+      variantJobs.clear()
     },
     async load(id) {
       const [filePath, query] = id.split('?')
@@ -61,6 +88,9 @@ function responsiveImagesPlugin(): Plugin {
       const sharp = (await import('sharp')).default
       const metadata = await sharp(filePath).metadata()
       const input = isClientBuild ? await fs.readFile(filePath) : undefined
+      const inputHash = input
+        ? crypto.createHash('sha256').update(input).digest('hex')
+        : undefined
       const originalWidth = metadata.width ?? responsiveWidths[0]
       const originalHeight = metadata.height
       const outputWidths = responsiveWidths.filter((width) => width < originalWidth)
@@ -75,6 +105,7 @@ function responsiveImagesPlugin(): Plugin {
       const src = assetUrl(base, originalFileName)
 
       if (isClientBuild && input) {
+        processedImages += 1
         this.emitFile({
           type: 'asset',
           fileName: originalFileName,
@@ -88,12 +119,64 @@ function responsiveImagesPlugin(): Plugin {
             Array.from(new Set(outputWidths)).map(async (width) => {
               const fileName = `${responsiveAssetDir}/${imageName}-${width}.${format.extension}`
 
-              if (isClientBuild && input) {
-                const output = await sharp(input)
-                  .rotate()
-                  .resize({ width, withoutEnlargement: true })
-                  .toFormat(format.extension, { quality: format.quality })
-                  .toBuffer()
+              if (isClientBuild && input && inputHash) {
+                const cacheKey = crypto
+                  .createHash('sha256')
+                  .update(
+                    JSON.stringify({
+                      version: responsiveCacheVersion,
+                      inputHash,
+                      width,
+                      extension: format.extension,
+                      quality: format.quality,
+                    }),
+                  )
+                  .digest('hex')
+                const cacheFile = path.join(
+                  cacheDir,
+                  `${cacheKey}.${format.extension}`,
+                )
+                let outputJob = variantJobs.get(cacheKey)
+
+                if (outputJob) {
+                  inBuildReuses += 1
+                } else {
+                  outputJob = (async () => {
+                    try {
+                      const cachedOutput = await fs.readFile(cacheFile)
+                      cacheHits += 1
+                      return cachedOutput
+                    } catch (error) {
+                      if ((error as NodeJS.ErrnoException).code !== 'ENOENT') {
+                        this.warn(
+                          `Kunde inte läsa bildcache ${cacheFile}: ${String(error)}`,
+                        )
+                      }
+                    }
+
+                    const generatedOutput = await sharp(input)
+                      .rotate()
+                      .resize({ width, withoutEnlargement: true })
+                      .toFormat(format.extension, { quality: format.quality })
+                      .toBuffer()
+
+                    generatedVariants += 1
+
+                    try {
+                      await fs.mkdir(cacheDir, { recursive: true })
+                      await fs.writeFile(cacheFile, generatedOutput)
+                    } catch (error) {
+                      this.warn(
+                        `Kunde inte skriva bildcache ${cacheFile}: ${String(error)}`,
+                      )
+                    }
+
+                    return generatedOutput
+                  })()
+                  variantJobs.set(cacheKey, outputJob)
+                }
+
+                const output = await outputJob
 
                 this.emitFile({
                   type: 'asset',
@@ -118,6 +201,15 @@ function responsiveImagesPlugin(): Plugin {
           height: ${originalHeight ?? 'undefined'},
         };
       `
+    },
+    closeBundle() {
+      if (!isClientBuild) {
+        return
+      }
+
+      this.info(
+        `Bildcache: ${cacheHits} träffar, ${generatedVariants} genererade, ${inBuildReuses} återanvända i samma bygge för ${processedImages} bilder.`,
+      )
     },
   }
 }
