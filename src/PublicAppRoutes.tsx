@@ -8,6 +8,7 @@ import { PUBLIC_ROUTE_PATHS, PUBLIC_ROUTER_PATHS } from '@/config/publicRoutes'
 
 import Contact from './pages/Contact'
 import FAQ from './pages/FAQ'
+import FamilyPhotography from './pages/FamilyPhotography'
 import CaseStudies from './pages/CaseStudies'
 import CaseKungalv from './pages/CaseKungalv'
 import CaseStenungsund from './pages/CaseStenungsund'
@@ -41,6 +42,10 @@ export default function PublicAppRoutes() {
       <Routes>
         <Route path={PUBLIC_ROUTE_PATHS.home} element={<Home />} />
         <Route path={PUBLIC_ROUTE_PATHS.services} element={<Services />} />
+        <Route
+          path={PUBLIC_ROUTE_PATHS.familyPhotography}
+          element={<FamilyPhotography />}
+        />
         <Route path={PUBLIC_ROUTE_PATHS.portraits} element={<Portraits />} />
         <Route path={PUBLIC_ROUTE_PATHS.weddings} element={<Weddings />} />
         <Route path={PUBLIC_ROUTE_PATHS.contact} element={<Contact />} />

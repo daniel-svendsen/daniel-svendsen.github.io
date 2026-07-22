@@ -38,11 +38,18 @@ const quickLinks = [
     buttonText: 'Se bröllopspaket',
   },
   {
-    title: 'Porträtt & familj',
+    title: 'Porträtt',
     description:
-      'Se upplägg och priser för personliga porträtt, profilbilder och familjefotografering.',
+      'Se upplägg och priser för personliga porträtt och profilbilder.',
     to: '/portraits/',
-    buttonText: 'Se porträtt & familj',
+    buttonText: 'Se porträttfotografering',
+  },
+  {
+    title: 'Familj',
+    description:
+      'Läs om familje-, barn-, syskon- och gravidfotografering utomhus eller på plats.',
+    to: '/familjefotografering/',
+    buttonText: 'Se familjefotografering',
   },
   {
     title: 'Företag & produkt',
