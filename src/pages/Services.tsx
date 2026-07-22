@@ -11,6 +11,7 @@ import { toAbsoluteUrl } from '@/utils/utils'
 import { getImageSrc, type ResponsiveImageAsset } from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
 import { PRICING } from '@/config/pricing'
+import { PriceEstimator } from '@/components/PriceEstimator'
 
 const pageHeroImage =
   serviceCards.length > 0
@@ -155,6 +156,15 @@ export default function Services() {
                     </span>
                   ))}
                 </div>
+                <LinkButton
+                  to="/services/#prisindikator"
+                  variant="default"
+                  size="lg"
+                  subVariant="rounded"
+                  className="mt-7 font-semibold"
+                >
+                  Räkna på ett pris
+                </LinkButton>
               </div>
 
               <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-5 md:max-w-[32rem] md:p-6 lg:ml-auto">
@@ -284,6 +294,16 @@ export default function Services() {
                 )
               })}
             </div>
+          </SectionContent>
+        </Section>
+
+        <Section
+          bgColor="white"
+          rounded="3xl"
+          className="mx-3 mt-10 overflow-visible border border-black/6 bg-white py-12 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] sm:mx-4 md:mx-5 md:py-20 lg:mx-auto lg:max-w-6xl"
+        >
+          <SectionContent>
+            <PriceEstimator />
           </SectionContent>
         </Section>
 
