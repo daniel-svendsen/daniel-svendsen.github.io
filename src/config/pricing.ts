@@ -57,3 +57,54 @@ export const PRICING = {
     },
   },
 } as const
+
+export const PRICE_ESTIMATOR = {
+  portrait: {
+    base: 2290,
+    extraImage: 250,
+    extraThirtyMinutes: 1000,
+  },
+  family: {
+    base: 3290,
+    extraImage: 250,
+    extraThirtyMinutes: 1000,
+    largeGroupSupplement: 750,
+  },
+  wedding: {
+    short: 9500,
+    halfDay: 17900,
+    fullDay: 28900,
+    extraHour: 2500,
+    highlightFilm: 5000,
+  },
+  businessPortraits: {
+    firstPerson: 2500,
+    personTwoToFive: 1250,
+    personSixToTen: 900,
+    groupImage: 1000,
+    quoteAbovePeople: 10,
+  },
+  businessActivity: {
+    hourly: 2200,
+    minimumHours: 2,
+  },
+  product: {
+    base: 3500,
+    includedImages: 10,
+    extraImage: 250,
+    extraSetup: 750,
+  },
+  vehicle: {
+    base: 2990,
+    includedImages: 10,
+    extraImage: 250,
+  },
+  travel: {
+    perRoundTripMil: 20,
+    roundTo: 10,
+  },
+  priorityDelivery: {
+    rate: 0.25,
+    minimum: 750,
+  },
+} as const

@@ -1,11 +1,21 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useEffect, useMemo, useState } from 'react'
 import { Clock, Mail, MapPin, Phone } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
 
-import { Button } from '@/components/Button'
+import { Button, LinkButton } from '@/components/Button'
 import { EditorialIntro, EditorialSection } from '@/components/Editorial'
 import SEO from '@/components/SEO'
 import { BUSINESS, businessReference } from '@/config/seo'
 import { getPageOgImage } from '@/config/pageSeo'
+import {
+  calculatePriceEstimate,
+  ESTIMATE_SERVICE_LABELS,
+  formatPrice,
+  formatPriceEstimateForSubmission,
+  getServicesUrlForEstimate,
+  parsePriceEstimateSelection,
+  type PriceEstimateSelection,
+} from '@/utils/priceEstimate'
 
 interface ServiceOption {
   id: string
@@ -73,14 +83,48 @@ const serviceOptions: ServiceOption[] = [
 ]
 
 export default function Contact() {
+  const [searchParams] = useSearchParams()
+  const queryString = searchParams.toString()
   const [selectedService, setSelectedService] = useState<string>('')
+  const [estimateSelection, setEstimateSelection] =
+    useState<PriceEstimateSelection | null>(null)
   const [formStatus, setFormStatus] = useState<'success' | 'error' | null>(null)
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
   const ogImage = getPageOgImage('contact')
 
+  useEffect(() => {
+    const parsed = parsePriceEstimateSelection(
+      new URLSearchParams(queryString),
+    )
+
+    if (!parsed) return
+
+    setEstimateSelection(parsed)
+    setSelectedService(ESTIMATE_SERVICE_LABELS[parsed.service])
+  }, [queryString])
+
   const selectedServiceOption = serviceOptions.find(
     (service) => service.label === selectedService,
   )
+  const activeEstimateSelection =
+    estimateSelection &&
+    selectedService === ESTIMATE_SERVICE_LABELS[estimateSelection.service]
+      ? estimateSelection
+      : null
+  const activeEstimate = useMemo(
+    () =>
+      activeEstimateSelection
+        ? calculatePriceEstimate(activeEstimateSelection)
+        : null,
+    [activeEstimateSelection],
+  )
+  const estimateSubmission =
+    activeEstimateSelection && activeEstimate
+      ? formatPriceEstimateForSubmission(
+          activeEstimateSelection,
+          activeEstimate,
+        )
+      : ''
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -240,6 +284,63 @@ export default function Contact() {
                   disabled={isSubmitting}
                 />
               </div>
+
+              {activeEstimateSelection && activeEstimate && (
+                <div className="rounded-2xl border border-black/6 bg-[#f8f8f5] p-5 sm:col-span-2">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-textSecondary">
+                        Medskickad prisindikation
+                      </p>
+                      <p className="mt-2 text-2xl font-semibold text-textPrimary">
+                        {formatPrice(activeEstimate.total)}
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-textPrimary/68">
+                        Valen räknas om från aktuella priser. Slutligt pris
+                        bekräftas i personlig offert.
+                      </p>
+                    </div>
+                    <LinkButton
+                      to={getServicesUrlForEstimate(activeEstimateSelection)}
+                      variant="outline"
+                      size="md"
+                      subVariant="rounded"
+                      className="font-semibold"
+                    >
+                      Ändra prisval
+                    </LinkButton>
+                  </div>
+
+                  <ul className="mt-5 space-y-2 border-t border-black/8 pt-4 text-sm leading-6 text-textPrimary/72">
+                    {activeEstimate.lines.map((line) => (
+                      <li
+                        key={line.label}
+                        className="flex justify-between gap-4"
+                      >
+                        <span>{line.label}</span>
+                        <span className="whitespace-nowrap font-semibold">
+                          {formatPrice(line.amount)}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {activeEstimate.quoteReasons.length > 0 && (
+                    <div className="mt-4 rounded-xl border border-amber-300/60 bg-amber-50 px-4 py-3 text-sm leading-6 text-textPrimary/72">
+                      <p className="font-semibold">Behöver bekräftas i offert</p>
+                      {activeEstimate.quoteReasons.map((reason) => (
+                        <p key={reason}>• {reason}</p>
+                      ))}
+                    </div>
+                  )}
+
+                  <input
+                    type="hidden"
+                    name="price_estimate"
+                    value={estimateSubmission}
+                  />
+                </div>
+              )}
 
               <fieldset className="sm:col-span-2">
                 <legend className={labelClasses}>
