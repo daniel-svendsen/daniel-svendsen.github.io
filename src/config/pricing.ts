@@ -32,7 +32,7 @@ export const PRICING = {
     activityHourlyFrom: '2 200 kr/h',
     productStartFrom: '3 500 kr',
     productExtraImageFrom: '350 kr/st',
-    taxNote: 'exkl. moms',
+    taxNote: 'Moms tillkommer inte.',
   },
   web: {
     landingPageFrom: '4 500 kr',

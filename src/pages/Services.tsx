@@ -289,7 +289,7 @@ export default function Services() {
               </p>
               <p className="mt-4 max-w-3xl text-base leading-relaxed text-textSecondary">
                 Startpaket för produktfoto börjar från{' '}
-                {PRICING.business.productStartFrom} {PRICING.business.taxNote}.
+                {PRICING.business.productStartFrom}. {PRICING.business.taxNote}{' '}
                 Större produktserier och återkommande uppdrag anpassas efter
                 antal produkter, miljö och hur bilderna ska användas.
               </p>

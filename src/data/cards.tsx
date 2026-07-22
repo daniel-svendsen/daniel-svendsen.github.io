@@ -89,12 +89,13 @@ Extra timmar utöver paketen -> ${PRICING.wedding.extraHour}`,
   {
     title: 'Företagsfoto, Event & Verksamhetsfoto',
     image: companyImage,
-    description: `Företagsporträtt -> från ${PRICING.business.portraitFrom} ${PRICING.business.taxNote}, fler personer enligt offert
-Eventfotografering -> från ${PRICING.business.eventFrom} ${PRICING.business.taxNote} | heldag från ${PRICING.business.eventFullDayFrom} ${PRICING.business.taxNote}
-Verksamhets- och hobbyfoto för miljöer, föreningar och personliga projekt -> från ${PRICING.business.activityHourlyFrom} ${PRICING.business.taxNote}
+    description: `Företagsporträtt -> från ${PRICING.business.portraitFrom}, fler personer enligt offert
+Eventfotografering -> från ${PRICING.business.eventFrom} | heldag från ${PRICING.business.eventFullDayFrom}
+Verksamhets- och hobbyfoto för miljöer, föreningar och personliga projekt -> från ${PRICING.business.activityHourlyFrom}
 Bilfotografering i Kungälv erbjuds i mindre skala -> offert efter upplägg
-Produktfotografering -> startpaket från ${PRICING.business.productStartFrom} ${PRICING.business.taxNote}, extra bilder från ${PRICING.business.productExtraImageFrom}
-Filmning för reklam och presentationer -> offert vid förfrågan`,
+Produktfotografering -> startpaket från ${PRICING.business.productStartFrom}, extra bilder från ${PRICING.business.productExtraImageFrom}
+Filmning för reklam och presentationer -> offert vid förfrågan
+${PRICING.business.taxNote}`,
     price: `Från ${PRICING.business.portraitFrom}`,
     buttonText: 'Be om offert',
     buttonLink: '/contact/',
