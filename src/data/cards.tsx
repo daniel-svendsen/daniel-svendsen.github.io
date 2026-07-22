@@ -2,6 +2,7 @@ import { Briefcase, Camera, Code, Users } from 'lucide-react'
 
 import weddingImage from '../assets/pictures/wedding.jpg?responsive'
 import portraitImage from '../assets/pictures/portrait.jpg?responsive'
+import familyImage from '../assets/familyphoto/familjefotografering-eventladan-kungalv.jpg?responsive'
 import companyImage from '../assets/pictures/company.jpg?responsive'
 import webdevImage from '../assets/webdev-optimized.jpg?responsive'
 import { PRICING } from '@/config/pricing'
@@ -21,8 +22,8 @@ export const homeCards = [
     title: 'Porträtt & Familj',
     description:
       'Personliga porträtt för CV, sociala medier eller vackra familjebilder, utomhus eller på plats.',
-    buttonText: 'Läs mer',
-    buttonLink: '/portraits/',
+    buttonText: 'Se alternativen',
+    buttonLink: '/services/',
     icon: Users,
   },
   {
@@ -47,15 +48,27 @@ export const homeCards = [
 
 export const serviceCards = [
   {
-    title: 'Porträtt & Familjefoto',
+    title: 'Porträttfotografering',
     image: portraitImage,
     description: `30 minuters fotografering
 5 redigerade bilder ingår
 Extra bilder kan köpas till för ${PRICING.portrait.extraImage}
-Passar för CV, LinkedIn, sociala medier, familjeporträtt och generationsbilder`,
+Passar för CV, LinkedIn, sociala medier och personligt varumärke`,
     price: PRICING.portrait.baseFrom,
-    buttonText: 'Se porträtt & familj',
+    buttonText: 'Se porträttfotografering',
     buttonLink: '/portraits/',
+    icon: Users,
+  },
+  {
+    title: 'Familjefotografering',
+    image: familyImage,
+    description: `${PRICING.portrait.familyDuration} fotografering
+${PRICING.portrait.familyImages} ingår
+Extra bilder kan köpas till för ${PRICING.portrait.extraImage}
+Passar för familjer, barn, syskon och gravidporträtt utomhus eller på plats`,
+    price: PRICING.portrait.familyFrom,
+    buttonText: 'Se familjefotografering',
+    buttonLink: '/familjefotografering/',
     icon: Users,
   },
   {

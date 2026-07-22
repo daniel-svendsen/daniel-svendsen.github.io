@@ -240,7 +240,10 @@ export default function Services() {
 
                       <div
                         className={`space-y-3 ${
-                          index === 0 || index === 1 || index === 3
+                          index === 0 ||
+                          index === 1 ||
+                          index === 2 ||
+                          index === 4
                             ? 'pb-6'
                             : ''
                         }`}

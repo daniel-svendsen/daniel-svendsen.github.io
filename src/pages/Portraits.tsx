@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
+import { LinkButton } from '@/components/Button'
 import { CTASection } from '@/components/CTASection'
 import { InfoCard } from '@/components/InfoCard'
 import { Modal } from '../components/Modal'
@@ -36,9 +37,8 @@ const featuredPortraitSources = new Set(
 const portraitUseCases = [
   'Profilbilder för LinkedIn, CV och personligt varumärke',
   'Porträtt för kreatörer, egenföretagare och sociala medier',
-  'Familjebilder och generationsporträtt med naturlig känsla',
   'Personliga porträtt med naturlig och avslappnad känsla',
-  'Företagsporträtt för webbplats, marknadsföring och presentationer',
+  'Professionella profilbilder för webbplatser och presentationer',
 ]
 
 const portraitFacts = [
@@ -72,11 +72,6 @@ const portraitDetails = [
       `Porträttfotografering från ${PRICING.portrait.basePrice}. Grundpaketet är ${PRICING.portrait.baseDuration} och passar dig som vill ha ett enkelt och genomtänkt upplägg.`,
   },
   {
-    title: 'Familj',
-    description:
-      `Familjefotografering från ${PRICING.portrait.familyPrice}. Upplägget är ${PRICING.portrait.familyDuration} och innehåller ${PRICING.portrait.familyImages}.`,
-  },
-  {
     title: 'Det här ingår',
     description:
       `${PRICING.portrait.baseImages} ingår i porträttbasen. Extra bilder kan köpas till för ${PRICING.portrait.extraImage}.`,
@@ -97,17 +92,17 @@ const portraitLocations = [
   {
     title: 'Porträttfotograf i Kungälv',
     description:
-      'För dig som vill ha porträtt, familjebilder eller profilbilder nära Kungälv, med möjlighet till både naturmiljöer och platser som känns personliga.',
+      'För dig som vill ha personliga porträtt eller profilbilder nära Kungälv, med möjlighet till både naturmiljöer och platser som känns personliga.',
   },
   {
     title: 'Porträttfotograf i Göteborg',
     description:
-      'För företag, kreatörer och privatpersoner i Göteborg som behöver naturliga porträtt till webb, LinkedIn, CV, sociala medier eller familj.',
+      'För kreatörer, egenföretagare och privatpersoner i Göteborg som behöver naturliga porträtt till webb, LinkedIn, CV eller sociala medier.',
   },
   {
     title: 'Porträttfotograf i Stenungsund',
     description:
-      'För porträtt- och familjefotografering i Stenungsund med omnejd, gärna utomhus och med ett lugnt upplägg som passar syftet med bilderna.',
+      'För personliga porträtt och profilbilder i Stenungsund med omnejd, gärna utomhus och med ett lugnt upplägg som passar syftet med bilderna.',
   },
 ]
 
@@ -115,7 +110,7 @@ const portraitFaqs = [
   {
     question: 'Vad ingår i en porträttfotografering?',
     answer:
-      `Porträtt Bas är ${PRICING.portrait.baseDuration} och innehåller ${PRICING.portrait.baseImages}. Familjefotografering är ${PRICING.portrait.familyDuration} och innehåller ${PRICING.portrait.familyImages}.`,
+      `Porträtt Bas är ${PRICING.portrait.baseDuration} och innehåller ${PRICING.portrait.baseImages}.`,
   },
   {
     question: 'Hur lång tid tar en porträttfotografering?',
@@ -125,7 +120,7 @@ const portraitFaqs = [
   {
     question: 'Hur många bilder får jag?',
     answer:
-      `${PRICING.portrait.baseImages} ingår i Porträtt Bas och ${PRICING.portrait.familyImages} ingår i familjepaketet. Extra bilder kan köpas till för ${PRICING.portrait.extraImage}.`,
+      `${PRICING.portrait.baseImages} ingår i Porträtt Bas. Extra bilder kan köpas till för ${PRICING.portrait.extraImage}.`,
   },
   {
     question: 'Kan vi fotografera på en plats jag själv väljer?',
@@ -170,7 +165,7 @@ export default function Portraits() {
     name: 'Porträttfotografering i Kungälv, Göteborg och Stenungsund',
     serviceType: 'Portrait photography',
     description:
-      'Professionell porträtt- och familjefotografering i Kungälv, Göteborg och Stenungsund för privatpersoner, kreatörer och företag.',
+      'Professionell porträttfotografering och profilbilder i Kungälv, Göteborg och Stenungsund för privatpersoner, kreatörer och egenföretagare.',
     url: 'https://www.svendsenphotography.com/portraits/',
     provider: businessReference,
     areaServed: BUSINESS.serviceAreas.map((name) => ({
@@ -183,7 +178,7 @@ export default function Portraits() {
     <>
       <SEO
         title="Porträttfotograf i Kungälv, Göteborg & Stenungsund | Svendsén Photography"
-        description="Söker du porträttfotograf i Kungälv, Göteborg eller Stenungsund? Jag fotograferar naturliga porträtt, familjebilder och profilbilder för privatpersoner, kreatörer och företag."
+        description="Söker du porträttfotograf i Kungälv, Göteborg eller Stenungsund? Jag fotograferar naturliga porträtt och profilbilder för CV, LinkedIn och personligt varumärke."
         url="https://www.svendsenphotography.com/portraits/"
         image={ogImage.src}
         imageAlt={ogImage.alt}
@@ -207,8 +202,8 @@ export default function Portraits() {
               Porträttfotograf i Kungälv, Göteborg och Stenungsund
             </h1>
             <p className="max-w-2xl text-lg leading-relaxed text-textSecondary md:text-xl">
-              Porträtt- och familjefotografering för dig som vill ha personliga
-              och professionella bilder som känns levande, trygga och tidlösa.
+              Personliga och professionella porträtt för dig som vill ha bilder
+              som känns levande, trygga och tidlösa.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               {portraitFacts.map((fact) => (
@@ -283,9 +278,9 @@ export default function Portraits() {
             </h2>
             <p className="mb-4 text-base leading-relaxed text-textSecondary">
               Oavsett om du behöver nya profilbilder, porträtt till ditt
-              personliga varumärke, familjebilder eller bilder för sociala medier
-              anpassar jag fotograferingen efter hur du vill uppfattas och hur
-              bilderna ska användas.
+              personliga varumärke eller bilder för sociala medier anpassar jag
+              fotograferingen efter hur du vill uppfattas och hur bilderna ska
+              användas.
             </p>
             <p className="text-base leading-relaxed text-textSecondary">
               Målet är att skapa en lugn och avslappnad upplevelse där du känner
@@ -306,6 +301,28 @@ export default function Portraits() {
               />
             ))}
           </div>
+        </section>
+
+        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div className="max-w-3xl">
+            <h2 className="mb-3 text-2xl font-semibold text-textPrimary">
+              Söker du familjefotografering?
+            </h2>
+            <p className="text-base leading-relaxed text-textSecondary">
+              Familjer, barn, syskon och gravidporträtt har en egen sida med
+              familjepris, process, vanliga frågor och ett verkligt case från
+              Eventladan i Romelanda.
+            </p>
+          </div>
+          <LinkButton
+            to="/familjefotografering/"
+            variant="outline"
+            size="md"
+            subVariant="rounded"
+            className="font-semibold"
+          >
+            Se familjefotografering
+          </LinkButton>
         </section>
 
         <section className="mx-auto mb-14 max-w-6xl rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10">
@@ -340,9 +357,9 @@ export default function Portraits() {
               Porträttfotografering nära dig
             </h2>
             <p className="text-base leading-relaxed text-textSecondary">
-              Jag utgår från Kungälv och fotograferar porträtt, familj och
-              profilbilder i Kungälv, Göteborg och Stenungsund. Platsen väljer vi
-              efter vilken känsla bilderna ska ha och hur de ska användas.
+              Jag utgår från Kungälv och fotograferar porträtt och profilbilder
+              i Kungälv, Göteborg och Stenungsund. Platsen väljer vi efter vilken
+              känsla bilderna ska ha och hur de ska användas.
             </p>
           </div>
 
