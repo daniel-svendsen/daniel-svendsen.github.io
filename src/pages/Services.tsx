@@ -110,8 +110,8 @@ export default function Services() {
   return (
     <>
       <SEO
-        title="Fotograf i Kungälv, Göteborg & Stenungsund | Svendsén Photography"
-        description="Söker du fotograf i Kungälv, Göteborg eller Stenungsund? Jag fotograferar bröllop, porträtt, familj, företag, event och verksamheter."
+        title="Fotograferingstjänster & priser | Svendsén Photography"
+        description="Jämför upplägg och startpriser för bröllop, porträtt, familj, företag och produktfotografering i Kungälv med omnejd."
         url="https://www.svendsenphotography.com/services/"
         jsonLd={photographyPageJsonLd}
         image={ogImage.src}

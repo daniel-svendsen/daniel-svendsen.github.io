@@ -103,8 +103,8 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Fotograf i Kungälv, Stenungsund & Göteborg - Svendsén Photography"
-        description="Fotograf för bröllop, porträtt, familj, företag, event och verksamheter i Kungälv, Stenungsund och Göteborg. Boka din fotografering idag!"
+        title="Fotograf i Kungälv | Svendsén Photography"
+        description="Fotograf i Kungälv för bröllop, porträtt, familj och företag. Se bildstil, tjänster och arbetssätt eller skicka en förfrågan."
         url={`${SITE_URL}/`}
         image={ogImage.src}
         imageAlt={ogImage.alt}

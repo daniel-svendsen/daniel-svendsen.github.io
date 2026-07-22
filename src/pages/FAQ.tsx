@@ -45,7 +45,7 @@ export default function FAQ() {
     <>
       <SEO
         title="Vanliga frågor - Svendsén Photography"
-        description="Har du frågor om fotografering, priser och bokning? Här hittar du svar på vanliga frågor om våra tjänster i Göteborg och Kungälv."
+        description="Gemensamma svar om fotografering och bokning, med länkar till frågor om porträtt, familj, bröllop i Kungälv och praktiska bröllopsguider."
         url="https://www.svendsenphotography.com/faq/"
         image={ogImage.src}
         imageAlt={ogImage.alt}

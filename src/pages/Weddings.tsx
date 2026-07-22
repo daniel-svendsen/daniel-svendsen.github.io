@@ -165,8 +165,8 @@ export default function WeddingGallery() {
   return (
     <>
       <SEO
-        title="Bröllopsfotograf i Göteborg & Kungälv | Tidlösa bröllopsbilder | Svendsén Photography"
-        description="Söker ni en bröllopsfotograf i Göteborg eller Kungälv? Svendsén Photography dokumenterar er dag med naturliga, personliga och tidlösa bilder."
+        title="Bröllopsfotografering | Paket & priser | Svendsén Photography"
+        description="Jämför bröllopspaket för kort vigsel, halvdag och heldag. Naturliga bröllopsbilder i Göteborg, Kungälv och andra orter enligt överenskommelse."
         url="https://www.svendsenphotography.com/weddings/"
         image={ogImage.src}
         imageAlt={ogImage.alt}

@@ -121,7 +121,7 @@ export default function WeddingTimelineGuide() {
   return (
     <>
       <SEO
-        title="Bröllopstidslinje för fotografering | Guide | Svendsén Photography"
+        title="Tidslinje för bröllopsfotografering | Svendsén Photography"
         description="Guide till bröllopstidslinje för fotografering med exempel för kort vigsel, halvdag och heldag, plus tid för familjebilder och porträtt."
         url="https://www.svendsenphotography.com/guider/brollopstidslinje/"
         image={ogImage.src}

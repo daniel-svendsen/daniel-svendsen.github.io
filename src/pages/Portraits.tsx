@@ -148,8 +148,8 @@ export default function Portraits() {
   return (
     <>
       <SEO
-        title="Porträttfotograf i Kungälv, Göteborg & Stenungsund | Svendsén Photography"
-        description="Söker du porträttfotograf i Kungälv, Göteborg eller Stenungsund? Jag fotograferar naturliga porträtt och profilbilder för CV, LinkedIn och personligt varumärke."
+        title="Porträttfotograf i Kungälv | Svendsén Photography"
+        description="Naturliga porträtt och profilbilder i Kungälv, Göteborg och Stenungsund. Se pris, upplägg och exempel eller skicka en förfrågan."
         url="https://www.svendsenphotography.com/portraits/"
         image={ogImage.src}
         imageAlt={ogImage.alt}

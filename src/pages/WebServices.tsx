@@ -94,7 +94,7 @@ export default function WebServicesPage() {
   return (
     <>
       <SEO
-        title="Webbutveckling för små företag i Göteborg & Kungälv | Svendsén Photography"
+        title="Webbutveckling för små företag | Svendsén Photography"
         description="Behöver du en hemsida för ditt företag? Jag bygger moderna, snabba och tydliga webbplatser för små företag i Göteborg och Kungälv."
         url="https://www.svendsenphotography.com/webservices/"
         jsonLd={pageJsonLd}

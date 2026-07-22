@@ -60,7 +60,7 @@ export default function WeddingPhotographerKungalv() {
   return (
     <>
       <SEO
-        title="Bröllopsfotograf i Kungälv | Naturliga bröllopsbilder | Svendsén Photography"
+        title="Bröllopsfotograf i Kungälv | Svendsén Photography"
         description="Söker ni bröllopsfotograf i Kungälv? Jag fotograferar vigsel, familj och naturliga porträtt med lugn känsla och plats för promenadbilder."
         url="https://www.svendsenphotography.com/brollopsfotograf-kungalv/"
         image={ogImage.src}
