@@ -8,21 +8,22 @@ import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
 import { businessReference } from '@/config/seo'
 import { createFaqJsonLd, kungalvWeddingFaqs } from '@/data/faqs'
+import { type ResponsiveImageAsset } from '@/utils/responsiveImages'
 
-const kungalvHeroImages = Object.entries(
-  import.meta.glob(
-    '../assets/cases/Kersti&Jakob/*.{jpg,jpeg,png}',
-    {
+const kungalvHeroImages = (
+  Object.entries(
+    import.meta.glob('../assets/cases/Kersti&Jakob/*.{jpg,jpeg,png}', {
       eager: true,
       import: 'default',
-    },
-  ),
+      query: '?responsive',
+    }),
+  ) as [string, ResponsiveImageAsset][]
 )
   .sort(([a], [b]) => a.localeCompare(b))
-  .map(([, image]) => image as string)
+  .map(([, image]) => image)
 
 const getImage = (index: number) =>
-  kungalvHeroImages[index] ?? kungalvHeroImages[0] ?? ''
+  kungalvHeroImages[index] ?? kungalvHeroImages[0]
 
 const localServiceFacts = [
   {

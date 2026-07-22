@@ -54,6 +54,13 @@ const serviceOptions: ServiceOption[] = [
       'Ange ungefärligt antal personer och om ni behöver personalporträtt, gruppbilder, verksamhetsbilder eller en återkommande bildbank.',
   },
   {
+    id: 'event-photography',
+    label: 'Eventfotografering',
+    asksForLocation: true,
+    messagePlaceholder:
+      'Berätta vilken typ av event det gäller, ungefärligt antal gäster, tider och vilka delar eller ögonblick som är viktigast att dokumentera.',
+  },
+  {
     id: 'product-photography',
     label: 'Produktfotografering',
     asksForLocation: true,
@@ -225,7 +232,7 @@ export default function Contact() {
                 Fotograf i Göteborg, Kungälv och Stenungsund med omnejd.
               </h2>
               <p className="leading-8 text-textPrimary/68">
-                Jag fotograferar bröllop, porträtt, familjer, företag och
+                Jag fotograferar bröllop, porträtt, familjer, företag, event och
                 produkter. Oavsett om fotograferingen sker vid havet, i
                 stadsmiljö, hemma hos er eller på plats hos företaget anpassar
                 jag upplägget efter uppdraget, ljuset och platsen.
