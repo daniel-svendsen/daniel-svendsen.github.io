@@ -52,11 +52,11 @@ const quickLinks = [
     buttonText: 'Se familjefotografering',
   },
   {
-    title: 'Företag & produkt',
+    title: 'Företag',
     description:
-      'Beskriv behov, användning och omfattning så tar jag fram ett relevant offertunderlag.',
-    to: '/contact/',
-    buttonText: 'Be om offert',
+      'Se personalporträtt, gruppbilder och verksamhetsfoto på plats hos företag.',
+    to: '/foretagsfotografering/',
+    buttonText: 'Se företagsfotografering',
   },
 ]
 

@@ -7,6 +7,7 @@ import ScrollToTop from '@/components/ScrollToTop'
 import { PUBLIC_ROUTE_PATHS, PUBLIC_ROUTER_PATHS } from '@/config/publicRoutes'
 
 import Contact from './pages/Contact'
+import BusinessPhotography from './pages/BusinessPhotography'
 import FAQ from './pages/FAQ'
 import FamilyCaseEventladan from './pages/FamilyCaseEventladan'
 import FamilyPhotography from './pages/FamilyPhotography'
@@ -43,6 +44,10 @@ export default function PublicAppRoutes() {
       <Routes>
         <Route path={PUBLIC_ROUTE_PATHS.home} element={<Home />} />
         <Route path={PUBLIC_ROUTE_PATHS.services} element={<Services />} />
+        <Route
+          path={PUBLIC_ROUTE_PATHS.businessPhotography}
+          element={<BusinessPhotography />}
+        />
         <Route
           path={PUBLIC_ROUTE_PATHS.familyPhotography}
           element={<FamilyPhotography />}

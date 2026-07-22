@@ -12,6 +12,7 @@ import guidesImage from '@/assets/weddings/DSC09186.jpg'
 import portraitsImage from '@/assets/portraits/portraits-3.jpg'
 import familyPhotographyImage from '@/assets/familyphoto/familjefotografering-eventladan-kungalv.jpg'
 import familyCaseEventladanImage from '@/assets/cases/EventladanPortraitsandFamily/familjefotografering-eventladan-romelanda.jpg'
+import businessPhotographyImage from '@/assets/foeretag/DSC07882.jpg'
 import plannerImage from '@/assets/weddings/DSC09579.jpg'
 import walkGuideImage from '@/assets/cases/Kersti&Jakob/parpåpromenad.jpg'
 import weddingsImage from '@/assets/weddings/DSC09134.jpg'
@@ -35,6 +36,10 @@ const PAGE_OG_IMAGE_SOURCES = {
   services: {
     src: servicesImage,
     alt: 'Företagsfotografering som exempel på en av fototjänsterna',
+  },
+  businessPhotography: {
+    src: businessPhotographyImage,
+    alt: 'Grupporträtt av medarbetare fotograferade på arbetsplatsen',
   },
   familyPhotography: {
     src: familyPhotographyImage,
