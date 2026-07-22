@@ -11,6 +11,7 @@ import webservicesImage from '@/assets/webdev-optimized.jpg'
 import guidesImage from '@/assets/weddings/DSC09186.jpg'
 import portraitsImage from '@/assets/portraits/portraits-3.jpg'
 import familyPhotographyImage from '@/assets/familyphoto/familjefotografering-eventladan-kungalv.jpg'
+import familyCaseEventladanImage from '@/assets/cases/EventladanPortraitsandFamily/familjefotografering-eventladan-romelanda.jpg'
 import plannerImage from '@/assets/weddings/DSC09579.jpg'
 import walkGuideImage from '@/assets/cases/Kersti&Jakob/parpåpromenad.jpg'
 import weddingsImage from '@/assets/weddings/DSC09134.jpg'
@@ -38,6 +39,10 @@ const PAGE_OG_IMAGE_SOURCES = {
   familyPhotography: {
     src: familyPhotographyImage,
     alt: 'Familjefotografering på Eventladan i Romelanda nära Kungälv',
+  },
+  familyCaseEventladan: {
+    src: familyCaseEventladanImage,
+    alt: 'Familj fotograferad på Eventladan i Romelanda nära Kungälv',
   },
   portraits: {
     src: portraitsImage,

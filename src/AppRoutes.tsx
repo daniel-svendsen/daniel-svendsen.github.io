@@ -11,6 +11,9 @@ import { PUBLIC_ROUTE_PATHS, PUBLIC_ROUTER_PATHS } from '@/config/publicRoutes'
 const Home = React.lazy(() => import('./pages/Home'))
 const Services = React.lazy(() => import('./pages/Services'))
 const FamilyPhotography = React.lazy(() => import('./pages/FamilyPhotography'))
+const FamilyCaseEventladan = React.lazy(
+  () => import('./pages/FamilyCaseEventladan'),
+)
 const Portraits = React.lazy(() => import('./pages/Portraits'))
 const Weddings = React.lazy(() => import('./pages/Weddings'))
 const Contact = React.lazy(() => import('./pages/Contact'))
@@ -91,6 +94,10 @@ export default function AppRoutes() {
           <Route
             path={PUBLIC_ROUTE_PATHS.familyPhotography}
             element={<FamilyPhotography />}
+          />
+          <Route
+            path={PUBLIC_ROUTE_PATHS.familyCaseEventladan}
+            element={<FamilyCaseEventladan />}
           />
           <Route path={PUBLIC_ROUTE_PATHS.portraits} element={<Portraits />} />
           <Route path={PUBLIC_ROUTE_PATHS.weddings} element={<Weddings />} />

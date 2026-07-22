@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { LinkButton } from '@/components/Button'
 import { CTASection } from '@/components/CTASection'
 import { InfoCard } from '@/components/InfoCard'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
@@ -236,6 +237,15 @@ export default function FamilyPhotography() {
               fotograferat familje- och syskonporträtt på Eventladan i
               Romelanda.
             </p>
+            <LinkButton
+              to="/familjefotografering/eventladan-romelanda/"
+              variant="outline"
+              size="md"
+              subVariant="rounded"
+              className="mt-6 font-semibold"
+            >
+              Se fotograferingen på Eventladan
+            </LinkButton>
           </div>
         </section>
 

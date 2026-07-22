@@ -2,6 +2,7 @@ export const PUBLIC_ROUTE_PATHS = {
   home: '/',
   services: '/services',
   familyPhotography: '/familjefotografering',
+  familyCaseEventladan: '/familjefotografering/eventladan-romelanda',
   portraits: '/portraits',
   weddings: '/weddings',
   contact: '/contact',
