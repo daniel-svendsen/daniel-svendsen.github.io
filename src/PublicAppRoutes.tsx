@@ -8,6 +8,8 @@ import { PUBLIC_ROUTE_PATHS, PUBLIC_ROUTER_PATHS } from '@/config/publicRoutes'
 
 import Contact from './pages/Contact'
 import BusinessPhotography from './pages/BusinessPhotography'
+import ProductPhotography from './pages/ProductPhotography'
+import ProductCaseForPros from './pages/ProductCaseForPros'
 import FAQ from './pages/FAQ'
 import FamilyCaseEventladan from './pages/FamilyCaseEventladan'
 import FamilyPhotography from './pages/FamilyPhotography'
@@ -47,6 +49,14 @@ export default function PublicAppRoutes() {
         <Route
           path={PUBLIC_ROUTE_PATHS.businessPhotography}
           element={<BusinessPhotography />}
+        />
+        <Route
+          path={PUBLIC_ROUTE_PATHS.productPhotography}
+          element={<ProductPhotography />}
+        />
+        <Route
+          path={PUBLIC_ROUTE_PATHS.productCaseForPros}
+          element={<ProductCaseForPros />}
         />
         <Route
           path={PUBLIC_ROUTE_PATHS.familyPhotography}

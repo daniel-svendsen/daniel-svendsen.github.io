@@ -288,11 +288,24 @@ export default function Services() {
                 där tydlighet, färg och användbarhet är viktigt.
               </p>
               <p className="mt-4 max-w-3xl text-base leading-relaxed text-textSecondary">
-                Startpaket för produktfoto börjar från{' '}
-                {PRICING.business.productStartFrom}. {PRICING.business.taxNote}{' '}
-                Större produktserier och återkommande uppdrag anpassas efter
-                antal produkter, miljö och hur bilderna ska användas.
+                Startpaket med {PRICING.business.productIncludedImages} bilder
+                börjar från {PRICING.business.productStartFrom}. Extra bilder
+                inom samma upplägg kostar från{' '}
+                {PRICING.business.productExtraImageFrom}.{' '}
+                {PRICING.business.taxNote} Större produktserier och
+                återkommande uppdrag anpassas efter antal produkter, miljö och
+                hur bilderna ska användas.
               </p>
+
+              <LinkButton
+                to="/produktfotografering/"
+                variant="outline"
+                size="md"
+                subVariant="rounded"
+                className="mt-6 font-semibold"
+              >
+                Se produktfotografering
+              </LinkButton>
 
               <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
                 {productImages.map((image, index) => (

@@ -13,6 +13,12 @@ const Services = React.lazy(() => import('./pages/Services'))
 const BusinessPhotography = React.lazy(
   () => import('./pages/BusinessPhotography'),
 )
+const ProductPhotography = React.lazy(
+  () => import('./pages/ProductPhotography'),
+)
+const ProductCaseForPros = React.lazy(
+  () => import('./pages/ProductCaseForPros'),
+)
 const FamilyPhotography = React.lazy(() => import('./pages/FamilyPhotography'))
 const FamilyCaseEventladan = React.lazy(
   () => import('./pages/FamilyCaseEventladan'),
@@ -97,6 +103,14 @@ export default function AppRoutes() {
           <Route
             path={PUBLIC_ROUTE_PATHS.businessPhotography}
             element={<BusinessPhotography />}
+          />
+          <Route
+            path={PUBLIC_ROUTE_PATHS.productPhotography}
+            element={<ProductPhotography />}
+          />
+          <Route
+            path={PUBLIC_ROUTE_PATHS.productCaseForPros}
+            element={<ProductCaseForPros />}
           />
           <Route
             path={PUBLIC_ROUTE_PATHS.familyPhotography}

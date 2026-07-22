@@ -31,7 +31,8 @@ export const PRICING = {
     eventFullDayFrom: '14 900 kr',
     activityHourlyFrom: '2 200 kr/h',
     productStartFrom: '3 500 kr',
-    productExtraImageFrom: '350 kr/st',
+    productIncludedImages: 10,
+    productExtraImageFrom: '250 kr/st',
     taxNote: 'Moms tillkommer inte.',
   },
   web: {
