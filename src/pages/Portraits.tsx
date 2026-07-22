@@ -11,6 +11,7 @@ import { getPageOgImage } from '@/config/pageSeo'
 import { getImageSrc, type ImageAsset } from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
 import { PRICING } from '@/config/pricing'
+import { createFaqJsonLd, portraitFaqs } from '@/data/faqs'
 import featuredPortraitBaby from '../assets/portraits/portraits-2.jpg?responsive'
 import featuredPortraitChildren from '../assets/portraits/portraits-13.jpg?responsive'
 import featuredPortraitMan from '../assets/portraits/portraits-17.jpg?responsive'
@@ -68,13 +69,11 @@ const portraitHighlights = [
 const portraitDetails = [
   {
     title: 'Grundpaket',
-    description:
-      `Porträttfotografering från ${PRICING.portrait.basePrice}. Grundpaketet är ${PRICING.portrait.baseDuration} och passar dig som vill ha ett enkelt och genomtänkt upplägg.`,
+    description: `Porträttfotografering från ${PRICING.portrait.basePrice}. Grundpaketet är ${PRICING.portrait.baseDuration} och passar dig som vill ha ett enkelt och genomtänkt upplägg.`,
   },
   {
     title: 'Det här ingår',
-    description:
-      `${PRICING.portrait.baseImages} ingår i porträttbasen. Extra bilder kan köpas till för ${PRICING.portrait.extraImage}.`,
+    description: `${PRICING.portrait.baseImages} ingår i porträttbasen. Extra bilder kan köpas till för ${PRICING.portrait.extraImage}.`,
   },
   {
     title: 'Leverans',
@@ -103,34 +102,6 @@ const portraitLocations = [
     title: 'Porträttfotograf i Stenungsund',
     description:
       'För personliga porträtt och profilbilder i Stenungsund med omnejd, gärna utomhus och med ett lugnt upplägg som passar syftet med bilderna.',
-  },
-]
-
-const portraitFaqs = [
-  {
-    question: 'Vad ingår i en porträttfotografering?',
-    answer:
-      `Porträtt Bas är ${PRICING.portrait.baseDuration} och innehåller ${PRICING.portrait.baseImages}.`,
-  },
-  {
-    question: 'Hur lång tid tar en porträttfotografering?',
-    answer:
-      'Grundpaketet är 30 minuter, men upplägget kan anpassas om du behöver mer tid eller ett annat tempo.',
-  },
-  {
-    question: 'Hur många bilder får jag?',
-    answer:
-      `${PRICING.portrait.baseImages} ingår i Porträtt Bas. Extra bilder kan köpas till för ${PRICING.portrait.extraImage}.`,
-  },
-  {
-    question: 'Kan vi fotografera på en plats jag själv väljer?',
-    answer:
-      'Ja. Jag fotograferar främst utomhus, men det går också bra att fotografera hos kund eller på annan plats som passar syftet med bilderna.',
-  },
-  {
-    question: 'Kan jag skicka referensbilder om jag vill ha en viss stil?',
-    answer:
-      'Ja, absolut. Min bildstil är den du ser på hemsidan, men du får gärna skicka referensbilder om du vill ha en annan känsla eller riktning.',
   },
 ]
 
@@ -182,7 +153,7 @@ export default function Portraits() {
         url="https://www.svendsenphotography.com/portraits/"
         image={ogImage.src}
         imageAlt={ogImage.alt}
-        jsonLd={portraitsJsonLd}
+        jsonLd={[portraitsJsonLd, createFaqJsonLd(portraitFaqs)]}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
           {
@@ -358,8 +329,8 @@ export default function Portraits() {
             </h2>
             <p className="text-base leading-relaxed text-textSecondary">
               Jag utgår från Kungälv och fotograferar porträtt och profilbilder
-              i Kungälv, Göteborg och Stenungsund. Platsen väljer vi efter vilken
-              känsla bilderna ska ha och hur de ska användas.
+              i Kungälv, Göteborg och Stenungsund. Platsen väljer vi efter
+              vilken känsla bilderna ska ha och hur de ska användas.
             </p>
           </div>
 

@@ -255,7 +255,7 @@ export default function Services() {
                         ))}
                       </div>
 
-                      <div className="pt-3">
+                      <div className="flex flex-wrap gap-3 pt-3">
                         <LinkButton
                           to={card.buttonLink || '/contact/'}
                           variant="outline"
@@ -265,6 +265,19 @@ export default function Services() {
                         >
                           {card.buttonText || 'Läs mer & boka'}
                         </LinkButton>
+                        {'secondaryButtonLink' in card &&
+                          card.secondaryButtonLink &&
+                          card.secondaryButtonText && (
+                            <LinkButton
+                              to={card.secondaryButtonLink}
+                              variant="outline"
+                              size="md"
+                              subVariant="rounded"
+                              className="font-semibold"
+                            >
+                              {card.secondaryButtonText}
+                            </LinkButton>
+                          )}
                       </div>
                     </div>
                   </div>

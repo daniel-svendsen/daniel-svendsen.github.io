@@ -7,6 +7,7 @@ import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
 import { businessReference } from '@/config/seo'
+import { createFaqJsonLd, kungalvWeddingFaqs } from '@/data/faqs'
 
 const kungalvHeroImages = Object.entries(
   import.meta.glob(
@@ -41,24 +42,6 @@ const localServiceFacts = [
   },
 ]
 
-const localFaqs = [
-  {
-    question: 'Fotograferar du bröllop i Kungälv?',
-    answer:
-      'Ja, jag fotograferar bröllop i Kungälv och närliggande områden. Upplägget kan anpassas efter allt från en kortare vigsel till en längre dag.',
-  },
-  {
-    question: 'Kan vi bara boka bilder på oss som par?',
-    answer:
-      'Ja. För vissa par passar det bäst med ett mindre upplägg där fokus ligger på porträtt, en promenad, vigseln och några bilder med familjen.',
-  },
-  {
-    question: 'Hur lång tid behövs för promenadbilder?',
-    answer:
-      'Ofta räcker 10 till 20 minuter för att få en lugn serie bilder, särskilt om platsen ligger nära vigseln eller festen.',
-  },
-]
-
 export default function WeddingPhotographerKungalv() {
   const ogImage = getPageOgImage('weddingPhotographerKungalv')
 
@@ -82,7 +65,7 @@ export default function WeddingPhotographerKungalv() {
         url="https://www.svendsenphotography.com/brollopsfotograf-kungalv/"
         image={ogImage.src}
         imageAlt={ogImage.alt}
-        jsonLd={serviceJsonLd}
+        jsonLd={[serviceJsonLd, createFaqJsonLd(kungalvWeddingFaqs)]}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
           {
@@ -228,7 +211,7 @@ export default function WeddingPhotographerKungalv() {
           </div>
 
           <div className="space-y-4">
-            {localFaqs.map((faq) => (
+            {kungalvWeddingFaqs.map((faq) => (
               <div
                 key={faq.question}
                 className="rounded-2xl border border-black/6 bg-white px-5 py-5 shadow-[0_18px_45px_-32px_rgba(31,41,55,0.22)]"

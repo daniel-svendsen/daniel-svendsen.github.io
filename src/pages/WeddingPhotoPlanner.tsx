@@ -5,6 +5,7 @@ import { CTASection } from '@/components/CTASection'
 import { InfoCard } from '@/components/InfoCard'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
+import { createFaqJsonLd, weddingPlannerFaqs } from '@/data/faqs'
 
 interface PlannerSection {
   title: string
@@ -100,34 +101,6 @@ const noteFields = [
     id: 'other',
     label: 'Övriga önskemål',
     placeholder: 'Allt annat som känns viktigt inför fotograferingen.',
-  },
-]
-
-const plannerFaqs = [
-  {
-    question: 'Vad ska en checklista för bröllopsfotografering innehålla?',
-    answer:
-      'Börja med de bilder som är viktigast för er: familj, parbilder, detaljer, vigsel, mingel och personer som inte får missas. Resten kan anpassas efter tid och plats.',
-  },
-  {
-    question: 'Behöver alla par planera en exakt bildlista?',
-    answer:
-      'Nej, listan behöver inte vara stel. Den är mest ett sätt att fånga era prioriteringar så att fotograferingen kan kännas lugnare på dagen.',
-  },
-  {
-    question: 'Kan checklistan användas för kort vigsel, halvdag och heldag?',
-    answer:
-      'Ja. Vid en kort vigsel kan ni markera det allra viktigaste, medan halvdag eller heldag ger mer plats för förberedelser, mingel, middag och kvällsbilder.',
-  },
-  {
-    question: 'Hur lång tid tar bröllopsfotografering?',
-    answer:
-      'Det beror på hur mycket av dagen ni vill dokumentera. En kort vigsel kan ofta fotograferas på några timmar, medan halvdag eller heldag ger mer tid för förberedelser, porträtt, mingel, middag och fest.',
-  },
-  {
-    question: 'När under dagen ska man ta bröllopsbilder?',
-    answer:
-      'Familjebilder tas ofta direkt efter vigseln när alla är samlade. Parbilder kan tas före vigseln, efter gratulationerna eller under en kort promenad senare på dagen om ljuset och schemat passar.',
   },
 ]
 
@@ -261,7 +234,7 @@ export default function WeddingPhotoPlanner() {
         url="https://www.svendsenphotography.com/guider/brollopsplanerare/"
         image={ogImage.src}
         imageAlt={ogImage.alt}
-        jsonLd={plannerJsonLd}
+        jsonLd={[plannerJsonLd, createFaqJsonLd(weddingPlannerFaqs)]}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
           {
@@ -518,7 +491,7 @@ export default function WeddingPhotoPlanner() {
             </p>
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            {plannerFaqs.map((faq) => (
+            {weddingPlannerFaqs.map((faq) => (
               <InfoCard
                 key={faq.question}
                 title={faq.question}
@@ -535,7 +508,11 @@ export default function WeddingPhotoPlanner() {
           description="När ni har valt vad som känns viktigast kan jag hjälpa er att forma ett upplägg som passar platsen, tempot och dagen."
           actions={[
             { to: '/contact/', label: 'Skicka förfrågan' },
-            { to: '/guider/', label: 'Till guider', variant: 'outline' },
+            {
+              to: '/weddings/',
+              label: 'Se bröllopspaket',
+              variant: 'outline',
+            },
           ]}
         />
       </main>

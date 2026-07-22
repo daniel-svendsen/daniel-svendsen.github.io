@@ -34,7 +34,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
       <p className="mx-auto mb-7 max-w-2xl text-lg leading-relaxed text-textSecondary">
         {description}
       </p>
-      <div className="flex flex-col justify-center gap-4 sm:flex-row">
+      <div className="flex flex-col justify-center gap-4 sm:flex-row sm:flex-wrap">
         {actions.map((action) => (
           <LinkButton
             key={`${action.to}-${action.label}`}

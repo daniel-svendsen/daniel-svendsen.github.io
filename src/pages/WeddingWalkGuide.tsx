@@ -6,6 +6,7 @@ import { LinkButton } from '@/components/Button'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
+import { createFaqJsonLd, weddingWalkFaqs } from '@/data/faqs'
 import { type ResponsiveImageAsset } from '@/utils/responsiveImages'
 
 const guideImages = Object.entries(
@@ -59,24 +60,6 @@ const placeTips = [
   },
 ]
 
-const guideFaqs = [
-  {
-    question: 'Måste promenadbilder tas på golden hour?',
-    answer:
-      'Nej, dagen behöver fungera praktiskt först. Men om det finns möjlighet är mjukt kvällsljus ofta väldigt fint för naturliga porträtt.',
-  },
-  {
-    question: 'Vad ska paret göra under promenaden?',
-    answer:
-      'Det räcker långt att gå nära varandra, hålla handen, stanna upp ibland och försöka vara i stunden tillsammans.',
-  },
-  {
-    question: 'Behöver platsen vara perfekt?',
-    answer:
-      'Nej. En enkel stig, havskant, skogsdunge eller lugn promenadsträcka kan fungera fint om ljuset och känslan passar.',
-  },
-]
-
 export default function WeddingWalkGuide() {
   const ogImage = getPageOgImage('weddingWalkGuide')
 
@@ -101,7 +84,7 @@ export default function WeddingWalkGuide() {
         url="https://www.svendsenphotography.com/guider/brollopsbilder-promenad/"
         image={ogImage.src}
         imageAlt={ogImage.alt}
-        jsonLd={guideJsonLd}
+        jsonLd={[guideJsonLd, createFaqJsonLd(weddingWalkFaqs)]}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
           {
@@ -276,7 +259,7 @@ export default function WeddingWalkGuide() {
           </div>
 
           <div className="space-y-4">
-            {guideFaqs.map((faq) => (
+            {weddingWalkFaqs.map((faq) => (
               <div
                 key={faq.question}
                 className="rounded-2xl border border-black/6 bg-[#f8f8f5] px-5 py-5"
@@ -298,7 +281,11 @@ export default function WeddingWalkGuide() {
           description="Berätta lite om er plats och hur dagen ser ut, så hjälper jag er hitta ett upplägg där porträtten får kännas naturliga."
           actions={[
             { to: '/contact/', label: 'Skicka förfrågan' },
-            { to: '/guider/', label: 'Till guider', variant: 'outline' },
+            {
+              to: '/weddings/',
+              label: 'Se bröllopspaket',
+              variant: 'outline',
+            },
           ]}
         />
       </main>

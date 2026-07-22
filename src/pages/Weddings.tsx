@@ -11,6 +11,7 @@ import { getPageOgImage } from '@/config/pageSeo'
 import { getImageSrc, type ImageAsset } from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
 import { PRICING } from '@/config/pricing'
+import { createFaqJsonLd, weddingFaqs } from '@/data/faqs'
 import featuredWeddingKiss from '../assets/weddings/DSC09579.jpg?responsive'
 import featuredWeddingBlackAndWhite from '../assets/weddings/portraits-3.jpg?responsive'
 import featuredWeddingForest from '../assets/weddings/portraits-17.jpg?responsive'
@@ -98,36 +99,27 @@ const weddingPackages = [
   },
 ]
 
-const weddingFaqs = [
+const weddingGuideLinks = [
   {
-    question: 'Vad brukar bröllopsfotografering kosta?',
-    answer:
-      `Priset beror framför allt på hur många timmar som ska fotograferas, om ni vill ha en kort vigsel, halvdag eller heldag, hur många bilder som ingår och hur mycket planering som behövs. Mina bröllopspaket börjar från ${PRICING.wedding.shortPrice} för ${PRICING.wedding.shortDuration} och ${PRICING.wedding.shortImages}.`,
+    title: 'Planera bildlistan',
+    description:
+      'Samla de personer, detaljer och delar av dagen som känns viktigast för er.',
+    to: '/guider/brollopsplanerare/',
+    label: 'Öppna bröllopsplaneraren',
   },
   {
-    question: 'Vad ingår i kort vigsel-paketet?',
-    answer:
-      `Kort vigsel är ${PRICING.wedding.shortDuration} och innehåller ${PRICING.wedding.shortImages}. Det passar bra för mindre bröllop, rådhusvigsel eller för er som vill fokusera på de viktigaste delarna av dagen.`,
+    title: 'Skapa en lugn tidslinje',
+    description:
+      'Se hur familjebilder, porträtt och andra fotomoment kan få plats utan onödig stress.',
+    to: '/guider/brollopstidslinje/',
+    label: 'Se exempel på tidslinje',
   },
   {
-    question: 'Kan vi anpassa ett paket efter vår dag?',
-    answer:
-      'Ja. De tre paketen på hemsidan fungerar som grund, men det går bra att ändra upplägg, lägga till tid eller justera innehållet efter era behov.',
-  },
-  {
-    question: 'Hur många bilder får vi från vårt bröllop?',
-    answer:
-      `Det beror på vilket upplägg ni väljer. Kort vigsel innehåller ${PRICING.wedding.shortImages}, halvdag ${PRICING.wedding.halfDayImages} och heldag ${PRICING.wedding.fullDayImages}.`,
-  },
-  {
-    question: 'Hur lång är leveranstiden för bröllopsbilder?',
-    answer:
-      'Leveranstiden är vanligtvis 1 till 2 veckor, beroende på hur mycket jag har att göra under perioden.',
-  },
-  {
-    question: 'Hur långt i förväg bör vi boka?',
-    answer:
-      'Jag rekommenderar att ni hör av er minst 2 veckor i förväg, gärna tidigare om ni vill säkra datum och ha tid för planering.',
+    title: 'Planera promenadbilder',
+    description:
+      'Förbered en kort stund för naturliga porträtt utifrån plats, ljus och dagens tempo.',
+    to: '/guider/brollopsbilder-promenad/',
+    label: 'Läs guiden om promenadbilder',
   },
 ]
 
@@ -178,7 +170,7 @@ export default function WeddingGallery() {
         url="https://www.svendsenphotography.com/weddings/"
         image={ogImage.src}
         imageAlt={ogImage.alt}
-        jsonLd={weddingsJsonLd}
+        jsonLd={[weddingsJsonLd, createFaqJsonLd(weddingFaqs)]}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
           {
@@ -380,6 +372,43 @@ export default function WeddingGallery() {
           </div>
         </section>
 
+        <section className="mx-auto mb-14 max-w-6xl rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10">
+          <div className="mb-8 max-w-3xl">
+            <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
+              Förbered fotograferingen
+            </h2>
+            <p className="text-base leading-relaxed text-textSecondary">
+              Använd guiderna för att samla era prioriteringar och skapa plats
+              för bilderna i dagens planering innan ni skickar en förfrågan.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {weddingGuideLinks.map((guide) => (
+              <div
+                key={guide.to}
+                className="flex flex-col rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-6"
+              >
+                <h3 className="mb-3 text-xl font-semibold text-textPrimary">
+                  {guide.title}
+                </h3>
+                <p className="mb-6 flex-1 text-sm leading-relaxed text-textSecondary">
+                  {guide.description}
+                </p>
+                <LinkButton
+                  to={guide.to}
+                  variant="outline"
+                  size="md"
+                  subVariant="rounded"
+                  className="self-start font-semibold"
+                >
+                  {guide.label}
+                </LinkButton>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-6 md:p-8">
             <h2 className="mb-4 text-2xl font-semibold text-textPrimary">
@@ -455,11 +484,7 @@ export default function WeddingGallery() {
           description="Hör av er och berätta lite om er dag, ert upplägg och vad ni vill ha hjälp med, så återkommer jag med ett förslag som passar er och den känsla ni vill bära med er från dagen."
           actions={[
             { to: '/contact/', label: 'Skicka förfrågan' },
-            {
-              to: '/guider/brollopsplanerare/',
-              label: 'Planera bildlistan',
-              variant: 'outline',
-            },
+            { to: '/brollop/', label: 'Se verkliga bröllop', variant: 'outline' },
           ]}
         />
 

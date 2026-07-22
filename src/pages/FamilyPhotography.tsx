@@ -8,6 +8,7 @@ import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
 import { PRICING } from '@/config/pricing'
 import { businessReference, BUSINESS } from '@/config/seo'
+import { createFaqJsonLd, familyFaqs } from '@/data/faqs'
 import familyAtEventladan from '@/assets/familyphoto/familjefotografering-eventladan-kungalv.jpg?responsive'
 import coupleByWindow from '@/assets/familyphoto/parfotografering-vid-fonster.jpg?responsive'
 import siblingsAtEventladan from '@/assets/familyphoto/syskonfotografering-eventladan-kungalv.jpg?responsive'
@@ -58,28 +59,6 @@ const processSteps = [
   {
     title: '4. Leverans',
     description: `${PRICING.portrait.familyImages} ingår. Normal leveranstid är cirka 1 vecka, beroende på aktuell arbetsbelastning.`,
-  },
-]
-
-const familyFaqs = [
-  {
-    question: 'Vad kostar en familjefotografering?',
-    answer: `Familjefotografering kostar från ${PRICING.portrait.familyPrice}. Fotograferingen är ${PRICING.portrait.familyDuration} och ${PRICING.portrait.familyImages} ingår.`,
-  },
-  {
-    question: 'Var kan fotograferingen ske?',
-    answer:
-      'Jag fotograferar främst utomhus, men det går också bra hemma hos er eller på en annan plats som passar familjen och bildstilen.',
-  },
-  {
-    question: 'Fotograferar du barn och syskon?',
-    answer:
-      'Ja. Vi anpassar tempot efter barnen och kan variera mellan hela familjen, syskonbilder och enskilda barnporträtt.',
-  },
-  {
-    question: 'Erbjuder du gravid- eller nyföddfotografering?',
-    answer:
-      'Jag erbjuder gravidfotografering utomhus eller på plats. Jag erbjuder däremot inte nyföddfotografering som en särskild tjänst.',
   },
 ]
 
@@ -135,7 +114,7 @@ export default function FamilyPhotography() {
         url="https://www.svendsenphotography.com/familjefotografering/"
         image={ogImage.src}
         imageAlt={ogImage.alt}
-        jsonLd={familyServiceJsonLd}
+        jsonLd={[familyServiceJsonLd, createFaqJsonLd(familyFaqs)]}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
           {

@@ -31,8 +31,8 @@ export const homeCards = [
     title: 'Företag, Event & Hobby',
     description:
       'Professionella bilder för företag, event, verksamheter och andra personliga sammanhang.',
-    buttonText: 'Läs mer',
-    buttonLink: '/services/',
+    buttonText: 'Se företagsfotografering',
+    buttonLink: '/foretagsfotografering/',
     icon: Briefcase,
   },
   {
@@ -99,6 +99,8 @@ ${PRICING.business.taxNote}`,
     price: `Från ${PRICING.business.portraitFrom}`,
     buttonText: 'Be om offert',
     buttonLink: '/contact/',
+    secondaryButtonText: 'Se företagsfotografering',
+    secondaryButtonLink: '/foretagsfotografering/',
     icon: Briefcase,
   },
   {

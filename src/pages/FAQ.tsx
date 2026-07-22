@@ -1,73 +1,45 @@
 import { Disclosure } from '@headlessui/react'
 import React from 'react'
 import { Minus, Plus } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 import { LinkButton } from '@/components/Button'
 import { EditorialIntro, EditorialSection } from '@/components/Editorial'
 import SEO from '@/components/SEO'
-import { PRICING } from '@/config/pricing'
 import { getPageOgImage } from '@/config/pageSeo'
+import { createFaqJsonLd, generalFaqs } from '@/data/faqs'
+
+const faqDestinations = [
+  {
+    to: '/portraits/',
+    title: 'Porträttfotografering',
+    description:
+      'Paket, fotograferingstid, antal bilder, plats och referensbilder.',
+  },
+  {
+    to: '/familjefotografering/',
+    title: 'Familjefotografering',
+    description: 'Pris, plats, barn- och syskonfoto samt gravidfotografering.',
+  },
+  {
+    to: '/weddings/',
+    title: 'Bröllopsfotografering',
+    description: 'Paket, priser, antal bilder, leveranstid och bokning.',
+  },
+  {
+    to: '/brollopsfotograf-kungalv/',
+    title: 'Bröllop i Kungälv',
+    description: 'Lokalt upplägg, parbilder och tid för promenadbilder.',
+  },
+  {
+    to: '/guider/',
+    title: 'Bröllopsguider',
+    description: 'Bildlista, tidslinje och promenadbilder under bröllopsdagen.',
+  },
+]
 
 export default function FAQ() {
   const ogImage = getPageOgImage('faq')
-
-  const faqs = [
-    {
-      question: 'Vad ingår i porträttfotograferingen?',
-      answer: `Porträtt Bas är ${PRICING.portrait.baseDuration} och innehåller ${PRICING.portrait.baseImages}. Familjefotografering är ${PRICING.portrait.familyDuration} och innehåller ${PRICING.portrait.familyImages}.`,
-    },
-    {
-      question: 'Hur lång leveranstid är det på porträttbilder?',
-      answer:
-        'Normal leveranstid för porträttbilder är cirka 1 vecka, beroende på arbetsbelastning.',
-    },
-    {
-      question: 'Kan jag skicka referensbilder inför en porträttfotografering?',
-      answer:
-        'Ja, absolut. Min stil är den du ser på hemsidan, men du får gärna skicka referensbilder om du vill ha en annan känsla eller riktning.',
-    },
-    {
-      question: 'Fotograferar du utanför Kungälv?',
-      answer: 'Ja, men reseersättning kan tillkomma.',
-    },
-    {
-      question: 'Vad ingår i kort vigsel-paketet för bröllopsfotografering?',
-      answer: `Kort vigsel är ${PRICING.wedding.shortDuration} och innehåller ${PRICING.wedding.shortImages}. Det passar bra för mindre bröllop, rådhusvigsel eller för er som vill fokusera på de viktigaste delarna av dagen.`,
-    },
-    {
-      question: 'Kan vi anpassa ett bröllopspaket efter vår dag?',
-      answer:
-        'Ja. Paketen Kort vigsel, Halvdag och Heldag fungerar som grund, men det går bra att lägga till tid eller justera upplägget så att det passar er bättre.',
-    },
-    {
-      question: 'Hur lång är leveranstiden för bröllopsbilder?',
-      answer:
-        'Leveranstiden för bröllopsbilder är vanligtvis 1 till 2 veckor beroende på säsong och arbetsbelastning.',
-    },
-    {
-      question: 'Hur långt i förväg bör vi boka bröllopsfotograf?',
-      answer:
-        'Jag rekommenderar att ni hör av er minst 2 veckor i förväg, gärna tidigare om ni vill säkra datum och hinna planera i lugn och ro.',
-    },
-    {
-      question: 'Hur lång tid tar en vanlig fotosession?',
-      answer:
-        'En vanlig fotosession tar ofta mellan 30 minuter och 2 timmar beroende på vilken typ av fotografering det gäller och vilket upplägg vi kommer fram till.',
-    },
-  ]
-
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((faq) => ({
-      '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  }
 
   return (
     <>
@@ -78,7 +50,7 @@ export default function FAQ() {
         image={ogImage.src}
         imageAlt={ogImage.alt}
         keywords="fotograf FAQ, fotografering frågor, familjefotograf, bröllopsfotograf pris, hur bokar man en fotograf, fotograf göteborg kungälv"
-        jsonLd={faqJsonLd}
+        jsonLd={createFaqJsonLd(generalFaqs)}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
           {
@@ -89,19 +61,22 @@ export default function FAQ() {
       />
 
       <main className="bg-[#f5f5f2] pt-24 text-textPrimary md:pt-28">
-        <EditorialSection tone="white" className="mx-3 rounded-[1.75rem] border border-black/6 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.5)] sm:mx-4 md:mx-5 lg:mx-auto lg:max-w-5xl">
+        <EditorialSection
+          tone="white"
+          className="mx-3 rounded-[1.75rem] border border-black/6 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.5)] sm:mx-4 md:mx-5 lg:mx-auto lg:max-w-5xl"
+        >
           <EditorialIntro
             align="center"
             eyebrow="FAQ"
             headingLevel="h1"
             title="Vanliga frågor"
-            description="Har du frågor om fotografering, priser eller bokning? Här hittar du de vanligaste svaren."
+            description="Här finns gemensamma svar och vägar till frågor om porträtt, familj och bröllop på respektive ansvarig sida."
           />
 
           <div className="mx-auto mt-12 max-w-3xl space-y-4">
-            {faqs.map((faq, index) => (
+            {generalFaqs.map((faq) => (
               <Disclosure
-                key={index}
+                key={faq.question}
                 as="div"
                 className="rounded-2xl border border-black/6 bg-[#f8f8f5]"
               >
@@ -122,6 +97,32 @@ export default function FAQ() {
                 )}
               </Disclosure>
             ))}
+          </div>
+
+          <div className="mx-auto mt-14 max-w-3xl border-t border-black/6 pt-10">
+            <h2 className="text-center text-2xl font-semibold text-textPrimary">
+              Frågor om en särskild fotografering
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-center leading-7 text-textPrimary/68">
+              Tjänstespecifika svar finns på sidan som beskriver erbjudandet och
+              dess aktuella villkor.
+            </p>
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {faqDestinations.map((destination) => (
+                <Link
+                  key={destination.to}
+                  to={destination.to}
+                  className="rounded-2xl border border-black/6 bg-[#f8f8f5] p-5 transition hover:-translate-y-0.5 hover:bg-white focus:outline-none focus-visible:ring focus-visible:ring-textPrimary/20"
+                >
+                  <span className="block font-semibold text-textPrimary">
+                    {destination.title}
+                  </span>
+                  <span className="mt-2 block text-sm leading-6 text-textPrimary/68">
+                    {destination.description}
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
 
           <div className="mx-auto mt-12 max-w-3xl border-t border-black/6 pt-8 text-center">

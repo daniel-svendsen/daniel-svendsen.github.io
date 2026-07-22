@@ -156,6 +156,11 @@ export default function CaseStenungsund() {
               label: 'Fler verkliga bröllop',
               variant: 'outline',
             },
+            {
+              to: '/contact/',
+              label: 'Skicka förfrågan',
+              variant: 'outline',
+            },
           ]}
         />
       </main>

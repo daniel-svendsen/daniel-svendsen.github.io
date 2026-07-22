@@ -6,6 +6,7 @@ import { LinkButton } from '@/components/Button'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
+import { createFaqJsonLd, weddingTimelineFaqs } from '@/data/faqs'
 import { type ResponsiveImageAsset } from '@/utils/responsiveImages'
 
 const timelineImages = Object.entries(
@@ -101,24 +102,6 @@ const timelineExamples = [
   },
 ]
 
-const guideFaqs = [
-  {
-    question: 'Hur lång tid behövs för familjebilder?',
-    answer:
-      'Räkna ungefär 20 till 40 minuter beroende på hur många grupper och kombinationer ni vill fotografera.',
-  },
-  {
-    question: 'Hur lång tid behövs för bilder på paret?',
-    answer:
-      'Ofta räcker 20 till 30 minuter, särskilt om platsen ligger nära och ni vill ha en naturlig serie bilder.',
-  },
-  {
-    question: 'Måste man ha first look?',
-    answer:
-      'Nej. First look kan vara fint, men det viktigaste är att upplägget känns rätt för er och passar dagen.',
-  },
-]
-
 export default function WeddingTimelineGuide() {
   const ogImage = getPageOgImage('weddingTimelineGuide')
 
@@ -143,7 +126,7 @@ export default function WeddingTimelineGuide() {
         url="https://www.svendsenphotography.com/guider/brollopstidslinje/"
         image={ogImage.src}
         imageAlt={ogImage.alt}
-        jsonLd={guideJsonLd}
+        jsonLd={[guideJsonLd, createFaqJsonLd(weddingTimelineFaqs)]}
         breadcrumbs={[
           { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
           {
@@ -360,7 +343,7 @@ export default function WeddingTimelineGuide() {
           </div>
 
           <div className="space-y-4">
-            {guideFaqs.map((faq) => (
+            {weddingTimelineFaqs.map((faq) => (
               <div
                 key={faq.question}
                 className="rounded-2xl border border-black/6 bg-[#f8f8f5] px-5 py-5"
@@ -382,7 +365,11 @@ export default function WeddingTimelineGuide() {
           description="Berätta hur dagen ser ut och vilka bilder som känns viktigast, så hjälper jag er hitta ett upplägg som passar tempot."
           actions={[
             { to: '/contact/', label: 'Skicka förfrågan' },
-            { to: '/guider/', label: 'Till guider', variant: 'outline' },
+            {
+              to: '/weddings/',
+              label: 'Se bröllopspaket',
+              variant: 'outline',
+            },
           ]}
         />
       </main>

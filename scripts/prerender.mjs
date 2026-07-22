@@ -34,6 +34,22 @@ function getCanonicalHref(html) {
   return html.match(/<link[^>]+rel="canonical"[^>]+href="([^"]+)"/)?.[1]
 }
 
+function getJsonLdDocuments(html) {
+  return Array.from(
+    html.matchAll(
+      /<script[^>]+type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g,
+    ),
+    (match) => JSON.parse(match[1]),
+  ).flatMap((document) => (Array.isArray(document) ? document : [document]))
+}
+
+function getPageContentHtml(html) {
+  return (
+    html.match(/<main(?:\s[^>]*)?>([\s\S]*?)<\/main>/)?.[1] ??
+    html.match(/<\/header>([\s\S]*?)<footer(?:\s[^>]*)?>/)?.[1]
+  )
+}
+
 async function verifyGeneratedSeo() {
   assertBuild(
     new Set(prerenderRoutes).size === prerenderRoutes.length,
@@ -41,6 +57,110 @@ async function verifyGeneratedSeo() {
   )
 
   const renderedMetadata = []
+  const faqRoutes = new Set([
+    '/faq/',
+    '/portraits/',
+    '/familjefotografering/',
+    '/weddings/',
+    '/brollopsfotograf-kungalv/',
+    '/guider/brollopsplanerare/',
+    '/guider/brollopsbilder-promenad/',
+    '/guider/brollopstidslinje/',
+  ])
+  const faqOwners = new Map()
+  const requiredMainLinks = new Map([
+    ['/', ['/foretagsfotografering/']],
+    [
+      '/services/',
+      [
+        '/weddings/',
+        '/portraits/',
+        '/familjefotografering/',
+        '/foretagsfotografering/',
+        '/produktfotografering/',
+        '/contact/',
+      ],
+    ],
+    [
+      '/weddings/',
+      [
+        '/brollop/',
+        '/brollopsfotograf-kungalv/',
+        '/guider/brollopsplanerare/',
+        '/guider/brollopsbilder-promenad/',
+        '/guider/brollopstidslinje/',
+        '/contact/',
+      ],
+    ],
+    [
+      '/brollopsfotograf-kungalv/',
+      ['/brollop/kungalv/', '/weddings/', '/contact/'],
+    ],
+    [
+      '/brollop/',
+      [
+        '/brollop/kungalv/',
+        '/brollop/stenungsund/',
+        '/weddings/',
+        '/contact/',
+      ],
+    ],
+    [
+      '/brollop/kungalv/',
+      ['/brollopsfotograf-kungalv/', '/brollop/', '/contact/'],
+    ],
+    [
+      '/brollop/stenungsund/',
+      ['/weddings/', '/brollop/', '/contact/'],
+    ],
+    [
+      '/guider/',
+      [
+        '/guider/brollopsplanerare/',
+        '/guider/brollopsbilder-promenad/',
+        '/guider/brollopstidslinje/',
+        '/weddings/',
+        '/contact/',
+      ],
+    ],
+    [
+      '/guider/brollopsplanerare/',
+      ['/weddings/', '/contact/'],
+    ],
+    [
+      '/guider/brollopsbilder-promenad/',
+      ['/weddings/', '/contact/'],
+    ],
+    [
+      '/guider/brollopstidslinje/',
+      ['/weddings/', '/contact/'],
+    ],
+    [
+      '/portraits/',
+      ['/familjefotografering/', '/services/', '/contact/'],
+    ],
+    [
+      '/familjefotografering/',
+      [
+        '/familjefotografering/eventladan-romelanda/',
+        '/services/',
+        '/contact/',
+      ],
+    ],
+    [
+      '/familjefotografering/eventladan-romelanda/',
+      ['/familjefotografering/', '/contact/'],
+    ],
+    ['/foretagsfotografering/', ['/services/', '/contact/']],
+    [
+      '/produktfotografering/',
+      ['/produktfotografering/for-pros/', '/services/', '/contact/'],
+    ],
+    [
+      '/produktfotografering/for-pros/',
+      ['/produktfotografering/', '/contact/'],
+    ],
+  ])
 
   for (const route of prerenderRoutes) {
     const outputPath =
@@ -106,6 +226,59 @@ async function verifyGeneratedSeo() {
       `${route} must contain prerendered app content`,
     )
 
+    const expectedMainLinks = requiredMainLinks.get(route) ?? []
+    if (expectedMainLinks.length > 0) {
+      const mainHtml = getPageContentHtml(html)
+      assertBuild(
+        Boolean(mainHtml),
+        `${route} must contain a page-content region for link verification`,
+      )
+
+      for (const expectedLink of expectedMainLinks) {
+        assertBuild(
+          mainHtml.includes(`href="${expectedLink}"`),
+          `${route} main content must link to ${expectedLink}`,
+        )
+      }
+    }
+
+    const faqDocuments = getJsonLdDocuments(html).filter(
+      (document) => document['@type'] === 'FAQPage',
+    )
+    assertBuild(
+      faqDocuments.length === (faqRoutes.has(route) ? 1 : 0),
+      `${route} must contain the expected number of FAQPage schemas`,
+    )
+
+    for (const faqDocument of faqDocuments) {
+      assertBuild(
+        Array.isArray(faqDocument.mainEntity) &&
+          faqDocument.mainEntity.length > 0,
+        `${route} FAQPage schema must contain questions`,
+      )
+
+      for (const entity of faqDocument.mainEntity) {
+        const question = entity.name
+        const answer = entity.acceptedAnswer?.text
+        assertBuild(
+          entity['@type'] === 'Question' &&
+            entity.acceptedAnswer?.['@type'] === 'Answer' &&
+            Boolean(question) &&
+            Boolean(answer),
+          `${route} FAQPage entries must contain a question and answer`,
+        )
+        assertBuild(
+          html.includes(question) && html.includes(answer),
+          `${route} FAQPage content must also be visible on the page`,
+        )
+        assertBuild(
+          !faqOwners.has(question),
+          `${route} FAQ question already belongs to ${faqOwners.get(question)}`,
+        )
+        faqOwners.set(question, route)
+      }
+    }
+
     renderedMetadata.push({
       route,
       title,
@@ -115,6 +288,11 @@ async function verifyGeneratedSeo() {
       imageAlt: ogImageAlt,
     })
   }
+
+  assertBuild(
+    faqRoutes.size === new Set(Array.from(faqOwners.values())).size,
+    'every FAQ route must own at least one visible schema question',
+  )
 
   for (const field of [
     'title',

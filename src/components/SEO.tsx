@@ -10,7 +10,7 @@ interface SEOProps {
   image?: string
   imageAlt?: string
   keywords?: string
-  jsonLd?: Record<string, any>
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>
   breadcrumbs?: Array<{
     name: string
     url: string
