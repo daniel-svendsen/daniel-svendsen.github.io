@@ -7,24 +7,80 @@ import SEO from '@/components/SEO'
 import { BUSINESS, businessReference } from '@/config/seo'
 import { getPageOgImage } from '@/config/pageSeo'
 
+interface ServiceOption {
+  id: string
+  label: string
+  asksForLocation: boolean
+  messagePlaceholder: string
+}
+
+const serviceOptions: ServiceOption[] = [
+  {
+    id: 'wedding-photography',
+    label: 'Bröllopsfotografering',
+    asksForLocation: true,
+    messagePlaceholder:
+      'Berätta vilka delar av bröllopsdagen ni vill fånga, ungefärliga tider och om ni är intresserade av film som tillägg.',
+  },
+  {
+    id: 'family-photography',
+    label: 'Familjefotografering',
+    asksForLocation: true,
+    messagePlaceholder:
+      'Berätta hur många som ska fotograferas, om barn eller hund ska vara med och vilken känsla ni önskar.',
+  },
+  {
+    id: 'portrait-photography',
+    label: 'Porträttfotografering',
+    asksForLocation: true,
+    messagePlaceholder:
+      'Berätta hur många som ska fotograferas, hur bilderna ska användas och vilken typ av porträtt du önskar.',
+  },
+  {
+    id: 'business-photography',
+    label: 'Företagsfotografering',
+    asksForLocation: true,
+    messagePlaceholder:
+      'Ange ungefärligt antal personer och om ni behöver personalporträtt, gruppbilder, verksamhetsbilder eller en återkommande bildbank.',
+  },
+  {
+    id: 'product-photography',
+    label: 'Produktfotografering',
+    asksForLocation: true,
+    messagePlaceholder:
+      'Ange ungefärligt antal produkter och färdiga bilder eller vyer, önskad bildtyp och om produkterna lämnas, skickas eller fotograferas på plats.',
+  },
+  {
+    id: 'vehicle-photography',
+    label: 'Bilfotografering',
+    asksForLocation: true,
+    messagePlaceholder:
+      'Berätta hur många fordon det gäller, önskad bildtyp och om du har en plats i åtanke.',
+  },
+  {
+    id: 'web-development',
+    label: 'Webbutveckling / hemsida',
+    asksForLocation: false,
+    messagePlaceholder:
+      'Berätta om det gäller en ny eller befintlig webbplats, vad den ska hjälpa besökaren med och vilka sidor eller funktioner du behöver.',
+  },
+  {
+    id: 'other',
+    label: 'Annat',
+    asksForLocation: false,
+    messagePlaceholder: 'Berätta lite om vad du behöver hjälp med.',
+  },
+]
+
 export default function Contact() {
   const [selectedService, setSelectedService] = useState<string>('')
   const [formStatus, setFormStatus] = useState<'success' | 'error' | null>(null)
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
   const ogImage = getPageOgImage('contact')
 
-  const services = [
-    'Utefotografering',
-    'Familjefotografering',
-    'Studiofoto',
-    'Bröllop',
-    'Företagsporträtt',
-    'Produktfotografering',
-    'Verksamhetsfoto / hobby / fordon',
-    'Film som tillägg',
-    'Hemsida',
-    'Annat',
-  ]
+  const selectedServiceOption = serviceOptions.find(
+    (service) => service.label === selectedService,
+  )
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -89,7 +145,7 @@ export default function Contact() {
     <>
       <SEO
         title="Boka fotograf i Göteborg, Kungälv & Stenungsund | Kontakt"
-        description="Boka fotograf eller be om offert för bröllop, porträtt, familjefoto, företagsfoto och webbutveckling i Göteborg, Kungälv och Stenungsund."
+        description="Boka fotograf eller be om offert för bröllop, porträtt, familjefoto, företagsfoto, produktfoto och webbutveckling i Göteborg, Kungälv och Stenungsund."
         url="https://www.svendsenphotography.com/contact/"
         image={ogImage.src}
         imageAlt={ogImage.alt}
@@ -125,10 +181,10 @@ export default function Contact() {
                 Fotograf i Göteborg, Kungälv och Stenungsund med omnejd.
               </h2>
               <p className="leading-8 text-textPrimary/68">
-                Jag fotograferar bröllop, porträtt, familjer och företag. Oavsett
-                om fotograferingen sker vid havet, i stadsmiljö, hemma hos er
-                eller på en plats som betyder något, anpassar jag upplägget efter
-                ljuset, platsen och känslan ni vill åt.
+                Jag fotograferar bröllop, porträtt, familjer, företag och
+                produkter. Oavsett om fotograferingen sker vid havet, i
+                stadsmiljö, hemma hos er eller på plats hos företaget anpassar
+                jag upplägget efter uppdraget, ljuset och platsen.
               </p>
 
               <div className="mt-8 grid gap-3">
@@ -190,39 +246,87 @@ export default function Contact() {
                   Vilken tjänst är du intresserad av? *
                 </legend>
                 <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  {services.map((service) => (
+                  {serviceOptions.map((service) => (
                     <label
-                      key={service}
-                      htmlFor={service}
+                      key={service.id}
+                      htmlFor={service.id}
                       className="flex cursor-pointer items-center gap-3 rounded-2xl border border-black/6 bg-[#f8f8f5] px-4 py-3 text-sm font-medium text-textPrimary/78 transition hover:border-textPrimary/25"
                     >
                       <input
                         type="radio"
-                        id={service}
+                        id={service.id}
                         name="service_option"
-                        value={service}
-                        checked={selectedService === service}
-                        onChange={() => setSelectedService(service)}
+                        value={service.label}
+                        checked={selectedService === service.label}
+                        onChange={() => setSelectedService(service.label)}
                         required
                         className={radioInputClasses}
                         disabled={isSubmitting}
                       />
-                      {service}
+                      {service.label}
                     </label>
                   ))}
                 </div>
               </fieldset>
 
+              {selectedService && (
+                <>
+                  <div
+                    className={
+                      selectedServiceOption?.asksForLocation
+                        ? undefined
+                        : 'sm:col-span-2'
+                    }
+                  >
+                    <label htmlFor="preferred_date" className={labelClasses}>
+                      Önskat datum eller tidsperiod
+                    </label>
+                    <input
+                      id="preferred_date"
+                      name="preferred_date"
+                      type="text"
+                      placeholder="Exempel: 14 september eller vecka 42"
+                      className={inputClasses}
+                      disabled={isSubmitting}
+                    />
+                  </div>
+
+                  {selectedServiceOption?.asksForLocation && (
+                    <div>
+                      <label htmlFor="location" className={labelClasses}>
+                        Plats eller ort
+                      </label>
+                      <input
+                        id="location"
+                        name="location"
+                        type="text"
+                        placeholder="Exempel: Kungälv eller hos företaget"
+                        className={inputClasses}
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                  )}
+                </>
+              )}
+
               <div className="sm:col-span-2">
                 <label htmlFor="message" className={labelClasses}>
-                  Meddelande *
+                  Berätta om din förfrågan *
                 </label>
+                <p
+                  id="message-guidance"
+                  className="mb-3 text-sm leading-6 text-textPrimary/62"
+                >
+                  {selectedServiceOption?.messagePlaceholder ??
+                    'Välj en tjänst ovan så visar formuläret vilket underlag som hjälper inför bokning eller offert.'}
+                </p>
                 <textarea
                   id="message"
                   name="message"
                   rows={6}
                   required
-                  placeholder="Berätta lite om vad du behöver hjälp med..."
+                  aria-describedby="message-guidance"
+                  placeholder="Skriv ditt meddelande här..."
                   className={inputClasses}
                   disabled={isSubmitting}
                 />
