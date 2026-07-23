@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import { type ResponsiveImageAsset } from '@/utils/responsiveImages'
 
+type ImageModuleLoader = () => Promise<{
+  default: ResponsiveImageAsset
+}>
+
 const availableFolders = {
   portraits: import.meta.glob<{ default: ResponsiveImageAsset }>(
     '../assets/portraits/*.{jpg,jpeg,png}',
@@ -14,20 +18,33 @@ const availableFolders = {
     '../assets/carousel/*.{jpg,jpeg,png}',
     { query: '?responsive' },
   ),
-}
+} satisfies Record<string, Record<string, ImageModuleLoader>>
 
-export function useImportedImages(folders: string[]) {
-  const [images, setImages] = useState<
-    Record<string, ResponsiveImageAsset[]>
-  >({})
+export type ImportedImageFolder = keyof typeof availableFolders
+type ImportedImages = Partial<
+  Record<ImportedImageFolder, ResponsiveImageAsset[]>
+>
+
+export function useImportedImages(
+  folders: readonly ImportedImageFolder[],
+): ImportedImages {
+  const [images, setImages] = useState<ImportedImages>({})
+  const folderKey = JSON.stringify(folders)
 
   useEffect(() => {
-    const loadImages = async () => {
-      const newImages: Record<string, ResponsiveImageAsset[]> = {}
+    let isCurrentRequest = true
 
-      for (const folder of folders) {
-        if (availableFolders[folder]) {
-          const modules = availableFolders[folder]
+    const loadImages = async () => {
+      const requestedFolders = JSON.parse(
+        folderKey,
+      ) as ImportedImageFolder[]
+      const newImages: ImportedImages = {}
+
+      for (const folder of requestedFolders) {
+        const modules: Record<string, ImageModuleLoader> | undefined =
+          availableFolders[folder]
+
+        if (modules) {
           const paths = Object.keys(modules)
           newImages[folder] = await Promise.all(
             paths.map(async (path) => {
@@ -40,11 +57,17 @@ export function useImportedImages(folders: string[]) {
         }
       }
 
-      setImages(newImages)
+      if (isCurrentRequest) {
+        setImages(newImages)
+      }
     }
 
     loadImages()
-  }, [folders])
+
+    return () => {
+      isCurrentRequest = false
+    }
+  }, [folderKey])
 
   return images
 }

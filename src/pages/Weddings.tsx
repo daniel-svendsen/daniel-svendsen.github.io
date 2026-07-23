@@ -123,8 +123,10 @@ const weddingGuideLinks = [
   },
 ]
 
+const weddingImageFolders = ['weddings'] as const
+
 export default function WeddingGallery() {
-  const { weddings: weddingImages } = useImportedImages(['weddings'])
+  const { weddings: weddingImages } = useImportedImages(weddingImageFolders)
   const shuffledWeddingImages = useShuffledImages(weddingImages || [])
   const galleryImages = useMemo(
     () =>

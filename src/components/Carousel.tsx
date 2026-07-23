@@ -9,7 +9,7 @@ interface CarouselProps {
   pauseDuration?: number
 }
 
-const carouselImageFolders = ['carousel']
+const carouselImageFolders = ['carousel'] as const
 
 export default function Carousel({
   interval = 3000,

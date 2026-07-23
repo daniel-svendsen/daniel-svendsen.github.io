@@ -105,8 +105,10 @@ const portraitLocations = [
   },
 ]
 
+const portraitImageFolders = ['portraits'] as const
+
 export default function Portraits() {
-  const imagesData = useImportedImages(['portraits'])
+  const imagesData = useImportedImages(portraitImageFolders)
   const images = imagesData.portraits || []
   const shuffledImages = useShuffledImages(images)
   const galleryImages = useMemo(
