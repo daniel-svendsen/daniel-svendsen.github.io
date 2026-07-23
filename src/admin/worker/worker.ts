@@ -1,6 +1,11 @@
 // src/admin/worker/worker.ts
 
 import { downloadZip, predictLength } from 'client-zip'
+import type {
+  GalleryDetailResponse,
+  GalleryImage,
+  GalleryImagesResponse,
+} from '../types/galleryContract'
 
 const Router = () => {
   const routes: { method: string; path: RegExp; handler: Function }[] = []
@@ -63,13 +68,6 @@ const R2_DELETE_BATCH_SIZE = 1000
 const MAX_GALLERY_ZIP_BYTES = 3.5 * 1024 * 1024 * 1024
 const apiRouter = Router()
 const imageCache = (caches as CacheStorage & { default: Cache }).default
-
-interface GalleryImage {
-  id: string
-  previewKey: string
-  originalKey: string
-  fileName: string
-}
 
 const jsonResponse = (
   body: unknown,
@@ -811,8 +809,14 @@ apiRouter.get(
       )
       const likedImages = likedImagesJson ? JSON.parse(likedImagesJson) : []
 
+      const responseBody: GalleryDetailResponse = {
+        images,
+        folders,
+        likedImages,
+      }
+
       return jsonResponse(
-        { images, folders, likedImages },
+        responseBody,
         {},
         'private, max-age=15, stale-while-revalidate=30',
       )
@@ -948,9 +952,10 @@ apiRouter.get(
       const objects = await listAllObjects(env.PICTURES, { prefix })
 
       const images = buildRecursiveGalleryImages(objects, prefix)
+      const responseBody: GalleryImagesResponse = images
 
       return jsonResponse(
-        images,
+        responseBody,
         {},
         'public, max-age=60, stale-while-revalidate=300',
       )

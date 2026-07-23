@@ -2,15 +2,9 @@ import { useCallback, useEffect, useState } from 'react'
 import { apiUrl } from '@/admin/utils/apiUrl'
 import {
   normalizeGalleryImages,
+  type CompatibleGalleryDetailResponse,
   type GalleryImage,
-  type GalleryImageResponse,
 } from '@/admin/types/gallery'
-
-interface GalleryContent {
-  images: GalleryImageResponse[]
-  folders: string[]
-  likedImages: string[]
-}
 
 export function useGalleryDetailData(prefix: string | undefined) {
   const [images, setImages] = useState<GalleryImage[]>([])
@@ -33,7 +27,8 @@ export function useGalleryDetailData(prefix: string | undefined) {
       if (!contentRes.ok)
         throw new Error('Kunde inte ladda galleriets innehåll.')
 
-      const contentData: GalleryContent = await contentRes.json()
+      const contentData: CompatibleGalleryDetailResponse =
+        await contentRes.json()
 
       setImages(normalizeGalleryImages(contentData.images))
       setFolders(contentData.folders || [])

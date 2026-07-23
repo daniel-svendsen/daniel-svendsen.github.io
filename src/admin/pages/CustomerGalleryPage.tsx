@@ -12,8 +12,8 @@ import { ChevronRight, Folder } from 'lucide-react'
 import {
   galleryImageFolderPath,
   normalizeGalleryImages,
+  type CompatibleGalleryImagesResponse,
   type GalleryImage,
-  type GalleryImageResponse,
 } from '@/admin/types/gallery'
 
 const normalizeFolderPath = (path: string) =>
@@ -104,7 +104,8 @@ export default function CustomerGalleryPage() {
       try {
         const response = await fetch(apiUrl(`gallery/${galleryId}`))
         if (!response.ok) throw new Error('Kunde inte ladda galleriet.')
-        const data = (await response.json()) as GalleryImageResponse[]
+        const data =
+          (await response.json()) as CompatibleGalleryImagesResponse
         setImages(normalizeGalleryImages(data))
       } catch (err) {
         if (err instanceof Error) setError(err.message)

@@ -1,11 +1,23 @@
-export interface GalleryImage {
-  id: string
-  previewKey: string
-  originalKey: string
-  fileName: string
-}
+import type {
+  GalleryDetailResponse,
+  GalleryImage,
+  GalleryImagesResponse,
+} from './galleryContract'
+
+export type {
+  GalleryDetailResponse,
+  GalleryImage,
+  GalleryImagesResponse,
+} from './galleryContract'
 
 export type GalleryImageResponse = string | GalleryImage
+export type CompatibleGalleryImagesResponse = GalleryImageResponse[]
+export type CompatibleGalleryDetailResponse = Omit<
+  GalleryDetailResponse,
+  'images'
+> & {
+  images: CompatibleGalleryImagesResponse
+}
 
 export const normalizeGalleryImage = (
   image: GalleryImageResponse,
