@@ -28,17 +28,25 @@ try {
   const estimateModule = await server.ssrLoadModule(
     '/src/utils/priceEstimate.ts',
   )
+  const contactServiceModule = await server.ssrLoadModule(
+    '/src/config/contactServices.ts',
+  )
   const { PRICE_AMOUNTS, PRICE_ESTIMATOR, PRICING } = pricingModule
   const {
     calculatePriceEstimate,
     createPriceEstimateSearchParams,
     defaultPriceEstimateSelection,
+    ESTIMATE_SERVICE_CONTACT_IDS,
     formatPrice,
     formatPriceEstimateForSubmission,
     getContactUrlForEstimate,
     getServicesUrlForEstimate,
     parsePriceEstimateSelection,
   } = estimateModule
+  const {
+    CONTACT_SERVICE_OPTIONS,
+    getContactServiceSubmissionValue,
+  } = contactServiceModule
 
   assert.deepEqual(
     {
@@ -304,6 +312,43 @@ try {
     getServicesUrlForEstimate(querySelection),
     `/services/?${params.toString()}#prisindikator`,
   )
+
+  const expectedContactServices = {
+    portrait: ['portrait-photography', 'Porträttfotografering'],
+    family: ['family-photography', 'Familjefotografering'],
+    wedding: ['wedding-photography', 'Bröllopsfotografering'],
+    'business-portraits': [
+      'business-photography',
+      'Företagsfotografering',
+    ],
+    'business-activity': [
+      'business-photography',
+      'Företagsfotografering',
+    ],
+    product: ['product-photography', 'Produktfotografering'],
+    vehicle: ['vehicle-photography', 'Bilfotografering'],
+  }
+
+  for (const [service, [contactServiceId, submissionValue]] of Object.entries(
+    expectedContactServices,
+  )) {
+    assert.equal(ESTIMATE_SERVICE_CONTACT_IDS[service], contactServiceId)
+    assert.ok(
+      CONTACT_SERVICE_OPTIONS.some((option) => option.id === contactServiceId),
+    )
+    assert.equal(
+      getContactServiceSubmissionValue(contactServiceId),
+      submissionValue,
+    )
+
+    const serviceSelection = selection({ service })
+    const serviceParams = createPriceEstimateSearchParams(serviceSelection)
+    assert.equal(parsePriceEstimateSelection(serviceParams).service, service)
+    assert.equal(
+      getContactUrlForEstimate(serviceSelection),
+      `/contact/?${serviceParams.toString()}`,
+    )
+  }
 
   const submittedEstimate = calculatePriceEstimate(querySelection)
   assert.equal(

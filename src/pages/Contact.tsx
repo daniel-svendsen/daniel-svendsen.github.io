@@ -5,11 +5,17 @@ import { useSearchParams } from 'react-router-dom'
 import { Button, LinkButton } from '@/components/Button'
 import { EditorialIntro, EditorialSection } from '@/components/Editorial'
 import SEO from '@/components/SEO'
+import {
+  CONTACT_SERVICE_OPTIONS,
+  getContactServiceOption,
+  getContactServiceSubmissionValue,
+  type ContactServiceId,
+} from '@/config/contactServices'
 import { BUSINESS, businessReference } from '@/config/seo'
 import { getPageOgImage } from '@/config/pageSeo'
 import {
   calculatePriceEstimate,
-  ESTIMATE_SERVICE_LABELS,
+  ESTIMATE_SERVICE_CONTACT_IDS,
   formatPrice,
   formatPriceEstimateForSubmission,
   getServicesUrlForEstimate,
@@ -17,82 +23,12 @@ import {
   type PriceEstimateSelection,
 } from '@/utils/priceEstimate'
 
-interface ServiceOption {
-  id: string
-  label: string
-  asksForLocation: boolean
-  messagePlaceholder: string
-}
-
-const serviceOptions: ServiceOption[] = [
-  {
-    id: 'wedding-photography',
-    label: 'Bröllopsfotografering',
-    asksForLocation: true,
-    messagePlaceholder:
-      'Berätta vilka delar av bröllopsdagen ni vill fånga, ungefärliga tider och om ni är intresserade av film som tillägg.',
-  },
-  {
-    id: 'family-photography',
-    label: 'Familjefotografering',
-    asksForLocation: true,
-    messagePlaceholder:
-      'Berätta hur många som ska fotograferas, om barn eller hund ska vara med och vilken känsla ni önskar.',
-  },
-  {
-    id: 'portrait-photography',
-    label: 'Porträttfotografering',
-    asksForLocation: true,
-    messagePlaceholder:
-      'Berätta hur många som ska fotograferas, hur bilderna ska användas och vilken typ av porträtt du önskar.',
-  },
-  {
-    id: 'business-photography',
-    label: 'Företagsfotografering',
-    asksForLocation: true,
-    messagePlaceholder:
-      'Ange ungefärligt antal personer och om ni behöver personalporträtt, gruppbilder, verksamhetsbilder eller en återkommande bildbank.',
-  },
-  {
-    id: 'event-photography',
-    label: 'Eventfotografering',
-    asksForLocation: true,
-    messagePlaceholder:
-      'Berätta vilken typ av event det gäller, ungefärligt antal gäster, tider och vilka delar eller ögonblick som är viktigast att dokumentera.',
-  },
-  {
-    id: 'product-photography',
-    label: 'Produktfotografering',
-    asksForLocation: true,
-    messagePlaceholder:
-      'Ange ungefärligt antal produkter och färdiga bilder eller vyer, önskad bildtyp och om produkterna lämnas, skickas eller fotograferas på plats.',
-  },
-  {
-    id: 'vehicle-photography',
-    label: 'Bilfotografering',
-    asksForLocation: true,
-    messagePlaceholder:
-      'Berätta hur många fordon det gäller, önskad bildtyp och om du har en plats i åtanke.',
-  },
-  {
-    id: 'web-development',
-    label: 'Webbutveckling / hemsida',
-    asksForLocation: false,
-    messagePlaceholder:
-      'Berätta om det gäller en ny eller befintlig webbplats, vad den ska hjälpa besökaren med och vilka sidor eller funktioner du behöver.',
-  },
-  {
-    id: 'other',
-    label: 'Annat',
-    asksForLocation: false,
-    messagePlaceholder: 'Berätta lite om vad du behöver hjälp med.',
-  },
-]
-
 export default function Contact() {
   const [searchParams] = useSearchParams()
   const queryString = searchParams.toString()
-  const [selectedService, setSelectedService] = useState<string>('')
+  const [selectedServiceId, setSelectedServiceId] = useState<
+    ContactServiceId | ''
+  >('')
   const [estimateSelection, setEstimateSelection] =
     useState<PriceEstimateSelection | null>(null)
   const [formStatus, setFormStatus] = useState<'success' | 'error' | null>(null)
@@ -107,15 +43,16 @@ export default function Contact() {
     if (!parsed) return
 
     setEstimateSelection(parsed)
-    setSelectedService(ESTIMATE_SERVICE_LABELS[parsed.service])
+    setSelectedServiceId(ESTIMATE_SERVICE_CONTACT_IDS[parsed.service])
   }, [queryString])
 
-  const selectedServiceOption = serviceOptions.find(
-    (service) => service.label === selectedService,
-  )
+  const selectedServiceOption = selectedServiceId
+    ? getContactServiceOption(selectedServiceId)
+    : undefined
   const activeEstimateSelection =
     estimateSelection &&
-    selectedService === ESTIMATE_SERVICE_LABELS[estimateSelection.service]
+    selectedServiceId ===
+      ESTIMATE_SERVICE_CONTACT_IDS[estimateSelection.service]
       ? estimateSelection
       : null
   const activeEstimate = useMemo(
@@ -146,7 +83,9 @@ export default function Contact() {
     >
     const data = {
       ...formValues,
-      service: selectedService,
+      service: selectedServiceId
+        ? getContactServiceSubmissionValue(selectedServiceId)
+        : '',
     }
 
     try {
@@ -162,7 +101,7 @@ export default function Contact() {
       if (response.ok) {
         setFormStatus('success')
         form.reset()
-        setSelectedService('')
+        setSelectedServiceId('')
       } else {
         const errorData = await response.json().catch(() => ({}))
         console.error('Formspree error:', response.status, errorData)
@@ -354,7 +293,7 @@ export default function Contact() {
                   Vilken tjänst är du intresserad av? *
                 </legend>
                 <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                  {serviceOptions.map((service) => (
+                  {CONTACT_SERVICE_OPTIONS.map((service) => (
                     <label
                       key={service.id}
                       htmlFor={service.id}
@@ -365,8 +304,8 @@ export default function Contact() {
                         id={service.id}
                         name="service_option"
                         value={service.label}
-                        checked={selectedService === service.label}
-                        onChange={() => setSelectedService(service.label)}
+                        checked={selectedServiceId === service.id}
+                        onChange={() => setSelectedServiceId(service.id)}
                         required
                         className={radioInputClasses}
                         disabled={isSubmitting}
@@ -377,7 +316,7 @@ export default function Contact() {
                 </div>
               </fieldset>
 
-              {selectedService && (
+              {selectedServiceId && (
                 <>
                   <div
                     className={

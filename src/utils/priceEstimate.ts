@@ -1,4 +1,5 @@
 import { PRICE_ESTIMATOR, PRICING } from '@/config/pricing'
+import type { ContactServiceId } from '@/config/contactServices'
 
 export type EstimateService =
   | 'portrait'
@@ -47,6 +48,16 @@ export const ESTIMATE_SERVICE_LABELS: Record<EstimateService, string> = {
   product: 'Produktfotografering',
   vehicle: 'Bilfotografering',
 }
+
+export const ESTIMATE_SERVICE_CONTACT_IDS = {
+  portrait: 'portrait-photography',
+  family: 'family-photography',
+  wedding: 'wedding-photography',
+  'business-portraits': 'business-photography',
+  'business-activity': 'business-photography',
+  product: 'product-photography',
+  vehicle: 'vehicle-photography',
+} as const satisfies Record<EstimateService, ContactServiceId>
 
 export const ESTIMATE_SERVICE_TITLES: Record<EstimateService, string> = {
   portrait: 'Porträtt',
