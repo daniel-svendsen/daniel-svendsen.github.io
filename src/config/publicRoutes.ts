@@ -24,13 +24,17 @@ export const PUBLIC_ROUTE_PATHS = {
   privacy: '/privacy',
 } as const
 
+export type PublicRouteKey = keyof typeof PUBLIC_ROUTE_PATHS
+
+export const PUBLIC_ROUTE_KEYS = Object.keys(
+  PUBLIC_ROUTE_PATHS,
+) as PublicRouteKey[]
+
 export const PUBLIC_ROUTER_PATHS = Object.values(PUBLIC_ROUTE_PATHS)
 
 export const INDEXABLE_PUBLIC_ROUTES = PUBLIC_ROUTER_PATHS.map((route) =>
   route === '/' ? route : `${route}/`,
 )
-
-export type PublicRouteKey = keyof typeof PUBLIC_ROUTE_PATHS
 
 export const PUBLIC_CANONICAL_URLS = Object.fromEntries(
   Object.entries(PUBLIC_ROUTE_PATHS).map(([key, route]) => [
