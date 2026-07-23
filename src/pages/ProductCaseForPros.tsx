@@ -11,6 +11,7 @@ import { InfoCard } from '@/components/InfoCard'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { businessReference } from '@/config/seo'
 import { getImageSrc } from '@/utils/responsiveImages'
 import { toAbsoluteUrl } from '@/utils/utils'
@@ -61,8 +62,7 @@ export default function ProductCaseForPros() {
     description:
       'Ett produktfotocase med cirka 50 produkt- och samlingsbilder framtagna över tid för For Pros.',
     image: toAbsoluteUrl(getImageSrc(brushSeries)),
-    mainEntityOfPage:
-      'https://www.svendsenphotography.com/produktfotografering/for-pros/',
+    mainEntityOfPage: PUBLIC_CANONICAL_URLS.productCaseForPros,
     author: businessReference,
   }
 
@@ -71,19 +71,19 @@ export default function ProductCaseForPros() {
       <SEO
         title="Produktfotografering för For Pros | Case"
         description="Se produktbilder framtagna för For Pros: penslar, rollers, tejp och tillbehör fotograferade som produktserier, samlingsbilder och i användning."
-        url="https://www.svendsenphotography.com/produktfotografering/for-pros/"
+        url={PUBLIC_CANONICAL_URLS.productCaseForPros}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         jsonLd={caseJsonLd}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Produktfotografering',
-            url: 'https://www.svendsenphotography.com/produktfotografering/',
+            url: PUBLIC_CANONICAL_URLS.productPhotography,
           },
           {
             name: 'For Pros',
-            url: 'https://www.svendsenphotography.com/produktfotografering/for-pros/',
+            url: PUBLIC_CANONICAL_URLS.productCaseForPros,
           },
         ]}
       />

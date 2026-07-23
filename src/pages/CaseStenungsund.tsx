@@ -6,6 +6,7 @@ import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { caseStudyBySlug } from '@/data/cases'
 import { getPageOgImage } from '@/config/pageSeo'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import {
   getImageSrc,
   type ResponsiveImageAsset,
@@ -36,18 +37,18 @@ export default function CaseStenungsund() {
       <SEO
         title="Bröllop i Stenungsund | Rebecka & Aron | Svendsén Photography"
         description="Ett heldagsbröllop i Stenungsund med first look, vigsel, mingel, middag, fest och lugna parbilder vid vassen."
-        url="https://www.svendsenphotography.com/brollop/stenungsund/"
+        url={PUBLIC_CANONICAL_URLS.weddingCaseStenungsund}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Bröllop jag fotograferat',
-            url: 'https://www.svendsenphotography.com/brollop/',
+            url: PUBLIC_CANONICAL_URLS.weddingCases,
           },
           {
             name: 'Bröllop i Stenungsund',
-            url: 'https://www.svendsenphotography.com/brollop/stenungsund/',
+            url: PUBLIC_CANONICAL_URLS.weddingCaseStenungsund,
           },
         ]}
       />

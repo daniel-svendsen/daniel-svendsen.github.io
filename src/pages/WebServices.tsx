@@ -6,6 +6,7 @@ import { EditorialIntro, EditorialSection } from '@/components/Editorial'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { businessReference, BUSINESS } from '@/config/seo'
 import webdevImage from '../assets/webdev-optimized.jpg?responsive'
 import { getImageSrc } from '@/utils/responsiveImages'
@@ -24,7 +25,7 @@ export default function WebServicesPage() {
       '@type': 'AdministrativeArea',
       name,
     })),
-    url: 'https://www.svendsenphotography.com/webservices/',
+    url: PUBLIC_CANONICAL_URLS.webservices,
   }
 
   const servicesList = [
@@ -96,15 +97,15 @@ export default function WebServicesPage() {
       <SEO
         title="Webbutveckling för små företag | Svendsén Photography"
         description="Behöver du en hemsida för ditt företag? Jag bygger moderna, snabba och tydliga webbplatser för små företag i Göteborg och Kungälv."
-        url="https://www.svendsenphotography.com/webservices/"
+        url={PUBLIC_CANONICAL_URLS.webservices}
         jsonLd={pageJsonLd}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Webbtjänster',
-            url: 'https://www.svendsenphotography.com/webservices/',
+            url: PUBLIC_CANONICAL_URLS.webservices,
           },
         ]}
       />

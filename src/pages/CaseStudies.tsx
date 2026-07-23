@@ -6,6 +6,7 @@ import SEO from '@/components/SEO'
 import { LinkButton } from '@/components/Button'
 import { caseStudies } from '@/data/cases'
 import { getPageOgImage } from '@/config/pageSeo'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 
 export default function CaseStudies() {
   const ogImage = getPageOgImage('weddingCases')
@@ -15,7 +16,7 @@ export default function CaseStudies() {
     name: 'Bröllop jag fotograferat',
     description:
       'Bröllop från Kungälv och Stenungsund med fokus på naturliga och personliga bilder.',
-    url: 'https://www.svendsenphotography.com/brollop/',
+    url: PUBLIC_CANONICAL_URLS.weddingCases,
   }
 
   return (
@@ -23,19 +24,19 @@ export default function CaseStudies() {
       <SEO
         title="Verkliga bröllop i Kungälv & Stenungsund | Svendsén Photography"
         description="Se bröllop jag fotograferat i Kungälv och Stenungsund, med fokus på promenadporträtt, vigsel, mingel och personliga bilder."
-        url="https://www.svendsenphotography.com/brollop/"
+        url={PUBLIC_CANONICAL_URLS.weddingCases}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         jsonLd={caseStudyJsonLd}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Bröllop',
-            url: 'https://www.svendsenphotography.com/weddings/',
+            url: PUBLIC_CANONICAL_URLS.weddings,
           },
           {
             name: 'Bröllop jag fotograferat',
-            url: 'https://www.svendsenphotography.com/brollop/',
+            url: PUBLIC_CANONICAL_URLS.weddingCases,
           },
         ]}
       />

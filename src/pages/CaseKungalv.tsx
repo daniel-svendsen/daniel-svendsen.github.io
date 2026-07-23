@@ -6,6 +6,7 @@ import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { caseStudyBySlug } from '@/data/cases'
 import { getPageOgImage } from '@/config/pageSeo'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import {
   getImageSrc,
   type ResponsiveImageAsset,
@@ -36,18 +37,18 @@ export default function CaseKungalv() {
       <SEO
         title="Bröllop i Kungälv | Kersti & Jakob | Svendsén Photography"
         description="Bröllopsfotografering i Kungälv med promenadporträtt, vitsippor, vigsel och familjebilder i en lugn och personlig stil."
-        url="https://www.svendsenphotography.com/brollop/kungalv/"
+        url={PUBLIC_CANONICAL_URLS.weddingCaseKungalv}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Bröllop jag fotograferat',
-            url: 'https://www.svendsenphotography.com/brollop/',
+            url: PUBLIC_CANONICAL_URLS.weddingCases,
           },
           {
             name: 'Bröllop i Kungälv',
-            url: 'https://www.svendsenphotography.com/brollop/kungalv/',
+            url: PUBLIC_CANONICAL_URLS.weddingCaseKungalv,
           },
         ]}
       />

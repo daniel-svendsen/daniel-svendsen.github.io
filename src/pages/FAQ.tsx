@@ -7,6 +7,7 @@ import { LinkButton } from '@/components/Button'
 import { EditorialIntro, EditorialSection } from '@/components/Editorial'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { createFaqJsonLd, generalFaqs } from '@/data/faqs'
 
 const faqDestinations = [
@@ -46,16 +47,16 @@ export default function FAQ() {
       <SEO
         title="Vanliga frågor - Svendsén Photography"
         description="Gemensamma svar om fotografering och bokning, med länkar till frågor om porträtt, familj, bröllop i Kungälv och praktiska bröllopsguider."
-        url="https://www.svendsenphotography.com/faq/"
+        url={PUBLIC_CANONICAL_URLS.faq}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         keywords="fotograf FAQ, fotografering frågor, familjefotograf, bröllopsfotograf pris, hur bokar man en fotograf, fotograf göteborg kungälv"
         jsonLd={createFaqJsonLd(generalFaqs)}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'FAQ',
-            url: 'https://www.svendsenphotography.com/faq/',
+            url: PUBLIC_CANONICAL_URLS.faq,
           },
         ]}
       />

@@ -11,6 +11,7 @@ import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
 import { PRICING } from '@/config/pricing'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { businessReference, BUSINESS } from '@/config/seo'
 
 const productFacts = [
@@ -69,7 +70,7 @@ export default function ProductPhotography() {
     serviceType: 'Product photography',
     description:
       'Produktfotografering för webbshop, katalog och marknadsföring med inlämning, inskick eller fotografering på plats.',
-    url: 'https://www.svendsenphotography.com/produktfotografering/',
+    url: PUBLIC_CANONICAL_URLS.productPhotography,
     provider: businessReference,
     areaServed: BUSINESS.serviceAreas.map((name) => ({
       '@type': 'AdministrativeArea',
@@ -82,15 +83,15 @@ export default function ProductPhotography() {
       <SEO
         title="Produktfotografering i Kungälv | Svendsén Photography"
         description="Produktfotografering för webbshop, katalog och marknadsföring. Lämna eller skicka mindre produkter, eller boka fotografering på plats."
-        url="https://www.svendsenphotography.com/produktfotografering/"
+        url={PUBLIC_CANONICAL_URLS.productPhotography}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         jsonLd={productServiceJsonLd}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Produktfotografering',
-            url: 'https://www.svendsenphotography.com/produktfotografering/',
+            url: PUBLIC_CANONICAL_URLS.productPhotography,
           },
         ]}
       />

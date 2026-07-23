@@ -10,6 +10,7 @@ import warehouseConversation from '@/assets/foeretag/DSC07890.jpg?responsive'
 import warehouseWork from '@/assets/foeretag/DSC07885.jpg?responsive'
 import { getPageOgImage } from '@/config/pageSeo'
 import { PRICING } from '@/config/pricing'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { businessReference, BUSINESS } from '@/config/seo'
 
 const businessFacts = [
@@ -68,7 +69,7 @@ export default function BusinessPhotography() {
     serviceType: 'Business photography',
     description:
       'Personalporträtt, gruppbilder och verksamhetsfotografering på plats hos företag i Kungälv, Göteborg och Stenungsund.',
-    url: 'https://www.svendsenphotography.com/foretagsfotografering/',
+    url: PUBLIC_CANONICAL_URLS.businessPhotography,
     provider: businessReference,
     areaServed: BUSINESS.serviceAreas.map((name) => ({
       '@type': 'AdministrativeArea',
@@ -81,15 +82,15 @@ export default function BusinessPhotography() {
       <SEO
         title="Företagsfotograf i Kungälv | Svendsén Photography"
         description="Företagsfotografering i Kungälv med personalporträtt, gruppbilder och verksamhetsbilder på plats. Även uppdrag i Göteborg och Stenungsund."
-        url="https://www.svendsenphotography.com/foretagsfotografering/"
+        url={PUBLIC_CANONICAL_URLS.businessPhotography}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         jsonLd={businessServiceJsonLd}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Företagsfotografering',
-            url: 'https://www.svendsenphotography.com/foretagsfotografering/',
+            url: PUBLIC_CANONICAL_URLS.businessPhotography,
           },
         ]}
       />

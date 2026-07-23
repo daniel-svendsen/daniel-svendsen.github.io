@@ -14,6 +14,7 @@ import { SectionContent } from '@/components/SectionContent'
 import SEO from '@/components/SEO'
 import PageLayout from '@/work/layout/PageLayout'
 import { useLanguage } from '@/context/LanguageContext'
+import { toSiteUrl } from '@/config/siteOrigin.js'
 import { SITE_CONFIG, toAbsoluteUrl } from '@/utils/utils'
 
 const Work: React.FC = () => {
@@ -33,7 +34,7 @@ const Work: React.FC = () => {
       en: "Explore Daniel Svendsén's professional background, technical skills, and projects.",
       sv: 'Utforska Daniel Svendséns professionella bakgrund, tekniska färdigheter och projekt.',
     }),
-    url: 'https://www.svendsenphotography.com/work/',
+    url: toSiteUrl('/work/'),
   }
 
   const seoTitle = t({
@@ -105,7 +106,7 @@ const Work: React.FC = () => {
       <SEO
         title={seoTitle}
         description={seoDescription}
-        url="https://www.svendsenphotography.com/work/"
+        url={toSiteUrl('/work/')}
         image={absoluteLogoUrl}
         jsonLd={pageJsonLd}
         noIndex

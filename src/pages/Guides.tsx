@@ -4,6 +4,7 @@ import { LinkButton } from '@/components/Button'
 import { EditorialIntro, EditorialSection } from '@/components/Editorial'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 
 const guideCards = [
   {
@@ -48,14 +49,14 @@ export default function Guides() {
       <SEO
         title="Guider för bröllopsbilder | Svendsén Photography"
         description="Guider för er som planerar bröllopsbilder med naturlig känsla, promenadporträtt och personliga upplägg."
-        url="https://www.svendsenphotography.com/guider/"
+        url={PUBLIC_CANONICAL_URLS.guides}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Guider',
-            url: 'https://www.svendsenphotography.com/guider/',
+            url: PUBLIC_CANONICAL_URLS.guides,
           },
         ]}
       />

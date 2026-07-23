@@ -1,4 +1,6 @@
-export const SITE_URL = 'https://www.svendsenphotography.com'
+import { SITE_URL } from './siteOrigin.js'
+
+export { SITE_URL } from './siteOrigin.js'
 
 export const BUSINESS = {
   id: `${SITE_URL}/#business`,

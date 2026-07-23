@@ -11,6 +11,7 @@ import { toAbsoluteUrl } from '@/utils/utils'
 import { getImageSrc, type ResponsiveImageAsset } from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
 import { PRICING } from '@/config/pricing'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { PriceEstimator } from '@/components/PriceEstimator'
 
 const pageHeroImage =
@@ -100,7 +101,7 @@ export default function Services() {
     description:
       'Professionell fotograf för bröllop, porträtt, familj och företag med en personlig och naturlig bildstil.',
     image: toAbsoluteUrl(pageHeroImage),
-    url: 'https://www.svendsenphotography.com/services/',
+    url: PUBLIC_CANONICAL_URLS.services,
     provider: businessReference,
     areaServed: BUSINESS.serviceAreas.map((name) => ({
       '@type': 'AdministrativeArea',
@@ -113,15 +114,15 @@ export default function Services() {
       <SEO
         title="Fotograferingstjänster & priser | Svendsén Photography"
         description="Jämför upplägg och startpriser för bröllop, porträtt, familj, företag och produktfotografering i Kungälv med omnejd."
-        url="https://www.svendsenphotography.com/services/"
+        url={PUBLIC_CANONICAL_URLS.services}
         jsonLd={photographyPageJsonLd}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Tjänster',
-            url: 'https://www.svendsenphotography.com/services/',
+            url: PUBLIC_CANONICAL_URLS.services,
           },
         ]}
       />

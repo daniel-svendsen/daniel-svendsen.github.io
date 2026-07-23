@@ -6,6 +6,7 @@ import { LinkButton } from '@/components/Button'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { businessReference } from '@/config/seo'
 import { createFaqJsonLd, kungalvWeddingFaqs } from '@/data/faqs'
 import { type ResponsiveImageAsset } from '@/utils/responsiveImages'
@@ -53,7 +54,7 @@ export default function WeddingPhotographerKungalv() {
     serviceType: 'Wedding photography',
     description:
       'Bröllopsfotografering i Kungälv med naturliga porträtt, vigselbilder och lugna promenadbilder.',
-    url: 'https://www.svendsenphotography.com/brollopsfotograf-kungalv/',
+    url: PUBLIC_CANONICAL_URLS.weddingPhotographerKungalv,
     provider: businessReference,
     areaServed: [{ '@type': 'AdministrativeArea', name: 'Kungälv' }],
   }
@@ -63,19 +64,19 @@ export default function WeddingPhotographerKungalv() {
       <SEO
         title="Bröllopsfotograf i Kungälv | Svendsén Photography"
         description="Söker ni bröllopsfotograf i Kungälv? Jag fotograferar vigsel, familj och naturliga porträtt med lugn känsla och plats för promenadbilder."
-        url="https://www.svendsenphotography.com/brollopsfotograf-kungalv/"
+        url={PUBLIC_CANONICAL_URLS.weddingPhotographerKungalv}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         jsonLd={[serviceJsonLd, createFaqJsonLd(kungalvWeddingFaqs)]}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Bröllop',
-            url: 'https://www.svendsenphotography.com/weddings/',
+            url: PUBLIC_CANONICAL_URLS.weddings,
           },
           {
             name: 'Bröllopsfotograf Kungälv',
-            url: 'https://www.svendsenphotography.com/brollopsfotograf-kungalv/',
+            url: PUBLIC_CANONICAL_URLS.weddingPhotographerKungalv,
           },
         ]}
       />

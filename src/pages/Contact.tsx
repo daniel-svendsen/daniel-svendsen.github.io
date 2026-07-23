@@ -13,6 +13,7 @@ import {
 } from '@/config/contactServices'
 import { BUSINESS, businessReference } from '@/config/seo'
 import { getPageOgImage } from '@/config/pageSeo'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import {
   calculatePriceEstimate,
   ESTIMATE_SERVICE_CONTACT_IDS,
@@ -121,7 +122,7 @@ export default function Contact() {
     name: 'Kontakta Svendsén Photography',
     description:
       'Kontakta och boka fotograf eller webbutvecklare i Kungälv & Göteborg.',
-    url: 'https://www.svendsenphotography.com/contact/',
+    url: PUBLIC_CANONICAL_URLS.contact,
     mainEntity: businessReference,
   }
 
@@ -136,16 +137,16 @@ export default function Contact() {
       <SEO
         title="Boka fotograf i Göteborg, Kungälv & Stenungsund | Kontakt"
         description="Boka fotograf eller be om offert för bröllop, porträtt, familjefoto, företagsfoto, produktfoto och webbutveckling i Göteborg, Kungälv och Stenungsund."
-        url="https://www.svendsenphotography.com/contact/"
+        url={PUBLIC_CANONICAL_URLS.contact}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         keywords="boka fotograf, kontakt fotograf, offert fotografering, fotograf göteborg, fotograf kungälv, fotograf stenungsund, familjefotograf göteborg, webbutvecklare kungälv"
         jsonLd={contactJsonLd}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Kontakt',
-            url: 'https://www.svendsenphotography.com/contact/',
+            url: PUBLIC_CANONICAL_URLS.contact,
           },
         ]}
       />

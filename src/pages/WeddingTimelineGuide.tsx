@@ -6,6 +6,7 @@ import { LinkButton } from '@/components/Button'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { createFaqJsonLd, weddingTimelineFaqs } from '@/data/faqs'
 import { type ResponsiveImageAsset } from '@/utils/responsiveImages'
 
@@ -111,7 +112,7 @@ export default function WeddingTimelineGuide() {
     headline: 'Bröllopstidslinje för fotografering',
     description:
       'Guide till hur par kan planera tid för familjebilder, porträtt, first look, kort vigsel, halvdag och heldag under bröllopsdagen.',
-    url: 'https://www.svendsenphotography.com/guider/brollopstidslinje/',
+    url: PUBLIC_CANONICAL_URLS.weddingTimelineGuide,
     author: {
       '@type': 'Person',
       name: 'Daniel Svendsen',
@@ -123,19 +124,19 @@ export default function WeddingTimelineGuide() {
       <SEO
         title="Tidslinje för bröllopsfotografering | Svendsén Photography"
         description="Guide till bröllopstidslinje för fotografering med exempel för kort vigsel, halvdag och heldag, plus tid för familjebilder och porträtt."
-        url="https://www.svendsenphotography.com/guider/brollopstidslinje/"
+        url={PUBLIC_CANONICAL_URLS.weddingTimelineGuide}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         jsonLd={[guideJsonLd, createFaqJsonLd(weddingTimelineFaqs)]}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Guider',
-            url: 'https://www.svendsenphotography.com/guider/',
+            url: PUBLIC_CANONICAL_URLS.guides,
           },
           {
             name: 'Bröllopstidslinje för fotografering',
-            url: 'https://www.svendsenphotography.com/guider/brollopstidslinje/',
+            url: PUBLIC_CANONICAL_URLS.weddingTimelineGuide,
           },
         ]}
       />

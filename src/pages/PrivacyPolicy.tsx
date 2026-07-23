@@ -1,6 +1,7 @@
 import React from 'react'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 
 export default function PrivacyPolicy() {
   const ogImage = getPageOgImage('privacy')
@@ -10,7 +11,7 @@ export default function PrivacyPolicy() {
     '@type': 'WebPage',
     name: 'Privacy Policy - Svendsén Photography',
     description: 'Privacy Policy for Svendsén Photography',
-    url: 'https://www.svendsenphotography.com/privacy/',
+    url: PUBLIC_CANONICAL_URLS.privacy,
   }
 
   return (
@@ -18,7 +19,7 @@ export default function PrivacyPolicy() {
       <SEO
         title="Privacy Policy - Svendsén Photography"
         description="Read about how Svendsén Photography handles your personal data and website cookies."
-        url="https://www.svendsenphotography.com/privacy/"
+        url={PUBLIC_CANONICAL_URLS.privacy}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         keywords="privacy policy, cookie policy, integritetspolicy, cookies, Svendsén Photography"

@@ -11,6 +11,7 @@ import { getPageOgImage } from '@/config/pageSeo'
 import { getImageSrc, type ImageAsset } from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
 import { PRICING } from '@/config/pricing'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { createFaqJsonLd, weddingFaqs } from '@/data/faqs'
 import featuredWeddingKiss from '../assets/weddings/DSC09579.jpg?responsive'
 import featuredWeddingBlackAndWhite from '../assets/weddings/portraits-3.jpg?responsive'
@@ -156,7 +157,7 @@ export default function WeddingGallery() {
     serviceType: 'Wedding photography',
     description:
       'Bröllopsfotograf i Göteborg och Kungälv med fokus på naturliga, känslosamma och tidlösa bilder.',
-    url: 'https://www.svendsenphotography.com/weddings/',
+    url: PUBLIC_CANONICAL_URLS.weddings,
     provider: businessReference,
     areaServed: BUSINESS.serviceAreas.map((name) => ({
       '@type': 'AdministrativeArea',
@@ -169,15 +170,15 @@ export default function WeddingGallery() {
       <SEO
         title="Bröllopsfotografering | Paket & priser | Svendsén Photography"
         description="Jämför bröllopspaket för kort vigsel, halvdag och heldag. Naturliga bröllopsbilder i Göteborg, Kungälv och andra orter enligt överenskommelse."
-        url="https://www.svendsenphotography.com/weddings/"
+        url={PUBLIC_CANONICAL_URLS.weddings}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         jsonLd={[weddingsJsonLd, createFaqJsonLd(weddingFaqs)]}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Bröllop',
-            url: 'https://www.svendsenphotography.com/weddings/',
+            url: PUBLIC_CANONICAL_URLS.weddings,
           },
         ]}
       />

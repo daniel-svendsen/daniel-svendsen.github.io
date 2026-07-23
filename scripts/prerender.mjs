@@ -2,11 +2,12 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 
+import { SITE_URL as siteUrl } from '../src/config/siteOrigin.js'
+
 const projectRoot = process.cwd()
 const distDir = path.join(projectRoot, 'dist')
 const serverEntryPath = path.join(projectRoot, 'dist-server', 'entry-server.js')
 const templatePath = path.join(distDir, 'index.html')
-const siteUrl = 'https://www.svendsenphotography.com'
 
 function assertBuild(condition, message) {
   if (!condition) {
@@ -220,6 +221,10 @@ async function verifyGeneratedSeo() {
     assertBuild(
       countMatches(html, /<meta[^>]+name="robots"/g) === 0,
       `${route} must remain indexable`,
+    )
+    assertBuild(
+      countMatches(html, /<meta[^>]+name="googlebot"/g) === 0,
+      `${route} must remain indexable for Googlebot`,
     )
     assertBuild(
       !html.includes('<div id="root"></div>'),

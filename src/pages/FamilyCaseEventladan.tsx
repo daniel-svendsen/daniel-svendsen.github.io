@@ -13,6 +13,7 @@ import { InfoCard } from '@/components/InfoCard'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { businessReference } from '@/config/seo'
 import { getImageSrc } from '@/utils/responsiveImages'
 import { toAbsoluteUrl } from '@/utils/utils'
@@ -67,8 +68,7 @@ export default function FamilyCaseEventladan() {
     description:
       'Ett verkligt familjefotouppdrag på Eventladan med familjebilder, syskonporträtt, parbilder, hundporträtt och julbilder.',
     image: toAbsoluteUrl(getImageSrc(familyPortrait)),
-    mainEntityOfPage:
-      'https://www.svendsenphotography.com/familjefotografering/eventladan-romelanda/',
+    mainEntityOfPage: PUBLIC_CANONICAL_URLS.familyCaseEventladan,
     author: businessReference,
   }
 
@@ -77,19 +77,19 @@ export default function FamilyCaseEventladan() {
       <SEO
         title="Familjefotografering på Eventladan | Romelanda"
         description="Se en familjefotografering på Eventladan i Romelanda nära Kungälv med familjebilder, syskonporträtt, parbilder, hundporträtt och julbilder."
-        url="https://www.svendsenphotography.com/familjefotografering/eventladan-romelanda/"
+        url={PUBLIC_CANONICAL_URLS.familyCaseEventladan}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         jsonLd={caseJsonLd}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Familjefotografering',
-            url: 'https://www.svendsenphotography.com/familjefotografering/',
+            url: PUBLIC_CANONICAL_URLS.familyPhotography,
           },
           {
             name: 'Eventladan i Romelanda',
-            url: 'https://www.svendsenphotography.com/familjefotografering/eventladan-romelanda/',
+            url: PUBLIC_CANONICAL_URLS.familyCaseEventladan,
           },
         ]}
       />

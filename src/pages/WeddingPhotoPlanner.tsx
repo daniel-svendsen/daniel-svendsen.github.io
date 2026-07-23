@@ -5,6 +5,7 @@ import { CTASection } from '@/components/CTASection'
 import { InfoCard } from '@/components/InfoCard'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { createFaqJsonLd, weddingPlannerFaqs } from '@/data/faqs'
 
 interface PlannerSection {
@@ -184,7 +185,7 @@ export default function WeddingPhotoPlanner() {
     applicationCategory: 'LifestyleApplication',
     description:
       'Printvänlig checklista för bröllopsfotografering, bildlista och planering av familjebilder, parbilder, vigsel, mingel och detaljer.',
-    url: 'https://www.svendsenphotography.com/guider/brollopsplanerare/',
+    url: PUBLIC_CANONICAL_URLS.weddingPhotoPlanner,
   }
 
   const hasSelectedItems = selectedCount > 0
@@ -231,19 +232,19 @@ export default function WeddingPhotoPlanner() {
       <SEO
         title="Checklista för bröllopsfotografering | Skriv ut & planera bilderna"
         description="Kryssa i viktiga bröllopsbilder, skriv egna anteckningar och skriv ut eller ladda ner en enkel checklista för bröllopsfotografering."
-        url="https://www.svendsenphotography.com/guider/brollopsplanerare/"
+        url={PUBLIC_CANONICAL_URLS.weddingPhotoPlanner}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         jsonLd={[plannerJsonLd, createFaqJsonLd(weddingPlannerFaqs)]}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Guider',
-            url: 'https://www.svendsenphotography.com/guider/',
+            url: PUBLIC_CANONICAL_URLS.guides,
           },
           {
             name: 'Checklista för bröllopsfotografering',
-            url: 'https://www.svendsenphotography.com/guider/brollopsplanerare/',
+            url: PUBLIC_CANONICAL_URLS.weddingPhotoPlanner,
           },
         ]}
       />

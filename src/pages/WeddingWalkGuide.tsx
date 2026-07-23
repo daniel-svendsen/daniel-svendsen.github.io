@@ -6,6 +6,7 @@ import { LinkButton } from '@/components/Button'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { createFaqJsonLd, weddingWalkFaqs } from '@/data/faqs'
 import { type ResponsiveImageAsset } from '@/utils/responsiveImages'
 
@@ -69,7 +70,7 @@ export default function WeddingWalkGuide() {
     headline: 'Promenadbilder på bröllopsdagen',
     description:
       'Guide till hur en kort promenad på bröllopsdagen kan skapa naturliga och personliga porträtt.',
-    url: 'https://www.svendsenphotography.com/guider/brollopsbilder-promenad/',
+    url: PUBLIC_CANONICAL_URLS.weddingWalkGuide,
     author: {
       '@type': 'Person',
       name: 'Daniel Svendsen',
@@ -81,19 +82,19 @@ export default function WeddingWalkGuide() {
       <SEO
         title="Promenadbilder på bröllopsdagen | Guide | Svendsén Photography"
         description="Guide till promenadbilder på bröllopsdagen: hur lång tid ni behöver, vad ni kan tänka på och fina miljöer i Kungälv och Stenungsund."
-        url="https://www.svendsenphotography.com/guider/brollopsbilder-promenad/"
+        url={PUBLIC_CANONICAL_URLS.weddingWalkGuide}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         jsonLd={[guideJsonLd, createFaqJsonLd(weddingWalkFaqs)]}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Guider',
-            url: 'https://www.svendsenphotography.com/guider/',
+            url: PUBLIC_CANONICAL_URLS.guides,
           },
           {
             name: 'Promenadbilder på bröllopsdagen',
-            url: 'https://www.svendsenphotography.com/guider/brollopsbilder-promenad/',
+            url: PUBLIC_CANONICAL_URLS.weddingWalkGuide,
           },
         ]}
       />

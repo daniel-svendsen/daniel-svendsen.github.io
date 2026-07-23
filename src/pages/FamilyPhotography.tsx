@@ -7,6 +7,7 @@ import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import { getPageOgImage } from '@/config/pageSeo'
 import { PRICING } from '@/config/pricing'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { businessReference, BUSINESS } from '@/config/seo'
 import { createFaqJsonLd, familyFaqs } from '@/data/faqs'
 import familyAtEventladan from '@/assets/familyphoto/familjefotografering-eventladan-kungalv.jpg?responsive'
@@ -98,7 +99,7 @@ export default function FamilyPhotography() {
     serviceType: 'Family photography',
     description:
       'Familje-, barn-, syskon- och gravidfotografering utomhus eller på plats i Kungälv, Göteborg och Stenungsund.',
-    url: 'https://www.svendsenphotography.com/familjefotografering/',
+    url: PUBLIC_CANONICAL_URLS.familyPhotography,
     provider: businessReference,
     areaServed: BUSINESS.serviceAreas.map((name) => ({
       '@type': 'AdministrativeArea',
@@ -111,15 +112,15 @@ export default function FamilyPhotography() {
       <SEO
         title="Familjefotografering i Kungälv | Svendsén Photography"
         description="Familjefotograf i Kungälv för familjer, barn, syskon och gravidporträtt. Fotografering utomhus eller på plats, med ett lugnt upplägg."
-        url="https://www.svendsenphotography.com/familjefotografering/"
+        url={PUBLIC_CANONICAL_URLS.familyPhotography}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         jsonLd={[familyServiceJsonLd, createFaqJsonLd(familyFaqs)]}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Familjefotografering',
-            url: 'https://www.svendsenphotography.com/familjefotografering/',
+            url: PUBLIC_CANONICAL_URLS.familyPhotography,
           },
         ]}
       />

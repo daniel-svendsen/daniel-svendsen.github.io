@@ -1,18 +1,14 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { pathToFileURL } from 'node:url'
 
-const siteUrl = new URL('https://www.svendsenphotography.com')
+import { SITE_URL } from '../src/config/siteOrigin.js'
+
+const siteUrl = new URL(SITE_URL)
 const keyFileName = '2a15b0098704420d84c253f881032323.txt'
 const keyFilePath = path.join(process.cwd(), 'public', keyFileName)
-const key = (await fs.readFile(keyFilePath, 'utf8')).trim()
-const urlArguments = process.argv.slice(2)
 
-if (urlArguments.length === 0) {
-  console.error(
-    'Usage: npm run indexnow -- /changed-page/ /another-changed-page/',
-  )
-  process.exitCode = 1
-} else {
+export function createIndexNowPayload(urlArguments, key) {
   const urlList = urlArguments.map((value) => {
     const url = new URL(value, siteUrl)
 
@@ -23,17 +19,33 @@ if (urlArguments.length === 0) {
     return url.href
   })
 
+  return {
+    host: siteUrl.hostname,
+    key,
+    keyLocation: new URL(keyFileName, siteUrl).href,
+    urlList,
+  }
+}
+
+async function main() {
+  const key = (await fs.readFile(keyFilePath, 'utf8')).trim()
+  const urlArguments = process.argv.slice(2)
+
+  if (urlArguments.length === 0) {
+    console.error(
+      'Usage: npm run indexnow -- /changed-page/ /another-changed-page/',
+    )
+    process.exitCode = 1
+    return
+  }
+
+  const payload = createIndexNowPayload(urlArguments, key)
   const response = await fetch('https://api.indexnow.org/indexnow', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
     },
-    body: JSON.stringify({
-      host: siteUrl.hostname,
-      key,
-      keyLocation: new URL(keyFileName, siteUrl).href,
-      urlList,
-    }),
+    body: JSON.stringify(payload),
   })
 
   if (response.status !== 200 && response.status !== 202) {
@@ -44,6 +56,13 @@ if (urlArguments.length === 0) {
   }
 
   console.log(
-    `IndexNow accepted ${urlList.length} URL${urlList.length === 1 ? '' : 's'} (${response.status}).`,
+    `IndexNow accepted ${payload.urlList.length} URL${payload.urlList.length === 1 ? '' : 's'} (${response.status}).`,
   )
+}
+
+if (
+  process.argv[1] &&
+  import.meta.url === pathToFileURL(process.argv[1]).href
+) {
+  await main()
 }

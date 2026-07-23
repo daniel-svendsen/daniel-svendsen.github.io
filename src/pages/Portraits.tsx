@@ -11,6 +11,7 @@ import { getPageOgImage } from '@/config/pageSeo'
 import { getImageSrc, type ImageAsset } from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
 import { PRICING } from '@/config/pricing'
+import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { createFaqJsonLd, portraitFaqs } from '@/data/faqs'
 import featuredPortraitBaby from '../assets/portraits/portraits-2.jpg?responsive'
 import featuredPortraitChildren from '../assets/portraits/portraits-13.jpg?responsive'
@@ -139,7 +140,7 @@ export default function Portraits() {
     serviceType: 'Portrait photography',
     description:
       'Professionell porträttfotografering och profilbilder i Kungälv, Göteborg och Stenungsund för privatpersoner, kreatörer och egenföretagare.',
-    url: 'https://www.svendsenphotography.com/portraits/',
+    url: PUBLIC_CANONICAL_URLS.portraits,
     provider: businessReference,
     areaServed: BUSINESS.serviceAreas.map((name) => ({
       '@type': 'AdministrativeArea',
@@ -152,15 +153,15 @@ export default function Portraits() {
       <SEO
         title="Porträttfotograf i Kungälv | Svendsén Photography"
         description="Naturliga porträtt och profilbilder i Kungälv, Göteborg och Stenungsund. Se pris, upplägg och exempel eller skicka en förfrågan."
-        url="https://www.svendsenphotography.com/portraits/"
+        url={PUBLIC_CANONICAL_URLS.portraits}
         image={ogImage.src}
         imageAlt={ogImage.alt}
         jsonLd={[portraitsJsonLd, createFaqJsonLd(portraitFaqs)]}
         breadcrumbs={[
-          { name: 'Hem', url: 'https://www.svendsenphotography.com/' },
+          { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
             name: 'Porträtt',
-            url: 'https://www.svendsenphotography.com/portraits/',
+            url: PUBLIC_CANONICAL_URLS.portraits,
           },
         ]}
       />

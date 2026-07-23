@@ -6,6 +6,7 @@ import type {
   GalleryImage,
   GalleryImagesResponse,
 } from '../types/galleryContract'
+import { SITE_URL } from '../../config/siteOrigin.js'
 
 const Router = () => {
   const routes: { method: string; path: RegExp; handler: Function }[] = []
@@ -982,7 +983,7 @@ export default {
     ctx: ExecutionContext,
   ): Promise<Response> {
     const allowedOrigins = [
-      'https://www.svendsenphotography.com',
+      SITE_URL,
       'http://localhost:5173',
     ]
     const origin = request.headers.get('Origin')
