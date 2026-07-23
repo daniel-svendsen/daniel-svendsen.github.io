@@ -250,8 +250,9 @@ export default function BusinessPhotography() {
             <p className="text-base leading-relaxed text-textSecondary">
               Jag utgår från Kungälv och fotograferar även företag i Göteborg,
               Stenungsund och andra områden efter överenskommelse. Utanför
-              Kungälv tillkommer reseersättning på 20 kr per mil för hela tur-
-              och retursträckan samt eventuell övernattning.
+              Kungälv tillkommer reseersättning på{' '}
+              {PRICING.estimator.travelPerRoundTripMil} per mil för hela tur- och
+              retursträckan samt eventuell övernattning.
             </p>
           </div>
           <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-6 md:p-8">

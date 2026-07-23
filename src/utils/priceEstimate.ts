@@ -269,13 +269,16 @@ export const calculatePriceEstimate = (
       break
     case 'wedding': {
       const packages = {
-        short: ['Bröllopspaket 2 timmar', PRICE_ESTIMATOR.wedding.short],
+        short: [
+          `Bröllopspaket ${PRICING.wedding.shortDuration}`,
+          PRICE_ESTIMATOR.wedding.short,
+        ],
         'half-day': [
-          'Bröllopspaket 5 timmar',
+          `Bröllopspaket ${PRICING.wedding.halfDayDuration}`,
           PRICE_ESTIMATOR.wedding.halfDay,
         ],
         'full-day': [
-          'Bröllopspaket 10 timmar',
+          `Bröllopspaket ${PRICING.wedding.fullDayDuration}`,
           PRICE_ESTIMATOR.wedding.fullDay,
         ],
       } as const

@@ -162,7 +162,8 @@ export function PriceEstimator() {
                   className={checkboxClasses}
                 />
                 <span className="text-sm leading-6 text-textPrimary/78">
-                  Fler än 8 personer (+750 kr)
+                  Fler än 8 personer (+
+                  {PRICING.estimator.familyLargeGroupSupplement})
                 </span>
               </label>
             )}
@@ -184,9 +185,18 @@ export function PriceEstimator() {
                     }
                     className={fieldClasses}
                   >
-                    <option value="short">2 timmar · 9 500 kr</option>
-                    <option value="half-day">5 timmar · 17 900 kr</option>
-                    <option value="full-day">10 timmar · 28 900 kr</option>
+                    <option value="short">
+                      {PRICING.wedding.shortDuration} ·{' '}
+                      {PRICING.wedding.shortPrice}
+                    </option>
+                    <option value="half-day">
+                      {PRICING.wedding.halfDayDuration} ·{' '}
+                      {PRICING.wedding.halfDayPrice}
+                    </option>
+                    <option value="full-day">
+                      {PRICING.wedding.fullDayDuration} ·{' '}
+                      {PRICING.wedding.fullDayPrice}
+                    </option>
                   </select>
                 </div>
                 <div>
@@ -221,7 +231,8 @@ export function PriceEstimator() {
                     className={checkboxClasses}
                   />
                   <span className="text-sm leading-6 text-textPrimary/78">
-                    Highlightfilm som tillägg (+5 000 kr)
+                    Highlightfilm som tillägg (+
+                    {PRICING.wedding.highlightFilmWithPhoto})
                   </span>
                 </label>
               </>
@@ -288,7 +299,8 @@ export function PriceEstimator() {
                   className={fieldClasses}
                 />
                 <p className="mt-2 text-sm leading-6 text-textPrimary/62">
-                  Minsta debitering är två timmar, 4 400 kr.
+                  Minsta debitering är två timmar,{' '}
+                  {PRICING.estimator.businessActivityMinimum}.
                 </p>
               </div>
             )}
@@ -400,7 +412,8 @@ export function PriceEstimator() {
                 className={fieldClasses}
               />
               <p className="mt-2 text-sm leading-6 text-textPrimary/62">
-                20 kr/mil för hela sträckan från Kungälv och tillbaka.
+                {PRICING.estimator.travelPerRoundTripMil}/mil för hela sträckan
+                från Kungälv och tillbaka.
               </p>
             </div>
 
@@ -426,8 +439,9 @@ export function PriceEstimator() {
                   className={checkboxClasses}
                 />
                 <span className="text-sm leading-6 text-textPrimary/78">
-                  Önskemål om prioriterad leverans, om möjligt (+25 %, minst 750
-                  kr)
+                  Önskemål om prioriterad leverans, om möjligt (+
+                  {PRICING.estimator.priorityDeliveryRate}, minst{' '}
+                  {PRICING.estimator.priorityDeliveryMinimum})
                 </span>
               </label>
             </div>

@@ -260,9 +260,9 @@ export default function ProductPhotography() {
             </p>
             <p className="text-base leading-relaxed text-textSecondary">
               Större eller svårtransporterade produkter kan fotograferas hos
-              kunden efter offert. Utanför Kungälv tillkommer reseersättning på
-              20 kr per mil för hela tur- och retursträckan samt eventuell
-              övernattning.
+              kunden efter offert. Utanför Kungälv tillkommer reseersättning på{' '}
+              {PRICING.estimator.travelPerRoundTripMil} per mil för hela tur-
+              och retursträckan samt eventuell övernattning.
             </p>
           </div>
 
