@@ -351,15 +351,7 @@ async function verifyGeneratedSeo() {
   )
 
   const redirects = await fs.readFile(path.join(distDir, '_redirects'), 'utf8')
-  const privateRouteRewrites = [
-    '/galleri/* /app-shell/ 200',
-    '/admin /app-shell/ 200',
-    '/admin/* /app-shell/ 200',
-    '/work /app-shell/ 200',
-    '/work/ /app-shell/ 200',
-  ]
-
-  for (const rewrite of privateRouteRewrites) {
+  for (const rewrite of appShellRewrites) {
     assertBuild(
       redirects.includes(rewrite),
       `private route rewrite is missing: ${rewrite}`,
@@ -367,7 +359,7 @@ async function verifyGeneratedSeo() {
   }
 }
 
-const { prerenderRoutes, render } = await import(
+const { appShellRewrites, prerenderRoutes, render } = await import(
   pathToFileURL(serverEntryPath).href
 )
 const template = await fs.readFile(templatePath, 'utf8')
