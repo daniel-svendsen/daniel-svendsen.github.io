@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 
 import Navbar from '@/components/Navbar'
@@ -66,20 +66,28 @@ export default function PublicAppRoutes() {
     <>
       <Navbar />
       <ScrollToTop />
-      <Routes>
-        {PUBLIC_ROUTE_KEYS.map((routeKey) => {
-          const Component = publicRouteComponents[routeKey]
+      <Suspense
+        fallback={
+          <div className="flex h-screen items-center justify-center text-lg">
+            Laddar sidan...
+          </div>
+        }
+      >
+        <Routes>
+          {PUBLIC_ROUTE_KEYS.map((routeKey) => {
+            const Component = publicRouteComponents[routeKey]
 
-          return (
-            <Route
-              key={routeKey}
-              path={PUBLIC_ROUTE_PATHS[routeKey]}
-              element={<Component />}
-            />
-          )
-        })}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+            return (
+              <Route
+                key={routeKey}
+                path={PUBLIC_ROUTE_PATHS[routeKey]}
+                element={<Component />}
+              />
+            )
+          })}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
       {showPublicFooter && <PublicFooter />}
     </>
   )

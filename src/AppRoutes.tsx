@@ -1,7 +1,8 @@
 import React, { Suspense } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom'
 
+import { AuthProvider } from '@/admin/context/AuthContext'
 import { ProtectedRoute } from '@/components/ProtectedRoute'
 import Navbar from '@/components/Navbar'
 import PublicFooter from '@/components/PublicFooter'
@@ -104,6 +105,14 @@ function RouteIndexingGuards() {
   )
 }
 
+function AdminAuthRoutes() {
+  return (
+    <AuthProvider>
+      <Outlet />
+    </AuthProvider>
+  )
+}
+
 export default function AppRoutes() {
   const location = useLocation()
   const showPublicFooter = isIndexablePublicRoute(location.pathname)
@@ -141,16 +150,18 @@ export default function AppRoutes() {
             path={APP_ROUTE_PATHS.appShell}
             element={<Navigate to={APP_ROUTE_PATHS.adminLogin} replace />}
           />
-          <Route
-            path={APP_ROUTE_PATHS.adminLogin}
-            element={<AdminLoginPage />}
-          />
-          <Route path={APP_ROUTE_PATHS.admin} element={<ProtectedRoute />}>
-            <Route index element={<AdminDashboardPage />} />
+          <Route element={<AdminAuthRoutes />}>
             <Route
-              path={APP_ROUTE_PATHS.adminGallery}
-              element={<GalleryDetailPage />}
+              path={APP_ROUTE_PATHS.adminLogin}
+              element={<AdminLoginPage />}
             />
+            <Route path={APP_ROUTE_PATHS.admin} element={<ProtectedRoute />}>
+              <Route index element={<AdminDashboardPage />} />
+              <Route
+                path={APP_ROUTE_PATHS.adminGallery}
+                element={<GalleryDetailPage />}
+              />
+            </Route>
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

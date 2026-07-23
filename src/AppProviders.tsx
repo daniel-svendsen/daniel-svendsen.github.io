@@ -1,7 +1,6 @@
 import React from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 
-import { AuthProvider } from '@/admin/context/AuthContext'
 import { LanguageProvider } from '@/context/LanguageContext'
 
 interface AppProvidersProps {
@@ -15,9 +14,7 @@ export default function AppProviders({
 }: AppProvidersProps) {
   return (
     <HelmetProvider context={helmetContext}>
-      <LanguageProvider>
-        <AuthProvider>{children}</AuthProvider>
-      </LanguageProvider>
+      <LanguageProvider>{children}</LanguageProvider>
     </HelmetProvider>
   )
 }
