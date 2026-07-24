@@ -1,10 +1,10 @@
 import { Briefcase, Camera, Code, Users } from 'lucide-react'
 
-import weddingImage from '../assets/pictures/wedding.jpg?responsive'
+import weddingImage from '../assets/pictures/wedding.jpg?responsive-small'
 import portraitImage from '../assets/pictures/portrait.jpg?responsive'
 import familyImage from '../assets/familyphoto/familjefotografering-eventladan-kungalv.jpg?responsive'
-import companyImage from '../assets/pictures/company.jpg?responsive'
-import webdevImage from '../assets/webdev-optimized.jpg?responsive'
+import companyImage from '../assets/pictures/company.jpg?responsive-small'
+import webdevImage from '../assets/webdev-optimized.jpg?responsive-small'
 import { PRICING } from '@/config/pricing'
 
 export const homeCards = [

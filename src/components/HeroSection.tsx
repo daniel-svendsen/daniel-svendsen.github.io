@@ -13,7 +13,7 @@ const allHeroImageUrls = Object.values(
   import.meta.glob('../assets/herosection/*.{jpg,jpeg,png}', {
     eager: true,
     import: 'default',
-    query: '?responsive',
+    query: '?responsive-small',
   }),
 ) as ResponsiveImageAsset[]
 
@@ -112,7 +112,7 @@ export default function HeroSection() {
                 <ResponsiveImage
                   image={heroImage}
                   alt="Stämningsfull fotografering i naturligt ljus"
-                  sizes="(min-width: 1024px) 46vw, (min-width: 768px) 50vw, 58vw"
+                  sizes="(min-width: 768px) 30vw, 58vw"
                   className="aspect-[5/6] h-full w-full object-cover"
                 />
               </div>

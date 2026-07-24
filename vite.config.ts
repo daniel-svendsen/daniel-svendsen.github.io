@@ -6,10 +6,27 @@ import path from 'node:path'
 import crypto from 'node:crypto'
 import type { Plugin } from 'vite'
 
-const responsiveWidths = [640, 1280, 1920]
+const responsiveProfiles = {
+  responsive: {
+    widths: [640, 1280, 1920],
+    quality: 78,
+  },
+  'responsive-small': {
+    widths: [320, 480, 640, 960, 1280],
+    quality: 72,
+  },
+  'responsive-icon': {
+    widths: [40, 80],
+    quality: 78,
+  },
+  'responsive-poster': {
+    widths: [480, 640],
+    quality: 72,
+  },
+} as const
 const responsiveAssetDir = 'assets/responsive'
 const responsiveFormats = [
-  { extension: 'webp', type: 'image/webp', quality: 78 },
+  { extension: 'webp', type: 'image/webp' },
 ] as const
 const responsiveCacheVersion = 'v1'
 
@@ -74,7 +91,10 @@ function responsiveImagesPlugin(): Plugin {
     async load(id) {
       const [filePath, query] = id.split('?')
 
-      if (query !== 'responsive') {
+      const profile =
+        responsiveProfiles[query as keyof typeof responsiveProfiles]
+
+      if (!profile) {
         return null
       }
 
@@ -91,16 +111,18 @@ function responsiveImagesPlugin(): Plugin {
       const inputHash = input
         ? crypto.createHash('sha256').update(input).digest('hex')
         : undefined
-      const originalWidth = metadata.width ?? responsiveWidths[0]
+      const originalWidth = metadata.width ?? profile.widths[0]
       const originalHeight = metadata.height
-      const outputWidths = responsiveWidths.filter((width) => width < originalWidth)
-      const largestResponsiveWidth = responsiveWidths.at(-1) ?? originalWidth
+      const outputWidths = profile.widths.filter((width) => width < originalWidth)
+      const largestResponsiveWidth = profile.widths.at(-1) ?? originalWidth
 
       if (originalWidth <= largestResponsiveWidth) {
         outputWidths.push(originalWidth)
       }
 
-      const imageName = getResponsiveImageName(root, filePath)
+      const baseImageName = getResponsiveImageName(root, filePath)
+      const imageName =
+        query === 'responsive' ? baseImageName : `${baseImageName}-${query}`
       const originalFileName = `${responsiveAssetDir}/${imageName}${path.extname(filePath)}`
       const src = assetUrl(base, originalFileName)
 
@@ -128,7 +150,7 @@ function responsiveImagesPlugin(): Plugin {
                       inputHash,
                       width,
                       extension: format.extension,
-                      quality: format.quality,
+                      quality: profile.quality,
                     }),
                   )
                   .digest('hex')
@@ -157,7 +179,7 @@ function responsiveImagesPlugin(): Plugin {
                     const generatedOutput = await sharp(input)
                       .rotate()
                       .resize({ width, withoutEnlargement: true })
-                      .toFormat(format.extension, { quality: format.quality })
+                      .toFormat(format.extension, { quality: profile.quality })
                       .toBuffer()
 
                     generatedVariants += 1

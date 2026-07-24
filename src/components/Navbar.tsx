@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import logo from '../assets/pictures/LOGO.png'
+import logo from '../assets/pictures/LOGO.png?responsive-icon'
+import { ResponsiveImage } from '@/components/ResponsiveImage'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
@@ -38,11 +39,12 @@ const Navbar = () => {
       <nav className="flex w-full items-center justify-between px-6 py-4">
         <div className="flex items-center space-x-2">
           <a href="/" className="flex items-center space-x-2">
-            <img
-              src={logo}
+            <ResponsiveImage
+              image={logo}
               alt="Svendsén Photography logo"
               width={40}
               height={40}
+              sizes="40px"
               className="h-10 w-10 rounded-full object-cover ring-1 ring-black/5"
             />
             <span className="text-lg font-bold tracking-[0.02em] text-textPrimary transition-colors hover:text-textPrimary/80">

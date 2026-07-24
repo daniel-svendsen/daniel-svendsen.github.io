@@ -10,12 +10,12 @@ import {
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
 import HeroSection from '../components/HeroSection'
-import forprosImg from '@/assets/movies/img-optimized.jpg?responsive'
+import forprosImg from '@/assets/movies/img-optimized.jpg?responsive-poster'
 import forprosVideo from '@/assets/movies/forpros1.mp4'
 import { homeCards } from '../data/cards'
 import { getPageOgImage } from '@/config/pageSeo'
 import { businessJsonLd, SITE_URL } from '@/config/seo'
-import { getImageSrc } from '@/utils/responsiveImages'
+import { getResponsiveImageSrc } from '@/utils/responsiveImages'
 
 const Carousel = lazy(() => import('../components/Carousel'))
 
@@ -150,7 +150,7 @@ export default function Home() {
                   <ResponsiveImage
                     image={card.image}
                     alt={card.title}
-                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    sizes="(min-width: 768px) 50vw, 100vw"
                     className="aspect-[4/3] h-full w-full object-cover md:aspect-auto md:min-h-[420px]"
                   />
                 </div>
@@ -246,7 +246,7 @@ export default function Home() {
               <video
                 controls
                 preload="metadata"
-                poster={getImageSrc(forprosImg)}
+                poster={getResponsiveImageSrc(forprosImg, 640)}
                 className="aspect-video h-full w-full"
               >
                 <source src={forprosVideo} type="video/mp4" />
