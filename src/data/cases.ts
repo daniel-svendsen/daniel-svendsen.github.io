@@ -29,15 +29,16 @@ export const caseStudies: CaseStudySummary[] = [
     slug: 'brollop-stenungsund',
     title: 'Rebecka & Aron',
     location: 'Stenungsund',
-    heroLabel: 'Heldag på Villa Vanahem',
+    heroLabel: 'First look, kyrklig vigsel och fest på Villa Vanahem',
     intro:
-      'Rebecka och Aron hade ett heldagsupplägg i Stenungsund med first look, porträtt, vigsel, mingel, middag och fest. Under dagen fanns också en kortare stund där paret fick kliva undan och landa i några lugna bilder tillsammans.',
+      'Rebecka och Aron ville ha både film och foto under hela bröllopsdagen. Från förberedelser och first look på Villa Vanahem följde jag dem vidare till den kyrkliga vigseln, Stenungsbaden, minglet, middagen och en fest med flera personliga överraskningar.',
     focus:
-      'Bilderna vid vassen och minglet från kvällen gav två fina sidor av dagen: det stilla mellan paret och den levande stämningen bland gästerna.',
+      'Dagen fick växla mellan de stora händelserna och spontana stunder. En kort avstickare till vassen under minglet gav paret naturliga porträtt utan att de behövde lämna gästerna någon längre stund.',
     experience:
-      'Ett heldagsupplägg gör det möjligt att fånga både de planerade delarna och de små ögonblicken som händer när dagen får röra sig naturligt.',
-    tags: ['Heldag', 'First look', 'Mingel och fest'],
-    imageHint: 'bilder från Villa Vanahem och kvällen i Stenungsund',
+      'Heldagsupplägget gav plats för både barnens förberedelser, first look, vigsel och porträtt och för kvällens oväntade inslag med tatueringar, DJ och grillad pizza.',
+    tags: ['Heldag med film och foto', 'Kyrklig vigsel', 'Mingel och fest'],
+    imageHint:
+      'bilder från Villa Vanahem, Stenungsbaden och bröllopsdagen i Stenungsund',
   },
   {
     slug: 'brollop-pernmyrs-gard-kungalv',
