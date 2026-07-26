@@ -21,6 +21,7 @@ export const PUBLIC_ROUTE_PATHS = {
   weddingCases: '/brollop',
   weddingCaseKungalv: '/brollop/kungalv',
   weddingCaseStenungsund: '/brollop/stenungsund',
+  weddingCasePernmyrsGard: '/brollop/pernmyrs-gard-kungalv',
   privacy: '/privacy',
 } as const
 

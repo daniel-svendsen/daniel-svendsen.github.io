@@ -21,6 +21,7 @@ import FamilyCaseEventladan from './pages/FamilyCaseEventladan'
 import FamilyPhotography from './pages/FamilyPhotography'
 import CaseStudies from './pages/CaseStudies'
 import CaseKungalv from './pages/CaseKungalv'
+import CasePernmyrsGard from './pages/CasePernmyrsGard'
 import CaseStenungsund from './pages/CaseStenungsund'
 import Guides from './pages/Guides'
 import Home from './pages/Home'
@@ -56,6 +57,7 @@ const publicRouteComponents = {
   weddingCases: CaseStudies,
   weddingCaseKungalv: CaseKungalv,
   weddingCaseStenungsund: CaseStenungsund,
+  weddingCasePernmyrsGard: CasePernmyrsGard,
   privacy: PrivacyPolicy,
 } satisfies Record<PublicRouteKey, React.ComponentType>
 

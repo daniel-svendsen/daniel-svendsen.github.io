@@ -15,7 +15,7 @@ export default function CaseStudies() {
     '@type': 'CollectionPage',
     name: 'Bröllop jag fotograferat',
     description:
-      'Bröllop från Kungälv och Stenungsund med fokus på naturliga och personliga bilder.',
+      'Bröllop från Kungälv och Stenungsund med fokus på naturliga porträtt, vigsel, mingel och personliga upplägg.',
     url: PUBLIC_CANONICAL_URLS.weddingCases,
   }
 
@@ -23,7 +23,7 @@ export default function CaseStudies() {
     <>
       <SEO
         title="Verkliga bröllop i Kungälv & Stenungsund | Svendsén Photography"
-        description="Se bröllop jag fotograferat i Kungälv och Stenungsund, med fokus på promenadporträtt, vigsel, mingel och personliga bilder."
+        description="Se bröllop jag fotograferat i Kungälv och Stenungsund, från kortare vigslar på landet till heldagar med mingel, middag och fest."
         url={PUBLIC_CANONICAL_URLS.weddingCases}
         image={ogImage.src}
         imageAlt={ogImage.alt}

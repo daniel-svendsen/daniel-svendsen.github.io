@@ -55,6 +55,9 @@ const WeddingPhotographerKungalv = React.lazy(
 const CaseStudies = React.lazy(() => import('./pages/CaseStudies'))
 const CaseKungalv = React.lazy(() => import('./pages/CaseKungalv'))
 const CaseStenungsund = React.lazy(() => import('./pages/CaseStenungsund'))
+const CasePernmyrsGard = React.lazy(
+  () => import('./pages/CasePernmyrsGard'),
+)
 const NotFound = React.lazy(() => import('./pages/NotFound'))
 const AdminLoginPage = React.lazy(() => import('./admin/pages/AdminLoginPage'))
 const AdminDashboardPage = React.lazy(
@@ -88,6 +91,7 @@ const publicRouteComponents = {
   weddingCases: CaseStudies,
   weddingCaseKungalv: CaseKungalv,
   weddingCaseStenungsund: CaseStenungsund,
+  weddingCasePernmyrsGard: CasePernmyrsGard,
   privacy: PrivacyPolicy,
 } satisfies Record<PublicRouteKey, React.ComponentType>
 
