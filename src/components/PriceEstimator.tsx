@@ -1,14 +1,14 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 
-import { LinkButton } from '@/components/Button'
+import { Button } from '@/components/Button'
 import { PRICING } from '@/config/pricing'
 import {
   calculatePriceEstimate,
+  createPriceEstimateNavigationState,
   defaultPriceEstimateSelection,
   ESTIMATE_SERVICE_TITLES,
   formatPrice,
-  getContactUrlForEstimate,
   parsePriceEstimateSelection,
   type EstimateService,
   type PriceEstimateSelection,
@@ -37,6 +37,7 @@ const toNumber = (value: string, fallback = 0) => {
 
 export function PriceEstimator() {
   const location = useLocation()
+  const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const queryString = searchParams.toString()
   const [selection, setSelection] = useState<PriceEstimateSelection>(
@@ -44,9 +45,7 @@ export function PriceEstimator() {
   )
 
   useEffect(() => {
-    const parsed = parsePriceEstimateSelection(
-      new URLSearchParams(queryString),
-    )
+    const parsed = parsePriceEstimateSelection(new URLSearchParams(queryString))
     if (parsed) setSelection(parsed)
   }, [queryString])
 
@@ -58,10 +57,7 @@ export function PriceEstimator() {
     }
   }, [location.hash])
 
-  const estimate = useMemo(
-    () => calculatePriceEstimate(selection),
-    [selection],
-  )
+  const estimate = useMemo(() => calculatePriceEstimate(selection), [selection])
 
   const update = <Key extends keyof PriceEstimateSelection>(
     key: Key,
@@ -119,10 +115,7 @@ export function PriceEstimator() {
                     id="extra-session"
                     value={selection.extraSessionBlocks}
                     onChange={(event) =>
-                      update(
-                        'extraSessionBlocks',
-                        toNumber(event.target.value),
-                      )
+                      update('extraSessionBlocks', toNumber(event.target.value))
                     }
                     className={fieldClasses}
                   >
@@ -180,7 +173,8 @@ export function PriceEstimator() {
                     onChange={(event) =>
                       update(
                         'weddingPackage',
-                        event.target.value as PriceEstimateSelection['weddingPackage'],
+                        event.target
+                          .value as PriceEstimateSelection['weddingPackage'],
                       )
                     }
                     className={fieldClasses}
@@ -200,10 +194,7 @@ export function PriceEstimator() {
                   </select>
                 </div>
                 <div>
-                  <label
-                    htmlFor="extra-wedding-hours"
-                    className={labelClasses}
-                  >
+                  <label htmlFor="extra-wedding-hours" className={labelClasses}>
                     Extra timmar
                   </label>
                   <input
@@ -213,10 +204,7 @@ export function PriceEstimator() {
                     max={12}
                     value={selection.extraWeddingHours}
                     onChange={(event) =>
-                      update(
-                        'extraWeddingHours',
-                        toNumber(event.target.value),
-                      )
+                      update('extraWeddingHours', toNumber(event.target.value))
                     }
                     className={fieldClasses}
                   />
@@ -422,7 +410,9 @@ export function PriceEstimator() {
                 <input
                   type="checkbox"
                   checked={selection.overnight}
-                  onChange={(event) => update('overnight', event.target.checked)}
+                  onChange={(event) =>
+                    update('overnight', event.target.checked)
+                  }
                   className={checkboxClasses}
                 />
                 <span className="text-sm leading-6 text-textPrimary/78">
@@ -498,15 +488,20 @@ export function PriceEstimator() {
             bekräftas i personlig offert.
           </p>
 
-          <LinkButton
-            to={getContactUrlForEstimate(selection)}
+          <Button
+            type="button"
+            onClick={() =>
+              navigate('/contact/', {
+                state: createPriceEstimateNavigationState(selection),
+              })
+            }
             variant="default"
             size="lg"
             subVariant="rounded"
             className="mt-6 w-full px-5 text-center"
           >
             Skicka valen som offertförfrågan
-          </LinkButton>
+          </Button>
         </aside>
       </div>
     </div>

@@ -112,7 +112,7 @@ export default function Home() {
         jsonLd={businessJsonLd}
         breadcrumbs={[{ name: 'Hem', url: `${SITE_URL}/` }]}
       />
-      <div className="bg-[#f5f5f2] text-textPrimary">
+      <main className="bg-[#f5f5f2] text-textPrimary">
         <HeroSection />
 
         <EditorialSection compact>
@@ -130,9 +130,7 @@ export default function Home() {
             eyebrow="Tjänster"
             title="Fotografi för ögonblick, människor och varumärken."
             action={
-              <TextArrowLink to="/services/">
-                Se alla tjänster
-              </TextArrowLink>
+              <TextArrowLink to="/services/">Se alla tjänster</TextArrowLink>
             }
           />
 
@@ -142,11 +140,7 @@ export default function Home() {
                 key={card.title}
                 className="grid overflow-hidden rounded-[1.75rem] border border-black/6 bg-[#f7f7f4] md:grid-cols-2"
               >
-                <div
-                  className={
-                    index % 2 === 1 ? 'md:order-2' : 'md:order-1'
-                  }
-                >
+                <div className={index % 2 === 1 ? 'md:order-2' : 'md:order-1'}>
                   <ResponsiveImage
                     image={card.image}
                     alt={card.title}
@@ -319,7 +313,7 @@ export default function Home() {
             </div>
           </div>
         </EditorialSection>
-      </div>
+      </main>
     </>
   )
 }

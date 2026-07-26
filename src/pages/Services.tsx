@@ -8,7 +8,10 @@ import { ResponsiveImage } from '@/components/ResponsiveImage'
 import { serviceCards } from '../data/cards'
 import { getPageOgImage } from '@/config/pageSeo'
 import { toAbsoluteUrl } from '@/utils/utils'
-import { getImageSrc, type ResponsiveImageAsset } from '@/utils/responsiveImages'
+import {
+  getImageSrc,
+  type ResponsiveImageAsset,
+} from '@/utils/responsiveImages'
 import { businessReference, BUSINESS } from '@/config/seo'
 import { PRICING } from '@/config/pricing'
 import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
@@ -126,7 +129,7 @@ export default function Services() {
           },
         ]}
       />
-      <div className="bg-[#f5f5f2] pt-24 text-textPrimary md:pt-28">
+      <main className="bg-[#f5f5f2] pt-24 text-textPrimary md:pt-28">
         <Section
           bgColor="white"
           rounded="3xl"
@@ -317,18 +320,19 @@ export default function Services() {
             <SectionContent heading="Produktfotografering för företag">
               <p className="mt-4 max-w-3xl text-base leading-relaxed text-textSecondary">
                 Jag fotograferar produkter för webbshop, katalog, sociala medier
-                och marknadsföring. Jag har återkommande arbetat med produktbilder
-                för företag, bland annat produkter som penslar, tejp och tillbehör
-                där tydlighet, färg och användbarhet är viktigt.
+                och marknadsföring. Jag har återkommande arbetat med
+                produktbilder för företag, bland annat produkter som penslar,
+                tejp och tillbehör där tydlighet, färg och användbarhet är
+                viktigt.
               </p>
               <p className="mt-4 max-w-3xl text-base leading-relaxed text-textSecondary">
                 Startpaket med {PRICING.business.productIncludedImages} bilder
                 börjar från {PRICING.business.productStartFrom}. Extra bilder
                 inom samma upplägg kostar från{' '}
                 {PRICING.business.productExtraImageFrom}.{' '}
-                {PRICING.business.taxNote} Större produktserier och
-                återkommande uppdrag anpassas efter antal produkter, miljö och
-                hur bilderna ska användas.
+                {PRICING.business.taxNote} Större produktserier och återkommande
+                uppdrag anpassas efter antal produkter, miljö och hur bilderna
+                ska användas.
               </p>
 
               <LinkButton
@@ -374,7 +378,7 @@ export default function Services() {
             />
           </SectionContent>
         </Section>
-      </div>
+      </main>
     </>
   )
 }

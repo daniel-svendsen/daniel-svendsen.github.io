@@ -231,6 +231,29 @@ export const createPriceEstimateSearchParams = (
   return params
 }
 
+const PRICE_ESTIMATE_NAVIGATION_STATE_KEY = 'priceEstimateQuery'
+
+export const createPriceEstimateNavigationState = (
+  selection: PriceEstimateSelection,
+) => ({
+  [PRICE_ESTIMATE_NAVIGATION_STATE_KEY]:
+    createPriceEstimateSearchParams(selection).toString(),
+})
+
+export const parsePriceEstimateNavigationState = (
+  state: unknown,
+): PriceEstimateSelection | null => {
+  if (!state || typeof state !== 'object') return null
+
+  const query = (state as Record<string, unknown>)[
+    PRICE_ESTIMATE_NAVIGATION_STATE_KEY
+  ]
+
+  return typeof query === 'string'
+    ? parsePriceEstimateSelection(new URLSearchParams(query))
+    : null
+}
+
 const rounded = (amount: number, increment: number) =>
   Math.round(amount / increment) * increment
 
@@ -321,13 +344,11 @@ export const calculatePriceEstimate = (
       )
       addLine(
         `Person 2–5 (${peopleTwoToFive} st)`,
-        peopleTwoToFive *
-          PRICE_ESTIMATOR.businessPortraits.personTwoToFive,
+        peopleTwoToFive * PRICE_ESTIMATOR.businessPortraits.personTwoToFive,
       )
       addLine(
         `Person 6–10 (${peopleSixToTen} st)`,
-        peopleSixToTen *
-          PRICE_ESTIMATOR.businessPortraits.personSixToTen,
+        peopleSixToTen * PRICE_ESTIMATOR.businessPortraits.personSixToTen,
       )
       addLine(
         `Extra gruppbilder (${selection.businessGroupImages} st)`,
@@ -460,10 +481,8 @@ export const formatPriceEstimateForSubmission = (
   return rows.join('\n')
 }
 
-export const getContactUrlForEstimate = (
-  selection: PriceEstimateSelection,
-) => `/contact/?${createPriceEstimateSearchParams(selection).toString()}`
+export const getContactUrlForEstimate = (selection: PriceEstimateSelection) =>
+  `/contact/?${createPriceEstimateSearchParams(selection).toString()}`
 
-export const getServicesUrlForEstimate = (
-  selection: PriceEstimateSelection,
-) => `/services/?${createPriceEstimateSearchParams(selection).toString()}#prisindikator`
+export const getServicesUrlForEstimate = (selection: PriceEstimateSelection) =>
+  `/services/?${createPriceEstimateSearchParams(selection).toString()}#prisindikator`

@@ -1,6 +1,6 @@
 import React, { FormEvent, useEffect, useMemo, useState } from 'react'
 import { Clock, Mail, MapPin, Phone } from 'lucide-react'
-import { useSearchParams } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router-dom'
 
 import { Button, LinkButton } from '@/components/Button'
 import { EditorialIntro, EditorialSection } from '@/components/Editorial'
@@ -20,11 +20,13 @@ import {
   formatPrice,
   formatPriceEstimateForSubmission,
   getServicesUrlForEstimate,
+  parsePriceEstimateNavigationState,
   parsePriceEstimateSelection,
   type PriceEstimateSelection,
 } from '@/utils/priceEstimate'
 
 export default function Contact() {
+  const location = useLocation()
   const [searchParams] = useSearchParams()
   const queryString = searchParams.toString()
   const [selectedServiceId, setSelectedServiceId] = useState<
@@ -37,15 +39,18 @@ export default function Contact() {
   const ogImage = getPageOgImage('contact')
 
   useEffect(() => {
-    const parsed = parsePriceEstimateSelection(
-      new URLSearchParams(queryString),
-    )
+    const parsed =
+      parsePriceEstimateNavigationState(location.state) ??
+      parsePriceEstimateSelection(new URLSearchParams(queryString))
 
-    if (!parsed) return
+    if (!parsed) {
+      setEstimateSelection(null)
+      return
+    }
 
     setEstimateSelection(parsed)
     setSelectedServiceId(ESTIMATE_SERVICE_CONTACT_IDS[parsed.service])
-  }, [queryString])
+  }, [location.state, queryString])
 
   const selectedServiceOption = selectedServiceId
     ? getContactServiceOption(selectedServiceId)
@@ -274,7 +279,9 @@ export default function Contact() {
 
                   {activeEstimate.quoteReasons.length > 0 && (
                     <div className="mt-4 rounded-xl border border-amber-300/60 bg-amber-50 px-4 py-3 text-sm leading-6 text-textPrimary/72">
-                      <p className="font-semibold">Behöver bekräftas i offert</p>
+                      <p className="font-semibold">
+                        Behöver bekräftas i offert
+                      </p>
                       {activeEstimate.quoteReasons.map((reason) => (
                         <p key={reason}>• {reason}</p>
                       ))}

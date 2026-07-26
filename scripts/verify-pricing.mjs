@@ -34,6 +34,7 @@ try {
   const { PRICE_AMOUNTS, PRICE_ESTIMATOR, PRICING } = pricingModule
   const {
     calculatePriceEstimate,
+    createPriceEstimateNavigationState,
     createPriceEstimateSearchParams,
     defaultPriceEstimateSelection,
     ESTIMATE_SERVICE_CONTACT_IDS,
@@ -41,12 +42,11 @@ try {
     formatPriceEstimateForSubmission,
     getContactUrlForEstimate,
     getServicesUrlForEstimate,
+    parsePriceEstimateNavigationState,
     parsePriceEstimateSelection,
   } = estimateModule
-  const {
-    CONTACT_SERVICE_OPTIONS,
-    getContactServiceSubmissionValue,
-  } = contactServiceModule
+  const { CONTACT_SERVICE_OPTIONS, getContactServiceSubmissionValue } =
+    contactServiceModule
 
   assert.deepEqual(
     {
@@ -312,19 +312,24 @@ try {
     getServicesUrlForEstimate(querySelection),
     `/services/?${params.toString()}#prisindikator`,
   )
+  assert.deepEqual(
+    parsePriceEstimateNavigationState(
+      createPriceEstimateNavigationState(querySelection),
+    ),
+    querySelection,
+  )
+  assert.equal(parsePriceEstimateNavigationState(null), null)
+  assert.equal(
+    parsePriceEstimateNavigationState({ priceEstimateQuery: 'invalid=1' }),
+    null,
+  )
 
   const expectedContactServices = {
     portrait: ['portrait-photography', 'Porträttfotografering'],
     family: ['family-photography', 'Familjefotografering'],
     wedding: ['wedding-photography', 'Bröllopsfotografering'],
-    'business-portraits': [
-      'business-photography',
-      'Företagsfotografering',
-    ],
-    'business-activity': [
-      'business-photography',
-      'Företagsfotografering',
-    ],
+    'business-portraits': ['business-photography', 'Företagsfotografering'],
+    'business-activity': ['business-photography', 'Företagsfotografering'],
     product: ['product-photography', 'Produktfotografering'],
     vehicle: ['vehicle-photography', 'Bilfotografering'],
   }

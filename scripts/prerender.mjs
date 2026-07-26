@@ -99,21 +99,13 @@ async function verifyGeneratedSeo() {
     ],
     [
       '/brollop/',
-      [
-        '/brollop/kungalv/',
-        '/brollop/stenungsund/',
-        '/weddings/',
-        '/contact/',
-      ],
+      ['/brollop/kungalv/', '/brollop/stenungsund/', '/weddings/', '/contact/'],
     ],
     [
       '/brollop/kungalv/',
       ['/brollopsfotograf-kungalv/', '/brollop/', '/contact/'],
     ],
-    [
-      '/brollop/stenungsund/',
-      ['/weddings/', '/brollop/', '/contact/'],
-    ],
+    ['/brollop/stenungsund/', ['/weddings/', '/brollop/', '/contact/']],
     [
       '/guider/',
       [
@@ -124,22 +116,10 @@ async function verifyGeneratedSeo() {
         '/contact/',
       ],
     ],
-    [
-      '/guider/brollopsplanerare/',
-      ['/weddings/', '/contact/'],
-    ],
-    [
-      '/guider/brollopsbilder-promenad/',
-      ['/weddings/', '/contact/'],
-    ],
-    [
-      '/guider/brollopstidslinje/',
-      ['/weddings/', '/contact/'],
-    ],
-    [
-      '/portraits/',
-      ['/familjefotografering/', '/services/', '/contact/'],
-    ],
+    ['/guider/brollopsplanerare/', ['/weddings/', '/contact/']],
+    ['/guider/brollopsbilder-promenad/', ['/weddings/', '/contact/']],
+    ['/guider/brollopstidslinje/', ['/weddings/', '/contact/']],
+    ['/portraits/', ['/familjefotografering/', '/services/', '/contact/']],
     [
       '/familjefotografering/',
       [
@@ -230,6 +210,24 @@ async function verifyGeneratedSeo() {
       !html.includes('<div id="root"></div>'),
       `${route} must contain prerendered app content`,
     )
+    assertBuild(
+      countMatches(html, /<main(?:\s[^>]*)?>/g) === 1,
+      `${route} must contain exactly one main landmark`,
+    )
+
+    if (route === '/services/') {
+      assertBuild(
+        !html.includes('href="/contact/?'),
+        `${route} must not expose a crawlable contact parameter URL`,
+      )
+    }
+
+    if (route === '/privacy/') {
+      assertBuild(
+        countMatches(html, /<h1(?:\s[^>]*)?>/g) === 1,
+        `${route} must contain exactly one h1`,
+      )
+    }
 
     const expectedMainLinks = requiredMainLinks.get(route) ?? []
     if (expectedMainLinks.length > 0) {
