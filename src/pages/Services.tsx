@@ -338,7 +338,7 @@ export default function Services() {
                 subVariant="rounded"
                 className="mt-6 font-semibold"
               >
-                Se produktfotografering
+                Se produktfotografering för webbshop
               </LinkButton>
 
               <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">

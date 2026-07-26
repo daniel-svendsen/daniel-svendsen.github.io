@@ -66,7 +66,7 @@ export default function ProductPhotography() {
   const productServiceJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'Produktfotografering i Kungälv',
+    name: 'Produktfotografering för webbshop i Kungälv',
     serviceType: 'Product photography',
     description:
       'Produktfotografering för webbshop, katalog och marknadsföring med inlämning, inskick eller fotografering på plats.',
@@ -81,8 +81,8 @@ export default function ProductPhotography() {
   return (
     <>
       <SEO
-        title="Produktfotografering i Kungälv | Svendsén Photography"
-        description="Produktfotografering för webbshop, katalog och marknadsföring. Lämna eller skicka mindre produkter, eller boka fotografering på plats."
+        title="Produktfotografering för webbshop i Kungälv | Svendsén"
+        description="Enhetliga produktbilder för webbshop, katalog och marknadsföring. Lämna eller skicka mindre produkter till Kungälv, eller boka fotografering på plats."
         url={PUBLIC_CANONICAL_URLS.productPhotography}
         image={ogImage.src}
         imageAlt={ogImage.alt}
@@ -103,12 +103,13 @@ export default function ProductPhotography() {
               Webbshop, katalog och marknadsföring
             </p>
             <h1 className="mb-5 text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-              Produktfotografering i Kungälv
+              Produktfotografering för webbshop och företag
             </h1>
             <p className="text-lg leading-relaxed text-textSecondary md:text-xl">
-              Tydliga produktbilder, samlingsbilder och bilder i användning för
-              företag som behöver ett enhetligt material till digitala och
-              tryckta kanaler.
+              Tydliga och enhetliga produktbilder för webbshop, katalog och
+              marknadsföring. Produkterna kan lämnas eller skickas till mig i
+              Kungälv, medan större produkter kan fotograferas på plats efter
+              offert.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               {productFacts.map((fact) => (
@@ -135,12 +136,14 @@ export default function ProductPhotography() {
         <section className="mx-auto mb-12 max-w-6xl rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10">
           <div className="mb-8 max-w-3xl">
             <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
-              Produktbilder efter användningsområde
+              Produktbilder för webbshop, katalog och marknadsföring
             </h2>
             <p className="text-base leading-relaxed text-textSecondary">
-              Bildlistan anpassas efter sortiment, kanal och uttryck. Ett
-              uppdrag kan bestå av enhetliga produktbilder, flera vinklar eller
-              ett mindre urval av miljöbilder.
+              För en webbshop är det viktigt att produkterna presenteras
+              konsekvent. Därför planeras bakgrund, vinklar, beskärning och
+              bildformat utifrån sortimentet och kanalen där bilderna ska
+              användas. Bilderna levereras som högupplöst och webbanpassad JPG.
+              Friläggning och transparent bakgrund kan offereras separat.
             </p>
           </div>
 
@@ -324,10 +327,13 @@ export default function ProductPhotography() {
 
         <CTASection
           className="mx-auto max-w-6xl rounded-[1.75rem] border border-black/6 bg-white"
-          title="Behöver företaget nya produktbilder?"
+          title="Behöver företaget produktbilder för webbshop?"
           description="Skicka en kort bildlista med antal produkter, önskade vinklar och användningsområde, så återkommer jag med ett upplägg och en offert."
           actions={[
-            { to: '/contact/', label: 'Skicka offertförfrågan' },
+            {
+              to: '/contact/',
+              label: 'Be om offert på produktbilder för webbshop',
+            },
             { to: '/services/', label: 'Se alla tjänster', variant: 'outline' },
           ]}
         />
