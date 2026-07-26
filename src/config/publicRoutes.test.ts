@@ -24,9 +24,13 @@ describe('public canonical URLs', () => {
     expect(PUBLIC_CANONICAL_URLS.services).toBe(
       'https://www.svendsenphotography.com/services/',
     )
+    expect(PUBLIC_CANONICAL_URLS.about).toBe(
+      'https://www.svendsenphotography.com/om/',
+    )
     expect(
       Object.values(PUBLIC_CANONICAL_URLS).every(
-        (url) => url.endsWith('/') && !url.slice(SITE_URL.length).includes('//'),
+        (url) =>
+          url.endsWith('/') && !url.slice(SITE_URL.length).includes('//'),
       ),
     ).toBe(true)
   })

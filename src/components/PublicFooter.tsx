@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { BUSINESS } from '@/config/seo'
 
 const footerLinks = [
+  { to: '/om/', label: 'Om Daniel' },
   { to: '/contact/', label: 'Kontakt' },
   { to: '/faq/', label: 'FAQ' },
   { to: '/webservices/', label: 'Webbtjänster' },

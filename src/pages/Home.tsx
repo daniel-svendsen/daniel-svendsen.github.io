@@ -12,6 +12,7 @@ import SEO from '@/components/SEO'
 import HeroSection from '../components/HeroSection'
 import forprosImg from '@/assets/movies/img-optimized.jpg?responsive-poster'
 import forprosVideo from '@/assets/movies/forpros1.mp4'
+import profileImage from '@/assets/bild1.jpg?responsive'
 import { homeCards } from '../data/cards'
 import { getPageOgImage } from '@/config/pageSeo'
 import { businessJsonLd, SITE_URL } from '@/config/seo'
@@ -122,6 +123,44 @@ export default function Home() {
             title="Bilder som känns enkla att återvända till."
             description="Jag utgår från Kungälv och fotograferar gärna runt Göteborgsområdet, Stenungsund och resten av västkusten."
           />
+        </EditorialSection>
+
+        <EditorialSection tone="white">
+          <div className="grid gap-10 md:grid-cols-[0.72fr_1.28fr] md:items-center lg:gap-16">
+            <figure className="mx-auto w-full max-w-sm overflow-hidden rounded-[1.75rem] bg-black shadow-[0_28px_70px_-48px_rgba(31,41,55,0.7)] md:mx-0">
+              <ResponsiveImage
+                image={profileImage}
+                alt="Porträtt av Daniel, fotograf bakom Svendsén Photography"
+                sizes="(min-width: 768px) 360px, 100vw"
+                className="aspect-[3/4] h-full w-full object-cover"
+                loading="lazy"
+              />
+            </figure>
+            <div>
+              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.24em] text-textSecondary">
+                Om fotografen
+              </p>
+              <h2 className="mb-6 text-4xl font-semibold tracking-tight text-textPrimary md:text-5xl">
+                Jag heter Daniel.
+              </h2>
+              <div className="max-w-2xl space-y-4 text-lg leading-8 text-textPrimary/68">
+                <p>
+                  Jag bor i Kode och har fotograferat på allvar sedan 2016. Min
+                  stil är klassisk och miljödriven, med naturliga färger, varma
+                  toner och tydlig kontrast.
+                </p>
+                <p>
+                  Under fotograferingen arbetar jag lugnt och flexibelt, med
+                  enkel vägledning och utrymme för spontanitet. Målet är att du
+                  ska känna dig trygg framför kameran och få personliga bilder
+                  som känns naturliga att återvända till.
+                </p>
+              </div>
+              <TextArrowLink to="/om/" className="mt-8">
+                Läs mer om mig
+              </TextArrowLink>
+            </div>
+          </div>
         </EditorialSection>
 
         <EditorialSection tone="white">

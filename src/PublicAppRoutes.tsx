@@ -23,6 +23,7 @@ import CaseKungalv from './pages/CaseKungalv'
 import CaseStenungsund from './pages/CaseStenungsund'
 import Guides from './pages/Guides'
 import Home from './pages/Home'
+import About from './pages/About'
 import NotFound from './pages/NotFound'
 import Portraits from './pages/Portraits'
 import PrivacyPolicy from './pages/PrivacyPolicy'
@@ -36,6 +37,7 @@ import WeddingWalkGuide from './pages/WeddingWalkGuide'
 
 const publicRouteComponents = {
   home: Home,
+  about: About,
   services: Services,
   businessPhotography: BusinessPhotography,
   productPhotography: ProductPhotography,

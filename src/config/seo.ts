@@ -18,6 +18,20 @@ export const BUSINESS = {
   ],
 } as const
 
+export const PERSON = {
+  id: `${SITE_URL}/om/#daniel`,
+  name: BUSINESS.ownerName,
+  displayName: 'Daniel',
+  url: `${SITE_URL}/om/`,
+} as const
+
+export const personReference = {
+  '@type': 'Person',
+  '@id': PERSON.id,
+  name: PERSON.name,
+  url: PERSON.url,
+}
+
 export const businessReference = {
   '@type': 'LocalBusiness',
   '@id': BUSINESS.id,
@@ -46,10 +60,7 @@ export const businessJsonLd = {
       closes: '17:00',
     },
   ],
-  founder: {
-    '@type': 'Person',
-    name: BUSINESS.ownerName,
-  },
+  founder: personReference,
   areaServed: BUSINESS.serviceAreas.map((name) => ({
     '@type': 'AdministrativeArea',
     name,

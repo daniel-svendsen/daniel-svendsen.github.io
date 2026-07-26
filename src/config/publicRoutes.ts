@@ -2,6 +2,7 @@ import { toSiteUrl } from './siteOrigin.js'
 
 export const PUBLIC_ROUTE_PATHS = {
   home: '/',
+  about: '/om',
   services: '/services',
   businessPhotography: '/foretagsfotografering',
   productPhotography: '/produktfotografering',

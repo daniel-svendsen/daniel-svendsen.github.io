@@ -7,6 +7,7 @@ import faqImage from '@/assets/pictures/family.jpg'
 import servicesImage from '@/assets/pictures/company.jpg'
 import contactImage from '@/assets/pictures/portrait2.jpg'
 import homeImage from '@/assets/pictures/portrait.jpg'
+import aboutImage from '@/assets/bild1.jpg'
 import webservicesImage from '@/assets/webdev-optimized.jpg'
 import guidesImage from '@/assets/weddings/DSC09186.jpg'
 import portraitsImage from '@/assets/portraits/portraits-3.jpg'
@@ -34,6 +35,10 @@ const PAGE_OG_IMAGE_SOURCES = {
   home: {
     src: homeImage,
     alt: 'Porträttfotografering av Svendsén Photography',
+  },
+  about: {
+    src: aboutImage,
+    alt: 'Porträtt av Daniel, fotograf bakom Svendsén Photography',
   },
   services: {
     src: servicesImage,

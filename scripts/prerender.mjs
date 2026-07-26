@@ -70,7 +70,8 @@ async function verifyGeneratedSeo() {
   ])
   const faqOwners = new Map()
   const requiredMainLinks = new Map([
-    ['/', ['/foretagsfotografering/']],
+    ['/', ['/om/', '/foretagsfotografering/']],
+    ['/om/', ['/services/', '/contact/']],
     [
       '/services/',
       [

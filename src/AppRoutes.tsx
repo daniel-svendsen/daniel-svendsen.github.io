@@ -19,6 +19,7 @@ import {
 } from '@/config/routeClassification'
 
 const Home = React.lazy(() => import('./pages/Home'))
+const About = React.lazy(() => import('./pages/About'))
 const Services = React.lazy(() => import('./pages/Services'))
 const BusinessPhotography = React.lazy(
   () => import('./pages/BusinessPhotography'),
@@ -68,6 +69,7 @@ const CustomerGalleryPage = React.lazy(
 
 const publicRouteComponents = {
   home: Home,
+  about: About,
   services: Services,
   businessPhotography: BusinessPhotography,
   productPhotography: ProductPhotography,
