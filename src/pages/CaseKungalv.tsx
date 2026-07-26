@@ -92,8 +92,8 @@ export default function CaseKungalv() {
           </div>
         </header>
 
-        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-4 lg:min-h-[34rem] lg:grid-cols-[1.2fr_0.8fr]">
-          <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)] lg:h-full">
+        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-4 lg:h-[34rem] lg:grid-cols-[1.2fr_0.8fr]">
+          <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)] lg:h-full lg:min-h-0">
             <ResponsiveImage
               image={getImage(3)}
               alt="Bröllopspar på promenad i Kungälv"
@@ -102,8 +102,8 @@ export default function CaseKungalv() {
               sizes="(min-width: 1024px) 740px, 100vw"
             />
           </figure>
-          <div className="grid grid-cols-1 gap-4 lg:grid-rows-2">
-            <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]">
+          <div className="grid grid-cols-1 gap-4 lg:min-h-0 lg:grid-rows-2">
+            <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)] lg:min-h-0">
               <ResponsiveImage
                 image={getImage(0)}
                 alt="Kersti och Jakob under vårpromenaden i Kungälv"
@@ -112,7 +112,7 @@ export default function CaseKungalv() {
                 sizes="(min-width: 1024px) 360px, 100vw"
               />
             </figure>
-            <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]">
+            <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)] lg:min-h-0">
               <ResponsiveImage
                 image={getImage(2)}
                 alt="Närbild av en hand vid brudgummens knapphålsblomma"

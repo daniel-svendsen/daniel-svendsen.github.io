@@ -112,8 +112,8 @@ export default function FamilyCaseEventladan() {
           </div>
         </header>
 
-        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-4 lg:min-h-[36rem] lg:grid-cols-[0.9fr_1.1fr]">
-          <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)] lg:h-full">
+        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-4 lg:h-[36rem] lg:grid-cols-[0.9fr_1.1fr]">
+          <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)] lg:h-full lg:min-h-0">
             <ResponsiveImage
               image={familyPortrait}
               alt="Familj fotograferad vid ett stort fönster på Eventladan i Romelanda"
@@ -122,8 +122,8 @@ export default function FamilyCaseEventladan() {
               sizes="(min-width: 1024px) 510px, 100vw"
             />
           </figure>
-          <div className="grid grid-cols-1 gap-4 lg:grid-rows-2">
-            <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]">
+          <div className="grid grid-cols-1 gap-4 lg:min-h-0 lg:grid-rows-2">
+            <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)] lg:min-h-0">
               <ResponsiveImage
                 image={siblingsChristmas}
                 alt="Två syskon i ett julinspirerat porträtt på Eventladan"
@@ -132,7 +132,7 @@ export default function FamilyCaseEventladan() {
                 sizes="(min-width: 1024px) 620px, 100vw"
               />
             </figure>
-            <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]">
+            <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)] lg:min-h-0">
               <ResponsiveImage
                 image={coupleWithDog}
                 alt="Parporträtt med familjens hund på Eventladan"

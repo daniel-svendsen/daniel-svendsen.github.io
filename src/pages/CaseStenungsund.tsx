@@ -131,9 +131,9 @@ export default function CaseStenungsund() {
           </div>
         </header>
 
-        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-4 lg:min-h-[34rem] lg:grid-cols-[0.85fr_1.15fr]">
-          <div className="grid grid-cols-1 gap-4 lg:grid-rows-2">
-            <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]">
+        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-4 lg:h-[34rem] lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="grid grid-cols-1 gap-4 lg:min-h-0 lg:grid-rows-2">
+            <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)] lg:min-h-0">
               <ResponsiveImage
                 image={getImage(0)}
                 alt="Rebecka och Aron med sina två barn på Villa Vanahem"
@@ -142,7 +142,7 @@ export default function CaseStenungsund() {
                 sizes="(min-width: 1024px) 360px, 100vw"
               />
             </figure>
-            <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]">
+            <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)] lg:min-h-0">
               <ResponsiveImage
                 image={getImage(3)}
                 alt="Rebecka och Aron kysser varandra under vigseln"
@@ -152,7 +152,7 @@ export default function CaseStenungsund() {
               />
             </figure>
           </div>
-          <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)] lg:h-full">
+          <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)] lg:h-full lg:min-h-0">
             <ResponsiveImage
               image={getImage(6)}
               alt="Rebecka och Aron bland vassen nära Villa Vanahem"
