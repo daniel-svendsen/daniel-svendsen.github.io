@@ -1,36 +1,59 @@
 import React from 'react'
 
+import { LinkButton } from '@/components/Button'
 import { CTASection } from '@/components/CTASection'
 import { InfoCard } from '@/components/InfoCard'
 import { ResponsiveImage } from '@/components/ResponsiveImage'
 import SEO from '@/components/SEO'
-import { caseStudyBySlug } from '@/data/cases'
 import { getPageOgImage } from '@/config/pageSeo'
 import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
+import { businessReference } from '@/config/seo'
+import { caseStudyBySlug } from '@/data/cases'
 import {
   getImageSrc,
   type ResponsiveImageAsset,
 } from '@/utils/responsiveImages'
+import { toAbsoluteUrl } from '@/utils/utils'
 
 const caseStudy = caseStudyBySlug['brollop-kungalv']
 
 const caseImages = Object.entries(
-  import.meta.glob(
-    '../assets/cases/Kersti&Jakob/*.{jpg,jpeg,png}',
-    {
-      eager: true,
-      import: 'default',
-      query: '?responsive',
-    },
-  ),
+  import.meta.glob('../assets/cases/Kersti&Jakob/*.{jpg,jpeg,png}', {
+    eager: true,
+    import: 'default',
+    query: '?responsive',
+  }),
 )
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([, image]) => image as ResponsiveImageAsset)
 
 const getImage = (index: number) => caseImages[index] ?? caseImages[0]
 
+const galleryAlts = [
+  'Bruden tillsammans med brudtärnor under bröllopet i Kungälv',
+  'Närbild av en hand vid brudgummens knapphålsblomma',
+  'Kersti och Jakob under en lugn promenad i Kungälv',
+  'Scenisk bröllopsbild av Kersti och Jakob under en stor ek',
+]
+
 export default function CaseKungalv() {
   const ogImage = getPageOgImage('weddingCaseKungalv')
+  const caseJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Kersti och Jakobs bröllop i Kungälv',
+    description:
+      'Ett verkligt bröllop i Kungälv med vårpromenad, vitsippor, vigsel och familjebilder.',
+    image: caseImages
+      .map((image) => toAbsoluteUrl(getImageSrc(image)))
+      .filter(Boolean),
+    mainEntityOfPage: PUBLIC_CANONICAL_URLS.weddingCaseKungalv,
+    author: businessReference,
+    about: {
+      '@type': 'Place',
+      name: 'Kungälv',
+    },
+  }
 
   return (
     <>
@@ -40,6 +63,7 @@ export default function CaseKungalv() {
         url={PUBLIC_CANONICAL_URLS.weddingCaseKungalv}
         image={ogImage.src}
         imageAlt={ogImage.alt}
+        jsonLd={caseJsonLd}
         breadcrumbs={[
           { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
           {
@@ -81,7 +105,7 @@ export default function CaseKungalv() {
             <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]">
               <ResponsiveImage
                 image={getImage(0)}
-                alt="Detalj från bröllopet i Kungälv"
+                alt="Kersti och Jakob under vårpromenaden i Kungälv"
                 className="h-[18rem] w-full object-cover lg:h-full"
                 sizes="(min-width: 1024px) 360px, 100vw"
               />
@@ -89,7 +113,7 @@ export default function CaseKungalv() {
             <figure className="overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]">
               <ResponsiveImage
                 image={getImage(2)}
-                alt="Vigsel och familjefoto från Kungälv"
+                alt="Närbild av en hand vid brudgummens knapphålsblomma"
                 className="h-[18rem] w-full object-cover lg:h-full"
                 sizes="(min-width: 1024px) 360px, 100vw"
               />
@@ -108,6 +132,15 @@ export default function CaseKungalv() {
               stelt. Här fick platsen, ljuset och den stilla vårkänslan hjälpa
               till att forma bilderna.
             </p>
+            <LinkButton
+              to="/guider/brollopsbilder-promenad/"
+              variant="outline"
+              size="lg"
+              subVariant="rounded"
+              className="mt-6 px-8 font-semibold"
+            >
+              Läs guiden om promenadbilder
+            </LinkButton>
           </div>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -129,21 +162,44 @@ export default function CaseKungalv() {
           </div>
         </section>
 
-        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {caseImages.slice(1).map((image, index) => (
-            <figure
-              key={getImageSrc(image)}
-              className="overflow-hidden rounded-[1.75rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]"
-            >
-              <ResponsiveImage
-                image={image}
-                alt={`Bröllopsbild från Kungälv ${index + 2}`}
-                className="h-[20rem] w-full object-cover"
-                sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
-                loading="lazy"
-              />
-            </figure>
-          ))}
+        <section className="mx-auto mb-14 max-w-6xl">
+          <div className="mb-8 max-w-3xl">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-textSecondary">
+              Bildurval
+            </p>
+            <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
+              Från nära detaljer till platsens större linjer
+            </h2>
+            <p className="text-base leading-relaxed text-textSecondary">
+              Bildserien växlar mellan rörelse under promenaden, nära detaljer,
+              bilder tillsammans med brudföljet och bredare porträtt där
+              vårmiljön får ta plats. På så sätt blir platsen en del av
+              berättelsen utan att ta fokus från människorna.
+            </p>
+          </div>
+
+          <div
+            aria-label="Bildurval från Kersti och Jakobs bröllop i Kungälv"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {caseImages.slice(1).map((image, index) => (
+              <figure
+                key={getImageSrc(image)}
+                className="overflow-hidden rounded-[1.75rem] bg-white shadow-[0_18px_45px_-30px_rgba(31,41,55,0.22)]"
+              >
+                <ResponsiveImage
+                  image={image}
+                  alt={
+                    galleryAlts[index] ??
+                    `Bröllopsbild från Kungälv ${index + 2}`
+                  }
+                  className="h-[20rem] w-full object-cover"
+                  sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+                  loading="lazy"
+                />
+              </figure>
+            ))}
+          </div>
         </section>
 
         <CTASection
