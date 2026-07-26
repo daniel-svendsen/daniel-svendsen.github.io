@@ -236,15 +236,15 @@ export default function ProductPhotography() {
               Redigering och leverans
             </h2>
             <p className="mb-4 text-base leading-relaxed text-textSecondary">
-              Grundläggande justering av exponering, färg, vitbalans,
-              beskärning och upprätning ingår, tillsammans med borttagning av
-              mindre dammfläckar i bilden. Bilderna levereras som högupplöst och
+              Grundläggande justering av exponering, färg, vitbalans, beskärning
+              och upprätning ingår, tillsammans med borttagning av mindre
+              dammfläckar i bilden. Bilderna levereras som högupplöst och
               webbanpassad JPG.
             </p>
             <p className="text-base leading-relaxed text-textSecondary">
-              Friläggning, transparent bakgrund, omfattande rengöring,
-              avancerad retusch, montage och borttagning av repor eller
-              produktfel ingår inte. Andra format bedöms efter överenskommelse.
+              Friläggning, transparent bakgrund, omfattande rengöring, avancerad
+              retusch, montage och borttagning av repor eller produktfel ingår
+              inte. Andra format bedöms efter överenskommelse.
             </p>
           </div>
         </section>
@@ -309,9 +309,10 @@ export default function ProductPhotography() {
               Produktbilder för For Pros
             </h2>
             <p className="mb-6 text-base leading-relaxed text-textSecondary">
-              Samarbetet med For Pros har över tid omfattat cirka 50 produkt-
-              och samlingsbilder. Se ett urval av rena produktbilder och en
-              bild där produkten används.
+              Samarbetet med For Pros har omfattat en heldag med foto och film
+              samt fler än tio tillfällen med produktfotografering. Se ett urval
+              och läs om hur materialet har tagits fram för verksamheten och
+              hemsidan.
             </p>
             <LinkButton
               to="/produktfotografering/for-pros/"
