@@ -17,26 +17,26 @@ import { toAbsoluteUrl } from '@/utils/utils'
 const caseStudy = caseStudyBySlug['brollop-pernmyrs-gard-kungalv']
 
 const imageOrder = [
-  'DSC01146.jpg',
-  'DSC01236.jpg',
-  'DSC01308.jpg',
-  'DSC01407.jpg',
-  'DSC01411.jpg',
-  'DSC01591.jpg',
-  'DSC01686.jpg',
-  'DSC01697.jpg',
-  'DSC01464.jpg',
-  'DSC01483.jpg',
-  'DSC01985.jpg',
-  'DSC02016.jpg',
-  'DSC02017.jpg',
-  'DSC02027.jpg',
-  'DSC02073.jpg',
-  'DSC02080.jpg',
-  'DSC02088.jpg',
-  'DSC02147.jpg',
-  'DSC02221.jpg',
-  'DSC02366.jpg',
+  'brudpar-vid-ladan-pernmyrs-gard-kungalv.jpg',
+  'brudpar-pa-ang-pernmyrs-gard-kungalv.jpg',
+  'brudpar-pa-skogsstig-pernmyrs-gard-kungalv.jpg',
+  'portrattpromenad-pernmyrs-gard-kungalv.jpg',
+  'brudpar-bland-ormbunkar-pernmyrs-gard.jpg',
+  'brollopsmingel-utanfor-ladan-pernmyrs-gard.jpg',
+  'borgerlig-vigsel-pa-ang-pernmyrs-gard.jpg',
+  'kyss-under-vigsel-pernmyrs-gard.jpg',
+  'brollopslada-dukning-pernmyrs-gard.jpg',
+  'brollopsskylt-mingel-middag-fest.jpg',
+  'grillning-till-brollopsmiddag-pernmyrs-gard.jpg',
+  'detalj-av-brollopsdukning-pernmyrs-gard.jpg',
+  'mat-till-brollopsmiddag-pernmyrs-gard.jpg',
+  'servering-under-brollopsmiddag-pernmyrs-gard.jpg',
+  'grillad-mat-till-brollopsmiddag-pernmyrs-gard.jpg',
+  'brollopsgaster-i-ladan-pernmyrs-gard.jpg',
+  'skal-under-brollopsmiddag-pernmyrs-gard.jpg',
+  'hannes-helena-under-brollopsmiddagen.jpg',
+  'brollopsbuffe-pernmyrs-gard.jpg',
+  'gastbok-i-ladan-pernmyrs-gard.jpg',
 ] as const
 
 const importedImages = import.meta.glob<ResponsiveImageAsset>(
@@ -104,11 +104,12 @@ export default function CasePernmyrsGard() {
   return (
     <>
       <SEO
-        title="Bröllop på Pernmyrs Gård | Hannes & Helena"
+        title="Bröllop på Pernmyrs Gård | Svendsén Photography"
         description="Hannes och Helenas bröllop på Pernmyrs Gård i Kungälv med porträttpromenad, mingel, borgerlig vigsel på ängen och middag i ladan."
         url={PUBLIC_CANONICAL_URLS.weddingCasePernmyrsGard}
         image={ogImage.src}
         imageAlt={ogImage.alt}
+        ogType="article"
         jsonLd={caseJsonLd}
         breadcrumbs={[
           { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },

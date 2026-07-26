@@ -1,6 +1,6 @@
 import caseKungalvImage from '@/assets/cases/Kersti&Jakob/sceniskbildpåparunderenek.jpg'
 import caseStenungsundImage from '@/assets/cases/Rebecka&Aron/paretihogvass.jpg'
-import casePernmyrsGardImage from '@/assets/cases/Hannes&Helena/DSC01146.jpg'
+import casePernmyrsGardImage from '@/assets/cases/Hannes&Helena/brudpar-vid-ladan-pernmyrs-gard-kungalv.jpg'
 import timelineImage from '@/assets/cases/Rebecka&Aron/detaljbildparethollerihander.jpg'
 import kungalvServiceImage from '@/assets/cases/brollopkungalvbilder/DSC03136.jpg'
 import weddingPortfolioImage from '@/assets/carousel/DSC09588.jpg'
