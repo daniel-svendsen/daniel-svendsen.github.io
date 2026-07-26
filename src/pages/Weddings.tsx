@@ -254,7 +254,8 @@ export default function WeddingGallery() {
               image={featuredWeddings[0].image}
               alt={featuredWeddings[0].alt}
               sizes="(min-width: 1024px) 670px, 100vw"
-              className="h-[28rem] w-full cursor-pointer object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-[38rem]"
+              pictureClassName="lg:h-full lg:w-full"
+              className="h-[28rem] w-full cursor-pointer object-cover transition-transform duration-500 group-hover:scale-[1.02] md:h-[38rem] lg:h-full"
               onClick={() =>
                 setSelectedWeddingImage({
                   src: featuredWeddings[0].image,
@@ -461,7 +462,7 @@ export default function WeddingGallery() {
             (src, index) => (
               <figure
                 key={index}
-                className="relative overflow-hidden rounded-[1.6rem]"
+                className="relative aspect-[4/5] overflow-hidden rounded-[1.6rem]"
               >
                 <ResponsiveImage
                   image={src}

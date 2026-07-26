@@ -137,6 +137,7 @@ export default function CaseStenungsund() {
               <ResponsiveImage
                 image={getImage(0)}
                 alt="Rebecka och Aron med sina två barn på Villa Vanahem"
+                pictureClassName="lg:h-full lg:w-full"
                 className="h-[18rem] w-full object-cover lg:h-full"
                 sizes="(min-width: 1024px) 360px, 100vw"
               />
@@ -145,6 +146,7 @@ export default function CaseStenungsund() {
               <ResponsiveImage
                 image={getImage(3)}
                 alt="Rebecka och Aron kysser varandra under vigseln"
+                pictureClassName="lg:h-full lg:w-full"
                 className="h-[18rem] w-full object-cover lg:h-full"
                 sizes="(min-width: 1024px) 360px, 100vw"
               />
@@ -154,6 +156,7 @@ export default function CaseStenungsund() {
             <ResponsiveImage
               image={getImage(6)}
               alt="Rebecka och Aron bland vassen nära Villa Vanahem"
+              pictureClassName="lg:h-full lg:w-full"
               className="block h-[24rem] w-full object-cover sm:h-[30rem] lg:h-full"
               sizes="(min-width: 1024px) 740px, 100vw"
             />

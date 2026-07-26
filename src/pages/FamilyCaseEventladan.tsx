@@ -117,6 +117,7 @@ export default function FamilyCaseEventladan() {
             <ResponsiveImage
               image={familyPortrait}
               alt="Familj fotograferad vid ett stort fönster på Eventladan i Romelanda"
+              pictureClassName="lg:h-full lg:w-full"
               className="aspect-[4/5] w-full object-cover lg:h-full lg:aspect-auto"
               sizes="(min-width: 1024px) 510px, 100vw"
             />
@@ -126,6 +127,7 @@ export default function FamilyCaseEventladan() {
               <ResponsiveImage
                 image={siblingsChristmas}
                 alt="Två syskon i ett julinspirerat porträtt på Eventladan"
+                pictureClassName="lg:h-full lg:w-full"
                 className="h-[20rem] w-full object-cover lg:h-full"
                 sizes="(min-width: 1024px) 620px, 100vw"
               />
@@ -134,6 +136,7 @@ export default function FamilyCaseEventladan() {
               <ResponsiveImage
                 image={coupleWithDog}
                 alt="Parporträtt med familjens hund på Eventladan"
+                pictureClassName="lg:h-full lg:w-full"
                 className="h-[20rem] w-full object-cover lg:h-full"
                 sizes="(min-width: 1024px) 620px, 100vw"
               />

@@ -97,6 +97,7 @@ export default function CaseKungalv() {
             <ResponsiveImage
               image={getImage(3)}
               alt="Bröllopspar på promenad i Kungälv"
+              pictureClassName="lg:h-full lg:w-full"
               className="h-[24rem] w-full object-cover sm:h-[30rem] lg:h-full"
               sizes="(min-width: 1024px) 740px, 100vw"
             />
@@ -106,6 +107,7 @@ export default function CaseKungalv() {
               <ResponsiveImage
                 image={getImage(0)}
                 alt="Kersti och Jakob under vårpromenaden i Kungälv"
+                pictureClassName="lg:h-full lg:w-full"
                 className="h-[18rem] w-full object-cover lg:h-full"
                 sizes="(min-width: 1024px) 360px, 100vw"
               />
@@ -114,6 +116,7 @@ export default function CaseKungalv() {
               <ResponsiveImage
                 image={getImage(2)}
                 alt="Närbild av en hand vid brudgummens knapphålsblomma"
+                pictureClassName="lg:h-full lg:w-full"
                 className="h-[18rem] w-full object-cover lg:h-full"
                 sizes="(min-width: 1024px) 360px, 100vw"
               />

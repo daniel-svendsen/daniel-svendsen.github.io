@@ -164,6 +164,7 @@ export default function WeddingPhotographerKungalv() {
             <ResponsiveImage
               image={getImage(4)}
               alt="Bröllopsbilder i naturmiljö nära Kungälv"
+              pictureClassName="lg:h-full lg:w-full"
               className="h-[24rem] w-full object-cover md:h-full"
               sizes="(min-width: 1024px) 520px, 100vw"
               loading="lazy"

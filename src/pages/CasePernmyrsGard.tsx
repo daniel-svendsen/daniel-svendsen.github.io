@@ -144,6 +144,7 @@ export default function CasePernmyrsGard() {
             <ResponsiveImage
               image={getImage(0)}
               alt="Hannes och Helena vid den röda ladan på Pernmyrs Gård"
+              pictureClassName="lg:h-full lg:w-full"
               className="h-[24rem] w-full object-cover sm:h-[30rem] lg:h-full"
               sizes="(min-width: 1024px) 740px, 100vw"
             />
@@ -153,6 +154,7 @@ export default function CasePernmyrsGard() {
               <ResponsiveImage
                 image={getImage(6)}
                 alt="Hannes och Helena under den borgerliga vigseln på ängen"
+                pictureClassName="lg:h-full lg:w-full"
                 className="h-[18rem] w-full object-cover lg:h-full"
                 sizes="(min-width: 1024px) 360px, 100vw"
               />
@@ -161,6 +163,7 @@ export default function CasePernmyrsGard() {
               <ResponsiveImage
                 image={getImage(8)}
                 alt="Den dukade ladan på Pernmyrs Gård"
+                pictureClassName="lg:h-full lg:w-full"
                 className="h-[18rem] w-full object-cover lg:h-full"
                 sizes="(min-width: 1024px) 360px, 100vw"
               />

@@ -9,6 +9,7 @@ import {
 interface ResponsiveImageProps
   extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'srcSet'> {
   image: ImageAsset
+  pictureClassName?: string
 }
 
 const isResponsiveImage = (image: ImageAsset): image is ResponsiveImageAsset =>
@@ -16,6 +17,7 @@ const isResponsiveImage = (image: ImageAsset): image is ResponsiveImageAsset =>
 
 export const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
   image,
+  pictureClassName,
   sizes = '100vw',
   ...props
 }) => {
@@ -31,7 +33,9 @@ export const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
   }
 
   return (
-    <picture className="block">
+    <picture
+      className={['block', pictureClassName].filter(Boolean).join(' ')}
+    >
       {image.sources?.map((source) => (
         <source
           key={source.type}
