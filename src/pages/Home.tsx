@@ -274,6 +274,11 @@ export default function Home() {
               eyebrow="Film"
               title="Rörligt material med samma lugna känsla."
               description="Exempelfilm för For Pros, med fokus på miljö, rytm och en presentation som känns användbar för verksamheten."
+              action={
+                <TextArrowLink to="/produktfotografering/for-pros/">
+                  Se For Pros-caset
+                </TextArrowLink>
+              }
             />
             <div className="overflow-hidden rounded-[1.75rem] bg-black shadow-[0_34px_90px_-58px_rgba(31,41,55,0.7)]">
               <video

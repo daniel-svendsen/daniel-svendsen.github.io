@@ -180,6 +180,30 @@ export default function BusinessPhotography() {
         </section>
 
         <section className="mx-auto mb-12 max-w-6xl rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
+            Verkligt företagsuppdrag
+          </p>
+          <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
+            Foto och film för For Pros
+          </h2>
+          <p className="mb-6 max-w-3xl text-base leading-relaxed text-textSecondary">
+            Samarbetet med For Pros omfattar produktbilder, miljöbilder och film
+            för företagets verksamhet och hemsida. Se bilderna och läs om en
+            heldag med foto och film samt fler än tio tillfällen med
+            produktfotografering.
+          </p>
+          <LinkButton
+            to="/produktfotografering/for-pros/"
+            variant="outline"
+            size="md"
+            subVariant="rounded"
+            className="font-semibold"
+          >
+            Se For Pros-caset
+          </LinkButton>
+        </section>
+
+        <section className="mx-auto mb-12 max-w-6xl rounded-[1.75rem] border border-black/6 bg-white px-5 py-8 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:px-8 md:py-10">
           <div className="mb-8 max-w-3xl">
             <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
               Så går företagsfotograferingen till
@@ -252,8 +276,8 @@ export default function BusinessPhotography() {
               Jag utgår från Kungälv och fotograferar även företag i Göteborg,
               Stenungsund och andra områden efter överenskommelse. Utanför
               Kungälv tillkommer reseersättning på{' '}
-              {PRICING.estimator.travelPerRoundTripMil} per mil för hela tur- och
-              retursträckan samt eventuell övernattning.
+              {PRICING.estimator.travelPerRoundTripMil} per mil för hela tur-
+              och retursträckan samt eventuell övernattning.
             </p>
           </div>
           <div className="rounded-[1.5rem] border border-black/6 bg-[#f8f8f5] p-6 md:p-8">
