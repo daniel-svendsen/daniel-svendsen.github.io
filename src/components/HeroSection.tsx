@@ -46,16 +46,13 @@ export default function HeroSection() {
           transition={{ duration: 0.7, ease: 'easeOut' }}
         >
           <p className="mb-6 text-sm font-semibold uppercase tracking-[0.24em] text-textSecondary">
-            Fotograf i Kungälv, Göteborg & Stenungsund
+            Svendsén Photography
           </p>
           <h1
             id="hero-heading"
             className="mb-6 max-w-3xl text-5xl font-semibold leading-[0.96] tracking-tight text-textPrimary sm:text-6xl lg:text-7xl"
           >
-            Svendsén
-            <span className="block font-poiret font-bold tracking-[0.06em]">
-              Photography
-            </span>
+            Fotograf i Kungälv, Göteborg & Stenungsund
           </h1>
           <p className="max-w-xl text-lg leading-8 text-textPrimary/72 sm:text-xl">
             Stillsamma, naturliga bilder för bröllop, porträtt, familj och
@@ -102,8 +99,8 @@ export default function HeroSection() {
               </div>
               <div className="rounded-[1.35rem] border border-black/6 bg-white/78 p-5 shadow-[0_24px_60px_-52px_rgba(31,41,55,0.35)] backdrop-blur">
                 <p className="text-sm font-medium leading-6 text-textPrimary/70">
-                  Bröllop, porträtt, familj, företag och event med
-                  personlig känsla.
+                  Bröllop, porträtt, familj, företag och event med personlig
+                  känsla.
                 </p>
               </div>
             </div>
