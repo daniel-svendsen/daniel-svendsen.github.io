@@ -8,7 +8,6 @@ import servicesImage from '@/assets/pictures/company.jpg'
 import contactImage from '@/assets/pictures/portrait2.jpg'
 import homeImage from '@/assets/pictures/portrait.jpg'
 import aboutImage from '@/assets/bild1.jpg'
-import webservicesImage from '@/assets/webdev-optimized.jpg'
 import guidesImage from '@/assets/weddings/DSC09186.jpg'
 import portraitsImage from '@/assets/portraits/portraits-3.jpg'
 import familyPhotographyImage from '@/assets/familyphoto/familjefotografering-eventladan-kungalv.jpg'
@@ -79,10 +78,6 @@ const PAGE_OG_IMAGE_SOURCES = {
   faq: {
     src: faqImage,
     alt: 'Familjefotografering utomhus',
-  },
-  webservices: {
-    src: webservicesImage,
-    alt: 'Exempel på webbdesign och webbutveckling',
   },
   guides: {
     src: guidesImage,

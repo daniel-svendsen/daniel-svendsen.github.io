@@ -1,4 +1,6 @@
 # Keep private and dynamic client routes working when a top-level 404.html exists.
+/webservices /services/ 301
+/webservices/ /services/ 301
 /galleri/* /app-shell/ 200
 /admin /app-shell/ 200
 /admin/* /app-shell/ 200

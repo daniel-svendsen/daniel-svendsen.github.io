@@ -49,13 +49,6 @@ export const CONTACT_SERVICE_OPTIONS = [
       'Berätta hur många fordon det gäller, önskad bildtyp och om du har en plats i åtanke.',
   },
   {
-    id: 'web-development',
-    label: 'Webbutveckling / hemsida',
-    asksForLocation: false,
-    messagePlaceholder:
-      'Berätta om det gäller en ny eller befintlig webbplats, vad den ska hjälpa besökaren med och vilka sidor eller funktioner du behöver.',
-  },
-  {
     id: 'other',
     label: 'Annat',
     asksForLocation: false,
@@ -68,6 +61,5 @@ export type ContactServiceId = (typeof CONTACT_SERVICE_OPTIONS)[number]['id']
 export const getContactServiceOption = (serviceId: ContactServiceId) =>
   CONTACT_SERVICE_OPTIONS.find((service) => service.id === serviceId)
 
-export const getContactServiceSubmissionValue = (
-  serviceId: ContactServiceId,
-) => getContactServiceOption(serviceId)?.label ?? ''
+export const getContactServiceSubmissionValue = (serviceId: ContactServiceId) =>
+  getContactServiceOption(serviceId)?.label ?? ''

@@ -8,6 +8,7 @@ import Navbar from '@/components/Navbar'
 import PublicFooter from '@/components/PublicFooter'
 import ScrollToTop from '@/components/ScrollToTop'
 import {
+  LEGACY_PUBLIC_ROUTE_REDIRECTS,
   PUBLIC_ROUTE_KEYS,
   PUBLIC_ROUTE_PATHS,
   type PublicRouteKey,
@@ -39,7 +40,6 @@ const Weddings = React.lazy(() => import('./pages/Weddings'))
 const Contact = React.lazy(() => import('./pages/Contact'))
 const FAQ = React.lazy(() => import('./pages/FAQ'))
 const Work = React.lazy(() => import('./pages/Work'))
-const WebServicesPage = React.lazy(() => import('./pages/WebServices'))
 const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'))
 const Guides = React.lazy(() => import('./pages/Guides'))
 const WeddingPhotoPlanner = React.lazy(
@@ -80,7 +80,6 @@ const publicRouteComponents = {
   weddings: Weddings,
   contact: Contact,
   faq: FAQ,
-  webservices: WebServicesPage,
   guides: Guides,
   weddingPhotoPlanner: WeddingPhotoPlanner,
   weddingWalkGuide: WeddingWalkGuide,
@@ -143,6 +142,13 @@ export default function AppRoutes() {
               />
             )
           })}
+          {LEGACY_PUBLIC_ROUTE_REDIRECTS.map((redirect) => (
+            <Route
+              key={redirect.from}
+              path={redirect.from}
+              element={<Navigate to={redirect.to} replace />}
+            />
+          ))}
           <Route path={APP_ROUTE_PATHS.work} element={<Work />} />
           <Route
             path={APP_ROUTE_PATHS.gallery}

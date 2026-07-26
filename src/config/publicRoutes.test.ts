@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import {
   INDEXABLE_PUBLIC_ROUTES,
+  LEGACY_PUBLIC_ROUTE_REDIRECTS,
   PUBLIC_CANONICAL_URLS,
   PUBLIC_ROUTE_PATHS,
 } from './publicRoutes'
@@ -42,5 +43,13 @@ describe('public canonical URLs', () => {
     expect(toSiteUrl('/services')).toBe(
       'https://www.svendsenphotography.com/services',
     )
+  })
+
+  it('redirects the retired web services route to photography services', () => {
+    expect(PUBLIC_ROUTE_PATHS).not.toHaveProperty('webservices')
+    expect(LEGACY_PUBLIC_ROUTE_REDIRECTS).toContainEqual({
+      from: '/webservices',
+      to: '/services/',
+    })
   })
 })

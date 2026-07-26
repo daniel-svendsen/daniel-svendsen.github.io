@@ -126,7 +126,7 @@ export default function Contact() {
     '@type': 'ContactPage',
     name: 'Kontakta Svendsén Photography',
     description:
-      'Kontakta och boka fotograf eller webbutvecklare i Kungälv & Göteborg.',
+      'Kontakta och boka fotograf i Kungälv, Göteborg och Stenungsund.',
     url: PUBLIC_CANONICAL_URLS.contact,
     mainEntity: businessReference,
   }
@@ -141,11 +141,11 @@ export default function Contact() {
     <>
       <SEO
         title="Boka fotograf i Göteborg, Kungälv & Stenungsund | Kontakt"
-        description="Boka fotograf eller be om offert för bröllop, porträtt, familjefoto, företagsfoto, produktfoto och webbutveckling i Göteborg, Kungälv och Stenungsund."
+        description="Boka fotograf eller be om offert för bröllop, porträtt, familjefoto, företagsfoto och produktfoto i Göteborg, Kungälv och Stenungsund."
         url={PUBLIC_CANONICAL_URLS.contact}
         image={ogImage.src}
         imageAlt={ogImage.alt}
-        keywords="boka fotograf, kontakt fotograf, offert fotografering, fotograf göteborg, fotograf kungälv, fotograf stenungsund, familjefotograf göteborg, webbutvecklare kungälv"
+        keywords="boka fotograf, kontakt fotograf, offert fotografering, fotograf göteborg, fotograf kungälv, fotograf stenungsund, familjefotograf göteborg"
         jsonLd={contactJsonLd}
         breadcrumbs={[
           { name: 'Hem', url: PUBLIC_CANONICAL_URLS.home },
@@ -163,7 +163,7 @@ export default function Contact() {
             eyebrow="Kontakt"
             headingLevel="h1"
             title="Boka fotograf eller skicka en förfrågan."
-            description="Fyll i formuläret om du vill boka fotograf i Göteborg, Kungälv eller Stenungsund, eller om du vill ha offert på fotografering eller hemsida."
+            description="Fyll i formuläret om du vill boka fotograf i Göteborg, Kungälv eller Stenungsund eller vill be om offert på en fotografering."
           />
         </EditorialSection>
 

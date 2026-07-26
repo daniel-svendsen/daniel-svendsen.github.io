@@ -7,7 +7,6 @@ const footerLinks = [
   { to: '/om/', label: 'Om Daniel' },
   { to: '/contact/', label: 'Kontakt' },
   { to: '/faq/', label: 'FAQ' },
-  { to: '/webservices/', label: 'Webbtjänster' },
   { to: '/privacy/', label: 'Integritetspolicy' },
 ]
 

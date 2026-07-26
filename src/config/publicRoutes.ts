@@ -13,7 +13,6 @@ export const PUBLIC_ROUTE_PATHS = {
   weddings: '/weddings',
   contact: '/contact',
   faq: '/faq',
-  webservices: '/webservices',
   guides: '/guider',
   weddingPhotoPlanner: '/guider/brollopsplanerare',
   weddingWalkGuide: '/guider/brollopsbilder-promenad',
@@ -24,6 +23,10 @@ export const PUBLIC_ROUTE_PATHS = {
   weddingCaseStenungsund: '/brollop/stenungsund',
   privacy: '/privacy',
 } as const
+
+export const LEGACY_PUBLIC_ROUTE_REDIRECTS = [
+  { from: '/webservices', to: '/services/' },
+] as const
 
 export type PublicRouteKey = keyof typeof PUBLIC_ROUTE_PATHS
 

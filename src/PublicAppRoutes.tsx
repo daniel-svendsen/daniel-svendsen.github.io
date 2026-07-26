@@ -1,10 +1,11 @@
 import React, { Suspense } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import Navbar from '@/components/Navbar'
 import PublicFooter from '@/components/PublicFooter'
 import ScrollToTop from '@/components/ScrollToTop'
 import {
+  LEGACY_PUBLIC_ROUTE_REDIRECTS,
   PUBLIC_ROUTE_KEYS,
   PUBLIC_ROUTE_PATHS,
   type PublicRouteKey,
@@ -28,7 +29,6 @@ import NotFound from './pages/NotFound'
 import Portraits from './pages/Portraits'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import Services from './pages/Services'
-import WebServicesPage from './pages/WebServices'
 import Weddings from './pages/Weddings'
 import WeddingPhotoPlanner from './pages/WeddingPhotoPlanner'
 import WeddingPhotographerKungalv from './pages/WeddingPhotographerKungalv'
@@ -48,7 +48,6 @@ const publicRouteComponents = {
   weddings: Weddings,
   contact: Contact,
   faq: FAQ,
-  webservices: WebServicesPage,
   guides: Guides,
   weddingPhotoPlanner: WeddingPhotoPlanner,
   weddingWalkGuide: WeddingWalkGuide,
@@ -87,6 +86,13 @@ export default function PublicAppRoutes() {
               />
             )
           })}
+          {LEGACY_PUBLIC_ROUTE_REDIRECTS.map((redirect) => (
+            <Route
+              key={redirect.from}
+              path={redirect.from}
+              element={<Navigate to={redirect.to} replace />}
+            />
+          ))}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

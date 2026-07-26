@@ -34,6 +34,7 @@ describe('route classification', () => {
     '/admin/gallery/example',
     '/galleri/example',
     APP_ROUTE_PATHS.appShell,
+    '/webservices',
     '/unknown-route',
   ])('keeps %s outside the indexable route set', (route) => {
     expect(isIndexablePublicRoute(route)).toBe(false)
@@ -49,9 +50,7 @@ describe('route classification', () => {
   it('derives route keys and prerender paths from the same public source', () => {
     expect(PUBLIC_ROUTE_KEYS).toEqual(Object.keys(PUBLIC_ROUTE_PATHS))
     expect(INDEXABLE_PUBLIC_ROUTES).toEqual(
-      PUBLIC_ROUTER_PATHS.map((route) =>
-        route === '/' ? route : `${route}/`,
-      ),
+      PUBLIC_ROUTER_PATHS.map((route) => (route === '/' ? route : `${route}/`)),
     )
   })
 

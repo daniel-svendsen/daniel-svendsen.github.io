@@ -350,6 +350,16 @@ async function verifyGeneratedSeo() {
   )
 
   const redirects = await fs.readFile(path.join(distDir, '_redirects'), 'utf8')
+  for (const redirect of legacyPublicRouteRedirects) {
+    for (const from of [redirect.from, `${redirect.from}/`]) {
+      const redirectRule = `${from} ${redirect.to} 301`
+
+      assertBuild(
+        redirects.includes(redirectRule),
+        `legacy public redirect is missing: ${redirectRule}`,
+      )
+    }
+  }
   for (const rewrite of appShellRewrites) {
     assertBuild(
       redirects.includes(rewrite),
@@ -358,9 +368,12 @@ async function verifyGeneratedSeo() {
   }
 }
 
-const { appShellRewrites, prerenderRoutes, render } = await import(
-  pathToFileURL(serverEntryPath).href
-)
+const {
+  appShellRewrites,
+  legacyPublicRouteRedirects,
+  prerenderRoutes,
+  render,
+} = await import(pathToFileURL(serverEntryPath).href)
 const template = await fs.readFile(templatePath, 'utf8')
 
 async function renderPage(route, outputPath) {

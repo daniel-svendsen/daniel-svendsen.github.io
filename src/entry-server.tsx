@@ -6,6 +6,7 @@ import AppProviders from './AppProviders'
 import PublicAppRoutes from './PublicAppRoutes'
 
 export { INDEXABLE_PUBLIC_ROUTES as prerenderRoutes } from './config/publicRoutes'
+export { LEGACY_PUBLIC_ROUTE_REDIRECTS as legacyPublicRouteRedirects } from './config/publicRoutes'
 export { APP_SHELL_REWRITES as appShellRewrites } from './config/routeClassification'
 
 export function render(url: string) {

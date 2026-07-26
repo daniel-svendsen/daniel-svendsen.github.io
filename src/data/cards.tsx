@@ -1,10 +1,9 @@
-import { Briefcase, Camera, Code, Users } from 'lucide-react'
+import { Briefcase, Camera, Users } from 'lucide-react'
 
 import weddingImage from '../assets/pictures/wedding.jpg?responsive-small'
 import portraitImage from '../assets/pictures/portrait.jpg?responsive'
 import familyImage from '../assets/familyphoto/familjefotografering-eventladan-kungalv.jpg?responsive'
 import companyImage from '../assets/pictures/company.jpg?responsive-small'
-import webdevImage from '../assets/webdev-optimized.jpg?responsive-small'
 import { PRICING } from '@/config/pricing'
 
 export const homeCards = [
@@ -34,15 +33,6 @@ export const homeCards = [
     buttonText: 'Se företagsfotografering',
     buttonLink: '/foretagsfotografering/',
     icon: Briefcase,
-  },
-  {
-    image: webdevImage,
-    title: 'Hemsidor & SEO',
-    description:
-      'Moderna, snabba och SEO-optimerade hemsidor för företag och kreatörer. Även helhetspaket.',
-    buttonText: 'Läs mer',
-    buttonLink: '/webservices/',
-    icon: Code,
   },
 ]
 
@@ -102,17 +92,5 @@ ${PRICING.business.taxNote}`,
     secondaryButtonText: 'Se företagsfotografering',
     secondaryButtonLink: '/foretagsfotografering/',
     icon: Briefcase,
-  },
-  {
-    title: 'Hemsidesutveckling & SEO',
-    image: webdevImage,
-    description: `Enkel landningssida -> från ${PRICING.web.landingPageFrom}
-Företagswebbplats (flersidig) -> från ${PRICING.web.websiteFrom}
-SEO-optimering och support -> från ${PRICING.web.seoSupportFrom}
-Helhetspaket med fotografering och hemsida -> offert vid förfrågan`,
-    price: `Från ${PRICING.web.landingPageFrom}`,
-    buttonText: 'Se webbtjänster',
-    buttonLink: '/webservices/',
-    icon: Code,
   },
 ]
