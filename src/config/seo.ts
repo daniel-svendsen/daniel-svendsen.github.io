@@ -2,6 +2,11 @@ import { SITE_URL } from './siteOrigin.js'
 
 export { SITE_URL } from './siteOrigin.js'
 
+export const SOCIAL_LINKS = {
+  instagram: 'https://www.instagram.com/svendsen_photography/',
+  facebook: 'https://www.facebook.com/DSvendsenphotography',
+} as const
+
 export const BUSINESS = {
   id: `${SITE_URL}/#business`,
   name: 'Svendsén Photography',
@@ -12,10 +17,7 @@ export const BUSINESS = {
   logoUrl: `${SITE_URL}/LOGO.png`,
   serviceAreas: ['Kungälv', 'Stenungsund', 'Göteborg'],
   openingHours: 'Måndag-fredag 09:00-17:00',
-  sameAs: [
-    'https://www.instagram.com/svendsen_photography/',
-    'https://www.facebook.com/DSvendsenphotography',
-  ],
+  sameAs: [SOCIAL_LINKS.instagram, SOCIAL_LINKS.facebook],
 } as const
 
 export const PERSON = {

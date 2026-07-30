@@ -1,13 +1,27 @@
 import React from 'react'
+import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 
-import { BUSINESS } from '@/config/seo'
+import { BUSINESS, SOCIAL_LINKS } from '@/config/seo'
 
 const footerLinks = [
   { to: '/om/', label: 'Om Daniel' },
   { to: '/contact/', label: 'Kontakt' },
   { to: '/faq/', label: 'FAQ' },
   { to: '/privacy/', label: 'Integritetspolicy' },
+]
+
+const socialLinks = [
+  {
+    href: SOCIAL_LINKS.instagram,
+    label: 'Instagram',
+    icon: FaInstagram,
+  },
+  {
+    href: SOCIAL_LINKS.facebook,
+    label: 'Facebook',
+    icon: FaFacebookF,
+  },
 ]
 
 export default function PublicFooter() {
@@ -38,6 +52,19 @@ export default function PublicFooter() {
             >
               {label}
             </NavLink>
+          ))}
+          {socialLinks.map(({ href, label, icon: Icon }) => (
+            <a
+              key={href}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              title={label}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 transition-colors hover:border-textPrimary/25 hover:bg-white hover:text-textPrimary"
+            >
+              <Icon aria-hidden="true" className="h-4 w-4" />
+            </a>
           ))}
         </nav>
       </div>
