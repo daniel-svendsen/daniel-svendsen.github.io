@@ -17,6 +17,7 @@ import siblingsChristmas from '@/assets/familyphoto/syskonfotografering-jultema.
 import threeSiblings from '@/assets/familyphoto/syskonfotografering-tre-barn.jpg?responsive'
 import siblingsByWindow from '@/assets/familyphoto/syskonfotografering-vid-fonster.jpg?responsive'
 import siblingsChristmasDresses from '@/assets/familyphoto/syskonportratt-julklanningar.jpg?responsive'
+import pregnancyCasePreview from '@/assets/cases/GravidEmira/gravidfotografering-hogt-gras-kode.jpg?responsive'
 
 const familyFacts = [
   PRICING.portrait.familyFrom,
@@ -225,6 +226,40 @@ export default function FamilyPhotography() {
               className="mt-6 font-semibold"
             >
               Se fotograferingen på Eventladan
+            </LinkButton>
+          </div>
+        </section>
+
+        <section className="mx-auto mb-12 grid max-w-6xl grid-cols-1 gap-6 rounded-[1.75rem] border border-black/6 bg-white p-5 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <figure className="overflow-hidden rounded-[1.5rem] bg-[#f8f8f5]">
+            <ResponsiveImage
+              image={pregnancyCasePreview}
+              alt="Emira under en gravidfotografering bland högt gräs i Kode"
+              sizes="(min-width: 1024px) 500px, 100vw"
+              className="h-[24rem] w-full object-cover"
+              loading="lazy"
+            />
+          </figure>
+          <div className="py-2 md:py-4">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
+              Gravidfotografering
+            </p>
+            <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
+              Gravidfoto i vecka 37 nära Kode
+            </h2>
+            <p className="mb-6 text-base leading-relaxed text-textSecondary">
+              Emira ville ha gravidbilder bland gräs och natur. Se hur vi
+              anpassade platsen, tempot och fotograferingen för en kväll med
+              skiftande väder sent i graviditeten.
+            </p>
+            <LinkButton
+              to="/familjefotografering/gravidfotografering-kode/"
+              variant="outline"
+              size="md"
+              subVariant="rounded"
+              className="font-semibold"
+            >
+              Se Emiras gravidfotografering
             </LinkButton>
           </div>
         </section>

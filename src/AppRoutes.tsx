@@ -35,7 +35,13 @@ const FamilyPhotography = React.lazy(() => import('./pages/FamilyPhotography'))
 const FamilyCaseEventladan = React.lazy(
   () => import('./pages/FamilyCaseEventladan'),
 )
+const PregnancyCaseEmira = React.lazy(
+  () => import('./pages/PregnancyCaseEmira'),
+)
 const Portraits = React.lazy(() => import('./pages/Portraits'))
+const PortraitCaseMattiasTell = React.lazy(
+  () => import('./pages/PortraitCaseMattiasTell'),
+)
 const Weddings = React.lazy(() => import('./pages/Weddings'))
 const Contact = React.lazy(() => import('./pages/Contact'))
 const FAQ = React.lazy(() => import('./pages/FAQ'))
@@ -79,7 +85,9 @@ const publicRouteComponents = {
   productCaseForPros: ProductCaseForPros,
   familyPhotography: FamilyPhotography,
   familyCaseEventladan: FamilyCaseEventladan,
+  pregnancyCaseEmira: PregnancyCaseEmira,
   portraits: Portraits,
+  portraitCaseMattiasTell: PortraitCaseMattiasTell,
   weddings: Weddings,
   contact: Contact,
   faq: FAQ,

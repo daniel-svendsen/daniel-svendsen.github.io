@@ -13,9 +13,11 @@ import guidesImage from '@/assets/weddings/DSC09186.jpg'
 import portraitsImage from '@/assets/portraits/portraits-3.jpg'
 import familyPhotographyImage from '@/assets/familyphoto/familjefotografering-eventladan-kungalv.jpg'
 import familyCaseEventladanImage from '@/assets/cases/EventladanPortraitsandFamily/familjefotografering-eventladan-romelanda.jpg'
+import pregnancyCaseEmiraImage from '@/assets/cases/GravidEmira/gravidfotografering-hogt-gras-kode.jpg'
 import businessPhotographyImage from '@/assets/foeretag/DSC07882.jpg'
 import productPhotographyImage from '@/assets/cases/FoeretagForPros/DSC07445.jpg'
 import productCaseForProsImage from '@/assets/cases/FoeretagForPros/DSC06483-Redigera-2.jpg'
+import portraitCaseMattiasTellImage from '@/assets/cases/PortrattMattiasTell/artistbild-mattias-tell-brygga-hund-arod.jpg'
 import plannerImage from '@/assets/weddings/DSC09579.jpg'
 import walkGuideImage from '@/assets/cases/Kersti&Jakob/parpåpromenad.jpg'
 import weddingsImage from '@/assets/weddings/DSC09134.jpg'
@@ -64,9 +66,17 @@ const PAGE_OG_IMAGE_SOURCES = {
     src: familyCaseEventladanImage,
     alt: 'Familj fotograferad på Eventladan i Romelanda nära Kungälv',
   },
+  pregnancyCaseEmira: {
+    src: pregnancyCaseEmiraImage,
+    alt: 'Emira under en gravidfotografering bland högt gräs i Kode',
+  },
   portraits: {
     src: portraitsImage,
     alt: 'Naturligt porträtt fotograferat utomhus',
+  },
+  portraitCaseMattiasTell: {
+    src: portraitCaseMattiasTellImage,
+    alt: 'Mattias Tell och hans hund på en brygga vid havet i Aröd',
   },
   weddings: {
     src: weddingsImage,

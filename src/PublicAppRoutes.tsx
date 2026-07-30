@@ -19,6 +19,8 @@ import ProductCaseForPros from './pages/ProductCaseForPros'
 import FAQ from './pages/FAQ'
 import FamilyCaseEventladan from './pages/FamilyCaseEventladan'
 import FamilyPhotography from './pages/FamilyPhotography'
+import PregnancyCaseEmira from './pages/PregnancyCaseEmira'
+import PortraitCaseMattiasTell from './pages/PortraitCaseMattiasTell'
 import CaseStudies from './pages/CaseStudies'
 import CaseKungalv from './pages/CaseKungalv'
 import CasePernmyrsGard from './pages/CasePernmyrsGard'
@@ -45,7 +47,9 @@ const publicRouteComponents = {
   productCaseForPros: ProductCaseForPros,
   familyPhotography: FamilyPhotography,
   familyCaseEventladan: FamilyCaseEventladan,
+  pregnancyCaseEmira: PregnancyCaseEmira,
   portraits: Portraits,
+  portraitCaseMattiasTell: PortraitCaseMattiasTell,
   weddings: Weddings,
   contact: Contact,
   faq: FAQ,

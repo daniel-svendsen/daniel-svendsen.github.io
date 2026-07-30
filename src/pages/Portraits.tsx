@@ -16,6 +16,7 @@ import { createFaqJsonLd, portraitFaqs } from '@/data/faqs'
 import featuredPortraitBaby from '../assets/portraits/portraits-2.jpg?responsive'
 import featuredPortraitChildren from '../assets/portraits/portraits-13.jpg?responsive'
 import featuredPortraitMan from '../assets/portraits/portraits-17.jpg?responsive'
+import artistCasePreview from '../assets/cases/PortrattMattiasTell/artistbild-mattias-tell-brygga-hund-arod.jpg?responsive'
 
 const featuredPortraits = [
   {
@@ -243,6 +244,40 @@ export default function Portraits() {
                 />
               </figure>
             ))}
+          </div>
+        </section>
+
+        <section className="mx-auto mb-14 grid max-w-6xl grid-cols-1 gap-6 rounded-[1.75rem] border border-black/6 bg-white p-5 shadow-[0_24px_70px_-58px_rgba(31,41,55,0.45)] md:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <figure className="overflow-hidden rounded-[1.5rem] bg-[#f8f8f5]">
+            <ResponsiveImage
+              image={artistCasePreview}
+              alt="Mattias Tell går med sin hund på en brygga vid Aröd"
+              sizes="(min-width: 1024px) 500px, 100vw"
+              className="h-[26rem] w-full object-cover"
+              loading="lazy"
+            />
+          </figure>
+          <div className="py-2 md:py-4">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-textSecondary">
+              Verkligt artistuppdrag
+            </p>
+            <h2 className="mb-4 text-3xl font-semibold text-textPrimary">
+              Artistporträtt för Mattias Tell
+            </h2>
+            <p className="mb-6 text-base leading-relaxed text-textSecondary">
+              Två spontana porträttfotograferingar gav både studiobilder och
+              utomhusporträtt vid havet. En av bilderna blev omslag till låten
+              Aeons på Spotify.
+            </p>
+            <LinkButton
+              to="/portraits/mattias-tell/"
+              variant="outline"
+              size="md"
+              subVariant="rounded"
+              className="font-semibold"
+            >
+              Se porträttcaset
+            </LinkButton>
           </div>
         </section>
 
