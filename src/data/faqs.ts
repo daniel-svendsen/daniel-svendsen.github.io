@@ -8,12 +8,43 @@ export interface FaqItem {
 export const generalFaqs: FaqItem[] = [
   {
     question: 'Fotograferar du utanför Kungälv?',
-    answer: 'Ja, men reseersättning kan tillkomma.',
+    answer:
+      'Ja. Jag fotograferar även i Göteborg, Stenungsund och på andra orter enligt överenskommelse. Resekostnad kan tillkomma beroende på plats och upplägg.',
   },
   {
     question: 'Hur lång tid tar en vanlig fotosession?',
     answer:
       'En vanlig fotosession tar ofta mellan 30 minuter och 2 timmar beroende på vilken typ av fotografering det gäller och vilket upplägg vi kommer fram till.',
+  },
+  {
+    question: 'Hur snabbt får jag svar på min förfrågan?',
+    answer:
+      'Jag svarar vanligtvis inom 1–2 arbetsdagar. Under dagar med fotograferingar eller perioder med många uppdrag kan svaret dröja något längre.',
+  },
+  {
+    question: 'Hur går bokningen till?',
+    answer:
+      'Du skickar först en förfrågan med önskat datum och upplägg. Därefter går vi igenom omfattning, pris och praktiska detaljer tillsammans via e-post eller telefon.',
+  },
+  {
+    question: 'Vad händer om vädret blir dåligt?',
+    answer:
+      'Inför en utomhusfotografering stämmer vi av prognosen tillsammans. Om vädret inte fungerar för det planerade upplägget kan vi justera tid eller plats, eller komma överens om en ny tid.',
+  },
+  {
+    question: 'Hur levereras de färdiga bilderna?',
+    answer:
+      'De färdiga och redigerade bilderna levereras digitalt. Exakt antal bilder, leveranstid och format framgår på respektive tjänstesida eller bekräftas i offerten.',
+  },
+  {
+    question: 'Får jag publicera och skriva ut bilderna?',
+    answer:
+      'För privata fotograferingar är utgångspunkten att du får publicera bilderna i egna kanaler och göra utskrifter för privat bruk. För företag anpassas användningsrätten efter hur och var bilderna ska användas och bekräftas innan fotograferingen.',
+  },
+  {
+    question: 'Hur fungerar ombokning eller avbokning?',
+    answer:
+      'Kontakta mig så snart som möjligt om planerna ändras, så försöker vi hitta en lösning utifrån hur nära fotograferingen ändringen sker och uppdragets omfattning.',
   },
 ]
 

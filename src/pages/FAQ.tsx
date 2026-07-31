@@ -46,7 +46,7 @@ export default function FAQ() {
     <>
       <SEO
         title="Vanliga frågor - Svendsén Photography"
-        description="Gemensamma svar om fotografering och bokning, med länkar till frågor om porträtt, familj, bröllop i Kungälv och praktiska bröllopsguider."
+        description="Svar om bokning, svarstid, väder, leverans och användning av bilder, med länkar till frågor om porträtt, familj och bröllop."
         url={PUBLIC_CANONICAL_URLS.faq}
         image={ogImage.src}
         imageAlt={ogImage.alt}
@@ -71,7 +71,7 @@ export default function FAQ() {
             eyebrow="FAQ"
             headingLevel="h1"
             title="Vanliga frågor"
-            description="Här finns gemensamma svar och vägar till frågor om porträtt, familj och bröllop på respektive ansvarig sida."
+            description="Här hittar du praktiska svar om bokning, fotografering och leverans. Frågor om ett särskilt upplägg finns på respektive tjänstesida."
           />
 
           <div className="mx-auto mt-12 max-w-3xl space-y-4">

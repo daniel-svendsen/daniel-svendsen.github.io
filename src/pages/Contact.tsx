@@ -398,12 +398,17 @@ export default function Contact() {
                 >
                   {isSubmitting ? 'Skickar...' : 'Skicka meddelande'}
                 </Button>
+                <p className="mt-3 flex items-center gap-2 text-sm text-textPrimary/62">
+                  <Clock className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
+                  Jag svarar vanligtvis inom 1–2 arbetsdagar.
+                </p>
               </div>
 
               <div className="min-h-6 sm:col-span-2">
                 {formStatus === 'success' && (
                   <p className="text-sm font-medium text-green-600">
-                    Tack! Ditt meddelande har skickats. Jag återkommer snart.
+                    Tack! Ditt meddelande har skickats. Jag återkommer
+                    vanligtvis inom 1–2 arbetsdagar.
                   </p>
                 )}
                 {formStatus === 'error' && (
