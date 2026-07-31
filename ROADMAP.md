@@ -23,7 +23,8 @@ Prioritera förbättringar som gör sidan tydligare, mer förtroendeingivande el
 - Följ upp primära lokala sökspår: `fotograf Kungälv`, `fotograf i Kungälv`, `bröllopsfotograf Kungälv`, `porträttfotograf Kungälv`, `familjefotograf Kungälv`, `företagsfotograf Kungälv`, `fotograf Stenungsund`, `bröllopsfotograf Stenungsund`, `bröllopsfotograf Göteborg` och `bröllopsfotograf västkusten`.
 - Förbättra befintliga lokala sidor och case innan nya landningssidor byggs.
 - Skapa nya lokala sidor bara när det finns en tydlig lucka, till exempel Göteborg-case, porträtt/företagscase eller en lokal guide med verkligt underlag.
-- Utvärdera en dedikerad sida för `porträttfotograf Kungälv`, `familjefotograf Kungälv` eller `företagsfotograf Kungälv` först när tjänsten ska prioriteras och sidan kan få eget innehåll, egna bilder och tydlig kontaktväg.
+- Följ upp de befintliga dedikerade sidorna för porträtt, familj och företag
+  innan ytterligare lokala eller tjänstespecifika landningssidor skapas.
 - Fortsätt hålla copy lokal, konkret och bilddriven i stället för generisk SEO-text.
 
 ### 3. Bild- och innehållskvalitet
@@ -34,7 +35,8 @@ Prioritera förbättringar som gör sidan tydligare, mer förtroendeingivande el
 - Uppdatera befintliga guider och case med tydligare interna länkar, bättre bildurval och starkare koppling till relevant tjänst.
 - Prioritera praktiska och lokala guideämnen, till exempel fina platser för bröllopsbilder i Kungälv, vad bröllopsfotograf i Kungälv kostar, familjebilder på bröllopsdagen, porträttfotografering utomhus i Kungälv och företagsporträtt i Kungälv.
 - Lägg till nya case först när det finns egna bilder, tydlig plats, tydligt upplägg och tillräckligt unikt innehåll.
-- Utvärdera bröllopsplaneraren innan fler verktyg byggs. Förbättra den bara om den hjälper kunden eller driver kontakt.
+- Följ upp bröllopsplaneraren och prisindikatorn innan fler verktyg byggs.
+  Förbättra dem bara om de hjälper kunden eller driver kontakt.
 - Använd AI för research, struktur och korrektur, men låt publicerad copy bygga på egen erfarenhet, lokalkännedom och riktiga uppdrag.
 
 ### 4. Engelska språkversioner
@@ -62,7 +64,9 @@ Föreslagen etappindelning:
 ### 5. Teknisk SEO och drift
 
 - Behåll tydliga metadata, canonical-URL:er, Open Graph-data, breadcrumbs och strukturerad data på publika sidor.
-- När en ny indexerbar route läggs till ska den finnas i route-listorna och i prerender/sitemap-flödet.
+- När en ny indexerbar route läggs till ska den registreras i det centrala
+  route-manifestet och därifrån följa med i router-, prerender- och
+  sitemap-flödet.
 - Generera `lastmod` i sitemap automatiskt vid build så publicerade deploys ger sökmotorer en tydligare uppdateringssignal.
 - Verifiera att `dist/sitemap.xml` bara innehåller avsedda publika routes efter `npm run build`.
 - Håll `/work`, `/admin`, `/galleri/*`, `/app-shell` och 404 utanför indexering.
@@ -70,9 +74,13 @@ Föreslagen etappindelning:
 
 ## Nästa steg
 
-1. Gå igenom befintliga tjänstsidor, guider och case med fokus på CTA, internlänkning, förtroendesign och matchning mot primära lokala sökspår.
+1. Följ upp befintliga tjänstesidor, guider, prisindikator och nytillkomna case
+   med fokus på CTA, internlänkning, förtroendesign och matchning mot primära
+   lokala sökspår.
 2. Kontrollera Search Console för sidor med impressions men låg CTR eller svag position.
 3. Kontrollera Google Business Profile, bildinnehåll och rutin för recensioner efter avslutat uppdrag.
-4. Prioritera nästa innehållsinsats utifrån faktisk lucka: Göteborg-case, porträtt/företagscase, lokal guide eller ingen ny sida alls.
-5. Göra en första bild-SEO-passning på de viktigaste publika sidorna.
+4. Prioritera nästa innehållsinsats utifrån faktisk lucka: Göteborg-case, lokal
+   guide, eventmaterial eller ingen ny sida alls.
+5. Följ upp genomförd bild-SEO och prioritera kvarvarande bilder utifrån
+   faktisk synlighet, prestanda och innehållsvärde.
 6. Besluta om engelska språkversioner ska byggas som nästa större SEO-spår och börja i så fall med teknisk grund plus startsida.

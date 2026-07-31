@@ -82,7 +82,12 @@ Do not run deploy commands unless explicitly approved.
 
 ## Existing Knowledge
 
-- Public routes include `/`, `/om`, `/services`, `/portraits`, `/weddings`, `/contact`, `/faq`, and `/work`.
+- `src/config/publicRoutes.ts` is the source of truth for indexable public
+  routes. It covers the main photography pages, service pages, guides, case
+  studies, contact, FAQ, about and privacy.
+- `/work` is publicly reachable but intentionally `noindex`; admin, customer
+  galleries, app-shell, unknown routes and the generated 404 are also excluded
+  from indexing.
 - The retired `/webservices` route redirects permanently to `/services/`.
 - Customer gallery route pattern: `/galleri/:galleryId`.
 - Worker API routes live under `/api/*`.

@@ -9,6 +9,9 @@ Current technical SEO setup for Svendsén Photography.
 - Public pages are prerendered during `npm run build`.
 - `scripts/prerender.mjs` generates the prerendered HTML, `404.html`,
   the private app shell, and `sitemap.xml`.
+- `src/config/publicRoutes.ts` is the canonical source for indexable routes.
+  The client router and SSR router consume the same manifest, and
+  `src/entry-server.tsx` exports it to the prerender script.
 - `public/robots.txt` allows crawling and points to the sitemap.
 - Google Search Console and Bing Webmaster Tools use:
   `https://www.svendsenphotography.com/sitemap.xml`
@@ -36,8 +39,8 @@ available on the production domain.
 
 ## Indexing Rules
 
-All routes in the `prerenderRoutes` list in `scripts/prerender.mjs` are
-included in the sitemap and intended for indexing.
+All routes in `INDEXABLE_PUBLIC_ROUTES` in `src/config/publicRoutes.ts` are
+prerendered, included in the sitemap and intended for indexing.
 
 These routes must remain excluded from the sitemap and use `noindex`:
 
@@ -49,8 +52,10 @@ These routes must remain excluded from the sitemap and use `noindex`:
 
 `privacy` is currently indexable.
 
-When adding or removing an indexable public route, update the route list in
-`scripts/prerender.mjs` and verify the generated `dist/sitemap.xml`.
+When adding or removing an indexable public route, update
+`PUBLIC_ROUTE_PATHS` and its component mapping in both routers. Then verify the
+generated `dist/sitemap.xml`. Do not create a separate route list in the
+prerender script.
 
 ## Metadata And Entity Data
 
@@ -62,9 +67,13 @@ When adding or removing an indexable public route, update the route list in
 - Business name: Svendsén Photography
 - Owner: Daniel Svendsén
 - Service areas: Kungälv, Stenungsund, and Göteborg
+- Public telephone and weekday opening hours are included in the centralized
+  business data and rendered in the public footer.
+- Instagram and Facebook URLs are centralized in `src/config/seo.ts` and used
+  by both structured data and the public footer.
 - The business has no public customer reception or published street address.
-- Missing optional `telephone`, `priceRange`, and `address` fields in Google
-  Rich Results Test are intentional unless the business details change.
+- Missing optional `priceRange` and `address` fields in Google Rich Results
+  Test are intentional unless the business details change.
 
 Keep the business name, email, logo, service areas, and social URLs consistent
 across pages and structured data. Do not add a private address to the schema.
@@ -82,6 +91,10 @@ redirect `/admin` to `/app-shell`.
 `/admin/login` for browsers that cached the previous permanent redirect.
 
 ## Verification After Deployment
+
+The repository can verify generated files and route behavior locally. Hosting
+configuration, crawler settings, Search Console, Bing Webmaster Tools and
+production HTTP responses are external state and must be checked separately.
 
 1. Run `npx tsc --noEmit`.
 2. Run `npm run build`.

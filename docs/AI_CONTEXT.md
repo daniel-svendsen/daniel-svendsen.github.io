@@ -5,12 +5,19 @@ Short context for agents. Prefer source code over this file when details matter.
 ## System Shape
 
 - React/TypeScript/Vite/Tailwind frontend in `src/`.
-- Public website routes: `/`, `/om`, `/services`, `/portraits`, `/weddings`, `/contact`, `/faq`.
+- `src/config/publicRoutes.ts` is the canonical manifest for indexable public
+  routes used by the routers, prerendering and sitemap generation.
+- Public surfaces include the main photography pages, `/om`, service pages,
+  guides, case studies, `/contact`, `/faq`, and `/privacy`.
 - The retired `/webservices` route redirects permanently to `/services/`.
 - `/work` is a separate CV/portfolio area with PDF generation.
+- `/work`, `/admin`, `/galleri/*`, `/app-shell`, unknown routes and the
+  generated 404 page are excluded from indexing.
 - Admin and customer gallery code lives under `src/admin/`.
 - Cloudflare Worker is `src/admin/worker/worker.ts`; it owns `/api/*`, admin auth, customer gallery access, uploads, deletes, renames, downloads, likes, and R2/KV access.
-- Spring Boot backend in `backend/` is historical but may still be useful as reference/fallback.
+- The current `/work` content comes from `src/data/cvData.json`. The Spring Boot
+  backend in `backend/` is historical but may still be useful as
+  reference/fallback.
 
 ## High-Risk Areas
 
