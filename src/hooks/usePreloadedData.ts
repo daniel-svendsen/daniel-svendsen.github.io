@@ -10,6 +10,11 @@ import {
   type CvSkill,
   type LocalizedContent,
 } from '../types/CvTypes'
+import {
+  applyCvVariant,
+  type CvVariant,
+  resolveCvVariant,
+} from '@/work/cvVariants'
 
 interface RawCvData {
   content: CvContent[]
@@ -62,7 +67,12 @@ export const usePreloadedData = () => {
         personalProjectsTitle: personalProjectsTitleLocalized,
       }
 
-      setData(processedData)
+      const variant: CvVariant =
+        typeof window === 'undefined'
+          ? 'standard'
+          : resolveCvVariant(window.location.search)
+
+      setData(applyCvVariant(processedData, variant))
     } catch (e: any) {
       setError(e.message || 'Kunde inte ladda eller bearbeta CV-data.')
     } finally {

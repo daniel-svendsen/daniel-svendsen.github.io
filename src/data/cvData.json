@@ -8,8 +8,8 @@
         "sv": "Daniel Svendsén"
       },
       "description": {
-        "en": "Java Developer and IT Consultant focusing on full-stack development, software packaging, and technical troubleshooting.",
-        "sv": "Java-utvecklare och IT-konsult med fokus på fullstack-utveckling, mjukvarupaketering och teknisk problemlösning."
+        "en": "Java/full-stack developer and IT consultant with experience in Spring Boot, React, TypeScript, SQL, REST APIs, system-oriented IT delivery, troubleshooting and documentation.",
+        "sv": "Java/fullstack-utvecklare och IT-konsult med erfarenhet av Spring Boot, React, TypeScript, SQL, REST-API:er, systemnära IT-leveranser, felsökning och dokumentation."
       }
     },
     {
@@ -44,8 +44,8 @@
         "sv": "Introduktion"
       },
       "description": {
-        "en": "Versatile Java/full-stack developer educated at Yrgo (Java Enterprise Developer), with a background in leadership and mentorship. I combine my experience in developing scalable applications with practical work in software packaging, MECM, and Active Directory. By understanding the entire chain – from code to distribution and troubleshooting in Windows environments – I can ensure stable and efficient deliveries in complex IT systems.",
-        "sv": "Mångsidig Java/fullstack-utvecklare utbildad vid Yrgo (Java Enterprise Developer), med en bakgrund inom ledarskap och mentorskap. Jag kombinerar min erfarenhet av att utveckla skalbara applikationer med praktiskt arbete inom mjukvarupaketering, MECM och Active Directory. Genom att förstå hela kedjan – från kod till distribution och felsökning i Windows-miljöer – kan jag säkerställa stabila och effektiva leveranser i komplexa IT-system."
+        "en": "Java/full-stack developer and IT consultant educated at Yrgo (Java Enterprise Developer), with experience in Spring Boot, React, TypeScript, SQL, REST APIs and system-oriented IT delivery. I combine a developer background with practical experience in troubleshooting, documentation, quality assurance and secure delivery workflows in Windows environments. Through own projects and my photography business, I have also built and maintained digital solutions from idea to working product.",
+        "sv": "Java/fullstack-utvecklare och IT-konsult utbildad vid Yrgo (Java Enterprise Developer), med erfarenhet av Spring Boot, React, TypeScript, SQL, REST-API:er och systemnära IT-leveranser. Jag kombinerar utvecklarbakgrund med praktisk erfarenhet av felsökning, dokumentation, kvalitetssäkring och säkra leveransflöden i Windows-miljöer. Genom egna projekt och min fotografverksamhet har jag även byggt och förvaltat digitala lösningar från idé till fungerande produkt."
       }
     }
   ],
@@ -117,11 +117,11 @@
         "sv": "Erfarenhet av Ramverk/Verktyg"
       },
       "tool": {
-      "en": "Spring Boot (Data JPA, Security, MVC)",
-      "sv": "Spring Boot (Data JPA, Security, MVC)"
+        "en": "Spring Boot (Data JPA, Security, MVC)",
+        "sv": "Spring Boot (Data JPA, Security, MVC)"
+      },
+      "icon": "Spring Boot"
     },
-    "icon": "Spring Boot"
-  },
     {
       "id": 7,
       "category": {
@@ -273,8 +273,8 @@
         "sv": "Kännedom om Databaser"
       },
       "tool": {
-        "en": "SQL Server",
-        "sv": "SQL Server"
+        "en": "Microsoft SQL Server",
+        "sv": "Microsoft SQL Server"
       },
       "icon": "SQL Server"
     },
@@ -339,101 +339,113 @@
       "icon": ""
     },
     {
-    "id": 25,
-    "category": {
-      "en": "Experienced Frameworks/Tools",
-      "sv": "Erfarenhet av Ramverk/Verktyg"
+      "id": 25,
+      "category": {
+        "en": "Experienced Frameworks/Tools",
+        "sv": "Erfarenhet av Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "JWT & Spring Security (Authentication/Authorization)",
+        "sv": "JWT & Spring Security (Autentisering/Auktorisering)"
+      },
+      "icon": ""
     },
-    "tool": {
-      "en": "JWT & Spring Security (Authentication/Authorization)",
-      "sv": "JWT & Spring Security (Autentisering/Auktorisering)"
+    {
+      "id": 26,
+      "category": {
+        "en": "Experienced Frameworks/Tools",
+        "sv": "Erfarenhet av Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "Bucket4j (API Rate Limiting & Resilience)",
+        "sv": "Bucket4j (API Rate Limiting & Resiliens)"
+      },
+      "icon": ""
     },
-    "icon": ""
-  },
-  {
-    "id": 26,
-    "category": {
-      "en": "Experienced Frameworks/Tools",
-      "sv": "Erfarenhet av Ramverk/Verktyg"
+    {
+      "id": 27,
+      "category": {
+        "en": "Experienced Frameworks/Tools",
+        "sv": "Erfarenhet av Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "REST API Integration (OpenAI & Mailgun)",
+        "sv": "REST API-integration (OpenAI & Mailgun)"
+      },
+      "icon": ""
     },
-    "tool": {
-      "en": "Bucket4j (API Rate Limiting & Resilience)",
-      "sv": "Bucket4j (API Rate Limiting & Resiliens)"
+    {
+      "id": 28,
+      "category": {
+        "en": "Experienced Databases",
+        "sv": "Erfarenhet av Databaser"
+      },
+      "tool": {
+        "en": "PostgreSQL & H2",
+        "sv": "PostgreSQL & H2"
+      },
+      "icon": ""
     },
-    "icon": ""
-  },
-  {
-    "id": 27,
-    "category": {
-      "en": "Experienced Frameworks/Tools",
-      "sv": "Erfarenhet av Ramverk/Verktyg"
+    {
+      "id": 29,
+      "category": {
+        "en": "Experienced Frameworks/Tools",
+        "sv": "Erfarenhet av Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "Cloudflare Workers & Wrangler (TypeScript)",
+        "sv": "Cloudflare Workers & Wrangler (TypeScript)"
+      },
+      "icon": ""
     },
-    "tool": {
-      "en": "REST API Integration (OpenAI & Mailgun)",
-      "sv": "REST API-integration (OpenAI & Mailgun)"
+    {
+      "id": 30,
+      "category": {
+        "en": "Familiar Frameworks/Tools",
+        "sv": "Kännedom om Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "Python",
+        "sv": "Python"
+      },
+      "icon": ""
     },
-    "icon": ""
-  },
-  {
-    "id": 28,
-    "category": {
-      "en": "Experienced Databases",
-      "sv": "Erfarenhet av Databaser"
+    {
+      "id": 31,
+      "category": {
+        "en": "Familiar Frameworks/Tools",
+        "sv": "Kännedom om Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "RESTful",
+        "sv": "RESTful"
+      },
+      "icon": ""
     },
-    "tool": {
-      "en": "PostgreSQL & H2",
-      "sv": "PostgreSQL & H2"
+    {
+      "id": 32,
+      "category": {
+        "en": "Experienced Frameworks/Tools",
+        "sv": "Erfarenhet av Ramverk/Verktyg"
+      },
+      "tool": {
+        "en": "PowerShell",
+        "sv": "PowerShell"
+      },
+      "icon": ""
     },
-    "icon": ""
-  },
-  {
-  "id": 29,
-  "category": { 
-    "en": "Experienced Frameworks/Tools", 
-    "sv": "Erfarenhet av Ramverk/Verktyg"
-  },
-  "tool": { 
-    "en": "Cloudflare Workers & Wrangler (TypeScript)", 
-  "sv": "Cloudflare Workers & Wrangler (TypeScript)" 
-},
-  "icon": ""
-},
-{
-  "id": 30,
-  "category": { 
-    "en": "Familiar Frameworks/Tools",
-    "sv": "Kännedom om Ramverk/Verktyg"
-  },
-  "tool": { 
-    "en": "Python", 
-  "sv": "Python" 
-},
-  "icon": ""
-},
-{
-  "id": 31,
-  "category": { 
-    "en": "Familiar Frameworks/Tools",
-    "sv": "Kännedom om Ramverk/Verktyg"
-  },
-  "tool": { 
-    "en": "RESTful", 
-  "sv": "RESTful" 
-},
-  "icon": ""
-},
-{
-  "id": 32,
-  "category": { 
-    "en": "Experienced Frameworks/Tools", 
-    "sv": "Erfarenhet av Ramverk/Verktyg"
-  },
-  "tool": { 
-    "en": "PowerShell", 
-  "sv": "PowerShell" 
-},
-  "icon": ""
-}
+    {
+      "id": 34,
+      "category": {
+        "en": "Familiar Languages",
+        "sv": "Kännedom om Språk"
+      },
+      "tool": {
+        "en": "C# fundamentals",
+        "sv": "C#-grunder"
+      },
+      "icon": ""
+    }
   ],
   "experience": [
     {
@@ -444,8 +456,8 @@
       },
       "year": "2024 – 2025",
       "details": {
-        "en": "Internship/Opensource - Full-Stack Developer at Alten (for Save the Children). Developing an open-source platform to enhance Hjulverkstan's community services.\n        - Contributed to full-stack development using Java, Spring Boot, React, TypeScript, AWS S3, focusing on delivering a image management system.\n        - Designed and implemented a  image handling solution: built scalable backend APIs for image upload/deletion to S3 with an automated cleanup service, and developed a mobile-first portal interface for efficient image capture. This directly improved internal vehicle management.\n        - Developed and launched key features for a new public-facing MVP website, including dynamic display of available vehicles and workshop information with images. This significantly increased Hjulverkstan's online visibility and accessibility to the community.\n        - The integrated solution provided a robust, user-centric platform, laying a scalable foundation for future development and directly supporting Hjulverkstan's operational and outreach goals.\n        - Utilized GitHub for version control and collaboration within an Agile (Scrum/Kanban) team. \n\n",
-        "sv": "Praktik/Opensource - Fullstackutvecklare på Alten (för Rädda Barnen). Utvecklar en plattform med öppen källkod för att förbättra Hjulverkstans tjänster.\n        - Bidrog med fullstackutveckling med Java, Spring Boot, React, TypeScript, AWS S3, med fokus på att leverera ett bildhanteringssystem.\n        - Designade och implementerade en bildhanteringslösning: byggde skalbara backend-API:er för bilduppladdning/borttagning till S3 med en automatiserad rensningstjänst, och utvecklade ett mobilt anpassat portalgränssnitt för smidig bildtagning. Detta förbättrade direkt den interna fordonshanteringen.\n        - Utvecklade och lanserade nyckelfunktioner för en ny publik MVP-webbplats, inklusive dynamisk visning av tillgängliga fordon och verkstadsinformation med bilder. Detta ökade Hjulverkstans synlighet och tillgänglighet för samhället.\n        - Den integrerade lösningen tillhandahöll en robust, användarcentrerad plattform som lade en skalbar grund för framtida utveckling och stödde direkt Hjulverkstans operativa och utåtriktade mål.\n        - Använde GitHub för versionshantering och samarbete inom ett agilt (Scrum/Kanban) team. \n\n"
+        "en": "Internship/Open source - Full-stack developer at Alten (for Save the Children). Developed a platform to improve Hjulverkstan's internal workflows and public digital presence.\n        - Built backend APIs with Java and Spring Boot for image upload/deletion and vehicle-related administration.\n        - Developed a mobile-first React/TypeScript interface for image capture and internal administration.\n        - Worked across SQL/data flow, API contracts, frontend behavior and user needs to turn practical requirements into working features.\n        - Used GitHub and agile Scrum/Kanban routines for collaboration, code review, documentation and iterative delivery.\n\n",
+        "sv": "Praktik/Open source - Fullstackutvecklare på Alten (för Rädda Barnen). Utvecklade en plattform för att förbättra Hjulverkstans interna arbetssätt och publika digitala närvaro.\n        - Byggde backend-API:er med Java och Spring Boot för bilduppladdning/borttagning och fordonsrelaterad administration.\n        - Utvecklade ett mobilt anpassat React/TypeScript-gränssnitt för bildtagning och intern administration.\n        - Arbetade över SQL/dataflöden, API-kontrakt, frontendbeteende och användarbehov för att omsätta praktiska krav till fungerande funktioner.\n        - Använde GitHub och agila Scrum/Kanban-rutiner för samarbete, kodgranskning, dokumentation och iterativ leverans.\n\n"
       },
       "links": [
         {
@@ -508,8 +520,8 @@
       },
       "year": "2025 – 2026",
       "details": {
-        "en": "Redirect Consulting - IT-consultant for Länsstyrelsen:\n- Completed a fixed-term substitute position with a focus on software packaging and automated distribution.\n- Developed and quality-assured installation scripts using PowerShell and the PSADT framework.\n- Managed deployments and software distribution via MECM and Active Directory in high-security environments.\n- Performed technical troubleshooting and debugging in Windows environments while monitoring delivery flows in Azure DevOps.\n- Worked in an agile ScrumBan team with a focus on maintaining stable and secure delivery workflows.",
-        "sv": "Redirect Consulting - IT-konsult för Länsstyrelsen:\n- Fullföljde ett tidsbegränsat vikariat med fokus på mjukvarupaketering och automatiserad distribution.\n- Utvecklade och kvalitetssäkrade installationsskript med PowerShell och ramverket PSADT.\n- Hanterade utrullningar och distribution av programvara via MECM och Active Directory i säkerhetskritiska miljöer.\n- Utförde teknisk felsökning och debugging i Windows-miljöer samt bevakade leveransflöden i Azure DevOps.\n- Arbetade i ett agilt ScrumBan-team med fokus på att upprätthålla stabila och säkra leveransflöden."
+        "en": "Redirect Consulting - IT consultant for Länsstyrelsen:\n- Completed a fixed-term substitute position focused on software packaging, quality assurance and automated distribution.\n- Developed and tested installation scripts using PowerShell and the PSADT framework.\n- Managed deployments via MECM and Active Directory in high-security Windows environments.\n- Troubleshot delivery issues and followed work in Azure DevOps.\n- Worked in an agile ScrumBan team with focus on documentation, quality, prioritization and secure delivery workflows.",
+        "sv": "Redirect Consulting - IT-konsult för Länsstyrelsen:\n- Fullföljde ett tidsbegränsat vikariat med fokus på mjukvarupaketering, kvalitetssäkring och automatiserad distribution.\n- Utvecklade och testade installationsskript med PowerShell och ramverket PSADT.\n- Hanterade utrullningar via MECM och Active Directory i säkerhetskritiska Windows-miljöer.\n- Felsökte leveransproblem och följde arbetet i Azure DevOps.\n- Arbetade i ett agilt ScrumBan-team med fokus på dokumentation, kvalitet, prioritering och säkra leveransflöden."
       }
     }
   ],
@@ -521,8 +533,8 @@
         "sv": "Personlig Webbplats & CV"
       },
       "details": {
-        "en": "Built the website for my photography company and this dynamic CV page using React, Vite, and Tailwind CSS. Features include dynamic PDF generation, localized content, responsive design, and fetching CV data from a database. Hosted on Cloudflare Pages with CI/CD via GitHub Actions; backend and database deployed on Railway.",
-        "sv": "Byggde webbplatsen för mitt fotoföretag och denna dynamiska CV-sida med React, Vite och Tailwind CSS. Funktioner inkluderar dynamisk PDF-generering, lokaliserad data, responsiv design och hämtning av CV-data från en databas/JSON. Hostas på Cloudflare Pages med CI/CD via GitHub Actions; backend och databas driftsatta på Railway."
+        "en": "Built and maintain the website for my photography business and this dynamic CV page using React, Vite and Tailwind CSS. Features include responsive UI, localized content, dynamic PDF generation and CV data from database/JSON. Hosted on Cloudflare Pages with CI/CD via GitHub Actions, giving practical experience in owning a product-like web presence end to end.",
+        "sv": "Bygger och förvaltar webbplatsen för min fotografverksamhet och denna dynamiska CV-sida med React, Vite och Tailwind CSS. Funktioner inkluderar responsivt UI, lokaliserat innehåll, dynamisk PDF-generering och CV-data från databas/JSON. Hostas på Cloudflare Pages med CI/CD via GitHub Actions, vilket gett praktisk erfarenhet av att äga en produktliknande webbnärvaro från början till slut."
       },
       "link_href": "https://www.svendsenphotography.com/work"
     },
@@ -533,23 +545,23 @@
         "sv": "Receptobot"
       },
       "details": {
-    "en": "Developed a full-stack AI service using Spring Boot 3 and React. Key technical features: Implemented JWT-based stateless authentication with Spring Security, integrated Mailgun API for automated user activation, and engineered a robust rate-limiting system using Bucket4j to optimize OpenAI API costs. Architected with a PostgreSQL backend and fully deployed on Railway with automated CI/CD pipelines and a responsive Tailwind CSS frontend.",
-    "sv": "Utvecklade en fullstack AI-tjänst med Spring Boot 3 och React. Tekniska punkter: Implementerade JWT-baserad stateless autentisering med Spring Security, integrerade Mailgun API för automatiserade aktiveringsflöden, och utvecklade ett robust rate-limiting-system med Bucket4j för att optimera OpenAI API-anrop och kostnader. Innehåller en PostgreSQL-backend och är driftsatt på Railway med automatiserade CI/CD-flöden och en responsiv frontend i Tailwind CSS."
-  },
+        "en": "Developed a full-stack AI service using Spring Boot 3 and React. Implemented REST API integrations, JSON request/response flows, JWT authentication with Spring Security, Mailgun-based activation and Bucket4j rate limiting. Built with PostgreSQL, JPA, Railway deployment, automated CI/CD and a responsive frontend.",
+        "sv": "Utvecklade en fullstack AI-tjänst med Spring Boot 3 och React. Implementerade REST-API-integrationer, JSON-baserade request/response-flöden, JWT-autentisering med Spring Security, Mailgun-baserad aktivering och Bucket4j rate limiting. Byggd med PostgreSQL, JPA, Railway-deploy, automatiserade CI/CD-flöden och responsiv frontend."
+      },
       "link_href": "https://www.receptobot.se"
     },
     {
-  "id": 3,
-  "name": {
-    "en": "Shardborne",
-    "sv": "Shardborne"
-  },
-  "details": {
-    "en": "Built a playable full-stack ARPG prototype with React, TypeScript, Phaser, Spring Boot, PostgreSQL and Flyway. The project includes account login, saved character progression, inventory/shop systems, spells/supports, map progression and automated tests. It also demonstrates structured AI-assisted development through architecture guardrails, roadmap-driven documentation and verification-focused workflows. Screenshots and demo notes are included in the repository.",
-    "sv": "Byggde en spelbar fullstack-ARPG-prototyp med React, TypeScript, Phaser, Spring Boot, PostgreSQL och Flyway. Projektet innehåller inloggning, sparad karaktärsprogression, inventory/shop-system, spells/supports, map progression och automatiserade tester. Det demonstrerar även strukturerad AI-assisterad utveckling genom arkitekturregler, roadmap-styrd dokumentation och verifieringsfokuserade arbetsflöden. Screenshots och demo-information finns i repot."
-  },
-  "link_href": "https://github.com/daniel-svendsen/Rpg-Game"
-},
+      "id": 3,
+      "name": {
+        "en": "Shardborne",
+        "sv": "Shardborne"
+      },
+      "details": {
+        "en": "Built a playable full-stack ARPG prototype with React, TypeScript, Phaser, Spring Boot, PostgreSQL and Flyway. The project includes login, saved progression, inventory/shop systems, automated tests, database migrations and roadmap-driven documentation. It demonstrates structured AI-assisted development with Claude Code and Codex, architecture guardrails, iterative prototyping and verification-focused workflows.",
+        "sv": "Byggde en spelbar fullstack-ARPG-prototyp med React, TypeScript, Phaser, Spring Boot, PostgreSQL och Flyway. Projektet innehåller inloggning, sparad progression, inventory/shop-system, automatiserade tester, databasmigreringar och roadmap-styrd dokumentation. Det demonstrerar strukturerad AI-assisterad utveckling med Claude Code och Codex, arkitekturregler, iterativ prototypning och verifieringsfokuserade arbetsflöden."
+      },
+      "link_href": "https://github.com/daniel-svendsen/Rpg-Game"
+    },
     {
       "id": 4,
       "name": {
@@ -569,8 +581,8 @@
         "sv": "Gallerihanteringssystem"
       },
       "details": {
-        "en": "Designed and implemented a fully serverless admin system for managing photo galleries. The system utilizes Cloudflare Workers for backend logic (API, auth), R2 for image storage, and KV for metadata (sessions, gallery lists). The frontend, built with React and Vite, enables full CRUD management of galleries and images.",
-        "sv": "Designade och implementerade ett fullt serverlöst admin-system för hantering av fotogallerier. Systemet använder Cloudflare Workers för backend-logik (API, auth), R2 för bildlagring och KV för metadata (sessioner, gallerilistor). Frontend, byggd med React och Vite, möjliggör komplett CRUD-hantering av gallerier och bilder."
+        "en": "Designed and implemented a serverless gallery management system for my photography business after replacing a paid external service. I researched Cloudflare Workers, R2 and KV and built a system for gallery/image CRUD, uploads, likes and customer-facing views. The project required connecting real customer needs with UI flows, API contracts, metadata, access control, storage keys, error handling and operational edge cases.",
+        "sv": "Designade och implementerade ett serverlöst gallerihanteringssystem för min fotografverksamhet efter att tidigare ha betalat för en extern tjänst. Jag läste på om Cloudflare Workers, R2 och KV och byggde ett system för CRUD av gallerier/bilder, uppladdning, likes och kundvyer. Projektet krävde att verkliga kundbehov kopplades ihop med UI-flöden, API-kontrakt, metadata, åtkomstkontroll, lagringsnycklar, felhantering och operativa specialfall."
       },
       "link_href": "https://www.svendsenphotography.com/galleri/testgalleri"
     }

@@ -16,9 +16,13 @@ const PdfDownloadButton: React.FC<PdfDownloadButtonProps> = ({ cvData }) => {
   const handleDownload = async () => {
     if (!cvData) return
     const blob = await pdf(<WorkPDF cvData={cvData} lang={language} />).toBlob()
+    const variantSuffix =
+      cvData.variant && cvData.variant !== 'standard'
+        ? `-${cvData.variant}`
+        : ''
     const pdfFileName = t({
-      en: 'DanielSvendsenResume.pdf',
-      sv: 'DanielSvendsénCV.pdf',
+      en: `DanielSvendsenResume${variantSuffix}.pdf`,
+      sv: `DanielSvendsénCV${variantSuffix}.pdf`,
     })
     saveAs(blob, pdfFileName)
 

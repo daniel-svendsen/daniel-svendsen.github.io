@@ -65,4 +65,5 @@ export interface CvData {
   languages: CvLanguage[]
   hobbies: CvContent[]
   personalProjectsTitle: LocalizedContent
+  variant?: string
 }
