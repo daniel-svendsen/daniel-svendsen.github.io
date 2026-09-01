@@ -8,6 +8,7 @@ import {
 
 export const CV_VARIANTS = [
   'standard',
+  'backend',
   'fullstack',
   'frontend-product',
   'systems-operations',
@@ -35,6 +36,16 @@ const variantSkill: CvSkill = {
 const contentDescriptions: Partial<
   Record<CvVariant, { profile: LocalizedContent; intro: LocalizedContent }>
 > = {
+  backend: {
+    profile: localized(
+      'Java/backend developer educated at Yrgo, with experience in Spring Boot, REST APIs, SQL/JPA, authentication, data flows and system-oriented delivery.',
+      'Java/backend-utvecklare utbildad vid Yrgo, med erfarenhet av Spring Boot, REST-API:er, SQL/JPA, autentisering, dataflöden och systemnära leverans.',
+    ),
+    intro: localized(
+      'Java/backend developer educated at Yrgo (Java Enterprise Developer), with practical experience building APIs, persistence layers and data-driven application flows with Spring Boot, SQL/JPA, PostgreSQL, REST, authentication and deployment pipelines. I enjoy working with clear API contracts, maintainable domain logic, troubleshooting and the parts of a system that make an application reliable over time. Through internships, own projects and system-oriented IT consulting, I have worked close to real requirements, secure delivery workflows, documentation and iterative improvement.',
+      'Java/backend-utvecklare utbildad vid Yrgo (Java Enterprise Developer), med praktisk erfarenhet av att bygga API:er, persistenslager och datadrivna applikationsflöden med Spring Boot, SQL/JPA, PostgreSQL, REST, autentisering och deployflöden. Jag trivs med tydliga API-kontrakt, underhållbar domänlogik, felsökning och de delar av ett system som gör en applikation stabil över tid. Genom praktik, egna projekt och systemnära IT-konsultarbete har jag arbetat nära verkliga krav, säkra leveransflöden, dokumentation och iterativ förbättring.',
+    ),
+  },
   fullstack: {
     profile: localized(
       'Java/full-stack developer educated at Yrgo, with experience in Spring Boot, React, TypeScript, SQL/JPA, REST APIs, Git and agile collaboration.',
@@ -70,6 +81,12 @@ const contentDescriptions: Partial<
 const experienceDetails: Partial<
   Record<CvVariant, Record<number, LocalizedContent>>
 > = {
+  backend: {
+    1: localized(
+      "Internship/Open source - Backend-focused full-stack developer at Alten (for Save the Children). Developed a platform to improve Hjulverkstan's internal workflows and public digital presence.\n        - Built backend APIs with Java and Spring Boot for image upload/deletion and vehicle-related administration.\n        - Worked with SQL/data flow, API contracts, request/response behavior and operational requirements.\n        - Connected backend behavior with a mobile-first React/TypeScript interface for image capture and internal administration.\n        - Used GitHub and agile Scrum/Kanban routines for collaboration, code review, documentation and iterative delivery.\n\n",
+      'Praktik/Open source - Backendfokuserad fullstackutvecklare på Alten (för Rädda Barnen). Utvecklade en plattform för att förbättra Hjulverkstans interna arbetssätt och publika digitala närvaro.\n        - Byggde backend-API:er med Java och Spring Boot för bilduppladdning/borttagning och fordonsrelaterad administration.\n        - Arbetade med SQL/dataflöden, API-kontrakt, request/response-beteende och verksamhetsnära krav.\n        - Kopplade backendbeteende till ett mobilt anpassat React/TypeScript-gränssnitt för bildtagning och intern administration.\n        - Använde GitHub och agila Scrum/Kanban-rutiner för samarbete, kodgranskning, dokumentation och iterativ leverans.\n\n',
+    ),
+  },
   fullstack: {
     1: localized(
       "Internship/Open source - Full-stack developer at Alten (for Save the Children). Developed a platform to improve Hjulverkstan's internal workflows and public digital presence.\n        - Built backend APIs with Java and Spring Boot for image upload/deletion and vehicle-related administration.\n        - Developed a mobile-first React/TypeScript interface for image capture and internal administration.\n        - Worked across SQL/data flow, API contracts, frontend behavior and user needs to turn practical requirements into working features.\n        - Used GitHub and agile Scrum/Kanban routines for collaboration, code review, documentation and iterative delivery.\n\n",
@@ -93,6 +110,24 @@ const experienceDetails: Partial<
 const projectDetails: Partial<
   Record<CvVariant, Record<number, LocalizedContent>>
 > = {
+  backend: {
+    1: localized(
+      'Built and maintain the website for my photography business and this dynamic CV page using React, Vite and Tailwind CSS, with CV data loaded from JSON and a historical Spring Boot backend kept as reference. The project includes localized content, dynamic PDF generation, Cloudflare Pages hosting and CI/CD via GitHub Actions, giving practical experience in owning data, build and delivery flows end to end.',
+      'Bygger och förvaltar webbplatsen för min fotografverksamhet och denna dynamiska CV-sida med React, Vite och Tailwind CSS, med CV-data från JSON och en historisk Spring Boot-backend som referens. Projektet innehåller lokaliserat innehåll, dynamisk PDF-generering, hosting på Cloudflare Pages och CI/CD via GitHub Actions, vilket gett praktisk erfarenhet av att äga data-, build- och leveransflöden från början till slut.',
+    ),
+    2: localized(
+      'Developed a backend-oriented full-stack service with Spring Boot 3, PostgreSQL and React. Implemented REST API integrations, JSON request/response flows, JWT authentication with Spring Security, Mailgun-based account activation and Bucket4j rate limiting. Built with JPA, Railway deployment and automated CI/CD, with focus on API behavior, persistence, security and reliable delivery.',
+      'Utvecklade en backendorienterad fullstacktjänst med Spring Boot 3, PostgreSQL och React. Implementerade REST-API-integrationer, JSON-baserade request/response-flöden, JWT-autentisering med Spring Security, Mailgun-baserad kontoaktivering och Bucket4j rate limiting. Byggd med JPA, Railway-deploy och automatiserade CI/CD-flöden, med fokus på API-beteende, persistens, säkerhet och stabil leverans.',
+    ),
+    3: localized(
+      'Built a playable full-stack ARPG prototype with Spring Boot, PostgreSQL, Flyway, React, TypeScript and Phaser. The project includes login, saved progression, inventory/shop systems, database migrations, automated tests and roadmap-driven documentation. It demonstrates backend application logic, persistence, data modeling, maintainability and iterative development.',
+      'Byggde en spelbar fullstack-ARPG-prototyp med Spring Boot, PostgreSQL, Flyway, React, TypeScript och Phaser. Projektet innehåller inloggning, sparad progression, inventory/shop-system, databasmigreringar, automatiserade tester och roadmap-styrd dokumentation. Det demonstrerar backendlogik, persistens, datamodellering, underhållbarhet och iterativ utveckling.',
+    ),
+    5: localized(
+      'Designed and implemented a serverless backend for customer photo galleries using Cloudflare Workers, REST-style API endpoints, R2 image storage and KV metadata. It handles gallery/image CRUD, uploads, likes, customer-facing access and admin flows. The project required stable API contracts, storage key semantics, metadata handling, access control, error handling and operational edge cases.',
+      'Designade och implementerade en serverless-backend för kundgallerier med Cloudflare Workers, REST-liknande API-endpoints, R2 för bildlagring och KV för metadata. Systemet hanterar CRUD för gallerier/bilder, uppladdning, likes, kundåtkomst och adminflöden. Projektet krävde stabila API-kontrakt, lagringsnycklar, metadatahantering, åtkomstkontroll, felhantering och operativa specialfall.',
+    ),
+  },
   fullstack: {
     2: localized(
       'Developed a full-stack service using Spring Boot 3 and React. Implemented REST API integrations, JSON request/response flows, JWT authentication with Spring Security, Mailgun-based activation and Bucket4j rate limiting. Built with PostgreSQL, JPA, Railway deployment, automated CI/CD and a responsive frontend.',
