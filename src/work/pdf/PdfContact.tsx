@@ -15,7 +15,7 @@ export const PdfContact: React.FC<PdfContactProps> = ({ contacts, lang }) => {
     translatePdf(localized, lang)
 
   return (
-    <View style={styles.section} wrap={false}>
+    <View style={styles.section}>
       <Text style={styles.sectionTitle}>{t(pdfSectionTitles.contact)}</Text>
       {contacts.map((ct) => (
         <Text key={ct.id} style={styles.contactText}>

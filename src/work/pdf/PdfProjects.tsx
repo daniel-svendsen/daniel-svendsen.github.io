@@ -20,10 +20,10 @@ export const PdfProjects: React.FC<PdfProjectsProps> = ({
     translatePdf(localized, lang)
 
   return (
-    <View style={styles.section}>
+    <View style={styles.section} wrap={false}>
       <Text style={styles.sectionTitle}>{t(sectionTitle)}</Text>
       {(projects || []).map((project) => (
-        <View key={project.id} style={{ marginBottom: 10 }} wrap={false}>
+        <View key={project.id} style={{ marginBottom: 7 }} wrap={false}>
           <Text style={styles.boldPrimaryText}>{t(project.name)}</Text>
           <Text style={styles.text}>{t(project.details)}</Text>
           {project.link_href && (

@@ -51,7 +51,7 @@ export const PdfExperience: React.FC<PdfExperienceProps> = ({
         <View
           key={exp.id}
           style={{
-            marginBottom: index === experiences.length - 1 ? 2 : 10,
+            marginBottom: index === experiences.length - 1 ? 2 : 7,
           }}
           wrap={false}
         >

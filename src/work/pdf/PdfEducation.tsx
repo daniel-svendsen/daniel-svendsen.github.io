@@ -18,7 +18,7 @@ export const PdfEducation: React.FC<PdfEducationProps> = ({
     translatePdf(localized, lang)
 
   return (
-    <View style={styles.section} wrap={false}>
+    <View style={styles.section}>
       <Text style={styles.sectionTitle}>{t(pdfSectionTitles.education)}</Text>
       {educations.map((edu) => (
         <View key={edu.id} style={{ marginBottom: 8 }} wrap={false}>

@@ -15,7 +15,7 @@ export const PdfIntro: React.FC<PdfIntroProps> = ({ intro, lang }) => {
     translatePdf(localized, lang)
 
   return (
-    <View style={styles.section} wrap={false}>
+    <View style={styles.section}>
       <Text style={styles.sectionTitle}>
         {t(intro.title) || t(pdfSectionTitles.profileIntro)}
       </Text>

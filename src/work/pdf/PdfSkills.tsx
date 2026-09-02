@@ -38,7 +38,7 @@ export const PdfSkills: React.FC<PdfSkillsProps> = ({ skills, lang }) => {
   )
 
   return (
-    <View style={styles.section} wrap={false}>
+    <View style={styles.section}>
       <Text style={styles.sectionTitle}>
         {t(pdfSectionTitles.technicalSkills)}
       </Text>
