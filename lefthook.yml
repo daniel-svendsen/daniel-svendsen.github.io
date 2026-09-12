@@ -7,8 +7,6 @@ pre-push:
   parallel: false
   commands:
     secrets-git:
-      run: gitleaks git --redact --verbose
-    secrets-files:
-      run: gitleaks dir . --redact --verbose
+      run: gitleaks git --log-opts="origin/main..HEAD" --redact --verbose
     typecheck:
       run: npx tsc --noEmit

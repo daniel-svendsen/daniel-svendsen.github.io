@@ -109,6 +109,7 @@ backend_config_analysis.json
 .env.production
 .dev.vars
 .wrangler
+.codex-remote-attachments/
 admin_analysis.json
 admin_content.txt
 
