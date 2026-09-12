@@ -1,0 +1,14 @@
+pre-commit:
+  commands:
+    secrets:
+      run: gitleaks git --staged --redact --verbose
+
+pre-push:
+  parallel: false
+  commands:
+    secrets-git:
+      run: gitleaks git --redact --verbose
+    secrets-files:
+      run: gitleaks dir . --redact --verbose
+    typecheck:
+      run: npx tsc --noEmit

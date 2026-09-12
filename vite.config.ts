@@ -4,7 +4,10 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import crypto from 'node:crypto'
+import { fileURLToPath } from 'node:url'
 import type { Plugin } from 'vite'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const responsiveProfiles = {
   responsive: {
