@@ -24,7 +24,7 @@ export const PdfHeader: React.FC<PdfHeaderProps> = ({ profile, lang }) => {
       <Text style={styles.headerTitle}>{t(profile.description)}</Text>
       <Link
         style={styles.headerLink}
-        src="https://www.linkedin.com/in/daniel-svendsen-02423a1b4/"
+        src="https://www.linkedin.com/in/daniel-svendsén/"
       >
         {t(pdfSectionTitles.linkedInName)}
       </Link>

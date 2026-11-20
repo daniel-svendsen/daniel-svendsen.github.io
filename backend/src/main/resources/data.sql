@@ -151,7 +151,7 @@ INSERT INTO cv_contact (cv_id, type, details, link_href)
 VALUES (1, 'Address', 'Briljantvägen 55, 44260 Kode', NULL),
        (1, 'Email', 'Daniel-Svendsen@hotmail.se', NULL),
        (1, 'Phone', '0707714306', NULL),
-       (1, 'LinkedIn', 'Daniel Svendsén Profile', 'https://www.linkedin.com/in/daniel-svendsen-02423a1b4/');
+       (1, 'LinkedIn', 'Daniel Svendsén Profile', 'https://www.linkedin.com/in/daniel-svendsén/');
 
 
 INSERT INTO cv_languages (cv_id, name, level)
