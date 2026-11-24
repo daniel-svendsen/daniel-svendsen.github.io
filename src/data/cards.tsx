@@ -12,8 +12,7 @@ export const homeCards = [
     title: 'Bröllopsfoto',
     description:
       'Fånga er dag med tidlösa bilder och ett lugnt upplägg. Film kan läggas till vid behov.',
-    buttonText: 'Läs mer',
-    buttonLink: '/weddings/',
+    links: [{ label: 'Läs mer', to: '/weddings/' }],
     icon: Camera,
   },
   {
@@ -21,8 +20,10 @@ export const homeCards = [
     title: 'Porträtt & Familj',
     description:
       'Personliga porträtt för CV, sociala medier eller vackra familjebilder, utomhus eller på plats.',
-    buttonText: 'Se alternativen',
-    buttonLink: '/services/',
+    links: [
+      { label: 'Porträttfotografering', to: '/portraits/' },
+      { label: 'Familjefotografering', to: '/familjefotografering/' },
+    ],
     icon: Users,
   },
   {
@@ -30,8 +31,7 @@ export const homeCards = [
     title: 'Företag, Event & Hobby',
     description:
       'Professionella bilder för företag, event, verksamheter och andra personliga sammanhang.',
-    buttonText: 'Se företagsfotografering',
-    buttonLink: '/foretagsfotografering/',
+    links: [{ label: 'Se företagsfotografering', to: '/foretagsfotografering/' }],
     icon: Briefcase,
   },
 ]

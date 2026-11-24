@@ -13,15 +13,15 @@ import { businessReference, BUSINESS } from '@/config/seo'
 import { PRICING } from '@/config/pricing'
 import { PUBLIC_CANONICAL_URLS } from '@/config/publicRoutes'
 import { createFaqJsonLd, portraitFaqs } from '@/data/faqs'
-import featuredPortraitBaby from '../assets/portraits/portraits-2.jpg?responsive'
+import featuredPortraitProfile from '../assets/portraits/portraits-15.jpg?responsive'
 import featuredPortraitChildren from '../assets/portraits/portraits-13.jpg?responsive'
 import featuredPortraitMan from '../assets/portraits/portraits-17.jpg?responsive'
 import artistCasePreview from '../assets/cases/PortrattMattiasTell/artistbild-mattias-tell-brygga-hund-arod.jpg?responsive'
 
 const featuredPortraits = [
   {
-    image: featuredPortraitBaby,
-    alt: 'Baby i röd tröja fotograferad mot ljus bakgrund',
+    image: featuredPortraitProfile,
+    alt: 'Svartvitt profilporträtt av en skäggig man i bredbrättad hatt',
   },
   {
     image: featuredPortraitChildren,

@@ -203,9 +203,13 @@ export default function Home() {
                   <p className="mb-8 max-w-xl text-lg leading-8 text-textPrimary/68">
                     {card.description}
                   </p>
-                  <TextArrowLink to={card.buttonLink}>
-                    {card.buttonText}
-                  </TextArrowLink>
+                  <div className="flex flex-wrap gap-x-6 gap-y-3">
+                    {card.links.map(({ to, label }) => (
+                      <TextArrowLink key={to} to={to}>
+                        {label}
+                      </TextArrowLink>
+                    ))}
+                  </div>
                 </div>
               </article>
             ))}
